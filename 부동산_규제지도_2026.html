@@ -1,0 +1,411 @@
+﻿<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/favicon.svg">
+<meta name="theme-color" content="#0C2040">
+<meta property="og:site_name" content="부릿지 BuRIDGE">
+<meta property="og:type" content="website">
+<meta property="og:title" content="규제지도 | 부릿지 BuRIDGE">
+<meta property="og:description" content="서울·수도권 토지거래허가구역, 규제지역 최신 현황 지도.">
+<meta property="og:url" content="https://buridge.vercel.app/부동산_규제지도_2026.html">
+<meta property="og:image" content="https://buridge.vercel.app/og-image.svg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="ko_KR">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="규제지도 | 부릿지 BuRIDGE">
+<meta name="twitter:description" content="서울·수도권 토지거래허가구역, 규제지역 최신 현황 지도.">
+<meta name="twitter:image" content="https://buridge.vercel.app/og-image.svg">
+<title>전국 부동산 규제지역 지도 2026</title>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+<style>
+:root{--navy:#0C2040;--blue:#1A4A9A;--ink:#1A2E44;--ink2:#374F6B;--ink3:#68839C;--sf:#fff;--rule:#D0D8E8;--paper:#F3F6FB;--font:'Apple SD Gothic Neo','Noto Sans KR',system-ui,sans-serif;}
+*{box-sizing:border-box;margin:0;padding:0;}
+html,body{height:100%;font-family:var(--font);}
+.hd{background:var(--navy);height:50px;display:flex;align-items:center;padding:0 18px;gap:10px;z-index:1000;position:relative;}
+.hd-back{color:#7AA0C8;font-size:.75rem;text-decoration:none;}.hd-back:hover{color:#C0D8F0;}
+.hd-sep{color:#2A4870;}.hd-title{font-size:.9rem;font-weight:700;color:#D0E0F0;}
+.hd-tag{margin-left:auto;font-size:.6rem;font-weight:700;padding:3px 9px;border-radius:3px;background:#081628;border:1px solid #1A3460;color:#3A6090;}
+.wrap{display:flex;height:calc(100vh - 50px);}
+.side{width:252px;flex-shrink:0;background:var(--sf);border-right:1px solid var(--rule);display:flex;flex-direction:column;z-index:500;overflow-y:auto;}
+.s-sec{padding:12px 13px 10px;border-bottom:1px solid var(--rule);}
+.s-lbl{font-size:.58rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--ink3);margin-bottom:8px;}
+.rb{display:flex;align-items:center;gap:7px;padding:7px 10px;border:1px solid var(--rule);border-radius:4px;font-size:.73rem;font-weight:600;color:var(--ink3);background:var(--sf);cursor:pointer;width:100%;text-align:left;margin-bottom:5px;transition:border-color .15s;}
+.rb:hover{border-color:var(--blue);}.rb.on{border-color:transparent;color:#fff;}
+.rb-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0;}
+.rb-n{margin-left:auto;font-size:.6rem;font-weight:700;opacity:.65;background:rgba(0,0,0,.1);padding:1px 5px;border-radius:3px;white-space:nowrap;}
+.zr{display:flex;gap:4px;flex-wrap:wrap;}
+.zb{flex:1;min-width:40px;padding:5px 3px;border:1px solid var(--rule);border-radius:4px;font-size:.66rem;font-weight:700;color:var(--ink2);background:var(--sf);cursor:pointer;}
+.zb:hover{background:var(--paper);border-color:var(--blue);color:var(--blue);}
+.det{padding:12px;flex:1;overflow-y:auto;}
+.det-empty{text-align:center;padding:24px 0;color:var(--ink3);font-size:.72rem;line-height:1.7;}
+.dn{font-size:.98rem;font-weight:900;color:var(--ink);margin-bottom:1px;}
+.ds{font-size:.66rem;color:var(--ink3);margin-bottom:10px;}
+.rc{border:1px solid;border-radius:5px;padding:8px 10px;margin-bottom:6px;}
+.rr{display:flex;align-items:center;gap:5px;margin-bottom:3px;}
+.rd{width:7px;height:7px;border-radius:50%;}
+.rl{font-size:.72rem;font-weight:700;}
+.rp{font-size:.67rem;color:var(--ink3);line-height:1.5;}
+.rg{font-size:.65rem;font-weight:600;margin-top:3px;}
+.eh{font-size:.58rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--ink3);margin:10px 0 6px;display:flex;align-items:center;gap:6px;}
+.eh::after{content:'';flex:1;height:1px;background:var(--rule);}
+.er{display:flex;gap:6px;padding:5px 0;border-bottom:1px solid var(--rule);font-size:.68rem;color:var(--ink2);}
+.er:last-child{border-bottom:none;}
+.ek{color:var(--ink3);width:64px;flex-shrink:0;font-weight:600;}
+.mapw{flex:1;position:relative;}
+#map{width:100%;height:100%;}
+.leg{position:absolute;bottom:20px;right:10px;z-index:400;background:rgba(255,255,255,.95);border:1px solid var(--rule);border-radius:5px;padding:10px 12px;font-size:.66rem;color:var(--ink2);box-shadow:0 2px 8px rgba(0,0,0,.1);min-width:155px;}
+.lr{display:flex;align-items:center;gap:6px;margin-bottom:5px;}.lr:last-child{margin-bottom:0;}
+.lb{width:14px;height:10px;border-radius:2px;flex-shrink:0;border:1px solid rgba(0,0,0,.12);}
+.sts{position:absolute;top:8px;left:50%;transform:translateX(-50%);z-index:600;background:rgba(8,20,48,.88);color:#8AAED4;font-size:.7rem;padding:5px 16px;border-radius:20px;white-space:nowrap;display:none;}
+.sts.on{display:block;}
+.notice{font-size:.6rem;color:var(--ink3);padding:8px 13px;background:var(--paper);border-bottom:1px solid var(--rule);line-height:1.6;}
+.notice b{color:var(--ink2);}
+@media(max-width:680px){.wrap{flex-direction:column-reverse;}.side{width:100%;height:auto;border-right:none;border-top:1px solid var(--rule);}.mapw{min-height:300px;}}
+</style>
+</head>
+<body>
+<div class="hd">
+  <a class="hd-back" href="./index.html">← 홈</a>
+  <span class="hd-sep">/</span>
+  <span class="hd-title">전국 규제지역 지도</span>
+  <span class="hd-tag">2026.07 기준</span>
+</div>
+<div class="wrap">
+  <div class="side">
+    <div class="notice"><b>10·15 대책(2025.10)</b> 기준 — 서울 전역+경기 12 재지정. 광주 군공항 토허제(2026.07) 포함.</div>
+    <div class="s-sec">
+      <div class="s-lbl">규제 레이어</div>
+      <button class="rb on" data-k="투기과열" onclick="setReg('투기과열',this)">
+        <span class="rb-dot" style="background:#C62828"></span>투기과열지구<span class="rb-n">37곳</span>
+      </button>
+      <button class="rb" data-k="조정지역" onclick="setReg('조정지역',this)">
+        <span class="rb-dot" style="background:#E65100"></span>조정대상지역<span class="rb-n">37곳</span>
+      </button>
+      <button class="rb" data-k="토허제" onclick="setReg('토허제',this)">
+        <span class="rb-dot" style="background:#0D47A1"></span>토지거래허가구역<span class="rb-n">37+광주</span>
+      </button>
+      <button class="rb" data-k="분상제" onclick="setReg('분상제',this)">
+        <span class="rb-dot" style="background:#6A1B9A"></span>분양가상한제<span class="rb-n">26곳</span>
+      </button>
+      <button class="rb" data-k="all" onclick="setReg('all',this)">
+        <span class="rb-dot" style="background:#546E7A"></span>전체 레이어
+      </button>
+    </div>
+    <div class="s-sec">
+      <div class="s-lbl">빠른 이동</div>
+      <div class="zr">
+        <button class="zb" onclick="map.setView([36.5,127.5],8)">전국</button>
+        <button class="zb" onclick="map.setView([37.555,126.978],12)">서울</button>
+        <button class="zb" onclick="map.setView([37.45,127.1],10)">수도권</button>
+        <button class="zb" onclick="map.setView([35.15,126.85],11)">광주</button>
+      </div>
+    </div>
+    <div class="det" id="det">
+      <div class="det-empty">지도의 색칠된 지역을<br>클릭하면 규제 상세 내용이<br>표시됩니다.</div>
+    </div>
+  </div>
+  <div class="mapw">
+    <div id="map"></div>
+    <div class="sts" id="sts">행정경계 로딩 중…</div>
+    <div class="leg" id="leg"></div>
+  </div>
+</div>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script>
+/* ───────────────────────────────────────────────────────
+   규제 지역 데이터 (2026.07 기준)
+   - 투기과열/조정: 10·15 대책(2025.10) — 서울 25구 + 경기 12개
+   - 토허제: 위 37곳 + 광주 군공항 주변(2026.07.14~)
+   - 분상제: 서울 25구 + 과천시
+   ─────────────────────────────────────────────────────── */
+
+/* 공통 집합 */
+var SEOUL25 = ['종로구','중구','용산구','성동구','광진구','동대문구','중랑구','성북구','강북구','도봉구','노원구','은평구','서대문구','마포구','양천구','강서구','구로구','금천구','영등포구','동작구','관악구','서초구','강남구','송파구','강동구'];
+var GG12   = ['과천시','광명시','분당구','수정구','중원구','영통구','장안구','팔달구','동안구','수지구','의왕시','하남시'];
+var GJ_GUN = ['광산구','나주시','장성군','화순군']; /* 광주 군공항 토허제 */
+
+var REG = {
+  투기과열:{
+    label:'투기과열지구', color:'#C62828', fill:'#FF5252', op:.50,
+    desc:'10·15 대책. 서울 전역 + 경기 12개. 투기·가격 급등 지역 최강 규제.',
+    fx:[['LTV','9억↓ 50% / 9억↑ 40%'],['DSR','40%'],['청약','세대주·1순위만'],['전매','소유권이전 전 금지'],['재당첨','10년 제한'],['양도세','2주택 +20%p / 3주택 +30%p']],
+    names: new Set(SEOUL25.concat(GG12))
+  },
+  조정지역:{
+    label:'조정대상지역', color:'#E65100', fill:'#FF8A50', op:.42,
+    desc:'10·15 대책. 투기과열지구와 동일 37개 지역 지정.',
+    fx:[['LTV','5억↓ 70% / 5억↑ 60%'],['DSR','40%'],['취득세','2주택 8% / 3주택↑ 12%'],['청약','가점제 비중 확대'],['임대차','전세대출 제한']],
+    names: new Set(SEOUL25.concat(GG12))
+  },
+  토허제:{
+    label:'토지거래허가구역', color:'#0D47A1', fill:'#448AFF', op:.55,
+    desc:'10·15 대책으로 서울·경기 12 지정. 광주는 반도체 클러스터 투기 차단(2026.07.14~).',
+    fx:[['허가','자치구청장·시장'],['대상','주거 18㎡↑ / 상업 20㎡↑'],['실거주','2년 의무'],['위반','3년↓ 징역 또는 과태료']],
+    names: new Set(SEOUL25.concat(GG12).concat(GJ_GUN)),
+    dong:{
+      광산구:'군공항 반경 10km 이내 동·리 (반도체 클러스터 투기 차단)',
+      나주시:'군공항 인근 일부 동·리',
+      장성군:'군공항 인근 일부 동·리',
+      화순군:'군공항 인근 일부 동·리'
+    }
+  },
+  분상제:{
+    label:'분양가상한제', color:'#6A1B9A', fill:'#CE93D8', op:.42,
+    desc:'민간택지 분양가 법정 상한. 투기과열지구 내 적용 (서울 25구 + 과천시).',
+    fx:[['분양가','택지비+건축비 상한'],['전매','최대 10년'],['실거주','2~3년 의무'],['청약','가점제 75%↑']],
+    names: new Set(SEOUL25.concat(['과천시']))
+  }
+};
+
+/* 행정 중심 좌표 + 반경 (서클 즉시 표시용) */
+var AREAS = [
+  /* ─ 서울 25구 ─ */
+  {n:'종로구',p:'서울',lat:37.5906,lng:126.9780,r:1200},
+  {n:'중구',p:'서울',lat:37.5596,lng:126.9975,r:900},
+  {n:'용산구',p:'서울',lat:37.5302,lng:126.9652,r:1400},
+  {n:'성동구',p:'서울',lat:37.5564,lng:127.0375,r:1300},
+  {n:'광진구',p:'서울',lat:37.5447,lng:127.0826,r:1200},
+  {n:'동대문구',p:'서울',lat:37.5744,lng:127.0394,r:1000},
+  {n:'중랑구',p:'서울',lat:37.6063,lng:127.0927,r:1200},
+  {n:'성북구',p:'서울',lat:37.6065,lng:127.0186,r:1400},
+  {n:'강북구',p:'서울',lat:37.6399,lng:127.0252,r:1300},
+  {n:'도봉구',p:'서울',lat:37.6688,lng:127.0472,r:1200},
+  {n:'노원구',p:'서울',lat:37.6542,lng:127.0568,r:1500},
+  {n:'은평구',p:'서울',lat:37.6176,lng:126.9272,r:1700},
+  {n:'서대문구',p:'서울',lat:37.5791,lng:126.9368,r:1200},
+  {n:'마포구',p:'서울',lat:37.5637,lng:126.9088,r:1500},
+  {n:'양천구',p:'서울',lat:37.5170,lng:126.8670,r:1200},
+  {n:'강서구',p:'서울',lat:37.5509,lng:126.8496,r:1800},
+  {n:'구로구',p:'서울',lat:37.4954,lng:126.8874,r:1200},
+  {n:'금천구',p:'서울',lat:37.4601,lng:126.9000,r:900},
+  {n:'영등포구',p:'서울',lat:37.5263,lng:126.8963,r:1200},
+  {n:'동작구',p:'서울',lat:37.5124,lng:126.9393,r:1200},
+  {n:'관악구',p:'서울',lat:37.4781,lng:126.9516,r:1500},
+  {n:'서초구',p:'서울',lat:37.4837,lng:127.0324,r:2000},
+  {n:'강남구',p:'서울',lat:37.5172,lng:127.0473,r:1600},
+  {n:'송파구',p:'서울',lat:37.5145,lng:127.1059,r:1600},
+  {n:'강동구',p:'서울',lat:37.5302,lng:127.1238,r:1500},
+  /* ─ 경기 12개 ─ */
+  {n:'과천시',p:'경기',lat:37.4288,lng:126.9879,r:2500},
+  {n:'광명시',p:'경기',lat:37.4784,lng:126.8652,r:2500},
+  {n:'분당구',p:'경기(성남)',lat:37.3684,lng:127.1119,r:2500},
+  {n:'수정구',p:'경기(성남)',lat:37.4449,lng:127.1388,r:2500},
+  {n:'중원구',p:'경기(성남)',lat:37.4397,lng:127.1442,r:2000},
+  {n:'영통구',p:'경기(수원)',lat:37.2436,lng:127.0497,r:2500},
+  {n:'장안구',p:'경기(수원)',lat:37.3006,lng:127.0097,r:2500},
+  {n:'팔달구',p:'경기(수원)',lat:37.2814,lng:127.0128,r:1800},
+  {n:'동안구',p:'경기(안양)',lat:37.3948,lng:126.9724,r:2000},
+  {n:'수지구',p:'경기(용인)',lat:37.3220,lng:127.0960,r:2500},
+  {n:'의왕시',p:'경기',lat:37.3444,lng:126.9690,r:2500},
+  {n:'하남시',p:'경기',lat:37.5394,lng:127.2149,r:3500},
+  /* ─ 광주 군공항 토허제 (2026.07.14~) ─ */
+  {n:'광산구',p:'광주(군공항 토허제)',lat:35.1398,lng:126.7935,r:9000},
+  {n:'나주시',p:'전남(군공항 토허제)',lat:35.0160,lng:126.7108,r:7000},
+  {n:'장성군',p:'전남(군공항 토허제)',lat:35.3021,lng:126.7848,r:6000},
+  {n:'화순군',p:'전남(군공항 토허제)',lat:35.0643,lng:126.9866,r:6000}
+];
+
+var provMap={};
+AREAS.forEach(function(a){provMap[a.n]=a.p;});
+
+/* ── 헬퍼 ──────────────────────────────── */
+function inReg(name,key){
+  if(key==='all') return Object.keys(REG).some(function(k){return REG[k].names.has(name);});
+  return REG[key]&&REG[key].names.has(name);
+}
+function getClr(name,key){
+  if(key==='all') return REG.토허제.names.has(name)?{f:'#448AFF',b:'#0D47A1'}:{f:'#FF5252',b:'#C62828'};
+  return{f:REG[key].fill,b:REG[key].color};
+}
+
+/* ── Leaflet 초기화 ─────────────────────── */
+var map=L.map('map',{center:[36.5,127.5],zoom:7});
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{
+  attribution:'&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',maxZoom:18
+}).addTo(map);
+var _s=document.createElement('style');
+_s.textContent='.map-tip{background:rgba(8,22,48,.92)!important;color:#C8E0FF!important;border:none!important;border-radius:4px!important;font-size:.73rem!important;font-weight:700!important;padding:4px 10px!important;box-shadow:0 2px 8px rgba(0,0,0,.35)!important;white-space:nowrap!important;}';
+document.head.appendChild(_s);
+
+var curReg='투기과열',selName=null;
+var circleLayer=L.layerGroup().addTo(map);
+var polyLayer=L.layerGroup().addTo(map);
+var rawGeo=null,hasPolys=false;
+
+/* ── 서클 레이어 (즉시 표시) ───────────── */
+function drawCircles(){
+  circleLayer.clearLayers();
+  AREAS.forEach(function(a){
+    if(!inReg(a.n,curReg)) return;
+    var c=getClr(a.n,curReg),isSel=selName===a.n;
+    var ci=L.circle([a.lat,a.lng],{radius:a.r,color:isSel?'#fff':c.b,weight:isSel?2.5:1.5,fillColor:c.f,fillOpacity:isSel?.72:.50}).addTo(circleLayer);
+    var tip=a.n+(a.p!=='서울'?' <small style="opacity:.7">('+a.p+')</small>':'');
+    ci.bindTooltip(tip,{sticky:true,className:'map-tip',direction:'auto'});
+    (function(area,circle){circle.on('click',function(e){selName=area.n;drawCircles();renderDetail(area.n);L.DomEvent.stopPropagation(e);});})(a,ci);
+  });
+}
+
+/* ── Overpass → GeoJSON 변환 ──────────── */
+function assemble(ways){
+  if(!ways||ways.length===0) return[];
+  if(ways.length===1) return ways[0];
+  var res=ways[0].slice(),rem=ways.slice(1),tol=1e-5,tries=0;
+  while(rem.length>0&&tries++<rem.length*3+10){
+    var last=res[res.length-1],found=false;
+    for(var i=0;i<rem.length;i++){
+      var w=rem[i],f=w[0],l=w[w.length-1];
+      if(Math.abs(last[0]-f[0])<tol&&Math.abs(last[1]-f[1])<tol){res=res.concat(w.slice(1));rem.splice(i,1);found=true;break;}
+      if(Math.abs(last[0]-l[0])<tol&&Math.abs(last[1]-l[1])<tol){res=res.concat(w.slice(0,-1).reverse());rem.splice(i,1);found=true;break;}
+    }
+    if(!found&&rem.length>0) res=res.concat(rem.shift());
+  }
+  return res;
+}
+function toGeoJSON(data){
+  var feats=[];
+  (data.elements||[]).forEach(function(el){
+    if(el.type!=='relation'||!el.tags) return;
+    var name=el.tags.name||'';if(!name) return;
+    var outer=[];
+    (el.members||[]).forEach(function(m){
+      if(m.type==='way'&&(m.role==='outer'||m.role==='')&&m.geometry&&m.geometry.length>=2)
+        outer.push(m.geometry.map(function(g){return[g.lon,g.lat];}));
+    });
+    if(outer.length===0) return;
+    var ring=assemble(outer);if(ring.length<3) return;
+    if(ring[0][0]!==ring[ring.length-1][0]||ring[0][1]!==ring[ring.length-1][1]) ring.push(ring[0]);
+    feats.push({type:'Feature',properties:{name:name},geometry:{type:'Polygon',coordinates:[ring]}});
+  });
+  return{type:'FeatureCollection',features:feats};
+}
+
+/* ── Overpass 로드 ──────────────────────── */
+function loadOverpass(){
+  var el=document.getElementById('sts');el.classList.add('on');
+  /* 서울 25구 — 서울 bbox */
+  var seoulNames='종로구|중구|용산구|성동구|광진구|동대문구|중랑구|성북구|강북구|도봉구|노원구|은평구|서대문구|마포구|양천구|강서구|구로구|금천구|영등포구|동작구|관악구|서초구|강남구|송파구|강동구';
+  /* 경기 12개 — bbox로 타 지역 서구 등과 구분 */
+  var gg12uni='과천시|광명시|의왕시|하남시';          /* 고유 명칭 */
+  var gg12sub='분당구|수정구|중원구|영통구|장안구|팔달구|동안구|수지구'; /* 구 단위 */
+  /* 광주 군공항 토허제 */
+  var gjUni='광산구|나주시|장성군|화순군';
+
+  var q='[out:json][timeout:30];('
+    +'relation["boundary"="administrative"]["name"~"^('+seoulNames+')$"](37.42,126.77,37.71,127.19);'
+    +'relation["boundary"="administrative"]["name"~"^('+gg12uni+')$"](36.9,126.5,37.7,127.8);'
+    +'relation["boundary"="administrative"]["name"~"^('+gg12sub+')$"](36.9,126.5,37.7,127.6);'
+    +'relation["boundary"="administrative"]["name"~"^('+gjUni+')$"](34.5,126.4,35.6,127.3);'
+    +');out geom qt;';
+
+  var ctrl=new AbortController();
+  var tid=setTimeout(function(){ctrl.abort();},30000);
+  fetch('https://overpass-api.de/api/interpreter',{
+    method:'POST',
+    headers:{'Content-Type':'application/x-www-form-urlencoded'},
+    body:'data='+encodeURIComponent(q),
+    signal:ctrl.signal
+  })
+  .then(function(r){clearTimeout(tid);return r.json();})
+  .then(function(data){
+    rawGeo=toGeoJSON(data);
+    if(rawGeo.features.length>0){hasPolys=true;circleLayer.clearLayers();drawPolygons();}
+    el.classList.remove('on');
+  })
+  .catch(function(){clearTimeout(tid);el.classList.remove('on');/* 서클 유지 */});
+}
+
+/* ── 폴리곤 레이어 (Overpass 성공 후) ─── */
+function drawPolygons(){
+  polyLayer.clearLayers();
+  if(!rawGeo) return;
+  L.geoJSON(rawGeo,{
+    style:function(feat){
+      var name=feat.properties.name;
+      if(!inReg(name,curReg)) return{fillOpacity:0,color:'#AAB8CC',weight:0.3,opacity:0.4};
+      var c=getClr(name,curReg),R=REG[curReg==='all'?'투기과열':curReg];
+      var base=R?R.op:.5,isSel=selName===name;
+      return{fillColor:c.f,fillOpacity:isSel?Math.min(base+.28,.82):base,color:isSel?'#fff':c.b,weight:isSel?2.5:1.2,opacity:.9};
+    },
+    onEachFeature:function(feat,layer){
+      var name=feat.properties.name;
+      layer.bindTooltip(name,{sticky:true,className:'map-tip',direction:'auto'});
+      if(!inReg(name,'all')) return;
+      layer.on('mouseover',function(){
+        if(selName!==name){var R=REG[curReg==='all'?'투기과열':curReg];layer.setStyle({fillOpacity:Math.min((R?R.op:.5)+.15,.72)});}
+      });
+      layer.on('mouseout',function(){
+        if(selName!==name){var R=REG[curReg==='all'?'투기과열':curReg];layer.setStyle({fillOpacity:R?R.op:.5});}
+      });
+      layer.on('click',function(e){selName=name;drawPolygons();renderDetail(name);L.DomEvent.stopPropagation(e);});
+    }
+  }).addTo(polyLayer);
+}
+
+/* ── 상세 패널 ──────────────────────────── */
+function renderDetail(name){
+  var prov=provMap[name]||'';
+  var html='<div class="dn">'+name+'</div><div class="ds">'+prov+'</div>';
+  var any=false;
+  Object.keys(REG).forEach(function(k){
+    if(!inReg(name,k)) return;any=true;
+    var R=REG[k],dong=R.dong?R.dong[name]:null;
+    html+='<div class="rc" style="background:'+R.fill+'22;border-color:'+R.color+'55">'
+      +'<div class="rr"><div class="rd" style="background:'+R.color+'"></div>'
+      +'<span class="rl" style="color:'+R.color+'">'+R.label+'</span></div>'
+      +'<div class="rp">'+R.desc+'</div>'
+      +(dong?'<div class="rg" style="color:'+R.color+'">▸ '+dong+'</div>':'')+'</div>';
+  });
+  if(!any) html+='<p style="font-size:.72rem;color:#68839C;margin-top:8px">현재 규제 미지정입니다.</p>';
+  var CR=REG[curReg];
+  if(CR&&inReg(name,curReg)&&CR.fx){
+    html+='<div class="eh">'+CR.label+'</div>';
+    CR.fx.forEach(function(f){html+='<div class="er"><span class="ek">'+f[0]+'</span><span>'+f[1]+'</span></div>';});
+  }
+  document.getElementById('det').innerHTML=html;
+}
+
+/* ── 레이어 전환 ─────────────────────────── */
+function setReg(key,btn){
+  curReg=key;selName=null;
+  document.querySelectorAll('.rb').forEach(function(b){b.classList.remove('on');b.style.background='';b.style.color='';});
+  btn.classList.add('on');
+  var cols={투기과열:'#C62828',조정지역:'#E65100',토허제:'#0D47A1',분상제:'#6A1B9A',all:'#546E7A'};
+  btn.style.background=cols[key]||'#546E7A';btn.style.color='#fff';
+  document.getElementById('det').innerHTML='<div class="det-empty">지도에서 색칠된 지역을 클릭하세요.</div>';
+  if(hasPolys) drawPolygons(); else drawCircles();
+  renderLegend();
+}
+
+/* ── 범례 ────────────────────────────────── */
+function renderLegend(){
+  var el=document.getElementById('leg');
+  if(curReg==='all'){
+    el.innerHTML='<b style="font-size:.62rem;color:#374F6B;display:block;margin-bottom:6px">전체 레이어</b>'
+      +'<div class="lr"><div class="lb" style="background:#FF5252"></div>투기과열·조정·분상제</div>'
+      +'<div class="lr"><div class="lb" style="background:#448AFF"></div>토허제 (서울·경기·광주)</div>'
+      +'<div class="lr"><div class="lb" style="background:#E8ECF4"></div>미지정</div>';
+  } else {
+    var R=REG[curReg];
+    var cnt={투기과열:'서울25+경기12',조정지역:'서울25+경기12',토허제:'서울25+경기12+광주',분상제:'서울25+과천'};
+    el.innerHTML='<b style="font-size:.62rem;color:#374F6B;display:block;margin-bottom:6px">'+R.label+'</b>'
+      +'<div class="lr"><div class="lb" style="background:'+R.fill+'"></div>'+(cnt[curReg]||'')+'</div>'
+      +'<div class="lr"><div class="lb" style="background:#E8ECF4"></div>미지정</div>';
+  }
+}
+
+/* ── 시작 ──────────────────────────────── */
+(function(){
+  var fb=document.querySelector('[data-k="투기과열"]');
+  if(fb){fb.style.background='#C62828';fb.style.color='#fff';}
+  renderLegend();
+  drawCircles();   /* 즉시 표시 */
+  loadOverpass();  /* 백그라운드에서 실제 경계 */
+})();
+</script>
+</body>
+</html>

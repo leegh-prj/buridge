@@ -1,0 +1,88 @@
+﻿<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#060F20"/>
+      <stop offset="100%" stop-color="#0C2040"/>
+    </linearGradient>
+    <linearGradient id="cable-fade" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#2A66D9" stop-opacity="0.9"/>
+      <stop offset="100%" stop-color="#2A66D9" stop-opacity="0.4"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1200" height="630" fill="url(#bg)"/>
+
+  <!-- Subtle grid lines -->
+  <line x1="0" y1="315" x2="1200" y2="315" stroke="#1A3A6A" stroke-width="1" opacity="0.3"/>
+  <line x1="600" y1="0" x2="600" y2="630" stroke="#1A3A6A" stroke-width="1" opacity="0.2"/>
+
+  <!-- Bridge structure — large decorative -->
+  <!-- Left tower -->
+  <rect x="340" y="140" width="22" height="320" rx="4" fill="#C8A84B" opacity="0.9"/>
+  <rect x="328" y="130" width="46" height="20" rx="4" fill="#D4B860"/>
+  <!-- Right tower -->
+  <rect x="838" y="140" width="22" height="320" rx="4" fill="#C8A84B" opacity="0.9"/>
+  <rect x="826" y="130" width="46" height="20" rx="4" fill="#D4B860"/>
+
+  <!-- Cables left tower -->
+  <line x1="351" y1="130" x2="100" y2="460" stroke="#2A66D9" stroke-width="3" opacity="0.7"/>
+  <line x1="351" y1="130" x2="180" y2="460" stroke="#2A66D9" stroke-width="2.5" opacity="0.65"/>
+  <line x1="351" y1="130" x2="260" y2="460" stroke="#2A66D9" stroke-width="2" opacity="0.6"/>
+  <line x1="351" y1="130" x2="450" y2="460" stroke="#2A66D9" stroke-width="2" opacity="0.6"/>
+  <line x1="351" y1="130" x2="520" y2="460" stroke="#2A66D9" stroke-width="1.5" opacity="0.5"/>
+
+  <!-- Cables right tower -->
+  <line x1="849" y1="130" x2="1100" y2="460" stroke="#2A66D9" stroke-width="3" opacity="0.7"/>
+  <line x1="849" y1="130" x2="1020" y2="460" stroke="#2A66D9" stroke-width="2.5" opacity="0.65"/>
+  <line x1="849" y1="130" x2="940" y2="460" stroke="#2A66D9" stroke-width="2" opacity="0.6"/>
+  <line x1="849" y1="130" x2="750" y2="460" stroke="#2A66D9" stroke-width="2" opacity="0.6"/>
+  <line x1="849" y1="130" x2="680" y2="460" stroke="#2A66D9" stroke-width="1.5" opacity="0.5"/>
+
+  <!-- Bridge deck -->
+  <rect x="80" y="458" width="1040" height="18" rx="4" fill="#1A4A9A" opacity="0.9"/>
+  <rect x="80" y="458" width="1040" height="4" rx="2" fill="#2A66D9" opacity="0.5"/>
+
+  <!-- Water reflection -->
+  <rect x="80" y="490" width="1040" height="3" rx="1.5" fill="#1A3A6A" opacity="0.4"/>
+  <rect x="120" y="498" width="960" height="2" rx="1" fill="#1A3A6A" opacity="0.25"/>
+  <rect x="200" y="504" width="800" height="1.5" rx="0.75" fill="#1A3A6A" opacity="0.15"/>
+
+  <!-- Logo text group — centered -->
+  <!-- 부릿지 Korean -->
+  <text x="600" y="232" text-anchor="middle"
+        font-family="Apple SD Gothic Neo, Noto Sans KR, system-ui, sans-serif"
+        font-size="72" font-weight="900" letter-spacing="-2"
+        fill="#D0E4F8">부릿지</text>
+
+  <!-- BuRIDGE English with RIDGE bold -->
+  <text x="600" y="308" text-anchor="middle"
+        font-family="Georgia, serif"
+        font-size="88" font-weight="400" letter-spacing="6"
+        fill="#4A7AAA">Bu</text>
+  <text x="670" y="308" text-anchor="middle"
+        font-family="Georgia, serif"
+        font-size="88" font-weight="900" letter-spacing="6"
+        fill="#2A66D9">RIDGE</text>
+
+  <!-- Tagline -->
+  <text x="600" y="374" text-anchor="middle"
+        font-family="Apple SD Gothic Neo, Noto Sans KR, system-ui, sans-serif"
+        font-size="30" font-weight="400" letter-spacing="2"
+        fill="#4A6888">부동산 완전 정복 플랫폼</text>
+
+  <!-- Stats strip -->
+  <rect x="340" y="400" width="520" height="42" rx="8" fill="#0A1628" opacity="0.7"/>
+  <text x="600" y="427" text-anchor="middle"
+        font-family="Apple SD Gothic Neo, Noto Sans KR, system-ui, sans-serif"
+        font-size="18" font-weight="600" fill="#5A8AB0" letter-spacing="1">
+    일일학습 112강  ·  최신동향  ·  세금가이드  ·  청약가이드
+  </text>
+
+  <!-- URL -->
+  <text x="600" y="590" text-anchor="middle"
+        font-family="monospace"
+        font-size="20" fill="#2A4870" letter-spacing="1">
+    buridge.vercel.app
+  </text>
+</svg>

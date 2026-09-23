@@ -1,0 +1,841 @@
+﻿<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/favicon.svg">
+<meta name="theme-color" content="#0C2040">
+<meta property="og:site_name" content="부릿지 BuRIDGE">
+<meta property="og:type" content="website">
+<meta property="og:title" content="세금 가이드 | 부릿지 BuRIDGE">
+<meta property="og:description" content="취득세·양도세 자동 계산기, 보유세 안내, 절세 전략 6가지. 2026년 세제개편안 완전 반영.">
+<meta property="og:url" content="https://buridge.vercel.app/부동산_세금가이드_2026.html">
+<meta property="og:image" content="https://buridge.vercel.app/og-image.svg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="ko_KR">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="세금 가이드 | 부릿지 BuRIDGE">
+<meta name="twitter:description" content="취득세·양도세 자동 계산기, 보유세 안내, 절세 전략 6가지. 2026년 세제개편안 완전 반영.">
+<meta name="twitter:image" content="https://buridge.vercel.app/og-image.svg">
+<title>세금 가이드 | 부릿지 BuRIDGE</title>
+<style>
+:root{
+  --bg:#F3F6FB;--sf:#FFFFFF;--rule:#D8E0EC;
+  --ink:#1A2E44;--ink2:#374F6B;--ink3:#68839C;
+  --navy:#0C2040;--blue:#1A4A9A;--blue-lt:#EBF1FF;--blue-mid:#3A70C8;
+  --ok:#0A6E42;--ok-lt:#E4F3EC;
+  --dn:#B71C1C;--dn-lt:#FFEBEE;
+  --warn:#935200;--warn-lt:#FEF4E4;
+  --accent:#2563EB;--accent2:#7C3AED;
+  --purple:#7C3AED;--purple-lt:#EDE9FF;
+  --font:'Apple SD Gothic Neo','Noto Sans KR',system-ui,sans-serif;
+}
+@media(prefers-color-scheme:dark){:root{
+  --bg:#0E1A2E;--sf:#152235;--rule:#1E3050;
+  --ink:#D0E0F0;--ink2:#8AAAC8;--ink3:#506880;
+  --blue-lt:#0A1A34;--ok-lt:#0A2018;--dn-lt:#2A0A0A;--warn-lt:#2A1A00;--blue-mid:#4A90D8;--purple-lt:#1A1030;
+}}
+:root[data-theme="dark"]{
+  --bg:#0E1A2E;--sf:#152235;--rule:#1E3050;
+  --ink:#D0E0F0;--ink2:#8AAAC8;--ink3:#506880;
+  --blue-lt:#0A1A34;--ok-lt:#0A2018;--dn-lt:#2A0A0A;--warn-lt:#2A1A00;--blue-mid:#4A90D8;--purple-lt:#1A1030;
+}
+:root[data-theme="light"]{
+  --bg:#F3F6FB;--sf:#FFFFFF;--rule:#D8E0EC;
+  --ink:#1A2E44;--ink2:#374F6B;--ink3:#68839C;
+  --blue-lt:#EBF1FF;--ok-lt:#E4F3EC;--dn-lt:#FFEBEE;--warn-lt:#FEF4E4;--blue-mid:#3A70C8;--purple-lt:#EDE9FF;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:var(--font);background:var(--bg);color:var(--ink);min-height:100vh;}
+
+/* ─ 헤더 ─ */
+.hd{background:var(--navy);height:50px;display:flex;align-items:center;padding:0 20px;gap:10px;}
+.hd-back{color:#7AA0C8;font-size:.75rem;text-decoration:none;}.hd-back:hover{color:#C0D8F0;}
+.hd-sep{color:#2A4870;}
+.hd-title{font-size:.9rem;font-weight:700;color:#D0E0F0;}
+.hd-right{margin-left:auto;display:flex;align-items:center;gap:8px;}
+.hd-badge{font-size:.62rem;font-weight:700;padding:2px 8px;border-radius:3px;background:#0A1628;border:1px solid #1A3460;color:#70A0D0;}
+
+/* ─ 히어로 ─ */
+.hero{background:var(--navy);border-bottom:1px solid #152A48;padding:28px 20px 24px;}
+.hero-eyebrow{font-size:.6rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#3A6490;margin-bottom:10px;}
+.hero h1{font-size:1.5rem;font-weight:900;color:#D0E4F8;letter-spacing:-.03em;margin-bottom:8px;}
+.hero-sub{font-size:.76rem;color:#4A6888;line-height:1.7;margin-bottom:22px;}
+.tax-flow{display:flex;gap:0;align-items:center;flex-wrap:wrap;gap:6px;}
+.tf-step{background:#081628;border:1px solid #1A3254;border-radius:5px;padding:10px 16px;text-align:center;min-width:100px;}
+.tf-label{font-size:.57rem;color:#3A5A80;margin-bottom:3px;font-weight:600;}
+.tf-val{font-size:.82rem;font-weight:800;color:#90C0E0;}
+.tf-arrow{color:#2A4870;font-size:1.2rem;}
+
+/* ─ 레이아웃 ─ */
+.main{max-width:1100px;margin:0 auto;padding:32px 20px 80px;}
+.sh{display:flex;align-items:center;gap:10px;margin-bottom:18px;margin-top:36px;}
+.sh:first-child{margin-top:0;}
+.sh-label{font-size:.62rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--ink3);}
+.sh::after{content:'';flex:1;height:1px;background:var(--rule);}
+.sh-badge{font-size:.58rem;font-weight:700;padding:1px 7px;border-radius:10px;}
+.sb-new{background:var(--ok-lt);color:var(--ok);}
+.sb-hot{background:var(--dn-lt);color:var(--dn);}
+
+/* ─ 계산기 카드 ─ */
+.calc-card{background:var(--sf);border:1px solid var(--rule);border-radius:8px;overflow:hidden;margin-bottom:16px;}
+.calc-head{padding:18px 22px 14px;border-bottom:1px solid var(--rule);display:flex;align-items:center;gap:12px;}
+.calc-icon{width:38px;height:38px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:1.2rem;flex-shrink:0;}
+.ci-blue{background:var(--blue-lt);}
+.ci-green{background:var(--ok-lt);}
+.ci-purple{background:var(--purple-lt);}
+.calc-ttl{font-size:1rem;font-weight:800;color:var(--ink);letter-spacing:-.02em;}
+.calc-sub{font-size:.68rem;color:var(--ink3);margin-top:2px;}
+.calc-body{padding:20px 22px;display:grid;grid-template-columns:1fr 1fr;gap:20px;}
+@media(max-width:700px){.calc-body{grid-template-columns:1fr;}}
+.calc-inputs{}
+.calc-result{background:var(--bg);border:1px solid var(--rule);border-radius:6px;padding:16px;}
+
+/* ─ 폼 요소 ─ */
+.field{margin-bottom:14px;}
+.field:last-child{margin-bottom:0;}
+.field label{display:block;font-size:.68rem;font-weight:700;color:var(--ink2);margin-bottom:5px;letter-spacing:.02em;}
+.field input,.field select{
+  width:100%;padding:10px 13px;border:1px solid var(--rule);border-radius:5px;
+  font-family:var(--font);font-size:.85rem;color:var(--ink);background:var(--sf);
+  transition:border-color .15s;
+}
+.field input:focus,.field select:focus{outline:none;border-color:var(--accent);}
+.radio-group{display:flex;gap:8px;flex-wrap:wrap;}
+.radio-btn{
+  padding:7px 14px;border:1px solid var(--rule);border-radius:5px;
+  font-size:.75rem;font-weight:600;cursor:pointer;transition:all .15s;
+  background:var(--sf);color:var(--ink2);
+}
+.radio-btn.active{background:var(--blue-lt);border-color:var(--blue-mid);color:var(--accent);}
+.checkbox-row{display:flex;align-items:center;gap:8px;font-size:.78rem;color:var(--ink2);cursor:pointer;}
+.checkbox-row input{width:16px;height:16px;cursor:pointer;}
+.calc-btn{
+  width:100%;margin-top:14px;padding:12px;
+  background:linear-gradient(135deg,var(--accent),var(--accent2));
+  color:#fff;border:none;border-radius:6px;
+  font-size:.85rem;font-weight:700;cursor:pointer;font-family:var(--font);
+  transition:opacity .15s;
+}
+.calc-btn:hover{opacity:.88;}
+
+/* ─ 결과 표시 ─ */
+.res-label{font-size:.6rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--ink3);margin-bottom:8px;}
+.res-row{display:flex;justify-content:space-between;align-items:center;padding:7px 0;border-bottom:1px solid var(--rule);}
+.res-row:last-of-type{border-bottom:none;}
+.res-name{font-size:.75rem;color:var(--ink2);}
+.res-val{font-size:.78rem;font-weight:700;color:var(--ink);font-variant-numeric:tabular-nums;}
+.res-total{display:flex;justify-content:space-between;align-items:center;background:linear-gradient(135deg,rgba(37,99,235,.08),rgba(124,58,237,.08));border:1px solid rgba(37,99,235,.2);border-radius:5px;padding:10px 12px;margin-top:10px;}
+.rt-label{font-size:.72rem;font-weight:700;color:var(--accent);}
+.rt-val{font-size:1.15rem;font-weight:900;color:var(--accent);font-variant-numeric:tabular-nums;}
+.res-note{font-size:.62rem;color:var(--ink3);margin-top:8px;line-height:1.6;}
+.res-warn{background:var(--warn-lt);border:1px solid rgba(147,82,0,.2);border-radius:5px;padding:8px 10px;font-size:.65rem;color:var(--warn);margin-top:8px;line-height:1.6;}
+
+/* ─ 세율표 ─ */
+.rate-table{width:100%;border-collapse:collapse;font-size:.73rem;}
+.rate-table th{background:var(--bg);color:var(--ink2);font-weight:700;padding:9px 12px;text-align:left;border-bottom:2px solid var(--rule);}
+.rate-table td{padding:8px 12px;border-bottom:1px solid var(--rule);color:var(--ink2);vertical-align:middle;}
+.rate-table tr:last-child td{border-bottom:none;}
+.rate-table tr:hover td{background:var(--bg);}
+.rate-hl{font-weight:700;color:var(--ink);}
+.rate-warn{color:var(--dn);font-weight:700;}
+.rate-ok{color:var(--ok);font-weight:700;}
+.table-wrap{overflow-x:auto;border:1px solid var(--rule);border-radius:6px;margin-bottom:16px;}
+
+/* ─ 정보 카드 ─ */
+.info-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:16px;}
+@media(max-width:800px){.info-grid{grid-template-columns:1fr 1fr;}}
+@media(max-width:500px){.info-grid{grid-template-columns:1fr;}}
+.info-card{background:var(--sf);border:1px solid var(--rule);border-radius:7px;padding:16px;position:relative;overflow:hidden;}
+.info-card::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;}
+.ic-blue::before{background:var(--blue-mid);}
+.ic-green::before{background:var(--ok);}
+.ic-purple::before{background:var(--purple);}
+.ic-warn::before{background:var(--warn);}
+.ic-red::before{background:var(--dn);}
+.ic-cat{font-size:.58rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;margin-bottom:6px;}
+.ic-blue .ic-cat{color:var(--blue-mid);} .ic-green .ic-cat{color:var(--ok);} .ic-purple .ic-cat{color:var(--purple);} .ic-warn .ic-cat{color:var(--warn);} .ic-red .ic-cat{color:var(--dn);}
+.ic-ttl{font-size:.88rem;font-weight:800;color:var(--ink);line-height:1.3;margin-bottom:7px;}
+.ic-body{font-size:.71rem;color:var(--ink2);line-height:1.75;}
+.ic-body b{font-weight:700;color:var(--ink);}
+.ic-stat{display:inline-block;font-size:.65rem;font-weight:700;padding:2px 8px;border-radius:3px;margin-top:8px;}
+.is-blue{background:var(--blue-lt);color:var(--blue-mid);}
+.is-green{background:var(--ok-lt);color:var(--ok);}
+.is-warn{background:var(--warn-lt);color:var(--warn);}
+.is-red{background:var(--dn-lt);color:var(--dn);}
+.is-purple{background:var(--purple-lt);color:var(--purple);}
+
+/* ─ 타임라인 ─ */
+.tl-wrap{background:var(--sf);border:1px solid var(--rule);border-radius:8px;padding:20px 22px;}
+.tl{border-left:2px solid var(--rule);padding-left:18px;margin-left:8px;}
+.tl-item{position:relative;padding-bottom:20px;}
+.tl-item:last-child{padding-bottom:0;}
+.tl-item::before{content:'';position:absolute;left:-23px;top:5px;width:10px;height:10px;border-radius:50%;background:var(--accent);border:2px solid var(--sf);}
+.tl-date{font-size:.6rem;font-weight:700;color:var(--ink3);margin-bottom:3px;}
+.tl-ttl{font-size:.84rem;font-weight:800;color:var(--ink);margin-bottom:4px;}
+.tl-body{font-size:.72rem;color:var(--ink2);line-height:1.7;}
+.tl-body b{font-weight:700;color:var(--ink);}
+
+/* ─ 절세 전략 ─ */
+.strategy-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+@media(max-width:640px){.strategy-grid{grid-template-columns:1fr;}}
+.strat-card{background:var(--sf);border:1px solid var(--rule);border-radius:7px;padding:16px 18px;}
+.sc-num{font-size:.65rem;font-weight:900;letter-spacing:.05em;color:var(--accent);margin-bottom:6px;}
+.sc-ttl{font-size:.88rem;font-weight:800;color:var(--ink);margin-bottom:6px;}
+.sc-body{font-size:.72rem;color:var(--ink2);line-height:1.75;}
+.sc-body b{font-weight:700;color:var(--ink);}
+.sc-tag{display:inline-block;font-size:.6rem;font-weight:700;padding:2px 7px;border-radius:10px;margin-top:8px;}
+
+/* ─ 출처 안내 ─ */
+.src-note{font-size:.64rem;color:var(--ink3);border-top:1px solid var(--rule);padding-top:12px;margin-top:32px;line-height:1.7;}
+.src-note b{font-weight:700;color:var(--ink2);}
+</style>
+</head>
+<body>
+
+<div class="hd">
+  <a class="hd-back" href="./index.html">🌉 부릿지</a>
+  <span class="hd-sep">/</span>
+  <span class="hd-title">세금 가이드</span>
+  <div class="hd-right">
+    <span class="hd-badge">2026.09.23 · 국무회의 확정</span>
+  </div>
+</div>
+
+<div class="hero">
+  <div class="hero-eyebrow">Tax Guide · 부동산 세금 완전 정복</div>
+  <h1>집 사고·보유하고·팔 때<br>세금이 얼마나 나올까?</h1>
+  <p class="hero-sub">취득세·재산세·종합부동산세·양도소득세까지 — 부동산 거래 전 과정의 세금을 계산기로 직접 확인하세요. 2026년 8월 3일 발표 세제개편안 반영.</p>
+  <div class="tax-flow">
+    <div class="tf-step"><div class="tf-label">① 살 때</div><div class="tf-val">취득세</div></div>
+    <div class="tf-arrow">→</div>
+    <div class="tf-step"><div class="tf-label">② 보유 중 (매년)</div><div class="tf-val">재산세 + 종부세</div></div>
+    <div class="tf-arrow">→</div>
+    <div class="tf-step"><div class="tf-label">③ 팔 때</div><div class="tf-val">양도소득세</div></div>
+  </div>
+</div>
+
+<div class="main">
+
+  <!-- 취득세 계산기 -->
+  <div class="sh"><span class="sh-label">취득세 계산기</span><span class="sh-badge sb-hot">실시간 계산</span></div>
+  <div class="calc-card">
+    <div class="calc-head">
+      <div class="calc-icon ci-blue">🏠</div>
+      <div>
+        <div class="calc-ttl">취득세 자동 계산</div>
+        <div class="calc-sub">주택 매수 시 납부하는 세금 — 잔금일로부터 60일 내 신고</div>
+      </div>
+    </div>
+    <div class="calc-body">
+      <div class="calc-inputs">
+        <div class="field">
+          <label>매매가격 (만원)</label>
+          <input type="number" id="acq-price" placeholder="예: 100000 (10억)" min="0">
+        </div>
+        <div class="field">
+          <label>현재 주택 보유 수 (이 주택 제외)</label>
+          <div class="radio-group" id="acq-homes">
+            <button class="radio-btn active" data-val="0" onclick="setRadio('acq-homes',this)">0주택 (무주택)</button>
+            <button class="radio-btn" data-val="1" onclick="setRadio('acq-homes',this)">1주택</button>
+            <button class="radio-btn" data-val="2" onclick="setRadio('acq-homes',this)">2주택↑</button>
+          </div>
+        </div>
+        <div class="field">
+          <label>취득 지역</label>
+          <div class="radio-group" id="acq-area">
+            <button class="radio-btn active" data-val="regulated" onclick="setRadio('acq-area',this)">조정대상지역 (서울·경기 규제지역)</button>
+            <button class="radio-btn" data-val="normal" onclick="setRadio('acq-area',this)">비규제지역</button>
+          </div>
+        </div>
+        <div class="field">
+          <label>전용면적</label>
+          <div class="radio-group" id="acq-size">
+            <button class="radio-btn active" data-val="small" onclick="setRadio('acq-size',this)">85㎡ 이하</button>
+            <button class="radio-btn" data-val="large" onclick="setRadio('acq-size',this)">85㎡ 초과</button>
+          </div>
+        </div>
+        <div class="field">
+          <label class="checkbox-row">
+            <input type="checkbox" id="acq-first"> 생애최초 주택 구입 (12억 이하만 해당)
+          </label>
+        </div>
+        <button class="calc-btn" onclick="calcAcquisition()">취득세 계산하기</button>
+      </div>
+      <div class="calc-result">
+        <div class="res-label">계산 결과</div>
+        <div id="acq-result">
+          <div style="font-size:.75rem;color:var(--ink3);padding:20px 0;text-align:center;">위 정보를 입력하고<br>계산 버튼을 눌러주세요.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 취득세율표 -->
+  <div class="table-wrap">
+    <table class="rate-table">
+      <thead>
+        <tr>
+          <th>구분</th>
+          <th>세율</th>
+          <th>지방교육세</th>
+          <th>농특세</th>
+          <th>합계</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><b>1주택 · 6억↓</b></td>
+          <td class="rate-ok">1%</td>
+          <td>0.1%</td>
+          <td>—</td>
+          <td class="rate-hl">1.1%</td>
+        </tr>
+        <tr>
+          <td><b>1주택 · 6~9억</b> (누진)</td>
+          <td class="rate-ok">1~3% (누진)</td>
+          <td>취득세 × 10%</td>
+          <td>85㎡초과: 0.2%</td>
+          <td class="rate-hl">약 1.1~3.3%</td>
+        </tr>
+        <tr>
+          <td><b>1주택 · 9억↑</b></td>
+          <td class="rate-ok">3%</td>
+          <td>0.3%</td>
+          <td>85㎡초과: 0.6%</td>
+          <td class="rate-hl">3.3~3.9%</td>
+        </tr>
+        <tr>
+          <td><b>2주택 · 조정지역</b></td>
+          <td class="rate-warn">8%</td>
+          <td>0.4%</td>
+          <td>0.6%</td>
+          <td class="rate-warn">9%</td>
+        </tr>
+        <tr>
+          <td><b>2주택 · 비규제</b></td>
+          <td>1~3%</td>
+          <td>취득세×10%</td>
+          <td>—</td>
+          <td class="rate-hl">일반세율</td>
+        </tr>
+        <tr>
+          <td><b>3주택↑ · 조정지역</b></td>
+          <td class="rate-warn">12%</td>
+          <td>0.4%</td>
+          <td>1%</td>
+          <td class="rate-warn">13.4%</td>
+        </tr>
+        <tr>
+          <td><b>법인</b></td>
+          <td class="rate-warn">12%</td>
+          <td>0.4%</td>
+          <td>1%</td>
+          <td class="rate-warn">13.4%</td>
+        </tr>
+        <tr>
+          <td><b>생애최초 (12억↓)</b></td>
+          <td colspan="3" style="color:var(--ok);font-weight:700;">취득세 50% 감면 · 최대 200만원 한도</td>
+          <td class="rate-ok">50% 감면</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- 보유세 -->
+  <div class="sh"><span class="sh-label">보유세 — 재산세 · 종합부동산세</span></div>
+  <div class="info-grid">
+    <div class="info-card ic-blue">
+      <div class="ic-cat">재산세</div>
+      <div class="ic-ttl">매년 7월·9월 납부 — 공시가격 기준</div>
+      <div class="ic-body">
+        재산세는 주택을 보유한 모든 사람이 내는 지방세입니다. 과세표준 = <b>공시가격 × 60%</b>(공정시장가액비율).
+        <br><br>세율: 0.1%(6,000만↓) ~ 0.4%(3억↑) 누진. 재산세 = 과세표준 × 세율 - 누진공제액.
+        <br><br>납부: <b>7월(건물분)</b>, <b>9월(토지분)</b>. 20만원 이하는 7월에 일시 납부.
+      </div>
+      <span class="ic-stat is-blue">7월·9월 분납</span>
+    </div>
+    <div class="info-card ic-purple">
+      <div class="ic-cat">종합부동산세</div>
+      <div class="ic-ttl">매년 12월 납부 — 고가·다주택 대상</div>
+      <div class="ic-body">
+        공시가격 합산액이 일정 기준을 초과하면 부과됩니다.
+        <br><br><b>1세대 1주택:</b> 공시가 12억 초과분에 과세 (0.5~2.7%)
+        <br><b>다주택:</b> 공시가 9억 초과분에 과세 (1.2~5.0%)
+        <br><br>과세표준 = (공시가 합계 - 공제액) × 60%
+      </div>
+      <span class="ic-stat is-purple">12월 납부 · 분납 가능</span>
+    </div>
+    <div class="info-card ic-warn">
+      <div class="ic-cat">2026.09.01 국무회의 확정 · 9.3 정기국회 제출 예정</div>
+      <div class="ic-ttl">종부세 국무회의 최종 확정 — 실거주 14억·비거주 12억 현행 유지·공시가율 70%</div>
+      <div class="ic-body">
+        <b>종부세 공제(2027년~) 최종안:</b> 실거주 단독명의 1주택 공시가 <b>12억→14억</b>(시가 약 20억) 상향 ✅ 유지. <b>비거주 1주택은 당초 9억 하향 계획 철회 → 현행 12억 유지</b>(29일 만에 방침 뒤집기). 공정시장가액비율 60%→<b>70%</b>(3주택+ 80%) 유지.
+        <br><b>부부 공동명의 최종:</b> 실거주 부부 공동명의 각 9억(합계 18억) 현행 유지. 비거주 부부 공동명의 당초 각 4억(합계 8억) 하향 계획 → <b>각 6억(합계 12억)으로 조정</b>.
+        <br><b>세부담 상한:</b> 당초 150%→200%로 높이려던 계획 <b>철회 → 현행 150% 유지</b>.
+        <br><b>ISA 혜택 축소 계획 전면 철회:</b> 생산적 금융 ISA 계약기간 무제한, 미사용 납입한도 이월 허용 현행 유지.
+        <br><b>양도세 장특공제 상한 신설:</b> 2028년 매도 <b>최대 2억</b>, 2029년 이후 <b>1억</b>으로 제한.
+        <br><b>양도세 기본공제 10배 인상:</b> <b>250만원→2,500만원</b> (10년 이상 거주 + 양도가액 30억원 이하 조건). 장기 실거주자 혜택 대폭 확대.
+        <br><b>다주택 중과 완화:</b> 2027년 -5%p, 2028년 -10%p 한시 완화.
+        <br><br><b>입법 현황:</b> 차관회의 8.27 통과 → 국무회의 9.1 → 정기국회 9.3 제출 예정. 국회 야당 협의가 최종 변수.
+      </div>
+      <span class="ic-stat is-warn">2027년 시행 예정 · 국회 9.3 제출</span>
+    </div>
+  </div>
+
+  <!-- 공시가격 → 종부세 기준 안내 -->
+  <div class="table-wrap" style="margin-bottom:16px;">
+    <table class="rate-table">
+      <thead>
+        <tr>
+          <th>구분</th>
+          <th>1세대 1주택</th>
+          <th>다주택</th>
+          <th>비고</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>공제 기준 (현행)</td>
+          <td class="rate-ok">공시가 12억</td>
+          <td class="rate-warn">공시가 9억</td>
+          <td>초과분에만 과세</td>
+        </tr>
+        <tr>
+          <td>세율 범위</td>
+          <td>0.5~2.7%</td>
+          <td class="rate-warn">1.2~5.0%</td>
+          <td>누진 구조</td>
+        </tr>
+        <tr>
+          <td>고령자 세액공제</td>
+          <td class="rate-ok">최대 80%</td>
+          <td>해당 없음</td>
+          <td>60세↑, 5년↑ 조건</td>
+        </tr>
+        <tr style="background:#FEF9E7;">
+          <td><b>2027년 이후 (개편안)</b></td>
+          <td class="rate-ok"><b>실거주 단독명의: 공시가 14억↓ 면제</b><br><span style="font-size:.7em;color:#0A6E42;">비거주: 12억 현행 유지 (9억 하향 철회)</span></td>
+          <td class="rate-warn">공정시장가액비율 70%(3주택+80%)<br><span style="font-size:.7em;">세부담 상한 150% 현행 유지</span></td>
+          <td>국무회의 9.1 확정 → 9.3 정기국회 제출 예정</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- 양도소득세 계산기 -->
+  <div class="sh"><span class="sh-label">양도소득세 계산기</span><span class="sh-badge sb-hot">실시간 계산</span></div>
+  <div class="calc-card">
+    <div class="calc-head">
+      <div class="calc-icon ci-green">💰</div>
+      <div>
+        <div class="calc-ttl">양도소득세 자동 계산</div>
+        <div class="calc-sub">집 팔 때 납부하는 세금 — 거주기간과 보유기간이 핵심</div>
+      </div>
+    </div>
+    <div class="calc-body">
+      <div class="calc-inputs">
+        <div class="field">
+          <label>양도가격 (만원)</label>
+          <input type="number" id="tr-sell" placeholder="예: 150000 (15억)" min="0">
+        </div>
+        <div class="field">
+          <label>취득가격 (만원) — 취득세·등기비 포함</label>
+          <input type="number" id="tr-buy" placeholder="예: 80000 (8억)" min="0">
+        </div>
+        <div class="field">
+          <label>보유기간 (년)</label>
+          <input type="number" id="tr-hold" placeholder="예: 5" min="0" max="50" step="0.5">
+        </div>
+        <div class="field">
+          <label>거주기간 (년) — 실제 본인 거주</label>
+          <input type="number" id="tr-live" placeholder="예: 3" min="0" max="50" step="0.5">
+        </div>
+        <div class="field">
+          <label>주택 상황</label>
+          <div class="radio-group" id="tr-status">
+            <button class="radio-btn active" data-val="1h1" onclick="setRadio('tr-status',this)">1세대 1주택</button>
+            <button class="radio-btn" data-val="1h2" onclick="setRadio('tr-status',this)">일시적 2주택</button>
+            <button class="radio-btn" data-val="multi" onclick="setRadio('tr-status',this)">다주택</button>
+          </div>
+        </div>
+        <button class="calc-btn" onclick="calcTransfer()">양도세 계산하기</button>
+        <div class="res-warn" style="margin-top:10px;">⚠️ 이 계산기는 학습 참고용입니다. 실제 신고 전 반드시 세무사와 상담하세요. 필요경비·중과세율 예외 등 개별 상황에 따라 달라집니다.</div>
+      </div>
+      <div class="calc-result">
+        <div class="res-label">계산 결과</div>
+        <div id="tr-result">
+          <div style="font-size:.75rem;color:var(--ink3);padding:20px 0;text-align:center;">위 정보를 입력하고<br>계산 버튼을 눌러주세요.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 양도세율표 -->
+  <div class="table-wrap">
+    <table class="rate-table">
+      <thead>
+        <tr>
+          <th>과세표준</th>
+          <th>세율</th>
+          <th>누진공제</th>
+          <th>비고</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>1,200만원 이하</td><td>6%</td><td>—</td><td></td></tr>
+        <tr><td>1,200만~4,600만</td><td>15%</td><td>108만원</td><td></td></tr>
+        <tr><td>4,600만~8,800만</td><td>24%</td><td>522만원</td><td></td></tr>
+        <tr><td>8,800만~1.5억</td><td>35%</td><td>1,490만원</td><td></td></tr>
+        <tr><td>1.5억~3억</td><td>38%</td><td>1,940만원</td><td></td></tr>
+        <tr><td>3억~5억</td><td>40%</td><td>2,540만원</td><td></td></tr>
+        <tr><td>5억 초과</td><td>42%</td><td>3,540만원</td><td>지방소득세 10% 별도</td></tr>
+        <tr>
+          <td colspan="2"><b>다주택 중과 (조정지역)</b></td>
+          <td class="rate-warn">+20%p (2주택) / +30%p (3주택↑)</td>
+          <td class="rate-ok">2028년까지 유예 (세제개편안)</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- 장특공제 안내 -->
+  <div class="sh"><span class="sh-label">장기보유특별공제 — 핵심 절세 수단</span></div>
+  <div class="info-grid">
+    <div class="info-card ic-green">
+      <div class="ic-cat">1세대 1주택 (비과세 요건 미충족 시)</div>
+      <div class="ic-ttl">보유 + 거주 합산 최대 80%</div>
+      <div class="ic-body">
+        <b>보유공제:</b> 연 4%, 최대 40% (10년 이상)<br>
+        <b>거주공제:</b> 연 4%, 최대 40% (10년 이상)
+        <br><br>보유 10년 + 거주 10년 = <b>장특공제 80%</b> 적용 가능. 3년 이상 보유 시 적용 시작.
+      </div>
+      <span class="ic-stat is-green">최대 80% 공제</span>
+    </div>
+    <div class="info-card ic-blue">
+      <div class="ic-cat">일반 (1주택 비과세 요건 미충족 or 2주택)</div>
+      <div class="ic-ttl">보유기간 기준 — 연 2%, 최대 30%</div>
+      <div class="ic-body">
+        3년 이상 보유 시 6%, 이후 연 2% 추가.
+        15년 이상 보유 시 <b>최대 30%</b>.
+        <br><br>다주택자 조정지역은 장특공제 적용 불가 (중과세율 + 공제 없음). 단, <b>2028년까지 중과 유예 중</b>.
+      </div>
+      <span class="ic-stat is-blue">최대 30% 공제</span>
+    </div>
+    <div class="info-card ic-warn">
+      <div class="ic-cat">2029년 이후 세제개편안 예정</div>
+      <div class="ic-ttl">보유공제 폐지 → 거주공제만 유효</div>
+      <div class="ic-body">
+        2029년부터 1주택 장특공제에서 <b>보유공제(연 4%) 폐지</b> 예정. 거주공제(연 4%, 최대 40%)만 인정.
+        <br><br>10년 보유 + 0년 거주 → 현행 40% → 개편 후 0%. <b>실거주 없으면 공제 불가</b>. 매도 전략 재검토 필요.
+      </div>
+      <span class="ic-stat is-warn">2029년부터 적용 예정</span>
+    </div>
+  </div>
+
+  <!-- 1주택 비과세 요건 -->
+  <div class="sh"><span class="sh-label">1세대 1주택 비과세 — 가장 강력한 절세</span></div>
+  <div class="tl-wrap" style="margin-bottom:16px;">
+    <div class="tl">
+      <div class="tl-item">
+        <div class="tl-date">조건 ①</div>
+        <div class="tl-ttl">2년 이상 보유 (비규제지역) · 2년 보유 + 2년 거주 (조정지역)</div>
+        <div class="tl-body">서울·경기 규제지역(조정대상지역)에서 취득한 주택은 <b>2년 보유 + 2년 실거주</b>가 필요합니다. 비규제지역은 2년 보유만으로 비과세 요건 충족.</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-date">조건 ②</div>
+        <div class="tl-ttl">양도가액 12억 이하 → 전액 비과세</div>
+        <div class="tl-body">12억 이하 1주택은 비과세 요건 충족 시 <b>양도세 전액 면제</b>. 12억 초과 고가 주택은 12억 초과분에만 과세됩니다. 예) 15억 양도 → 3억 초과분 × (1-장특공제)에 세율 적용.</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-date">조건 ③</div>
+        <div class="tl-ttl">1세대 1주택 — 가족 전체 기준</div>
+        <div class="tl-body">세대 전원(배우자 포함)이 국내 주택을 1채만 소유해야 합니다. 배우자·동일 세대원의 주택도 합산. 자녀가 분리 세대이면 별도로 1주택 판정. 일시적 2주택 특례: 종전 주택을 신규 취득 후 <b>3년 내 처분</b>하면 비과세 적용.</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-date">절세 핵심</div>
+        <div class="tl-ttl">실거주 기간을 최대화하라</div>
+        <div class="tl-body">2029년 이후 보유공제 폐지 예정에 따라, <b>장기 보유 계획이 있다면 실거주 기간을 늘리는 전략</b>이 핵심입니다. 거주 10년 = 장특공제 40% (2029년 이후에도 유효). 비거주 10년 보유 = 2029년 이후 장특공제 0%.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 2026 세제개편안 타임라인 -->
+  <div class="sh"><span class="sh-label">2026 세제개편안 타임라인</span><span class="sh-badge sb-hot">9.1 국무회의 확정</span></div>
+  <div class="tl-wrap" style="margin-bottom:16px;">
+    <div class="tl">
+      <div class="tl-item">
+        <div class="tl-date">2026년 8월 3일 — 발표</div>
+        <div class="tl-ttl">정부 세제개편안 초안 발표 — 비거주 종부세 9억 하향 포함</div>
+        <div class="tl-body">핵심 방향: '주택 수' 기준 과세 → <b>'가액 + 실거주 여부'</b> 기준으로 전면 재편. 초안에는 비거주 1주택 종부세 9억 하향, 세부담 상한 200% 상향 포함. 예상 세수 5년 누적 13조 3,000억원.</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-date">2026년 8월 27일 — 차관회의 통과</div>
+        <div class="tl-ttl">세법 개정안 차관회의 통과 — 국무회의로 이송</div>
+        <div class="tl-body">기획재정부 세법 개정안 차관회의 통과. 비거주 9억 하향, 세부담 상한 200% 상향 포함된 초안 그대로 통과. 국무회의 9.1 상정 예정.</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-date">2026년 9월 1일 — 국무회의 확정 ★</div>
+        <div class="tl-ttl">국무회의 확정 — 비거주 12억 현행 유지로 방침 전환 (29일 만에 뒤집기)</div>
+        <div class="tl-body">국무회의에서 <b>비거주 1주택 종부세 9억 하향 계획 철회 → 12억 현행 유지</b>로 최종 확정. 세부담 상한 200% 상향도 철회(150% 유지). 비거주 부부 공동명의 각 4억 → 각 6억으로 수정. ISA 혜택 축소 계획도 전면 철회.</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-date">2026년 9월 3일 예정 — 정기국회 제출</div>
+        <div class="tl-ttl">세법 개정안 정기국회 제출 — 국회 심의 시작</div>
+        <div class="tl-body">국무회의 확정안을 9.3 정기국회에 제출. 국회 심의 과정에서 추가 수정·조정 가능성 있음. 특히 양도세 보유공제 폐지 시점, 장특공제 상한 조정 여부는 국회 협의 중.</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-date">2027년 시행 예정</div>
+        <div class="tl-ttl">종부세 개편 시행 — 실거주 1주택 20억↓ 면제</div>
+        <div class="tl-body">시가 <b>20억 이하 실거주 1주택자 종부세 면제</b>. 32억 초과 고가·비거주 단계적 인상. 2주택 이상 다주택 강화. 현재(2026년)는 기존 종부세 기준 적용.</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-date">2028년 말까지 유예</div>
+        <div class="tl-ttl">다주택자 조정지역 양도세 중과 유예 연장</div>
+        <div class="tl-body">현행 다주택자 중과세율(+20~30%p)이 <b>2028년 말까지 유예</b>됩니다. 이 기간 동안 다주택자가 양도 시 일반세율이 적용되므로, 기존 중과 부담이 한시적으로 완화됩니다.</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-date">2029년 이후 시행 예정</div>
+        <div class="tl-ttl">양도세 보유공제 폐지 — 거주공제만 최대 80%</div>
+        <div class="tl-body">장기보유특별공제에서 <b>보유공제(연 4%)가 폐지</b>되고 거주공제만 최대 40%(10년) 인정. 1주택자라도 비거주 보유자는 장특공제 대부분을 잃게 됩니다. <b>지금부터 실거주 기간을 늘리는 전략이 중요합니다.</b></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 세금 절세 전략 -->
+  <div class="sh"><span class="sh-label">세금 절세 전략 — 합법적으로 줄이는 방법</span></div>
+  <div class="strategy-grid">
+    <div class="strat-card">
+      <div class="sc-num">전략 01 · 취득세</div>
+      <div class="sc-ttl">생애최초 취득세 감면 활용</div>
+      <div class="sc-body">
+        무주택 세대원 전원이 처음 주택을 구입할 경우, 주택가 <b>12억 이하</b>면 취득세를 <b>50% 감면</b>(최대 200만원 한도). 신청 방법: 취득 후 60일 내 관할 시·군·구청에 신청. 취득 후 3년 내 직접 거주 의무.
+      </div>
+      <span class="sc-tag" style="background:var(--ok-lt);color:var(--ok);">취득세 50% 감면</span>
+    </div>
+    <div class="strat-card">
+      <div class="sc-num">전략 02 · 취득세</div>
+      <div class="sc-ttl">일시적 2주택 특례 — 신규 취득 후 3년 내 처분</div>
+      <div class="sc-body">
+        기존 1주택 보유 중 신규 주택을 취득하면 일시적 2주택. 신규 취득 후 <b>3년 내 종전 주택 처분</b> 시 중과 제외, 일반세율(1~3%) 적용. 취득세뿐 아니라 종전 주택 양도세 비과세도 유지.
+      </div>
+      <span class="sc-tag" style="background:var(--blue-lt);color:var(--blue-mid);">일시적 2주택 특례</span>
+    </div>
+    <div class="strat-card">
+      <div class="sc-num">전략 03 · 양도세</div>
+      <div class="sc-ttl">1주택 비과세 — 2년 거주 + 12억 이하</div>
+      <div class="sc-body">
+        조정지역 1주택은 <b>2년 이상 실거주</b> 후 양도 시 12억 이하 전액 비과세. 12억 초과분도 장특공제 적용 가능. 부부 공동명의 취득 시 각각 비과세 적용 가능 여부 세무사 확인 필수.
+      </div>
+      <span class="sc-tag" style="background:var(--ok-lt);color:var(--ok);">전액 비과세</span>
+    </div>
+    <div class="strat-card">
+      <div class="sc-num">전략 04 · 양도세</div>
+      <div class="sc-ttl">거주기간 10년 채우기 — 장특공제 40%</div>
+      <div class="sc-body">
+        2029년 이후 보유공제 폐지에 대비해 <b>실거주 10년</b>을 채우면 장특공제 40% (거주공제만)를 확보할 수 있습니다. 지금 거주 중이라면 거주 기간을 최대한 늘리는 것이 장기 절세 핵심.
+      </div>
+      <span class="sc-tag" style="background:var(--purple-lt);color:var(--purple);">거주공제 최대화</span>
+    </div>
+    <div class="strat-card">
+      <div class="sc-num">전략 05 · 종부세</div>
+      <div class="sc-ttl">고령자·장기보유 세액공제 — 최대 80%</div>
+      <div class="sc-body">
+        1세대 1주택자 중 <b>60세 이상</b>이고 <b>5년 이상 보유</b>한 경우 종부세 세액공제 최대 80%까지 가능. 고령자 공제(연령별 20~40%)와 장기보유 공제(5년↑ 20~50%)가 중복 적용.
+      </div>
+      <span class="sc-tag" style="background:var(--warn-lt);color:var(--warn);">세액공제 최대 80%</span>
+    </div>
+    <div class="strat-card">
+      <div class="sc-num">전략 06 · 필요경비</div>
+      <div class="sc-ttl">필요경비 최대한 증빙 — 세금 낮추는 합법 방법</div>
+      <div class="sc-body">
+        양도세 계산 시 <b>취득세, 법무사비, 중개수수료, 자본적 지출(인테리어·증축 등)</b>을 필요경비로 공제 가능. 영수증·계좌 이체 내역을 반드시 보관. 도배·장판 같은 수익적 지출(유지·수선)은 공제 불가.
+      </div>
+      <span class="sc-tag" style="background:var(--blue-lt);color:var(--blue-mid);">영수증 보관 필수</span>
+    </div>
+  </div>
+
+  <div class="src-note">
+    <b>데이터 출처 및 주의사항</b> — 국세청 홈택스 세율표 · 행정안전부 취득세 기준 · 2026년 8월 3일 세제개편안(기획재정부 발표) · 뉴닉·홈두부 개편안 정리<br>
+    이 가이드는 <b>학습 목적의 참고 자료</b>입니다. 실제 세금 계산 및 신고는 국세청 홈택스(hometax.go.kr) 또는 세무사와 상담하세요. 세법은 매년 개정될 수 있으며, 개인 상황에 따라 적용 세율이 달라질 수 있습니다.
+  </div>
+
+</div>
+
+<script>
+// ─── 공통 유틸 ───────────────────────────────────────────────
+function setRadio(groupId, btn) {
+  document.querySelectorAll(`#${groupId} .radio-btn`).forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+}
+function getRadio(groupId) {
+  const active = document.querySelector(`#${groupId} .radio-btn.active`);
+  return active ? active.dataset.val : null;
+}
+function fmtW(n) {
+  if (n === 0) return '0원';
+  const uk = Math.floor(n / 10000);
+  const man = Math.round(n % 10000);
+  if (uk > 0 && man > 0) return `${uk.toLocaleString()}억 ${man.toLocaleString()}만원`;
+  if (uk > 0) return `${uk.toLocaleString()}억원`;
+  return `${man.toLocaleString()}만원`;
+}
+function fmtM(n) { return Math.round(n).toLocaleString() + '만원'; }
+
+// ─── 취득세 계산 ─────────────────────────────────────────────
+function calcAcquisition() {
+  const priceMan = parseFloat(document.getElementById('acq-price').value);
+  if (!priceMan || priceMan <= 0) { alert('매매가격을 입력해주세요.'); return; }
+  const homes = parseInt(getRadio('acq-homes'));
+  const area = getRadio('acq-area');
+  const size = getRadio('acq-size');
+  const first = document.getElementById('acq-first').checked;
+  const price억 = priceMan / 10000;
+
+  let rate = 0;
+  let 지교 = 0;
+  let 농특 = 0;
+
+  if (homes === 0 || (homes === 1 && area === 'normal')) {
+    // 1주택 일반세율
+    if (price억 <= 6) { rate = 0.01; 지교 = 0.001; }
+    else if (price억 <= 9) {
+      rate = (price억 * 2 / 3 - 3) / 100;
+      지교 = rate * 0.1;
+    } else {
+      rate = 0.03; 지교 = 0.003;
+      if (size === 'large') 농특 = 0.006;
+    }
+  } else if (homes === 1 && area === 'regulated') {
+    // 조정지역 2주택
+    rate = 0.08; 지교 = 0.004;
+    if (size === 'large') 농특 = 0.006;
+  } else {
+    // 3주택↑
+    rate = 0.12; 지교 = 0.004;
+    if (size === 'large') 농특 = 0.01;
+  }
+
+  let acqTax = priceMan * rate;
+  let 지교액 = priceMan * 지교;
+  let 농특액 = priceMan * 농특;
+  let total = acqTax + 지교액 + 농특액;
+
+  // 생애최초 감면
+  let 감면액 = 0;
+  if (first && homes === 0 && price억 <= 12) {
+    감면액 = Math.min(acqTax * 0.5, 200);
+    acqTax -= 감면액;
+    total -= 감면액;
+  }
+
+  const el = document.getElementById('acq-result');
+  el.innerHTML = `
+    <div class="res-row"><span class="res-name">적용 취득세율</span><span class="res-val">${(rate*100).toFixed(2)}%</span></div>
+    <div class="res-row"><span class="res-name">취득세</span><span class="res-val">${fmtM(acqTax)}</span></div>
+    <div class="res-row"><span class="res-name">지방교육세</span><span class="res-val">${fmtM(지교액)}</span></div>
+    <div class="res-row"><span class="res-name">농어촌특별세</span><span class="res-val">${농특액 > 0 ? fmtM(농특액) : '해당없음'}</span></div>
+    ${감면액 > 0 ? `<div class="res-row"><span class="res-name" style="color:var(--ok);">생애최초 감면</span><span class="res-val" style="color:var(--ok);">-${fmtM(감면액)}</span></div>` : ''}
+    <div class="res-total"><span class="rt-label">납부 합계</span><span class="rt-val">${fmtM(total)}</span></div>
+    <div class="res-note">취득일(잔금일)로부터 60일 내 신고·납부. 신고 지연 시 20% 무신고가산세 부과.</div>
+  `;
+}
+
+// ─── 양도세 계산 ─────────────────────────────────────────────
+function calcTransfer() {
+  const sell = parseFloat(document.getElementById('tr-sell').value);
+  const buy = parseFloat(document.getElementById('tr-buy').value);
+  const hold = parseFloat(document.getElementById('tr-hold').value) || 0;
+  const live = parseFloat(document.getElementById('tr-live').value) || 0;
+  const status = getRadio('tr-status');
+
+  if (!sell || !buy || sell <= 0 || buy <= 0) { alert('양도가격과 취득가격을 입력해주세요.'); return; }
+  if (sell <= buy) {
+    document.getElementById('tr-result').innerHTML = `<div class="res-row"><span class="res-name">양도차익</span><span class="res-val" style="color:var(--ink3);">손실 발생 — 세금 없음</span></div><div class="res-note">양도가격이 취득가격 이하로 양도차익이 없어 양도세가 부과되지 않습니다.</div>`;
+    return;
+  }
+
+  // 1주택 비과세 체크
+  const 비과세가능 = status === '1h1' && hold >= 2 && live >= 2;
+  const sell억 = sell / 10000;
+  let 차익 = sell - buy;
+
+  // 장특공제 계산
+  let 장특율 = 0;
+  if (status === '1h1') {
+    const 보유y = Math.min(Math.floor(hold), 10);
+    const 거주y = Math.min(Math.floor(live), 10);
+    const 보유공제 = 보유y >= 3 ? 보유y * 0.04 : 0;
+    const 거주공제 = 거주y >= 3 ? 거주y * 0.04 : 0;
+    장특율 = Math.min(보유공제 + 거주공제, 0.8);
+  } else if (status === '1h2') {
+    const 보유y = Math.min(Math.floor(hold), 15);
+    장특율 = 보유y >= 3 ? 0.06 + (보유y - 3) * 0.02 : 0;
+    장특율 = Math.min(장특율, 0.30);
+  } else {
+    // 다주택: 장특공제 없음 (중과 유예 중이므로 일반세율 + 장특 없음)
+    장특율 = 0;
+  }
+
+  // 고가주택 비과세 처리 (12억 초과분만 과세)
+  let 과세차익 = 차익;
+  let 비과세분 = 0;
+  if (비과세가능 && sell억 > 12) {
+    const 고가비율 = (sell억 - 12) / sell억;
+    과세차익 = 차익 * 고가비율;
+    비과세분 = 차익 * (1 - 고가비율);
+  } else if (비과세가능 && sell억 <= 12) {
+    document.getElementById('tr-result').innerHTML = `
+      <div class="res-row"><span class="res-name">양도차익</span><span class="res-val">${fmtM(차익)}</span></div>
+      <div class="res-row"><span class="res-name">1주택 비과세 적용</span><span class="res-val" style="color:var(--ok);">전액 비과세</span></div>
+      <div class="res-total" style="background:rgba(10,110,66,.08);border-color:rgba(10,110,66,.2);">
+        <span class="rt-label" style="color:var(--ok);">납부 세액</span>
+        <span class="rt-val" style="color:var(--ok);">0원</span>
+      </div>
+      <div class="res-note">1세대 1주택 비과세 요건 충족(2년 이상 거주). 양도가 12억원 이하이므로 전액 비과세입니다.</div>
+    `;
+    return;
+  }
+
+  // 장특공제 적용
+  const 장특공제액 = 과세차익 * 장특율;
+  const 기본공제 = 250; // 만원
+  let 과세표준 = Math.max(과세차익 - 장특공제액 - 기본공제, 0);
+
+  // 세율 적용
+  function getTaxRate(과표) {
+    if (과표 <= 1200) return { rate: 0.06, deduction: 0 };
+    if (과표 <= 4600) return { rate: 0.15, deduction: 108 };
+    if (과표 <= 8800) return { rate: 0.24, deduction: 522 };
+    if (과표 <= 15000) return { rate: 0.35, deduction: 1490 };
+    if (과표 <= 30000) return { rate: 0.38, deduction: 1940 };
+    if (과표 <= 50000) return { rate: 0.40, deduction: 2540 };
+    return { rate: 0.42, deduction: 3540 };
+  }
+
+  // 다주택 중과 (현재 유예 중 - 일반세율 적용)
+  const { rate, deduction } = getTaxRate(과세표준);
+  let 양도세 = 과세표준 * rate - deduction;
+  if (양도세 < 0) 양도세 = 0;
+  const 지방소득세 = 양도세 * 0.1;
+  const 납부합계 = 양도세 + 지방소득세;
+
+  const el = document.getElementById('tr-result');
+  el.innerHTML = `
+    <div class="res-row"><span class="res-name">양도차익</span><span class="res-val">${fmtM(차익)}</span></div>
+    ${비과세분 > 0 ? `<div class="res-row"><span class="res-name">비과세분 (12억 이하)</span><span class="res-val" style="color:var(--ok);">-${fmtM(비과세분)}</span></div>` : ''}
+    <div class="res-row"><span class="res-name">장기보유특별공제 (${(장특율*100).toFixed(0)}%)</span><span class="res-val" style="color:var(--ok);">-${fmtM(장특공제액)}</span></div>
+    <div class="res-row"><span class="res-name">기본공제</span><span class="res-val" style="color:var(--ok);">-250만원</span></div>
+    <div class="res-row"><span class="res-name">과세표준</span><span class="res-val">${fmtM(과세표준)}</span></div>
+    <div class="res-row"><span class="res-name">적용 세율</span><span class="res-val">${(rate*100).toFixed(0)}%</span></div>
+    <div class="res-row"><span class="res-name">양도소득세</span><span class="res-val">${fmtM(양도세)}</span></div>
+    <div class="res-row"><span class="res-name">지방소득세 (10%)</span><span class="res-val">${fmtM(지방소득세)}</span></div>
+    <div class="res-total"><span class="rt-label">납부 합계</span><span class="rt-val">${fmtM(납부합계)}</span></div>
+    <div class="res-warn">⚠️ 참고용 계산입니다. 필요경비(취득세·법무사비 등) 추가 공제, 다주택 중과 적용 여부 등 실제와 다를 수 있습니다. 세무사 상담 필수.</div>
+  `;
+}
+</script>
+</body>
+</html>

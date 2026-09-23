@@ -1,0 +1,899 @@
+﻿<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/favicon.svg">
+<meta name="theme-color" content="#0C2040">
+<meta property="og:site_name" content="부릿지 BuRIDGE">
+<meta property="og:type" content="website">
+<meta property="og:title" content="지도분석 | 부릿지 BuRIDGE">
+<meta property="og:description" content="서울·수도권 지역별 부동산 입지 분석 가이드.">
+<meta property="og:url" content="https://buridge.vercel.app/부동산_지도분석_2026.html">
+<meta property="og:image" content="https://buridge.vercel.app/og-image.svg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="ko_KR">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="지도분석 | 부릿지 BuRIDGE">
+<meta name="twitter:description" content="서울·수도권 지역별 부동산 입지 분석 가이드.">
+<meta name="twitter:image" content="https://buridge.vercel.app/og-image.svg">
+<title>지역별 지도 분석 | 부릿지 BuRIDGE</title>
+<style>
+:root{
+  --navy:#0C2040;--blue:#1A4A9A;--blue-lt:#EBF1FF;
+  --ink:#1A2E44;--ink2:#374F6B;--ink3:#68839C;
+  --paper:#F3F6FB;--sf:#FFFFFF;--rule:#D0D8E8;
+  --font:'Apple SD Gothic Neo','Noto Sans KR',system-ui,sans-serif;
+  /* 등급 색상 */
+  --s:#8B0000;  --s-lt:#FFE8E8;
+  --a:#0A5C2A;  --a-lt:#E4F5EC;
+  --bp:#1A4A9A; --bp-lt:#EBF1FF;
+  --b:#374F6B;  --b-lt:#E8EDF5;
+  --c:#7A5800;  --c-lt:#FFF5D8;
+  --d:#5A5A5A;  --d-lt:#F0F0F0;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html,body{font-family:var(--font);background:var(--paper);color:var(--ink);height:100%;}
+
+/* 헤더 */
+.hd{background:var(--navy);height:50px;display:flex;align-items:center;padding:0 20px;gap:10px;flex-shrink:0;}
+.hd-back{color:#7AA0C8;font-size:.75rem;text-decoration:none;}.hd-back:hover{color:#C0D8F0;}
+.hd-sep{color:#2A4870;}
+.hd-title{font-size:.9rem;font-weight:700;color:#D0E0F0;}
+.hd-badge{margin-left:auto;font-size:.6rem;font-weight:700;padding:3px 9px;border-radius:3px;background:#081628;border:1px solid #1A3460;color:#3A6090;}
+
+/* 탭 바 */
+.tab-bar{background:var(--navy);border-top:1px solid #1A3050;display:flex;padding:0 20px;gap:0;}
+.tab{padding:9px 18px;font-size:.76rem;font-weight:700;color:#4A6A90;cursor:pointer;border-bottom:2px solid transparent;transition:color .15s,border-color .15s;}
+.tab.active{color:#90C0E0;border-bottom-color:#90C0E0;}
+
+/* 범례 바 */
+.legend-bar{background:#0A1830;border-bottom:1px solid #1A3050;padding:7px 20px;display:flex;gap:18px;align-items:center;flex-wrap:wrap;font-size:.62rem;}
+.lg-item{display:flex;align-items:center;gap:5px;color:#6A8AAA;}
+.lg-dot{width:10px;height:10px;border-radius:2px;flex-shrink:0;}
+.lg-sep{color:#1A3050;margin:0 4px;}
+
+/* 레이아웃 */
+.layout{display:flex;height:calc(100vh - 100px);min-height:500px;}
+.map-wrap{flex:1;min-width:0;position:relative;overflow:hidden;background:#0D1B2E;}
+.panel{width:320px;flex-shrink:0;background:var(--sf);border-left:1px solid var(--rule);overflow-y:auto;display:flex;flex-direction:column;}
+@media(max-width:860px){.layout{flex-direction:column;height:auto;}.panel{width:100%;border-left:none;border-top:1px solid var(--rule);}  .map-wrap{height:55vw;min-height:320px;}}
+
+/* SVG 맵 */
+#map-svg{width:100%;height:100%;cursor:default;}
+.district{fill:#162840;stroke:#253D60;stroke-width:0.8;cursor:pointer;transition:filter .12s;}
+.district:hover{filter:brightness(1.35);stroke:#70A0D0;stroke-width:1.2;}
+.district.selected{stroke:#FFD700;stroke-width:1.8;filter:brightness(1.4);}
+.d-label{font-family:var(--font);font-size:6.5px;fill:#90B0D0;pointer-events:none;text-anchor:middle;dominant-baseline:central;font-weight:600;}
+.d-label.tiny{font-size:5.5px;}
+
+/* 외곽 도시 (수도권) */
+.city-bubble{cursor:pointer;transition:opacity .15s;}
+.city-bubble:hover{opacity:.85;}
+.city-label{font-size:7px;fill:#7AACCC;text-anchor:middle;pointer-events:none;font-weight:600;}
+
+/* 가격 열지도 색상 팔레트 */
+/* S: 20억+ */  /* A+: 15-20억 */  /* A: 10-15억 */
+/* B+: 8-10억 */ /* B: 6-8억 */  /* C: ~6억 */
+
+/* 패널 */
+.panel-top{padding:18px 18px 12px;border-bottom:1px solid var(--rule);background:var(--paper);}
+.panel-hint{font-size:.68rem;color:var(--ink3);display:flex;align-items:center;gap:5px;}
+.panel-hint::before{content:'←';font-size:.8rem;}
+
+.region-header{padding:16px 18px 10px;border-bottom:1px solid var(--rule);}
+.rh-badge{display:inline-flex;align-items:center;gap:5px;font-size:.58rem;font-weight:700;padding:2px 7px;border-radius:3px;margin-bottom:6px;}
+.rh-name{font-size:1.1rem;font-weight:900;color:var(--ink);letter-spacing:-.02em;}
+.rh-sub{font-size:.67rem;color:var(--ink3);margin-top:2px;}
+
+.kpi-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;padding:14px 18px;border-bottom:1px solid var(--rule);}
+.kpi{background:var(--paper);border:1px solid var(--rule);border-radius:5px;padding:10px 11px;}
+.kpi-v{font-size:1.05rem;font-weight:900;color:var(--ink);font-variant-numeric:tabular-nums;letter-spacing:-.02em;}
+.kpi-l{font-size:.6rem;color:var(--ink3);margin-top:2px;font-weight:500;}
+.kpi .up{color:#0A7040;}.kpi .dn{color:#B71C1C;}.kpi .fl{color:var(--ink3);}
+
+.info-block{padding:12px 18px;border-bottom:1px solid var(--rule);}
+.ib-ttl{font-size:.6rem;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:var(--ink3);margin-bottom:7px;}
+.ib-body{font-size:.72rem;color:var(--ink2);line-height:1.75;}
+.reg-chip{display:inline-block;font-size:.59rem;font-weight:700;padding:1px 6px;border-radius:3px;margin:1px 2px 1px 0;}
+.rc-s{background:#FFE8E8;color:#8B0000;}
+.rc-r{background:#EBF1FF;color:#1A4A9A;}
+.rc-p{background:#FFF5D8;color:#7A5800;}
+.rc-n{background:#F0F0F0;color:#5A5A5A;}
+
+.nearby{display:flex;flex-wrap:wrap;gap:4px;padding:12px 18px;border-bottom:1px solid var(--rule);}
+.nb-tag{font-size:.62rem;padding:2px 7px;border-radius:10px;background:var(--blue-lt);color:var(--blue);font-weight:600;}
+
+.hot-list{padding:12px 18px;}
+.hot-item{display:flex;align-items:flex-start;gap:6px;padding:5px 0;border-bottom:1px solid #F0F4F8;font-size:.7rem;color:var(--ink2);}
+.hot-item:last-child{border-bottom:none;}
+.hi-dot{width:6px;height:6px;border-radius:50%;margin-top:4px;flex-shrink:0;}
+.hi-up{background:#0A7040;}.hi-dn{background:#B71C1C;}.hi-fl{background:var(--ink3);}
+
+/* 하단 요약 */
+.compare-section{background:var(--sf);border-top:1px solid var(--rule);padding:14px 20px;overflow-x:auto;}
+.cs-title{font-size:.62rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--ink3);margin-bottom:10px;}
+.compare-row{display:flex;gap:0;min-width:600px;}
+.cr-item{flex:1;padding:9px 12px;border-right:1px solid var(--rule);position:relative;cursor:pointer;}
+.cr-item:last-child{border-right:none;}
+.cr-name{font-size:.62rem;font-weight:700;color:var(--ink);}
+.cr-price{font-size:.78rem;font-weight:900;color:var(--ink);font-variant-numeric:tabular-nums;}
+.cr-chg{font-size:.6rem;font-weight:700;}
+.cr-bar{height:3px;border-radius:1px;margin-top:5px;background:var(--rule);}
+.cr-fill{height:100%;border-radius:1px;transition:width .4s;}
+
+/* 등급 색상 매핑 */
+.gr-S{background:var(--s);} .gr-Ap{background:#1A6B40;} .gr-A{background:#2A8B50;}
+.gr-Bp{background:var(--bp);} .gr-B{background:#374F6B;} .gr-Cp{background:#9A7000;} .gr-C{background:var(--c);} .gr-D{background:var(--d);}
+
+.lg-S{background:var(--s);}
+.lg-Ap{background:#1A6B40;}
+.lg-A{background:#2A8B50;}
+.lg-Bp{background:var(--bp);}
+.lg-B{background:#374F6B;}
+.lg-C{background:#9A7000;}
+.lg-D{background:var(--d);}
+
+.panel-empty{padding:30px 18px;text-align:center;color:var(--ink3);font-size:.75rem;}
+</style>
+</head>
+<body>
+
+<div class="hd">
+  <a class="hd-back" href="./index.html">🌉 부릿지</a>
+  <span class="hd-sep">/</span>
+  <span class="hd-title">지역별 부동산 지도 분석</span>
+  <span class="hd-badge">2026.09.23 기준</span>
+</div>
+
+<div class="tab-bar">
+  <div class="tab active" onclick="switchMap('seoul')">서울 25개 구</div>
+  <div class="tab" onclick="switchMap('metro')">수도권 광역</div>
+</div>
+
+<div class="legend-bar">
+  <span style="color:#7AACCC;font-size:.62rem;font-weight:700;">매매가 열지도 (84㎡ 기준)</span>
+  <span class="lg-sep">|</span>
+  <div class="lg-item"><div class="lg-dot lg-S"></div>25억+</div>
+  <div class="lg-item"><div class="lg-dot lg-Ap"></div>18~25억</div>
+  <div class="lg-item"><div class="lg-dot lg-A"></div>12~18억</div>
+  <div class="lg-item"><div class="lg-dot lg-Bp"></div>9~12억</div>
+  <div class="lg-item"><div class="lg-dot lg-B"></div>7~9억</div>
+  <div class="lg-item"><div class="lg-dot lg-C"></div>5~7억</div>
+  <div class="lg-item"><div class="lg-dot lg-D"></div>~5억</div>
+  <span class="lg-sep" style="margin-left:4px;">|</span>
+  <div class="lg-item"><span style="font-size:1rem;">▲</span> 상승세</div>
+  <div class="lg-item"><span style="font-size:1rem;">▶</span> 보합</div>
+  <div class="lg-item"><span style="font-size:1rem;">▼</span> 약세</div>
+</div>
+
+<div class="layout">
+  <div class="map-wrap">
+    <svg id="map-svg" viewBox="0 0 720 560" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet">
+      <!-- 배경 -->
+      <rect width="720" height="560" fill="#0A1622"/>
+      <!-- 한강은 buildSeoulSVG()에서 지리 좌표 기반으로 렌더링 -->
+
+      <!-- SVG 맵 지역들 (id별로 show/hide) -->
+      <g id="seoul-map">
+        <!-- 서울 외곽 대략 -->
+        <!-- 각 구: polygon path, class, onclick -->
+      </g>
+      <g id="metro-map" display="none"></g>
+    </svg>
+  </div>
+
+  <div class="panel" id="side-panel">
+    <div class="panel-top">
+      <div class="panel-hint">지도에서 지역을 클릭하세요</div>
+    </div>
+    <div class="panel-empty" id="panel-empty">
+      구/시를 클릭하면<br>상세 분석이 나타납니다
+    </div>
+    <div id="panel-detail" style="display:none;"></div>
+  </div>
+</div>
+
+<script>
+/* ═══════════════════════════════
+   지역 데이터
+   price: 84㎡ 기준 평균 매매가 (만원)
+   chg: 전년비 변동률 (%)
+   jse: 전세가율 (%)
+   grade: S/A+/A/B+/B/C+/C/D
+   trend: up/flat/dn
+   reg: 규제 배열
+   hot: 핵심 포인트 배열
+═══════════════════════════════ */
+const REGIONS = {
+  /* ─── 서울 25개 구 ─── */
+  GN: { name:'강남구', area:'서울', price:28000, chg:2.3, jse:41, grade:'S', trend:'up',
+    reg:['토지거래허가구역','투기과열지구','조정대상지역','분양가상한제'],
+    desc:'대치동 학원가, 압구정·청담·삼성동 럭셔리 주거권. 84㎡ 평균 28억·압구정 60억+. 신고가 행진 지속.',
+    hot:[{t:'up','txt':'대치동 84㎡ 신고가 32억 (2026.06)'},
+         {t:'up','txt':'압구정 현대 재건축 착공 임박, 사업시행인가'},
+         {t:'up','txt':'영동대로 지하화 GTX-C 수혜 기대'},
+         {t:'fl','txt':'DSR 3단계로 고가 주택 대출 실수요 제한'}],
+    nearby:['서초구','송파구','용산구'] },
+
+  SC: { name:'서초구', area:'서울', price:22000, chg:1.9, jse:43, grade:'S', trend:'up',
+    reg:['토지거래허가구역','투기과열지구','조정대상지역','분양가상한제'],
+    desc:'반포·잠원 한강변 프리미엄. 반포 아크로리버파크 평당 1억+. 법조타운·예술의전당 인프라.',
+    hot:[{t:'up','txt':'반포 재건축 단지 줄줄이 이주·착공'},
+         {t:'up','txt':'메트로 9호선 연장선 수혜'},
+         {t:'fl','txt':'서초 84㎡ 고점 초과, 상승 폭 둔화 중'}],
+    nearby:['강남구','동작구','관악구'] },
+
+  SP: { name:'송파구', area:'서울', price:15000, chg:1.5, jse:47, grade:'A+', trend:'up',
+    reg:['토지거래허가구역','투기과열지구','조정대상지역','분양가상한제'],
+    desc:'잠실5단지 재건축·엘리트 단지 밀집. 강남3구 중 가장 거래량 풍부. 위례·문정 신개발지 포함.',
+    hot:[{t:'up','txt':'잠실5단지 재건축 조합설립 가시화'},
+         {t:'up','txt':'헬리오시티 입주 후 가격 안정, 재상승'},
+         {t:'fl','txt':'문정 법조타운 입주 지연 변수'}],
+    nearby:['강동구','강남구','하남(경기)'] },
+
+  GD: { name:'강동구', area:'서울', price:11000, chg:1.8, jse:50, grade:'A', trend:'up',
+    reg:['토지거래허가구역','투기과열지구','조정대상지역','분양가상한제'],
+    desc:'고덕강일 신개발지 + 둔촌주공(올림픽파크포레온) 입주 완료. 5호선·9호선 연장 수혜.',
+    hot:[{t:'up','txt':'올림픽파크포레온 실거래 상승세 지속'},
+         {t:'up','txt':'강동~하남 광역도로 개통으로 하남 수요 흡수'},
+         {t:'fl','txt':'고덕강일 신규 공급 후 단기 조정 가능성'}],
+    nearby:['송파구','하남(경기)','광진구'] },
+
+  YS: { name:'용산구', area:'서울', price:17000, chg:2.5, jse:38, grade:'S', trend:'up',
+    reg:['토지거래허가구역','투기과열지구','조정대상지역','분양가상한제'],
+    desc:'한남더힐·나인원한남 최고가 단지. 이태원·한남뉴타운 개발 기대. 대통령실 이전 후 상징성 급상승.',
+    hot:[{t:'up','txt':'한남뉴타운 3구역 사업시행인가 완료'},
+         {t:'up','txt':'용산 국제업무지구 개발계획 진행 중'},
+         {t:'up','txt':'84㎡ 평균 17억, 국내 3위권 매매가'}],
+    nearby:['강남구','서초구','마포구'] },
+
+  MP: { name:'마포구', area:'서울', price:9500, chg:1.6, jse:52, grade:'B+', trend:'up',
+    reg:['투기과열지구','조정대상지역','분양가상한제'],
+    desc:'홍대·합정·상암 DMC 직주근접. 공덕~홍대 사무·상업 밀집. 아현뉴타운 완성 단계.',
+    hot:[{t:'up','txt':'아현뉴타운 래미안·e편한세상 입주 후 가격 안정'},
+         {t:'up','txt':'GTX-A 서울역(인접) 연동 수혜'},
+         {t:'fl','txt':'상암 오피스 공실률 상승 장기 리스크'}],
+    nearby:['은평구','서대문구','용산구'] },
+
+  SD: { name:'성동구', area:'서울', price:11500, chg:1.7, jse:48, grade:'A', trend:'up',
+    reg:['투기과열지구','조정대상지역','분양가상한제'],
+    desc:'성수동 글로벌 브랜드·팝업 성지. 서울숲 인접 트리마제·갤러리아포레 프리미엄. MZ세대 선호 1위.',
+    hot:[{t:'up','txt':'성수동 트리마제 84㎡ 20억 돌파'},
+         {t:'up','txt':'뚝도시장 일대 재개발 진행 중'},
+         {t:'fl','txt':'뚝섬 상업지역 개발로 주거·상업 혼재'}],
+    nearby:['광진구','강남구','동대문구'] },
+
+  GJ: { name:'광진구', area:'서울', price:9000, chg:1.2, jse:52, grade:'B+', trend:'up',
+    reg:['투기과열지구','조정대상지역','분양가상한제'],
+    desc:'자양·구의·능동 주거지. 건대·세종대 역세권. 한강변 자양동 뷰 프리미엄.',
+    hot:[{t:'up','txt':'구의역 역세권 재개발 조합설립 완료'},
+         {t:'fl','txt':'강동구 신규 공급 증가로 수요 분산'}],
+    nearby:['강동구','성동구','중랑구'] },
+
+  GS: { name:'강서구', area:'서울', price:7200, chg:0.8, jse:57, grade:'B', trend:'up',
+    reg:['투기과열지구','조정대상지역'],
+    desc:'마곡 LG·코오롱·롯데 R&D 클러스터. 5·9호선 복선. 김포공항 소음 규제 존재.',
+    hot:[{t:'up','txt':'마곡동 업무지구 포화, 주거 수요 전환'},
+         {t:'fl','txt':'가양·화곡 구축 단지 리모델링 이슈'},
+         {t:'dn','txt':'공항 인접 소음지역 상승 제한'}],
+    nearby:['양천구','마포구','인천(경기)'] },
+
+  YC: { name:'양천구', area:'서울', price:8000, chg:0.9, jse:55, grade:'B+', trend:'up',
+    reg:['투기과열지구','조정대상지역','분양가상한제'],
+    desc:'목동 학원가·신시가지 7단지. 4개 학군 선호도 서울 2위. 리모델링 vs 재건축 갈등 중.',
+    hot:[{t:'up','txt':'목동 신시가지 리모델링 추진 가속화'},
+         {t:'fl','txt':'재건축 초과이익환수 강화로 사업성 논란'},
+         {t:'up','txt':'목동선(경전철) 착공 예정'}],
+    nearby:['강서구','영등포구','구로구'] },
+
+  YDP: { name:'영등포구', area:'서울', price:7800, chg:1.0, jse:56, grade:'B', trend:'up',
+    reg:['투기과열지구','조정대상지역'],
+    desc:'여의도 금융·증권 중심지. 국회의사당·IFC 인접. 여의도 재건축 5개 단지 진행 중.',
+    hot:[{t:'up','txt':'여의도 MBC 부지 복합개발 착공'},
+         {t:'up','txt':'신길뉴타운 입주 완성 후 상승세'},
+         {t:'fl','txt':'여의도 재건축 용적률 협의 장기화'}],
+    nearby:['양천구','마포구','동작구'] },
+
+  JR: { name:'종로구', area:'서울', price:9500, chg:0.7, jse:50, grade:'B+', trend:'up',
+    reg:['투기과열지구','조정대상지역','분양가상한제'],
+    desc:'역사·문화 중심. 경복궁·창덕궁 인접. 서촌·북촌 프리미엄. 한옥마을 규제로 공급 제한.',
+    hot:[{t:'up','txt':'서촌 단독주택 희소성 가격 급등'},
+         {t:'fl','txt':'광화문 광장 재조성 완료, 상업지 활성화'},
+         {t:'fl','txt':'인구 감소·고령화로 거래량 제한'}],
+    nearby:['은평구','서대문구','성북구'] },
+
+  JG: { name:'중구', area:'서울', price:9000, chg:0.6, jse:53, grade:'B+', trend:'flat',
+    reg:['투기과열지구','조정대상지역','분양가상한제'],
+    desc:'도심 업무·상업 중심. 명동·을지로·남대문 인접. 거주 목적 매수 적으나 투자 수요 존재.',
+    hot:[{t:'fl','txt':'오피스 임대 수요 회복으로 상업지 안정'},
+         {t:'fl','txt':'황학동·신당 재개발 지지부진'},
+         {t:'dn','txt':'주거 수요 부족으로 시세 정체'}],
+    nearby:['용산구','마포구','성동구'] },
+
+  EP: { name:'은평구', area:'서울', price:6500, chg:0.4, jse:60, grade:'C+', trend:'flat',
+    reg:['투기과열지구','조정대상지역'],
+    desc:'북한산 자락 주거. GTX-A 연신내역 개통 수혜. 불광·응암 뉴타운 입주 완성.',
+    hot:[{t:'up','txt':'GTX-A 연신내 개통, 강남 30분대'},
+         {t:'fl','txt':'녹번·불광 뉴타운 입주 후 일시적 전세 약세'},
+         {t:'fl','txt':'경사지 입지로 프리미엄 제한'}],
+    nearby:['서대문구','마포구','고양(경기)'] },
+
+  SDM: { name:'서대문구', area:'서울', price:7000, chg:0.5, jse:58, grade:'B-', trend:'flat',
+    reg:['투기과열지구','조정대상지역'],
+    desc:'신촌·연대·이화여대 대학가. 홍제·홍은동 자연친화 주거. 가재울뉴타운 완성.',
+    hot:[{t:'fl','txt':'가재울뉴타운 입주 완료, 시세 안정'},
+         {t:'fl','txt':'대학가 수요 변동성 리스크'},
+         {t:'up','txt':'홍제 고은지구 재개발 진행'}],
+    nearby:['마포구','은평구','종로구'] },
+
+  GRO: { name:'구로구', area:'서울', price:6000, chg:0.3, jse:62, grade:'C', trend:'flat',
+    reg:['투기과열지구','조정대상지역'],
+    desc:'디지털단지 IT·중소기업 클러스터. 구로·개봉 구축 단지 재개발 관심. 교통 편리.',
+    hot:[{t:'fl','txt':'구로디지털단지 스타트업 유입으로 임대 수요'},
+         {t:'fl','txt':'개봉동 재개발 예정지 지정 검토'},
+         {t:'dn','txt':'구축 위주로 상승 동력 부족'}],
+    nearby:['영등포구','금천구','광명(경기)'] },
+
+  GC: { name:'금천구', area:'서울', price:5200, chg:0.2, jse:65, grade:'C', trend:'flat',
+    reg:['투기과열지구','조정대상지역'],
+    desc:'서울 최남단·서남단 경계. 시흥대로 접근성. 독산·가산 공단 인근으로 거주 여건 제한.',
+    hot:[{t:'fl','txt':'가산디지털단지 물류·IT 기업 집중'},
+         {t:'dn','txt':'공단 인접 미세먼지·소음 악재'},
+         {t:'fl','txt':'독산동 재개발 일부 착공'}],
+    nearby:['구로구','광명(경기)'] },
+
+  DJA: { name:'동작구', area:'서울', price:8500, chg:0.9, jse:54, grade:'B', trend:'up',
+    reg:['투기과열지구','조정대상지역','분양가상한제'],
+    desc:'흑석뉴타운·사당·상도 주거지. 7호선·9호선·4호선 교통 요충. 한강 조망 흑석 프리미엄.',
+    hot:[{t:'up','txt':'흑석뉴타운 아크로리버하임 신고가'},
+         {t:'up','txt':'노량진 재개발 진행으로 수요 이전'},
+         {t:'fl','txt':'사당·상도동 상승 폭 강남대비 둔화'}],
+    nearby:['영등포구','관악구','서초구'] },
+
+  GA: { name:'관악구', area:'서울', price:6200, chg:0.2, jse:63, grade:'C+', trend:'flat',
+    reg:['투기과열지구','조정대상지역'],
+    desc:'서울대·봉천동 주거. 신림선 개통으로 강남 접근성 향상. 신림뉴타운 입주 진행 중.',
+    hot:[{t:'up','txt':'신림선 개통 이후 봉천·신림 시세 상승'},
+         {t:'fl','txt':'서울대 인접 원룸 수요는 안정적'},
+         {t:'dn','txt':'산지 경사 지형으로 고가 단지 부족'}],
+    nearby:['동작구','금천구','서초구'] },
+
+  SBK: { name:'성북구', area:'서울', price:6800, chg:0.4, jse:60, grade:'C+', trend:'flat',
+    reg:['투기과열지구','조정대상지역'],
+    desc:'장위·길음 뉴타운 완성. 4호선·우이신설선 교통. 정릉·삼선 자연 환경.',
+    hot:[{t:'up','txt':'장위뉴타운 후반부 입주로 인구 유입'},
+         {t:'fl','txt':'길음 센트럴자이 입주 후 안정'},
+         {t:'fl','txt':'고령화·전세 기피 지속'}],
+    nearby:['강북구','도봉구','동대문구'] },
+
+  GB: { name:'강북구', area:'서울', price:4800, chg:0.1, jse:67, grade:'D', trend:'dn',
+    reg:['투기과열지구','조정대상지역'],
+    desc:'서울 아파트 평균가 최저 수준. 수유·미아 뉴타운 완성 後 추가 상승 동력 제한.',
+    hot:[{t:'fl','txt':'수유·미아동 뉴타운 완성, 추가 개발 제한'},
+         {t:'dn','txt':'인구 유출 지속, 거래량 최저 수준'},
+         {t:'fl','txt':'공원·자연 환경 인접 소형 수요 유지'}],
+    nearby:['도봉구','성북구','노원구'] },
+
+  DB: { name:'도봉구', area:'서울', price:5000, chg:0.1, jse:65, grade:'C', trend:'flat',
+    reg:['투기과열지구','조정대상지역'],
+    desc:'서울 최북단. 쌍문·도봉 구축 단지. 1호선·7호선 환승. 경기 의정부 접근성 좋음.',
+    hot:[{t:'fl','txt':'방학동 재건축 추진 중(단계 초기)'},
+         {t:'dn','txt':'경기 도심 경쟁으로 서울 내 희소성 낮음'},
+         {t:'fl','txt':'1호선·7호선 교통 편의'}],
+    nearby:['강북구','노원구'] },
+
+  NW: { name:'노원구', area:'서울', price:5500, chg:0.3, jse:63, grade:'C', trend:'flat',
+    reg:['투기과열지구','조정대상지역'],
+    desc:'상계·중계 대규모 아파트 단지. 학원가(중계동) 교육열 높음. 7호선·4호선.',
+    hot:[{t:'fl','txt':'중계동 학원가 수요로 소형 아파트 안정'},
+         {t:'fl','txt':'상계 재건축 주민 동의 진행 중'},
+         {t:'dn','txt':'강북권 전반 수요 약화 영향'}],
+    nearby:['도봉구','강북구','성북구'] },
+
+  JR2: { name:'중랑구', area:'서울', price:5300, chg:0.2, jse:64, grade:'C', trend:'flat',
+    reg:['투기과열지구','조정대상지역'],
+    desc:'면목·신내·망우 주거지. 경춘선 신내역 수혜. 구리 인접으로 경기 수요 흡수.',
+    hot:[{t:'fl','txt':'신내 복합주거단지 개발 진행'},
+         {t:'fl','txt':'경춘선 직결화 수혜 예상'},
+         {t:'dn','txt':'인프라 부족으로 프리미엄 형성 어려움'}],
+    nearby:['광진구','강동구','성북구'] },
+
+  DDM: { name:'동대문구', area:'서울', price:7200, chg:0.5, jse:57, grade:'C+', trend:'flat',
+    reg:['투기과열지구','조정대상지역'],
+    desc:'용두·전농·이문 재개발·뉴타운 진행. DDP·동대문 상업지. 이문1구역 착공.',
+    hot:[{t:'up','txt':'이문·휘경 뉴타운 착공·분양 관심'},
+         {t:'fl','txt':'DDP 인근 상업지 임대 회복'},
+         {t:'fl','txt':'청량리 복합개발 수혜 인접'}],
+    nearby:['성북구','광진구','중랑구'] },
+};
+
+const METRO = {
+  /* ─── 수도권 주요 도시 ─── */
+  SGN: { name:'성남시(판교)', area:'경기', price:17000, chg:1.8, jse:44, grade:'S', trend:'up',
+    reg:['토지거래허가구역','투기과열지구','조정대상지역'],
+    desc:'판교 테크밸리 IT 기업 집중. 카카오·크래프톤·넥슨 등 국내 최대 R&D 클러스터. GTX-A 판교역.',
+    hot:[{t:'up','txt':'판교 알파돔 시티 주거·상업 완성'},
+         {t:'up','txt':'GTX-A 개통 이후 강남 15분대'},
+         {t:'up','txt':'분당 1기 신도시 재건축 선도지구 선정'}],
+    nearby:['강남구','하남','과천'] },
+
+  GC: { name:'과천시', area:'경기', price:18500, chg:2.0, jse:42, grade:'S', trend:'up',
+    reg:['토지거래허가구역','투기과열지구','조정대상지역'],
+    desc:'서울 인접 최고 입지. 과천지식정보타운 입주 완료. 4호선 직통. 서울 강남 접근 최우수.',
+    hot:[{t:'up','txt':'과천 지식정보타운 84㎡ 18억 돌파'},
+         {t:'up','txt':'과천주공 재건축 속도'},
+         {t:'up','txt':'소규모 공급, 희소성 지속'}],
+    nearby:['강남구','서초구','안양'] },
+
+  HN: { name:'하남시', area:'경기', price:10000, chg:1.5, jse:50, grade:'A', trend:'up',
+    reg:['토지거래허가구역','투기과열지구','조정대상지역'],
+    desc:'미사강변도시·위례신도시 주거 수요. 5호선 연장·광역도로 확충. 강동구 인접.',
+    hot:[{t:'up','txt':'5호선 하남 연장 완료, 서울 접근성 개선'},
+         {t:'up','txt':'교산신도시(3기) 지구지정 완료, 분양 대기'},
+         {t:'fl','txt':'교산 대규모 공급 예정으로 단기 수요 분산'}],
+    nearby:['강동구','성남시','구리'] },
+
+  GM: { name:'광명시', area:'경기', price:7500, chg:0.8, jse:57, grade:'B', trend:'up',
+    reg:['투기과열지구','조정대상지역'],
+    desc:'광명시흥 신도시 지구지정(3기). 철산·하안 재건축. 서울 구로·금천 인접.',
+    hot:[{t:'up','txt':'광명시흥 신도시(3기) 사전청약 마감'},
+         {t:'up','txt':'GTX-B 광명역 수혜 기대'},
+         {t:'fl','txt':'재건축 정비사업 추진 일정 불확실'}],
+    nearby:['구로구','금천구','안양'] },
+
+  SWN: { name:'수원시', area:'경기', price:6200, chg:1.19, jse:60, grade:'B', trend:'up',
+    reg:['조정대상지역'],
+    desc:'경기 최대 도시. 삼성 디지털시티 인접. 영통·광교 신시가지. GTX-C 수원역. 영통구 7월 1주 +1.19% 경기 2위.',
+    hot:[{t:'up','txt':'영통구 주간 +1.19% — 경기 2위 상승(2026.07 1주)'},
+         {t:'up','txt':'GTX-C 수원역 착공 확정, 강남 25분 기대'},
+         {t:'fl','txt':'광교 입주물량 소화 완료, 가격 안정'}],
+    nearby:['용인','안양','화성'] },
+
+  YI: { name:'용인시(수지)', area:'경기', price:7200, chg:0.7, jse:58, grade:'B', trend:'up',
+    reg:['조정대상지역'],
+    desc:'분당·판교 연계 주거. 신분당선 수지구청·성복역. 경기 남부 학군 선호.',
+    hot:[{t:'up','txt':'신분당선 연장(수원 방향) 확정'},
+         {t:'fl','txt':'수지·기흥 대규모 공급 완료'},
+         {t:'fl','txt':'광교·동탄 경쟁으로 차별화 어려움'}],
+    nearby:['성남시','수원','안양'] },
+
+  GYG: { name:'고양시', area:'경기', price:5500, chg:0.3, jse:62, grade:'C', trend:'flat',
+    reg:['조정대상지역'],
+    desc:'일산·덕양 1기 신도시. GTX-A 킨텍스·대곡역. 창릉신도시(3기) 지구지정.',
+    hot:[{t:'up','txt':'GTX-A 대곡·킨텍스 개통, 강남 30분대'},
+         {t:'fl','txt':'일산 구축단지 리모델링 vs 재건축 갈등'},
+         {t:'fl','txt':'창릉 3기 신도시 공급 압박 변수'}],
+    nearby:['파주','서울 은평','인천'] },
+
+  IC: { name:'인천시(서구)', area:'경기', price:4500, chg:0.2, jse:66, grade:'D', trend:'flat',
+    reg:[],
+    desc:'검단신도시·청라 공급 대량. 1호선 연장·GTX-B 검토. 국제공항·항만 인접.',
+    hot:[{t:'fl','txt':'검단신도시 2단계 공급 소화 중'},
+         {t:'dn','txt':'미분양 잔여물량 가격 하방 압력'},
+         {t:'fl','txt':'GTX-B 인천대입구 확정 수혜 기대'}],
+    nearby:['부천','고양'] },
+
+  CHN: { name:'화성시(동탄)', area:'경기', price:7200, chg:1.29, jse:62, grade:'A', trend:'up',
+    reg:['토지거래허가구역(2026.06.30 신규)'],
+    desc:'동탄 1·2신도시 최대 규모. GTX-A 동탄역 개통. 삼성전자 기흥 인접. 2026.06.30 토허제 신규 지정.',
+    hot:[{t:'dn','txt':'2026.06.30 토지거래허가구역 신규 지정 — 실거주 의무 2년'},
+         {t:'up','txt':'토허제 지정 후에도 주간 +1.29% 강세 지속 (7월 1주)'},
+         {t:'up','txt':'GTX-A 동탄역 역세권 소형·중형 실수요 매수세 강함'},
+         {t:'fl','txt':'삼성 반도체 고용 기반 안정적, 2신도시 미분양 해소'}],
+    nearby:['수원','오산','용인'] },
+};
+
+/* ═══════════════════════════════════════════════════════
+   실제 지리 좌표 기반 서울 25개 구 경계 (simplified)
+   좌표: [경도, 위도] 십진수도
+   투영: lon→x: (lon-126.73)/0.45*680+20
+         lat→y: (37.71-lat)/0.28*520+20
+   SVG viewBox: 0 0 720 560
+═══════════════════════════════════════════════════════ */
+const SEOUL_GEO = [
+  // ── 강남 4구 (한강 이남 동부) ──
+  { key:'GN', label:'강남구', poly:[
+    [126.993,37.521],[127.032,37.523],[127.068,37.521],
+    [127.068,37.476],[127.015,37.476],[126.993,37.490]
+  ]},
+  { key:'SC', label:'서초구', poly:[
+    [126.955,37.524],[126.993,37.521],[126.993,37.488],
+    [126.973,37.452],[126.950,37.434],[126.918,37.434],
+    [126.918,37.498],[126.955,37.498]
+  ]},
+  { key:'SP', label:'송파구', poly:[
+    [127.068,37.521],[127.095,37.521],[127.140,37.500],
+    [127.180,37.476],[127.180,37.449],[127.140,37.449],
+    [127.090,37.457],[127.068,37.476]
+  ]},
+  { key:'GD', label:'강동구', poly:[
+    [127.095,37.521],[127.110,37.528],[127.140,37.546],[127.180,37.562],
+    [127.180,37.476],[127.140,37.500]
+  ]},
+  // ── 한강 북안 중심부 ──
+  { key:'YS', label:'용산구', poly:[
+    [126.972,37.562],[126.998,37.562],[127.022,37.565],[127.040,37.560],
+    [127.040,37.524],[126.990,37.520],[126.972,37.524]
+  ]},
+  { key:'MP', label:'마포구', poly:[
+    [126.875,37.584],[126.930,37.582],[126.972,37.568],
+    [126.972,37.546],[126.968,37.529],[126.875,37.529]
+  ]},
+  // ── 도심 (종로·중구) ──
+  { key:'JR', label:'종로구', poly:[
+    [126.960,37.665],[126.998,37.665],[127.048,37.607],
+    [127.040,37.574],[127.022,37.558],[126.998,37.556],
+    [126.966,37.556],[126.960,37.580]
+  ]},
+  { key:'JG', label:'중구', poly:[
+    [126.966,37.556],[126.998,37.556],[127.022,37.558],
+    [127.025,37.545],[127.018,37.536],[126.990,37.536],[126.966,37.546]
+  ]},
+  // ── 동부 ──
+  { key:'SD', label:'성동구', poly:[
+    [127.010,37.582],[127.068,37.578],[127.082,37.560],
+    [127.082,37.534],[127.060,37.524],[127.020,37.524],[127.005,37.546]
+  ]},
+  { key:'GJ', label:'광진구', poly:[
+    [127.060,37.570],[127.095,37.590],[127.132,37.558],
+    [127.132,37.524],[127.082,37.518],[127.060,37.540]
+  ]},
+  { key:'DDM', label:'동대문구', poly:[
+    [127.010,37.612],[127.068,37.610],[127.070,37.568],[127.010,37.568]
+  ]},
+  { key:'JR2', label:'중랑구', poly:[
+    [127.068,37.640],[127.130,37.636],[127.130,37.568],[127.068,37.568]
+  ]},
+  // ── 북부 ──
+  { key:'SBK', label:'성북구', poly:[
+    [126.970,37.653],[127.003,37.658],[127.048,37.650],
+    [127.068,37.640],[127.068,37.608],[127.050,37.602],
+    [126.998,37.600],[126.970,37.608]
+  ]},
+  { key:'GB', label:'강북구', poly:[
+    [126.970,37.680],[127.053,37.678],[127.053,37.653],[126.970,37.653]
+  ]},
+  { key:'DB', label:'도봉구', poly:[
+    [126.993,37.710],[127.073,37.710],[127.073,37.680],[126.993,37.680]
+  ]},
+  { key:'NW', label:'노원구', poly:[
+    [127.050,37.710],[127.180,37.710],[127.180,37.628],
+    [127.130,37.607],[127.068,37.640],[127.050,37.653]
+  ]},
+  // ── 서북부 ──
+  { key:'SDM', label:'서대문구', poly:[
+    [126.920,37.612],[126.950,37.613],[126.972,37.607],
+    [126.972,37.582],[126.960,37.568],[126.932,37.556],[126.920,37.568]
+  ]},
+  { key:'EP', label:'은평구', poly:[
+    [126.843,37.710],[126.965,37.710],[126.968,37.678],
+    [126.952,37.645],[126.946,37.613],[126.920,37.612],
+    [126.920,37.568],[126.875,37.578],[126.843,37.600]
+  ]},
+  // ── 서부 ──
+  { key:'GS', label:'강서구', poly:[
+    [126.793,37.580],[126.840,37.558],[126.875,37.529],
+    [126.875,37.520],[126.793,37.520]
+  ]},
+  { key:'YC', label:'양천구', poly:[
+    [126.793,37.520],[126.875,37.520],[126.878,37.458],
+    [126.820,37.453],[126.793,37.468]
+  ]},
+  { key:'YDP', label:'영등포구', poly:[
+    [126.875,37.529],[126.935,37.524],[126.935,37.495],
+    [126.910,37.495],[126.875,37.520]
+  ]},
+  // ── 남서부 ──
+  { key:'GRO', label:'구로구', poly:[
+    [126.793,37.468],[126.820,37.453],[126.878,37.458],
+    [126.895,37.456],[126.910,37.434],[126.875,37.434],[126.793,37.434]
+  ]},
+  { key:'GC', label:'금천구', poly:[
+    [126.830,37.456],[126.895,37.456],[126.895,37.428],[126.830,37.428]
+  ]},
+  { key:'DJA', label:'동작구', poly:[
+    [126.935,37.524],[126.955,37.524],[126.955,37.498],
+    [126.948,37.476],[126.935,37.476],[126.924,37.498]
+  ]},
+  { key:'GA', label:'관악구', poly:[
+    [126.895,37.498],[126.918,37.498],[126.955,37.498],
+    [126.950,37.452],[126.918,37.434],[126.895,37.434]
+  ]},
+];
+
+/* ═══════════════════════════════════════════════════════
+   수도권 도시 위치 (경위도 기반)
+   투영: lon→x: (lon-126.20)/1.55*680+20
+         lat→y: (37.80-lat)/0.93*520+20
+═══════════════════════════════════════════════════════ */
+const METRO_GEO = [
+  { key:'SGN', label:'성남/판교', lon:127.118, lat:37.387 },
+  { key:'GC',  label:'과천',     lon:126.988, lat:37.428 },
+  { key:'HN',  label:'하남',     lon:127.218, lat:37.540 },
+  { key:'GM',  label:'광명',     lon:126.866, lat:37.478 },
+  { key:'SWN', label:'수원',     lon:127.023, lat:37.268 },
+  { key:'YI',  label:'용인(수지)',lon:127.086, lat:37.318 },
+  { key:'GYG', label:'고양',     lon:126.835, lat:37.656 },
+  { key:'IC',  label:'인천',     lon:126.705, lat:37.456 },
+  { key:'CHN', label:'화성(동탄)',lon:127.075, lat:37.200 },
+];
+
+/* 등급별 색상 */
+const GRADE_COLOR = {
+  'S':  '#5A0000',
+  'A+': '#0D4A28',
+  'A':  '#1A6B40',
+  'B+': '#163B7A',
+  'B':  '#253D60',
+  'B-': '#384A62',
+  'C+': '#6A4A00',
+  'C':  '#4A3A00',
+  'D':  '#303840',
+};
+
+const GRADE_STROKE = {
+  'S': '#FF6060', 'A+': '#40D060', 'A': '#30B050',
+  'B+': '#4070D0', 'B': '#5080B0', 'B-': '#6090C0',
+  'C+': '#D0A000', 'C': '#B08000', 'D': '#708090',
+};
+
+/* ─── SVG 렌더링 ─── */
+let curMap = 'seoul';
+let selKey = null;
+
+function buildSeoulSVG() {
+  const g = document.getElementById('seoul-map');
+  g.innerHTML = '';
+
+  // 투영 함수: [경도, 위도] → SVG [x, y]
+  function projS(lon, lat) {
+    return [(lon - 126.73) / 0.45 * 680 + 20,
+            (37.71 - lat) / 0.28 * 520 + 20];
+  }
+  function geoPts(poly) {
+    return poly.map(([ln, lt]) => {
+      const [x, y] = projS(ln, lt);
+      return x.toFixed(1) + ',' + y.toFixed(1);
+    }).join(' ');
+  }
+  function geoCentroid(poly) {
+    let sx = 0, sy = 0;
+    poly.forEach(([ln, lt]) => { const [x, y] = projS(ln, lt); sx += x; sy += y; });
+    return [sx / poly.length, sy / poly.length];
+  }
+
+  // 1. 구별 폴리곤 렌더링
+  SEOUL_GEO.forEach(p => {
+    const d = REGIONS[p.key];
+    if (!d) return;
+    const col = GRADE_COLOR[d.grade] || '#1A3050';
+    const stk = GRADE_STROKE[d.grade] || '#4A6A90';
+
+    const poly = document.createElementNS('http://www.w3.org/2000/svg', 'polygon');
+    poly.setAttribute('points', geoPts(p.poly));
+    poly.setAttribute('fill', col);
+    poly.setAttribute('stroke', stk);
+    poly.setAttribute('stroke-width', '0.9');
+    poly.setAttribute('class', 'district');
+    poly.setAttribute('id', 'poly-' + p.key);
+    poly.addEventListener('click', () => selectRegion(p.key, 'REGIONS'));
+    g.appendChild(poly);
+  });
+
+  // 2. 한강 (구 폴리곤 위에 렌더링 — 실제 지리 경로)
+  //    N안: 126.793°E→37.580°N 에서 E로 흐르며 127.180°E→37.562°N 으로 NE 굴곡
+  //    S안: 대칭으로 약 0.012°lat 낮음
+  const riverEl = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+  riverEl.setAttribute('d',
+    'M 116,264 Q 172,312 240,352 Q 316,360 428,362 Q 520,374 580,358 L 640,325 L 700,293 ' +
+    'L 700,318 L 640,350 Q 580,385 520,399 Q 428,388 316,385 Q 240,378 172,332 L 116,282 Z'
+  );
+  riverEl.setAttribute('fill', '#1A4A7A');
+  riverEl.setAttribute('opacity', '0.82');
+  g.appendChild(riverEl);
+  addText(g, 340, 374, '한   강', '#3A80B0', 8, '');
+
+  // 3. 구 이름·트렌드 라벨 (한강 위에 렌더링)
+  SEOUL_GEO.forEach(p => {
+    const d = REGIONS[p.key];
+    if (!d) return;
+    const [cx, cy] = geoCentroid(p.poly);
+    const arrow = d.trend === 'up' ? '▲' : d.trend === 'dn' ? '▼' : '▶';
+    const arrowCol = d.trend === 'up' ? '#60D090' : d.trend === 'dn' ? '#FF7070' : '#8AAAC0';
+    const nm = p.label.length > 3 ? p.label.substring(0, 3) : p.label;
+    addText(g, cx, cy - 4, nm, '#B0C8E0', 6.5, p.label.length > 3 ? 'tiny' : '');
+    addText(g, cx, cy + 6, arrow, arrowCol, 7, '');
+  });
+}
+
+function buildMetroSVG() {
+  const g = document.getElementById('metro-map');
+  g.innerHTML = '';
+
+  // 수도권 투영 함수: [경도, 위도] → SVG [x, y]
+  // 뷰 범위: lon 126.20~127.75, lat 36.87~37.80
+  function projM(lon, lat) {
+    return [(lon - 126.20) / 1.55 * 680 + 20,
+            (37.80 - lat) / 0.93 * 520 + 20];
+  }
+
+  // 배경
+  const bg = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
+  bg.setAttribute('x', '0'); bg.setAttribute('y', '0');
+  bg.setAttribute('width', '720'); bg.setAttribute('height', '560');
+  bg.setAttribute('fill', '#0A1622');
+  g.appendChild(bg);
+
+  // 경기도 배경 (수도권 영역 표시)
+  const ggPoly = document.createElementNS('http://www.w3.org/2000/svg', 'polygon');
+  const ggBnd = [[126.20,37.80],[127.75,37.80],[127.75,36.87],[126.20,36.87]];
+  ggPoly.setAttribute('points', ggBnd.map(([ln,lt])=>{ const[x,y]=projM(ln,lt);return x.toFixed(0)+','+y.toFixed(0);}).join(' '));
+  ggPoly.setAttribute('fill', '#0D1824'); ggPoly.setAttribute('stroke', 'none');
+  g.appendChild(ggPoly);
+
+  // 서울 외곽 (지리적 경계, 6개 꼭짓점)
+  const seoulBnd = [
+    [126.793,37.710],[127.073,37.710],[127.185,37.670],
+    [127.185,37.430],[126.855,37.428],[126.793,37.520]
+  ];
+  const seoulPts = seoulBnd.map(([ln,lt])=>{const[x,y]=projM(ln,lt);return x.toFixed(0)+','+y.toFixed(0);}).join(' ');
+  const seoulPoly = document.createElementNS('http://www.w3.org/2000/svg', 'polygon');
+  seoulPoly.setAttribute('points', seoulPts);
+  seoulPoly.setAttribute('fill', '#162840');
+  seoulPoly.setAttribute('stroke', '#2A4870');
+  seoulPoly.setAttribute('stroke-width', '1.5');
+  seoulPoly.setAttribute('opacity', '0.8');
+  g.appendChild(seoulPoly);
+  const [slx, sly] = projM(126.985, 37.568);
+  addText(g, slx, sly, '서울', '#4A7A9A', 13, '');
+
+  // 한강 (수도권 뷰)
+  const hrPts = [[126.793,37.560],[126.920,37.520],[127.000,37.520],[127.090,37.512],[127.185,37.555]];
+  const hrCoords = hrPts.map(([ln,lt])=>{const[x,y]=projM(ln,lt);return x.toFixed(0)+','+y.toFixed(0);}).join(' ');
+  const hr = document.createElementNS('http://www.w3.org/2000/svg', 'polyline');
+  hr.setAttribute('points', hrCoords);
+  hr.setAttribute('fill', 'none');
+  hr.setAttribute('stroke', '#1A4A7A');
+  hr.setAttribute('stroke-width', '6');
+  hr.setAttribute('stroke-linecap', 'round');
+  hr.setAttribute('opacity', '0.65');
+  g.appendChild(hr);
+
+  // 수도권 주요 도시 (지리 좌표 기반 원형 버블)
+  METRO_GEO.forEach(c => {
+    const d = METRO[c.key];
+    if (!d) return;
+    const col = GRADE_COLOR[d.grade] || '#1A3050';
+    const stk = GRADE_STROKE[d.grade] || '#4A6A90';
+    const r = 30;
+    const [cx, cy] = projM(c.lon, c.lat);
+
+    const circ = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+    circ.setAttribute('cx', cx.toFixed(1));
+    circ.setAttribute('cy', cy.toFixed(1));
+    circ.setAttribute('r', r);
+    circ.setAttribute('fill', col);
+    circ.setAttribute('stroke', stk);
+    circ.setAttribute('stroke-width', '1.5');
+    circ.setAttribute('class', 'city-bubble');
+    circ.setAttribute('id', 'city-' + c.key);
+    circ.addEventListener('click', () => selectRegion(c.key, 'METRO'));
+    g.appendChild(circ);
+
+    const lbl = c.label.split('/')[0];
+    addText(g, cx, cy - 5, lbl, '#B0C8E0', 7.5, '');
+    const arrow = d.trend === 'up' ? '▲' : d.trend === 'dn' ? '▼' : '▶';
+    const arrowCol = d.trend === 'up' ? '#60D090' : d.trend === 'dn' ? '#FF7070' : '#8AAAC0';
+    addText(g, cx, cy + 9, arrow, arrowCol, 8, '');
+  });
+}
+
+function addText(parent, x, y, txt, fill, size, cls) {
+  const el = document.createElementNS('http://www.w3.org/2000/svg','text');
+  el.setAttribute('x', x); el.setAttribute('y', y);
+  el.setAttribute('fill', fill); el.setAttribute('font-size', size);
+  el.setAttribute('text-anchor','middle'); el.setAttribute('dominant-baseline','central');
+  el.setAttribute('pointer-events','none'); el.setAttribute('font-weight','600');
+  if (cls) el.setAttribute('class', cls);
+  el.textContent = txt;
+  parent.appendChild(el);
+}
+
+/* ─── 탭 전환 ─── */
+function switchMap(which) {
+  curMap = which;
+  selKey = null;
+  document.getElementById('panel-detail').style.display = 'none';
+  document.getElementById('panel-empty').style.display = 'block';
+  document.querySelectorAll('.tab').forEach((t,i) => t.classList.toggle('active', (which==='seoul'&&i===0)||(which==='metro'&&i===1)));
+  document.getElementById('seoul-map').setAttribute('display', which === 'seoul' ? '' : 'none');
+  document.getElementById('metro-map').setAttribute('display', which === 'metro' ? '' : 'none');
+}
+
+/* ─── 지역 선택 ─── */
+function selectRegion(key, source) {
+  const data = source === 'METRO' ? METRO : REGIONS;
+  const d = data[key];
+  if (!d) return;
+
+  // 이전 선택 해제
+  if (selKey) {
+    const prev = document.getElementById('poly-' + selKey) || document.getElementById('city-' + selKey);
+    if (prev) prev.classList.remove('selected');
+  }
+  selKey = key;
+  const el = document.getElementById('poly-' + key) || document.getElementById('city-' + key);
+  if (el) el.classList.add('selected');
+
+  renderPanel(d, key);
+}
+
+function renderPanel(d, key) {
+  document.getElementById('panel-empty').style.display = 'none';
+  const det = document.getElementById('panel-detail');
+  det.style.display = 'block';
+
+  const gcolor = GRADE_STROKE[d.grade] || '#4A6A90';
+  const trendIcon = d.trend === 'up' ? '▲ 상승세' : d.trend === 'dn' ? '▼ 약세' : '▶ 보합';
+  const trendClass = d.trend === 'up' ? 'up' : d.trend === 'dn' ? 'dn' : 'fl';
+  const chgStr = (d.chg >= 0 ? '+' : '') + d.chg.toFixed(1) + '%';
+  const priceStr = (d.price / 10000).toFixed(1) + '억';
+  const regHtml = d.reg.map(r => {
+    const cls = r.includes('토지') ? 'rc-s' : r.includes('투기') ? 'rc-r' : r.includes('조정') ? 'rc-p' : 'rc-n';
+    return `<span class="reg-chip ${cls}">${r}</span>`;
+  }).join('');
+  const hotHtml = (d.hot || []).map(h => `<div class="hot-item"><div class="hi-dot hi-${h.t}"></div><div>${h.txt}</div></div>`).join('');
+  const nearbyHtml = (d.nearby || []).map(n => `<span class="nb-tag">${n}</span>`).join('');
+
+  det.innerHTML = `
+    <div class="region-header">
+      <div class="rh-badge" style="background:${gcolor}22;color:${gcolor};border:1px solid ${gcolor}44;">
+        ${d.grade} 등급 &nbsp;|&nbsp; ${d.area}
+      </div>
+      <div class="rh-name">${d.name}</div>
+      <div class="rh-sub">${d.desc}</div>
+    </div>
+    <div class="kpi-grid">
+      <div class="kpi">
+        <div class="kpi-v">${priceStr}</div>
+        <div class="kpi-l">84㎡ 평균 매매가</div>
+      </div>
+      <div class="kpi">
+        <div class="kpi-v ${trendClass}">${chgStr}</div>
+        <div class="kpi-l">전년대비 변동률</div>
+      </div>
+      <div class="kpi">
+        <div class="kpi-v">${d.jse}%</div>
+        <div class="kpi-l">전세가율</div>
+      </div>
+      <div class="kpi">
+        <div class="kpi-v ${trendClass}">${trendIcon}</div>
+        <div class="kpi-l">시장 방향성</div>
+      </div>
+    </div>
+    <div class="info-block">
+      <div class="ib-ttl">규제 현황</div>
+      <div class="ib-body">${regHtml || '<span style="color:var(--ink3)">규제지역 없음</span>'}</div>
+    </div>
+    <div class="info-block">
+      <div class="ib-ttl">최근 주요 이슈</div>
+      ${hotHtml}
+    </div>
+    ${d.nearby && d.nearby.length ? `
+    <div class="info-block">
+      <div class="ib-ttl">인접 지역</div>
+      <div class="nearby">${nearbyHtml}</div>
+    </div>` : ''}
+  `;
+}
+
+/* ─── 초기화 ─── */
+buildSeoulSVG();
+buildMetroSVG();
+switchMap('seoul');
+</script>
+</body>
+</html>

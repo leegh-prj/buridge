@@ -1,0 +1,740 @@
+﻿<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/favicon.svg">
+<meta name="theme-color" content="#0C2040">
+<meta property="og:site_name" content="부릿지 BuRIDGE">
+<meta property="og:type" content="website">
+<meta property="og:title" content="매매 계산기 | 부릿지 BuRIDGE">
+<meta property="og:description" content="서울 아파트 매매 시 취득세·대출한도·월 상환액 자동 계산.">
+<meta property="og:url" content="https://buridge.vercel.app/서울 아파트 매매 계산기.html">
+<meta property="og:image" content="https://buridge.vercel.app/og-image.svg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="ko_KR">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="매매 계산기 | 부릿지 BuRIDGE">
+<meta name="twitter:description" content="서울 아파트 매매 시 취득세·대출한도·월 상환액 자동 계산.">
+<meta name="twitter:image" content="https://buridge.vercel.app/og-image.svg">
+<title>서울 아파트 매매 계산기</title>
+<style>
+:root {
+  --primary: #1a3c5e;
+  --bg: #f0f4f8;
+  --card: #ffffff;
+  --border: #dde3ec;
+  --text: #1e2a3a;
+  --muted: #5a6a7e;
+  --t1: #b91c1c; --t1bg: #fef2f2; --t1b: #fca5a5;
+  --t2: #c2410c; --t2bg: #fff7ed; --t2b: #fdba74;
+  --t3: #b45309; --t3bg: #fffbeb; --t3b: #fcd34d;
+  --t4: #15803d; --t4bg: #f0fdf4; --t4b: #86efac;
+  --ok: #15803d; --warn: #b45309; --err: #b91c1c;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Apple SD Gothic Neo','Noto Sans KR',sans-serif;background:var(--bg);color:var(--text);font-size:15px;line-height:1.6;min-height:100vh;}
+
+/* ── 헤더 ── */
+header{background:var(--primary);color:white;padding:18px 20px 16px;text-align:center;box-shadow:0 2px 10px rgba(0,0,0,0.2);}
+header h1{font-size:1.15rem;font-weight:800;letter-spacing:-0.3px;}
+header p{font-size:0.8rem;opacity:0.75;margin-top:3px;}
+
+/* ── 단계 표시 ── */
+.steps-nav{display:flex;align-items:center;justify-content:center;gap:0;background:white;border-bottom:1px solid var(--border);padding:14px 16px;position:sticky;top:0;z-index:50;overflow-x:auto;}
+.step-pill{display:flex;align-items:center;gap:6px;padding:6px 14px;border-radius:20px;font-size:0.8rem;font-weight:700;color:var(--muted);cursor:pointer;white-space:nowrap;transition:all 0.2s;}
+.step-pill.active{background:var(--primary);color:white;}
+.step-pill.done{background:#e0f2fe;color:#0369a1;}
+.step-pill .snum{width:20px;height:20px;border-radius:50%;background:currentColor;display:flex;align-items:center;justify-content:center;font-size:0.7rem;color:white;flex-shrink:0;}
+.step-pill.active .snum{background:rgba(255,255,255,0.3);}
+.step-pill.done .snum{background:#0369a1;}
+.step-arrow{color:var(--border);font-size:1rem;margin:0 4px;flex-shrink:0;}
+
+/* ── 컨테이너 ── */
+.step-wrap{display:none;max-width:900px;margin:0 auto;padding:24px 16px 60px;}
+.step-wrap.active{display:block;}
+.step-title{font-size:1.2rem;font-weight:800;color:var(--primary);margin-bottom:6px;}
+.step-sub{font-size:0.85rem;color:var(--muted);margin-bottom:20px;}
+
+/* ── 뒤로 버튼 ── */
+.back-btn{display:inline-flex;align-items:center;gap:6px;font-size:0.82rem;color:var(--muted);background:none;border:1px solid var(--border);border-radius:20px;padding:5px 14px;cursor:pointer;margin-bottom:18px;transition:all 0.15s;}
+.back-btn:hover{border-color:var(--primary);color:var(--primary);}
+
+/* ── 선택된 정보 뱃지 ── */
+.selection-badge{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:18px;}
+.s-badge{background:var(--primary);color:white;border-radius:20px;padding:4px 12px;font-size:0.78rem;font-weight:700;}
+
+/* ── 구 카드 그리드 ── */
+.zone-label{font-size:0.75rem;font-weight:800;letter-spacing:1px;color:var(--muted);margin:16px 0 8px;padding-left:2px;}
+.district-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:8px;margin-bottom:4px;}
+.d-card{border-radius:12px;padding:12px 10px;cursor:pointer;border:2px solid transparent;transition:all 0.2s;text-align:center;position:relative;}
+.d-card:hover{transform:translateY(-2px);box-shadow:0 4px 14px rgba(0,0,0,0.12);}
+.d-card.selected{border-width:2px;}
+.d-card .d-emoji{font-size:1.4rem;margin-bottom:4px;}
+.d-card .d-name{font-weight:800;font-size:0.9rem;margin-bottom:2px;}
+.d-card .d-price{font-size:0.72rem;font-weight:600;opacity:0.75;}
+.d-card .d-zone{font-size:0.68rem;opacity:0.65;margin-top:2px;}
+.d-card.t1{background:var(--t1bg);border-color:var(--t1b);} .d-card.t1.selected{border-color:var(--t1);box-shadow:0 0 0 3px rgba(185,28,28,0.15);}
+.d-card.t2{background:var(--t2bg);border-color:var(--t2b);} .d-card.t2.selected{border-color:var(--t2);box-shadow:0 0 0 3px rgba(194,65,12,0.15);}
+.d-card.t3{background:var(--t3bg);border-color:var(--t3b);} .d-card.t3.selected{border-color:var(--t3);box-shadow:0 0 0 3px rgba(180,83,9,0.15);}
+.d-card.t4{background:var(--t4bg);border-color:var(--t4b);} .d-card.t4.selected{border-color:var(--t4);box-shadow:0 0 0 3px rgba(21,128,61,0.15);}
+.selected-mark{position:absolute;top:6px;right:6px;width:18px;height:18px;border-radius:50%;background:var(--primary);color:white;font-size:0.65rem;display:flex;align-items:center;justify-content:center;}
+
+/* ── 평형 카드 ── */
+.size-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:14px;margin-top:8px;}
+.size-card{background:white;border:2px solid var(--border);border-radius:16px;padding:20px;cursor:pointer;transition:all 0.2s;position:relative;}
+.size-card:hover{border-color:var(--primary);transform:translateY(-2px);box-shadow:0 6px 20px rgba(26,60,94,0.12);}
+.size-card.selected{border-color:var(--primary);background:#eef4fb;}
+.size-icon{font-size:2rem;margin-bottom:8px;}
+.size-name{font-size:1rem;font-weight:800;color:var(--primary);margin-bottom:2px;}
+.size-pyeong{font-size:0.82rem;color:var(--muted);}
+.size-desc{font-size:0.8rem;color:var(--muted);margin:8px 0;}
+.size-price-label{font-size:0.75rem;color:var(--muted);margin-top:10px;}
+.size-price{font-size:1.3rem;font-weight:800;color:var(--primary);margin-top:2px;}
+.size-price-note{font-size:0.7rem;color:var(--muted);}
+.popular-badge{position:absolute;top:12px;right:12px;background:var(--primary);color:white;font-size:0.68rem;font-weight:700;padding:2px 8px;border-radius:10px;}
+
+/* ── 자금 입력 ── */
+.finance-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+@media(max-width:580px){.finance-grid{grid-template-columns:1fr;}}
+.fin-card{background:white;border:1px solid var(--border);border-radius:14px;padding:18px;}
+.fin-card.full{grid-column:1/-1;}
+.fin-label{font-size:0.82rem;font-weight:700;color:var(--muted);margin-bottom:12px;display:flex;align-items:center;justify-content:space-between;}
+.fin-value-display{font-size:1.4rem;font-weight:800;color:var(--primary);margin-bottom:8px;}
+input[type=range]{-webkit-appearance:none;appearance:none;width:100%;height:6px;border-radius:3px;background:#e2e8f0;outline:none;cursor:pointer;}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;appearance:none;width:22px;height:22px;border-radius:50%;background:var(--primary);cursor:pointer;box-shadow:0 2px 6px rgba(0,0,0,0.2);}
+input[type=range]::-moz-range-thumb{width:22px;height:22px;border-radius:50%;background:var(--primary);cursor:pointer;border:none;}
+.range-labels{display:flex;justify-content:space-between;font-size:0.7rem;color:var(--muted);margin-top:4px;}
+.fin-select,.fin-input{width:100%;padding:10px 12px;border:1.5px solid var(--border);border-radius:10px;font-size:0.9rem;background:white;color:var(--text);outline:none;transition:border-color 0.2s;}
+.fin-select:focus,.fin-input:focus{border-color:var(--primary);}
+.ltv-group{display:flex;gap:8px;flex-wrap:wrap;}
+.ltv-btn{flex:1;min-width:70px;padding:10px 6px;border:2px solid var(--border);border-radius:10px;background:white;cursor:pointer;text-align:center;transition:all 0.2s;font-size:0.85rem;font-weight:700;color:var(--muted);}
+.ltv-btn.active{border-color:var(--primary);background:var(--primary);color:white;}
+.ltv-btn small{display:block;font-size:0.7rem;font-weight:400;margin-top:1px;}
+.rate-preset{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px;}
+.rate-tag{padding:5px 12px;border:1.5px solid var(--border);border-radius:20px;font-size:0.78rem;cursor:pointer;background:white;transition:all 0.15s;font-weight:600;color:var(--muted);}
+.rate-tag.active{border-color:var(--primary);background:var(--primary);color:white;}
+.calc-main-btn{width:100%;padding:16px;background:var(--primary);color:white;border:none;border-radius:14px;font-size:1rem;font-weight:800;cursor:pointer;transition:background 0.2s;margin-top:8px;letter-spacing:-0.3px;}
+.calc-main-btn:hover{background:#16304c;}
+.price-tag{background:var(--primary);color:white;border-radius:12px;padding:16px 20px;margin-bottom:20px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;}
+.price-tag-main{font-size:0.85rem;opacity:0.8;}
+.price-tag-val{font-size:1.8rem;font-weight:800;}
+.price-tag-note{font-size:0.75rem;opacity:0.7;}
+
+/* ── 결과 ── */
+.result-hero{background:linear-gradient(135deg,var(--primary) 0%,#2563a8 100%);color:white;border-radius:18px;padding:22px 24px;margin-bottom:18px;}
+.rh-label{font-size:0.82rem;opacity:0.8;margin-bottom:4px;}
+.rh-price{font-size:2rem;font-weight:900;letter-spacing:-1px;margin-bottom:2px;}
+.rh-sub{font-size:0.8rem;opacity:0.7;}
+.rh-bar{margin-top:14px;}
+.rh-bar-label{display:flex;justify-content:space-between;font-size:0.75rem;opacity:0.85;margin-bottom:6px;}
+.rh-bar-track{height:14px;background:rgba(255,255,255,0.2);border-radius:7px;overflow:hidden;display:flex;}
+.rh-bar-loan{background:#38bdf8;border-radius:7px 0 0 7px;transition:width 0.8s ease;}
+.rh-bar-self{background:#4ade80;border-radius:0 7px 7px 0;transition:width 0.8s ease;}
+
+.result-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:14px;}
+@media(max-width:500px){.result-cards{grid-template-columns:repeat(2,1fr);}}
+.rc{background:white;border-radius:14px;padding:14px;border:1px solid var(--border);text-align:center;}
+.rc-label{font-size:0.72rem;color:var(--muted);margin-bottom:4px;}
+.rc-val{font-size:1.05rem;font-weight:800;color:var(--primary);}
+.rc.highlight{background:#eef4fb;border-color:#93c5fd;}
+.rc.highlight .rc-val{color:#1d4ed8;}
+
+.section-card{background:white;border:1px solid var(--border);border-radius:16px;padding:18px;margin-bottom:14px;}
+.sc-title{font-size:0.9rem;font-weight:800;color:var(--primary);margin-bottom:14px;display:flex;align-items:center;gap:6px;}
+
+/* DSR 게이지 */
+.dsr-wrap{margin-top:4px;}
+.dsr-numbers{display:flex;justify-content:space-between;font-size:0.82rem;margin-bottom:6px;}
+.dsr-track{height:12px;background:#e2e8f0;border-radius:6px;overflow:hidden;position:relative;}
+.dsr-fill{height:100%;border-radius:6px;transition:width 0.8s ease;}
+.dsr-safe{background:#4ade80;}
+.dsr-warn{background:#fb923c;}
+.dsr-over{background:#f87171;}
+.dsr-limit-line{position:absolute;right:60%;top:0;bottom:0;width:2px;background:rgba(0,0,0,0.3);}
+.dsr-status{display:inline-flex;align-items:center;gap:5px;font-size:0.82rem;font-weight:700;margin-top:6px;padding:4px 12px;border-radius:20px;}
+.dsr-status.ok{background:#f0fdf4;color:#15803d;}
+.dsr-status.warn{background:#fff7ed;color:#c2410c;}
+.dsr-status.over{background:#fef2f2;color:#b91c1c;}
+
+/* 비용 내역 */
+.cost-rows{}
+.cost-row{display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px dashed var(--border);font-size:0.87rem;}
+.cost-row:last-child{border-bottom:none;font-weight:800;font-size:0.95rem;color:var(--primary);}
+.cost-row .cv{font-weight:600;color:#0369a1;}
+.cost-row:last-child .cv{color:var(--primary);}
+
+/* 자금 충족 여부 */
+.fund-check{border-radius:14px;padding:16px;margin-bottom:6px;}
+.fund-check.ok{background:#f0fdf4;border:1.5px solid #86efac;}
+.fund-check.ng{background:#fef2f2;border:1.5px solid #fca5a5;}
+.fc-title{font-weight:800;font-size:0.92rem;margin-bottom:6px;}
+.fund-check.ok .fc-title{color:#15803d;}
+.fund-check.ng .fc-title{color:#b91c1c;}
+.fc-body{font-size:0.84rem;line-height:1.7;}
+
+/* 정책대출 */
+.policy-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;}
+@media(max-width:480px){.policy-grid{grid-template-columns:1fr;}}
+.policy-item{border-radius:10px;padding:12px;font-size:0.83rem;}
+.policy-item.ok{background:#f0fdf4;border:1px solid #86efac;}
+.policy-item.ng{background:#f8fafc;border:1px solid var(--border);}
+.pi-name{font-weight:700;margin-bottom:3px;}
+.pi-rate{font-size:0.78rem;color:var(--muted);}
+.pi-status{font-size:0.75rem;font-weight:700;margin-top:4px;}
+.policy-item.ok .pi-status{color:#15803d;}
+.policy-item.ng .pi-status{color:var(--muted);}
+
+/* 저축 기간 */
+.savings-input-row{display:flex;align-items:center;gap:10px;margin-top:10px;}
+.savings-input-row input{flex:1;padding:9px 12px;border:1.5px solid var(--border);border-radius:10px;font-size:0.9rem;outline:none;}
+.savings-input-row input:focus{border-color:var(--primary);}
+.savings-input-row span{font-size:0.84rem;color:var(--muted);white-space:nowrap;}
+.savings-result{margin-top:10px;font-size:0.88rem;line-height:1.7;padding:10px 12px;background:#f8fafc;border-radius:10px;}
+
+/* 다시 계산 */
+.reset-btn{width:100%;padding:14px;border:2px solid var(--primary);background:white;color:var(--primary);border-radius:14px;font-size:0.95rem;font-weight:800;cursor:pointer;transition:all 0.2s;margin-top:4px;}
+.reset-btn:hover{background:var(--primary);color:white;}
+
+/* 면책 고지 */
+.disclaimer{background:#f8fafc;border-radius:10px;padding:10px 14px;font-size:0.75rem;color:var(--muted);line-height:1.6;margin-top:14px;}
+
+/* 반응형 */
+@media(max-width:480px){.rh-price{font-size:1.6rem;}.result-cards{gap:8px;}.rc{padding:11px 8px;}.rc-val{font-size:0.95rem;}}
+</style>
+</head>
+<body>
+
+<header>
+  <h1>🏠 서울 아파트 매매 계산기</h1>
+  <p>지역·평형 선택 → 대출·자금·이자 완전 분석</p>
+</header>
+
+<div class="steps-nav" id="stepsNav">
+  <div class="step-pill active" id="nav1"><span class="snum">1</span> 지역 선택</div>
+  <span class="step-arrow">›</span>
+  <div class="step-pill" id="nav2"><span class="snum">2</span> 평형 선택</div>
+  <span class="step-arrow">›</span>
+  <div class="step-pill" id="nav3"><span class="snum">3</span> 자금 입력</div>
+  <span class="step-arrow">›</span>
+  <div class="step-pill" id="nav4"><span class="snum">4</span> 결과 보기</div>
+</div>
+
+<!-- ======================== STEP 1 ======================== -->
+<div class="step-wrap active" id="step1">
+  <div class="step-title">어느 지역을 원하시나요?</div>
+  <div class="step-sub">원하는 구를 선택하면 해당 지역 평균 가격이 반영됩니다.</div>
+
+  <div class="zone-label" style="color:var(--t1);">● 프리미엄권 — 강남4구</div>
+  <div class="district-grid" id="zoneT1"></div>
+
+  <div class="zone-label" style="color:var(--t2);">● 중고가권 — 한강변·직주근접</div>
+  <div class="district-grid" id="zoneT2"></div>
+
+  <div class="zone-label" style="color:var(--t3);">● 중간권 — 도심·교통 요지</div>
+  <div class="district-grid" id="zoneT3"></div>
+
+  <div class="zone-label" style="color:var(--t4);">● 접근가능권 — 실입문 추천</div>
+  <div class="district-grid" id="zoneT4"></div>
+
+  <div class="disclaimer">※ 가격은 2024~2025년 국토부 실거래가 공개시스템(rt.molit.go.kr) 및 KB부동산 시세 기준, 구별 아파트 중위 실거래가를 토대로 한 추정값입니다. 구 내 신·구축·재건축 여부에 따라 단지별 편차가 매우 크므로(예: 강남구 은마 24억 vs 래미안블레스티지 40억+), 실제 매수 전 개별 단지 실거래가를 반드시 확인하세요.</div>
+</div>
+
+<!-- ======================== STEP 2 ======================== -->
+<div class="step-wrap" id="step2">
+  <button class="back-btn" onclick="goStep(1)">← 지역 다시 선택</button>
+  <div class="selection-badge" id="badge2"></div>
+  <div class="step-title">어떤 평형을 원하시나요?</div>
+  <div class="step-sub">해당 지역 평균 가격이 적용됩니다.</div>
+  <div class="size-grid" id="sizeGrid"></div>
+  <div class="disclaimer" style="margin-top:14px;">※ 전용면적 기준. 공급면적(분양평수)은 전용의 약 1.3~1.5배입니다.</div>
+</div>
+
+<!-- ======================== STEP 3 ======================== -->
+<div class="step-wrap" id="step3">
+  <button class="back-btn" onclick="goStep(2)">← 평형 다시 선택</button>
+  <div class="selection-badge" id="badge3"></div>
+
+  <div class="price-tag" id="targetPriceTag">
+    <div>
+      <div class="price-tag-main">목표 아파트 평균 가격 (추정)</div>
+      <div class="price-tag-val" id="targetPriceVal">—</div>
+    </div>
+    <div class="price-tag-note">실제 가격과 차이 있을 수 있음</div>
+  </div>
+
+  <div class="finance-grid">
+    <!-- 연 소득 -->
+    <div class="fin-card">
+      <div class="fin-label">연 소득 (세전)<span id="incomeVal" style="color:var(--primary);font-size:1rem;">5,000만 원</span></div>
+      <input type="range" id="income" min="2000" max="50000" step="500" value="5000" oninput="syncRange(this,'incomeVal',v=>fmtMan(v))">
+      <div class="range-labels"><span>2,000만</span><span>5억</span></div>
+    </div>
+    <!-- 보유 자금 -->
+    <div class="fin-card">
+      <div class="fin-label">현재 보유 자금<span id="savingsVal" style="color:var(--primary);font-size:1rem;">5,000만 원</span></div>
+      <input type="range" id="savings" min="0" max="300000" step="1000" value="10000" oninput="syncRange(this,'savingsVal',v=>fmtMan(v))">
+      <div class="range-labels"><span>0원</span><span>30억</span></div>
+    </div>
+    <!-- 기존 부채 -->
+    <div class="fin-card">
+      <div class="fin-label">기존 대출 월 납입액<span id="debtVal" style="color:var(--primary);font-size:1rem;">0만 원</span></div>
+      <input type="range" id="debt" min="0" max="300" step="10" value="0" oninput="syncRange(this,'debtVal',v=>v+'만 원')">
+      <div class="range-labels"><span>0</span><span>300만 원</span></div>
+    </div>
+    <!-- 대출 만기 -->
+    <div class="fin-card">
+      <div class="fin-label">대출 만기</div>
+      <select class="fin-select" id="term">
+        <option value="20">20년</option>
+        <option value="25">25년</option>
+        <option value="30" selected>30년 (일반적)</option>
+        <option value="40">40년 (만기 최대)</option>
+      </select>
+    </div>
+    <!-- LTV -->
+    <div class="fin-card full">
+      <div class="fin-label">담보인정비율 (LTV) — 집값 대비 대출 비율</div>
+      <div class="ltv-group">
+        <button class="ltv-btn" onclick="setLTV(50,this)">50%<small>보수적</small></button>
+        <button class="ltv-btn" onclick="setLTV(60,this)">60%<small>일반적</small></button>
+        <button class="ltv-btn active" onclick="setLTV(70,this)">70%<small>최대 (서울)</small></button>
+      </div>
+      <div style="font-size:0.78rem;color:var(--muted);margin-top:8px;">※ 서울 규제지역 LTV 상한 70%. 집값 9억 초과 시 50%. 디딤돌 대출은 LTV 80%까지 가능.</div>
+    </div>
+    <!-- 금리 -->
+    <div class="fin-card full">
+      <div class="fin-label">대출 금리</div>
+      <div class="rate-preset">
+        <button class="rate-tag" onclick="setRate(2.85,this)">디딤돌 2.85%</button>
+        <button class="rate-tag" onclick="setRate(3.3,this)">신생아특례 3.3%</button>
+        <button class="rate-tag" onclick="setRate(4.15,this)">보금자리론 4.15%</button>
+        <button class="rate-tag active" onclick="setRate(4.5,this)">시중은행 변동 4.5%</button>
+        <button class="rate-tag" onclick="setRate(4.2,this)">시중은행 고정 4.2%</button>
+      </div>
+      <div style="display:flex;align-items:center;gap:10px;">
+        <span style="font-size:0.82rem;color:var(--muted);">직접 입력</span>
+        <input type="number" class="fin-input" id="rateInput" value="4.5" step="0.1" min="1" max="15" style="width:100px;" oninput="customRate(this)">
+        <span style="font-size:0.82rem;color:var(--muted);">% 연</span>
+      </div>
+    </div>
+  </div>
+  <button class="calc-main-btn" onclick="calculate()">📊 자금 분석 결과 보기</button>
+</div>
+
+<!-- ======================== STEP 4 ======================== -->
+<div class="step-wrap" id="step4">
+  <button class="back-btn" onclick="goStep(3)">← 자금 정보 수정</button>
+  <div class="selection-badge" id="badge4"></div>
+
+  <!-- Hero: 집값 + 대출/자기자금 바 -->
+  <div class="result-hero" id="resHero"></div>
+
+  <!-- 핵심 수치 3개 -->
+  <div class="result-cards" id="resCards"></div>
+
+  <!-- DSR 분석 -->
+  <div class="section-card" id="resDSR"></div>
+
+  <!-- 총 필요 자금 내역 -->
+  <div class="section-card" id="resCost"></div>
+
+  <!-- 자금 충족 여부 -->
+  <div id="resFund"></div>
+
+  <!-- 정책대출 자격 -->
+  <div class="section-card" id="resPolicy"></div>
+
+  <!-- 저축 기간 계산 -->
+  <div class="section-card" id="resSavings"></div>
+
+  <button class="reset-btn" onclick="goStep(1)">🔄 다른 지역으로 다시 계산하기</button>
+  <div class="disclaimer">※ 본 계산기는 학습 목적의 참고 도구입니다. 실제 대출 심사 결과와 다를 수 있으며, 집값은 추정치입니다. 금융 결정 전 전문가와 상담하세요.</div>
+</div>
+
+<script>
+// ── 가격 데이터 (2024~2025 국토부 실거래가 기준 구별 중위 추정가, 단위: 만원) ──
+// 출처: 국토부 실거래가 공개시스템(rt.molit.go.kr) / KB부동산 시세 종합
+// 구 내 신·구축 혼재로 단지별 편차가 매우 큼. 학습·참고 목적 수치.
+const D = {
+  // ── 프리미엄권 ──
+  // 강남: 은마·개포주공 20억대, 래미안블레스티지·DH 40억대 → 중위 약 28억
+  '강남구': {t:1,z:'강남권',e:'💎',p:{59:190000,84:280000,115:420000}},
+  // 서초: 반포 아크로 45억대, 방배 구축 12억대 → 중위 약 25억
+  '서초구': {t:1,z:'강남권',e:'🏰',p:{59:170000,84:250000,115:380000}},
+  // 송파: 잠실리센츠·엘스 21억, 위례·가락 12억대 → 중위 약 18억
+  '송파구': {t:1,z:'강남권',e:'🏆',p:{59:120000,84:180000,115:270000}},
+  // 용산: 이촌동 22억대, 한남동 고가, 원효로 10억대 → 중위 약 22억
+  '용산구': {t:1,z:'강남권',e:'👑',p:{59:150000,84:220000,115:330000}},
+  // ── 중고가권 ──
+  // 성동: 성수 아크로 30억대, 옥수·금호 14억대 → 중위 약 16억
+  '성동구': {t:2,z:'중고가권',e:'✨',p:{59:110000,84:160000,115:240000}},
+  // 마포: 공덕·마포래미안 13~16억, 상암 9억대 → 중위 약 13억
+  '마포구': {t:2,z:'중고가권',e:'🌟',p:{59:85000, 84:130000,115:195000}},
+  // 광진: 광장동 15억, 구의·자양 11억대 → 중위 약 12억
+  '광진구': {t:2,z:'중고가권',e:'🌊',p:{59:80000, 84:120000,115:180000}},
+  // 강동: 고덕래미안·올파포 12~15억, 암사 10억대 → 중위 약 11억
+  '강동구': {t:2,z:'중고가권',e:'🌿',p:{59:75000, 84:115000,115:170000}},
+  // 양천: 목동신시가지(재건축) 12~17억 → 중위 약 12억
+  '양천구': {t:2,z:'중고가권',e:'📚',p:{59:80000, 84:120000,115:180000}},
+  // 영등포: 여의도 18억대, 당산·문래 10억대 → 중위 약 11억
+  '영등포구':{t:2,z:'중고가권',e:'🏢',p:{59:70000, 84:110000,115:165000}},
+  // 동작: 흑석뉴타운 14억, 사당 11억, 노량진 9억 → 중위 약 10억
+  '동작구': {t:2,z:'중고가권',e:'🌉',p:{59:65000, 84:105000,115:160000}},
+  // ── 중간권 ──
+  // 강서: 마곡 신축 9~11억, 화곡 6억대 → 중위 약 9억
+  '강서구': {t:3,z:'중간권',e:'✈️',p:{59:58000, 84:90000, 115:135000}},
+  // 서대문: 가재울뉴타운 9~11억, 홍은·홍제 7억대 → 중위 약 8.5억
+  '서대문구':{t:3,z:'중간권',e:'🏛️',p:{59:55000, 84:85000, 115:130000}},
+  // 중구: 신당뉴타운 10~13억, 황학동 7억대 → 중위 약 10억
+  '중구':    {t:3,z:'중간권',e:'🏙️',p:{59:65000, 84:100000,115:150000}},
+  // 종로구: 교남뉴타운 10억, 무악 9억 → 중위 약 10억
+  '종로구':  {t:3,z:'중간권',e:'🏯',p:{59:65000, 84:100000,115:150000}},
+  // 관악: 봉천·신림 7~9억 → 중위 약 7.5억
+  '관악구':  {t:3,z:'중간권',e:'🎓',p:{59:50000, 84:75000, 115:115000}},
+  // 구로: 신도림 11억, 구로·개봉 6억대 → 중위 약 7.5억
+  '구로구':  {t:3,z:'중간권',e:'💻',p:{59:50000, 84:75000, 115:115000}},
+  // ── 접근가능권 ──
+  // 노원: 중계 래미안 8~10억, 상계주공 5~7억 → 중위 약 7.5억
+  '노원구':  {t:4,z:'접근가능권',e:'🌱',p:{59:50000, 84:75000, 115:110000}},
+  // 은평: 은평뉴타운 8~11억, 불광·연신내 6~8억 → 중위 약 7.5억
+  '은평구':  {t:4,z:'접근가능권',e:'🏔️',p:{59:50000, 84:75000, 115:110000}},
+  // 성북: 길음뉴타운 8~11억, 정릉 5억대 → 중위 약 8억
+  '성북구':  {t:4,z:'접근가능권',e:'🌸',p:{59:55000, 84:80000, 115:120000}},
+  // 도봉: 창동 5~7억, 방학 4~6억 → 중위 약 6억
+  '도봉구':  {t:4,z:'접근가능권',e:'🌲',p:{59:40000, 84:60000, 115:90000}},
+  // 강북: 미아뉴타운 5~7억, 수유 4억대 → 중위 약 5.5억
+  '강북구':  {t:4,z:'접근가능권',e:'🌼',p:{59:35000, 84:55000, 115:85000}},
+  // 중랑: 면목 7억, 중화 5억대 → 중위 약 6.5억
+  '중랑구':  {t:4,z:'접근가능권',e:'🍀',p:{59:45000, 84:65000, 115:100000}},
+  // 동대문: 이문아이파크자이(신규) 10억, 장안·답십리 7억 → 중위 약 8억
+  '동대문구':{t:4,z:'접근가능권',e:'🎪',p:{59:55000, 84:80000, 115:120000}},
+  // 금천: 독산 6~8억, 시흥 5억대 → 중위 약 6억
+  '금천구':  {t:4,z:'접근가능권',e:'💪',p:{59:40000, 84:60000, 115:90000}},
+};
+
+const SIZE_INFO = {
+  59:  {label:'소형', pyeong:'전용 59㎡ (약 24평)', desc:'방 2~3개·욕실 1~2개. 1~2인 가구 최적. 서울 주요 재건축 대상 평형.', icon:'🛏️'},
+  84:  {label:'중형', pyeong:'전용 84㎡ (약 34평)', desc:'방 3개·욕실 2개. 3~4인 가족 표준. 거래량 가장 많은 "국민평수".', icon:'🏠', popular:true},
+  115: {label:'대형', pyeong:'전용 115㎡ (약 46평)', desc:'방 4개·욕실 2~3개. 4인 이상 가족. 희소성 높아 환금성 다소 낮음.', icon:'🏡'},
+};
+
+// ── 상태 ──
+let sel = { district:'', size:0, price:0, ltv:70, rate:4.5, term:30 };
+
+// ── 초기 카드 렌더 ──
+(function initCards(){
+  [1,2,3,4].forEach(function(t){
+    var el = document.getElementById('zoneT'+t);
+    Object.entries(D).filter(function(e){return e[1].t===t;}).forEach(function(e){
+      var name = e[0], d = e[1];
+      var minP = Math.min(d.p[59],d.p[84],d.p[115]);
+      var card = document.createElement('div');
+      card.className = 'd-card t'+t;
+      card.id = 'dc_'+name;
+      card.innerHTML = '<div class="d-emoji">'+d.e+'</div><div class="d-name">'+name+'</div><div class="d-price">59㎡ 평균 '+fmtMan(d.p[59])+'</div>';
+      card.onclick = function(){ selectDistrict(name); };
+      el.appendChild(card);
+    });
+  });
+})();
+
+function selectDistrict(name){
+  document.querySelectorAll('.d-card').forEach(function(c){c.classList.remove('selected');c.querySelector('.selected-mark')&&c.querySelector('.selected-mark').remove();});
+  var card = document.getElementById('dc_'+name);
+  card.classList.add('selected');
+  var mark = document.createElement('div'); mark.className='selected-mark'; mark.textContent='✓'; card.appendChild(mark);
+  sel.district = name;
+  setTimeout(function(){ goStep(2); }, 180);
+}
+
+function renderSizeCards(){
+  var grid = document.getElementById('sizeGrid'); grid.innerHTML='';
+  var d = D[sel.district];
+  [59,84,115].forEach(function(sz){
+    var si = SIZE_INFO[sz], price = d.p[sz];
+    var card = document.createElement('div');
+    card.className = 'size-card' + (sel.size===sz?' selected':'');
+    card.innerHTML = (si.popular?'<div class="popular-badge">🔥 인기</div>':'') +
+      '<div class="size-icon">'+si.icon+'</div>' +
+      '<div class="size-name">'+si.label+' ('+sz+'㎡)</div>' +
+      '<div class="size-pyeong">'+si.pyeong+'</div>' +
+      '<div class="size-desc">'+si.desc+'</div>' +
+      '<div class="size-price-label">'+sel.district+' 평균 가격 (추정)</div>' +
+      '<div class="size-price">'+fmtMan(price)+'</div>' +
+      '<div class="size-price-note">± 실제 시세 편차 있음</div>';
+    card.onclick = function(){ selectSize(sz); };
+    grid.appendChild(card);
+  });
+}
+
+function selectSize(sz){
+  sel.size = sz;
+  sel.price = D[sel.district].p[sz];
+  document.getElementById('targetPriceVal').textContent = fmtMan(sel.price);
+  setTimeout(function(){ goStep(3); }, 180);
+}
+
+// ── 슬라이더 ──
+function syncRange(input, labelId, fmt){
+  document.getElementById(labelId).textContent = fmt(parseFloat(input.value));
+  updateSliderBg(input);
+}
+function updateSliderBg(input){
+  var pct = (input.value - input.min) / (input.max - input.min) * 100;
+  input.style.background = 'linear-gradient(to right,var(--primary) '+pct+'%,#e2e8f0 '+pct+'%)';
+}
+document.querySelectorAll('input[type=range]').forEach(updateSliderBg);
+
+// ── LTV / 금리 ──
+function setLTV(v, btn){
+  sel.ltv = v;
+  document.querySelectorAll('.ltv-btn').forEach(function(b){b.classList.remove('active');});
+  btn.classList.add('active');
+}
+function setRate(v, btn){
+  sel.rate = v;
+  document.getElementById('rateInput').value = v;
+  document.querySelectorAll('.rate-tag').forEach(function(b){b.classList.remove('active');});
+  btn.classList.add('active');
+}
+function customRate(input){
+  sel.rate = parseFloat(input.value)||4.5;
+  document.querySelectorAll('.rate-tag').forEach(function(b){b.classList.remove('active');});
+}
+
+// ── 계산 ──
+function calcTax(man){
+  if(man<=60000) return Math.round(man*0.011);
+  if(man<=90000){var r=0.01+(man-60000)/30000*0.02;return Math.round(man*r*1.1);}
+  return Math.round(man*0.033);
+}
+function calcBrokerage(man){
+  if(man<5000)   return Math.min(Math.round(man*0.006),25);
+  if(man<20000)  return Math.min(Math.round(man*0.005),80);
+  if(man<90000)  return Math.round(man*0.004);
+  if(man<120000) return Math.round(man*0.005);
+  return Math.round(man*0.006);
+}
+function calcMonthly(principal, annualRate, termYears){
+  var r = annualRate/100/12, n = termYears*12;
+  if(r===0) return principal/n;
+  return principal * r * Math.pow(1+r,n) / (Math.pow(1+r,n)-1);
+}
+
+function calculate(){
+  sel.term   = parseInt(document.getElementById('term').value);
+  sel.rate   = parseFloat(document.getElementById('rateInput').value)||4.5;
+  var income = parseFloat(document.getElementById('income').value)||5000;   // 만원
+  var savings= parseFloat(document.getElementById('savings').value)||5000;  // 만원
+  var debt   = parseFloat(document.getElementById('debt').value)||0;        // 만원/월
+
+  var price = sel.price; // 만원
+  var ltvPct = sel.ltv;
+
+  // 실제 LTV cap: 9억 초과는 50%
+  var effectiveLTV = (price > 90000 && ltvPct > 50) ? 50 : ltvPct;
+  var loanAmt = Math.round(price * effectiveLTV / 100);
+  var selfAmt = price - loanAmt; // 집값의 자기부담
+
+  var tax = calcTax(price);
+  var broker = calcBrokerage(price);
+  var moving = 150; // 이사비 고정 150만
+  var totalSelf = selfAmt + tax + broker + moving; // 총 필요 자기자금
+
+  var monthly = calcMonthly(loanAmt, sel.rate, sel.term);
+  var totalPay = monthly * sel.term * 12;
+  var totalInterest = totalPay - loanAmt;
+
+  var monthlyIncome = income / 12;
+  var dsrPct = (monthly + debt) / monthlyIncome * 100;
+
+  // 자금 부족액
+  var shortage = Math.max(0, totalSelf - savings);
+
+  goStep(4);
+
+  // ── Hero ──
+  var ltvActual = Math.round(loanAmt/price*100);
+  document.getElementById('resHero').innerHTML =
+    '<div class="rh-label">'+sel.district+' 전용 '+sel.size+'㎡ 평균 매매가 (추정)</div>'+
+    '<div class="rh-price">'+fmtMan(price)+'</div>'+
+    '<div class="rh-sub">※ 실제 단지·층·향에 따라 차이가 있습니다</div>'+
+    '<div class="rh-bar">'+
+      '<div class="rh-bar-label"><span>🔵 대출 '+fmtMan(loanAmt)+' ('+ltvActual+'%)'+(effectiveLTV<ltvPct?' — 9억 초과로 LTV 50% 적용':'')+' </span><span>🟢 자기자금 '+fmtMan(selfAmt)+' ('+(100-ltvActual)+'%)</span></div>'+
+      '<div class="rh-bar-track">'+
+        '<div class="rh-bar-loan" style="width:'+ltvActual+'%"></div>'+
+        '<div class="rh-bar-self" style="width:'+(100-ltvActual)+'%"></div>'+
+      '</div>'+
+    '</div>';
+
+  // ── 핵심 3개 ──
+  document.getElementById('resCards').innerHTML =
+    '<div class="rc highlight"><div class="rc-label">대출 원금</div><div class="rc-val">'+fmtMan(loanAmt)+'</div></div>'+
+    '<div class="rc highlight"><div class="rc-label">월 납입액</div><div class="rc-val">'+Math.round(monthly).toLocaleString()+'만 원</div></div>'+
+    '<div class="rc"><div class="rc-label">총 이자 ('+sel.term+'년)</div><div class="rc-val">'+fmtMan(Math.round(totalInterest))+'</div></div>'+
+    '<div class="rc"><div class="rc-label">총 상환액</div><div class="rc-val">'+fmtMan(Math.round(totalPay))+'</div></div>'+
+    '<div class="rc"><div class="rc-label">적용 금리</div><div class="rc-val">'+sel.rate+'%</div></div>'+
+    '<div class="rc"><div class="rc-label">대출 만기</div><div class="rc-val">'+sel.term+'년</div></div>';
+
+  // ── DSR ──
+  var dsrClass = dsrPct<=40?'safe':(dsrPct<=50?'warn':'over');
+  var dsrStatus = dsrPct<=40?'ok':(dsrPct<=50?'warn':'over');
+  var dsrMsg = dsrPct<=40?'✅ 적정 (40% 이하 — 대출 심사 통과 가능)':
+               dsrPct<=50?'⚠️ 주의 (40~50% — 대출 거절 또는 한도 감소 가능)':
+               '❌ 초과 (50% 이상 — 은행 대출 어려움. 소득 증가 or 대출 축소 필요)';
+  document.getElementById('resDSR').innerHTML =
+    '<div class="sc-title">📊 DSR 분석 — 연봉 '+fmtMan(income)+'기준</div>'+
+    '<div class="dsr-wrap">'+
+      '<div class="dsr-numbers"><span>월 납입 합계: '+Math.round(monthly+debt).toLocaleString()+'만 원 / 월 소득: '+Math.round(monthlyIncome).toLocaleString()+'만 원</span><span style="font-weight:700;">DSR '+dsrPct.toFixed(1)+'%</span></div>'+
+      '<div class="dsr-track">'+
+        '<div class="dsr-'+dsrClass+' dsr-fill" style="width:'+Math.min(dsrPct,100)+'%"></div>'+
+        '<div class="dsr-limit-line"></div>'+
+      '</div>'+
+      '<div style="display:flex;justify-content:flex-end;font-size:0.7rem;color:var(--muted);margin-top:2px;">40% 한도선 ↑</div>'+
+      '<div class="dsr-status '+dsrStatus+'">'+dsrMsg+'</div>'+
+    '</div>'+
+    (debt>0?'<div style="font-size:0.8rem;color:var(--muted);margin-top:8px;">기존 부채 월 납입 '+debt+'만 원 포함 계산됨.</div>':'');
+
+  // ── 비용 내역 ──
+  document.getElementById('resCost').innerHTML =
+    '<div class="sc-title">💰 총 자기자금 필요 내역</div>'+
+    '<div class="cost-rows">'+
+      '<div class="cost-row"><span>집값 × '+(100-ltvActual)+'% (자기부담)</span><span class="cv">'+fmtMan(selfAmt)+'</span></div>'+
+      '<div class="cost-row"><span>취득세 ('+getTaxRateLabel(price)+')</span><span class="cv">'+tax.toLocaleString()+'만 원</span></div>'+
+      '<div class="cost-row"><span>중개수수료 (최대)</span><span class="cv">'+broker.toLocaleString()+'만 원</span></div>'+
+      '<div class="cost-row"><span>이사비 (예상)</span><span class="cv">'+moving+'만 원</span></div>'+
+      '<div class="cost-row"><span>총 필요 자기자금</span><span class="cv">'+fmtMan(totalSelf)+'</span></div>'+
+    '</div>';
+
+  // ── 자금 충족 ──
+  var fundHtml;
+  if(savings >= totalSelf){
+    var surplus = savings - totalSelf;
+    fundHtml = '<div class="fund-check ok">'+
+      '<div class="fc-title">✅ 현재 자금으로 매수 가능합니다!</div>'+
+      '<div class="fc-body">보유 자금 '+fmtMan(savings)+' ≥ 필요 자금 '+fmtMan(totalSelf)+'<br>여유 자금 <b>'+fmtMan(surplus)+'</b>이 남습니다. 예비 자금으로 유지하세요.</div>'+
+    '</div>';
+  } else {
+    fundHtml = '<div class="fund-check ng">'+
+      '<div class="fc-title">❌ 자금이 '+fmtMan(shortage)+' 부족합니다</div>'+
+      '<div class="fc-body">보유 자금 '+fmtMan(savings)+' < 필요 자금 '+fmtMan(totalSelf)+'<br>부족액: <b>'+fmtMan(shortage)+'</b> — 아래 저축 계획 또는 갈아타기 전략을 활용하세요.</div>'+
+    '</div>';
+  }
+  document.getElementById('resFund').innerHTML = fundHtml;
+
+  // ── 정책대출 ──
+  var dimMaek = price<=50000 && income<=7000;
+  var dimBogeum = price<=90000;
+  var dimShinSaeng = income<=20000;
+  document.getElementById('resPolicy').innerHTML =
+    '<div class="sc-title">🏦 정책대출 자격 체크</div>'+
+    '<div class="policy-grid">'+
+      policyItem('디딤돌 대출', '연 2.35~3.95%', dimMaek,
+        dimMaek?'✅ 자격 가능 (소득·집값 조건 충족)':'❌ 집값 5억 초과 or 소득 7천만 초과',
+        '최대 5억, 부부합산 연 7천만 이하, 집값 5억 이하') +
+      policyItem('보금자리론', '연 4.15~4.65%', dimBogeum,
+        dimBogeum?'✅ 자격 가능 (집값 9억 이하)':'❌ 집값 9억 초과',
+        '고정금리 안정. 집값 9억 이하, 소득 무관') +
+      policyItem('신생아 특례 대출', '연 1.6~3.3%', dimShinSaeng,
+        dimShinSaeng?'✅ 소득 조건 충족 (출산일 2년 내 신청 필요)':'❌ 소득 2억 초과',
+        '출산 가구 한정. 부부합산 2억 이하. 역대 최저 금리') +
+      policyItem('청년 주택드림 대출', '연 2.2~3.6%', price<=40000 && income<=7000,
+        price<=40000 && income<=7000?'✅ 조건 충족 가능':'❌ 집값 4억 초과 or 소득 초과',
+        '만 39세 이하, 생애최초, 집값 4억 이하') +
+    '</div>';
+
+  // ── 저축 기간 ──
+  document.getElementById('resSavings').innerHTML =
+    '<div class="sc-title">📅 목표 달성 저축 계획</div>'+
+    (shortage<=0
+      ? '<div style="color:var(--ok);font-weight:700;font-size:0.88rem;">이미 자금 충족! 대출 신청을 준비하세요.</div>'
+      : '<div style="font-size:0.84rem;color:var(--muted);">부족금액 <b style="color:var(--err);">'+fmtMan(shortage)+'</b> 달성을 위한 월 저축액을 입력하세요</div>'+
+        '<div class="savings-input-row">'+
+          '<input type="number" id="monthSave" placeholder="100" min="10" max="5000" oninput="calcSavingsPeriod('+shortage+')">'+
+          '<span>만 원 / 월 저축 시</span>'+
+        '</div>'+
+        '<div class="savings-result" id="savingsResult">월 저축액을 입력하면 달성 기간이 계산됩니다.</div>'
+    );
+}
+
+function calcSavingsPeriod(shortage){
+  var monthly = parseFloat(document.getElementById('monthSave').value)||0;
+  var el = document.getElementById('savingsResult');
+  if(monthly<=0){el.textContent='월 저축액을 입력하세요.';return;}
+  var months = Math.ceil(shortage/monthly);
+  var years = Math.floor(months/12); var rem = months%12;
+  var msg = '';
+  if(months>240){
+    msg = '⚠️ '+years+'년 '+rem+'개월 — 현실적으로 매우 어렵습니다.<br>저축 단독보다 <b>경기 신도시 청약 → 시세차익 → 서울 갈아타기</b> 전략이 현실적입니다.';
+  } else if(months>120){
+    msg = '📅 '+years+'년 '+rem+'개월<br>장기 계획이 필요합니다. 저축과 함께 청약·투자를 병행하면 기간을 단축할 수 있습니다.';
+  } else {
+    msg = '✅ '+years+'년 '+rem+'개월 — 목표 달성 가능!<br>월 '+monthly+'만 원 저축을 꾸준히 유지하면 됩니다.';
+  }
+  el.innerHTML = msg;
+}
+
+function policyItem(name, rate, ok, status, note){
+  return '<div class="policy-item '+(ok?'ok':'ng')+'">'+
+    '<div class="pi-name">'+name+'</div>'+
+    '<div class="pi-rate">'+rate+'</div>'+
+    '<div class="pi-status">'+status+'</div>'+
+    '<div style="font-size:0.72rem;color:var(--muted);margin-top:3px;">'+note+'</div>'+
+  '</div>';
+}
+
+function getTaxRateLabel(man){
+  if(man<=60000) return '1.1%';
+  if(man<=90000) return '약 1.1~3.3%';
+  return '3.3%';
+}
+
+// ── 단계 이동 ──
+function goStep(n){
+  document.querySelectorAll('.step-wrap').forEach(function(el){el.classList.remove('active');});
+  document.getElementById('step'+n).classList.add('active');
+  ['nav1','nav2','nav3','nav4'].forEach(function(id,i){
+    var el = document.getElementById(id);
+    el.classList.remove('active','done');
+    if(i+1===n) el.classList.add('active');
+    else if(i+1<n) el.classList.add('done');
+  });
+
+  // 뱃지 업데이트
+  var badges = {
+    2: function(){ return sel.district ? [sel.district+' '+D[sel.district].e] : []; },
+    3: function(){ return sel.district&&sel.size ? [sel.district+' '+D[sel.district].e, sel.size+'㎡ ('+SIZE_INFO[sel.size].label+')', fmtMan(sel.price)] : []; },
+    4: function(){ return sel.district&&sel.size ? [sel.district+' '+D[sel.district].e, sel.size+'㎡', fmtMan(sel.price)] : []; },
+  };
+  if(badges[n]){
+    var el = document.getElementById('badge'+n);
+    el.innerHTML = badges[n]().map(function(t){return '<span class="s-badge">'+t+'</span>';}).join('');
+  }
+
+  if(n===2) renderSizeCards();
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+// ── 포맷 ──
+function fmtMan(man){
+  if(man>=10000){
+    var ok = man/10000;
+    if(ok===Math.floor(ok)) return ok+'억 원';
+    return ok.toFixed(1)+'억 원';
+  }
+  return man.toLocaleString()+'만 원';
+}
+
+// 초기 슬라이더 배경 설정
+window.addEventListener('load',function(){
+  document.querySelectorAll('input[type=range]').forEach(function(r){
+    var pct=(r.value-r.min)/(r.max-r.min)*100;
+    r.style.background='linear-gradient(to right,var(--primary) '+pct+'%,#e2e8f0 '+pct+'%)';
+  });
+});
+</script>
+</body>
+</html>

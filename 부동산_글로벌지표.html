@@ -1,0 +1,429 @@
+﻿<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/favicon.svg">
+<meta name="theme-color" content="#0C2040">
+<meta property="og:site_name" content="부릿지 BuRIDGE">
+<meta property="og:type" content="website">
+<meta property="og:title" content="글로벌지표 | 부릿지 BuRIDGE">
+<meta property="og:description" content="미국·일본·중국 부동산과 한국 시장 비교 분석.">
+<meta property="og:url" content="https://buridge.vercel.app/부동산_글로벌지표.html">
+<meta property="og:image" content="https://buridge.vercel.app/og-image.svg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="ko_KR">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="글로벌지표 | 부릿지 BuRIDGE">
+<meta name="twitter:description" content="미국·일본·중국 부동산과 한국 시장 비교 분석.">
+<meta name="twitter:image" content="https://buridge.vercel.app/og-image.svg">
+<title>글로벌 지표 트래커 — 부동산 영향 분석</title>
+<style>
+:root{
+  --navy:#0C2040;--blue:#1A4A9A;--blue-lt:#EBF1FF;
+  --ink:#1A2E44;--ink2:#374F6B;--ink3:#68839C;
+  --paper:#F3F6FB;--sf:#FFFFFF;--rule:#D0D8E8;
+  --up:#0A6E42;--up-lt:#E4F3EC;--dn:#B71C1C;--dn-lt:#FDECEA;
+  --font:'Apple SD Gothic Neo','Noto Sans KR',system-ui,sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html,body{font-family:var(--font);background:var(--paper);color:var(--ink);}
+
+.hd{background:var(--navy);height:50px;display:flex;align-items:center;padding:0 20px;gap:10px;}
+.hd-back{color:#7AA0C8;font-size:.75rem;text-decoration:none;}.hd-back:hover{color:#C0D8F0;}
+.hd-sep{color:#2A4870;}
+.hd-title{font-size:.9rem;font-weight:700;color:#D0E0F0;}
+.hd-r{margin-left:auto;display:flex;align-items:center;gap:10px;}
+.hd-ts{font-size:.62rem;color:#4A6A90;}
+.hd-tag{font-size:.6rem;font-weight:700;padding:3px 9px;border-radius:3px;background:#081628;border:1px solid #1A3460;color:#3A6090;}
+.hd-btn{font-size:.68rem;color:#5A82AA;background:none;border:1px solid #1A3460;border-radius:3px;padding:3px 10px;cursor:pointer;font-family:var(--font);}
+.hd-btn:hover{background:#0A1E38;color:#90C0E0;}
+
+.sum-bar{background:#0A1830;color:#8AAED0;font-size:.67rem;padding:7px 20px;display:flex;gap:16px;align-items:center;flex-wrap:wrap;border-bottom:1px solid #1A3050;}
+.si{display:flex;align-items:center;gap:4px;}
+.sl{color:#3A5878;}
+.vup{color:#4CAF82;font-weight:700;}.vdn{color:#EF5350;font-weight:700;}
+.pills{margin-left:auto;display:flex;gap:5px;}
+.pill{font-size:.57rem;padding:2px 7px;border-radius:10px;font-weight:700;border:1px solid;}
+.p-ok{background:#0A2010;border-color:#1A5A28;color:#4CAF82;}
+.p-no{background:#200A0A;border-color:#5A1A1A;color:#EF5350;}
+.p-ld{background:#0A1820;border-color:#1A3050;color:#5A8AAA;}
+
+.main{max-width:1180px;margin:0 auto;padding:22px 20px 80px;}
+.sec-hd{font-size:.61rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--ink3);margin-bottom:13px;display:flex;align-items:center;gap:10px;}
+.sec-hd::after{content:'';flex:1;height:1px;background:var(--rule);}
+.sec-sub{font-size:.63rem;color:var(--ink3);margin-left:6px;font-weight:400;letter-spacing:0;text-transform:none;}
+.section{margin-bottom:28px;}
+
+.g7{display:grid;grid-template-columns:repeat(7,1fr);gap:9px;}
+.g4{display:grid;grid-template-columns:repeat(4,1fr);gap:9px;}
+@media(max-width:1100px){.g7{grid-template-columns:repeat(4,1fr);}}
+@media(max-width:900px){.g4{grid-template-columns:repeat(3,1fr);}}
+@media(max-width:760px){.g7{grid-template-columns:repeat(3,1fr);}}
+@media(max-width:560px){.g7,.g4{grid-template-columns:repeat(2,1fr);}}
+
+.ic{background:var(--sf);border:1px solid var(--rule);border-radius:6px;padding:13px 13px 11px;cursor:pointer;transition:border-color .15s,box-shadow .15s;}
+.ic:hover{border-color:var(--blue);}
+.ic.sel{border-color:var(--blue);box-shadow:0 0 0 2px rgba(26,74,154,.14);}
+.ic-hd{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:8px;}
+.ic-nm{font-size:.74rem;font-weight:800;color:var(--ink);line-height:1.2;}
+.ic-sr{font-size:.55rem;color:var(--ink3);margin-top:1px;}
+.ic-imp{display:flex;flex-direction:column;align-items:flex-end;gap:2px;}
+.dots{display:flex;gap:2px;}
+.dot{width:6px;height:6px;border-radius:50%;}
+.dot.f{background:var(--navy);}.dot.e{background:var(--rule);}
+.idir{font-size:.57rem;font-weight:700;padding:1px 5px;border-radius:2px;}
+.dup{background:var(--up-lt);color:var(--up);}
+.ddn{background:var(--dn-lt);color:var(--dn);}
+.dmx{background:#FFF3E0;color:#7A4000;}
+.ic-v{font-size:1.12rem;font-weight:900;color:var(--ink);font-variant-numeric:tabular-nums;letter-spacing:-.02em;margin-bottom:2px;}
+.ic-u{font-size:.57rem;color:var(--ink3);font-weight:400;margin-left:1px;}
+.ic-c{display:flex;align-items:center;gap:3px;margin-bottom:4px;}
+.cn{font-size:.71rem;font-weight:700;font-variant-numeric:tabular-nums;}
+.cup{color:var(--up);}.cdn{color:var(--dn);}.c0{color:var(--ink3);}
+.ic-pv{font-size:.57rem;color:var(--ink3);margin-bottom:2px;}
+.ic-dt{font-size:.55rem;color:var(--ink3);margin-bottom:4px;}
+.ic-tx{font-size:.62rem;color:var(--ink2);border-top:1px solid var(--rule);padding-top:6px;margin-top:4px;line-height:1.5;}
+.shimmer{background:linear-gradient(90deg,#E8ECF4 25%,#F3F6FB 50%,#E8ECF4 75%);background-size:200% 100%;animation:sh 1.2s infinite;border-radius:6px;min-height:148px;}
+@keyframes sh{0%{background-position:200% 0}100%{background-position:-200% 0}}
+
+.acc{border:1px solid var(--rule);border-radius:5px;overflow:hidden;margin-bottom:5px;}
+.ac-hd{display:flex;align-items:center;gap:9px;padding:10px 14px;cursor:pointer;background:var(--sf);user-select:none;}
+.ac-hd:hover{background:#F7FAFE;}
+.ac-ico{width:26px;height:26px;border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:.8rem;flex-shrink:0;}
+.ac-ttl{font-size:.78rem;font-weight:700;color:var(--ink);flex:1;}
+.ac-str{font-size:.6rem;color:var(--ink3);white-space:nowrap;}
+.ac-ar{font-size:.68rem;color:var(--ink3);transition:transform .18s;margin-left:4px;}
+.acc.op .ac-ar{transform:rotate(180deg);}
+.ac-bd{display:none;padding:13px 14px 15px;border-top:1px solid var(--rule);background:var(--paper);}
+.acc.op .ac-bd{display:block;}
+.ac-g{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+@media(max-width:600px){.ac-g{grid-template-columns:1fr;}}
+.asec{font-size:.58rem;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:var(--ink3);margin-bottom:4px;margin-top:8px;}
+.asec:first-child{margin-top:0;}
+.ap{font-size:.72rem;color:var(--ink2);line-height:1.75;}
+.mech{background:var(--sf);border:1px solid var(--rule);border-radius:4px;padding:9px 11px;margin-top:5px;}
+.mr{display:flex;flex-wrap:wrap;align-items:flex-start;gap:3px;font-size:.66rem;color:var(--ink2);padding:3px 0;border-bottom:1px solid #F0F4F8;}
+.mr:last-child{border-bottom:none;}
+.mar{color:var(--ink3);}
+.mt{display:inline-block;padding:1px 5px;border-radius:2px;font-size:.61rem;font-weight:700;white-space:nowrap;}
+.mup{background:var(--up-lt);color:var(--up);}
+.mdn{background:var(--dn-lt);color:var(--dn);}
+.mmx{background:#FFF3E0;color:#7A4000;}
+.err{grid-column:1/-1;text-align:center;padding:20px;font-size:.75rem;color:var(--dn);background:var(--dn-lt);border:1px solid #F9A8A8;border-radius:6px;}
+</style>
+</head>
+<body>
+
+<div class="hd">
+  <a class="hd-back" href="./index.html">← 홈</a>
+  <span class="hd-sep">/</span>
+  <span class="hd-title">글로벌 지표 트래커</span>
+  <div class="hd-r">
+    <span class="hd-ts" id="hd-ts">로딩 중…</span>
+    <button class="hd-btn" onclick="loadAll()">새로고침</button>
+    <span class="hd-tag">실시간</span>
+  </div>
+</div>
+
+<div class="sum-bar">
+  <div class="si"><span class="sl">KOSPI</span><span id="s0">–</span></div>
+  <div class="si"><span class="sl">S&P500</span><span id="s1">–</span></div>
+  <div class="si"><span class="sl">USD/KRW</span><span id="s2">–</span></div>
+  <div class="si"><span class="sl">WTI</span><span id="s3">–</span></div>
+  <div class="si"><span class="sl">미 10년물</span><span id="s4">–</span></div>
+  <div class="si"><span class="sl">Fed 금리</span><span id="s5">–</span></div>
+  <div class="si"><span class="sl">한국 기준금리</span><span id="s6">–</span></div>
+  <div class="pills" id="pills">
+    <span class="pill p-ld">Yahoo…</span>
+    <span class="pill p-ld">FRED…</span>
+    <span class="pill p-ld">ECOS…</span>
+  </div>
+</div>
+
+<div class="main">
+  <div class="section">
+    <div class="sec-hd">실시간 시장 지표<span class="sec-sub">Yahoo Finance (쿠키+크럼) → 실패 시 FRED 일간 데이터 자동 폴백 · 매일 09:00 KST 자동 갱신</span></div>
+    <div class="g7" id="g-market">
+      <div class="shimmer"></div><div class="shimmer"></div><div class="shimmer"></div>
+      <div class="shimmer"></div><div class="shimmer"></div><div class="shimmer"></div><div class="shimmer"></div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="sec-hd">미국 통화량 &amp; 금리<span class="sec-sub">FRED — St. Louis Fed 공식 API · 월간 업데이트</span></div>
+    <div class="g4" id="g-fred">
+      <div class="shimmer"></div><div class="shimmer"></div>
+      <div class="shimmer"></div><div class="shimmer"></div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="sec-hd">한국 경제 지표<span class="sec-sub">ECOS — 한국은행 공식 API · 월간 업데이트</span></div>
+    <div class="g4" id="g-ecos">
+      <div class="shimmer"></div><div class="shimmer"></div>
+      <div class="shimmer"></div><div class="shimmer"></div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="sec-hd">지표별 부동산 영향 완전 해설</div>
+    <div id="acc-wrap"></div>
+  </div>
+</div>
+
+<script>
+/* ══════════════════════════════════════
+   지표 메타데이터
+   key: API 응답 data 객체의 키
+   ══════════════════════════════════════ */
+var MARKET = [
+  { key:'KOSPI',  label:'KOSPI',       unit:'pt',      fmt:'comma0', icon:'📈', bg:'#EBF4FF', src:'Yahoo / ECOS(월간)',
+    s:2, dir:'up', short:'자산시장 동반 지표',
+    iu:'상승 → 투자심리 개선 → 부동산 동반 상승 압력',
+    id_:'급락 → 위험자산 회피 → 부동산 약세 동조',
+    why:'한국 주식시장 전체 심리를 나타냅니다. 코스피 강세 시 투자 심리가 개선되며 부동산 시장도 동반 상승하는 경향이 있습니다.',
+    mech:[{fr:'KOSPI ↑',via:'투자심리 개선',to:'부동산 매수 심리 상승',d:'up'},{fr:'KOSPI ↓',via:'위험자산 회피',to:'부동산 관망 증가',d:'dn'}],
+    watch:'장기적으로 코스피와 서울 아파트 가격은 정(+) 상관관계. 단기 역방향도 빈번합니다.' },
+  { key:'SP500',  label:'S&P 500',     unit:'pt',      fmt:'comma0', icon:'🇺🇸', bg:'#F3F6FB', src:'FRED / Yahoo',
+    s:2, dir:'up', short:'글로벌 위험자산 심리',
+    iu:'글로벌 위험자산 선호 → 신흥국 자금 유입 → 원화 강세',
+    id_:'급락 → 신흥국 자금 이탈 → 한국 부동산 하방 압력',
+    why:'미국 500대 기업 지수로 글로벌 위험자산 심리의 기준점입니다. S&P 급락 시 외국인 자금이 한국을 떠나고 한국은행의 금리 방어 압력이 커집니다.',
+    mech:[{fr:'S&P ↓',via:'달러 강세',to:'KRW 약세 → 인플레 압력',d:'mix'},{fr:'S&P ↓',via:'외국인 이탈',to:'한국 금리 방어 필요',d:'dn'}],
+    watch:'S&P 500이 20% 이상 하락하는 약세장에서 한국 부동산도 12~18개월 내 조정받는 패턴이 있습니다.' },
+  { key:'NASDAQ', label:'NASDAQ',      unit:'pt',      fmt:'comma0', icon:'💻', bg:'#F3F6FB', src:'FRED / Yahoo',
+    s:1, dir:'up', short:'기술주·성장주 심리',
+    iu:'성장 기대 → 전반적 자산 강세',
+    id_:'기술주 버블 붕괴 → 금리 인상 시그널 → 광범위 자산 하락',
+    why:'기술주 중심 지수로 성장주 투자 심리를 반영합니다. 나스닥 급락은 금리 인상 환경을 시사하며 부동산에도 하방 압력으로 작용합니다.',
+    mech:[{fr:'NASDAQ ↓',via:'금리 인상 시그널',to:'주담대 금리↑ → 부동산↓',d:'dn'}],
+    watch:'나스닥 100은 S&P보다 변동성이 높아 과도한 반응에 주의하세요.' },
+  { key:'USDKRW', label:'USD/KRW',     unit:'원',      fmt:'comma0', icon:'💱', bg:'#FFF8E1', src:'FRED / Yahoo',
+    s:3, dir:'mix', short:'원화 강도 핵심 지표',
+    iu:'복합 — 명목 자산↑ vs 인플레·금리 인상 압력',
+    id_:'원화 강세 → 수입물가↓ → 인플레 완화 → 금리 안정 → 부동산 우호',
+    why:'환율 상승(원화 약세)은 수입물가를 올려 인플레이션을 자극하고 한국은행의 금리 인상 압력을 높입니다. 단기적으로 명목 가격을 끌어올리지만 금리 인상이 뒤따르면 수요가 위축됩니다.',
+    mech:[{fr:'환율↑(원화약세)',via:'수입물가 상승',to:'CPI↑ → 금리 인상 압력',d:'dn'},{fr:'환율↑',via:'명목 자산가격',to:'단기 부동산 호가↑',d:'up'},{fr:'환율↓(원화강세)',via:'인플레 완화',to:'금리 안정 → 부동산 우호',d:'up'}],
+    watch:'1,300원 이상에서는 한국은행의 환율 방어 의무가 생기며 금리 동결·인상 압력이 발생합니다.' },
+  { key:'GOLD',   label:'금 (Gold)',   unit:'USD/oz',  fmt:'comma0', icon:'🥇', bg:'#FFFDE7', src:'FRED / Yahoo',
+    s:2, dir:'up', short:'인플레·불확실성 헤지',
+    iu:'인플레 우려 or 불확실성 → 실물자산 선호 동조 → 부동산↑',
+    id_:'금 하락 = 안전자산 수요 감소 → 위험자산 선호 회복',
+    why:'금은 인플레이션 헤지 및 불확실성 지표입니다. 인플레이션 국면의 금 상승은 실물자산 선호도를 높여 부동산에도 상승 압력으로 작용합니다.',
+    mech:[{fr:'금↑(인플레 국면)',via:'실물자산 선호',to:'부동산 상승 동조',d:'up'},{fr:'금↑(위기 국면)',via:'투자심리 위축',to:'부동산 거래 위축',d:'mix'}],
+    watch:'금과 부동산의 동조화는 인플레이션 국면에서 특히 강하게 나타납니다.' },
+  { key:'OIL',    label:'WTI 원유',    unit:'USD/bbl', fmt:'fixed1', icon:'🛢️', bg:'#FBE9E7', src:'FRED / Yahoo',
+    s:2, dir:'dn', short:'건설비·인플레 선행지표',
+    iu:'건설비↑·분양가↑, 인플레 → 금리 인상 압력 → 부동산 부담',
+    id_:'물가 안정 → 금리 완화 → 부동산 부담 감소',
+    why:'국제 원유 가격은 건설자재 운반비와 에너지 비용에 직결되어 분양가를 끌어올립니다. 전반적 인플레이션을 자극해 금리 인상을 유발, 대출 부담을 높여 부동산 수요를 냉각시킵니다.',
+    mech:[{fr:'유가↑',via:'건설비·에너지비 상승',to:'분양가 상승',d:'up'},{fr:'유가↑',via:'CPI 상승',to:'금리 인상 → 주담대↑',d:'dn'}],
+    watch:'WTI $80 이상은 글로벌 인플레이션 재가속 경보 수준으로 간주됩니다.' },
+  { key:'UST10Y', label:'미 10년 국채', unit:'%',      fmt:'fixed2', icon:'📊', bg:'#EDE7F6', src:'FRED / Yahoo',
+    s:3, dir:'dn', short:'글로벌 장기금리 기준점',
+    iu:'한국 장기금리 동반↑ → 주담대 금리↑ → 부동산 하락',
+    id_:'글로벌 완화 시그널 → 주담대 금리 하락 여지 → 부동산 회복',
+    why:'미 국채 10년물은 전세계 장기금리의 기준점입니다. 이 금리가 오르면 한국 국채 금리도 따라 오르고 주택담보대출 금리가 상승합니다.',
+    mech:[{fr:'미 10년물↑',via:'한국 채권금리 동반↑',to:'주담대 금리 상승',d:'dn'},{fr:'미 10년물↑',via:'원화 약세 압력',to:'한국은행 대응 금리↑',d:'dn'}],
+    watch:'4% 이상에서는 글로벌 자금의 채권 이동이 뚜렷해지며 부동산 부담이 가중됩니다.' },
+];
+
+var FRED = [
+  { key:'M2SL',     label:'미국 M2',       unit:'조 달러',       div:1000, fmt:'fixed1', icon:'💰', bg:'#E8F5E9', src:'FRED',
+    s:3, dir:'up', short:'핵심 유동성 지표',
+    iu:'M2 팽창 → 과잉 유동성 → 자산가격 상승 압력',
+    id_:'M2 수축 → 긴축 시그널 → 자산가격 하락 압력',
+    why:'M2(광의통화)는 현금·요구불예금·저축성 예금을 포함한 경제 전체 유동성 지표입니다. M2가 급증하면 부동산·주식 등 자산 가격을 끌어올리는 중장기 압력이 됩니다.',
+    mech:[{fr:'M2↑↑',via:'과잉 유동성',to:'인플레이션 → 실물자산↑',d:'up'},{fr:'M2 수축',via:'긴축 시그널',to:'자산가격 하방 압력',d:'dn'}],
+    watch:'M2 전년대비 증가율 5~6% 이상 → 인플레이션 경보, 10% 이상 → 자산 버블 위험 신호.' },
+  { key:'M1SL',     label:'미국 M1',       unit:'조 달러',       div:1000, fmt:'fixed1', icon:'💵', bg:'#E3F2FD', src:'FRED',
+    s:2, dir:'up', short:'단기 유동성 지표',
+    iu:'M1 급증 → 즉각 사용 가능 자금↑ → 투기성 자금↑',
+    id_:'M1 감소 → 단기 자금 경색 → 부동산 거래 위축',
+    why:'M1은 즉각 사용 가능한 현금과 요구불예금입니다. M2보다 단기 심리를 반영하며, M1이 급증하면 투기성 단기 자금이 부동산 시장으로 유입될 수 있습니다.',
+    mech:[{fr:'M1↑',via:'단기 자금 과잉',to:'투기성 부동산 거래↑',d:'up'}],
+    watch:'M1/M2 비율(유동성 선호도)이 높아지면 단기 불확실성이 증가한 것으로 해석합니다.' },
+  { key:'FEDFUNDS', label:'미 연준 기준금리', unit:'%',           div:1,    fmt:'fixed2', icon:'🏦', bg:'#FDE8E8', src:'FRED',
+    s:3, dir:'dn', short:'글로벌 유동성 조절판',
+    iu:'금리↑ → 글로벌 자금 이탈 → 한국 금리 인상 압력',
+    id_:'금리↓ → 글로벌 완화 → 한국 금리 인하 여건',
+    why:'미 연방준비제도 기준금리는 글로벌 유동성의 조절판입니다. 연준이 금리를 올리면 달러 강세 → 원화 약세 → 한국은행도 금리 인상 압력을 받아 주담대 금리가 오릅니다.',
+    mech:[{fr:'Fed 금리↑',via:'달러 강세·원화 약세',to:'한국은행 금리 인상 압력',d:'dn'},{fr:'Fed 금리↑',via:'미국 채권 매력↑',to:'신흥국 자금 이탈',d:'dn'},{fr:'Fed 금리↓',via:'글로벌 완화',to:'한국 금리 인하 여건',d:'up'}],
+    watch:'연준 FOMC는 연 8회. 금리 결정 외에 "점도표(dot plot)"와 의장 발언에 주목하세요.' },
+  { key:'CPIAUCSL', label:'미국 CPI',       unit:'(1982-84=100)', div:1,   fmt:'fixed1', icon:'📉', bg:'#FFF3E0', src:'FRED',
+    s:3, dir:'dn', short:'글로벌 인플레이션 지표',
+    iu:'CPI↑ → 연준 긴축 → 글로벌 금리↑ → 부동산↓',
+    id_:'CPI 안정 → 연준 완화 전환 → 부동산 회복 여건',
+    why:'미국 소비자물가지수(CPI)는 인플레이션의 대표 지표입니다. CPI가 높으면 연준이 금리 인상으로 대응하고, 이는 글로벌 금리 상승 → 주담대 금리 상승 → 부동산 수요 감소의 연쇄 효과를 낳습니다.',
+    mech:[{fr:'CPI↑(>3%)',via:'연준 긴축 유지',to:'글로벌 금리 고착 → 부동산↓',d:'dn'},{fr:'CPI↓(~2%)',via:'연준 완화 전환',to:'금리 인하 → 대출비용↓ → 부동산↑',d:'up'}],
+    watch:'전월대비(MoM)와 전년대비(YoY)를 구분해서 봐야 합니다. 연준 목표는 PCE 기준 2%입니다.' },
+];
+
+var KOREA = [
+  { key:'KR_RATE', label:'한국 기준금리',  unit:'%',       div:1, fmt:'fixed2', icon:'🇰🇷', bg:'#E8EAF6', src:'ECOS(한국은행)',
+    s:3, dir:'dn', short:'주담대 금리 직결 지표',
+    iu:'금리↑ → 주담대 금리↑ → 이자 부담↑ → 수요 감소 → 부동산↓',
+    id_:'금리↓ → 주담대 금리↓ → 매수 여력↑ → 수요 증가 → 부동산↑',
+    why:'한국은행 금융통화위원회가 결정하는 기준금리는 모든 부동산 대출 금리의 출발점입니다. 기준금리 0.25%p 변화 시 10억 원 대출 기준 월 이자가 약 10~17만 원 변동됩니다.',
+    mech:[{fr:'기준금리↑ 0.25%p',via:'시중은행 주담대 금리 연동',to:'월 이자 약 10~17만원↑(10억 기준)',d:'dn'},{fr:'기준금리↓ 0.25%p',via:'대출 비용 감소',to:'매수 심리 개선·가격 상승 압력',d:'up'}],
+    watch:'한국은행 금통위는 연 8회. 결정 후 총재 발표문의 방향성 문구가 다음 스텝을 시사합니다.' },
+  { key:'KR_M2',   label:'한국 M2',       unit:'십억 원',  div:1, fmt:'comma0', icon:'💴', bg:'#E8F5E9', src:'ECOS(한국은행)',
+    s:3, dir:'up', short:'국내 유동성 핵심 지표',
+    iu:'한국 M2↑ → 국내 유동성 증가 → 부동산 투자 자금↑',
+    id_:'M2 감소 → 국내 유동성 축소 → 부동산 투자 여력↓',
+    why:'한국의 M2(광의통화)는 국내 전체 통화 공급 규모입니다. M2가 급증할수록 부동산 등 실물자산으로 자금이 유입되는 경향이 있습니다.',
+    mech:[{fr:'한국 M2↑',via:'국내 유동성 과잉',to:'부동산 투자 자금 증가',d:'up'},{fr:'한국 M2↓',via:'유동성 긴축',to:'부동산 투자 위축',d:'dn'}],
+    watch:'한국 M2 증가율이 명목 GDP 성장률을 크게 상회하면 자산 버블 위험 신호입니다.' },
+  { key:'KR_M1',   label:'한국 M1',       unit:'십억 원',  div:1, fmt:'comma0', icon:'🪙', bg:'#E3F2FD', src:'ECOS(한국은행)',
+    s:2, dir:'up', short:'국내 단기 유동성',
+    iu:'M1 급증 → 즉각 사용 가능 자금↑ → 투기성 부동산 거래↑',
+    id_:'M1 감소 → 단기 자금 경색 → 부동산 거래 위축',
+    why:'한국 M1은 즉각 사용 가능한 현금과 요구불예금입니다. M2보다 단기 심리를 반영하며, M1이 급증하면 투기성 단기 자금이 부동산 시장으로 유입될 수 있습니다.',
+    mech:[{fr:'한국 M1↑',via:'단기 자금 과잉',to:'투기성 부동산 거래↑',d:'up'}],
+    watch:'M1/M2 비율이 높아지면 단기 불확실성이 증가한 것으로 해석합니다.' },
+  { key:'KR_CPI',  label:'한국 CPI',      unit:'(2020=100)', div:1, fmt:'fixed1', icon:'🛒', bg:'#FFF3E0', src:'ECOS(한국은행)',
+    s:2, dir:'dn', short:'국내 인플레이션 지표',
+    iu:'한국 CPI↑ → 한국은행 긴축 유지 → 금리 인하 어려움',
+    id_:'CPI 안정 → 금리 인하 여건 → 주담대↓ → 부동산 회복',
+    why:'한국 소비자물가지수(CPI)가 높게 유지되면 한국은행이 기준금리를 쉽게 내리지 못합니다. 이는 주담대 금리를 높게 유지시켜 부동산 수요를 억제합니다.',
+    mech:[{fr:'CPI↑',via:'한국은행 긴축 유지',to:'금리 고착 → 부동산 부담',d:'dn'},{fr:'CPI↓(~2%)',via:'금리 인하 여건',to:'주담대↓ → 부동산 회복',d:'up'}],
+    watch:'한국은행 물가 목표는 2%입니다. 3% 이상에서는 금리 인하가 어렵습니다.' },
+];
+
+/* ════════ 유틸 ════════ */
+function fv(v, m) {
+  if (v == null || isNaN(v)) return '–';
+  var n = (m.div && m.div > 1) ? v / m.div : v;
+  if (m.fmt === 'comma0') return Math.round(n).toLocaleString('ko-KR');
+  if (m.fmt === 'fixed0') return n.toFixed(0);
+  if (m.fmt === 'fixed1') return n.toFixed(1);
+  if (m.fmt === 'fixed2') return n.toFixed(2);
+  return String(n);
+}
+function fc(v) { if (v == null || isNaN(v)) return null; return (v > 0 ? '+' : '') + v.toFixed(2) + '%'; }
+function cc(v) { return v > 0 ? 'cup' : v < 0 ? 'cdn' : 'c0'; }
+function impH(s, dir) {
+  var ds = '';
+  for (var i = 0; i < 3; i++) ds += '<div class="dot ' + (i < s ? 'f' : 'e') + '"></div>';
+  var dcl = dir === 'up' ? 'dup' : dir === 'dn' ? 'ddn' : 'dmx';
+  var dt  = dir === 'up' ? '상승 영향' : dir === 'dn' ? '하락 영향' : '복합 영향';
+  return '<div class="dots">' + ds + '</div><div class="idir ' + dcl + '">' + dt + '</div>';
+}
+
+/* ════════ 카드 ════════ */
+function card(m, d) {
+  d = d || {};
+  var price = d.price != null ? d.price : null;
+  var chg   = d.chgPct;
+  var prev  = d.prev;
+  var chgS  = fc(chg);
+  var arrow = chg > 0 ? '▲' : chg < 0 ? '▼' : '';
+  var msg   = chg > 0 ? m.iu : chg < 0 ? m.id_ : m.short;
+  return '<div class="ic" id="ic-'+m.key+'" onclick="selCard(\''+m.key+'\')">'
+    + '<div class="ic-hd"><div><div class="ic-nm">'+m.label+'</div><div class="ic-sr">'+m.src+'</div></div>'
+    + '<div class="ic-imp">'+impH(m.s, m.dir)+'</div></div>'
+    + '<div class="ic-v">'+fv(price,m)+'<span class="ic-u">'+m.unit+'</span></div>'
+    + '<div class="ic-c">'+(chgS?'<span class="cn '+cc(chg)+'">'+arrow+' '+chgS+'</span>':'<span class="cn c0">–</span>')+'</div>'
+    + (prev != null ? '<div class="ic-pv">전값: '+fv(prev,m)+'</div>' : '')
+    + (d.date      ? '<div class="ic-dt">기준: '+d.date+'</div>' : '')
+    + '<div class="ic-tx">'+msg+'</div>'
+    + '</div>';
+}
+function selCard(key) {
+  document.querySelectorAll('.ic').forEach(function(e){e.classList.remove('sel');});
+  var el = document.getElementById('ic-'+key);
+  if (el) el.classList.add('sel');
+  var ac = document.getElementById('ac-'+key);
+  if (ac) { ac.classList.add('op'); setTimeout(function(){ac.scrollIntoView({behavior:'smooth',block:'nearest'});},120); }
+}
+
+/* ════════ 아코디언 ════════ */
+function mechH(rows) {
+  return rows.map(function(r) {
+    var cl = r.d==='up'?'mup':r.d==='dn'?'mdn':'mmx';
+    return '<div class="mr"><span class="mt '+cl+'">'+r.fr+'</span><span class="mar"> → </span>'
+      +'<span style="color:var(--ink3)">'+r.via+'</span><span class="mar"> → </span><span>'+r.to+'</span></div>';
+  }).join('');
+}
+function buildAcc(m) {
+  return '<div class="acc" id="ac-'+m.key+'">'
+    +'<div class="ac-hd" onclick="togAcc(\''+m.key+'\')">'
+    +'<div class="ac-ico" style="background:'+m.bg+'">'+m.icon+'</div>'
+    +'<div class="ac-ttl">'+m.label+' — '+m.short+'</div>'
+    +'<div class="ac-str">영향 '+'●'.repeat(m.s)+'○'.repeat(3-m.s)+'</div>'
+    +'<div class="ac-ar">▼</div></div>'
+    +'<div class="ac-bd"><div class="ac-g">'
+    +'<div>'
+    +'<div class="asec">지표 설명</div><div class="ap">'+m.why+'</div>'
+    +'<div class="asec">영향 메커니즘</div><div class="mech">'+mechH(m.mech)+'</div>'
+    +'</div>'
+    +'<div>'
+    +'<div class="asec">상승 시 부동산 영향</div><div class="ap"><span class="mt mup">↑</span> '+m.iu+'</div>'
+    +'<div class="asec">하락 시 부동산 영향</div><div class="ap"><span class="mt mdn">↓</span> '+m.id_+'</div>'
+    +'<div class="asec">실전 관찰 포인트</div><div class="ap">'+m.watch+'</div>'
+    +'</div>'
+    +'</div></div></div>';
+}
+function togAcc(key) { var el=document.getElementById('ac-'+key);if(el)el.classList.toggle('op'); }
+
+/* ════════ 요약 바 ════════ */
+function setSum(id, v, m) {
+  var el=document.getElementById(id);if(!el)return;
+  if(!v||v.price==null){el.textContent='–';return;}
+  var disp=fv(v.price,m);
+  var chgT=v.chgPct!=null?' ('+(v.chgPct>0?'+':'')+v.chgPct.toFixed(1)+'%)':'';
+  var cl=v.chgPct>0?'vup':v.chgPct<0?'vdn':'';
+  el.innerHTML='<span class="'+cl+'">'+disp+chgT+'</span>';
+}
+
+/* ════════ 데이터 로드 ════════ */
+async function loadAll() {
+  try {
+    var r  = await fetch('/api/indicators');
+    var j  = await r.json();
+    var d  = j.data || {};
+    var sc = j.sources || {};
+
+    if (j.ts) {
+      var dt=new Date(j.ts);
+      document.getElementById('hd-ts').textContent=
+        dt.toLocaleString('ko-KR',{month:'2-digit',day:'2-digit',hour:'2-digit',minute:'2-digit'})+' KST';
+    }
+
+    document.getElementById('pills').innerHTML=
+      '<span class="pill '+(sc.yahoo?'p-ok':'p-no')+'">Yahoo '+(sc.yahoo?'✓':'✗ →FRED폴백')+'</span>'
+      +'<span class="pill '+(sc.fred?'p-ok':'p-no')+'">FRED '+(sc.fred?'✓':'✗')+'</span>'
+      +'<span class="pill '+(sc.ecos?'p-ok':'p-no')+'">ECOS '+(sc.ecos?'✓':'✗')+'</span>';
+
+    setSum('s0', d['KOSPI'],    MARKET[0]);
+    setSum('s1', d['SP500'],    MARKET[1]);
+    setSum('s2', d['USDKRW'],   MARKET[3]);
+    setSum('s3', d['OIL'],      MARKET[5]);
+    setSum('s4', d['UST10Y'],   MARKET[6]);
+    setSum('s5', d['FEDFUNDS'], FRED[2]);
+    setSum('s6', d['KR_RATE'],  KOREA[0]);
+
+    document.getElementById('g-market').innerHTML=MARKET.map(function(m){return card(m,d[m.key]);}).join('');
+    document.getElementById('g-fred').innerHTML  =FRED.map(function(m){return card(m,d[m.key]);}).join('');
+    document.getElementById('g-ecos').innerHTML  =KOREA.map(function(m){return card(m,d[m.key]);}).join('');
+
+  } catch(e) {
+    var err='<div class="err">데이터 로드 실패. 잠시 후 새로고침 해주세요.<br><small>'+e.message+'</small></div>';
+    ['g-market','g-fred','g-ecos'].forEach(function(id){document.getElementById(id).innerHTML=err;});
+  }
+}
+
+(function init() {
+  document.getElementById('acc-wrap').innerHTML=
+    MARKET.map(function(m){return buildAcc(m);}).join('')
+    +FRED.map(function(m){return buildAcc(m);}).join('')
+    +KOREA.map(function(m){return buildAcc(m);}).join('');
+  loadAll();
+  setInterval(loadAll, 30*60*1000);
+})();
+</script>
+</body>
+</html>

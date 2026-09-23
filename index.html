@@ -1,0 +1,694 @@
+﻿<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/favicon.svg">
+<meta name="theme-color" content="#0C2040">
+<meta property="og:site_name" content="부릿지 BuRIDGE">
+<meta property="og:type" content="website">
+<meta property="og:title" content="부릿지 BuRIDGE — 부동산 완전 정복">
+<meta property="og:description" content="부동산 완전 초보를 위한 학습 플랫폼. 일일학습 72강, 최신동향, 세금가이드, 청약가이드 완전 무료.">
+<meta property="og:url" content="https://buridge.vercel.app/">
+<meta property="og:image" content="https://buridge.vercel.app/og-image.svg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="ko_KR">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="부릿지 BuRIDGE — 부동산 완전 정복">
+<meta name="twitter:description" content="부동산 완전 초보를 위한 학습 플랫폼. 일일학습 72강, 최신동향, 세금가이드, 청약가이드 완전 무료.">
+<meta name="twitter:image" content="https://buridge.vercel.app/og-image.svg">
+<title>부릿지 BuRIDGE — 부동산 완전 정복</title>
+<style>
+:root{
+  --navy:#0B1D36;--navy2:#112240;--navy3:#1A3360;
+  --blue:#1C52B0;--blue-lt:#E8F0FF;--blue-mid:#2A66D9;
+  --ink:#1A2E44;--ink2:#374F6B;--ink3:#68839C;
+  --paper:#F2F5FB;--sf:#FFFFFF;--rule:#D4DCE8;
+  --ok:#0A6535;--ok-lt:#E2F2EB;
+  --warn:#8A4D00;--warn-lt:#FEF4E4;
+  --red:#A51C1C;--red-lt:#FFECEC;
+  --purple:#5A189A;--purple-lt:#F3EEFF;
+  --teal:#0A6E6E;--teal-lt:#E3F5F5;
+  --amber:#8B4500;--amber-lt:#FFF2E0;
+  --font:'Apple SD Gothic Neo','Noto Sans KR',system-ui,sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:var(--font);background:var(--paper);color:var(--ink);min-height:100vh;}
+
+/* ══ 헤더 ══ */
+.hd{
+  background:var(--navy);height:52px;display:flex;align-items:center;
+  padding:0 24px;position:sticky;top:0;z-index:100;
+  border-bottom:1px solid rgba(255,255,255,.05);
+}
+.logo{display:flex;align-items:center;gap:10px;text-decoration:none;}
+.logo-svg{width:40px;height:29px;color:#4A90D8;flex-shrink:0;}
+.logo-text{display:flex;flex-direction:column;line-height:1;}
+.logo-kr{font-size:.95rem;font-weight:900;color:#C8DCF5;letter-spacing:-.03em;}
+.logo-en{font-size:.5rem;font-weight:600;letter-spacing:.14em;color:#3A6090;margin-top:2px;}
+.logo-en b{color:#5B9EFF;font-weight:900;letter-spacing:.06em;}
+.hd-right{margin-left:auto;display:flex;align-items:center;gap:10px;}
+.live-pill{
+  display:flex;align-items:center;gap:5px;
+  font-size:.62rem;font-weight:700;color:#40C070;
+  background:rgba(40,180,90,.1);border:1px solid rgba(40,180,90,.2);
+  padding:3px 9px;border-radius:10px;
+}
+.live-dot{width:6px;height:6px;border-radius:50%;background:#40C070;animation:pulse 2s infinite;}
+@keyframes pulse{0%,100%{opacity:1;}50%{opacity:.3;}}
+.hd-date{font-size:.62rem;color:#3A6090;}
+
+/* ══ 히어로 ══ */
+.hero{
+  background:var(--navy);
+  background-image:radial-gradient(circle at 20% 50%, rgba(28,82,176,.18) 0%, transparent 60%),
+                   radial-gradient(circle at 80% 20%, rgba(20,60,140,.12) 0%, transparent 50%);
+  padding:52px 24px 44px;
+  border-bottom:1px solid rgba(255,255,255,.05);
+  position:relative;overflow:hidden;
+}
+/* 미세 도트 그리드 */
+.hero::before{
+  content:'';position:absolute;inset:0;
+  background-image:radial-gradient(circle, rgba(80,130,220,.12) 1px, transparent 1px);
+  background-size:28px 28px;pointer-events:none;
+}
+.hero-in{max-width:1060px;margin:0 auto;display:grid;grid-template-columns:1fr auto;gap:40px;align-items:center;position:relative;}
+@media(max-width:820px){.hero-in{grid-template-columns:1fr;gap:28px;}}
+
+.hero-left{}
+.hero-eyebrow{
+  display:inline-flex;align-items:center;gap:7px;
+  font-size:.6rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;
+  color:#3A6FA0;margin-bottom:16px;
+}
+.hero-eyebrow::before{content:'';width:20px;height:1px;background:#2A5080;}
+.hero h1{
+  font-size:2rem;font-weight:900;color:#C8DCF5;
+  line-height:1.18;letter-spacing:-.04em;margin-bottom:14px;
+  text-wrap:balance;
+}
+.hero h1 em{font-style:normal;color:#4A8FE0;}
+.hero-sub{font-size:.8rem;color:#4A6A8A;line-height:1.75;max-width:420px;margin-bottom:28px;}
+.cert-row{display:flex;gap:7px;flex-wrap:wrap;}
+.cert-tag{
+  font-size:.62rem;font-weight:700;padding:4px 11px;border-radius:12px;
+  border:1px solid;
+}
+.ct-ga{background:#0A1E08;border-color:#1A4A18;color:#50C040;}
+.ct-gi{background:#08101A;border-color:#1A3050;color:#4A90D0;}
+.ct-in{background:#150820;border-color:#3A1560;color:#A060D0;}
+
+/* 히어로 오른쪽 — 라이브 수치 패널 */
+.hero-panel{
+  background:rgba(8,16,30,.7);border:1px solid rgba(50,90,160,.3);
+  border-radius:8px;padding:20px 22px;min-width:220px;
+  backdrop-filter:blur(4px);
+}
+.hp-ttl{font-size:.58rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#2A5080;margin-bottom:14px;display:flex;align-items:center;gap:6px;}
+.hp-ttl::after{content:'';flex:1;height:1px;background:rgba(50,90,160,.3);}
+.hp-row{display:flex;justify-content:space-between;align-items:baseline;padding:6px 0;border-bottom:1px solid rgba(40,80,140,.15);gap:12px;}
+.hp-row:last-child{border-bottom:none;}
+.hp-label{font-size:.63rem;color:#3A6090;}
+.hp-val{font-size:.88rem;font-weight:900;font-variant-numeric:tabular-nums;letter-spacing:-.01em;}
+.hv-up{color:#40D080;} .hv-dn{color:#FF7070;} .hv-nt{color:#80A0C0;}
+.hp-date{font-size:.55rem;color:#2A4070;text-align:right;margin-top:10px;}
+
+/* ══ 뉴스 티커 ══ */
+.ticker{
+  background:#0F1E38;border-bottom:1px solid rgba(40,80,140,.2);
+  padding:0 24px;height:34px;display:flex;align-items:center;gap:14px;overflow:hidden;
+}
+.ticker-label{
+  font-size:.58rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;
+  color:#2A6090;white-space:nowrap;flex-shrink:0;
+  border-right:1px solid rgba(40,80,140,.3);padding-right:14px;
+}
+.ticker-items{display:flex;gap:20px;overflow:hidden;flex:1;}
+.ticker-item{
+  font-size:.65rem;color:#4A7090;white-space:nowrap;flex-shrink:0;
+}
+.ticker-item b{color:#6AA0C0;font-weight:700;}
+.ticker-item .up{color:#40C070;font-weight:700;}
+.ticker-item .dn{color:#FF7070;font-weight:700;}
+
+/* ══ 메인 ══ */
+.main{max-width:1060px;margin:0 auto;padding:36px 24px 80px;}
+
+/* ══ 업데이트 배너 ══ */
+.update-bar{
+  background:var(--sf);border:1px solid var(--rule);border-left:3px solid var(--blue-mid);
+  border-radius:5px;padding:11px 16px;
+  font-size:.73rem;color:var(--ink2);line-height:1.65;margin-bottom:32px;
+  display:flex;align-items:flex-start;gap:10px;
+}
+.ub-icon{font-size:.7rem;font-weight:700;padding:1px 7px;border-radius:3px;background:var(--blue-lt);color:var(--blue);white-space:nowrap;flex-shrink:0;margin-top:1px;}
+.update-bar b{font-weight:700;color:var(--ink);}
+
+/* ══ 섹션 헤더 ══ */
+.sh{display:flex;align-items:center;gap:10px;margin-bottom:16px;margin-top:36px;}
+.sh:first-child{margin-top:0;}
+.sh-title{font-size:.62rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--ink3);}
+.sh-sub{font-size:.67rem;color:var(--ink3);font-weight:400;}
+.sh::after{content:'';flex:1;height:1px;background:var(--rule);}
+
+/* ══ 추천 경로 스트립 ══ */
+.path-strip{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--rule);border:1px solid var(--rule);border-radius:6px;overflow:hidden;margin-bottom:32px;}
+@media(max-width:640px){.path-strip{grid-template-columns:1fr;}}
+.path-card{background:var(--sf);padding:16px 18px;position:relative;}
+.path-card::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;}
+.pc-begin::before{background:#2A66D9;}
+.pc-mid::before{background:#0A6535;}
+.pc-adv::before{background:#8B4500;}
+.pc-label{font-size:.58rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;margin-bottom:4px;}
+.pc-label.begin{color:#2A66D9;} .pc-label.mid{color:#0A6535;} .pc-label.adv{color:#8B4500;}
+.pc-ttl{font-size:.82rem;font-weight:800;color:var(--ink);margin-bottom:3px;}
+.pc-links{display:flex;flex-wrap:wrap;gap:4px;margin-top:6px;}
+.pc-link{font-size:.62rem;color:var(--ink3);background:var(--paper);border:1px solid var(--rule);padding:1px 7px;border-radius:10px;text-decoration:none;white-space:nowrap;transition:background .12s,color .12s;}
+.pc-link:hover{background:var(--blue-lt);color:var(--blue);}
+
+/* ══ 카드 그리드 ══ */
+.grid-4{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:12px;}
+.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:12px;}
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px;}
+@media(max-width:960px){.grid-4{grid-template-columns:repeat(2,1fr);}.grid-3{grid-template-columns:repeat(2,1fr);}}
+@media(max-width:600px){.grid-4,.grid-3,.grid-2{grid-template-columns:1fr;}}
+
+/* ══ 카드 ══ */
+.card{
+  background:var(--sf);border:1px solid var(--rule);border-radius:7px;
+  padding:18px 18px 52px;text-decoration:none;color:inherit;
+  display:block;position:relative;overflow:hidden;
+  transition:transform .14s,border-color .14s,box-shadow .14s;
+}
+.card:hover{
+  transform:translateY(-2px);border-color:#B8C8E0;
+  box-shadow:0 6px 20px rgba(20,50,100,.08);
+}
+/* 카테고리별 상단 컬러 스트라이프 */
+.card::before{content:'';position:absolute;left:0;top:0;right:0;height:3px;}
+.card-ref::before{background:var(--blue-mid);}
+.card-learn::before{background:var(--ok);}
+.card-exam::before{background:var(--warn);}
+.card-map::before{background:var(--purple);}
+.card-live::before{background:#0A7A6A;}
+.card-news::before{background:#0A6535;}
+.card-adv::before{background:var(--amber);}
+.card-daily::before{background:#0A6E6E;}
+.card-regional::before{background:var(--purple);}
+
+.card-icon{
+  width:32px;height:32px;border-radius:6px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:.9rem;margin-bottom:11px;flex-shrink:0;
+}
+.ci-ref{background:var(--blue-lt);}
+.ci-learn{background:var(--ok-lt);}
+.ci-exam{background:var(--warn-lt);}
+.ci-map{background:#EBE4FF;}
+.ci-live{background:#E0F5F2;}
+.ci-news{background:var(--ok-lt);}
+.ci-adv{background:var(--amber-lt);}
+.ci-regional{background:#EBE4FF;}
+
+.c-badge{
+  position:absolute;top:14px;right:14px;
+  font-size:.56rem;font-weight:700;letter-spacing:.07em;text-transform:uppercase;
+  padding:2px 7px;border-radius:3px;
+}
+.cb-ref{background:var(--blue-lt);color:var(--blue);}
+.cb-learn{background:var(--ok-lt);color:var(--ok);}
+.cb-exam{background:var(--warn-lt);color:var(--warn);}
+.cb-map{background:#EBE4FF;color:var(--purple);}
+.cb-live{background:#E0F5F2;color:#0A7A6A);}
+.cb-news{background:var(--ok-lt);color:var(--ok);}
+.cb-adv{background:var(--amber-lt);color:var(--amber);}
+
+.c-title{font-size:.95rem;font-weight:800;color:var(--ink);letter-spacing:-.02em;margin-bottom:5px;}
+.c-desc{font-size:.7rem;color:var(--ink3);line-height:1.7;}
+.c-footer{
+  position:absolute;bottom:0;left:0;right:0;
+  padding:10px 18px;border-top:1px solid #EEF2F8;
+  display:flex;align-items:center;justify-content:space-between;
+}
+.c-tags{display:flex;gap:4px;flex-wrap:wrap;}
+.tag{font-size:.58rem;color:var(--ink3);background:var(--paper);border:1px solid var(--rule);border-radius:3px;padding:1px 5px;}
+.c-arrow{font-size:.72rem;color:#B5C5D5;transition:color .12s;flex-shrink:0;}
+.card:hover .c-arrow{color:var(--blue-mid);}
+
+/* 뉴스 카드 특별 스타일 (가로형) */
+.card-featured{
+  background:var(--sf);border:1px solid var(--rule);border-radius:7px;
+  padding:20px 22px 58px;text-decoration:none;color:inherit;
+  display:block;position:relative;overflow:hidden;
+  transition:transform .14s,border-color .14s,box-shadow .14s;
+  grid-column:span 2;
+}
+@media(max-width:600px){.card-featured{grid-column:span 1;}}
+.card-featured:hover{transform:translateY(-2px);border-color:#B8C8E0;box-shadow:0 6px 20px rgba(20,50,100,.08);}
+.card-featured::before{content:'';position:absolute;left:0;top:0;right:0;height:3px;background:var(--ok);}
+.feat-inner{display:grid;grid-template-columns:1fr auto;gap:20px;align-items:start;}
+@media(max-width:520px){.feat-inner{grid-template-columns:1fr;}}
+.feat-left{}
+.feat-right{display:flex;flex-direction:column;gap:6px;min-width:130px;}
+.feat-stat{background:var(--paper);border:1px solid var(--rule);border-radius:4px;padding:8px 11px;text-align:center;}
+.fs-val{font-size:1.05rem;font-weight:900;font-variant-numeric:tabular-nums;}
+.fs-lbl{font-size:.57rem;color:var(--ink3);margin-top:1px;}
+.fs-up{color:var(--ok);}
+
+/* ══ 커버리지 테이블 ══ */
+.cov-wrap{overflow-x:auto;border:1px solid var(--rule);border-radius:6px;margin-top:4px;}
+.cov{width:100%;border-collapse:collapse;font-size:.73rem;}
+.cov th{background:#F7F9FC;color:var(--ink2);font-weight:700;padding:9px 13px;text-align:left;border-bottom:1px solid var(--rule);}
+.cov td{padding:8px 13px;border-bottom:1px solid var(--rule);color:var(--ink2);vertical-align:middle;}
+.cov tr:last-child td{border-bottom:none;}
+.cov tr:hover td{background:#FAFBFD;}
+.ml{display:inline-block;font-size:.58rem;font-weight:700;padding:1px 6px;border-radius:2px;margin-right:3px;}
+
+/* ══ 푸터 ══ */
+footer{
+  border-top:1px solid var(--rule);padding:20px 24px;
+  display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;
+}
+.ft-copy{font-size:.64rem;color:var(--ink3);line-height:1.7;}
+.ft-links{display:flex;gap:14px;}
+.ft-link{font-size:.62rem;color:var(--ink3);text-decoration:none;}.ft-link:hover{color:var(--ink);}
+
+@media(max-width:600px){footer{flex-direction:column;text-align:center;}.ft-links{justify-content:center;}}
+</style>
+</head>
+<body>
+
+<!-- ══ 헤더 ══ -->
+<header class="hd">
+  <a class="logo" href="#">
+    <svg class="logo-svg" viewBox="0 0 44 32" fill="none" stroke="currentColor" stroke-linecap="round" aria-hidden="true">
+      <line x1="2" y1="27" x2="42" y2="27" stroke-width="2.5"/>
+      <line x1="15" y1="27" x2="15" y2="5" stroke-width="2.5"/>
+      <line x1="29" y1="27" x2="29" y2="5" stroke-width="2.5"/>
+      <line x1="15" y1="6" x2="4" y2="27" stroke-width="1.3" opacity="0.75"/>
+      <line x1="15" y1="6" x2="10" y2="27" stroke-width="1.3" opacity="0.75"/>
+      <line x1="15" y1="6" x2="22" y2="27" stroke-width="1.3" opacity="0.75"/>
+      <line x1="29" y1="6" x2="40" y2="27" stroke-width="1.3" opacity="0.75"/>
+      <line x1="29" y1="6" x2="34" y2="27" stroke-width="1.3" opacity="0.75"/>
+      <line x1="29" y1="6" x2="22" y2="27" stroke-width="1.3" opacity="0.75"/>
+    </svg>
+    <div class="logo-text">
+      <div class="logo-kr">부릿지</div>
+      <div class="logo-en">Bu<b>RIDGE</b></div>
+    </div>
+  </a>
+  <div class="hd-right">
+    <div class="live-pill"><div class="live-dot"></div>실시간 업데이트</div>
+    <span class="hd-date">2026.09.23 기준</span>
+  </div>
+</header>
+
+<!-- ══ 히어로 ══ -->
+<section class="hero">
+  <div class="hero-in">
+    <div class="hero-left">
+      <div class="hero-eyebrow">Your Bu<span style="color:#4A8FE0;font-style:normal;">RIDGE</span> to Real Estate · 2026</div>
+      <h1>집으로 가는 다리,<br><em>부릿지</em>와 함께하세요</h1>
+      <p class="hero-sub">부동산이 낯선 완전 초보부터 첫 집 마련 실전까지. 청약 가점 계산, 대출 한도 진단, 매일 업데이트되는 시장 동향 — 집을 사는 모든 여정을 부릿지가 안내합니다.</p>
+      <div class="cert-row">
+        <span class="cert-tag ct-ga">청약 가이드</span>
+        <span class="cert-tag ct-gi">내집마련 플래너</span>
+        <span class="cert-tag ct-in">일일학습 72강</span>
+      </div>
+    </div>
+    <div class="hero-panel">
+      <div class="hp-ttl">8월 1주 공식 발표 (8.6 기준)</div>
+      <div class="hp-row">
+        <span class="hp-label">서울 매매 주간</span>
+        <span class="hp-val hv-up">+0.26% <small style="font-size:.6rem;opacity:.7;">77주 연속↑</small></span>
+      </div>
+      <div class="hp-row">
+        <span class="hp-label">서울 전세 주간</span>
+        <span class="hp-val hv-up">+0.25%</span>
+      </div>
+      <div class="hp-row">
+        <span class="hp-label">수도권 매매</span>
+        <span class="hp-val hv-up">+0.17%</span>
+      </div>
+      <div class="hp-row">
+        <span class="hp-label">한은 기준금리</span>
+        <span class="hp-val hv-nt">2.75% (8.27 금통위)</span>
+      </div>
+      <div class="hp-row">
+        <span class="hp-label">원/달러 환율</span>
+        <span class="hp-val hv-up">1,424원 (원화 강세)</span>
+      </div>
+      <div class="hp-date">한국부동산원 2026.08.06 발표 · 세제개편안 8.3 발표 반영</div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ 뉴스 티커 ══ -->
+<div class="ticker">
+  <span class="ticker-label">Latest</span>
+  <div class="ticker-items">
+    <span class="ticker-item"><b>서울</b> 8월 1주 매매 <span class="up">+0.26%</span> 77주 연속 상승 · 강남 +0.01% vs 강북 중구 <span class="up">+0.54%</span> 역전 현상</span>
+    <span class="ticker-item"><b>세제개편</b> 8.3 발표 — 종부세 실거주 20억↓ 면제(2027년~) · 양도세 보유공제 2029년 폐지 예정</span>
+    <span class="ticker-item"><b>환율</b> 원/달러 <span class="up">1,424원</span>대로 급락 — 7월 초 1,501원 대비 77원 하락 · 원화 강세</span>
+    <span class="ticker-item"><b>금통위</b> 8.27 기준금리 <span class="nt">매파적 동결 전망</span> — 최종금리 3.25~3.50% 전망</span>
+    <span class="ticker-item"><b>미분양</b> 전국 <span class="dn">6만 7,464가구</span>(6월 말) · 악성 미분양 3만 가구 육박 · 지방 집중</span>
+    <span class="ticker-item"><b>공급절벽</b> 수도권 준공 <span class="dn">-52.4%</span>(6월) — 2028~29년 입주 절벽 경고 · 3기 신도시 착공 1~2년 앞당기기</span>
+  </div>
+</div>
+
+<!-- ══ 메인 ══ -->
+<main class="main">
+
+  <!-- 업데이트 배너 -->
+  <div class="update-bar">
+    <span class="ub-icon">2026.09.23 업데이트</span>
+    <span><b>8월 1주 서울 +0.26%</b>(77주 연속 상승) · <b>세제개편안 8.3 발표</b>(종부세·양도세 전면 개편) · <b>세금 가이드 신규</b>(취득세·양도세 계산기·세제개편 반영) · 강남 관망 vs 강북 급등 역전 현상 · 원/달러 1,424원 급락</span>
+  </div>
+
+  <!-- ── 추천 학습 경로 ── -->
+  <div class="sh"><span class="sh-title">추천 학습 경로</span></div>
+  <div class="path-strip">
+    <div class="path-card pc-begin">
+      <div class="pc-label begin">입문 · Beginner</div>
+      <div class="pc-ttl">부동산 첫걸음</div>
+      <div style="font-size:.67rem;color:var(--ink3);margin:3px 0 7px;">용어·개념 이해 → 기본 계산 → 입문 시험</div>
+      <div class="pc-links">
+        <a class="pc-link" href="./부동산_개념학습_2026.html">개념 학습</a>
+        <a class="pc-link" href="./부동산_시험_2026.html">입문 시험 Lv.1~3</a>
+        <a class="pc-link" href="./부동산_백서_2026.html">백서 기초</a>
+      </div>
+    </div>
+    <div class="path-card pc-mid">
+      <div class="pc-label mid">중급 · Intermediate</div>
+      <div class="pc-ttl">시장 분석 + 규제 이해</div>
+      <div style="font-size:.67rem;color:var(--ink3);margin:3px 0 7px;">지역 분석 → 규제 지도 → 글로벌 지표 → 중급 시험</div>
+      <div class="pc-links">
+        <a class="pc-link" href="./부동산_지도분석_2026.html">지역 지도</a>
+        <a class="pc-link" href="./부동산_규제지도_2026.html">규제 지도</a>
+        <a class="pc-link" href="./부동산_글로벌지표.html">글로벌 지표</a>
+        <a class="pc-link" href="./부동산_시험_2026.html">중급 Lv.4~7</a>
+      </div>
+    </div>
+    <div class="path-card pc-adv">
+      <div class="pc-label adv">심화 · Advanced</div>
+      <div class="pc-ttl">감정평가 + 투자 분석</div>
+      <div style="font-size:.67rem;color:var(--ink3);margin:3px 0 7px;">심화 개념 → 계산기 실전 → 최신 동향 → 전문가 시험</div>
+      <div class="pc-links">
+        <a class="pc-link" href="./부동산_심화학습_2026.html">심화 학습</a>
+        <a class="pc-link" href="./부동산_최신동향_2026.html">최신 동향</a>
+        <a class="pc-link" href="./부동산_시험_2026.html">전문가 Lv.8~10</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── 핵심 학습 (4열) ── -->
+  <div class="sh"><span class="sh-title">핵심 학습 모듈</span></div>
+  <div class="grid-4">
+
+    <a class="card card-ref" href="./부동산_백서_2026.html">
+      <div class="c-badge cb-ref">Reference</div>
+      <div class="card-icon ci-ref">📋</div>
+      <div class="c-title">부동산 백서</div>
+      <div class="c-desc">서울·경기 시장 분석, 정책 타임라인, 감정평가사·공인중개사·투자분석사 자격증 핵심 이론, 법령·세제 완전 정리.</div>
+      <div class="c-footer">
+        <div class="c-tags"><span class="tag">시장분석</span><span class="tag">자격증 3종</span><span class="tag">세제·법령</span></div>
+        <span class="c-arrow">→</span>
+      </div>
+    </a>
+
+    <a class="card card-learn" href="./부동산_개념학습_2026.html">
+      <div class="c-badge cb-learn">Learning</div>
+      <div class="card-icon ci-learn">📖</div>
+      <div class="c-title">개념 학습</div>
+      <div class="c-desc">핵심 개념 해설, LTV·DSR·Cap Rate 등 6종 계산기, 5가지 비교분석표, 60개 용어사전.</div>
+      <div class="c-footer">
+        <div class="c-tags"><span class="tag">계산기 6종</span><span class="tag">용어사전</span><span class="tag">비교분석</span></div>
+        <span class="c-arrow">→</span>
+      </div>
+    </a>
+
+    <a class="card card-adv" href="./부동산_심화학습_2026.html">
+      <div class="c-badge cb-adv">Advanced</div>
+      <div class="card-icon ci-adv">⚗️</div>
+      <div class="c-title">심화 학습</div>
+      <div class="c-desc">감정평가 3방식 완전 풀이, 재건축 분담금 시뮬레이터, Cap Rate·DSCR·레버리지 계산기, 양도세 자동계산, 경매 권리분석.</div>
+      <div class="c-footer">
+        <div class="c-tags"><span class="tag">감정평가</span><span class="tag">재건축</span><span class="tag">투자분석</span></div>
+        <span class="c-arrow">→</span>
+      </div>
+    </a>
+
+    <a class="card card-daily" href="./부동산_일일학습_2026.html">
+      <div class="c-badge" style="background:var(--teal-lt);color:var(--teal);">Daily</div>
+      <div class="card-icon" style="background:var(--teal-lt);color:var(--teal);">📅</div>
+      <div class="c-title">일일 학습</div>
+      <div class="c-desc">매일 자동으로 새 강의가 등장합니다. 72개 강의 로테이션 + 스트릭 추적 + 퀴즈 + 월간 캘린더.</div>
+      <div class="c-footer">
+        <div class="c-tags"><span class="tag">매일 자동</span><span class="tag">스트릭</span><span class="tag">퀴즈</span></div>
+        <span class="c-arrow">→</span>
+      </div>
+    </a>
+
+    <a class="card" style="--card-accent:#0A6E42;" href="./부동산_경제분석_2026.html">
+      <div class="c-badge" style="background:#E4F3EC;color:#0A6E42;font-size:.56rem;font-weight:700;letter-spacing:.07em;text-transform:uppercase;padding:2px 7px;border-radius:3px;">Macro</div>
+      <div class="card-icon" style="background:#E4F3EC;">📊</div>
+      <div class="c-title">거시경제 × 부동산</div>
+      <div class="c-desc">금리·환율·물가·GDP·M2·가계부채 — 경제 지표가 부동산을 어떻게 움직이는지. 시나리오 시뮬레이터 + 상관관계 요약표.</div>
+      <div class="c-footer">
+        <div class="c-tags"><span class="tag">금리·환율</span><span class="tag">인플레이션</span><span class="tag">시나리오</span></div>
+        <span class="c-arrow">→</span>
+      </div>
+    </a>
+
+    <a class="card" style="--card-accent:#7C3AED;" href="./부동산_내집마련플래너_2026.html">
+      <div class="c-badge" style="background:#EDE9FE;color:#7C3AED;font-size:.56rem;font-weight:700;letter-spacing:.07em;text-transform:uppercase;padding:2px 7px;border-radius:3px;">Planner</div>
+      <div class="card-icon" style="background:#EDE9FE;">🏡</div>
+      <div class="c-title">내 집 마련 플래너</div>
+      <div class="c-desc">내 소득·저축 입력 → 지금 살 수 있는 집 가격·지역 즉시 계산. 목표 주택 설정하면 부족 자금·달성 기간·월 저축 플랜 자동 역산. LTV/DSR/취득세 2026 기준 반영.</div>
+      <div class="c-footer">
+        <div class="c-tags"><span class="tag">대출한도계산</span><span class="tag">취득세</span><span class="tag">달성플랜</span></div>
+        <span class="c-arrow">→</span>
+      </div>
+    </a>
+
+    <a class="card" style="--card-accent:#0B6E3A;" href="./부동산_청약가이드_2026.html">
+      <div class="c-badge" style="background:#E8FAF0;color:#0B6E3A;font-size:.56rem;font-weight:700;letter-spacing:.07em;text-transform:uppercase;padding:2px 7px;border-radius:3px;">청약</div>
+      <div class="card-icon" style="background:#E8FAF0;">🏢</div>
+      <div class="c-title">청약 완전 정복</div>
+      <div class="c-desc">실시간 가점 계산기로 내 점수 즉시 확인. 청약공고문 읽는 법, 특별공급 6종 자격 진단, 지역별 당첨 가능 점수, 가점별 맞춤 전략까지 청약에 관한 모든 것.</div>
+      <div class="c-footer">
+        <div class="c-tags"><span class="tag">가점 계산기</span><span class="tag">특별공급</span><span class="tag">공고문 분석</span></div>
+        <span class="c-arrow">→</span>
+      </div>
+    </a>
+
+    <a class="card" style="--card-accent:#B45309;" href="./부동산_세금가이드_2026.html">
+      <div class="c-badge" style="background:#FEF3C7;color:#B45309;font-size:.56rem;font-weight:700;letter-spacing:.07em;text-transform:uppercase;padding:2px 7px;border-radius:3px;">🆕 세금</div>
+      <div class="card-icon" style="background:#FEF3C7;">🧾</div>
+      <div class="c-title">세금 가이드</div>
+      <div class="c-desc">취득세·양도세 자동 계산기, 보유세(재산세·종부세) 안내, 절세 전략 6가지. 2026년 8월 세제개편안(종부세·양도세 전면 개편) 완전 반영.</div>
+      <div class="c-footer">
+        <div class="c-tags"><span class="tag">취득세 계산기</span><span class="tag">양도세 계산기</span><span class="tag">세제개편안</span></div>
+        <span class="c-arrow">→</span>
+      </div>
+    </a>
+
+    <a class="card card-exam" href="./부동산_시험_2026.html">
+      <div class="c-badge cb-exam">Exam</div>
+      <div class="card-icon ci-exam">✏️</div>
+      <div class="c-title">시험 센터</div>
+      <div class="c-desc">입문~전문가 10단계 모의고사 100문항. 2026년 최신 기준 반영. 상세 해설과 점수 분석 제공.</div>
+      <div class="c-footer">
+        <div class="c-tags"><span class="tag">10단계</span><span class="tag">100문항</span><span class="tag">점수분석</span></div>
+        <span class="c-arrow">→</span>
+      </div>
+    </a>
+
+  </div>
+
+  <!-- ── 분석 도구 + 최신 정보 ── -->
+  <div class="sh"><span class="sh-title">분석 도구 &amp; 최신 정보</span></div>
+  <div class="grid-2" style="margin-bottom:12px;">
+
+    <!-- 최신 동향 — featured 카드 -->
+    <a class="card card-featured" href="./부동산_최신동향_2026.html">
+      <div class="feat-inner">
+        <div class="feat-left">
+          <div style="display:flex;align-items:center;gap:7px;margin-bottom:9px;">
+            <span style="font-size:.58rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--ok);background:var(--ok-lt);padding:2px 7px;border-radius:3px;">최신 뉴스</span>
+            <span style="font-size:.6rem;color:var(--ink3);">2026.09.23 기준</span>
+          </div>
+          <div class="c-title" style="font-size:1rem;margin-bottom:7px;">최신 시장 동향</div>
+          <div class="c-desc">서울 8월 1주 <b style="color:var(--ok);">+0.26%</b> (77주 연속 상승). 강남 +0.01% vs 강북 중구 +0.54% 역전. 세제개편안(8.3) 발표, 원/달러 1,424원 급락, 미분양 6.7만 가구.</div>
+        </div>
+        <div class="feat-right">
+          <div class="feat-stat">
+            <div class="fs-val fs-up">+0.26%</div>
+            <div class="fs-lbl">서울 8월 1주 매매</div>
+          </div>
+          <div class="feat-stat">
+            <div class="fs-val fs-up">77주</div>
+            <div class="fs-lbl">서울 연속 상승</div>
+          </div>
+          <div class="feat-stat">
+            <div class="fs-val" style="color:var(--warn);font-size:.9rem;">6.7만</div>
+            <div class="fs-lbl">전국 미분양(가구)</div>
+          </div>
+        </div>
+      </div>
+      <div class="c-footer">
+        <div class="c-tags"><span class="tag">주간 가격지수</span><span class="tag">2026.07 정책</span><span class="tag">PF 리스크</span><span class="tag">학습 포인트</span></div>
+        <span class="c-arrow">→</span>
+      </div>
+    </a>
+
+    <!-- 글로벌 지표 -->
+    <a class="card card-live" href="./부동산_글로벌지표.html">
+      <div class="c-badge" style="background:#E0F5F2;color:#0A7A6A;font-size:.56rem;font-weight:700;letter-spacing:.07em;text-transform:uppercase;padding:2px 7px;border-radius:3px;">Live</div>
+      <div class="card-icon ci-live">📡</div>
+      <div class="c-title">글로벌 지표 트래커</div>
+      <div class="c-desc">M1·M2·Fed 금리·CPI·USD/KRW·금·WTI·미 국채 — 매일 자동 갱신. 각 지표의 부동산 영향 메커니즘 해설.</div>
+      <div class="c-footer">
+        <div class="c-tags"><span class="tag">실시간</span><span class="tag">M1·M2</span><span class="tag">금리·환율</span><span class="tag">영향 해설</span></div>
+        <span class="c-arrow">→</span>
+      </div>
+    </a>
+
+  </div>
+
+  <!-- ── 지도 도구 (3열) ── -->
+  <div class="grid-3">
+
+    <a class="card card-regional" href="./부동산_지도분석_2026.html">
+      <div class="c-badge cb-map">지도 분석</div>
+      <div class="card-icon ci-regional">🗺️</div>
+      <div class="c-title">지역별 지도 분석</div>
+      <div class="c-desc">서울 25개 구 + 수도권 광역 인터랙티브 지도. 84㎡ 매매가·등급·전세가율·트렌드를 클릭 한 번으로 조회.</div>
+      <div class="c-footer">
+        <div class="c-tags"><span class="tag">서울 25구</span><span class="tag">가격 열지도</span><span class="tag">클릭 상세</span></div>
+        <span class="c-arrow">→</span>
+      </div>
+    </a>
+
+    <a class="card card-map" href="./부동산_규제지도_2026.html">
+      <div class="c-badge cb-map">규제 지도</div>
+      <div class="card-icon ci-map">📌</div>
+      <div class="c-title">규제지역 지도</div>
+      <div class="c-desc">서울 25구 전체 토허제 · 투기과열지구 · 분양가상한제 인터랙티브 지도. 10·15 대책 기준 최신 규제 레이어.</div>
+      <div class="c-footer">
+        <div class="c-tags"><span class="tag">토허제</span><span class="tag">투기과열</span><span class="tag">분양가상한</span></div>
+        <span class="c-arrow">→</span>
+      </div>
+    </a>
+
+    <!-- 커버리지 요약 카드 (클릭 없음) -->
+    <div class="card" style="cursor:default;padding:18px;">
+      <div style="font-size:.6rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--ink3);margin-bottom:12px;">콘텐츠 커버리지</div>
+      <div style="display:flex;flex-direction:column;gap:6px;">
+        <div style="display:flex;justify-content:space-between;font-size:.68rem;padding:4px 0;border-bottom:1px solid var(--rule);">
+          <span style="color:var(--ink2);">학습 모듈</span><span style="font-weight:700;color:var(--ink);">9개</span>
+        </div>
+        <div style="display:flex;justify-content:space-between;font-size:.68rem;padding:4px 0;border-bottom:1px solid var(--rule);">
+          <span style="color:var(--ink2);">시험 문항</span><span style="font-weight:700;color:var(--ink);">100문항</span>
+        </div>
+        <div style="display:flex;justify-content:space-between;font-size:.68rem;padding:4px 0;border-bottom:1px solid var(--rule);">
+          <span style="color:var(--ink2);">계산기 종류</span><span style="font-weight:700;color:var(--ink);">12종 이상</span>
+        </div>
+        <div style="display:flex;justify-content:space-between;font-size:.68rem;padding:4px 0;border-bottom:1px solid var(--rule);">
+          <span style="color:var(--ink2);">용어사전</span><span style="font-weight:700;color:var(--ink);">60개+</span>
+        </div>
+        <div style="display:flex;justify-content:space-between;font-size:.68rem;padding:4px 0;border-bottom:1px solid var(--rule);">
+          <span style="color:var(--ink2);">자격증 대비</span><span style="font-weight:700;color:var(--ink);">3종</span>
+        </div>
+        <div style="display:flex;justify-content:space-between;font-size:.68rem;padding:4px 0;">
+          <span style="color:var(--ink2);">데이터 기준</span><span style="font-weight:700;color:var(--ok);">2026년 7월</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ── 커버리지 테이블 ── -->
+  <div class="sh" style="margin-top:36px;"><span class="sh-title">전체 커버리지</span></div>
+  <div class="cov-wrap">
+    <table class="cov">
+      <thead>
+        <tr>
+          <th style="width:115px;">영역</th>
+          <th>세부 주제</th>
+          <th style="width:180px;">제공 모듈</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>시장 분석</strong></td>
+          <td>서울·경기 매매·전세 지수, 지역별 아파트 가격, 거래량·미분양</td>
+          <td><span class="ml" style="background:var(--blue-lt);color:var(--blue);">백서</span><span class="ml" style="background:#F3EEFF;color:var(--purple);">지도분석</span></td>
+        </tr>
+        <tr>
+          <td><strong>대출 규제</strong></td>
+          <td>LTV·DSR·스트레스 DSR (3%하한), 10·15 대책, 정책대출</td>
+          <td><span class="ml" style="background:var(--blue-lt);color:var(--blue);">백서</span><span class="ml" style="background:var(--ok-lt);color:var(--ok);">학습</span><span class="ml" style="background:var(--amber-lt);color:var(--amber);">심화</span><span class="ml" style="background:var(--warn-lt);color:var(--warn);">시험</span></td>
+        </tr>
+        <tr>
+          <td><strong>세제</strong></td>
+          <td>취득세·재산세·종부세·양도세·임대소득세 완전 세율표 + 자동계산기</td>
+          <td><span class="ml" style="background:var(--blue-lt);color:var(--blue);">백서</span><span class="ml" style="background:var(--amber-lt);color:var(--amber);">심화</span><span class="ml" style="background:var(--warn-lt);color:var(--warn);">시험</span></td>
+        </tr>
+        <tr>
+          <td><strong>감정평가</strong></td>
+          <td>원가방식·수익방식·비교방식 3방식 완전 풀이 + 원가 자동계산기</td>
+          <td><span class="ml" style="background:var(--amber-lt);color:var(--amber);">심화</span><span class="ml" style="background:var(--warn-lt);color:var(--warn);">시험</span></td>
+        </tr>
+        <tr>
+          <td><strong>재건축·재개발</strong></td>
+          <td>비례율·권리가액·분담금 계산기, 절차 7단계, 초과이익환수제</td>
+          <td><span class="ml" style="background:var(--blue-lt);color:var(--blue);">백서</span><span class="ml" style="background:var(--amber-lt);color:var(--amber);">심화</span></td>
+        </tr>
+        <tr>
+          <td><strong>투자 분석</strong></td>
+          <td>NOI·Cap Rate·DSCR·레버리지 ROE·IRR — 종합 계산기 포함</td>
+          <td><span class="ml" style="background:var(--amber-lt);color:var(--amber);">심화</span></td>
+        </tr>
+        <tr>
+          <td><strong>경매·권리분석</strong></td>
+          <td>말소기준권리, 배당 순위, 임차인 대항력·확정일자, 낙찰가 전략</td>
+          <td><span class="ml" style="background:var(--amber-lt);color:var(--amber);">심화</span></td>
+        </tr>
+        <tr>
+          <td><strong>규제 지도</strong></td>
+          <td>서울 전 자치구 토허제·투기과열·분양가상한제 레이어 지도</td>
+          <td><span class="ml" style="background:#EBE4FF;color:var(--purple);">규제지도</span></td>
+        </tr>
+        <tr>
+          <td><strong>글로벌 지표</strong></td>
+          <td>M1·M2, Fed·한은 금리, CPI, USD/KRW, 금·WTI·미 국채 — 실시간 자동갱신</td>
+          <td><span class="ml" style="background:#E0F5F2;color:#0A7A6A;">Live</span></td>
+        </tr>
+        <tr>
+          <td><strong>최신 동향</strong></td>
+          <td>주간 가격지수, 정책 변화 브리핑, PF 리스크, 3기 신도시 진행 상황</td>
+          <td><span class="ml" style="background:var(--ok-lt);color:var(--ok);">뉴스</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+</main>
+
+<footer>
+  <p class="ft-copy">© 2026 부릿지 BuRIDGE — 학습 목적으로 제공되며 투자 자문이 아닙니다.<br>Your Bridge to Real Estate · KB부동산 · 국토부 실거래가 · 한국부동산원 기준.</p>
+  <div class="ft-links">
+    <a class="ft-link" href="./부동산_백서_2026.html">백서</a>
+    <a class="ft-link" href="./부동산_심화학습_2026.html">심화</a>
+    <a class="ft-link" href="./부동산_시험_2026.html">시험</a>
+    <a class="ft-link" href="./부동산_최신동향_2026.html">동향</a>
+  </div>
+</footer>
+
+</body>
+</html>

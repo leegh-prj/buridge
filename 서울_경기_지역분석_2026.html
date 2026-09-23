@@ -1,0 +1,945 @@
+﻿<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/favicon.svg">
+<meta name="theme-color" content="#0C2040">
+<meta property="og:site_name" content="부릿지 BuRIDGE">
+<meta property="og:type" content="website">
+<meta property="og:title" content="지역분석 | 부릿지 BuRIDGE">
+<meta property="og:description" content="서울·경기 주요 지역별 부동산 시세·입지·교통 분석.">
+<meta property="og:url" content="https://buridge.vercel.app/서울_경기_지역분석_2026.html">
+<meta property="og:image" content="https://buridge.vercel.app/og-image.svg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="ko_KR">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="지역분석 | 부릿지 BuRIDGE">
+<meta name="twitter:description" content="서울·경기 주요 지역별 부동산 시세·입지·교통 분석.">
+<meta name="twitter:image" content="https://buridge.vercel.app/og-image.svg">
+<title>서울·경기 지역별 부동산 분석 2026</title>
+<style>
+:root {
+  --ink:    #0e1e2f;
+  --ink2:   #2c3e50;
+  --bg:     #f4f3ef;
+  --white:  #ffffff;
+  --rule:   #dde2e8;
+  --mid:    #5a6b7e;
+  --light:  #e8edf3;
+
+  --s-bg:#fdf0f0; --s-bd:#c41230; --s-tx:#7a0a1e;
+  --a-bg:#e8f5ee; --a-bd:#1a5e3a; --a-tx:#14432b;
+  --bp-bg:#e0f2fe;--bp-bd:#0369a1;--bp-tx:#024d76;
+  --b-bg:#eff3ff; --b-bd:#3b5bd5; --b-tx:#1e3a8a;
+  --c-bg:#fef3c7; --c-bd:#c47a1e; --c-tx:#7a4d0a;
+  --d-bg:#f3f4f6; --d-bd:#6b7280; --d-tx:#374151;
+
+  --bull:#15803d;
+  --bear:#b91c1c;
+  --up-c:#166534;
+  --dn-c:#991b1b;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{font-size:15px;scroll-behavior:smooth}
+body{font-family:'Apple SD Gothic Neo','Noto Sans KR','Malgun Gothic',system-ui,sans-serif;background:var(--bg);color:var(--ink);line-height:1.7}
+
+/* HERO */
+.hero{background:var(--ink);color:#fff;padding:56px 24px 48px;text-align:center}
+.hero-eyebrow{font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.45);margin-bottom:16px}
+.hero-title{font-family:Georgia,serif;font-size:clamp(1.8rem,4vw,2.8rem);font-weight:normal;line-height:1.2}
+.hero-title em{font-style:normal;color:#c41230}
+.hero-sub{margin-top:12px;font-size:.88rem;color:rgba(255,255,255,.55)}
+.hero-meta{display:flex;gap:32px;justify-content:center;flex-wrap:wrap;margin-top:36px;padding-top:28px;border-top:1px solid rgba(255,255,255,.12)}
+.hero-stat span{display:block;font-family:Georgia,serif;font-size:1.5rem;color:#fff;font-variant-numeric:tabular-nums}
+.hero-stat span b{color:#c41230;font-size:.75em}
+.hero-stat small{display:block;font-size:.65rem;color:rgba(255,255,255,.4);letter-spacing:.1em;text-transform:uppercase;margin-top:2px}
+
+/* LEGEND */
+.legend-bar{background:var(--ink2);padding:10px 24px;display:flex;gap:16px;flex-wrap:wrap;justify-content:center;align-items:center}
+.legend-item{display:flex;align-items:center;gap:6px;font-size:.72rem;color:rgba(255,255,255,.7)}
+.grade-dot{width:10px;height:10px;border-radius:2px;flex-shrink:0}
+
+/* SECTION HEADER */
+.sec-head{background:var(--ink);color:#fff;padding:18px 24px;margin-top:40px}
+.sec-head-inner{max-width:1100px;margin:0 auto;display:flex;align-items:baseline;gap:16px}
+.sec-name{font-family:Georgia,serif;font-size:1.3rem;font-weight:normal}
+.sec-desc{font-size:.78rem;color:rgba(255,255,255,.5)}
+
+/* GRID */
+.grid{max-width:1100px;margin:0 auto;padding:24px 16px;display:grid;grid-template-columns:repeat(auto-fill,minmax(310px,1fr));gap:16px}
+
+/* CARD */
+.card{background:var(--white);border:1px solid var(--rule);display:flex;flex-direction:column;overflow:hidden}
+.card-head{padding:14px 16px 12px;border-bottom:1px solid var(--rule);display:flex;align-items:flex-start;justify-content:space-between;gap:8px}
+.card-name{font-size:1.05rem;font-weight:700;color:var(--ink)}
+.card-name sub{font-size:.7rem;font-weight:400;color:var(--mid);margin-left:4px}
+.grade{font-size:.72rem;font-weight:700;padding:3px 9px;border-radius:2px;letter-spacing:.06em;flex-shrink:0}
+.grade-S{background:var(--s-bg);color:var(--s-tx);border:1px solid var(--s-bd)}
+.grade-A{background:var(--a-bg);color:var(--a-tx);border:1px solid var(--a-bd)}
+.grade-Bp{background:var(--bp-bg);color:var(--bp-tx);border:1px solid var(--bp-bd)}
+.grade-B{background:var(--b-bg);color:var(--b-tx);border:1px solid var(--b-bd)}
+.grade-C{background:var(--c-bg);color:var(--c-tx);border:1px solid var(--c-bd)}
+.grade-D{background:var(--d-bg);color:var(--d-tx);border:1px solid var(--d-bd)}
+
+.price-row{padding:10px 16px;background:var(--bg);display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
+.price-main{font-family:Georgia,serif;font-size:1.2rem;color:var(--ink);font-variant-numeric:tabular-nums}
+.price-range{font-size:.75rem;color:var(--mid)}
+.price-chg{font-size:.75rem;font-weight:700;margin-left:auto}
+.chg-up{color:var(--up-c)}
+.chg-dn{color:var(--dn-c)}
+.chg-fl{color:var(--mid)}
+
+.card-body{padding:12px 16px;flex:1;display:flex;flex-direction:column;gap:10px}
+.feat{font-size:.8rem;color:var(--ink2);line-height:1.6;padding-bottom:8px;border-bottom:1px solid var(--rule)}
+
+.list-head{font-size:.65rem;letter-spacing:.12em;text-transform:uppercase;font-weight:700;margin-bottom:4px}
+.list-head.bull{color:var(--bull)}
+.list-head.bear{color:var(--bear)}
+.blist{list-style:none;display:flex;flex-direction:column;gap:3px}
+.blist li{font-size:.78rem;line-height:1.5;padding-left:14px;position:relative;color:var(--ink2)}
+.blist.bull li::before{content:'▲';position:absolute;left:0;font-size:.55rem;color:var(--bull);top:3px}
+.blist.bear li::before{content:'▼';position:absolute;left:0;font-size:.55rem;color:var(--bear);top:3px}
+
+.outlook{margin-top:auto;padding:10px 12px;background:var(--bg);border-left:3px solid var(--rule);font-size:.78rem;color:var(--ink2);line-height:1.55}
+.outlook b{color:var(--ink);display:block;font-size:.65rem;letter-spacing:.1em;text-transform:uppercase;margin-bottom:3px}
+
+/* WIDE CARD (for full-width items) */
+.card-wide{grid-column:1/-1}
+
+/* COMPARE TABLE */
+.compare-wrap{max-width:1100px;margin:32px auto;padding:0 16px}
+.compare-title{font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--mid);margin-bottom:12px;font-weight:700}
+.tbl-scroll{overflow-x:auto}
+table.cmp{width:100%;min-width:600px;border-collapse:collapse;font-size:.8rem;font-variant-numeric:tabular-nums}
+table.cmp thead th{background:var(--ink);color:#fff;padding:9px 12px;text-align:center;font-size:.72rem;letter-spacing:.05em;font-weight:600;white-space:nowrap}
+table.cmp thead th:first-child{text-align:left}
+table.cmp tbody tr:nth-child(even){background:var(--light)}
+table.cmp tbody td{padding:8px 12px;border-bottom:1px solid var(--rule);text-align:center;color:var(--mid)}
+table.cmp tbody td:first-child{text-align:left;font-weight:600;color:var(--ink)}
+table.cmp .up{color:var(--up-c);font-weight:700}
+table.cmp .dn{color:var(--dn-c);font-weight:700}
+table.cmp tr.hi{background:#fff8f8!important}
+
+/* INSIGHT BOX */
+.insight-grid{max-width:1100px;margin:24px auto;padding:0 16px;display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px}
+.insight{background:var(--white);border:1px solid var(--rule);padding:18px 20px}
+.insight-label{font-size:.65rem;letter-spacing:.14em;text-transform:uppercase;font-weight:700;color:var(--mid);margin-bottom:8px}
+.insight p{font-size:.82rem;color:var(--ink2);line-height:1.65}
+.insight.red{border-left:3px solid #c41230}
+.insight.green{border-left:3px solid var(--bull)}
+.insight.blue{border-left:3px solid #2563eb}
+.insight.gold{border-left:3px solid #c47a1e}
+
+.foot{max-width:1100px;margin:40px auto 0;padding:20px 16px;border-top:1px solid var(--rule);font-size:.7rem;color:var(--mid);line-height:1.6}
+
+@media(max-width:600px){.grid{grid-template-columns:1fr}.hero-meta{gap:20px}}
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <p class="hero-eyebrow">전문가 지역 분석 리포트 2026</p>
+  <h1 class="hero-title"><em>서울 25개 구 · 경기 주요 지역</em><br>부동산 심층 분석</h1>
+  <p class="hero-sub">2026년 6월 기준 · 실거래가 · 호재 · 리스크 · 전망 종합</p>
+  <div class="hero-meta">
+    <div class="hero-stat"><span>25<b>개 구</b></span><small>서울 전체</small></div>
+    <div class="hero-stat"><span>14<b>개 권역</b></span><small>경기·인천</small></div>
+    <div class="hero-stat"><span>2.5<b>%</b></span><small>기준금리</small></div>
+    <div class="hero-stat"><span>10<b>억+</b></span><small>서울 중위가</small></div>
+  </div>
+</div>
+
+<!-- GRADE LEGEND -->
+<div class="legend-bar">
+  <span style="font-size:.7rem;color:rgba(255,255,255,.5);margin-right:4px">투자매력도</span>
+  <div class="legend-item"><div class="grade-dot" style="background:#c41230"></div>S — 최우선</div>
+  <div class="legend-item"><div class="grade-dot" style="background:#1a5e3a"></div>A — 적극 긍정</div>
+  <div class="legend-item"><div class="grade-dot" style="background:#0369a1"></div>B+ — 긍정</div>
+  <div class="legend-item"><div class="grade-dot" style="background:#3b5bd5"></div>B — 중립 우위</div>
+  <div class="legend-item"><div class="grade-dot" style="background:#c47a1e"></div>C — 신중</div>
+  <div class="legend-item"><div class="grade-dot" style="background:#6b7280"></div>D — 관망</div>
+</div>
+
+
+<!-- ═══════════ 서울 강남권 ═══════════ -->
+<div class="sec-head"><div class="sec-head-inner"><span class="sec-name">서울 강남권</span><span class="sec-desc">강남구 · 서초구 · 송파구 · 강동구 · 용산구 — 서울 시장을 선도하는 프리미엄 5개 구</span></div></div>
+<div class="grid">
+
+  <!-- 강남구 -->
+  <div class="card">
+    <div class="card-head"><div class="card-name">강남구 <sub>대치·압구정·역삼·개포</sub></div><span class="grade grade-S">S</span></div>
+    <div class="price-row"><span class="price-main">28~32억</span><span class="price-range">84㎡ 중위</span><span class="price-chg chg-up">▲ 2021 고점 대비 +15~20%</span></div>
+    <div class="card-body">
+      <p class="feat">대치동 학원가(전국 최대)·압구정 재건축·역삼·삼성 업무지구·개포 재건축 완성 순환 모델. 서울 내 가장 강한 수요 집중지.</p>
+      <p class="list-head bull">호재</p>
+      <ul class="blist bull">
+        <li>압구정 현대·한양 재건축 추진 — 완료 시 2만여 세대 신축, 시세 재정의</li>
+        <li>영동대로 복합환승센터 — GTX·KTX·공항철도 환승, 2030년 개통 목표</li>
+        <li>개포주공 1~8단지 재건축 대부분 완료, 순환 수요 공급 안정</li>
+        <li>대치동 학군 불변 — 강남 거주 수요의 방어막</li>
+        <li>글로벌 럭셔리 브랜드 아파트 공급(청담·압구정 고급화)</li>
+      </ul>
+      <p class="list-head bear">리스크</p>
+      <ul class="blist bear">
+        <li>이재명 정부 종부세 강화 — 30억 이상 주택 보유세 연 수천만원</li>
+        <li>압구정 재건축 이주 시 전세 수요 급증 → 단기 전셋값 변동</li>
+        <li>절대 가격 높아 실수요 진입 한계 (LTV 50% 시 현금 15억+ 필요)</li>
+      </ul>
+      <div class="outlook"><b>전망</b>압구정·청담 재건축이 본격화되면 '신축 강남'으로 재편되며 가격 레벨업 가능. 단기적으로 보유세 부담 증가가 일부 매물을 유도하나, 공급 희소성이 하방 지지. 장기 우상향 구조 유지.</div>
+    </div>
+  </div>
+
+  <!-- 서초구 -->
+  <div class="card">
+    <div class="card-head"><div class="card-name">서초구 <sub>반포·잠원·방배·서초</sub></div><span class="grade grade-S">S</span></div>
+    <div class="price-row"><span class="price-main">25~28억</span><span class="price-range">84㎡ 중위</span><span class="price-chg chg-up">▲ 고점 대비 +10~15%</span></div>
+    <div class="card-body">
+      <p class="feat">반포 한강변 최고가 단지 밀집. 래미안원베일리·아크로리버파크·반포자이 등 국내 최고가 브랜드 아파트 집결. 교육·한강·업무 3박자.</p>
+      <ul class="blist bull">
+        <li>반포 재건축 2세대 진행 — 신반포 계열 노후 단지 추진 중</li>
+        <li>방배 재건축 활성화 — 방배삼익 등 사업 속도 가속</li>
+        <li>서초IC~반포IC 일대 도시환경정비</li>
+        <li>한강 수변 공원 확충으로 주거 쾌적성 상승</li>
+      </ul>
+      <ul class="blist bear">
+        <li>강남과 동일한 종부세 리스크</li>
+        <li>신규 공급 여지 없어 재건축 외 공급 불가 — 진입 장벽 구조화</li>
+      </ul>
+      <div class="outlook"><b>전망</b>강남구와 함께 서울 가격 상단을 형성. 한강변 프리미엄은 글로벌 기준에도 여전히 저평가 의견 존재. 2026~2028년 반포 신반포 재건축 분양 시 주변 기존 단지 동반 상승 기대.</div>
+    </div>
+  </div>
+
+  <!-- 용산구 -->
+  <div class="card">
+    <div class="card-head"><div class="card-name">용산구 <sub>한남·이촌·한강로</sub></div><span class="grade grade-S">S</span></div>
+    <div class="price-row"><span class="price-main">22~27억</span><span class="price-range">84㎡ 중위</span><span class="price-chg chg-up">▲ 고점 대비 +5~10%</span></div>
+    <div class="card-body">
+      <p class="feat">한남뉴타운(12개 구역, 1만 4천여 가구) 서울 최대 재개발. 이촌 한강변. 용산국제업무지구 개발 예정. 강남 3구와 어깨를 나란히.</p>
+      <ul class="blist bull">
+        <li>한남뉴타운 순차 분양 — 한남3구역(2,900가구) 진행 중</li>
+        <li>용산국제업무지구 — 전략적 도심복합개발, 대규모 일자리 창출</li>
+        <li>GTX 연계 용산역(GTX-B 환승 예정) 교통 허브화</li>
+        <li>이촌동 한강변 노후 단지 리모델링·재건축 기대</li>
+        <li>외국인 거주 선호 지역 — 국제 수요 유입</li>
+      </ul>
+      <ul class="blist bear">
+        <li>한남뉴타운 사업 복잡성 — 구역별 속도 차이로 개발 시기 불확실</li>
+        <li>고층 개발 시 한강 조망권 분쟁 가능성</li>
+      </ul>
+      <div class="outlook"><b>전망</b>용산은 '강남 다음 핵심지'로 자리잡는 중. 한남뉴타운 분양이 가시화될수록 기존 단지 프리미엄 확장. 국제업무지구 개발 가시화 여부가 5년 내 핵심 변수.</div>
+    </div>
+  </div>
+
+  <!-- 송파구 -->
+  <div class="card">
+    <div class="card-head"><div class="card-name">송파구 <sub>잠실·방이·문정·풍납</sub></div><span class="grade grade-A">A</span></div>
+    <div class="price-row"><span class="price-main">18~22억</span><span class="price-range">84㎡ 중위</span><span class="price-chg chg-up">▲ 고점 대비 +5%</span></div>
+    <div class="card-body">
+      <p class="feat">잠실5단지 재건축(6,864세대→1만 2천세대급 예상) 서울 최대 재건축. 잠실 MICE 복합개발. 롯데월드·석촌호수 관광·상업 인프라.</p>
+      <ul class="blist bull">
+        <li>잠실5단지 재건축 — 완료 시 주변 시세 재편 가능성</li>
+        <li>잠실 국제교류복합지구(MICE) — 전시·컨벤션·업무 복합개발</li>
+        <li>문정법조타운·가든파이브 복합 인프라 성숙</li>
+        <li>GTX-A·C·D 잠실역 환승 논의 (C안 확정 시 교통 혁신)</li>
+      </ul>
+      <ul class="blist bear">
+        <li>잠실5단지 재건축 이주 시 대규모 이주 수요로 인근 전세 교란 우려</li>
+        <li>강남·서초 대비 상대적 가격 갭이 구조적 추종 형태 (리드 불가)</li>
+      </ul>
+      <div class="outlook"><b>전망</b>잠실 MICE와 5단지 재건축이 동시에 진행되면 '잠실 빅뱅'급 변화. 2028~2030년 가시화 시점에 선매수 효과 기대. 단기는 강남보다 가성비 있는 선택지.</div>
+    </div>
+  </div>
+
+  <!-- 강동구 -->
+  <div class="card">
+    <div class="card-head"><div class="card-name">강동구 <sub>둔촌·암사·고덕·상일</sub></div><span class="grade grade-Bp">B+</span></div>
+    <div class="price-row"><span class="price-main">11~14억</span><span class="price-range">84㎡ 중위</span><span class="price-chg chg-up">▲ 저점 대비 +25%</span></div>
+    <div class="card-body">
+      <p class="feat">올림픽파크포레온(둔촌주공 재건축, 12,032세대) 2023~2024년 입주 완료. 고덕강일·상일지구 신축 인프라 고도화 중.</p>
+      <ul class="blist bull">
+        <li>올림픽파크포레온 입주 완료 → 신축 프리미엄 안착 중</li>
+        <li>하남 교산 3기 신도시 GTX-D 강동구 경유 — 교통망 확충</li>
+        <li>강동 그린웨이(한강~일자산 녹지축) 쾌적성 향상</li>
+        <li>암사·천호 뉴타운 재개발 일부 진행 중</li>
+      </ul>
+      <ul class="blist bear">
+        <li>단기 입주 물량 과잉(12,000세대) 여파 — 전셋값 하락 압박 지속</li>
+        <li>강남3구 대비 학군 열위 인식 여전</li>
+      </ul>
+      <div class="outlook"><b>전망</b>입주 물량 충격이 흡수되고 인프라가 성숙하면 '강남 동쪽 베드타운'에서 '자족형 권역'으로 도약 가능. 2026~2027년이 매수 적기 의견 있음.</div>
+    </div>
+  </div>
+
+</div><!-- /grid 강남권 -->
+
+
+<!-- ═══════════ 마용성·핵심 중간권 ═══════════ -->
+<div class="sec-head"><div class="sec-head-inner"><span class="sec-name">마용성 · 핵심 중간권</span><span class="sec-desc">마포 · 성동 · 광진 · 양천 · 강서 · 영등포 · 동작 — 실수요 강한 중고가 생활권</span></div></div>
+<div class="grid">
+
+  <!-- 마포구 -->
+  <div class="card">
+    <div class="card-head"><div class="card-name">마포구 <sub>공덕·아현·마포·상암</sub></div><span class="grade grade-A">A</span></div>
+    <div class="price-row"><span class="price-main">13~16억</span><span class="price-range">84㎡ 중위</span><span class="price-chg chg-dn">▼ 고점 대비 −5~10%</span></div>
+    <div class="card-body">
+      <p class="feat">공덕역(5개 노선 환승) 최강 교통. 아현뉴타운 완성권. 홍대·연남 문화 인프라. 상암 DMC 방송·미디어 직주근접.</p>
+      <ul class="blist bull">
+        <li>공덕·아현 역세권 재개발 지속 — 신축 공급 꾸준</li>
+        <li>GTX-A 연신내·수색 연계 간접 수혜</li>
+        <li>상암 DMC 2단계 개발 추진 — IT·콘텐츠 기업 집적</li>
+        <li>홍대입구 역세권 복합개발 논의</li>
+      </ul>
+      <ul class="blist bear">
+        <li>공덕 역세권 공급 지속으로 프리미엄 희석 우려</li>
+        <li>한강 조망 단지 제한적 — 강남권 대비 자산 방어력 약함</li>
+      </ul>
+      <div class="outlook"><b>전망</b>서울 내 가장 균형 잡힌 실수요 지역. 교통·문화·직주 3박자. 고점 회복이 강남보다 느리지만, 10억대 진입 가능한 서울 마지막 핵심지로 꾸준한 수요 기대.</div>
+    </div>
+  </div>
+
+  <!-- 성동구 -->
+  <div class="card">
+    <div class="card-head"><div class="card-name">성동구 <sub>성수·행당·왕십리·옥수</sub></div><span class="grade grade-A">A</span></div>
+    <div class="price-row"><span class="price-main">15~18억</span><span class="price-range">84㎡ 중위</span><span class="price-chg chg-up">▲ 고점 대비 ±0~+5%</span></div>
+    <div class="card-body">
+      <p class="feat">성수동 글로벌 브랜드 팝업·명품화로 '서울의 브루클린' 정착. 옥수·금호 한강뷰. 왕십리역 환승 허브. 빠른 강남 접근성.</p>
+      <ul class="blist bull">
+        <li>성수 전략정비구역 — 대규모 개발로 서울숲 인접 고급 주거지화</li>
+        <li>왕십리 뉴타운 2차 개발 추진</li>
+        <li>옥수·금호 한강변 재건축 기대감 (노후 단지 多)</li>
+        <li>2호선+분당선+경의중앙선+수인선 환승으로 출퇴근 경쟁력 최상</li>
+      </ul>
+      <ul class="blist bear">
+        <li>성수 개발 지연 시 기대감 선반영 리스크</li>
+        <li>성수동 상업 지역 젠트리피케이션 — 주거 쾌적성 저하 우려</li>
+      </ul>
+      <div class="outlook"><b>전망</b>성수 전략정비구역 개발이 가시화되면 강남 인접 고급 주거지로 격상 가능. '마용성' 3인방 중 장기 상승 여력 가장 큰 지역으로 평가.</div>
+    </div>
+  </div>
+
+  <!-- 양천구 (목동) -->
+  <div class="card">
+    <div class="card-head"><div class="card-name">양천구 <sub>목동 신시가지·신정</sub></div><span class="grade grade-A">A</span></div>
+    <div class="price-row"><span class="price-main">16~22억</span><span class="price-range">84㎡ (목동 기준)</span><span class="price-chg chg-up">▲ 재건축 기대가 반영</span></div>
+    <div class="card-body">
+      <p class="feat">목동 신시가지 14개 단지(약 2만 5천 세대) 일괄 재건축 추진. 서울 최대 학원가 중 하나. 재건축 완료 시 공급 대체재 없음.</p>
+      <ul class="blist bull">
+        <li>목동 1~14단지 재건축 — 완료 시 강남권에 버금가는 신축 대단지</li>
+        <li>목동운동장 개발 (서울 서부 랜드마크 계획)</li>
+        <li>신목동역(서울 5호선)·오목교역 역세권</li>
+        <li>목동 학군 — 특목고 진학률 서울 상위권, 자사고 근접</li>
+      </ul>
+      <ul class="blist bear">
+        <li>이재명 정부 재건축 규제 강화 시 사업 지연 — 기대가 꺼지면 가격 조정</li>
+        <li>재건축 기간(10년+) 동안 낙후 환경 유지</li>
+        <li>재건축 초과이익환수제 부담금 이슈</li>
+      </ul>
+      <div class="outlook"><b>전망</b>재건축이 현실화되면 '서쪽의 잠실'로 도약할 포텐셜. 단, 이재명 정부 재건축 규제 강도가 핵심 변수. 정책 리스크를 감수할 수 있는 장기 투자자에게 유효.</div>
+    </div>
+  </div>
+
+  <!-- 광진구 -->
+  <div class="card">
+    <div class="card-head"><div class="card-name">광진구 <sub>자양·구의·광장</sub></div><span class="grade grade-Bp">B+</span></div>
+    <div class="price-row"><span class="price-main">12~14억</span><span class="price-range">84㎡ 중위</span><span class="price-chg chg-fl">→ 고점 대비 −10%</span></div>
+    <div class="card-body">
+      <p class="feat">강남 접근성 우수(2호선). 뚝섬·광나루 한강 수변. 건대입구 상권. 송파와 경계, 동서울 이동 거점.</p>
+      <ul class="blist bull">
+        <li>뚝섬역세권 개발 — 복합 상업·주거 개발 구상</li>
+        <li>자양 재개발 일부 구역 진행</li>
+        <li>한강 접근성·2호선 편의로 실수요 견조</li>
+      </ul>
+      <ul class="blist bear">
+        <li>재건축·재개발 가능 대규모 단지 부족</li>
+        <li>성동구 대비 개발 모멘텀 약함</li>
+      </ul>
+      <div class="outlook"><b>전망</b>성동·송파 사이 중간 포지션. 대형 개발 호재 부재로 강한 상승보다 안정적 보합 예상. 실거주 목적이라면 합리적 선택지.</div>
+    </div>
+  </div>
+
+  <!-- 영등포구 -->
+  <div class="card">
+    <div class="card-head"><div class="card-name">영등포구 <sub>여의도·당산·영등포</sub></div><span class="grade grade-A">A</span></div>
+    <div class="price-row"><span class="price-main">10~25억</span><span class="price-range">84㎡ (지역 내 편차 극심)</span><span class="price-chg chg-up">▲ 여의도 강세</span></div>
+    <div class="card-body">
+      <p class="feat">여의도 한강변 금융중심지. 당산 2호선 역세권. 영등포 구도심 재개발. 지역 내 여의도-영등포역 가격 편차 3배.</p>
+      <ul class="blist bull">
+        <li>여의도 시범·광장 아파트 재건축 — 완료 시 한강뷰 신축으로 대변신</li>
+        <li>GTX-B 여의도역 예정 — 인천·마석 환승 허브</li>
+        <li>영등포 타임스퀘어·롯데백화점 상권 성숙</li>
+        <li>여의도 핀테크·금융 특화지구 지정</li>
+      </ul>
+      <ul class="blist bear">
+        <li>여의도 재건축 진행 시 이주 수요·공사 소음으로 기존 거주환경 저하</li>
+        <li>영등포 구도심은 여전히 슬럼화 구간 존재</li>
+      </ul>
+      <div class="outlook"><b>전망</b>여의도는 재건축+GTX-B 이중 호재로 강남에 필적하는 한강변 프리미엄 형성 가능. 여의도 내 구축 단지는 재건축 기대감이 이미 상당 부분 반영됨.</div>
+    </div>
+  </div>
+
+  <!-- 동작구 -->
+  <div class="card">
+    <div class="card-head"><div class="card-name">동작구 <sub>흑석·노량진·사당·상도</sub></div><span class="grade grade-Bp">B+</span></div>
+    <div class="price-row"><span class="price-main">10~14억</span><span class="price-range">84㎡ 중위</span><span class="price-chg chg-fl">→ 고점 대비 −8%</span></div>
+    <div class="card-body">
+      <p class="feat">흑석 한강뷰. 노량진 수산시장 재개발. 사당역 환승. 중앙대 배후 수요. 강남 접근성 우수.</p>
+      <ul class="blist bull">
+        <li>흑석9구역 재개발 완료 예정 — 한강뷰 신축 1,500여 가구</li>
+        <li>노량진 뉴타운 재개발 추진</li>
+        <li>GTX-B 노량진 환승역 예정</li>
+        <li>상도 재개발 구역 일부 사업 진행</li>
+      </ul>
+      <ul class="blist bear">
+        <li>노량진 재개발 속도 더딤 — 오랜 기대와 현실 괴리</li>
+        <li>고시촌 이미지 탈피 지속 필요</li>
+      </ul>
+      <div class="outlook"><b>전망</b>흑석 한강뷰 재개발이 완성되면 강남 접근성+한강뷰의 마포 대안지로 부각. GTX-B 노량진 확정 시 추가 상승 여지.</div>
+    </div>
+  </div>
+
+  <!-- 강서구 -->
+  <div class="card">
+    <div class="card-head"><div class="card-name">강서구 <sub>마곡·발산·화곡</sub></div><span class="grade grade-Bp">B+</span></div>
+    <div class="price-row"><span class="price-main">9~12억</span><span class="price-range">84㎡ 중위</span><span class="price-chg chg-up">▲ 마곡 강세</span></div>
+    <div class="card-body">
+      <p class="feat">마곡 R&D 클러스터(LG·롯데·코오롱 등) 직주근접. 서울식물원. 9호선 급행. 김포공항 인접 교통 요충지.</p>
+      <ul class="blist bull">
+        <li>마곡 2단계 개발 — R&D 기업 추가 유치로 배후 수요 확대</li>
+        <li>GTX-D(안) 김포공항역 경유 — 확정 시 교통 혁신</li>
+        <li>공항대로 연계 광역 교통 네트워크</li>
+        <li>서울 서부 유일한 대규모 신도시급 개발</li>
+      </ul>
+      <ul class="blist bear">
+        <li>화곡동 구도심 노후화 — 마곡과 격차 극심</li>
+        <li>공항 소음 구역 일부 포함</li>
+      </ul>
+      <div class="outlook"><b>전망</b>마곡 R&D 집적 효과 장기 지속. 9억~12억대 서울 직주근접지 중 희소성 높음. GTX-D 확정 여부가 5년 내 최대 변수.</div>
+    </div>
+  </div>
+
+</div><!-- /grid 핵심 중간권 -->
+
+
+<!-- ═══════════ 도심·한강북 ═══════════ -->
+<div class="sec-head"><div class="sec-head-inner"><span class="sec-name">도심 · 한강북</span><span class="sec-desc">종로 · 중구 · 서대문 · 성북 · 동대문 — 역사 도심과 새로운 재개발 기대</span></div></div>
+<div class="grid">
+
+  <!-- 종로·중구 -->
+  <div class="card">
+    <div class="card-head"><div class="card-name">종로구·중구 <sub>광화문·경복궁·명동·을지로</sub></div><span class="grade grade-B">B</span></div>
+    <div class="price-row"><span class="price-main">9~12억</span><span class="price-range">84㎡ 중위</span><span class="price-chg chg-fl">→ 보합권</span></div>
+    <div class="card-body">
+      <p class="feat">서울 역사 도심. 아파트 공급 희소. 광화문·을지로 업무 직주근접 수요. 청계천·경복궁 쾌적성. 고도제한으로 개발 제한.</p>
+      <ul class="blist bull">
+        <li>세운상가 재개발 (세운 5·6구역) — 도심 내 신규 주거 공급</li>
+        <li>서울역 북부 역세권 복합개발</li>
+        <li>광화문 광장 확장 이후 인근 주거 가치 상승</li>
+      </ul>
+      <ul class="blist bear">
+        <li>고도지구 제한으로 재건축 수익성 낮음</li>
+        <li>아파트 절대 물량 부족 — 유동성 낮아 환금성 제한</li>
+      </ul>
+      <div class="outlook"><b>전망</b>도심 재활성화 정책과 맞물려 세운·서울역 일대 신규 개발이 완성되면 도심 거주 수요 증가 기대. 단, 투자보다 실거주 목적에 적합.</div>
+    </div>
+  </div>
+
+  <!-- 성북구 -->
+  <div class="card">
+    <div class="card-head"><div class="card-name">성북구 <sub>길음·하월곡·정릉</sub></div><span class="grade grade-B">B</span></div>
+    <div class="price-row"><span class="price-main">7~9억</span><span class="price-range">84㎡ 중위</span><span class="price-chg chg-fl">→ 고점 대비 −15%</span></div>
+    <div class="card-body">
+      <p class="feat">길음뉴타운 완성 후 생활 인프라 개선. 4호선 라인. 고려대·성신여대 대학가 배후 수요.</p>
+      <ul class="blist bull">
+        <li>길음 2차 뉴타운 추가 구역 개발 가능성</li>
+        <li>GTX-C 광운대역 인접 (중계·하계 방향 수혜)</li>
+        <li>4호선·우이신설선 더블 역세권 일부 구간</li>
+      </ul>
+      <ul class="blist bear">
+        <li>강남 접근성 약함 — 2호선 미경유</li>
+        <li>뉴타운 완성 이후 추가 개발 모멘텀 제한</li>
+      </ul>
+      <div class="outlook"><b>전망</b>실수요 중심의 안정적 시장. GTX-C 광운대역 개통 이후 노원·성북 일대 교통 개선 기대. 급등보다 완만한 보합 상승 시나리오.</div>
+    </div>
+  </div>
+
+  <!-- 동대문구 -->
+  <div class="card">
+    <div class="card-head"><div class="card-name">동대문구 <sub>이문·휘경·용두·전농</sub></div><span class="grade grade-Bp">B+</span></div>
+    <div class="price-row"><span class="price-main">7~10억</span><span class="price-range">84㎡ 중위</span><span class="price-chg chg-up">▲ 재개발 기대 선반영</span></div>
+    <div class="card-body">
+      <p class="feat">이문·휘경 재개발 — 서울 동북부 최대 정비사업(약 1만 가구). 경희대·한국외대·서울시립대 학군. 1호선·중앙선 환승.</p>
+      <ul class="blist bull">
+        <li>이문1·3·4구역·휘경2·3구역 재개발 — 순차 분양 진행</li>
+        <li>GTX-B 청량리역 — 인천·마석 직결, 서울 동부 교통 중심지 부상</li>
+        <li>청량리역 복합개발 완성 (롯데·HDC 등 초고층 복합타운)</li>
+        <li>대학가 임대 수요 안정적</li>
+      </ul>
+      <ul class="blist bear">
+        <li>재개발 이주 집중 시 전세 수급 불안</li>
+        <li>청량리 구도심 환경 개선 속도 더딤</li>
+      </ul>
+      <div class="outlook"><b>전망</b>청량리 GTX-B 환승역 + 이문·휘경 재개발 조합은 동북권 최대 모멘텀. 분양가 확정 후 입주 2~3년 내가 실수요 매수 타이밍으로 거론됨.</div>
+    </div>
+  </div>
+
+  <!-- 서대문구 -->
+  <div class="card">
+    <div class="card-head"><div class="card-name">서대문구 <sub>북아현·홍제·가좌·남가좌</sub></div><span class="grade grade-B">B</span></div>
+    <div class="price-row"><span class="price-main">8~10억</span><span class="price-range">84㎡ 중위</span><span class="price-chg chg-fl">→ 고점 대비 −12%</span></div>
+    <div class="card-body">
+      <p class="feat">북아현뉴타운 진행 중. GTX-A 연신내역 인근. 연세대·이화여대 배후. 지하철 2·5·6호선 접근성.</p>
+      <ul class="blist bull">
+        <li>북아현뉴타운 — 대규모 재개발로 도심 서측 주거 환경 개선</li>
+        <li>GTX-A 연신내역 (은평 경유, 수색·파주 방향)</li>
+        <li>신촌·홍대 상권 인접 청년 수요 지속</li>
+      </ul>
+      <ul class="blist bear">
+        <li>언덕 지형 많아 실거주 편의 제한</li>
+        <li>구도심 이미지 쇄신 느림</li>
+      </ul>
+      <div class="outlook"><b>전망</b>북아현뉴타운 완성 후 서울 서부 중심 주거지 역할 강화. GTX-A 연신내역이 완전 개통되면 은평·서대문 교통 체계 재편 기대.</div>
+    </div>
+  </div>
+
+</div>
+
+
+<!-- ═══════════ 서남권·강북권 ═══════════ -->
+<div class="sec-head"><div class="sec-head-inner"><span class="sec-name">서남권 · 강북권</span><span class="sec-desc">관악 · 구로 · 금천 · 노원 · 도봉 · 강북 · 중랑 · 은평 — 실수요 중심, 재건축 장기 기대</span></div></div>
+<div class="grid">
+
+  <!-- 노원구 -->
+  <div class="card">
+    <div class="card-head"><div class="card-name">노원구 <sub>상계·중계·하계·월계</sub></div><span class="grade grade-C">C</span></div>
+    <div class="price-row"><span class="price-main">5.5~7억</span><span class="price-range">84㎡ 중위</span><span class="price-chg chg-dn">▼ 고점 대비 −25%</span></div>
+    <div class="card-body">
+      <p class="feat">1980년대 대규모 택지 단지. 상계동 7만 세대 노후화. 중계동 은행사거리 학원가. 4호선·7호선 라인.</p>
+      <ul class="blist bull">
+        <li>GTX-C 노원역 확정 — 삼성까지 15~20분, 교통 혁명</li>
+        <li>상계동 재건축 현실화 — 분양가 상한제 없으면 사업성 확보</li>
+        <li>중계동 학원가 수요 — 강남 대안 학군지</li>
+        <li>노원병원·인덕대 등 자족 인프라</li>
+      </ul>
+      <ul class="blist bear">
+        <li>이재명 정부 재건축 규제 강화 → 재건축 기대감 훼손 최대 피해 지역</li>
+        <li>재건축 미실현 시 노후 단지 거주환경 지속 악화</li>
+        <li>고점 대비 하락폭 가장 큰 지역 — 가격 탄력성 약화</li>
+      </ul>
+      <div class="outlook"><b>전망</b>GTX-C 개통(2028년 예정)이 게임 체인저가 될 수 있음. 그러나 재건축 진행 여부에 따라 '교통 좋은 노후 지역' vs '서울 북부 핵심지' 분기. 장기 투자자라면 GTX-C 노원역 인근 주목.</div>
+    </div>
+  </div>
+
+  <!-- 은평구 -->
+  <div class="card">
+    <div class="card-head"><div class="card-name">은평구 <sub>응암·불광·진관·갈현</sub></div><span class="grade grade-C">C</span></div>
+    <div class="price-row"><span class="price-main">7~9억</span><span class="price-range">84㎡ 중위</span><span class="price-chg chg-fl">→ 고점 대비 −15%</span></div>
+    <div class="card-body">
+      <p class="feat">은평뉴타운 완성권. GTX-A 연신내역. 북한산 접근. 불광천 수변 환경. 서북 방향 경기 접근 편리.</p>
+      <ul class="blist bull">
+        <li>GTX-A 연신내역 — 수서까지 30분대 도달</li>
+        <li>은평뉴타운 인프라 성숙 — 쾌적한 주거환경</li>
+        <li>대조1구역 등 재개발 진행</li>
+      </ul>
+      <ul class="blist bear">
+        <li>도심 및 강남 접근성 상대적으로 약함</li>
+        <li>은평뉴타운 이후 추가 개발 모멘텀 미약</li>
+      </ul>
+      <div class="outlook"><b>전망</b>GTX-A 개통 후 연신내~수서 시간 단축 효과가 가격에 일부 반영됨. 북한산 자연환경과 합리적 가격이 장점. 급등보다 완만한 우상향 예상.</div>
+    </div>
+  </div>
+
+  <!-- 관악구 -->
+  <div class="card">
+    <div class="card-head"><div class="card-name">관악구 <sub>봉천·신림·낙성대</sub></div><span class="grade grade-C">C</span></div>
+    <div class="price-row"><span class="price-main">7~8.5억</span><span class="price-range">84㎡ 중위</span><span class="price-chg chg-fl">→ 고점 대비 −18%</span></div>
+    <div class="card-body">
+      <p class="feat">서울대 배후 임대 수요. 신림선(경전철) 개통. 2호선 접근성. 봉천동 재개발 일부 진행.</p>
+      <ul class="blist bull">
+        <li>신림선 개통(2022) — 여의도·강남 접근성 개선</li>
+        <li>서울대 캠퍼스타운 사업 — 창업·연구 인프라 조성</li>
+        <li>봉천·신림 재개발 일부 진행</li>
+      </ul>
+      <ul class="blist bear">
+        <li>구릉지형 많아 개발 제한</li>
+        <li>대학가 특성상 월세 임대 수요 강하지만 실소유 수요 상대적 약</li>
+      </ul>
+      <div class="outlook"><b>전망</b>신림선 효과로 강남 접근 개선됐으나 아직 가격 반영 제한적. 봉천 재개발 완성 후 서울 남서부 중저가 실수요 지역으로 안착 예상.</div>
+    </div>
+  </div>
+
+  <!-- 구로·금천 -->
+  <div class="card">
+    <div class="card-head"><div class="card-name">구로구·금천구 <sub>구로디지털단지·가산</sub></div><span class="grade grade-C">C</span></div>
+    <div class="price-row"><span class="price-main">6.5~8억</span><span class="price-range">84㎡ 중위</span><span class="price-chg chg-fl">→ 고점 대비 −20%</span></div>
+    <div class="card-body">
+      <p class="feat">구로·가산 디지털단지 IT기업 배후 직주근접 수요. 신안산선 개통(2025). 1·2·7호선 멀티 노선.</p>
+      <ul class="blist bull">
+        <li>신안산선 개통 — 안산·광명~여의도 직결, 광명·시흥 간접 수혜</li>
+        <li>구로디지털단지 스타트업 생태계 확장</li>
+        <li>가산 지식산업센터 임대 수요 견조</li>
+      </ul>
+      <ul class="blist bear">
+        <li>주거 환경 노후화 심각</li>
+        <li>대규모 재개발 부지 확보 어려움</li>
+      </ul>
+      <div class="outlook"><b>전망</b>IT·스타트업 종사자 1인 가구 임대 수요로 하방 지지. 신안산선 효과로 광명·시흥 대비 서울 프리미엄 재확인 기회. 실수요 소형 아파트 중심 시장.</div>
+    </div>
+  </div>
+
+  <!-- 도봉·강북 -->
+  <div class="card">
+    <div class="card-head"><div class="card-name">도봉구·강북구 <sub>창동·쌍문·미아·수유</sub></div><span class="grade grade-C">C</span></div>
+    <div class="price-row"><span class="price-main">4.5~6억</span><span class="price-range">84㎡ 중위</span><span class="price-chg chg-dn">▼ 서울 최하위권</span></div>
+    <div class="card-body">
+      <p class="feat">창동역 복합환승센터(GTX-C·1·4호선). 창동~상계 신경제 중심지 개발 계획. 서울 내 가장 낮은 가격대.</p>
+      <ul class="blist bull">
+        <li>GTX-C 창동역 — 삼성까지 15분 예상, 교통 대변혁</li>
+        <li>창동 신경제 거점 개발 — 서울 아레나(공연장) 개관(2025)</li>
+        <li>서울 가격 하단으로 신규 진입자 접근 가능</li>
+      </ul>
+      <ul class="blist bear">
+        <li>서울 내 수요 기반 약 — 인구 유출 지속</li>
+        <li>GTX-C 개통 전까지 교통 불편 지속</li>
+        <li>노후 단지 비율 높고 재건축 현실화 요원</li>
+      </ul>
+      <div class="outlook"><b>전망</b>GTX-C 창동역 개통(2028 예정)이 이 지역 마지막 기회. 현재 가격 수준이 바닥권이라는 의견과 수요 부재로 지속 정체라는 의견이 대립. 리스크 대비 잠재 수익 비율은 서울 최고 수준.</div>
+    </div>
+  </div>
+
+  <!-- 중랑구 -->
+  <div class="card">
+    <div class="card-head"><div class="card-name">중랑구 <sub>묵동·상봉·망우</sub></div><span class="grade grade-C">C</span></div>
+    <div class="price-row"><span class="price-main">6~7.5억</span><span class="price-range">84㎡ 중위</span><span class="price-chg chg-fl">→ 보합</span></div>
+    <div class="card-body">
+      <p class="feat">상봉터미널 재개발. 경의중앙선·7호선. 망우역 GTX-B 환승 예정.</p>
+      <ul class="blist bull">
+        <li>GTX-B 망우역 — 서울역·여의도 환승 혜택</li>
+        <li>상봉터미널 재개발 — 복합상업·주거시설 조성</li>
+      </ul>
+      <ul class="blist bear">
+        <li>개발 모멘텀 약하고 시장 관심도 낮음</li>
+        <li>대규모 재건축 단지 부재</li>
+      </ul>
+      <div class="outlook"><b>전망</b>GTX-B 망우역이 확정·개통되면 교통 여건 개선. 현재는 실수요 중심 안정 시장.</div>
+    </div>
+  </div>
+
+</div>
+
+
+<!-- ═══════════ 경기 남부 핵심권 ═══════════ -->
+<div class="sec-head"><div class="sec-head-inner"><span class="sec-name">경기 남부 핵심권</span><span class="sec-desc">판교 · 분당 · 과천 · 광명 · 하남 · 수원 · 용인 · 동탄</span></div></div>
+<div class="grid">
+
+  <!-- 판교 -->
+  <div class="card">
+    <div class="card-head"><div class="card-name">판교 <sub>성남시 분당구 판교·백현동</sub></div><span class="grade grade-S">S</span></div>
+    <div class="price-row"><span class="price-main">17~22억</span><span class="price-range">84㎡ 중위</span><span class="price-chg chg-dn">▼ 고점 대비 −15%</span></div>
+    <div class="card-body">
+      <p class="feat">카카오·네이버·크래프톤·넥슨 등 국내 최대 IT 클러스터. 판교 테크노밸리 1·2·3 순차 조성. GTX-A 판교역. 서울 강남 20분.</p>
+      <ul class="blist bull">
+        <li>판교 제3테크노밸리 조성 — IT·바이오 혼합 산업 단지, 배후 수요 확대</li>
+        <li>GTX-A 판교역 — 수서까지 10분 내외</li>
+        <li>백현동 카카오 사옥 인근 직주근접 수요 견조</li>
+        <li>경기 내 최고 학군(판교 초·중) 프리미엄</li>
+      </ul>
+      <ul class="blist bear">
+        <li>공급 신규 물량 거의 없어 입주 기회 희소 (분양가 상한제 비적용)</li>
+        <li>IT 업황 부진 시 배후 수요 감소 우려</li>
+      </ul>
+      <div class="outlook"><b>전망</b>판교는 경기 내 강남 포지션. 제3테크노밸리 완성 후 추가 직장인 유입 예정. 절대 가격 부담에도 수요층 소득수준이 높아 하방이 견고. 경기 최우선 매수 지역.</div>
+    </div>
+  </div>
+
+  <!-- 분당 -->
+  <div class="card">
+    <div class="card-head"><div class="card-name">분당 <sub>성남시 분당구·야탑·서현·이매</sub></div><span class="grade grade-A">A</span></div>
+    <div class="price-row"><span class="price-main">13~17억</span><span class="price-range">84㎡ 중위</span><span class="price-chg chg-dn">▼ 고점 대비 −15%</span></div>
+    <div class="card-body">
+      <p class="feat">1기 신도시 대표주자. 정주 환경 우수. GTX-A 이매역. 판교 배후 거주지. 신분당선 직결 강남.</p>
+      <ul class="blist bull">
+        <li>1기 신도시 재건축 특별법 — 분당 전체 재건축 가시화 (2030년대 완성 목표)</li>
+        <li>GTX-A 이매역·판교역 인접 교통 우위</li>
+        <li>신분당선 강남까지 30분대 — 수도권 최고 접근성 신도시</li>
+        <li>분당 규모 경제 — 백화점·병원·학교 완비</li>
+      </ul>
+      <ul class="blist bear">
+        <li>재건축까지 10~15년 — 장기 기다림 필요</li>
+        <li>재건축 기간 이주 수요로 전세 시장 혼란 우려</li>
+      </ul>
+      <div class="outlook"><b>전망</b>재건축 특별법 통과로 '1기 신도시의 부활' 기대. 재건축 조합설립이 가시화되는 2027~2028년 선매수 관심 고조 예상. 판교 옆 최대 수혜 신도시.</div>
+    </div>
+  </div>
+
+  <!-- 과천 -->
+  <div class="card">
+    <div class="card-head"><div class="card-name">과천 <sub>과천시 중앙동·별양·부림</sub></div><span class="grade grade-A">A</span></div>
+    <div class="price-row"><span class="price-main">17~20억</span><span class="price-range">84㎡ 중위</span><span class="price-chg chg-dn">▼ 고점 대비 −10~15%</span></div>
+    <div class="card-body">
+      <p class="feat">서울 강남 바로 인접. 4호선 남태령역 15분에 강남. 과천시 전체가 재건축 사업 지역. 과천 지식정보타운 신도시 추진.</p>
+      <ul class="blist bull">
+        <li>별양·부림·중앙 재건축 — 완료 시 2030년대 신축 과천 탄생</li>
+        <li>과천 지식정보타운 R&D 클러스터 조성</li>
+        <li>4호선 직결 강남 접근성 (서울 강남 시계 내 경기 지역)</li>
+        <li>과천 인구 소규모(7만) → 공급 한정 → 희소성</li>
+      </ul>
+      <ul class="blist bear">
+        <li>이재명 정부 재건축 규제 강화 직격탄 가능성</li>
+        <li>재건축 기간 동안 거주환경 악화 감수 필요</li>
+      </ul>
+      <div class="outlook"><b>전망</b>과천 재건축은 경기도 내 최강 모멘텀. 강남 접근성+재건축 기대의 결합. 재건축 규제 완화 여부가 핵심. 현재 가격은 재건축 기대가 이미 30~40% 반영된 수준.</div>
+    </div>
+  </div>
+
+  <!-- 광명 -->
+  <div class="card">
+    <div class="card-head"><div class="card-name">광명 <sub>광명시 철산·하안·광명역세권</sub></div><span class="grade grade-Bp">B+</span></div>
+    <div class="price-row"><span class="price-main">8~11억</span><span class="price-range">84㎡ 중위</span><span class="price-chg chg-up">▲ 3기 신도시 기대감</span></div>
+    <div class="card-body">
+      <p class="feat">KTX 광명역(서울 10분). 광명시흥 3기 신도시(6.6만 가구) 예정. 신안산선 개통. 서울 서남부 접근 거점.</p>
+      <ul class="blist bull">
+        <li>광명시흥 3기 신도시 — 대규모 공급이지만 역세권 개발로 기반 마련</li>
+        <li>신안산선 광명역 — 여의도 직결, 이동시간 획기적 단축</li>
+        <li>KTX 광명역 역세권 복합개발 지속</li>
+        <li>구시가지(철산·하안) 재건축 기대</li>
+      </ul>
+      <ul class="blist bear">
+        <li>3기 신도시 대규모 공급 → 단기 물량 부담</li>
+        <li>기존 구시가지 환경 노후화</li>
+      </ul>
+      <div class="outlook"><b>전망</b>신안산선+3기 신도시 조합. 공급 과잉 우려보다 교통 인프라 개선이 우위를 점할 것. 철산·하안 기존 구시가지보다 광명역세권 신규 공급지 중심으로 수요 집중 예상.</div>
+    </div>
+  </div>
+
+  <!-- 하남 -->
+  <div class="card">
+    <div class="card-head"><div class="card-name">하남 <sub>미사강변·감일·교산(예정)</sub></div><span class="grade grade-Bp">B+</span></div>
+    <div class="price-row"><span class="price-main">8~11억</span><span class="price-range">84㎡ 중위</span><span class="price-chg chg-up">▲ GTX-D 기대 선반영</span></div>
+    <div class="card-body">
+      <p class="feat">미사강변도시 한강뷰. 감일지구 신축. 하남 교산 3기 신도시 착공. 서울 강동 5호선 연장 수혜.</p>
+      <ul class="blist bull">
+        <li>GTX-D 하남 경유(안) — 확정 시 서울 강남 접근 30분대</li>
+        <li>교산 3기 신도시 — 4만 가구 대규모 공급, 자족 기능 포함</li>
+        <li>5호선 하남시청~미사 연장 기개통으로 교통 개선</li>
+        <li>미사 한강뷰 희소성 — 경기 내 한강 조망 가능한 몇 안 되는 지역</li>
+      </ul>
+      <ul class="blist bear">
+        <li>GTX-D 확정 지연 시 기대감 소멸 → 가격 조정</li>
+        <li>교산 신도시 대규모 공급 → 미사 기존 단지 희소성 희석</li>
+      </ul>
+      <div class="outlook"><b>전망</b>GTX-D 확정 여부가 하남 가격의 분수령. 미사 한강뷰 고급 단지는 방어적이나, 내륙 구역은 교산 신도시 입주 후 경쟁 심화 예상.</div>
+    </div>
+  </div>
+
+  <!-- 동탄 -->
+  <div class="card">
+    <div class="card-head"><div class="card-name">동탄2신도시 <sub>화성시 동탄2</sub></div><span class="grade grade-Bp">B+</span></div>
+    <div class="price-row"><span class="price-main">10~13억</span><span class="price-range">84㎡ 중위</span><span class="price-chg chg-up">▲ GTX-A 효과 흡수 중</span></div>
+    <div class="card-body">
+      <p class="feat">GTX-A 동탄역 수서 22분. 2기 신도시 최대 규모(12만 가구). 삼성 SDI·반도체 기업 배후. 자족 인프라 성숙 중.</p>
+      <ul class="blist bull">
+        <li>GTX-A 수서~동탄 22분 — 강남 접근성 혁신</li>
+        <li>삼성전자 평택·용인 클러스터 직장인 수요</li>
+        <li>동탄역 롯데캐슬·힐스테이트 역세권 상업 인프라 완성</li>
+        <li>우량 학군지 조성 진행 중 (동탄국제고 설립)</li>
+      </ul>
+      <ul class="blist bear">
+        <li>동탄1·2 합산 공급 많음 — 입주 물량 상존</li>
+        <li>GTX-A 역세권(동탄역)과 비역세권 간 가격 격차 확대</li>
+      </ul>
+      <div class="outlook"><b>전망</b>GTX-A 역세권 단지는 서울 중저가 대체재로 수요 지속. 비역세권은 동탄3·4 등 추가 신도시 공급 리스크. 동탄역 반경 1km 이내 집중 전략 유효.</div>
+    </div>
+  </div>
+
+  <!-- 수원 광교 -->
+  <div class="card">
+    <div class="card-head"><div class="card-name">수원·광교 <sub>광교신도시·영통·인계</sub></div><span class="grade grade-B">B</span></div>
+    <div class="price-row"><span class="price-main">9~13억</span><span class="price-range">84㎡ (광교 기준)</span><span class="price-chg chg-dn">▼ 고점 대비 −15%</span></div>
+    <div class="card-body">
+      <p class="feat">광교신도시(3.1만 가구) 쾌적한 자연환경. 삼성전자 수원사업장 배후. 신분당선 광교~강남 40분. 경기 내 고학력·고소득 주거지.</p>
+      <ul class="blist bull">
+        <li>삼성전자 수원·기흥·화성 클러스터 배후 수요 안정적</li>
+        <li>신분당선 광교중앙역 — 강남역까지 40분대</li>
+        <li>광교호수공원·경희대·아주대 인프라</li>
+      </ul>
+      <ul class="blist bear">
+        <li>신분당선 연장 이후 추가 호재 부재</li>
+        <li>삼성전자 업황에 배후 수요 연동 — 리스크 산업 의존도 높음</li>
+      </ul>
+      <div class="outlook"><b>전망</b>삼성전자 배후 고소득 직장인 수요로 하방 견고. 광교 자연환경 프리미엄 지속. 신분당선 연장(호매실 방향) 확정 시 추가 수혜.</div>
+    </div>
+  </div>
+
+  <!-- 용인 수지·기흥 -->
+  <div class="card">
+    <div class="card-head"><div class="card-name">용인 수지·기흥 <sub>수지구·기흥구·처인구</sub></div><span class="grade grade-B">B</span></div>
+    <div class="price-row"><span class="price-main">8~12억</span><span class="price-range">84㎡ (수지·기흥)</span><span class="price-chg chg-dn">▼ 고점 대비 −15~20%</span></div>
+    <div class="card-body">
+      <p class="feat">용인 반도체 클러스터(SK하이닉스 120조 투자, 삼성전자 연계). 수지 학군 우수. 수인분당선·신분당선 이중 교통.</p>
+      <ul class="blist bull">
+        <li>용인 반도체 클러스터 — SK하이닉스 FAB 착공, 2030년 완공 시 수만명 고용</li>
+        <li>GTX-A 기흥역(구성) 신설 논의 — 확정 시 교통 혁신</li>
+        <li>처인구 첨단산업단지 개발 — 자족도시 진화</li>
+        <li>수지 학군 — 경기 내 상위 수준</li>
+      </ul>
+      <ul class="blist bear">
+        <li>처인구 기흥IC 인근 아직 교통 불편 — 반도체 클러스터 완공 전 수요 유입 제한</li>
+        <li>신규 공급 지속으로 매매가 상승 탄력 제한</li>
+      </ul>
+      <div class="outlook"><b>전망</b>반도체 클러스터 착공 후 용인 가치 재평가 중. 2027~2030년 클러스터 완성 시기에 맞춘 '역세권 선매수' 전략이 활발. 수지는 현재 안정, 처인·기흥은 장기 성장형.</div>
+    </div>
+  </div>
+
+</div>
+
+
+<!-- ═══════════ 경기 북부·서부·인천 ═══════════ -->
+<div class="sec-head"><div class="sec-head-inner"><span class="sec-name">경기 북부·서부 · 인천</span><span class="sec-desc">고양/일산 · 파주 · 남양주 · 인천 송도·청라</span></div></div>
+<div class="grid">
+
+  <!-- 고양·일산 -->
+  <div class="card">
+    <div class="card-head"><div class="card-name">고양·일산 <sub>일산동구·서구·덕양구</sub></div><span class="grade grade-B">B</span></div>
+    <div class="price-row"><span class="price-main">7~10억</span><span class="price-range">84㎡ 중위</span><span class="price-chg chg-fl">→ 고점 대비 −20%</span></div>
+    <div class="card-body">
+      <p class="feat">GTX-A 대곡~킨텍스 전 구간 개통. 1기 신도시 재건축 특별법 수혜. KINTEX 전시 인프라. 창릉 3기 신도시 착공.</p>
+      <ul class="blist bull">
+        <li>GTX-A 전 구간 개통 — 서울역까지 20분대, 수서까지 30분대</li>
+        <li>1기 신도시 재건축 특별법 — 일산 노후 단지 재건축 물꼬</li>
+        <li>고양 창릉 3기 신도시 자족 기능</li>
+        <li>대곡역 (GTX-A·B·경의중앙선·서해선) 환승 허브</li>
+      </ul>
+      <ul class="blist bear">
+        <li>1기 신도시 인구 유출·고령화 진행 중</li>
+        <li>창릉 신도시 공급 → 기존 일산 단지 희소성 희석</li>
+      </ul>
+      <div class="outlook"><b>전망</b>GTX-A 개통 효과가 서울 접근성을 혁신적으로 개선. 재건축 특별법+GTX 이중 호재. 단, 창릉 신도시 공급 물량 소화 과정에서 단기 조정 가능. 대곡역 인근 역세권이 핵심.</div>
+    </div>
+  </div>
+
+  <!-- 남양주 다산 -->
+  <div class="card">
+    <div class="card-head"><div class="card-name">남양주 <sub>다산신도시·왕숙(3기)</sub></div><span class="grade grade-C">C</span></div>
+    <div class="price-row"><span class="price-main">6~8억</span><span class="price-range">84㎡ 중위</span><span class="price-chg chg-fl">→ 보합</span></div>
+    <div class="card-body">
+      <p class="feat">다산신도시 경의중앙선·8호선 별내선 연장. 왕숙 3기 신도시 착공(6.6만 가구). 서울 동부 접근 거점.</p>
+      <ul class="blist bull">
+        <li>별내선(8호선 연장) 개통 — 강남 잠실 접근성 개선</li>
+        <li>왕숙 3기 신도시 GTX-B 연계 예정</li>
+        <li>서울 동부 대비 합리적 가격</li>
+      </ul>
+      <ul class="blist bear">
+        <li>왕숙 신도시 대규모 공급 → 다산 기존 단지 수요 분산</li>
+        <li>서울 출퇴근 여전히 불편 (GTX-B 개통 전)</li>
+      </ul>
+      <div class="outlook"><b>전망</b>GTX-B 개통 전까지 교통 불편이 핵심 약점. 왕숙 입주 시작(2027년 예정) 후 단기 공급 과잉 우려. GTX-B 확정·개통 후 재평가 기대.</div>
+    </div>
+  </div>
+
+  <!-- 인천 송도·청라 -->
+  <div class="card">
+    <div class="card-head"><div class="card-name">인천 송도·청라 <sub>인천경제자유구역</sub></div><span class="grade grade-B">B</span></div>
+    <div class="price-row"><span class="price-main">7~10억</span><span class="price-range">84㎡ 중위</span><span class="price-chg chg-up">▲ GTX-B 기대 반영</span></div>
+    <div class="card-body">
+      <p class="feat">송도 바이오·제약 클러스터(삼성바이오·셀트리온). GTX-B 인천~서울역 직결. 청라 카지노복합리조트 개발. 자족도시 성숙 중.</p>
+      <ul class="blist bull">
+        <li>GTX-B 인천(송도·청라) → 서울역 → 마석 직결 — 서울 40분대</li>
+        <li>송도 바이오 클러스터 — 삼성바이오로직스 공장 증설, 고소득 직장인 수요</li>
+        <li>청라 복합리조트(카지노·호텔) 개발 추진</li>
+        <li>1호선·수인선·인천 1호선 다중 노선</li>
+      </ul>
+      <ul class="blist bear">
+        <li>GTX-B 개통 전(2030년 예정) 기대가 선반영 과열 우려</li>
+        <li>공급 물량 많아 단기 가격 급등 제한</li>
+      </ul>
+      <div class="outlook"><b>전망</b>바이오 클러스터 성장이 직주근접 수요 창출. GTX-B 개통 후 서울 접근성 문제 해소 시 재평가. 송도 11공구 미개발지 추가 공급 주의. 역세권 집중 전략이 유효.</div>
+    </div>
+  </div>
+
+</div>
+
+
+<!-- ═══════════ 종합 비교표 ═══════════ -->
+<div class="compare-wrap" style="margin-top:40px">
+  <p class="compare-title">서울·경기 지역 종합 비교 — 2026년 6월 기준</p>
+  <div class="tbl-scroll">
+    <table class="cmp">
+      <thead>
+        <tr>
+          <th>지역</th>
+          <th>84㎡ 현재가</th>
+          <th>2021 고점 대비</th>
+          <th>매력도</th>
+          <th>핵심 호재</th>
+          <th>핵심 리스크</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="hi"><td>강남구</td><td>28~32억</td><td class="up">+15~20%</td><td>S</td><td>압구정 재건축·영동대로</td><td>보유세 부담</td></tr>
+        <tr class="hi"><td>서초구</td><td>25~28억</td><td class="up">+10~15%</td><td>S</td><td>반포 재건축·한강뷰</td><td>보유세 부담</td></tr>
+        <tr class="hi"><td>용산구</td><td>22~27억</td><td class="up">+5~10%</td><td>S</td><td>한남뉴타운·국제업무지구</td><td>재개발 불확실</td></tr>
+        <tr><td>판교</td><td>17~22억</td><td class="dn">−15%</td><td>S</td><td>제3테크노밸리·GTX-A</td><td>IT 업황 연동</td></tr>
+        <tr><td>과천</td><td>17~20억</td><td class="dn">−10~15%</td><td>A</td><td>재건축 특별법·서울 접근</td><td>재건축 규제</td></tr>
+        <tr><td>송파구</td><td>18~22억</td><td class="up">+5%</td><td>A</td><td>잠실5단지·MICE</td><td>대규모 이주</td></tr>
+        <tr><td>성동구</td><td>15~18억</td><td class="up">±5%</td><td>A</td><td>성수전략정비·왕십리</td><td>개발 지연</td></tr>
+        <tr><td>양천구(목동)</td><td>16~22억</td><td>재건축 반영</td><td>A</td><td>목동 재건축·학군</td><td>재건축 규제</td></tr>
+        <tr><td>마포구</td><td>13~16억</td><td class="dn">−5~10%</td><td>A</td><td>공덕역·상암DMC</td><td>공급 지속</td></tr>
+        <tr><td>분당</td><td>13~17억</td><td class="dn">−15%</td><td>A</td><td>재건축 특별법·GTX-A</td><td>재건축 장기</td></tr>
+        <tr><td>강동구</td><td>11~14억</td><td class="up">+5~10%</td><td>B+</td><td>올림픽파크포레온·GTX-D</td><td>입주 물량</td></tr>
+        <tr><td>영등포(여의도)</td><td>10~25억</td><td class="up">반등</td><td>A/B</td><td>여의도 재건축·GTX-B</td><td>재건축 기간</td></tr>
+        <tr><td>동탄2</td><td>10~13억</td><td class="dn">−13%</td><td>B+</td><td>GTX-A 역세권</td><td>공급 과잉</td></tr>
+        <tr><td>광진구</td><td>12~14억</td><td class="dn">−10%</td><td>B+</td><td>뚝섬역세권 개발</td><td>개발 모멘텀 약</td></tr>
+        <tr><td>강서구(마곡)</td><td>9~12억</td><td class="dn">−10%</td><td>B+</td><td>마곡2단계·GTX-D</td><td>공항 소음</td></tr>
+        <tr><td>동작구</td><td>10~14억</td><td class="dn">−8%</td><td>B+</td><td>흑석 재개발·GTX-B</td><td>재개발 속도</td></tr>
+        <tr><td>고양·일산</td><td>7~10억</td><td class="dn">−20%</td><td>B</td><td>GTX-A·재건축 특별법</td><td>인구 감소</td></tr>
+        <tr><td>광명</td><td>8~11억</td><td class="up">반등</td><td>B+</td><td>신안산선·3기 신도시</td><td>공급 과잉</td></tr>
+        <tr><td>하남</td><td>8~11억</td><td class="up">반등</td><td>B+</td><td>GTX-D·교산 신도시</td><td>GTX-D 지연</td></tr>
+        <tr><td>수원·광교</td><td>9~13억</td><td class="dn">−15%</td><td>B</td><td>삼성 배후·신분당선</td><td>신규 공급</td></tr>
+        <tr><td>용인 수지·기흥</td><td>8~12억</td><td class="dn">−15~20%</td><td>B</td><td>반도체 클러스터</td><td>클러스터 장기</td></tr>
+        <tr><td>인천 송도·청라</td><td>7~10억</td><td class="up">반등</td><td>B</td><td>GTX-B·바이오 클러스터</td><td>개통 전 선반영</td></tr>
+        <tr><td>동대문구</td><td>7~10억</td><td>재개발 반영</td><td>B+</td><td>이문·휘경 재개발·GTX-B 청량리</td><td>이주 전세 혼란</td></tr>
+        <tr><td>노원구</td><td>5.5~7억</td><td class="dn">−25%</td><td>C</td><td>GTX-C·상계 재건축</td><td>재건축 규제</td></tr>
+        <tr><td>은평구</td><td>7~9억</td><td class="dn">−15%</td><td>C</td><td>GTX-A 연신내</td><td>추가 모멘텀 부재</td></tr>
+        <tr><td>관악구</td><td>7~8.5억</td><td class="dn">−18%</td><td>C</td><td>신림선·봉천 재개발</td><td>구릉 지형</td></tr>
+        <tr><td>구로·금천</td><td>6.5~8억</td><td class="dn">−20%</td><td>C</td><td>신안산선·IT 배후</td><td>주거 노후화</td></tr>
+        <tr><td>성북구</td><td>7~9억</td><td class="dn">−15%</td><td>B</td><td>GTX-C 간접·4호선</td><td>접근성 제한</td></tr>
+        <tr><td>도봉·강북구</td><td>4.5~6억</td><td class="dn">서울 최저</td><td>C</td><td>GTX-C 창동·서울 아레나</td><td>수요 기반 약</td></tr>
+        <tr><td>남양주 다산</td><td>6~8억</td><td class="dn">−15%</td><td>C</td><td>별내선·왕숙 GTX-B</td><td>왕숙 공급 과잉</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+
+<!-- ═══════════ 전문가 인사이트 ═══════════ -->
+<div class="insight-grid" style="margin-top:32px">
+  <div class="insight red">
+    <p class="insight-label">양극화 심화 — 핵심지 vs 비핵심지</p>
+    <p>2026년 서울 부동산의 가장 뚜렷한 특징은 '같은 서울'의 격차다. 강남3구+용산은 2021년 고점을 넘었지만 노원·도봉·강북은 고점 대비 25~35% 낮다. 경기도 판교·과천 vs 남양주·파주의 격차도 마찬가지다. 입지 선별의 중요성이 역대 어느 때보다 크다.</p>
+  </div>
+  <div class="insight green">
+    <p class="insight-label">GTX가 만드는 새 지도</p>
+    <p>GTX-A 개통으로 동탄·일산의 '서울 30분 생활권'이 현실화됐다. GTX-B(2030 예정)가 개통되면 인천 송도~청량리~서울역이 연결된다. GTX-C(2028 예정)는 창동·노원을 강남과 15분으로 묶는다. GTX역 반경 1km 이내는 중장기 강세 지역으로 선별 매수 가치 있음.</p>
+  </div>
+  <div class="insight blue">
+    <p class="insight-label">이재명 정부 정책 리스크</p>
+    <p>종부세 원상복구 입법, 재건축 안전진단 재강화, 공시가격 현실화 재추진은 강남권 고가 보유세 부담을 높이고 재건축 추진 단지의 불확실성을 키운다. 단, 기본주택 100만호 공급은 중장기 공급 확대 시그널로, 3기 신도시 역세권 분양 기대감을 자극한다.</p>
+  </div>
+  <div class="insight gold">
+    <p class="insight-label">실수요자 전략 — 2026년 기준</p>
+    <p>무주택 실수요자라면 ① GTX역세권 반경 1km ② 재개발·재건축 이주 전 기존 단지 ③ 경기 반도체·바이오 클러스터 인접지를 장기 관점에서 접근하라. 강남 진입이 어렵다면 '강남에 가장 빨리 닿는 곳'이 차선의 최선이다.</p>
+  </div>
+</div>
+
+
+<div class="foot">
+  <p>본 분석은 국토교통부 실거래가 공개시스템, KB국민은행 부동산 통계, 한국부동산원 통계, 각 지자체 도시계획 공개 자료를 기반으로 한 교육용 분석 자료입니다. 개별 단지·층수·향에 따라 실제 거래가는 크게 다를 수 있습니다. 투자 판단의 근거로 사용할 수 없으며, 학습 목적으로만 활용하시기 바랍니다.</p>
+  <p style="margin-top:8px">© 2026 부동산 학습 봇 · 최종 업데이트 2026.06</p>
+</div>
+
+</body>
+</html>

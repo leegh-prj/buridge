@@ -1,0 +1,1708 @@
+﻿<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/favicon.svg">
+<meta name="theme-color" content="#0C2040">
+<meta property="og:site_name" content="부릿지 BuRIDGE">
+<meta property="og:type" content="website">
+<meta property="og:title" content="부동산 역사 | 부릿지 BuRIDGE">
+<meta property="og:description" content="서울·경기 부동산 가격 역사와 사이클 분석.">
+<meta property="og:url" content="https://buridge.vercel.app/서울_경기_부동산_역사.html">
+<meta property="og:image" content="https://buridge.vercel.app/og-image.svg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="ko_KR">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="부동산 역사 | 부릿지 BuRIDGE">
+<meta name="twitter:description" content="서울·경기 부동산 가격 역사와 사이클 분석.">
+<meta name="twitter:image" content="https://buridge.vercel.app/og-image.svg">
+<title>서울·경기 부동산 흐름 — 2001~2025 연대기</title>
+<style>
+:root {
+  --navy:    #0f2847;
+  --navy2:   #1a3a5c;
+  --red:     #c41230;
+  --red-lt:  #f0d0d5;
+  --cream:   #faf9f5;
+  --slate:   #5a6b7e;
+  --slate-lt:#e8edf2;
+  --gold-bg: #fdf3d7;
+  --gold:    #7b4d0a;
+  --gold2:   #c9910a;
+  --text:    #1e2a36;
+  --mid:     #4a5568;
+  --rule:    #d0d8e2;
+  --white:   #ffffff;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { font-size: 16px; scroll-behavior: smooth; }
+
+body {
+  font-family: 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', system-ui, sans-serif;
+  background: var(--cream);
+  color: var(--text);
+  line-height: 1.75;
+}
+
+/* ── COVER ─────────────────────────────────────────── */
+.cover {
+  background: var(--navy);
+  color: var(--white);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 60px 24px;
+  position: relative;
+  overflow: hidden;
+}
+
+.cover::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 6px;
+  background: var(--red);
+}
+
+.cover::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 80% 60% at 50% 40%, rgba(26,58,92,0.4) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.cover-eyebrow {
+  font-size: .75rem;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,.5);
+  margin-bottom: 28px;
+  position: relative; z-index: 1;
+}
+
+.cover-title {
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: clamp(2.2rem, 6vw, 4rem);
+  font-weight: normal;
+  line-height: 1.2;
+  letter-spacing: -.02em;
+  text-wrap: balance;
+  position: relative; z-index: 1;
+  max-width: 680px;
+}
+
+.cover-title em {
+  display: block;
+  font-style: normal;
+  color: var(--red);
+  font-size: .6em;
+  margin-bottom: 8px;
+  font-family: 'Apple SD Gothic Neo', system-ui, sans-serif;
+  letter-spacing: .05em;
+  font-weight: 500;
+}
+
+.cover-sub {
+  margin-top: 20px;
+  font-size: 1rem;
+  color: rgba(255,255,255,.6);
+  position: relative; z-index: 1;
+}
+
+.cover-stats {
+  display: flex;
+  gap: 40px;
+  margin-top: 56px;
+  padding-top: 40px;
+  border-top: 1px solid rgba(255,255,255,.12);
+  position: relative; z-index: 1;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.cover-stat {
+  text-align: center;
+}
+
+.cover-stat-num {
+  display: block;
+  font-family: Georgia, serif;
+  font-size: 2rem;
+  color: var(--white);
+  font-variant-numeric: tabular-nums;
+}
+
+.cover-stat-num span { color: var(--red); font-size: .7em; }
+
+.cover-stat-label {
+  display: block;
+  font-size: .7rem;
+  color: rgba(255,255,255,.45);
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  margin-top: 4px;
+}
+
+.scroll-hint {
+  position: absolute;
+  bottom: 28px;
+  font-size: .72rem;
+  color: rgba(255,255,255,.3);
+  letter-spacing: .1em;
+  z-index: 1;
+}
+
+/* ── PAGE LAYOUT ────────────────────────────────────── */
+.page { max-width: 760px; margin: 0 auto; padding: 0 24px; }
+
+/* ── SECTION DIVIDERS ───────────────────────────────── */
+.section-break {
+  border: none;
+  border-top: 1px solid var(--rule);
+  margin: 0;
+}
+
+/* ── TOC ────────────────────────────────────────────── */
+.toc-wrap {
+  padding: 64px 0 48px;
+}
+
+.toc-label {
+  font-size: .7rem;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: var(--slate);
+  margin-bottom: 24px;
+}
+
+.toc-list {
+  list-style: none;
+  border-top: 2px solid var(--navy);
+}
+
+.toc-list li {
+  border-bottom: 1px solid var(--rule);
+}
+
+.toc-list a {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  padding: 14px 0;
+  text-decoration: none;
+  color: var(--text);
+  transition: color .2s;
+}
+
+.toc-list a:hover { color: var(--red); }
+
+.toc-num {
+  font-family: Georgia, serif;
+  font-size: .85rem;
+  color: var(--red);
+  min-width: 24px;
+  font-variant-numeric: tabular-nums;
+}
+
+.toc-ch {
+  flex: 1;
+  font-size: .95rem;
+}
+
+.toc-period {
+  font-size: .75rem;
+  color: var(--slate);
+  white-space: nowrap;
+}
+
+/* ── CHAPTER HEADER ─────────────────────────────────── */
+.chapter-header {
+  background: var(--navy);
+  color: var(--white);
+  padding: 72px 0 56px;
+  margin: 64px -9999px 0;
+  padding-left: 9999px;
+  padding-right: 9999px;
+}
+
+.chapter-inner {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.ch-num {
+  font-size: .7rem;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: var(--red);
+  margin-bottom: 16px;
+}
+
+.ch-title {
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: clamp(1.7rem, 4vw, 2.6rem);
+  font-weight: normal;
+  line-height: 1.2;
+  text-wrap: balance;
+}
+
+.ch-period {
+  display: inline-block;
+  margin-top: 20px;
+  font-size: .8rem;
+  color: rgba(255,255,255,.5);
+  border: 1px solid rgba(255,255,255,.2);
+  padding: 4px 12px;
+  letter-spacing: .06em;
+}
+
+.ch-lead {
+  margin-top: 28px;
+  font-size: 1.05rem;
+  color: rgba(255,255,255,.75);
+  line-height: 1.7;
+  max-width: 600px;
+}
+
+/* ── BODY CONTENT ───────────────────────────────────── */
+.chapter-body {
+  padding: 56px 0 72px;
+}
+
+.ch-section-title {
+  font-family: Georgia, serif;
+  font-size: 1.2rem;
+  color: var(--navy);
+  border-left: 3px solid var(--red);
+  padding-left: 14px;
+  margin: 48px 0 20px;
+}
+
+.body-text {
+  font-size: .97rem;
+  color: var(--mid);
+  line-height: 1.85;
+  margin-bottom: 16px;
+}
+
+/* ── PULLQUOTE ──────────────────────────────────────── */
+.pullquote {
+  border-left: 4px solid var(--navy);
+  padding: 20px 24px;
+  margin: 36px 0;
+  background: var(--slate-lt);
+}
+
+.pullquote p {
+  font-family: Georgia, serif;
+  font-size: 1.1rem;
+  color: var(--navy);
+  line-height: 1.6;
+  font-style: italic;
+  text-wrap: balance;
+}
+
+.pullquote cite {
+  display: block;
+  margin-top: 10px;
+  font-size: .75rem;
+  color: var(--slate);
+  font-style: normal;
+  letter-spacing: .06em;
+}
+
+/* ── CALLOUT BOX ────────────────────────────────────── */
+.callout {
+  background: var(--gold-bg);
+  border-left: 4px solid var(--gold2);
+  padding: 20px 24px;
+  margin: 28px 0;
+}
+
+.callout-title {
+  font-size: .75rem;
+  font-weight: 700;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 8px;
+}
+
+.callout p {
+  font-size: .9rem;
+  color: var(--gold);
+  line-height: 1.7;
+}
+
+.callout-red {
+  background: var(--red-lt);
+  border-left-color: var(--red);
+}
+
+.callout-red .callout-title,
+.callout-red p { color: var(--red); }
+
+/* ── PRICE CHART (CSS bars) ─────────────────────────── */
+.chart-wrap {
+  overflow-x: auto;
+  margin: 32px 0;
+}
+
+.chart {
+  min-width: 480px;
+  padding: 24px;
+  background: var(--white);
+  border: 1px solid var(--rule);
+}
+
+.chart-title {
+  font-size: .75rem;
+  font-weight: 700;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--slate);
+  margin-bottom: 20px;
+}
+
+.chart-bars {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.bar-row {
+  display: grid;
+  grid-template-columns: 80px 1fr 56px;
+  align-items: center;
+  gap: 10px;
+}
+
+.bar-label {
+  font-size: .8rem;
+  color: var(--mid);
+  text-align: right;
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+
+.bar-track {
+  height: 22px;
+  background: var(--slate-lt);
+  border-radius: 2px;
+  overflow: hidden;
+  position: relative;
+}
+
+.bar-fill {
+  height: 100%;
+  background: var(--navy);
+  border-radius: 2px;
+  transition: width .4s ease;
+  position: relative;
+}
+
+.bar-fill.red { background: var(--red); }
+.bar-fill.gold { background: var(--gold2); }
+.bar-fill.slate { background: var(--slate); }
+
+.bar-val {
+  font-size: .82rem;
+  color: var(--navy);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+  font-weight: 600;
+}
+
+/* ── PRICE TABLE ────────────────────────────────────── */
+.price-table-wrap {
+  overflow-x: auto;
+  margin: 32px 0;
+}
+
+.price-table {
+  width: 100%;
+  min-width: 500px;
+  border-collapse: collapse;
+  font-size: .87rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.price-table caption {
+  text-align: left;
+  font-size: .72rem;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--slate);
+  padding-bottom: 10px;
+  font-weight: 700;
+}
+
+.price-table thead th {
+  padding: 10px 14px;
+  text-align: center;
+  background: var(--navy);
+  color: var(--white);
+  font-size: .78rem;
+  letter-spacing: .05em;
+  font-weight: 600;
+}
+
+.price-table thead th:first-child { text-align: left; }
+
+.price-table tbody tr:nth-child(even) { background: var(--slate-lt); }
+
+.price-table tbody td {
+  padding: 9px 14px;
+  border-bottom: 1px solid var(--rule);
+  text-align: center;
+  color: var(--mid);
+}
+
+.price-table tbody td:first-child {
+  text-align: left;
+  font-weight: 600;
+  color: var(--navy);
+}
+
+.price-table .up { color: var(--red); font-weight: 700; }
+.price-table .down { color: #2563eb; font-weight: 700; }
+.price-table .peak { background: #fff0f0 !important; }
+.price-table .trough { background: #f0f4ff !important; }
+
+/* ── TIMELINE ───────────────────────────────────────── */
+.timeline {
+  margin: 28px 0;
+  padding-left: 0;
+  list-style: none;
+}
+
+.tl-item {
+  display: grid;
+  grid-template-columns: 64px 1fr;
+  gap: 0 16px;
+  padding-bottom: 20px;
+  position: relative;
+}
+
+.tl-item::before {
+  content: '';
+  position: absolute;
+  left: 30px;
+  top: 24px;
+  bottom: 0;
+  width: 1px;
+  background: var(--rule);
+}
+
+.tl-item:last-child::before { display: none; }
+
+.tl-year {
+  font-family: Georgia, serif;
+  font-size: .9rem;
+  color: var(--red);
+  font-weight: 700;
+  padding-top: 2px;
+  text-align: center;
+  z-index: 1;
+  background: var(--cream);
+}
+
+.tl-event {
+  font-size: .88rem;
+  color: var(--mid);
+  line-height: 1.6;
+  padding-top: 2px;
+}
+
+.tl-event strong {
+  display: block;
+  color: var(--navy);
+  font-size: .92rem;
+  margin-bottom: 2px;
+}
+
+/* ── RATE CHART ─────────────────────────────────────── */
+.rate-chart {
+  background: var(--white);
+  border: 1px solid var(--rule);
+  padding: 24px;
+  margin: 32px 0;
+  overflow-x: auto;
+}
+
+.rate-chart-title {
+  font-size: .75rem;
+  font-weight: 700;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--slate);
+  margin-bottom: 20px;
+}
+
+.rate-bars {
+  display: flex;
+  align-items: flex-end;
+  gap: 6px;
+  height: 120px;
+  border-bottom: 2px solid var(--rule);
+  padding-bottom: 0;
+  min-width: 500px;
+}
+
+.rate-col {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+  justify-content: flex-end;
+}
+
+.rate-bar {
+  width: 100%;
+  background: var(--navy2);
+  border-radius: 2px 2px 0 0;
+  min-height: 4px;
+  transition: height .3s;
+}
+
+.rate-bar.low { background: var(--slate); }
+.rate-bar.high { background: var(--red); }
+
+.rate-yr {
+  font-size: .6rem;
+  color: var(--slate);
+  margin-top: 6px;
+  white-space: nowrap;
+}
+
+.rate-val {
+  font-size: .65rem;
+  color: var(--navy);
+  font-variant-numeric: tabular-nums;
+  font-weight: 700;
+  margin-bottom: 3px;
+}
+
+/* ── KEY INDICATORS ROW ─────────────────────────────── */
+.indicators {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+  gap: 1px;
+  background: var(--rule);
+  border: 1px solid var(--rule);
+  margin: 32px 0;
+}
+
+.indicator {
+  background: var(--white);
+  padding: 20px 16px;
+  text-align: center;
+}
+
+.ind-num {
+  font-family: Georgia, serif;
+  font-size: 1.6rem;
+  color: var(--navy);
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+}
+
+.ind-num.red { color: var(--red); }
+.ind-num.blue { color: #1d4ed8; }
+
+.ind-unit {
+  font-size: .72rem;
+  color: var(--slate);
+  margin-top: 6px;
+  line-height: 1.4;
+}
+
+/* ── FOOTNOTE ───────────────────────────────────────── */
+.footnote {
+  font-size: .75rem;
+  color: var(--slate);
+  border-top: 1px solid var(--rule);
+  padding-top: 8px;
+  margin-top: 28px;
+  line-height: 1.6;
+}
+
+/* ── EPILOGUE ───────────────────────────────────────── */
+.epilogue {
+  background: var(--navy);
+  color: var(--white);
+  padding: 72px 0;
+  margin: 72px -9999px 0;
+  padding-left: 9999px;
+  padding-right: 9999px;
+}
+
+.epilogue-inner {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.epilogue h2 {
+  font-family: Georgia, serif;
+  font-size: 1.8rem;
+  font-weight: normal;
+  margin-bottom: 24px;
+}
+
+.epilogue p {
+  color: rgba(255,255,255,.7);
+  font-size: .95rem;
+  line-height: 1.85;
+  max-width: 600px;
+  margin-bottom: 16px;
+}
+
+/* ── FOOTER ─────────────────────────────────────────── */
+.foot {
+  padding: 32px 0;
+  text-align: center;
+  font-size: .72rem;
+  color: var(--slate);
+  letter-spacing: .06em;
+}
+
+/* ── UTILS ──────────────────────────────────────────── */
+.mt-0 { margin-top: 0 !important; }
+.mt-8 { margin-top: 8px; }
+
+@media (max-width: 600px) {
+  .cover-stats { gap: 28px; }
+  .cover-stat-num { font-size: 1.5rem; }
+  .ch-title { font-size: 1.5rem; }
+  .bar-row { grid-template-columns: 64px 1fr 48px; }
+}
+</style>
+</head>
+<body>
+
+<!-- ══════════════ COVER ══════════════ -->
+<div class="cover">
+  <p class="cover-eyebrow">대한민국 주거 시장 연대기</p>
+  <h1 class="cover-title">
+    <em>서울·경기</em>
+    부동산 흐름<br>2001–2025
+  </h1>
+  <p class="cover-sub">국토부 실거래가 · 한국은행 기준금리 · 주요 정책 기반 · 2026년 6월 현재</p>
+
+  <div class="cover-stats">
+    <div class="cover-stat">
+      <span class="cover-stat-num">11.5<span>억</span></span>
+      <span class="cover-stat-label">서울 중위가 최고점<br>2021년</span>
+    </div>
+    <div class="cover-stat">
+      <span class="cover-stat-num">+506<span>%</span></span>
+      <span class="cover-stat-label">강남구 상승률<br>2001→2021</span>
+    </div>
+    <div class="cover-stat">
+      <span class="cover-stat-num">25<span>년</span></span>
+      <span class="cover-stat-label">기록 기간</span>
+    </div>
+    <div class="cover-stat">
+      <span class="cover-stat-num">6<span>개</span></span>
+      <span class="cover-stat-label">시대 구분</span>
+    </div>
+  </div>
+  <p class="scroll-hint">▼ SCROLL</p>
+</div>
+
+<!-- ══════════════ TOC ══════════════ -->
+<div class="page">
+  <div class="toc-wrap">
+    <p class="toc-label">차례</p>
+    <ul class="toc-list">
+      <li><a href="#ch1"><span class="toc-num">I</span><span class="toc-ch">노무현 시대 — 첫 번째 대폭등</span><span class="toc-period">2001–2007</span></a></li>
+      <li><a href="#ch2"><span class="toc-num">II</span><span class="toc-ch">글로벌 금융위기와 긴 침체</span><span class="toc-period">2008–2013</span></a></li>
+      <li><a href="#ch3"><span class="toc-num">III</span><span class="toc-ch">저금리 부양과 완만한 회복</span><span class="toc-period">2014–2017</span></a></li>
+      <li><a href="#ch4"><span class="toc-num">IV</span><span class="toc-ch">문재인 시대 — 역대 최고가</span><span class="toc-period">2018–2021</span></a></li>
+      <li><a href="#ch5"><span class="toc-num">V</span><span class="toc-ch">윤석열 정부 — 금리 충격과 규제 대전환</span><span class="toc-period">2022–2023</span></a></li>
+      <li><a href="#ch6"><span class="toc-num">VI</span><span class="toc-ch">정권 교체 — 비상계엄·탄핵·이재명 정부</span><span class="toc-period">2024–2026</span></a></li>
+    </ul>
+  </div>
+</div>
+
+<hr class="section-break">
+
+
+<!-- ══════════════ CHAPTER 1 ══════════════ -->
+<div id="ch1">
+  <div class="chapter-header">
+    <div class="chapter-inner">
+      <p class="ch-num">Chapter I</p>
+      <h2 class="ch-title">노무현 시대 — 첫 번째 대폭등</h2>
+      <span class="ch-period">2001 – 2007</span>
+      <p class="ch-lead">IMF 외환위기 이후 억눌린 주거 수요가 저금리와 만나 폭발했다. 강남 재건축을 필두로 서울 전역이 들썩였고, 정부는 사상 최대 규제 패키지로 맞섰지만 시장은 멈추지 않았다.</p>
+    </div>
+  </div>
+
+  <div class="page">
+    <div class="chapter-body">
+
+      <div class="indicators">
+        <div class="indicator">
+          <div class="ind-num">1.9억</div>
+          <div class="ind-unit">서울 중위 아파트가<br>(2001년 초)</div>
+        </div>
+        <div class="indicator">
+          <div class="ind-num red">4.0억</div>
+          <div class="ind-unit">서울 중위 아파트가<br>(2007년 말 고점)</div>
+        </div>
+        <div class="indicator">
+          <div class="ind-num">+110%</div>
+          <div class="ind-unit">서울 평균 상승률<br>2001→2007</div>
+        </div>
+        <div class="indicator">
+          <div class="ind-num">5.0%</div>
+          <div class="ind-unit">기준금리<br>(2001년)</div>
+        </div>
+      </div>
+
+      <h3 class="ch-section-title">시대 배경</h3>
+      <p class="body-text">1997년 외환위기 직후 집값은 폭락했고, 1999~2000년 금리 인하와 경기 회복으로 억눌린 구매력이 급격히 해소되기 시작했다. 2001년부터 은행 대출이 완화되고 아파트 청약 시장이 다시 과열 양상을 보였다. 특히 강남구 재건축 아파트가 투자 심리의 진원지가 됐다.</p>
+      <p class="body-text">당시 시장을 달군 핵심은 '재건축 아파트의 사업성'이었다. 노후 단지를 허물고 고층으로 재건축하면 추가 부담금 없이 새 아파트를 받는 구조가 알려지면서 강남·송파·강동의 재건축 단지에 자금이 몰렸다.</p>
+
+      <div class="pullquote">
+        <p>"강남 재건축은 투자가 아니라 로또였다. 2002년에 2억짜리 노후 아파트를 사면 3년 뒤 새 아파트로 돌아왔다."</p>
+        <cite>당시 부동산 업계 증언 (2005년 언론 보도 재인용)</cite>
+      </div>
+
+      <h3 class="ch-section-title">주요 정책 타임라인</h3>
+      <ul class="timeline">
+        <li class="tl-item">
+          <span class="tl-year">2002</span>
+          <div class="tl-event"><strong>투기과열지구 제도 신설</strong>서울 전역·수도권 일부 지정. 전매 제한, 청약 1순위 자격 강화.</div>
+        </li>
+        <li class="tl-item">
+          <span class="tl-year">2003</span>
+          <div class="tl-event"><strong>10·29 부동산 종합대책</strong>강남 투기지역 지정, 양도세 실거래가 과세, 재건축 개발이익 환수 예고. '참여정부 최강 규제' 1탄.</div>
+        </li>
+        <li class="tl-item">
+          <span class="tl-year">2005</span>
+          <div class="tl-event"><strong>8·31 부동산 대책</strong>종합부동산세 본격 시행(2006년부터 징수). 1가구 2주택 양도세 50% 중과. 재건축 초과이익 환수제 입법 예고.</div>
+        </li>
+        <li class="tl-item">
+          <span class="tl-year">2006</span>
+          <div class="tl-event"><strong>3·30 대책 및 판교 분양</strong>판교신도시 1차 분양(84㎡ 분양가 3.6억원). 강남 대체 수요 창출 시도. 그러나 판교 당첨 후 인근 강남 가격도 동반 상승.</div>
+        </li>
+        <li class="tl-item">
+          <span class="tl-year">2007</span>
+          <div class="tl-event"><strong>종부세 최고세율 3%로 강화</strong>다주택자 중과 강화. 강남 고가 아파트 보유세 부담 급증. 하지만 시장 과열 지속.</div>
+        </li>
+      </ul>
+
+      <h3 class="ch-section-title">서울·경기 주요 지역 가격 흐름</h3>
+      <div class="price-table-wrap">
+        <table class="price-table">
+          <caption>아파트 84㎡ 기준 중위 거래가격 (만원)</caption>
+          <thead>
+            <tr>
+              <th>지역</th>
+              <th>2001</th>
+              <th>2003</th>
+              <th>2005</th>
+              <th>2007</th>
+              <th>등락률</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="peak">
+              <td>강남구</td>
+              <td>40,000</td>
+              <td>70,000</td>
+              <td>90,000</td>
+              <td>115,000</td>
+              <td class="up">+188%</td>
+            </tr>
+            <tr>
+              <td>서초구</td>
+              <td>35,000</td>
+              <td>58,000</td>
+              <td>78,000</td>
+              <td>100,000</td>
+              <td class="up">+186%</td>
+            </tr>
+            <tr>
+              <td>마포구</td>
+              <td>15,000</td>
+              <td>22,000</td>
+              <td>28,000</td>
+              <td>38,000</td>
+              <td class="up">+153%</td>
+            </tr>
+            <tr>
+              <td>노원구</td>
+              <td>10,000</td>
+              <td>14,000</td>
+              <td>18,000</td>
+              <td>24,000</td>
+              <td class="up">+140%</td>
+            </tr>
+            <tr>
+              <td>분당 (성남)</td>
+              <td>20,000</td>
+              <td>32,000</td>
+              <td>44,000</td>
+              <td>60,000</td>
+              <td class="up">+200%</td>
+            </tr>
+            <tr>
+              <td>수원 영통</td>
+              <td>13,000</td>
+              <td>18,000</td>
+              <td>23,000</td>
+              <td>30,000</td>
+              <td class="up">+131%</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="callout">
+        <p class="callout-title">왜 분당은 강남보다 더 올랐나?</p>
+        <p>분당신도시는 1990년대 초 1기 신도시로 준공 후 서울 진입 통로 역할을 했다. 2003년 이후 강남 규제가 강화되자 비교적 덜 규제받던 분당으로 투자 수요가 이전됐고, 2004~2007년 판교 개발 호재가 겹치며 분당 기존 단지도 동반 상승했다.</p>
+      </div>
+
+      <p class="footnote">※ 위 가격은 국토교통부 실거래가 공개시스템 및 KB국민은행 부동산 통계 기반 추정 중위가격입니다. 단지·면적·층수에 따라 실제 거래가는 크게 다를 수 있습니다.</p>
+    </div>
+  </div>
+</div>
+
+
+<!-- ══════════════ CHAPTER 2 ══════════════ -->
+<div id="ch2">
+  <div class="chapter-header">
+    <div class="chapter-inner">
+      <p class="ch-num">Chapter II</p>
+      <h2 class="ch-title">글로벌 금융위기와 긴 침체</h2>
+      <span class="ch-period">2008 – 2013</span>
+      <p class="ch-lead">미국 서브프라임 사태가 전 세계를 강타했다. 금리가 빠르게 내려갔음에도 수도권 집값은 좀처럼 살아나지 않았다. 공급 과잉, 가계 부채 우려, 미분양 사태가 겹쳤고 "집은 이제 돈이 안 된다"는 인식이 팽배했다.</p>
+    </div>
+  </div>
+
+  <div class="page">
+    <div class="chapter-body">
+
+      <div class="indicators">
+        <div class="indicator">
+          <div class="ind-num">4.0억</div>
+          <div class="ind-unit">서울 중위가<br>(2008년 초)</div>
+        </div>
+        <div class="indicator">
+          <div class="ind-num blue">3.2억</div>
+          <div class="ind-unit">서울 중위가<br>(2013년 저점)</div>
+        </div>
+        <div class="indicator">
+          <div class="ind-num">−20%</div>
+          <div class="ind-unit">서울 평균 하락<br>2008→2013</div>
+        </div>
+        <div class="indicator">
+          <div class="ind-num">2.75%</div>
+          <div class="ind-unit">기준금리<br>(2013년)</div>
+        </div>
+      </div>
+
+      <h3 class="ch-section-title">침체의 구조</h3>
+      <p class="body-text">2008년 9월 리먼브라더스 파산 직후 신용 경색이 찾아왔다. 한국은행은 기준금리를 2008년 10월부터 6개월간 5.25%→2.0%까지 급격히 낮췄으나, 집값은 반등하지 않았다. 수도권에만 20만 가구에 달하는 미분양이 쌓였고, 건설사들이 줄줄이 워크아웃에 들어갔다.</p>
+      <p class="body-text">이 시기 독특한 현상은 '전세가 급등'이었다. 집값은 내리는데 전셋값은 올라가는 역전현상이 나타났다. 집 사기를 포기한 실수요자들이 전세 시장으로 몰렸고, 집주인들은 집값 하락 손실을 낮은 전세가격 대신 전셋값 인상으로 만회하려 했다.</p>
+
+      <div class="callout callout-red">
+        <p class="callout-title">수도권 미분양 현황 (2009년)</p>
+        <p>경기도 미분양: 약 11만 가구 / 서울 미분양: 약 2만 가구. 파주·양주·화성 등 외곽 신도시의 경우 분양가 이하에서도 매수자를 찾기 어려웠다. 건설사들은 '임대 후 분양 전환' 방식으로 재고를 소화했다.</p>
+      </div>
+
+      <h3 class="ch-section-title">기준금리 흐름 (2001–2013)</h3>
+      <div class="rate-chart">
+        <p class="rate-chart-title">한국은행 기준금리 (연 %)</p>
+        <div class="rate-bars">
+          <!-- bars: max rate ~5.25 → height = (rate/5.25)*100px -->
+          <div class="rate-col"><div class="rate-val">5.0</div><div class="rate-bar" style="height:95px"></div><div class="rate-yr">01</div></div>
+          <div class="rate-col"><div class="rate-val">4.25</div><div class="rate-bar" style="height:81px"></div><div class="rate-yr">02</div></div>
+          <div class="rate-col"><div class="rate-val">3.75</div><div class="rate-bar" style="height:71px"></div><div class="rate-yr">03</div></div>
+          <div class="rate-col"><div class="rate-val">3.25</div><div class="rate-bar low" style="height:62px"></div><div class="rate-yr">04</div></div>
+          <div class="rate-col"><div class="rate-val">3.75</div><div class="rate-bar" style="height:71px"></div><div class="rate-yr">05</div></div>
+          <div class="rate-col"><div class="rate-val">4.5</div><div class="rate-bar" style="height:86px"></div><div class="rate-yr">06</div></div>
+          <div class="rate-col"><div class="rate-val">5.0</div><div class="rate-bar" style="height:95px"></div><div class="rate-yr">07</div></div>
+          <div class="rate-col"><div class="rate-val">5.25</div><div class="rate-bar high" style="height:100px"></div><div class="rate-yr">08상</div></div>
+          <div class="rate-col"><div class="rate-val">2.0</div><div class="rate-bar low" style="height:38px"></div><div class="rate-yr">09</div></div>
+          <div class="rate-col"><div class="rate-val">2.25</div><div class="rate-bar low" style="height:43px"></div><div class="rate-yr">10</div></div>
+          <div class="rate-col"><div class="rate-val">3.25</div><div class="rate-bar" style="height:62px"></div><div class="rate-yr">11</div></div>
+          <div class="rate-col"><div class="rate-val">2.75</div><div class="rate-bar low" style="height:52px"></div><div class="rate-yr">12</div></div>
+          <div class="rate-col"><div class="rate-val">2.5</div><div class="rate-bar low" style="height:48px"></div><div class="rate-yr">13</div></div>
+        </div>
+      </div>
+
+      <h3 class="ch-section-title">주요 지역 가격 흐름</h3>
+      <div class="price-table-wrap">
+        <table class="price-table">
+          <caption>아파트 84㎡ 기준 중위 거래가격 (만원)</caption>
+          <thead>
+            <tr>
+              <th>지역</th>
+              <th>2008</th>
+              <th>2010</th>
+              <th>2013</th>
+              <th>등락률</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>강남구</td>
+              <td>115,000</td>
+              <td>98,000</td>
+              <td>88,000</td>
+              <td class="down">−23%</td>
+            </tr>
+            <tr class="trough">
+              <td>서초구</td>
+              <td>100,000</td>
+              <td>88,000</td>
+              <td>78,000</td>
+              <td class="down">−22%</td>
+            </tr>
+            <tr>
+              <td>마포구</td>
+              <td>38,000</td>
+              <td>34,000</td>
+              <td>32,000</td>
+              <td class="down">−16%</td>
+            </tr>
+            <tr class="trough">
+              <td>노원구</td>
+              <td>24,000</td>
+              <td>20,000</td>
+              <td>18,000</td>
+              <td class="down">−25%</td>
+            </tr>
+            <tr>
+              <td>분당</td>
+              <td>60,000</td>
+              <td>52,000</td>
+              <td>46,000</td>
+              <td class="down">−23%</td>
+            </tr>
+            <tr>
+              <td>판교 (2010년 입주)</td>
+              <td>— </td>
+              <td>50,000</td>
+              <td>60,000</td>
+              <td class="up">+20%*</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="footnote">* 판교는 2009~2010년 첫 입주 시점부터 비교. 전반적 침체 속에서도 판교는 신규 분양 이후 프리미엄 상승이 유지됐다.</p>
+
+      <div class="callout">
+        <p class="callout-title">침체기 투자 격언</p>
+        <p>이 시기 "부동산은 끝났다"는 말이 넘쳤다. 하지만 역설적으로 침체기에 저가 매수한 투자자들이 2018~2021년 대폭등기에 가장 큰 수익을 거뒀다. 입지 좋은 서울 아파트는 결코 장기 하락하지 않았다는 교훈이 남았다.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ══════════════ CHAPTER 3 ══════════════ -->
+<div id="ch3">
+  <div class="chapter-header">
+    <div class="chapter-inner">
+      <p class="ch-num">Chapter III</p>
+      <h2 class="ch-title">저금리 부양과 완만한 회복</h2>
+      <span class="ch-period">2014 – 2017</span>
+      <p class="ch-lead">박근혜 정부는 침체된 부동산 시장을 경기 부양 카드로 활용했다. LTV·DTI 완화, 재건축 규제 완화, 공공임대 확대 등이 쏟아졌고, 저금리 기조와 맞물려 서울 집값이 서서히 상승 궤도에 올라탔다.</p>
+    </div>
+  </div>
+
+  <div class="page">
+    <div class="chapter-body">
+
+      <div class="indicators">
+        <div class="indicator">
+          <div class="ind-num">3.2억</div>
+          <div class="ind-unit">서울 중위가<br>(2014년 초)</div>
+        </div>
+        <div class="indicator">
+          <div class="ind-num red">5.5억</div>
+          <div class="ind-unit">서울 중위가<br>(2017년 말)</div>
+        </div>
+        <div class="indicator">
+          <div class="ind-num">+72%</div>
+          <div class="ind-unit">서울 상승률<br>2013→2017</div>
+        </div>
+        <div class="indicator">
+          <div class="ind-num">1.25%</div>
+          <div class="ind-unit">기준금리<br>(2017년)</div>
+        </div>
+      </div>
+
+      <h3 class="ch-section-title">규제 완화의 시대</h3>
+      <p class="body-text">2014년 8월, 정부는 LTV(담보인정비율)를 70%로 일괄 완화하고 DTI(총부채상환비율) 규제도 느슨하게 풀었다. 더불어 재건축 연한을 40년에서 30년으로 단축하고 용적률 상한을 높이는 도시정비법 개정이 이뤄졌다. 이 두 가지 조치는 서울 노후 아파트의 재건축 기대감을 일제히 높였다.</p>
+      <p class="body-text">2015~2016년은 역대 최저 수준의 기준금리(1.25%)와 맞물려 내 집 마련 심리가 살아났다. "전세보다 매매가 낫다"는 말이 실수요자 사이에 퍼졌고, 갱신을 피해 전세에서 매매로 전환하는 수요가 늘었다.</p>
+
+      <ul class="timeline">
+        <li class="tl-item">
+          <span class="tl-year">2014</span>
+          <div class="tl-event"><strong>LTV 70% 일괄 완화</strong>수도권 LTV 50%→70%, DTI도 완화. "빚내서 집 사라" 정책 기조. 거래량 급증.</div>
+        </li>
+        <li class="tl-item">
+          <span class="tl-year">2015</span>
+          <div class="tl-event"><strong>재건축 연한 단축·뉴타운 정비</strong>서울 강남 재건축 추진 단지 급증. 가재울·수색 뉴타운 정비사업 가속화.</div>
+        </li>
+        <li class="tl-item">
+          <span class="tl-year">2016</span>
+          <div class="tl-event"><strong>기준금리 사상 최저 1.25%</strong>한국은행 6월 인하. 대출 이자 부담 극감. 전세→매매 전환 가속.</div>
+        </li>
+        <li class="tl-item">
+          <span class="tl-year">2017</span>
+          <div class="tl-event"><strong>8·2 부동산 대책 (문재인 정부 초)</strong>투기과열지구 재지정, 재건축 조합원 분양 주택 수 제한, 1주택자 양도세 비과세 요건 강화.</div>
+        </li>
+      </ul>
+
+      <h3 class="ch-section-title">경기도 신도시 경쟁 구도</h3>
+      <div class="chart-wrap">
+        <div class="chart">
+          <p class="chart-title">2017년 말 경기 주요 지역 아파트 84㎡ 중위가 (만원)</p>
+          <div class="chart-bars">
+            <div class="bar-row">
+              <span class="bar-label">판교</span>
+              <div class="bar-track"><div class="bar-fill red" style="width:90%"></div></div>
+              <span class="bar-val">90,000</span>
+            </div>
+            <div class="bar-row">
+              <span class="bar-label">과천</span>
+              <div class="bar-track"><div class="bar-fill red" style="width:80%"></div></div>
+              <span class="bar-val">80,000</span>
+            </div>
+            <div class="bar-row">
+              <span class="bar-label">분당</span>
+              <div class="bar-track"><div class="bar-fill" style="width:72%"></div></div>
+              <span class="bar-val">72,000</span>
+            </div>
+            <div class="bar-row">
+              <span class="bar-label">동탄2</span>
+              <div class="bar-track"><div class="bar-fill" style="width:44%"></div></div>
+              <span class="bar-val">44,000</span>
+            </div>
+            <div class="bar-row">
+              <span class="bar-label">수원 영통</span>
+              <div class="bar-track"><div class="bar-fill slate" style="width:40%"></div></div>
+              <span class="bar-val">40,000</span>
+            </div>
+            <div class="bar-row">
+              <span class="bar-label">용인 수지</span>
+              <div class="bar-track"><div class="bar-fill slate" style="width:38%"></div></div>
+              <span class="bar-val">38,000</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="callout">
+        <p class="callout-title">판교 vs 분당 — 신구 경쟁</p>
+        <p>2015년을 기점으로 판교 입주 아파트 가격이 분당 기존 단지를 처음으로 추월했다. 카카오·네이버·넥슨 등 IT 대기업의 판교 집적이 배후 수요를 창출했고, "일자리 가까운 새 아파트" 프리미엄이 형성됐다. 반면 분당 노후 단지는 리모델링 혹은 재건축 기대감으로 분화되기 시작했다.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ══════════════ CHAPTER 4 ══════════════ -->
+<div id="ch4">
+  <div class="chapter-header">
+    <div class="chapter-inner">
+      <p class="ch-num">Chapter IV</p>
+      <h2 class="ch-title">문재인 시대 — 역대 최고가</h2>
+      <span class="ch-period">2018 – 2021</span>
+      <p class="ch-lead">역대 가장 많은 부동산 대책(25번 이상)이 쏟아졌지만 집값은 멈추지 않았다. 코로나 팬데믹 이후 초저금리와 유동성 폭증이 결정타를 날렸고, 2021년 서울 아파트 평균가는 11.5억을 넘어 역대 최고점을 찍었다.</p>
+    </div>
+  </div>
+
+  <div class="page">
+    <div class="chapter-body">
+
+      <div class="indicators">
+        <div class="indicator">
+          <div class="ind-num">5.5억</div>
+          <div class="ind-unit">서울 중위가<br>(2018년 초)</div>
+        </div>
+        <div class="indicator">
+          <div class="ind-num red">11.5억</div>
+          <div class="ind-unit">서울 중위가<br>(2021년 최고)</div>
+        </div>
+        <div class="indicator">
+          <div class="ind-num">+109%</div>
+          <div class="ind-unit">서울 4년 상승률</div>
+        </div>
+        <div class="indicator">
+          <div class="ind-num">0.5%</div>
+          <div class="ind-unit">기준금리 최저<br>(2020~2021)</div>
+        </div>
+      </div>
+
+      <h3 class="ch-section-title">왜 규제가 집값을 올렸나</h3>
+      <p class="body-text">2018년 9·13 대책, 2019년 12·16 대책, 2020년 6·17 대책, 2020년 7·10 대책... 2년간 20개에 달하는 규제가 쏟아졌다. 대출 제한, 세금 중과, 다주택자 압박이 핵심이었다. 그런데 역설적으로 공급은 줄고 수요는 더 자극됐다.</p>
+      <p class="body-text">핵심 이유는 '공급 부족 인식'이었다. 재건축·재개발 규제가 강화되고 분양가 상한제가 적용되자 새 아파트 공급이 줄었다. 분양가 상한제 아파트는 시세보다 30~50% 싸게 나왔고, 당첨 로또 기대감이 주변 기존 아파트 가격을 더 끌어올렸다.</p>
+
+      <div class="pullquote">
+        <p>"집 가진 자와 없는 자의 자산 격차가 4년간 평균 6억 원 벌어졌다. 이 시기에 내 집을 갖지 못한 것은 개인의 선택이 아니라 시대의 비극이었다."</p>
+        <cite>주택산업연구원, 2022년 보고서</cite>
+      </div>
+
+      <h3 class="ch-section-title">연도별 서울 중위 아파트가 상승 추이</h3>
+      <div class="chart-wrap">
+        <div class="chart">
+          <p class="chart-title">서울 아파트 중위 거래가격 — 84㎡ 기준 (단위: 억원)</p>
+          <div class="chart-bars">
+            <div class="bar-row">
+              <span class="bar-label">2017</span>
+              <div class="bar-track"><div class="bar-fill slate" style="width:40%"></div></div>
+              <span class="bar-val">5.5억</span>
+            </div>
+            <div class="bar-row">
+              <span class="bar-label">2018</span>
+              <div class="bar-track"><div class="bar-fill slate" style="width:49%"></div></div>
+              <span class="bar-val">6.7억</span>
+            </div>
+            <div class="bar-row">
+              <span class="bar-label">2019</span>
+              <div class="bar-track"><div class="bar-fill" style="width:54%"></div></div>
+              <span class="bar-val">7.4억</span>
+            </div>
+            <div class="bar-row">
+              <span class="bar-label">2020</span>
+              <div class="bar-track"><div class="bar-fill" style="width:66%"></div></div>
+              <span class="bar-val">9.0억</span>
+            </div>
+            <div class="bar-row">
+              <span class="bar-label">2021</span>
+              <div class="bar-track"><div class="bar-fill red" style="width:100%"></div></div>
+              <span class="bar-val">11.5억</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <h3 class="ch-section-title">역대 최고가 지역 비교 (2021년 말)</h3>
+      <div class="price-table-wrap">
+        <table class="price-table">
+          <caption>아파트 84㎡ 기준 최고점 거래가격 (만원)</caption>
+          <thead>
+            <tr>
+              <th>지역</th>
+              <th>2017년</th>
+              <th>2021년 최고</th>
+              <th>4년 상승</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="peak">
+              <td>강남구</td>
+              <td>120,000</td>
+              <td>260,000</td>
+              <td class="up">+117%</td>
+            </tr>
+            <tr class="peak">
+              <td>서초구</td>
+              <td>105,000</td>
+              <td>230,000</td>
+              <td class="up">+119%</td>
+            </tr>
+            <tr class="peak">
+              <td>마포구</td>
+              <td>65,000</td>
+              <td>150,000</td>
+              <td class="up">+131%</td>
+            </tr>
+            <tr class="peak">
+              <td>노원구</td>
+              <td>28,000</td>
+              <td>75,000</td>
+              <td class="up">+168%</td>
+            </tr>
+            <tr class="peak">
+              <td>판교</td>
+              <td>90,000</td>
+              <td>220,000</td>
+              <td class="up">+144%</td>
+            </tr>
+            <tr class="peak">
+              <td>동탄2</td>
+              <td>44,000</td>
+              <td>120,000</td>
+              <td class="up">+173%</td>
+            </tr>
+            <tr class="peak">
+              <td>과천</td>
+              <td>80,000</td>
+              <td>200,000</td>
+              <td class="up">+150%</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3 class="ch-section-title">주요 정책 타임라인</h3>
+      <ul class="timeline">
+        <li class="tl-item">
+          <span class="tl-year">2018</span>
+          <div class="tl-event"><strong>9·13 대책 — 다주택자 핵심 타깃</strong>종합부동산세 최고 3.2%로 인상. 2주택자 규제지역 취득 시 LTV 0%. 임대사업자 혜택 확대(이후 폐지의 씨앗).</div>
+        </li>
+        <li class="tl-item">
+          <span class="tl-year">2019</span>
+          <div class="tl-event"><strong>12·16 대책 — 15억 초과 대출 금지</strong>15억 초과 아파트 주택담보대출 전면 금지. 9억 초과 LTV 20~40%로 강화. 강남권 매수세 급감, 마·용·성 상대적 부각.</div>
+        </li>
+        <li class="tl-item">
+          <span class="tl-year">2020</span>
+          <div class="tl-event"><strong>7·10 대책 — 취득세 최대 12%</strong>3주택 이상 취득세 12%(기존 1~3%). 임대사업자 등록 제도 폐지. 양도세 최고 65%로 인상. 오히려 매물 잠김 가속화.</div>
+        </li>
+        <li class="tl-item">
+          <span class="tl-year">2020</span>
+          <div class="tl-event"><strong>코로나19·기준금리 0.5% 인하</strong>3월 0.75%→5월 0.5% 역대 최저. 가계 대출 급증. 영끌(영혼까지 끌어모아) 매수 열풍.</div>
+        </li>
+        <li class="tl-item">
+          <span class="tl-year">2021</span>
+          <div class="tl-event"><strong>임대차 3법 시행 (2020년 8월 시행 1년차)</strong>계약갱신청구권, 전월세상한제, 전월세신고제. 전세 공급 감소로 전셋값 폭등, 매매가 동반 상승 유발.</div>
+        </li>
+      </ul>
+
+      <div class="callout callout-red">
+        <p class="callout-title">영끌 세대의 등장</p>
+        <p>2020~2021년, 2030세대는 "지금 안 사면 영원히 못 산다"는 공포에 사로잡혔다. 신용대출, 전세보증금 활용, 부모 증여까지 동원한 '영혼까지 끌어모은' 매수가 급증했다. 이 세대가 2022년 금리 충격의 최대 피해자가 됐다.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ══════════════ CHAPTER 5 ══════════════ -->
+<div id="ch5">
+  <div class="chapter-header">
+    <div class="chapter-inner">
+      <p class="ch-num">Chapter V</p>
+      <h2 class="ch-title">윤석열 정부 — 금리 충격과 규제 대전환</h2>
+      <span class="ch-period">2022 – 2023</span>
+      <p class="ch-lead">윤석열 정부는 문재인 시대 규제를 전면 뒤집는 대전환을 선언했다. 다주택자 세금 완화, 규제지역 대거 해제, 재건축 요건 완화가 쏟아졌다. 그러나 미 연준 발 금리 폭등이 모든 것을 집어삼켰다. 집값은 고점 대비 최대 35% 급락했다.</p>
+    </div>
+  </div>
+
+  <div class="page">
+    <div class="chapter-body">
+
+      <div class="indicators">
+        <div class="indicator">
+          <div class="ind-num">11.5억</div>
+          <div class="ind-unit">서울 중위가<br>(2021년 고점)</div>
+        </div>
+        <div class="indicator">
+          <div class="ind-num blue">8.0억</div>
+          <div class="ind-unit">서울 중위가<br>(2023년 저점)</div>
+        </div>
+        <div class="indicator">
+          <div class="ind-num">−30%</div>
+          <div class="ind-unit">서울 평균 하락<br>고점 대비</div>
+        </div>
+        <div class="indicator">
+          <div class="ind-num">3.5%</div>
+          <div class="ind-unit">기준금리<br>(2023년)</div>
+        </div>
+      </div>
+
+      <h3 class="ch-section-title">금리 충격의 전개</h3>
+      <p class="body-text">2022년 초 0.5%이던 기준금리는 2023년 1월 3.5%에 도달했다. 불과 1년 만에 3%포인트 상승. 이에 따라 주택담보대출 변동금리는 연 7~8%대까지 치솟았다. 영끌로 5억을 빌린 가구의 월 이자 부담은 약 200만원에서 350만원으로 급증했다.</p>
+      <p class="body-text">매도자는 급급매를 내놓았고, 매수자는 자취를 감췄다. 2022년 하반기 서울 아파트 거래량은 월 500건대까지 추락했다. 2006년 실거래가 통계 집계 이래 최저 수준이었다. "공시가격보다 낮은 급매"라는 말이 등장했다.</p>
+
+      <div class="callout callout-red">
+        <p class="callout-title">역전세 위기</p>
+        <p>2022~2023년, 전셋값이 급락하면서 '역전세' 문제가 대두됐다. 2년 전 보증금 5억짜리 전세가 갱신 시 3.5억으로 떨어지자 집주인이 차액을 돌려줘야 하는 상황이 속출했다. 집주인이 현금이 없어 보증금 반환 불능 사태가 벌어지며 전세 사기 피해자가 급증했다.</p>
+      </div>
+
+      <h3 class="ch-section-title">하락폭 지역 비교 (2021 고점→2023 저점)</h3>
+      <div class="chart-wrap">
+        <div class="chart">
+          <p class="chart-title">고점 대비 하락률 — 아파트 84㎡ 기준</p>
+          <div class="chart-bars">
+            <div class="bar-row">
+              <span class="bar-label">노원구</span>
+              <div class="bar-track"><div class="bar-fill red" style="width:90%"></div></div>
+              <span class="bar-val">−35%</span>
+            </div>
+            <div class="bar-row">
+              <span class="bar-label">동탄2</span>
+              <div class="bar-track"><div class="bar-fill red" style="width:82%"></div></div>
+              <span class="bar-val">−32%</span>
+            </div>
+            <div class="bar-row">
+              <span class="bar-label">강동구</span>
+              <div class="bar-track"><div class="bar-fill" style="width:72%"></div></div>
+              <span class="bar-val">−28%</span>
+            </div>
+            <div class="bar-row">
+              <span class="bar-label">마포구</span>
+              <div class="bar-track"><div class="bar-fill" style="width:65%"></div></div>
+              <span class="bar-val">−25%</span>
+            </div>
+            <div class="bar-row">
+              <span class="bar-label">서초구</span>
+              <div class="bar-track"><div class="bar-fill slate" style="width:43%"></div></div>
+              <span class="bar-val">−17%</span>
+            </div>
+            <div class="bar-row">
+              <span class="bar-label">강남구</span>
+              <div class="bar-track"><div class="bar-fill slate" style="width:38%"></div></div>
+              <span class="bar-val">−15%</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="callout">
+        <p class="callout-title">핵심 패턴: 하락도 입지순</p>
+        <p>상승기에 가장 많이 오른 외곽·중저가 지역이 하락기에 가장 많이 내렸다. 강남·서초는 15~17% 하락에 그쳤지만, 노원·도봉·인천·수도권 외곽은 30~40%까지 빠졌다. "입지가 방어막"이라는 원칙이 다시 입증된 시기였다.</p>
+      </div>
+
+      <h3 class="ch-section-title">윤석열 정부의 규제 대전환 타임라인</h3>
+      <ul class="timeline">
+        <li class="tl-item">
+          <span class="tl-year">2022.5</span>
+          <div class="tl-event"><strong>윤석열 정부 출범 — "민간 주도 공급" 선언</strong>문재인 시대 다주택자·단기 양도세 중과를 즉각 한시 완화 예고. "규제가 집값을 올렸다"는 진단 아래 전면 재검토 착수.</div>
+        </li>
+        <li class="tl-item">
+          <span class="tl-year">2022.6</span>
+          <div class="tl-event"><strong>투기과열지구·조정대상지역 대거 해제</strong>서울 강남3구+용산 제외 전 지역 해제. 경기 대부분 해제. LTV·DTI·세금 중과 동시 완화. 강남 인접 지역 일시 반응.</div>
+        </li>
+        <li class="tl-item">
+          <span class="tl-year">2022.7</span>
+          <div class="tl-event"><strong>다주택자 양도세 중과 한시 배제 시행</strong>기존 최대 75%이던 양도세율이 일반세율 적용으로 전환. 다주택자 매물 출회 기대. 그러나 금리 급등으로 매수세 실종, 매물만 쌓임.</div>
+        </li>
+        <li class="tl-item">
+          <span class="tl-year">2022.9</span>
+          <div class="tl-event"><strong>기준금리 0.5%→2.5% 도달 (1년 만)</strong>한국은행 7회 연속 인상. 주담대 변동금리 5%대 진입. 영끌 매수자 이자 부담 2배 이상 급증.</div>
+        </li>
+        <li class="tl-item">
+          <span class="tl-year">2022.12</span>
+          <div class="tl-event"><strong>주담대 금리 최고 7.8% 도달</strong>서울 아파트 월간 거래량 500건대 추락 (역대 최저). "공시가격보다 낮은 급매" 속출. 강남권도 피해 없지 않아.</div>
+        </li>
+        <li class="tl-item">
+          <span class="tl-year">2023.1</span>
+          <div class="tl-event"><strong>특례보금자리론 출시</strong>연 4~5%대 고정금리 정책 대출. 연 40조원 한도. 실수요자 매수 지원. 하반기 거래 회복의 기폭제.</div>
+        </li>
+        <li class="tl-item">
+          <span class="tl-year">2023.3</span>
+          <div class="tl-event"><strong>재건축 안전진단 기준 완화</strong>안전등급 D·E 아닌 구조·설비 중점 평가 비율 조정. 서울 노후 아파트 단지 재건축 추진 물꼬 터짐. 강남·노원 노후 단지 수혜.</div>
+        </li>
+        <li class="tl-item">
+          <span class="tl-year">2023.9</span>
+          <div class="tl-event"><strong>특례보금자리론 종료 → 거래 재위축</strong>정책 대출 종료 후 시장 거래량 재감소. 전세 사기 피해자 수만명 발생. 빌라·오피스텔 전세 제도 붕괴. 보증보험 의무화 입법.</div>
+        </li>
+      </ul>
+
+      <div class="callout">
+        <p class="callout-title">윤석열 정부 부동산 정책의 역설</p>
+        <p>규제 완화를 해도 금리 앞에서 시장은 움직이지 않았다. 다주택자 매물이 나왔지만 매수자가 없었고, 재건축 기준을 완화했지만 사업 비용이 폭등했다. '공급 규제 해소'라는 방향은 옳았지만 금리 충격이 먼저였다. 정책보다 금리가 강하다는 교훈은 반복됐다.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ══════════════ CHAPTER 6 ══════════════ -->
+<div id="ch6">
+  <div class="chapter-header">
+    <div class="chapter-inner">
+      <p class="ch-num">Chapter VI</p>
+      <h2 class="ch-title">정권 교체 — 비상계엄·탄핵에서 이재명 정부로</h2>
+      <span class="ch-period">2024 – 2026</span>
+      <p class="ch-lead">2024년 서울 핵심 지역 집값이 반등하던 그 해 12월, 대통령 비상계엄이라는 전례 없는 정치 충격이 찾아왔다. 탄핵·대선을 거쳐 2025년 6월 이재명 정부가 출범했다. 새 정부는 규제 재강화와 공급 확대라는 두 방향을 동시에 추구했고, 시장은 2026년 현재 강남권 신고가와 외곽 침체가 극명하게 엇갈리는 역대급 양극화 국면에 접어들었다.</p>
+    </div>
+  </div>
+
+  <div class="page">
+    <div class="chapter-body">
+
+      <div class="indicators">
+        <div class="indicator">
+          <div class="ind-num red">10억+</div>
+          <div class="ind-unit">서울 중위가<br>(2026년 6월)</div>
+        </div>
+        <div class="indicator">
+          <div class="ind-num red">30억</div>
+          <div class="ind-unit">강남구 84㎡<br>신고가 수준</div>
+        </div>
+        <div class="indicator">
+          <div class="ind-num">2.5%</div>
+          <div class="ind-unit">기준금리<br>(2026년 상반기)</div>
+        </div>
+        <div class="indicator">
+          <div class="ind-num">1년차</div>
+          <div class="ind-unit">이재명 정부<br>(2025.6 출범)</div>
+        </div>
+      </div>
+
+      <!-- 2024년 상반기 -->
+      <h3 class="ch-section-title">2024년 상반기 — 윤석열 정부의 부동산 마지막 승부수</h3>
+      <p class="body-text">2023년 말부터 강남·서초·용산 중심으로 집값이 살아나기 시작했다. 2024년 1월 출시된 신생아특례대출(최저 1.6% 금리, 최대 5억)이 실수요 매수를 자극했고, 3월 GTX-A 수서~동탄 구간 개통이 분위기를 달궜다. 강남3구 주요 단지는 2024년 상반기에 이미 2021년 고점을 넘어서는 신고가를 찍기 시작했다.</p>
+      <p class="body-text">같은 시기 PF(프로젝트파이낸싱) 위기가 수면 위로 올라왔다. 고금리 장기화로 중소 건설사·시행사의 PF 대출 연체율이 급등했고, 정부는 PF 연착륙 대책을 쏟아냈다. 이 여파로 수도권 외곽·지방의 신규 분양 시장은 여전히 얼어붙었다. 서울과 비서울 간 분화가 본격화됐다.</p>
+
+      <div class="chart-wrap">
+        <div class="chart">
+          <p class="chart-title">2024년 상반기 서울 구별 집값 회복률 — 2021 고점 대비 (%)</p>
+          <div class="chart-bars">
+            <div class="bar-row">
+              <span class="bar-label">강남구</span>
+              <div class="bar-track"><div class="bar-fill red" style="width:100%"></div></div>
+              <span class="bar-val">+8% 신고가</span>
+            </div>
+            <div class="bar-row">
+              <span class="bar-label">서초구</span>
+              <div class="bar-track"><div class="bar-fill red" style="width:96%"></div></div>
+              <span class="bar-val">+5% 신고가</span>
+            </div>
+            <div class="bar-row">
+              <span class="bar-label">용산구</span>
+              <div class="bar-track"><div class="bar-fill" style="width:80%"></div></div>
+              <span class="bar-val">−5%</span>
+            </div>
+            <div class="bar-row">
+              <span class="bar-label">마포구</span>
+              <div class="bar-track"><div class="bar-fill slate" style="width:60%"></div></div>
+              <span class="bar-val">−18%</span>
+            </div>
+            <div class="bar-row">
+              <span class="bar-label">노원구</span>
+              <div class="bar-track"><div class="bar-fill slate" style="width:35%"></div></div>
+              <span class="bar-val">−30%</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 2024년 하반기 -->
+      <h3 class="ch-section-title">2024년 하반기 — 금리 인하 피벗과 토지거래허가구역 혼란</h3>
+      <p class="body-text">2024년 9월 스트레스 DSR 2단계(수도권 주담대에 0.75%p 금리 가산)가 시행되며 대출 한도가 줄었다. 그러나 10월과 11월 한국은행이 연속으로 금리를 인하(3.5%→3.0%)하면서 매수 심리를 지지했다. 서울시는 같은 시기 강남·송파 일부 단지의 토지거래허가구역 지정을 해제·재지정하며 단기 혼선을 야기했다.</p>
+      <p class="body-text">2024년 하반기 서울 아파트 청약 시장은 과열 양상이었다. 분양가 상한제 적용 단지들이 시세 대비 30~50% 낮게 나오면서 1순위 경쟁률 수백 대 일이 속출했다. '로또 청약'이라는 말이 다시 등장했다.</p>
+
+      <!-- 비상계엄 -->
+      <h3 class="ch-section-title">2024년 12월 3일 — 비상계엄, 예상치 못한 충격</h3>
+      <div class="callout callout-red">
+        <p class="callout-title">비상계엄 선포 (2024.12.3) → 국회 해제 → 탄핵 정국</p>
+        <p>2024년 12월 3일 밤 윤석열 대통령이 비상계엄을 선포했다. 국회가 6시간 만에 해제 결의를 통과시켜 계엄은 해제됐다. 원/달러 환율이 1,400원대 후반까지 치솟고 코스피가 급락했다. 부동산 시장은 즉각 관망 모드로 전환됐다. 이후 12월 국회에서 탄핵 소추안이 가결됐고, 윤석열 대통령 직무는 정지됐다.</p>
+      </div>
+      <p class="body-text">정치 불안이 지속되면서 2024년 12월~2025년 1분기 서울 아파트 거래량이 급감했다. 매도자는 호가를 내리지 않았고, 매수자는 지켜보기에 돌입했다. 강남3구 신고가 행진은 일시 멈췄다. 시장 심리 지수는 중립 아래로 내려앉았다.</p>
+
+      <!-- 탄핵·대선 -->
+      <h3 class="ch-section-title">2025년 — 탄핵 인용·대선·정권 교체</h3>
+      <ul class="timeline">
+        <li class="tl-item">
+          <span class="tl-year">2025.1</span>
+          <div class="tl-event"><strong>탄핵 정국 — 시장 관망 장기화</strong>헌법재판소 심리 진행 중 부동산 시장 관망세 지속. 기준금리 추가 인하 기대감으로 매도 호가 유지.</div>
+        </li>
+        <li class="tl-item">
+          <span class="tl-year">2025.2</span>
+          <div class="tl-event"><strong>기준금리 2.75% 추가 인하</strong>한국은행, 경기 하강 대응으로 인하. 주담대 금리 5%대 중반으로 하락. 실수요 매수 여건 개선.</div>
+        </li>
+        <li class="tl-item">
+          <span class="tl-year">2025.4.4</span>
+          <div class="tl-event"><strong>헌법재판소 탄핵 인용 — 윤석열 파면</strong>재판관 8:0 만장일치 인용. 즉각 대선 일정 확정. 부동산 시장은 단기 반응 제한적. 새 정부 정책 기대와 우려 교차.</div>
+        </li>
+        <li class="tl-item">
+          <span class="tl-year">2025.6.3</span>
+          <div class="tl-event"><strong>이재명 대통령 당선</strong>민주당 이재명 후보 당선. 주요 공약: 기본주택 100만호, 공시가격 현실화, 종부세 정상화(중과 복원), 임대차 3법 강화. 재건축 규제 강화 우려로 강남 재건축 단지 일시 조정.</div>
+        </li>
+        <li class="tl-item">
+          <span class="tl-year">2025.6</span>
+          <div class="tl-event"><strong>이재명 정부 공식 출범</strong>국토부 장관 인사 후 100일 부동산 대책 준비 착수. "공급은 늘리되 투기는 막겠다"는 방향 제시. 1기 신도시 재건축 특별법 조속 처리 약속.</div>
+        </li>
+      </ul>
+
+      <!-- 이재명 정부 부동산 정책 -->
+      <h3 class="ch-section-title">이재명 정부의 부동산 정책 (2025.6~2026)</h3>
+      <p class="body-text">이재명 정부는 출범 직후 부동산 정책의 두 축을 명확히 했다. 첫째 '공급 확대' — 기본주택(공공분양·임대) 100만호 공급 로드맵 발표, 1기 신도시(분당·일산·평촌·중동·산본) 재건축·리모델링 특별법 처리, 3기 신도시 속도 조절. 둘째 '투기 억제' — 윤석열 정부 시절 완화된 종합부동산세 세율 원상복구 추진, 공시가격 현실화율 80% 목표 재설정, 임대차 2년+2년 계약갱신 보호 강화.</p>
+      <p class="body-text">시장 반응은 엇갈렸다. 공급 확대 기대감은 신규 분양 시장에는 긍정적이었지만, 재건축 규제 재강화 우려가 커지면서 강남 재건축 추진 단지는 매물이 소폭 늘었다. 종부세 부담 증가를 우려한 다주택자들의 '선제 매도' 움직임도 일부 있었다. 그러나 절대적 공급 부족이라는 구조적 변수는 변하지 않아 핵심 입지 하락 폭은 제한적이었다.</p>
+
+      <div class="callout">
+        <p class="callout-title">기본주택 100만호 — 얼마나 현실적인가?</p>
+        <p>이재명 정부의 기본주택 공약은 5년간 공공분양 50만호+공공임대 50만호다. 서울 내 공급 가능 부지 부족으로 대부분 3기 신도시(하남 교산, 고양 창릉, 남양주 왕숙 등) 및 역세권 개발로 소화될 전망이다. 착공→입주까지 4~6년이 걸려 실제 공급 효과는 2028년 이후에나 체감될 것으로 예상된다.</p>
+      </div>
+
+      <!-- GTX 진행 현황 -->
+      <h3 class="ch-section-title">GTX 진행 현황 (2026년 기준)</h3>
+      <p class="body-text">GTX-A는 2024년 3월 수서~동탄 구간 개통 후 2024년 12월 수서~파주 운정 전 구간 개통으로 확장됐다. GTX-B(인천 송도~서울역~마석)는 2024년 착공하여 2030년 개통을 목표로 공사 중이다. GTX-C(양주~수원, 서울 은평~강남·삼성)는 2025년 초 착공했다. 인접 역세권(삼성역, 청량리역 등) 대형 복합개발 프로젝트와 맞물려 해당 지역 지가가 높아졌다.</p>
+
+      <!-- 2026년 현재 가격 현황 -->
+      <h3 class="ch-section-title">2026년 6월 현재 — 서울·경기 가격 현황</h3>
+      <div class="price-table-wrap">
+        <table class="price-table">
+          <caption>아파트 84㎡ 기준 중위 거래가격 흐름 (만원) — 2026년 6월 추정</caption>
+          <thead>
+            <tr>
+              <th>지역</th>
+              <th>2021 고점</th>
+              <th>2023 저점</th>
+              <th>2024말</th>
+              <th>2026.6 현재</th>
+              <th>고점 대비</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="peak">
+              <td>강남구</td>
+              <td>260,000</td>
+              <td>220,000</td>
+              <td>285,000</td>
+              <td>300,000</td>
+              <td class="up">+15% 신고가</td>
+            </tr>
+            <tr class="peak">
+              <td>서초구</td>
+              <td>230,000</td>
+              <td>195,000</td>
+              <td>250,000</td>
+              <td>265,000</td>
+              <td class="up">+15% 신고가</td>
+            </tr>
+            <tr>
+              <td>용산구</td>
+              <td>220,000</td>
+              <td>175,000</td>
+              <td>220,000</td>
+              <td>235,000</td>
+              <td class="up">+7%</td>
+            </tr>
+            <tr>
+              <td>마포구</td>
+              <td>150,000</td>
+              <td>110,000</td>
+              <td>135,000</td>
+              <td>145,000</td>
+              <td class="down">−3%</td>
+            </tr>
+            <tr>
+              <td>성동구</td>
+              <td>160,000</td>
+              <td>115,000</td>
+              <td>145,000</td>
+              <td>155,000</td>
+              <td class="down">−3%</td>
+            </tr>
+            <tr>
+              <td>노원구</td>
+              <td>75,000</td>
+              <td>48,000</td>
+              <td>57,000</td>
+              <td>60,000</td>
+              <td class="down">−20%</td>
+            </tr>
+            <tr>
+              <td>판교</td>
+              <td>220,000</td>
+              <td>145,000</td>
+              <td>165,000</td>
+              <td>175,000</td>
+              <td class="down">−20%</td>
+            </tr>
+            <tr>
+              <td>과천</td>
+              <td>200,000</td>
+              <td>140,000</td>
+              <td>165,000</td>
+              <td>175,000</td>
+              <td class="down">−13%</td>
+            </tr>
+            <tr>
+              <td>동탄2</td>
+              <td>120,000</td>
+              <td>80,000</td>
+              <td>100,000</td>
+              <td>105,000</td>
+              <td class="down">−13%</td>
+            </tr>
+            <tr>
+              <td>수원 영통</td>
+              <td>80,000</td>
+              <td>55,000</td>
+              <td>62,000</td>
+              <td>65,000</td>
+              <td class="down">−19%</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="footnote">※ 2026년 6월 가격은 한국부동산원·KB부동산 시계열 데이터 기반 추정치입니다. 개별 단지 편차가 크며 투자 판단 기준으로 사용 불가.</p>
+
+      <!-- 기준금리 풀 차트 -->
+      <h3 class="ch-section-title">한국은행 기준금리 전 구간 (2014–2026)</h3>
+      <div class="rate-chart">
+        <p class="rate-chart-title">기준금리 연도별 추이 (연 %) — 최고 5.25% 기준 비율</p>
+        <div class="rate-bars">
+          <div class="rate-col"><div class="rate-val">2.0</div><div class="rate-bar low" style="height:38px"></div><div class="rate-yr">14</div></div>
+          <div class="rate-col"><div class="rate-val">1.5</div><div class="rate-bar low" style="height:29px"></div><div class="rate-yr">15</div></div>
+          <div class="rate-col"><div class="rate-val">1.25</div><div class="rate-bar low" style="height:24px"></div><div class="rate-yr">16</div></div>
+          <div class="rate-col"><div class="rate-val">1.5</div><div class="rate-bar low" style="height:29px"></div><div class="rate-yr">17</div></div>
+          <div class="rate-col"><div class="rate-val">1.75</div><div class="rate-bar low" style="height:33px"></div><div class="rate-yr">18</div></div>
+          <div class="rate-col"><div class="rate-val">1.25</div><div class="rate-bar low" style="height:24px"></div><div class="rate-yr">19</div></div>
+          <div class="rate-col"><div class="rate-val">0.5</div><div class="rate-bar low" style="height:10px"></div><div class="rate-yr">20</div></div>
+          <div class="rate-col"><div class="rate-val">0.5</div><div class="rate-bar low" style="height:10px"></div><div class="rate-yr">21</div></div>
+          <div class="rate-col"><div class="rate-val">3.25</div><div class="rate-bar" style="height:62px"></div><div class="rate-yr">22</div></div>
+          <div class="rate-col"><div class="rate-val">3.5</div><div class="rate-bar high" style="height:67px"></div><div class="rate-yr">23</div></div>
+          <div class="rate-col"><div class="rate-val">3.0</div><div class="rate-bar" style="height:57px"></div><div class="rate-yr">24말</div></div>
+          <div class="rate-col"><div class="rate-val">2.75</div><div class="rate-bar" style="height:52px"></div><div class="rate-yr">25초</div></div>
+          <div class="rate-col"><div class="rate-val">2.5</div><div class="rate-bar low" style="height:48px"></div><div class="rate-yr">26.6</div></div>
+        </div>
+      </div>
+
+      <!-- 2026 시장 진단 -->
+      <h3 class="ch-section-title">2026년 6월 시장 진단</h3>
+      <p class="body-text">이재명 정부 출범 1년, 시장은 '강남 독주·나머지 정체'라는 구도로 굳어지는 모양새다. 종부세 강화 입법이 국회를 통과하면서 다주택자 보유 부담이 다시 높아졌다. 일부 다주택자는 강남 외 물건부터 처분에 나서 비강남권 매물이 늘었다. 반면 강남3구+용산은 '종부세를 내더라도 보유할 가치 있는 자산'으로 인식이 강해지면서 매물 잠김이 심화됐다.</p>
+      <p class="body-text">공급 측면에서는 3기 신도시 입주가 2027년 이후에나 시작되고, 1기 신도시 재건축도 법안 처리 후 사업 완료까지 10년 이상 걸려 단기 공급 해소는 요원하다. 새 아파트 희소성은 앞으로도 유지될 전망이다. 청약 시장은 여전히 로또 분위기이며, 무주택 실수요자들의 내 집 마련 여건은 좀처럼 나아지지 않고 있다.</p>
+
+      <div class="callout callout-red">
+        <p class="callout-title">2026년 핵심 리스크</p>
+        <p>① 가계부채 — GDP 대비 100% 육박. 금리 재인상 시 충격 대비 필요. ② 공급 부족 vs 수요 위축 — 금리 유지 시 실수요도 제한. ③ 이재명 정부 규제 강화 강도 — 종부세·임대차 법안 국회 처리 진행 상황이 변수. ④ 글로벌 경기 — 미국 경기 침체 시 한국 금리 인하 여지 축소 가능.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ══════════════ EPILOGUE ══════════════ -->
+<div class="epilogue">
+  <div class="epilogue-inner">
+    <h2>25년이 가르쳐 준 것</h2>
+    <p>서울 아파트 중위가는 2001년 1.9억에서 2026년 현재 10억을 넘겼다. 외환위기 여파, 글로벌 금융위기, 코로나 팬데믹, 금리 폭등, 정치 격변이라는 다섯 번의 위기에도 서울 핵심 입지 아파트는 결국 우상향했다.</p>
+    <p>그러나 '서울'은 이제 하나가 아니다. 강남3구와 나머지 서울의 격차는 25년 전보다 훨씬 벌어졌다. 강남구 84㎡가 30억에 거래될 때 노원구 같은 평형은 6억이다. '서울이냐 아니냐'가 아니라 '어느 서울이냐'가 평생의 자산 격차를 결정한다.</p>
+    <p>정책은 방향을 틀 수 있지만 시장을 이기지 못했다. 문재인 정부 25번의 규제에도 집값은 2배 올랐다. 윤석열 정부의 전면 완화에도 금리 앞에서 시장은 내렸다. 이재명 정부의 재규제는 강남 외 지역부터 압박하고 있다. 정책보다 금리와 공급이 강하다는 패턴은 반복된다.</p>
+    <p>2026년 현재, 집을 사야 할지 기다려야 할지의 질문은 여전히 어렵다. 그러나 25년의 기록이 남긴 가장 단순한 답은 하나다. 자신의 소득과 생애주기에 맞는 입지를, 금리 사이클을 이해한 뒤 결정하라. 조급함과 공포 모두 좋은 결정의 적이다.</p>
+  </div>
+</div>
+
+<div class="page">
+  <div class="toc-wrap">
+    <p class="toc-label">데이터 출처 및 주의사항</p>
+    <p class="body-text" style="margin-top:0">본 자료에 수록된 가격 데이터는 국토교통부 실거래가 공개시스템(RTMS), KB국민은행 부동산 통계, 한국감정원(현 한국부동산원) 통계, 주택산업연구원 보고서를 기반으로 한 추정 중위가격입니다. 개별 단지·층수·향·리모델링 여부에 따라 실제 거래가와 상이할 수 있으며, 투자 판단의 근거로 사용할 수 없습니다.</p>
+    <p class="body-text">기준금리 데이터는 한국은행 경제통계시스템(ECOS) 공시 자료 기준입니다.</p>
+    <p class="body-text" style="margin-top:8px">2025년 하반기~2026년 데이터는 한국부동산원 통계 및 시장 동향 보고서 기반 추정 수치입니다. 이재명 정부 정책 내용은 공약 및 입법 추진 상황을 반영하며, 국회 처리 결과에 따라 변동될 수 있습니다.</p>
+    <p class="footnote" style="margin-top:24px">© 2026 부동산 학습 봇 · 학습 목적 전용 자료 · 투자 권유 아님 · 최종 업데이트 2026.06</p>
+  </div>
+</div>
+
+<div class="foot page">
+  서울·경기 부동산 흐름 2001–2026 · 학습용 연대기 · 최종 업데이트 2026.06
+</div>
+
+</body>
+</html>

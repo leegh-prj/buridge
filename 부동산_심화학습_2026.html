@@ -1,0 +1,1166 @@
+﻿<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/favicon.svg">
+<meta name="theme-color" content="#0C2040">
+<meta property="og:site_name" content="부릿지 BuRIDGE">
+<meta property="og:type" content="website">
+<meta property="og:title" content="심화학습 | 부릿지 BuRIDGE">
+<meta property="og:description" content="재건축·재개발, PF, 경매 등 부동산 심화 주제 학습.">
+<meta property="og:url" content="https://buridge.vercel.app/부동산_심화학습_2026.html">
+<meta property="og:image" content="https://buridge.vercel.app/og-image.svg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="ko_KR">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="심화학습 | 부릿지 BuRIDGE">
+<meta name="twitter:description" content="재건축·재개발, PF, 경매 등 부동산 심화 주제 학습.">
+<meta name="twitter:image" content="https://buridge.vercel.app/og-image.svg">
+<title>부동산 심화 학습 2026</title>
+<style>
+:root{
+  --navy:#0C2040;--blue:#1A4A9A;--blue-lt:#EBF1FF;
+  --ink:#1A2E44;--ink2:#374F6B;--ink3:#68839C;
+  --paper:#F3F6FB;--sf:#FFFFFF;--rule:#D0D8E8;
+  --ok:#0A6E42;--ok-lt:#E4F3EC;
+  --warn:#935200;--warn-lt:#FEF4E4;
+  --dn:#B71C1C;--dn-lt:#FFEBEE;
+  --font:'Apple SD Gothic Neo','Noto Sans KR',system-ui,sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html,body{font-family:var(--font);background:var(--paper);color:var(--ink);}
+
+/* ─ 헤더 ─ */
+.hd{background:var(--navy);height:50px;display:flex;align-items:center;padding:0 20px;gap:10px;}
+.hd-back{color:#7AA0C8;font-size:.75rem;text-decoration:none;}.hd-back:hover{color:#C0D8F0;}
+.hd-sep{color:#2A4870;}
+.hd-title{font-size:.9rem;font-weight:700;color:#D0E0F0;}
+.hd-badge{margin-left:auto;font-size:.6rem;font-weight:700;padding:3px 9px;border-radius:3px;background:#081628;border:1px solid #1A3460;color:#4A80B0;}
+
+/* ─ 탭 바 ─ */
+.tab-bar{background:var(--navy);border-top:1px solid #1A3050;display:flex;padding:0 20px;gap:0;overflow-x:auto;}
+.tab{padding:9px 16px;font-size:.74rem;font-weight:700;color:#4A6A90;cursor:pointer;border-bottom:2px solid transparent;white-space:nowrap;transition:color .15s,border-color .15s;}
+.tab.active{color:#90C0E0;border-bottom-color:#90C0E0;}
+
+/* ─ 레이아웃 ─ */
+.main{max-width:1060px;margin:0 auto;padding:30px 20px 80px;}
+.section{display:none;}.section.active{display:block;}
+
+/* ─ 섹션 타이틀 ─ */
+.sec-hero{background:var(--navy);padding:22px 24px 18px;border-radius:6px;margin-bottom:24px;}
+.sec-label{font-size:.6rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#3A6490;margin-bottom:6px;}
+.sec-h{font-size:1.25rem;font-weight:900;color:#D0E4F8;letter-spacing:-.02em;margin-bottom:6px;}
+.sec-sub{font-size:.74rem;color:#4A6888;line-height:1.65;}
+.cert-chips{display:flex;gap:6px;margin-top:10px;flex-wrap:wrap;}
+.cert-chip{font-size:.6rem;font-weight:700;padding:2px 8px;border-radius:10px;border:1px solid;}
+.cc-ga{background:#1A2A10;border-color:#2A5A20;color:#60C040;}
+.cc-gi{background:#0A1A30;border-color:#1A3A60;color:#4A90D0;}
+.cc-in{background:#200A30;border-color:#4A1A70;color:#A060D0;}
+
+/* ─ 개념 카드 ─ */
+.card-grid-2{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:24px;}
+.card-grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:24px;}
+@media(max-width:780px){.card-grid-2,.card-grid-3{grid-template-columns:1fr;}}
+@media(min-width:781px) and (max-width:1000px){.card-grid-3{grid-template-columns:1fr 1fr;}}
+
+.concept-card{background:var(--sf);border:1px solid var(--rule);border-radius:6px;overflow:hidden;}
+.cc-head{padding:14px 16px 10px;border-bottom:1px solid var(--rule);cursor:pointer;display:flex;justify-content:space-between;align-items:flex-start;}
+.cc-head:hover{background:#FAFBFD;}
+.cc-num{font-size:.6rem;font-weight:700;color:var(--ink3);margin-bottom:3px;}
+.cc-ttl{font-size:.9rem;font-weight:800;color:var(--ink);letter-spacing:-.02em;}
+.cc-toggle{font-size:.85rem;color:var(--ink3);transition:transform .2s;flex-shrink:0;margin-left:8px;margin-top:2px;}
+.cc-body{padding:0 16px;max-height:0;overflow:hidden;transition:max-height .3s ease,padding .3s;}
+.cc-body.open{max-height:1200px;padding:14px 16px 16px;}
+.cc-desc{font-size:.75rem;color:var(--ink2);line-height:1.8;margin-bottom:14px;}
+
+/* ─ 공식 박스 ─ */
+.formula-box{background:#EAF1FF;border:1px solid #BDD0F8;border-left:3px solid var(--blue);border-radius:4px;padding:12px 14px;margin-bottom:12px;font-size:.78rem;color:#0A2060;line-height:1.9;}
+.formula-box b{font-weight:800;font-size:.82rem;}
+.formula-box .formula{font-size:.9rem;font-weight:700;font-family:monospace;display:block;margin:6px 0;background:#D8E8FF;padding:5px 10px;border-radius:3px;letter-spacing:.01em;}
+
+/* ─ 예제 박스 ─ */
+.example-box{background:#F0F6F0;border:1px solid #C0D8C0;border-left:3px solid var(--ok);border-radius:4px;padding:12px 14px;margin-bottom:12px;font-size:.74rem;color:#0A3020;line-height:1.85;}
+.example-box .ex-ttl{font-size:.65rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--ok);margin-bottom:6px;}
+.example-box .ex-step{border-top:1px solid #B0D0B0;margin-top:8px;padding-top:8px;}
+.example-box b{font-weight:700;}
+.ex-ans{background:#D0EDD0;border-radius:3px;padding:4px 10px;font-weight:700;display:inline-block;margin-top:6px;}
+
+/* ─ 주의 박스 ─ */
+.warn-box{background:var(--warn-lt);border:1px solid #F0C860;border-left:3px solid var(--warn);border-radius:4px;padding:10px 14px;font-size:.72rem;color:#4A2800;line-height:1.75;margin-bottom:12px;}
+.warn-box b{font-weight:700;}
+
+/* ─ 계산기 ─ */
+.calc-wrap{background:var(--sf);border:1px solid var(--rule);border-radius:6px;padding:20px;margin-bottom:20px;}
+.calc-ttl{font-size:.78rem;font-weight:800;color:var(--ink);margin-bottom:14px;padding-bottom:10px;border-bottom:1px solid var(--rule);}
+.calc-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+@media(max-width:600px){.calc-grid{grid-template-columns:1fr;}}
+.calc-field{display:flex;flex-direction:column;gap:4px;}
+.calc-field label{font-size:.63rem;font-weight:700;color:var(--ink3);}
+.calc-field input,.calc-field select{border:1px solid var(--rule);border-radius:4px;padding:7px 10px;font-size:.8rem;font-family:var(--font);background:var(--paper);color:var(--ink);width:100%;}
+.calc-field input:focus,.calc-field select:focus{outline:none;border-color:var(--blue);}
+.calc-btn{margin-top:14px;width:100%;padding:10px;background:var(--blue);color:#fff;border:none;border-radius:4px;font-size:.8rem;font-weight:700;cursor:pointer;font-family:var(--font);}
+.calc-btn:hover{background:#14399A;}
+.calc-result{margin-top:14px;background:var(--paper);border:1px solid var(--rule);border-radius:4px;padding:12px 14px;display:none;}
+.calc-result.show{display:block;}
+.cr-line{font-size:.75rem;color:var(--ink2);padding:3px 0;border-bottom:1px solid var(--rule);display:flex;justify-content:space-between;gap:8px;}
+.cr-line:last-child{border-bottom:none;font-weight:700;color:var(--ink);}
+.cr-hl{color:var(--blue);font-weight:800;}
+.cr-ok{color:var(--ok);font-weight:800;}
+.cr-dn{color:var(--dn);font-weight:800;}
+
+/* ─ 비교표 ─ */
+.compare-table{width:100%;border-collapse:collapse;font-size:.73rem;margin-bottom:20px;}
+.compare-table th{background:var(--navy);color:#B0C8E0;font-weight:700;padding:10px 12px;text-align:left;border-bottom:2px solid #1A3254;}
+.compare-table td{padding:9px 12px;border-bottom:1px solid var(--rule);color:var(--ink2);vertical-align:top;}
+.compare-table tr:hover td{background:#F5F8FF;}
+.compare-table tr:last-child td{border-bottom:none;}
+.tbl-wrap{overflow-x:auto;border:1px solid var(--rule);border-radius:6px;margin-bottom:20px;}
+
+/* ─ 흐름도 (단계 표시) ─ */
+.steps{display:flex;gap:0;flex-wrap:wrap;margin-bottom:20px;}
+.step{flex:1;min-width:120px;background:var(--sf);border:1px solid var(--rule);padding:12px 14px;position:relative;}
+.step:not(:last-child)::after{content:'→';position:absolute;right:-12px;top:50%;transform:translateY(-50%);color:var(--ink3);font-size:.9rem;z-index:1;}
+.step-n{font-size:.58rem;font-weight:700;color:var(--blue);margin-bottom:3px;}
+.step-ttl{font-size:.72rem;font-weight:700;color:var(--ink);}
+.step-sub{font-size:.63rem;color:var(--ink3);margin-top:2px;}
+@media(max-width:600px){.steps{flex-direction:column;}.step::after{content:'↓';right:auto;left:50%;transform:translateX(-50%);top:auto;bottom:-14px;}}
+
+/* ─ 세율표 ─ */
+.tax-row-up{background:#E4F3EC;}
+.tax-row-dn{background:#FFEBEE;}
+.tax-key{font-weight:700;color:var(--ink);}
+.badge-sm{font-size:.6rem;font-weight:700;padding:1px 6px;border-radius:3px;}
+.bg-ok{background:var(--ok-lt);color:var(--ok);}
+.bg-dn{background:var(--dn-lt);color:var(--dn);}
+.bg-warn{background:var(--warn-lt);color:var(--warn);}
+.bg-info{background:var(--blue-lt);color:var(--blue);}
+
+/* ─ 퀴즈 ─ */
+.quiz-box{background:var(--sf);border:1px solid var(--rule);border-radius:6px;padding:18px 20px;margin-bottom:16px;}
+.qb-q{font-size:.82rem;font-weight:700;color:var(--ink);margin-bottom:12px;line-height:1.6;}
+.qb-opts{display:flex;flex-direction:column;gap:7px;}
+.qb-opt{display:flex;align-items:flex-start;gap:9px;padding:9px 12px;border:1px solid var(--rule);border-radius:4px;cursor:pointer;font-size:.75rem;color:var(--ink2);line-height:1.55;transition:border-color .12s,background .12s;}
+.qb-opt:hover{border-color:var(--blue);background:var(--blue-lt);}
+.qb-opt.correct{border-color:var(--ok);background:var(--ok-lt);color:#0A3020;}
+.qb-opt.wrong{border-color:var(--dn);background:var(--dn-lt);color:#4A0000;}
+.qb-letter{font-size:.68rem;font-weight:700;width:18px;flex-shrink:0;margin-top:1px;}
+.qb-explain{font-size:.71rem;color:var(--ok);background:var(--ok-lt);border:1px solid #90D0A0;border-radius:4px;padding:10px 12px;margin-top:10px;line-height:1.7;display:none;}
+.qb-explain.show{display:block;}
+
+/* ─ 공식 카드 모음 ─ */
+.formula-cards{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-bottom:24px;}
+@media(max-width:600px){.formula-cards{grid-template-columns:1fr;}}
+.fc{background:var(--sf);border:1px solid var(--rule);border-radius:5px;padding:14px 15px;}
+.fc-name{font-size:.6rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--ink3);margin-bottom:5px;}
+.fc-formula{font-size:.82rem;font-weight:700;color:var(--blue);font-family:monospace;display:block;background:var(--blue-lt);padding:5px 8px;border-radius:3px;margin-bottom:6px;}
+.fc-note{font-size:.67rem;color:var(--ink3);line-height:1.6;}
+</style>
+</head>
+<body>
+
+<div class="hd">
+  <a class="hd-back" href="./index.html">← 홈</a>
+  <span class="hd-sep">/</span>
+  <span class="hd-title">심화 학습</span>
+  <span class="hd-badge">감정평가사 · 공인중개사 · 투자분석사</span>
+</div>
+
+<div class="tab-bar">
+  <div class="tab active" onclick="switchTab(0)">감정평가 3방식</div>
+  <div class="tab" onclick="switchTab(1)">재건축·재개발</div>
+  <div class="tab" onclick="switchTab(2)">수익형 투자분석</div>
+  <div class="tab" onclick="switchTab(3)">세제 완전계산</div>
+  <div class="tab" onclick="switchTab(4)">경매·권리분석</div>
+  <div class="tab" onclick="switchTab(5)">공식 모음</div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     탭 0 : 감정평가 3방식
+══════════════════════════════════════════ -->
+<div class="main">
+<div class="section active" id="tab0">
+  <div class="sec-hero">
+    <div class="sec-label">Advanced · Appraisal</div>
+    <div class="sec-h">감정평가 3방식 — 원가·수익·비교</div>
+    <div class="sec-sub">부동산의 가치를 산정하는 3가지 접근법. 세 방식을 병용·조정하여 최종 감정평가액을 결정합니다.</div>
+    <div class="cert-chips">
+      <span class="cert-chip cc-ga">감정평가사 핵심</span>
+      <span class="cert-chip cc-gi">공인중개사 출제</span>
+    </div>
+  </div>
+
+  <!-- 3방식 개요 비교표 -->
+  <div class="tbl-wrap">
+    <table class="compare-table">
+      <thead>
+        <tr><th>구분</th><th>원가방식 (Cost Approach)</th><th>수익방식 (Income Approach)</th><th>비교방식 (Sales Comparison)</th></tr>
+      </thead>
+      <tbody>
+        <tr><td class="tax-key">핵심 원리</td><td>재조달원가 – 감가수정</td><td>순수익 ÷ 환원이율</td><td>유사 거래사례 × 보정</td></tr>
+        <tr><td class="tax-key">적용 대상</td><td>공장·특수목적 건물, 신축</td><td>수익형 부동산 (상가, 오피스)</td><td>아파트, 단독주택, 토지</td></tr>
+        <tr><td class="tax-key">도출 가치</td><td>적산가액</td><td>수익가액</td><td>비준가액</td></tr>
+        <tr><td class="tax-key">핵심 변수</td><td>감가상각율, 내용연수</td><td>환원이율 (Cap Rate)</td><td>사정보정, 시점수정, 요인비교</td></tr>
+        <tr><td class="tax-key">한계</td><td>시장 반영 미흡, 토지·건물 분리 어려움</td><td>미래 수익 추정의 불확실성</td><td>유사 사례 부재 시 적용 어려움</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="card-grid-2">
+
+    <!-- 원가방식 -->
+    <div class="concept-card">
+      <div class="cc-head" onclick="toggleCard(this)">
+        <div><div class="cc-num">방식 01</div><div class="cc-ttl">원가방식 (적산법)</div></div>
+        <div class="cc-toggle">＋</div>
+      </div>
+      <div class="cc-body">
+        <div class="cc-desc">대상 부동산을 새로 취득하거나 건축하는 데 드는 비용(재조달원가)에서 경과연수에 따른 감가수정액을 빼서 가치를 산정합니다. 건물에만 적용하며, 토지는 별도 평가 후 합산합니다.</div>
+        <div class="formula-box">
+          <b>적산가액 = 재조달원가 × (1 − 감가수정율)</b><br>
+          <span class="formula">적산가액 = 재조달원가 − 감가수정액</span>
+          <b>정액법 감가수정:</b><br>
+          <span class="formula">연간 감가액 = 재조달원가 × (1 − 잔가율) ÷ 내용연수</span>
+          <b>정률법 감가수정:</b><br>
+          <span class="formula">감가수정액 = 재조달원가 × (1 − r^경과연수)  (r = 잔존율)</span>
+        </div>
+        <div class="example-box">
+          <div class="ex-ttl">실전 예제</div>
+          <b>조건:</b> 연면적 200㎡, ㎡당 재조달원가 150만 원, 내용연수 40년, 경과연수 10년, 잔가율 10%<br>
+          <div class="ex-step">
+            <b>① 재조달원가:</b> 200㎡ × 150만 = <b>3억 원</b><br>
+            <b>② 연간 감가액 (정액법):</b> 3억 × (1−0.1) ÷ 40 = <b>675만 원</b><br>
+            <b>③ 누적 감가액:</b> 675만 × 10년 = <b>6,750만 원</b><br>
+            <b>④ 건물 적산가액:</b> 3억 − 6,750만 = <b>2억 3,250만 원</b>
+            <div class="ex-ans">적산가액 = 2억 3,250만 원</div>
+          </div>
+        </div>
+        <div class="warn-box"><b>시험 포인트:</b> 잔가율 적용 여부, 정액법·정률법·상환기금법 구분. 내용연수는 경제적 내용연수 기준. 토지는 원가방식 적용 불가.</div>
+      </div>
+    </div>
+
+    <!-- 수익방식 -->
+    <div class="concept-card">
+      <div class="cc-head" onclick="toggleCard(this)">
+        <div><div class="cc-num">방식 02</div><div class="cc-ttl">수익방식 (수익환원법)</div></div>
+        <div class="cc-toggle">＋</div>
+      </div>
+      <div class="cc-body">
+        <div class="cc-desc">대상 부동산이 장래 창출할 순수익을 현재가치로 환원하여 가치를 산정합니다. 직접환원법과 할인현금흐름(DCF) 분석으로 나뉩니다.</div>
+        <div class="formula-box">
+          <b>직접환원법:</b>
+          <span class="formula">수익가액 = 순수익(NOI) ÷ 환원이율(Cap Rate)</span>
+          <b>순수익(NOI) 계산:</b>
+          <span class="formula">NOI = 가능총수입 − 공실손실액 − 운영비용</span>
+          <b>DCF법:</b>
+          <span class="formula">수익가액 = Σ[NOI_t ÷ (1+r)^t] + [복귀가액 ÷ (1+r)^n]</span>
+        </div>
+        <div class="example-box">
+          <div class="ex-ttl">실전 예제</div>
+          <b>조건:</b> 상가 월세 250만 원, 연간 운영비용 600만 원, 공실률 5%, 환원이율 5%<br>
+          <div class="ex-step">
+            <b>① 가능총수입:</b> 250만 × 12 = <b>3,000만 원</b><br>
+            <b>② 공실손실액:</b> 3,000만 × 5% = <b>150만 원</b><br>
+            <b>③ 유효총수입:</b> 3,000 − 150 = <b>2,850만 원</b><br>
+            <b>④ NOI:</b> 2,850 − 600 = <b>2,250만 원</b><br>
+            <b>⑤ 수익가액:</b> 2,250만 ÷ 0.05 = <b>4억 5,000만 원</b>
+            <div class="ex-ans">수익가액 = 4억 5,000만 원</div>
+          </div>
+        </div>
+        <div class="warn-box"><b>시험 포인트:</b> 환원이율은 안전이율 + 위험할증률. NOI와 세전현금흐름(BTCF), 세후현금흐름(ATCF) 구분 필수.</div>
+      </div>
+    </div>
+
+    <!-- 거래사례비교법 -->
+    <div class="concept-card">
+      <div class="cc-head" onclick="toggleCard(this)">
+        <div><div class="cc-num">방식 03</div><div class="cc-ttl">비교방식 (거래사례비교법)</div></div>
+        <div class="cc-toggle">＋</div>
+      </div>
+      <div class="cc-body">
+        <div class="cc-desc">시장에서 거래된 유사 사례를 수집하여 사정보정 → 시점수정 → 지역요인 비교 → 개별요인 비교의 순서로 조정해 비준가액을 산정합니다.</div>
+        <div class="formula-box">
+          <b>비준가액 = 거래사례가격 × 사정보정 × 시점수정 × 지역요인 × 개별요인</b>
+          <span class="formula">비준가액 = 사례가 × (정상/사정) × (기준시점 지수/사례시점 지수) × (대상 지역/사례 지역) × (대상 개별/사례 개별)</span>
+        </div>
+        <div class="example-box">
+          <div class="ex-ttl">실전 예제</div>
+          <b>조건:</b> 사례가 6억 원, 사정보정 1.05 (급매), 시점수정 1.08 (8% 상승), 지역요인 1.00, 개별요인 0.95 (대상이 열세)<br>
+          <div class="ex-step">
+            <b>비준가액:</b> 6억 × 1.05 × 1.08 × 1.00 × 0.95<br>
+            = 6억 × 1.07946<br>
+            <div class="ex-ans">비준가액 ≈ 6억 4,770만 원</div>
+          </div>
+        </div>
+        <div class="warn-box"><b>시험 포인트:</b> 사정보정은 사례가 정상거래가 아닌 경우(급매·강제매각) 보정. 사정보정은 "정상가/사례가"이므로 급매(사례가 낮음) = 1보다 큰 값. 시점수정은 지수 비율.</div>
+      </div>
+    </div>
+
+    <!-- 시산가액 조정 -->
+    <div class="concept-card">
+      <div class="cc-head" onclick="toggleCard(this)">
+        <div><div class="cc-num">방식 04</div><div class="cc-ttl">시산가액 조정 및 최종 평가</div></div>
+        <div class="cc-toggle">＋</div>
+      </div>
+      <div class="cc-body">
+        <div class="cc-desc">세 방식으로 구한 적산가액·수익가액·비준가액을 종합하여 최종 감정평가액을 결정합니다. 단순 평균이 아닌 대상 부동산의 성격에 따라 주방식과 보조방식을 구분합니다.</div>
+        <div class="formula-box">
+          <b>일반적 주방식 선택 기준:</b>
+          <span class="formula">주거용 → 비교방식 우선 | 수익형 → 수익방식 우선 | 특수건물 → 원가방식 우선</span>
+        </div>
+        <div class="example-box">
+          <div class="ex-ttl">시산가액 조정 예제</div>
+          <b>주거용 아파트:</b><br>
+          적산가액 4억 / 수익가액 3.8억 / 비준가액 4.1억<br>
+          <div class="ex-step">
+            → 주거용이므로 <b>비준가액(4.1억) 주방식</b><br>
+            → 수익가액·적산가액은 보정 참고<br>
+            → 시산가액 간 편차 5% 이내 → 합리적 범위<br>
+            <div class="ex-ans">최종 감정평가액 = 4억 1,000만 원 내외</div>
+          </div>
+        </div>
+        <div class="warn-box"><b>시험 포인트:</b> 시산가액 조정 = 주방식에 보조방식 결과를 반영해 수정. 3방식 중 1방식이 현저히 다르면 그 이유를 검토해야 함.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 감정평가사 계산기 -->
+  <div class="calc-wrap">
+    <div class="calc-ttl">감정평가 계산기 — 원가방식 (정액법 자동 계산)</div>
+    <div class="calc-grid">
+      <div class="calc-field"><label>연면적 (㎡)</label><input type="number" id="ga_area" value="200" min="1"></div>
+      <div class="calc-field"><label>㎡당 재조달원가 (만 원)</label><input type="number" id="ga_unit" value="150" min="1"></div>
+      <div class="calc-field"><label>경제적 내용연수 (년)</label><input type="number" id="ga_life" value="40" min="1"></div>
+      <div class="calc-field"><label>경과연수 (년)</label><input type="number" id="ga_elapsed" value="10" min="0"></div>
+      <div class="calc-field"><label>잔가율 (%)</label><input type="number" id="ga_residual" value="10" min="0" max="100"></div>
+      <div class="calc-field"><label>토지 가액 (억 원, 선택)</label><input type="number" id="ga_land" value="3" min="0" step="0.1"></div>
+    </div>
+    <button class="calc-btn" onclick="calcGA()">적산가액 계산</button>
+    <div class="calc-result" id="ga_result">
+      <div class="cr-line"><span>재조달원가</span><span id="ga_r1" class="cr-hl">—</span></div>
+      <div class="cr-line"><span>연간 감가액 (정액법)</span><span id="ga_r2">—</span></div>
+      <div class="cr-line"><span>누적 감가액</span><span id="ga_r3">—</span></div>
+      <div class="cr-line"><span>건물 적산가액</span><span id="ga_r4" class="cr-hl">—</span></div>
+      <div class="cr-line"><span>토지 가액</span><span id="ga_r5">—</span></div>
+      <div class="cr-line"><span>최종 감정평가액 (토지+건물)</span><span id="ga_r6" class="cr-ok">—</span></div>
+    </div>
+  </div>
+
+  <!-- 퀴즈 -->
+  <div class="quiz-box">
+    <div class="qb-q">Q1. 수익환원법에서 환원이율이 4%이고 연간 순수익(NOI)이 2,000만 원일 때, 수익가액은?</div>
+    <div class="qb-opts">
+      <div class="qb-opt" onclick="answerQuiz(this, false, 'q1')"><span class="qb-letter">①</span>3억 원</div>
+      <div class="qb-opt" onclick="answerQuiz(this, false, 'q1')"><span class="qb-letter">②</span>4억 원</div>
+      <div class="qb-opt" onclick="answerQuiz(this, true, 'q1')"><span class="qb-letter">③</span>5억 원</div>
+      <div class="qb-opt" onclick="answerQuiz(this, false, 'q1')"><span class="qb-letter">④</span>6억 원</div>
+    </div>
+    <div class="qb-explain" id="q1">수익가액 = NOI ÷ 환원이율 = 2,000만 ÷ 0.04 = <b>5억 원</b>. 환원이율이 낮을수록 수익가액은 높아집니다.</div>
+  </div>
+
+  <div class="quiz-box">
+    <div class="qb-q">Q2. 거래사례비교법에서 사례가 5억 원, 사정보정 1.10(급매 보정), 시점수정 1.05, 지역요인·개별요인 각 1.00일 때 비준가액은?</div>
+    <div class="qb-opts">
+      <div class="qb-opt" onclick="answerQuiz(this, false, 'q2')"><span class="qb-letter">①</span>5억 2,500만 원</div>
+      <div class="qb-opt" onclick="answerQuiz(this, true, 'q2')"><span class="qb-letter">②</span>5억 7,750만 원</div>
+      <div class="qb-opt" onclick="answerQuiz(this, false, 'q2')"><span class="qb-letter">③</span>5억 5,000만 원</div>
+      <div class="qb-opt" onclick="answerQuiz(this, false, 'q2')"><span class="qb-letter">④</span>6억 원</div>
+    </div>
+    <div class="qb-explain" id="q2">5억 × 1.10 × 1.05 × 1.00 × 1.00 = 5억 × 1.155 = <b>5억 7,750만 원</b>.</div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     탭 1 : 재건축·재개발
+══════════════════════════════════════════ -->
+<div class="section" id="tab1">
+  <div class="sec-hero">
+    <div class="sec-label">Advanced · Reconstruction</div>
+    <div class="sec-h">재건축·재개발 완전 해설</div>
+    <div class="sec-sub">비례율·권리가액·분담금 계산부터 초과이익환수제, 조합설립 절차까지. 실전 계산 중심으로 마스터합니다.</div>
+    <div class="cert-chips">
+      <span class="cert-chip cc-ga">감정평가사</span>
+      <span class="cert-chip cc-gi">공인중개사 심화</span>
+      <span class="cert-chip cc-in">투자분석사</span>
+    </div>
+  </div>
+
+  <!-- 절차 흐름도 -->
+  <p style="font-size:.7rem;font-weight:700;color:var(--ink3);margin-bottom:8px;letter-spacing:.08em;">재건축 추진 7단계</p>
+  <div class="steps" style="margin-bottom:24px;">
+    <div class="step"><div class="step-n">STEP 1</div><div class="step-ttl">안전진단</div><div class="step-sub">D~E등급 시 추진</div></div>
+    <div class="step"><div class="step-n">STEP 2</div><div class="step-ttl">정비구역 지정</div><div class="step-sub">시·도지사 고시</div></div>
+    <div class="step"><div class="step-n">STEP 3</div><div class="step-ttl">조합설립인가</div><div class="step-sub">토지 등 소유자 75% 동의</div></div>
+    <div class="step"><div class="step-n">STEP 4</div><div class="step-ttl">사업시행인가</div><div class="step-sub">건축 계획 확정</div></div>
+    <div class="step"><div class="step-n">STEP 5</div><div class="step-ttl">관리처분계획인가</div><div class="step-sub">분담금 확정</div></div>
+    <div class="step"><div class="step-n">STEP 6</div><div class="step-ttl">이주·착공</div><div class="step-sub">철거 → 건설</div></div>
+    <div class="step"><div class="step-n">STEP 7</div><div class="step-ttl">준공·입주</div><div class="step-sub">청산 완료</div></div>
+  </div>
+
+  <div class="card-grid-2">
+    <div class="concept-card">
+      <div class="cc-head" onclick="toggleCard(this)">
+        <div><div class="cc-num">핵심 계산 01</div><div class="cc-ttl">비례율 · 권리가액 · 분담금</div></div>
+        <div class="cc-toggle">＋</div>
+      </div>
+      <div class="cc-body">
+        <div class="formula-box">
+          <b>비례율 (개발이익률):</b>
+          <span class="formula">비례율 = (종후 자산 총액 − 총사업비) ÷ 종전 자산 총액 × 100</span>
+          <b>권리가액 (조합원의 실질 권리):</b>
+          <span class="formula">권리가액 = 종전 자산 감정평가액 × 비례율</span>
+          <b>분담금 (추가 납부액):</b>
+          <span class="formula">분담금 = 분양가(선택 평형) − 권리가액</span>
+        </div>
+        <div class="example-box">
+          <div class="ex-ttl">실전 예제</div>
+          <b>조건:</b> 종전 자산 총액 500억, 종후(분양) 자산 총액 900억, 총사업비 350억<br>
+          조합원 A의 종전 평가액 3억 5,000만 원 / 선택 분양가 6억 원<br>
+          <div class="ex-step">
+            <b>① 비례율:</b> (900억 − 350억) ÷ 500억 = 550 ÷ 500 = <b>110%</b><br>
+            <b>② 권리가액:</b> 3억 5,000만 × 1.10 = <b>3억 8,500만 원</b><br>
+            <b>③ 분담금:</b> 6억 − 3억 8,500만 = <b>2억 1,500만 원</b>
+            <div class="ex-ans">분담금 = 2억 1,500만 원</div>
+          </div>
+        </div>
+        <div class="warn-box"><b>비례율 100% 의미:</b> 조합원이 기존 자산 가치만큼 그대로 돌려받음. 100% 초과 = 이익, 100% 미만 = 손실. 사업성 지표로 활용.</div>
+      </div>
+    </div>
+
+    <div class="concept-card">
+      <div class="cc-head" onclick="toggleCard(this)">
+        <div><div class="cc-num">핵심 계산 02</div><div class="cc-ttl">재건축 초과이익환수제</div></div>
+        <div class="cc-toggle">＋</div>
+      </div>
+      <div class="cc-body">
+        <div class="cc-desc">재건축으로 조합원이 얻는 이익이 1인당 8,000만 원(2024년 개정 기준)을 초과하면 초과분에 대해 누진세율로 부담금을 부과합니다.</div>
+        <div class="formula-box">
+          <b>재건축 초과이익 = 준공 후 주택가액 − (개시 시점 가액 + 정상 주택가격상승분 + 개발비용)</b>
+          <span class="formula">부담금 = (초과이익 − 8,000만) × 세율</span>
+          <b>세율 (2024년 개정):</b>
+          <span class="formula">~8,000만: 0% | 8,000~1.3억: 10% | 1.3~1.8억: 20% | 1.8~2.3억: 30% | 2.3억↑: 50%</span>
+        </div>
+        <div class="example-box">
+          <div class="ex-ttl">예제</div>
+          조합원 1인당 초과이익이 2억 원인 경우<br>
+          <div class="ex-step">
+            1억 2,000만(8천~1.3억 구간) × 10% = 1,200만<br>
+            5,000만(1.3~1.8억 구간) × 20% = 1,000만<br>
+            5,000만(1.8~2.3억 구간) × 30% = 1,500만<br>
+            8,000만(면제)<br>
+            <div class="ex-ans">부담금 = 3,700만 원</div>
+          </div>
+        </div>
+        <div class="warn-box"><b>면제 조건:</b> 1인당 초과이익 8,000만 원 이하, 조합 창립총회 전 사망, 소유 기간 20년 이상 1세대1주택 등. 재건축 투자 시 반드시 사전 시뮬레이션 필요.</div>
+      </div>
+    </div>
+
+    <div class="concept-card">
+      <div class="cc-head" onclick="toggleCard(this)">
+        <div><div class="cc-num">심화 03</div><div class="cc-ttl">재건축 vs 재개발 차이</div></div>
+        <div class="cc-toggle">＋</div>
+      </div>
+      <div class="cc-body">
+        <div class="tbl-wrap" style="margin:0 0 12px;">
+          <table class="compare-table">
+            <thead><tr><th>구분</th><th>재건축</th><th>재개발</th></tr></thead>
+            <tbody>
+              <tr><td class="tax-key">대상</td><td>노후 공동주택 단지</td><td>불량 주거지 (단독·다세대)</td></tr>
+              <tr><td class="tax-key">기반시설</td><td>양호 (기존 그대로)</td><td>열악 → 정비 포함</td></tr>
+              <tr><td class="tax-key">세입자</td><td>세입자 보상 없음</td><td>세입자 주거이전비 지급 의무</td></tr>
+              <tr><td class="tax-key">안전진단</td><td>필수</td><td>불필요</td></tr>
+              <tr><td class="tax-key">초과이익환수</td><td>적용</td><td>미적용</td></tr>
+              <tr><td class="tax-key">조합설립</td><td>동별 과반 + 전체 75%</td><td>토지면적 50% + 토지등소유자 75%</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="warn-box"><b>리모델링과의 차이:</b> 리모델링은 기존 건물 골조 유지, 전유면적 30% 이내 증축. 안전진단 없이 가능. 초과이익환수 미적용. 목동 신시가지 등이 재건축 vs 리모델링 선택 기로에 있음.</div>
+      </div>
+    </div>
+
+    <div class="concept-card">
+      <div class="cc-head" onclick="toggleCard(this)">
+        <div><div class="cc-num">심화 04</div><div class="cc-ttl">관리처분계획 — 분양 거부·현금청산</div></div>
+        <div class="cc-toggle">＋</div>
+      </div>
+      <div class="cc-body">
+        <div class="cc-desc">관리처분계획인가 후 분양을 신청하지 않거나 분양자격이 없는 조합원은 현금청산을 받습니다. 현금청산가액은 감정평가로 결정되며, 시세보다 낮은 경우가 많아 분쟁의 원인이 됩니다.</div>
+        <div class="formula-box">
+          <b>현금청산가액:</b>
+          <span class="formula">권리가액 기준 (종전 평가액 × 비례율)으로 산정</span>
+          <b>분양신청 기간:</b>
+          <span class="formula">관리처분계획인가 전 30~60일간 신청 (기간 내 미신청 → 현금청산)</span>
+        </div>
+        <div class="warn-box"><b>투자 시 주의:</b> 재건축 지분 투자 시 분양자격 확인 필수. 소형 지분(공유 지분, 무허가 건물 등)은 분양자격 미부여로 현금청산 가능성.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 재건축 분담금 계산기 -->
+  <div class="calc-wrap">
+    <div class="calc-ttl">재건축 분담금 시뮬레이터</div>
+    <div class="calc-grid">
+      <div class="calc-field"><label>종전 자산 총액 (억 원)</label><input type="number" id="rb_before" value="500" min="1"></div>
+      <div class="calc-field"><label>종후 자산 총액 (억 원)</label><input type="number" id="rb_after" value="900" min="1"></div>
+      <div class="calc-field"><label>총사업비 (억 원)</label><input type="number" id="rb_cost" value="350" min="0"></div>
+      <div class="calc-field"><label>내 종전 자산 평가액 (억 원)</label><input type="number" id="rb_mine" value="3.5" min="0" step="0.1"></div>
+      <div class="calc-field"><label>내가 선택하려는 분양가 (억 원)</label><input type="number" id="rb_new" value="6" min="0" step="0.1"></div>
+      <div class="calc-field"><label>초과이익 (내 몫, 억 원, 선택)</label><input type="number" id="rb_excess" value="0" min="0" step="0.1"></div>
+    </div>
+    <button class="calc-btn" onclick="calcRB()">분담금 계산</button>
+    <div class="calc-result" id="rb_result">
+      <div class="cr-line"><span>비례율</span><span id="rb_r1" class="cr-hl">—</span></div>
+      <div class="cr-line"><span>권리가액</span><span id="rb_r2">—</span></div>
+      <div class="cr-line"><span>선택 분양가</span><span id="rb_r3">—</span></div>
+      <div class="cr-line"><span>분담금</span><span id="rb_r4" class="cr-hl">—</span></div>
+      <div class="cr-line"><span>초과이익환수 부담금 (추정)</span><span id="rb_r5">—</span></div>
+      <div class="cr-line"><span>실질 총 부담</span><span id="rb_r6" class="cr-ok">—</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     탭 2 : 수익형 투자분석
+══════════════════════════════════════════ -->
+<div class="section" id="tab2">
+  <div class="sec-hero">
+    <div class="sec-label">Advanced · Investment Analysis</div>
+    <div class="sec-h">수익형 부동산 투자 심화</div>
+    <div class="sec-sub">NOI·Cap Rate·DSCR·레버리지 수익률·세후 IRR까지. 금융기관과 투자자 모두가 쓰는 분석 지표를 완전 정리합니다.</div>
+    <div class="cert-chips">
+      <span class="cert-chip cc-in">투자분석사 핵심</span>
+      <span class="cert-chip cc-ga">감정평가사 응용</span>
+    </div>
+  </div>
+
+  <div class="card-grid-3">
+    <div class="concept-card">
+      <div class="cc-head" onclick="toggleCard(this)">
+        <div><div class="cc-num">지표 01</div><div class="cc-ttl">NOI · Cap Rate</div></div>
+        <div class="cc-toggle">＋</div>
+      </div>
+      <div class="cc-body">
+        <div class="formula-box">
+          <b>NOI (순영업이익):</b>
+          <span class="formula">NOI = 유효총수입(EGI) − 운영비용</span>
+          <b>EGI = 가능총수입(PGI) − 공실·불량부채 손실</b><br><br>
+          <b>Cap Rate (자본환원율):</b>
+          <span class="formula">Cap Rate = NOI ÷ 자산가치</span>
+          <span class="formula">자산가치 = NOI ÷ Cap Rate</span>
+        </div>
+        <div class="example-box">
+          <div class="ex-ttl">예제</div>
+          월 임대 500만 원, 공실률 8%, 운영비용 연 900만<br>
+          <b>PGI:</b> 500×12=6,000만 / <b>공실:</b> 480만<br>
+          <b>EGI:</b> 5,520만 / <b>NOI:</b> 5,520−900=4,620만<br>
+          Cap Rate 5% → <b>자산가치 = 9억 2,400만</b>
+        </div>
+      </div>
+    </div>
+
+    <div class="concept-card">
+      <div class="cc-head" onclick="toggleCard(this)">
+        <div><div class="cc-num">지표 02</div><div class="cc-ttl">DSCR · LTV · 레버리지</div></div>
+        <div class="cc-toggle">＋</div>
+      </div>
+      <div class="cc-body">
+        <div class="formula-box">
+          <b>DSCR (부채상환비율):</b>
+          <span class="formula">DSCR = NOI ÷ 연간 원리금 상환액 (ADS)</span>
+          <b>DSCR > 1.2 이상 = 대출 기준 충족</b><br><br>
+          <b>레버리지 자기자본 수익률:</b>
+          <span class="formula">자기자본 수익률 = (NOI − ADS) ÷ 자기자본 투자액</span>
+        </div>
+        <div class="example-box">
+          <div class="ex-ttl">레버리지 효과 비교</div>
+          자산 10억, NOI 4,000만 (Cap Rate 4%)<br>
+          <b>무차입:</b> ROE = 4,000만 ÷ 10억 = <b>4.0%</b><br>
+          <b>LTV 60%, 이율 4.5%, 30년:</b><br>
+          ADS ≈ 2,190만 / NOI−ADS = 1,810만<br>
+          자기자본 4억 → ROE = 1,810÷4억 = <b>4.5%</b>
+          <div class="ex-ans">대출금리 < Cap Rate → 레버리지 긍정적</div>
+        </div>
+        <div class="warn-box"><b>역레버리지:</b> 대출 이율 > Cap Rate인 경우 차입 시 ROE 오히려 하락. 2024~2026년 고금리 시대에 수익형 부동산 투자 수익 악화 원인.</div>
+      </div>
+    </div>
+
+    <div class="concept-card">
+      <div class="cc-head" onclick="toggleCard(this)">
+        <div><div class="cc-num">지표 03</div><div class="cc-ttl">IRR · NPV · 투자 회수기간</div></div>
+        <div class="cc-toggle">＋</div>
+      </div>
+      <div class="cc-body">
+        <div class="formula-box">
+          <b>NPV (순현재가치):</b>
+          <span class="formula">NPV = Σ[현금흐름_t ÷ (1+r)^t] − 초기투자</span>
+          <b>IRR:</b> NPV = 0이 되는 할인율<br><br>
+          <b>투자 회수기간:</b>
+          <span class="formula">PBP = 초기투자 ÷ 연간 순현금흐름 (단순법)</span>
+        </div>
+        <div class="warn-box"><b>IRR 해석:</b> IRR > 요구수익률(Hurdle Rate) → 투자 타당. IRR이 내부적으로 여러 개 나올 수 있어 NPV와 병용 분석 권장.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 수익형 투자 종합 계산기 -->
+  <div class="calc-wrap">
+    <div class="calc-ttl">수익형 부동산 투자 분석 계산기 (NOI · Cap Rate · DSCR · 레버리지)</div>
+    <div class="calc-grid">
+      <div class="calc-field"><label>월 임대 수입 (만 원)</label><input type="number" id="inv_rent" value="500" min="0"></div>
+      <div class="calc-field"><label>공실률 (%)</label><input type="number" id="inv_vac" value="8" min="0" max="100"></div>
+      <div class="calc-field"><label>연간 운영비용 (만 원)</label><input type="number" id="inv_opex" value="900" min="0"></div>
+      <div class="calc-field"><label>매입가격 (억 원)</label><input type="number" id="inv_price" value="10" min="0.1" step="0.1"></div>
+      <div class="calc-field"><label>LTV (%)</label><input type="number" id="inv_ltv" value="60" min="0" max="90"></div>
+      <div class="calc-field"><label>대출 이율 (%)</label><input type="number" id="inv_rate" value="4.5" min="0" max="20" step="0.1"></div>
+      <div class="calc-field"><label>대출 기간 (년)</label><input type="number" id="inv_term" value="30" min="1" max="50"></div>
+      <div class="calc-field"><label>시장 Cap Rate (%)</label><input type="number" id="inv_mktcap" value="5" min="0.1" max="20" step="0.1"></div>
+    </div>
+    <button class="calc-btn" onclick="calcINV()">투자 분석 실행</button>
+    <div class="calc-result" id="inv_result">
+      <div class="cr-line"><span>가능총수입 (PGI)</span><span id="inv_r1">—</span></div>
+      <div class="cr-line"><span>유효총수입 (EGI)</span><span id="inv_r2">—</span></div>
+      <div class="cr-line"><span>순영업이익 (NOI)</span><span id="inv_r3" class="cr-hl">—</span></div>
+      <div class="cr-line"><span>실제 Cap Rate</span><span id="inv_r4" class="cr-hl">—</span></div>
+      <div class="cr-line"><span>시장 Cap Rate 기준 적정가치</span><span id="inv_r9">—</span></div>
+      <div class="cr-line"><span>대출금액 / 자기자본</span><span id="inv_r5">—</span></div>
+      <div class="cr-line"><span>연간 원리금 (ADS)</span><span id="inv_r6">—</span></div>
+      <div class="cr-line"><span>DSCR</span><span id="inv_r7" class="cr-hl">—</span></div>
+      <div class="cr-line"><span>자기자본 수익률 (레버리지)</span><span id="inv_r8" class="cr-ok">—</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     탭 3 : 세제 완전계산
+══════════════════════════════════════════ -->
+<div class="section" id="tab3">
+  <div class="sec-hero">
+    <div class="sec-label">Advanced · Tax</div>
+    <div class="sec-h">부동산 세제 완전 계산</div>
+    <div class="sec-sub">취득세·재산세·종부세·양도세·임대소득세까지 2026년 최신 세율로 단계별 계산법을 정리합니다.</div>
+    <div class="cert-chips">
+      <span class="cert-chip cc-gi">공인중개사 필수</span>
+      <span class="cert-chip cc-in">투자분석사 응용</span>
+    </div>
+  </div>
+
+  <div class="card-grid-2">
+    <div class="concept-card">
+      <div class="cc-head" onclick="toggleCard(this)">
+        <div><div class="cc-num">세금 01</div><div class="cc-ttl">취득세 — 세율 체계 완전 정리</div></div>
+        <div class="cc-toggle">＋</div>
+      </div>
+      <div class="cc-body">
+        <div class="tbl-wrap" style="margin:0 0 10px;">
+          <table class="compare-table">
+            <thead><tr><th>구분</th><th>세율</th><th>비고</th></tr></thead>
+            <tbody>
+              <tr class="tax-row-up"><td>1주택 (6억↓)</td><td>1%</td><td>지방교육세·농특세 별도</td></tr>
+              <tr><td>1주택 (6~9억)</td><td>1~3% (비례)</td><td>(취득가 × 2/3억 − 3) × 1/100</td></tr>
+              <tr><td>1주택 (9억↑)</td><td>3%</td><td></td></tr>
+              <tr class="tax-row-dn"><td>2주택 (조정지역)</td><td>8%</td><td>중과세율</td></tr>
+              <tr class="tax-row-dn"><td>3주택+ (조정지역)</td><td>12%</td><td>중과세율</td></tr>
+              <tr><td>법인</td><td>12%</td><td>주택 취득 시 일률 12%</td></tr>
+              <tr><td>상속</td><td>2.8%</td><td>농특세 포함</td></tr>
+              <tr><td>증여</td><td>3.5%</td><td>비조정 4%</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="warn-box"><b>지방교육세:</b> 취득세액의 20% 추가. <b>농어촌특별세:</b> 전용 85㎡ 초과 시 0.2% 추가. 실질 납부 세율은 이보다 약간 높음.</div>
+      </div>
+    </div>
+
+    <div class="concept-card">
+      <div class="cc-head" onclick="toggleCard(this)">
+        <div><div class="cc-num">세금 02</div><div class="cc-ttl">양도소득세 — 단계별 완전 계산</div></div>
+        <div class="cc-toggle">＋</div>
+      </div>
+      <div class="cc-body">
+        <div class="formula-box">
+          <b>양도차익 → 과세표준 → 세액 순서:</b>
+          <span class="formula">양도차익 = 양도가액 − 취득가액 − 필요경비</span>
+          <span class="formula">장기보유특별공제 후 소득 = 양도차익 × (1 − 공제율)</span>
+          <span class="formula">과세표준 = 공제 후 소득 − 기본공제 250만</span>
+          <span class="formula">산출세액 = 과세표준 × 세율 (6~45% 누진)</span>
+        </div>
+        <div class="tbl-wrap" style="margin:0 0 10px;">
+          <table class="compare-table">
+            <thead><tr><th>과세표준</th><th>세율</th><th>누진공제</th></tr></thead>
+            <tbody>
+              <tr><td>~1,400만</td><td>6%</td><td>—</td></tr>
+              <tr><td>1,400~5,000만</td><td>15%</td><td>126만</td></tr>
+              <tr><td>5,000~8,800만</td><td>24%</td><td>576만</td></tr>
+              <tr><td>8,800만~1.5억</td><td>35%</td><td>1,544만</td></tr>
+              <tr><td>1.5~3억</td><td>38%</td><td>1,994만</td></tr>
+              <tr><td>3~5억</td><td>40%</td><td>2,594만</td></tr>
+              <tr><td>5~10억</td><td>42%</td><td>3,594만</td></tr>
+              <tr><td>10억 초과</td><td>45%</td><td>6,594만</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="warn-box"><b>1세대 1주택 비과세:</b> 2년 이상 보유 + 2년 거주(조정지역) + 12억 이하 전액 비과세. 12억 초과분 과세. <b>다주택 중과:</b> 조정지역 2주택 +20%p, 3주택 +30%p.</div>
+      </div>
+    </div>
+
+    <div class="concept-card">
+      <div class="cc-head" onclick="toggleCard(this)">
+        <div><div class="cc-num">세금 03</div><div class="cc-ttl">종합부동산세 계산법</div></div>
+        <div class="cc-toggle">＋</div>
+      </div>
+      <div class="cc-body">
+        <div class="formula-box">
+          <b>종부세 = (공시가격 합산 × 공정시장가액비율 − 기본공제) × 세율</b>
+          <span class="formula">과세표준 = 공시가격 합산 × 공정시장가액비율(60%) − 공제액</span>
+          <b>공제액:</b> 1세대 1주택 12억 / 일반 9억 / 법인 0원<br><br>
+          <b>세율 (주택, 2026):</b>
+          <span class="formula">~3억: 0.5% | 3~6억: 0.7% | 6~12억: 1.0% | 12~25억: 1.3% | 25~50억: 1.5% | 50~94억: 2.0% | 94억↑: 2.7%</span>
+        </div>
+        <div class="example-box">
+          <div class="ex-ttl">1세대 1주택 예제</div>
+          공시가격 20억 원, 공정시장가액비율 60%<br>
+          <b>과세표준:</b> 20억 × 0.6 − 12억 = 0억 → <b>비과세</b><br><br>
+          공시가격 30억 원<br>
+          <b>과세표준:</b> 30억 × 0.6 − 12억 = <b>6억</b><br>
+          <b>산출세액:</b> 3억×0.5% + 3억×0.7% = 150만+210만 = <b>360만 원</b>
+        </div>
+      </div>
+    </div>
+
+    <div class="concept-card">
+      <div class="cc-head" onclick="toggleCard(this)">
+        <div><div class="cc-num">세금 04</div><div class="cc-ttl">장기보유특별공제 (LTDC)</div></div>
+        <div class="cc-toggle">＋</div>
+      </div>
+      <div class="cc-body">
+        <div class="cc-desc">3년 이상 보유 시 양도차익에서 일정 비율을 공제합니다. 1세대1주택은 거주기간 공제가 추가되어 최대 80%까지 공제받을 수 있습니다.</div>
+        <div class="tbl-wrap" style="margin:0 0 10px;">
+          <table class="compare-table">
+            <thead><tr><th>보유기간</th><th>일반 공제율</th><th>1세대1주택 (보유)</th><th>1세대1주택 (거주)</th></tr></thead>
+            <tbody>
+              <tr><td>3~4년</td><td>6%</td><td>12%</td><td>12%</td></tr>
+              <tr><td>5~6년</td><td>10%</td><td>20%</td><td>20%</td></tr>
+              <tr><td>7~8년</td><td>14%</td><td>28%</td><td>28%</td></tr>
+              <tr><td>9~10년</td><td>18%</td><td>36%</td><td>36%</td></tr>
+              <tr><td>10~11년</td><td>20%</td><td>40%</td><td>40%</td></tr>
+              <tr class="tax-row-up"><td>15년 이상</td><td>30%</td><td>최대 40%</td><td>최대 40% (합산 최대 80%)</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="warn-box"><b>1세대1주택 보유+거주 공제:</b> 10년 보유 40% + 10년 거주 40% = 최대 80%. 양도차익의 20%만 과세 대상.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 양도세 계산기 -->
+  <div class="calc-wrap">
+    <div class="calc-ttl">양도소득세 계산기 (2026년 기준)</div>
+    <div class="calc-grid">
+      <div class="calc-field"><label>양도가액 (억 원)</label><input type="number" id="tx_sell" value="8" min="0" step="0.1"></div>
+      <div class="calc-field"><label>취득가액 (억 원)</label><input type="number" id="tx_buy" value="5" min="0" step="0.1"></div>
+      <div class="calc-field"><label>필요경비 (만 원)</label><input type="number" id="tx_cost" value="2000" min="0"></div>
+      <div class="calc-field"><label>보유기간 (년)</label><input type="number" id="tx_hold" value="8" min="0" max="50"></div>
+      <div class="calc-field">
+        <label>주택 유형</label>
+        <select id="tx_type">
+          <option value="1">1세대 1주택 (거주 2년 이상)</option>
+          <option value="2">일반 (비조정, 1주택)</option>
+          <option value="3">조정지역 2주택 (중과 +20%p)</option>
+          <option value="4">조정지역 3주택+ (중과 +30%p)</option>
+        </select>
+      </div>
+      <div class="calc-field"><label>거주기간 (1주택만, 년)</label><input type="number" id="tx_live" value="5" min="0" max="50"></div>
+    </div>
+    <button class="calc-btn" onclick="calcTX()">양도세 계산</button>
+    <div class="calc-result" id="tx_result">
+      <div class="cr-line"><span>양도차익</span><span id="tx_r1">—</span></div>
+      <div class="cr-line"><span>장기보유특별공제</span><span id="tx_r2">—</span></div>
+      <div class="cr-line"><span>과세표준</span><span id="tx_r3">—</span></div>
+      <div class="cr-line"><span>세율 (구간)</span><span id="tx_r4">—</span></div>
+      <div class="cr-line"><span>산출세액 (지방소득세 포함)</span><span id="tx_r5" class="cr-dn">—</span></div>
+      <div class="cr-line"><span>실효세율</span><span id="tx_r6">—</span></div>
+      <div class="cr-line"><span>세후 실수령</span><span id="tx_r7" class="cr-ok">—</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     탭 4 : 경매·권리분석
+══════════════════════════════════════════ -->
+<div class="section" id="tab4">
+  <div class="sec-hero">
+    <div class="sec-label">Advanced · Auction</div>
+    <div class="sec-h">경매·공매 권리분석</div>
+    <div class="sec-sub">말소기준권리 파악, 배당 순위, 임차인 보호 분석까지. 경매 투자의 핵심 리스크 관리법을 정리합니다.</div>
+    <div class="cert-chips">
+      <span class="cert-chip cc-gi">공인중개사 심화</span>
+      <span class="cert-chip cc-in">투자분석사 응용</span>
+    </div>
+  </div>
+
+  <div class="card-grid-2">
+    <div class="concept-card">
+      <div class="cc-head" onclick="toggleCard(this)">
+        <div><div class="cc-num">개념 01</div><div class="cc-ttl">말소기준권리 — 핵심 개념</div></div>
+        <div class="cc-toggle">＋</div>
+      </div>
+      <div class="cc-body">
+        <div class="cc-desc">경매로 부동산을 낙찰받으면 말소기준권리 이후에 등기된 권리는 모두 소멸(말소)됩니다. 말소기준권리보다 앞선 권리는 낙찰자가 인수해야 합니다.</div>
+        <div class="formula-box">
+          <b>말소기준권리의 종류 (가장 빠른 것이 기준):</b>
+          <span class="formula">(근)저당권 | 담보가등기 | 전세권 (배당요구한 경우) | 경매개시결정등기</span>
+        </div>
+        <div class="example-box">
+          <div class="ex-ttl">권리 분석 예제</div>
+          <b>등기 순서:</b><br>
+          2018.03 저당권 A (2억, 말소기준권리)<br>
+          2019.06 임차인 B (전입신고, 보증금 1억)<br>
+          2020.11 저당권 C (1억)<br>
+          2022.04 가압류 D<br>
+          <div class="ex-step">
+            말소기준 = 2018.03 저당권 A<br>
+            → B·C·D 모두 A보다 후순위 → 낙찰 시 전부 소멸<br>
+            → 임차인 B는 배당에서 보증금 받아야
+            <div class="ex-ans">낙찰자: 전 권리 말소, 부담 없음</div>
+          </div>
+        </div>
+        <div class="warn-box"><b>인수 위험:</b> 말소기준권리보다 앞서 전입신고한 임차인(대항력 있음)은 낙찰자가 보증금 인수. 경매 전 반드시 전입세대 열람 필수.</div>
+      </div>
+    </div>
+
+    <div class="concept-card">
+      <div class="cc-head" onclick="toggleCard(this)">
+        <div><div class="cc-num">개념 02</div><div class="cc-ttl">배당 순위 — 우선순위 완전 정리</div></div>
+        <div class="cc-toggle">＋</div>
+      </div>
+      <div class="cc-body">
+        <div class="tbl-wrap" style="margin:0 0 10px;">
+          <table class="compare-table">
+            <thead><tr><th>순위</th><th>권리 종류</th><th>근거 법령</th></tr></thead>
+            <tbody>
+              <tr class="tax-row-up"><td><b>1순위</b></td><td>경매 비용 (집행비용)</td><td>민사집행법</td></tr>
+              <tr class="tax-row-up"><td><b>2순위</b></td><td>최우선변제 소액임차인</td><td>주택임대차보호법</td></tr>
+              <tr class="tax-row-up"><td><b>3순위</b></td><td>당해세 (해당 부동산 재산세·종부세)</td><td>국세기본법</td></tr>
+              <tr><td><b>4순위</b></td><td>임금채권 (최우선 3개월분)</td><td>근로기준법</td></tr>
+              <tr><td><b>5순위</b></td><td>저당권·전세권 (등기 순서)</td><td>민법</td></tr>
+              <tr><td><b>6순위</b></td><td>일반 임차인 (대항력+확정일자 순)</td><td>주택임대차보호법</td></tr>
+              <tr><td><b>7순위</b></td><td>가압류 (등기 순서)</td><td>민사집행법</td></tr>
+              <tr class="tax-row-dn"><td><b>최후</b></td><td>일반 채권 (무담보)</td><td></td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="warn-box"><b>소액임차인 최우선변제액 (서울 기준, 2024):</b> 보증금 1억 6,500만 원 이하 → 5,500만 원 우선 변제. 경매 낙찰가의 1/2 한도 내.</div>
+      </div>
+    </div>
+
+    <div class="concept-card">
+      <div class="cc-head" onclick="toggleCard(this)">
+        <div><div class="cc-num">개념 03</div><div class="cc-ttl">임차인 대항력 · 확정일자</div></div>
+        <div class="cc-toggle">＋</div>
+      </div>
+      <div class="cc-body">
+        <div class="formula-box">
+          <b>대항력 성립 요건:</b>
+          <span class="formula">전입신고 + 주택 점유 (익일 00:00부터 효력)</span>
+          <b>우선변제권 성립 요건:</b>
+          <span class="formula">대항력 + 확정일자 → 배당요구 시 우선변제</span>
+        </div>
+        <div class="example-box">
+          <div class="ex-ttl">시나리오 비교</div>
+          <b>케이스 A:</b> 2020.01 저당권(3억) → 2021.03 임차인 전입·확정일자(보증금 1억)<br>
+          → 임차인이 저당권보다 후순위 → <b>낙찰 후 임차인 보증금 소멸 위험</b><br><br>
+          <b>케이스 B:</b> 2021.03 임차인 전입(보증금 1억) → 2022.05 저당권(3억)<br>
+          → 임차인이 저당권보다 선순위 → <b>낙찰자가 보증금 인수</b>
+        </div>
+        <div class="warn-box"><b>핵심 암기:</b> "전입신고 다음날 0시"부터 대항력 발생. 저당권은 등기 당일 효력. 따라서 같은 날 전입신고 + 저당권 설정 시 저당권이 우선.</div>
+      </div>
+    </div>
+
+    <div class="concept-card">
+      <div class="cc-head" onclick="toggleCard(this)">
+        <div><div class="cc-num">개념 04</div><div class="cc-ttl">낙찰가 결정 전략 · 수익 분석</div></div>
+        <div class="cc-toggle">＋</div>
+      </div>
+      <div class="cc-body">
+        <div class="formula-box">
+          <b>경매 투자 수익 분석:</b>
+          <span class="formula">예상 수익 = 시세 − (낙찰가 + 취득세 + 명도비 + 수리비 + 인수 부담)</span>
+          <b>최고입찰가 산정:</b>
+          <span class="formula">Max 입찰가 = 시세 × 목표 낙찰가율 − 인수 부담</span>
+        </div>
+        <div class="example-box">
+          <div class="ex-ttl">낙찰가 결정 예제</div>
+          시세 5억 / 목표 수익 2,000만 / 취득세+수리비 1,500만 / 인수 부담 없음<br>
+          <b>Max 입찰가:</b> 5억 − 2,000만 − 1,500만 = <b>4억 6,500만</b><br>
+          감정가 5억 2,000만 → 낙찰가율 약 <b>89.4%</b>
+        </div>
+        <div class="warn-box"><b>경매 수수료:</b> 법원 입찰보증금 10%(낙찰 후 대금에 포함). 명도비용: 협의 이사비 평균 200~500만 원. 경매 전문 법무사 비용 추가.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     탭 5 : 공식 모음
+══════════════════════════════════════════ -->
+<div class="section" id="tab5">
+  <div class="sec-hero">
+    <div class="sec-label">Reference · Formula Sheet</div>
+    <div class="sec-h">핵심 공식 모음</div>
+    <div class="sec-sub">시험 직전 빠르게 복습할 수 있는 공식·세율 레퍼런스 카드. 감정평가사·공인중개사·투자분석사 3종 공통.</div>
+  </div>
+
+  <div class="formula-cards">
+    <div class="fc">
+      <div class="fc-name">감정평가 · 원가방식</div>
+      <code class="fc-formula">적산가액 = 재조달원가 × (1 − 경과연수/내용연수 × (1−잔가율))</code>
+      <div class="fc-note">정액법 기준. 경과연수 / 내용연수 = 감가비율 (잔가율 제외한 비율)</div>
+    </div>
+    <div class="fc">
+      <div class="fc-name">감정평가 · 수익방식</div>
+      <code class="fc-formula">수익가액 = NOI ÷ 환원이율(Cap Rate)</code>
+      <div class="fc-note">NOI = 유효총수입 − 운영비용. 환원이율 = 안전이율 + 위험할증</div>
+    </div>
+    <div class="fc">
+      <div class="fc-name">감정평가 · 비교방식</div>
+      <code class="fc-formula">비준가액 = 사례가 × 사정보정 × 시점수정 × 지역 × 개별</code>
+      <div class="fc-note">사정보정 = 정상가 ÷ 사례가. 급매 사례 → 1 이상</div>
+    </div>
+    <div class="fc">
+      <div class="fc-name">재건축 · 비례율</div>
+      <code class="fc-formula">비례율 = (종후 − 총사업비) ÷ 종전 × 100%</code>
+      <div class="fc-note">100% 초과 시 개발이익 존재. 권리가액 = 종전평가 × 비례율</div>
+    </div>
+    <div class="fc">
+      <div class="fc-name">재건축 · 분담금</div>
+      <code class="fc-formula">분담금 = 선택 분양가 − 권리가액</code>
+      <div class="fc-note">권리가액 > 분양가이면 환급금 발생</div>
+    </div>
+    <div class="fc">
+      <div class="fc-name">투자분석 · DSCR</div>
+      <code class="fc-formula">DSCR = NOI ÷ ADS (연간 원리금)</code>
+      <div class="fc-note">DSCR ≥ 1.2 → 대출 기준 충족. 1.0 미만 → 현금부족</div>
+    </div>
+    <div class="fc">
+      <div class="fc-name">투자분석 · 레버리지 ROE</div>
+      <code class="fc-formula">ROE = (NOI − ADS) ÷ 자기자본</code>
+      <div class="fc-note">대출금리 < Cap Rate → 양의 레버리지. 역방향 시 손실 확대</div>
+    </div>
+    <div class="fc">
+      <div class="fc-name">세제 · 양도차익</div>
+      <code class="fc-formula">양도차익 = 양도가 − 취득가 − 필요경비</code>
+      <div class="fc-note">필요경비: 취득세, 법무사비, 중개수수료, 자본적 지출 포함</div>
+    </div>
+    <div class="fc">
+      <div class="fc-name">세제 · 종부세 과표</div>
+      <code class="fc-formula">과표 = 공시가 합산 × 60% − 공제(9억/12억)</code>
+      <div class="fc-note">1세대1주택 12억 공제. 공정시장가액비율 60% (2024~)</div>
+    </div>
+    <div class="fc">
+      <div class="fc-name">세제 · 장기보유특별공제 (1세대1주택)</div>
+      <code class="fc-formula">최대 80% = 보유 40% + 거주 40%</code>
+      <div class="fc-note">각 연 4%씩 최대 10년. 보유·거주 요건 각 충족 필요</div>
+    </div>
+    <div class="fc">
+      <div class="fc-name">DSR · 스트레스 DSR</div>
+      <code class="fc-formula">DSR = 연간 원리금 ÷ 연소득 × 100 ≤ 40%</code>
+      <div class="fc-note">서울·경기 규제지역 스트레스 금리 하한 3%. 실제금리+3%로 한도 산출</div>
+    </div>
+    <div class="fc">
+      <div class="fc-name">전세가율 · 역전세 판단</div>
+      <code class="fc-formula">전세가율 = 전세가 ÷ 매매가 × 100%</code>
+      <div class="fc-note">80% 이상 → 깡통전세 위험. 서울 강남권 40%대, 북부권 60%대</div>
+    </div>
+  </div>
+</div>
+
+</div><!-- /main -->
+
+<script>
+/* ─── 탭 전환 ─── */
+function switchTab(n){
+  document.querySelectorAll('.section').forEach((s,i)=>s.classList.toggle('active',i===n));
+  document.querySelectorAll('.tab').forEach((t,i)=>t.classList.toggle('active',i===n));
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+/* ─── 아코디언 ─── */
+function toggleCard(head){
+  const body=head.nextElementSibling;
+  const tog=head.querySelector('.cc-toggle');
+  const open=body.classList.toggle('open');
+  tog.textContent=open?'－':'＋';
+}
+
+/* ─── 퀴즈 ─── */
+function answerQuiz(opt, correct, qid){
+  const box=opt.closest('.quiz-box');
+  if(box.querySelector('.correct')) return;
+  opt.classList.add(correct?'correct':'wrong');
+  if(!correct){
+    box.querySelectorAll('.qb-opt').forEach(o=>{
+      if(o.getAttribute('onclick')&&o.getAttribute('onclick').includes('true'))o.classList.add('correct');
+    });
+  }
+  document.getElementById(qid).classList.add('show');
+}
+
+/* ─── 헬퍼 ─── */
+const fmt = (n,d=0)=>n.toLocaleString('ko-KR',{minimumFractionDigits:d,maximumFractionDigits:d});
+const fmtE = n => { if(Math.abs(n)<1e8) return fmt(Math.round(n/10000))+'만 원'; return (n/1e8).toFixed(2)+'억 원'; }
+function show(id){document.getElementById(id).classList.add('show');}
+
+/* ─── 계산기 01 : 원가방식 ─── */
+function calcGA(){
+  const area=+document.getElementById('ga_area').value;
+  const unit=+document.getElementById('ga_unit').value*10000;
+  const life=+document.getElementById('ga_life').value;
+  const el=+document.getElementById('ga_elapsed').value;
+  const res=(+document.getElementById('ga_residual').value)/100;
+  const land=(+document.getElementById('ga_land').value)*1e8;
+  const rc=area*unit;
+  const annDep=rc*(1-res)/life;
+  const totDep=annDep*el;
+  const bldg=rc-totDep;
+  const total=bldg+land;
+  document.getElementById('ga_r1').textContent=fmtE(rc);
+  document.getElementById('ga_r2').textContent=fmtE(annDep)+'/년';
+  document.getElementById('ga_r3').textContent=fmtE(totDep);
+  document.getElementById('ga_r4').textContent=fmtE(bldg);
+  document.getElementById('ga_r5').textContent=fmtE(land);
+  document.getElementById('ga_r6').textContent=fmtE(total);
+  show('ga_result');
+}
+
+/* ─── 계산기 02 : 재건축 분담금 ─── */
+function calcRB(){
+  const before=+document.getElementById('rb_before').value*1e8;
+  const after=+document.getElementById('rb_after').value*1e8;
+  const cost=+document.getElementById('rb_cost').value*1e8;
+  const mine=+document.getElementById('rb_mine').value*1e8;
+  const newp=+document.getElementById('rb_new').value*1e8;
+  const excess=+document.getElementById('rb_excess').value*1e8;
+  const ratio=(after-cost)/before;
+  const equity=mine*ratio;
+  const burden=newp-equity;
+  // 초과이익환수 간단 추정
+  let ehf=0;
+  const ex=excess;
+  const th=8000*1e4;
+  if(ex>th){
+    const over=ex-th;
+    if(over<=5000*1e4) ehf=over*0.1;
+    else if(over<=1e8) ehf=5000*1e4*0.1+(over-5000*1e4)*0.2;
+    else if(over<=1.5e8) ehf=5000*1e4*0.1+5000*1e4*0.2+(over-1e8)*0.3;
+    else ehf=5000*1e4*0.1+5000*1e4*0.2+5000*1e4*0.3+(over-1.5e8)*0.5;
+  }
+  document.getElementById('rb_r1').textContent=(ratio*100).toFixed(1)+'%';
+  document.getElementById('rb_r2').textContent=fmtE(equity);
+  document.getElementById('rb_r3').textContent=fmtE(newp);
+  document.getElementById('rb_r4').textContent=fmtE(burden)+(burden<0?' (환급)':'');
+  document.getElementById('rb_r5').textContent=excess>0?fmtE(ehf):'입력 없음';
+  document.getElementById('rb_r6').textContent=fmtE(Math.max(0,burden)+ehf);
+  show('rb_result');
+}
+
+/* ─── 계산기 03 : 수익형 투자 ─── */
+function calcINV(){
+  const rent=+document.getElementById('inv_rent').value*10000*12;
+  const vac=+document.getElementById('inv_vac').value/100;
+  const opex=+document.getElementById('inv_opex').value*10000;
+  const price=+document.getElementById('inv_price').value*1e8;
+  const ltv=+document.getElementById('inv_ltv').value/100;
+  const rate=+document.getElementById('inv_rate').value/100;
+  const term=+document.getElementById('inv_term').value;
+  const mktcap=+document.getElementById('inv_mktcap').value/100;
+
+  const pgi=rent;
+  const vl=pgi*vac;
+  const egi=pgi-vl;
+  const noi=egi-opex;
+  const capR=noi/price;
+  const mktVal=noi/mktcap;
+
+  const loan=price*ltv;
+  const equity=price-loan;
+  const monthly=rate/12;
+  const n=term*12;
+  const ads=loan*(monthly*Math.pow(1+monthly,n))/(Math.pow(1+monthly,n)-1)*12;
+  const dscr=noi/ads;
+  const roe=(noi-ads)/equity;
+
+  document.getElementById('inv_r1').textContent=fmtE(pgi);
+  document.getElementById('inv_r2').textContent=fmtE(egi);
+  document.getElementById('inv_r3').textContent=fmtE(noi);
+  document.getElementById('inv_r4').textContent=(capR*100).toFixed(2)+'%';
+  document.getElementById('inv_r9').textContent=fmtE(mktVal);
+  document.getElementById('inv_r5').textContent=fmtE(loan)+' / '+fmtE(equity);
+  document.getElementById('inv_r6').textContent=fmtE(ads);
+  const dscrEl=document.getElementById('inv_r7');
+  dscrEl.textContent=dscr.toFixed(2)+(dscr>=1.2?' ✓ 충족':' ✗ 미달');
+  dscrEl.className=dscr>=1.2?'cr-ok':'cr-dn';
+  const roeEl=document.getElementById('inv_r8');
+  roeEl.textContent=(roe*100).toFixed(2)+'% ('+(roe>capR?'레버리지 긍정':'레버리지 역효과')+')';
+  roeEl.className=roe>capR?'cr-ok':'cr-dn';
+  show('inv_result');
+}
+
+/* ─── 계산기 04 : 양도세 ─── */
+function calcTX(){
+  const sell=+document.getElementById('tx_sell').value*1e8;
+  const buy=+document.getElementById('tx_buy').value*1e8;
+  const cost=+document.getElementById('tx_cost').value*10000;
+  const hold=+document.getElementById('tx_hold').value;
+  const type=+document.getElementById('tx_type').value;
+  const live=+document.getElementById('tx_live').value;
+
+  const gain=sell-buy-cost;
+
+  // 장기보유특별공제율
+  let ltdc=0;
+  if(hold>=3){
+    if(type===1){
+      const hp=Math.min(hold,10)*4; // 보유 최대 40%
+      const lp=Math.min(live,10)*4; // 거주 최대 40%
+      ltdc=Math.min((hp+lp)/100, 0.80);
+    } else {
+      const years=Math.min(hold,15);
+      ltdc=Math.min(years*2/100, 0.30);
+    }
+  }
+  const afterLTDC=gain*(1-ltdc);
+  const deduct=2500000;
+  let taxBase=Math.max(afterLTDC-deduct,0);
+
+  // 중과세
+  let surcharge=0;
+  if(type===3) surcharge=0.20;
+  if(type===4) surcharge=0.30;
+
+  // 세액 계산
+  function calcProgressiveTax(base){
+    const brackets=[[14000000,0.06,0],[50000000,0.15,1260000],[88000000,0.24,5760000],[150000000,0.35,15440000],[300000000,0.38,19940000],[500000000,0.40,25940000],[1000000000,0.42,35940000],[Infinity,0.45,65940000]];
+    for(const [lim,rate,ded] of brackets){ if(base<=lim) return base*rate-ded; }
+    return 0;
+  }
+
+  let tax=calcProgressiveTax(taxBase);
+  tax+=taxBase*surcharge;
+  const localTax=tax*0.1;
+  const totalTax=tax+localTax;
+  const effRate=gain>0?totalTax/gain:0;
+  const netProfit=gain-totalTax;
+
+  document.getElementById('tx_r1').textContent=fmtE(gain);
+  document.getElementById('tx_r2').textContent=(ltdc*100).toFixed(0)+'% 공제 → '+fmtE(gain*ltdc)+' 차감';
+  document.getElementById('tx_r3').textContent=fmtE(taxBase);
+  document.getElementById('tx_r4').textContent=(surcharge>0?`중과 +${surcharge*100}%p 포함`:'누진세율 6~45%');
+  document.getElementById('tx_r5').textContent=fmtE(totalTax);
+  document.getElementById('tx_r6').textContent=(effRate*100).toFixed(1)+'%';
+  document.getElementById('tx_r7').textContent=fmtE(sell-buy-cost-totalTax);
+  show('tx_result');
+}
+</script>
+</body>
+</html>

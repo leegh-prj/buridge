@@ -1,0 +1,735 @@
+﻿<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/favicon.svg">
+<meta name="theme-color" content="#0C2040">
+<meta property="og:site_name" content="부릿지 BuRIDGE">
+<meta property="og:type" content="website">
+<meta property="og:title" content="경제분석 | 부릿지 BuRIDGE">
+<meta property="og:description" content="기준금리, 환율, 글로벌 지표가 부동산에 미치는 영향 분석.">
+<meta property="og:url" content="https://buridge.vercel.app/부동산_경제분석_2026.html">
+<meta property="og:image" content="https://buridge.vercel.app/og-image.svg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="ko_KR">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="경제분석 | 부릿지 BuRIDGE">
+<meta name="twitter:description" content="기준금리, 환율, 글로벌 지표가 부동산에 미치는 영향 분석.">
+<meta name="twitter:image" content="https://buridge.vercel.app/og-image.svg">
+<title>거시경제 분석 | 부릿지 BuRIDGE</title>
+<style>
+:root{
+  --navy:#0C2040;--blue:#1A4A9A;--blue-lt:#EBF1FF;
+  --ink:#1A2E44;--ink2:#374F6B;--ink3:#68839C;
+  --paper:#F3F6FB;--sf:#FFFFFF;--rule:#D0D8E8;
+  --up:#0A6E42;--up-lt:#E4F3EC;--up-bg:#D0EFDF;
+  --dn:#B71C1C;--dn-lt:#FFEBEE;--dn-bg:#FFCDD2;
+  --warn:#935200;--warn-lt:#FEF4E4;
+  --teal:#0A6E6E;--teal-lt:#E0F5F2;
+  --purple:#5A189A;--purple-lt:#F0EAFF;
+  --font:'Apple SD Gothic Neo','Noto Sans KR',system-ui,sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:var(--font);background:var(--paper);color:var(--ink);}
+
+/* ─ 헤더 ─ */
+.hd{background:var(--navy);height:50px;display:flex;align-items:center;padding:0 20px;gap:10px;}
+.hd-back{color:#7AA0C8;font-size:.75rem;text-decoration:none;}.hd-back:hover{color:#C0D8F0;}
+.hd-sep{color:#2A4870;}
+.hd-title{font-size:.9rem;font-weight:700;color:#D0E0F0;}
+.hd-right{margin-left:auto;display:flex;align-items:center;gap:8px;}
+.date-badge{font-size:.66rem;font-weight:700;padding:3px 9px;border-radius:3px;background:#0A1628;border:1px solid #1A3460;color:#70A0D0;}
+.live-dot{width:7px;height:7px;border-radius:50%;background:#2DC76D;animation:blink 2s infinite;}
+@keyframes blink{0%,100%{opacity:1;}50%{opacity:.3;}}
+
+/* ─ 히어로 ─ */
+.hero{background:var(--navy);border-bottom:1px solid #152A48;padding:24px 20px 20px;}
+.hero-ttl{font-size:.62rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#3A6490;margin-bottom:10px;}
+.hero h1{font-size:1.4rem;font-weight:900;color:#D0E4F8;letter-spacing:-.03em;margin-bottom:6px;}
+.hero-sub{font-size:.75rem;color:#4A6888;line-height:1.6;margin-bottom:20px;}
+.kpi-row{display:flex;gap:0;border:1px solid #1A3254;border-radius:4px;overflow:hidden;background:#081628;flex-wrap:wrap;}
+.kpi{padding:12px 18px;border-right:1px solid #1A3254;min-width:0;}
+.kpi:last-child{border-right:none;}
+.kpi-v{font-size:1.2rem;font-weight:900;font-variant-numeric:tabular-nums;letter-spacing:-.02em;}
+.kpi-l{font-size:.57rem;font-weight:600;color:#3A5A80;margin-top:2px;white-space:nowrap;}
+.kv-up{color:#40D078;} .kv-dn{color:#FF7070;} .kv-wn{color:#F0A020;} .kv-nt{color:#90B0D0;}
+@media(max-width:640px){.kpi-row{flex-direction:column;}.kpi{border-right:none;border-bottom:1px solid #1A3254;}}
+
+/* ─ 알림 배너 ─ */
+.alert-bar{background:#1A3254;border-bottom:2px solid #2A6090;padding:9px 20px;display:flex;align-items:center;gap:8px;font-size:.73rem;color:#90C0E0;}
+.alert-bar b{color:#B0D8FF;}
+
+/* ─ 메인 ─ */
+.main{max-width:1080px;margin:0 auto;padding:28px 20px 80px;}
+
+/* ─ 섹션 헤더 ─ */
+.sh{display:flex;align-items:center;gap:10px;margin-bottom:16px;margin-top:36px;}
+.sh:first-child{margin-top:0;}
+.sh-label{font-size:.62rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--ink3);}
+.sh::after{content:'';flex:1;height:1px;background:var(--rule);}
+
+/* ─ 카드 그리드 ─ */
+.cards-2{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+.cards-3{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;}
+@media(max-width:800px){.cards-2,.cards-3{grid-template-columns:1fr;}}
+@media(min-width:801px) and (max-width:1000px){.cards-3{grid-template-columns:1fr 1fr;}}
+
+/* ─ 뉴스 카드 ─ */
+.nc{background:var(--sf);border:1px solid var(--rule);border-radius:6px;padding:18px;position:relative;overflow:hidden;}
+.nc::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;}
+.nc.up::before{background:var(--up);}
+.nc.dn::before{background:var(--dn);}
+.nc.warn::before{background:var(--warn);}
+.nc.info::before{background:var(--blue);}
+.nc.neutral::before{background:var(--ink3);}
+.nc.teal::before{background:var(--teal);}
+.nc.purple::before{background:var(--purple);}
+
+.nc-cat{font-size:.58rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;margin-bottom:6px;}
+.nc-cat.up{color:var(--up);} .nc-cat.dn{color:var(--dn);} .nc-cat.warn{color:var(--warn);}
+.nc-cat.info{color:var(--blue);} .nc-cat.neutral{color:var(--ink3);}
+.nc-cat.teal{color:var(--teal);} .nc-cat.purple{color:var(--purple);}
+.nc-ttl{font-size:.92rem;font-weight:800;color:var(--ink);line-height:1.3;margin-bottom:8px;letter-spacing:-.02em;}
+.nc-body{font-size:.73rem;color:var(--ink2);line-height:1.75;}
+.nc-body b{font-weight:700;color:var(--ink);}
+.nc-body .up{color:var(--up);font-weight:700;}
+.nc-body .dn{color:var(--dn);font-weight:700;}
+.nc-body .warn{color:var(--warn);font-weight:700;}
+.nc-stat{display:inline-flex;align-items:center;gap:5px;font-size:.68rem;font-weight:700;padding:3px 9px;border-radius:3px;margin-top:10px;}
+.ns-up{background:var(--up-lt);color:var(--up);}
+.ns-dn{background:var(--dn-lt);color:var(--dn);}
+.ns-warn{background:var(--warn-lt);color:var(--warn);}
+.ns-info{background:var(--blue-lt);color:var(--blue);}
+.ns-teal{background:var(--teal-lt);color:var(--teal);}
+.ns-purple{background:var(--purple-lt);color:var(--purple);}
+
+/* ─ 메커니즘 플로우 박스 ─ */
+.flow-box{background:var(--sf);border:1px solid var(--rule);border-radius:6px;padding:16px 18px;margin-top:12px;}
+.flow-row{display:flex;align-items:center;flex-wrap:wrap;gap:6px;margin-bottom:8px;}
+.flow-row:last-child{margin-bottom:0;}
+.flow-lbl{font-size:.62rem;font-weight:700;color:var(--ink3);letter-spacing:.06em;min-width:90px;}
+.flow-steps{display:flex;align-items:center;gap:0;flex-wrap:wrap;}
+.fs{font-size:.68rem;font-weight:600;padding:4px 10px;border-radius:3px;white-space:nowrap;}
+.fs-up{background:var(--up-lt);color:var(--up);}
+.fs-dn{background:var(--dn-lt);color:var(--dn);}
+.fs-warn{background:var(--warn-lt);color:var(--warn);}
+.fs-nt{background:var(--blue-lt);color:var(--blue);}
+.fs-teal{background:var(--teal-lt);color:var(--teal);}
+.flow-arr{font-size:.75rem;color:var(--ink3);margin:0 4px;}
+
+/* ─ 상관관계 테이블 ─ */
+.corr-table{background:var(--sf);border:1px solid var(--rule);border-radius:6px;overflow:hidden;margin-bottom:12px;}
+.corr-table table{width:100%;border-collapse:collapse;}
+.corr-table th{background:#F0F4FA;font-size:.63rem;font-weight:700;color:var(--ink2);padding:9px 14px;text-align:left;border-bottom:1px solid var(--rule);}
+.corr-table td{font-size:.68rem;color:var(--ink2);padding:9px 14px;border-bottom:1px solid #EEF2F8;vertical-align:top;}
+.corr-table tr:last-child td{border-bottom:none;}
+.corr-table td:first-child{font-weight:700;color:var(--ink);}
+.tag-up{font-size:.6rem;font-weight:700;padding:2px 6px;border-radius:3px;background:var(--up-lt);color:var(--up);white-space:nowrap;}
+.tag-dn{font-size:.6rem;font-weight:700;padding:2px 6px;border-radius:3px;background:var(--dn-lt);color:var(--dn);white-space:nowrap;}
+.tag-mix{font-size:.6rem;font-weight:700;padding:2px 6px;border-radius:3px;background:var(--warn-lt);color:var(--warn);white-space:nowrap;}
+.tag-nt{font-size:.6rem;font-weight:700;padding:2px 6px;border-radius:3px;background:var(--blue-lt);color:var(--blue);white-space:nowrap;}
+.corr-bar{display:flex;align-items:center;gap:8px;margin-top:3px;}
+.cbar{height:6px;border-radius:3px;}
+.cbar-pos{background:var(--up);}
+.cbar-neg{background:var(--dn);}
+.cbar-mix{background:var(--warn);}
+.cbar-nt{background:var(--ink3);}
+
+/* ─ 시나리오 인터랙티브 ─ */
+.scenario-box{background:var(--sf);border:1px solid var(--rule);border-radius:6px;padding:20px;margin-bottom:28px;}
+.sc-ttl{font-size:.82rem;font-weight:800;color:var(--ink);margin-bottom:14px;}
+.sc-tabs{display:flex;gap:6px;margin-bottom:16px;flex-wrap:wrap;}
+.sc-tab{font-size:.7rem;font-weight:700;padding:6px 14px;border-radius:4px;border:1px solid var(--rule);cursor:pointer;background:var(--paper);color:var(--ink2);transition:all .15s;}
+.sc-tab.active-up{background:var(--up-lt);border-color:var(--up);color:var(--up);}
+.sc-tab.active-dn{background:var(--dn-lt);border-color:var(--dn);color:var(--dn);}
+.sc-tab.active-nt{background:var(--blue-lt);border-color:var(--blue);color:var(--blue);}
+.sc-panel{display:none;}
+.sc-panel.active{display:block;}
+.sc-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;}
+@media(max-width:700px){.sc-grid{grid-template-columns:repeat(2,1fr);}}
+.sc-item{border:1px solid var(--rule);border-radius:5px;padding:11px 12px;background:var(--paper);}
+.sc-item-lbl{font-size:.6rem;color:var(--ink3);margin-bottom:4px;}
+.sc-item-val{font-size:.85rem;font-weight:900;font-variant-numeric:tabular-nums;}
+.sc-item-sub{font-size:.6rem;color:var(--ink3);margin-top:2px;line-height:1.5;}
+.si-up{color:var(--up);}
+.si-dn{color:var(--dn);}
+.si-nt{color:var(--blue);}
+
+/* ─ 학습 핵심 포인트 (timeline) ─ */
+.policy-box{background:var(--sf);border:1px solid var(--rule);border-radius:6px;padding:20px 22px;}
+.pb-ttl{font-size:.78rem;font-weight:800;color:var(--ink);margin-bottom:16px;letter-spacing:-.01em;}
+.timeline{display:flex;flex-direction:column;gap:0;}
+.tl-item{padding:14px 0 14px 20px;border-left:2px solid var(--rule);position:relative;}
+.tl-item::before{content:'';position:absolute;left:-5px;top:18px;width:8px;height:8px;border-radius:50%;background:var(--blue);border:2px solid var(--sf);}
+.tl-item:last-child{border-left:2px solid transparent;}
+.tl-date{font-size:.6rem;font-weight:700;color:var(--ink3);letter-spacing:.06em;margin-bottom:4px;}
+.tl-ttl{font-size:.82rem;font-weight:800;color:var(--ink);margin-bottom:5px;}
+.tl-body{font-size:.72rem;color:var(--ink2);line-height:1.75;}
+.tl-body b{font-weight:700;color:var(--ink);}
+
+/* ─ 인구 차트 ─ */
+.pop-chart{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:12px;}
+@media(max-width:600px){.pop-chart{grid-template-columns:1fr;}}
+.pop-bar-item{display:flex;align-items:center;gap:8px;margin-bottom:6px;}
+.pop-bar-lbl{font-size:.65rem;font-weight:600;color:var(--ink2);width:70px;flex-shrink:0;}
+.pop-bar-track{flex:1;height:8px;background:#EEF2F8;border-radius:4px;overflow:hidden;}
+.pop-bar-fill{height:100%;border-radius:4px;}
+.pop-bar-val{font-size:.63rem;font-weight:700;font-variant-numeric:tabular-nums;width:42px;text-align:right;flex-shrink:0;}
+
+/* ─ 출처 ─ */
+.src-note{font-size:.62rem;color:var(--ink3);line-height:1.8;padding:12px 0;border-top:1px solid var(--rule);margin-top:32px;}
+</style>
+</head>
+<body>
+
+<div class="hd">
+  <a class="hd-back" href="./index.html">🌉 부릿지</a>
+  <span class="hd-sep">/</span>
+  <span class="hd-title">거시경제 × 부동산</span>
+  <div class="hd-right">
+    <div class="live-dot"></div>
+    <span class="date-badge">2026.09.23 기준</span>
+  </div>
+</div>
+
+<div class="hero">
+  <div class="hero-ttl">Macro Economy × Real Estate</div>
+  <h1>거시경제로 읽는 부동산<br><span style="color:#4A7AAA;font-size:1rem;">금리·환율·물가·GDP·유동성이 집값을 어떻게 움직이는가</span></h1>
+  <p class="hero-sub">부동산은 경제의 거울입니다. 기준금리 2.75% 인상, CPI 2.8%, 가계부채/GDP 102% — 2026년 한국 경제 지표를 부동산 관점에서 완전히 해석합니다.</p>
+  <div class="kpi-row">
+    <div class="kpi"><div class="kpi-v kv-wn">2.75%</div><div class="kpi-l">한은 기준금리 (7.16 인상)</div></div>
+    <div class="kpi"><div class="kpi-v kv-wn">+2.8%</div><div class="kpi-l">소비자물가(CPI) 전년비</div></div>
+    <div class="kpi"><div class="kpi-v kv-wn">1,390원</div><div class="kpi-l">원/달러 환율 (근사치)</div></div>
+    <div class="kpi"><div class="kpi-v kv-nt">+2.1%</div><div class="kpi-l">GDP 성장률 (2026 전망)</div></div>
+    <div class="kpi"><div class="kpi-v kv-dn">102%</div><div class="kpi-l">가계부채/GDP (OECD 최상위)</div></div>
+    <div class="kpi"><div class="kpi-v kv-up">+5.4%</div><div class="kpi-l">M2 통화량 증가율 (전년비)</div></div>
+  </div>
+</div>
+
+<div class="alert-bar">
+  💡 <span><b>핵심 공식:</b> 금리↑ → 대출비용↑ → 구매력↓ → 수요↓ → (이론상) 가격↓ — 하지만 한국은 공급 제약·전세구조·규제 때문에 이 공식이 교과서대로 작동하지 않습니다.</span>
+</div>
+
+<div class="main">
+
+  <!-- ══ 1. 금리 ══ -->
+  <div class="sh"><span class="sh-label">① 금리와 부동산 — 가장 강력한 연결고리</span></div>
+  <div class="cards-2" style="margin-bottom:12px;">
+    <div class="nc warn">
+      <div class="nc-cat warn">메커니즘</div>
+      <div class="nc-ttl">기준금리 인상이 부동산에 미치는 5단계 경로</div>
+      <div class="nc-body">
+        한국은행 기준금리 <b>2.75%</b>(2026.07.16 인상)가 부동산 시장에 영향을 미치는 경로를 단계별로 이해해야 합니다.
+      </div>
+      <div class="flow-box">
+        <div class="flow-row">
+          <span class="flow-lbl">금리 인상 시</span>
+          <div class="flow-steps">
+            <span class="fs fs-warn">한은 금리↑</span><span class="flow-arr">→</span>
+            <span class="fs fs-warn">주담대 금리↑</span><span class="flow-arr">→</span>
+            <span class="fs fs-dn">월 상환액↑</span><span class="flow-arr">→</span>
+            <span class="fs fs-dn">구매력↓</span><span class="flow-arr">→</span>
+            <span class="fs fs-dn">수요 위축</span>
+          </div>
+        </div>
+        <div class="flow-row">
+          <span class="flow-lbl">금리 인하 시</span>
+          <div class="flow-steps">
+            <span class="fs fs-nt">한은 금리↓</span><span class="flow-arr">→</span>
+            <span class="fs fs-nt">주담대 금리↓</span><span class="flow-arr">→</span>
+            <span class="fs fs-up">월 상환액↓</span><span class="flow-arr">→</span>
+            <span class="fs fs-up">구매력↑</span><span class="flow-arr">→</span>
+            <span class="fs fs-up">수요 확대</span>
+          </div>
+        </div>
+        <div class="flow-row">
+          <span class="flow-lbl">시차 효과</span>
+          <div class="flow-steps">
+            <span class="fs fs-nt">기준금리 변경</span><span class="flow-arr">→</span>
+            <span class="fs fs-nt">3~6개월 후</span><span class="flow-arr">→</span>
+            <span class="fs fs-warn">주담대 금리 반영</span><span class="flow-arr">→</span>
+            <span class="fs fs-warn">6~12개월 후</span><span class="flow-arr">→</span>
+            <span class="fs fs-dn">거래량·가격 영향</span>
+          </div>
+        </div>
+      </div>
+      <span class="nc-stat ns-warn">⚠ 기준금리 → 실제 부동산 영향까지 6~18개월 시차</span>
+    </div>
+    <div class="nc info">
+      <div class="nc-cat info">한국 특수성</div>
+      <div class="nc-ttl">왜 금리 인상에도 서울 집값은 안 떨어지나?</div>
+      <div class="nc-body">
+        2022년 기준금리가 0.5%→3.5%로 급등했음에도 서울 아파트는 일시 하락 후 빠르게 반등했습니다. 한국 부동산 시장에는 금리 충격을 완화하는 구조적 요인이 있습니다.<br><br>
+        <b>① 공급 제약:</b> 서울 가용 택지 부족. 신규 공급이 제한되어 수요 감소를 공급 증가로 흡수하기 어렵습니다.<br><br>
+        <b>② 전세 구조:</b> 집주인이 전세보증금(무이자 부채)을 활용해 금리 부담을 상쇄합니다. 전세 → 월세 전환 시 임대 수익이 금리 이자를 커버합니다.<br><br>
+        <b>③ 매물 잠김:</b> 다주택자 양도세 중과로 집주인들이 팔지 않습니다. 하락 압력이 와도 매도가 나오지 않아 거래 감소에 그칩니다.<br><br>
+        <b>④ 실수요 견고:</b> 교육·직장 접근성 프리미엄으로 서울 핵심 입지 수요는 금리와 무관하게 유지됩니다.
+      </div>
+      <span class="nc-stat ns-info">→ 교과서와 현실이 다른 이유 = 공급·전세·세제·실수요</span>
+    </div>
+  </div>
+  <div class="nc neutral" style="margin-bottom:28px;">
+    <div class="nc-cat neutral">2022~2026 금리 사이클과 서울 아파트 가격</div>
+    <div class="nc-ttl">금리 충격 → 하락 → 회복 — 실제 데이터로 본 교훈</div>
+    <div class="nc-body">
+      <b>2021년 하반기~2022년:</b> 기준금리 0.5%→3.5% 급격 인상. 서울 아파트 고점 대비 15~20% 하락, 거래절벽 발생.<br>
+      <b>2023년:</b> 금리 정점 유지. 역전세 공포, 전세사기 사태. 공포 심리 극대화. → 이때가 저가 매수 기회였음.<br>
+      <b>2024년:</b> 금리 인하 기대 + 토허제 완화 논의. 거래량 회복, 강남·마용성 먼저 반등.<br>
+      <b>2025~2026년:</b> 회복기 진입. 기준금리 2.75% 인상(2026.07)에도 서울 주간 +0.27% 상승 지속 → <span class="warn">공급 부족 + 실수요가 금리 역풍을 이겼음.</span>
+    </div>
+    <span class="nc-stat ns-nt">→ 결론: 금리는 가장 중요한 변수이나 한국에서는 공급·심리와 함께 읽어야 함</span>
+  </div>
+
+  <!-- ══ 2. 인플레이션 ══ -->
+  <div class="sh"><span class="sh-label">② 인플레이션과 부동산 — 실물자산의 가치</span></div>
+  <div class="cards-2" style="margin-bottom:28px;">
+    <div class="nc up">
+      <div class="nc-cat up">인플레이션 헷지</div>
+      <div class="nc-ttl">물가 오르면 부동산도 오른다 — 실물자산의 특성</div>
+      <div class="nc-body">
+        <b>인플레이션(물가 상승)</b>은 화폐 가치가 하락하는 현상입니다. 현금을 보유하면 실질 가치가 깎이지만, 부동산은 <b>실물자산</b>으로 물가 상승과 함께 명목 가격이 오르는 경향이 있습니다.<br><br>
+        <b>건설원가 연결고리:</b> 인플레이션 → 철근·시멘트·노무비 상승 → 건설원가↑ → 신규 분양가↑ → 기존 주택 가격 하한선 지지.<br><br>
+        2026년 CPI <b>+2.8%</b> 환경에서 부동산은 인플레이션 헷지 역할을 수행 중입니다. 서울 연누계 +5.42% 상승은 CPI를 약 2.6%p 초과한 실질 수익입니다.
+      </div>
+      <span class="nc-stat ns-up">▲ 부동산 = 인플레이션 헷지 수단 (명목 가격↑)</span>
+    </div>
+    <div class="nc dn">
+      <div class="nc-cat dn">인플레이션의 반대 효과</div>
+      <div class="nc-ttl">물가 상승이 부동산에 부정적인 경우</div>
+      <div class="nc-body">
+        인플레이션이 모든 면에서 부동산에 좋은 것은 아닙니다.<br><br>
+        <b>① 금리 인상 압력:</b> 물가↑ → 한국은행 금리 인상 → 대출 비용↑ → 구매력↓. 2026년 기준금리 인상의 배경 중 하나도 물가 안정입니다.<br><br>
+        <b>② 가계 실질 소득 감소:</b> 물가↑ + 임금 정체 → 실질 구매력↓ → 주거비 부담 증가 → 매수 여력 감소.<br><br>
+        <b>③ 건설원가 상승 → 공급 감소:</b> 원가 상승으로 시행사 수익성 악화 → 신규 착공 감소 → 중기 공급 부족 심화.<br><br>
+        결론: 인플레이션 초기에는 자산 가격에 우호적이지만, 고금리로 연결되면 역효과로 전환됩니다.
+      </div>
+      <span class="nc-stat ns-dn">▼ 고인플레이션 → 금리 인상 → 구매력 이중 타격</span>
+    </div>
+  </div>
+
+  <!-- ══ 3. 유동성(M2) ══ -->
+  <div class="sh"><span class="sh-label">③ 통화량(M2)과 부동산 — 시중 돈이 집값을 만든다</span></div>
+  <div class="cards-2" style="margin-bottom:28px;">
+    <div class="nc teal">
+      <div class="nc-cat teal">유동성 공급</div>
+      <div class="nc-ttl">M2 통화량 +5.4% — 시중 유동성과 자산 가격의 관계</div>
+      <div class="nc-body">
+        <b>M2(광의 통화량)</b>는 시중에 유통되는 현금 + 예금 + 머니마켓펀드 등의 합계입니다. M2가 빠르게 증가하면 <b>인플레이션 + 자산 가격 상승</b> 압력이 생깁니다.<br><br>
+        <b>작동 원리:</b> 중앙은행이 돈을 많이 공급 → 시중 유동성↑ → 수익을 찾아 자산 시장으로 자금 유입 → 주식·부동산·금 가격↑. 이를 <b>"유동성 장세"</b>라 합니다.<br><br>
+        <b>2020~2021년 코로나 시기:</b> 전 세계 중앙은행의 전례 없는 유동성 공급 → M2 폭증 → 한국 포함 글로벌 자산 버블 발생. 서울 아파트 2년 만에 2배 상승의 핵심 원인.
+      </div>
+      <div class="flow-box">
+        <div class="flow-row">
+          <span class="flow-lbl">완화 시기</span>
+          <div class="flow-steps">
+            <span class="fs fs-teal">M2↑↑</span><span class="flow-arr">→</span>
+            <span class="fs fs-up">유동성 과잉</span><span class="flow-arr">→</span>
+            <span class="fs fs-up">자산 매수</span><span class="flow-arr">→</span>
+            <span class="fs fs-up">가격↑</span>
+          </div>
+        </div>
+        <div class="flow-row">
+          <span class="flow-lbl">긴축 시기</span>
+          <div class="flow-steps">
+            <span class="fs fs-dn">M2 증가 둔화</span><span class="flow-arr">→</span>
+            <span class="fs fs-dn">유동성 축소</span><span class="flow-arr">→</span>
+            <span class="fs fs-dn">자금 회수</span><span class="flow-arr">→</span>
+            <span class="fs fs-dn">가격 조정</span>
+          </div>
+        </div>
+      </div>
+      <span class="nc-stat ns-teal">→ 2026년 M2 +5.4% = 온건한 유동성 — 과열도 긴축도 아닌 균형 구간</span>
+    </div>
+    <div class="nc info">
+      <div class="nc-cat info">투자 실전 적용</div>
+      <div class="nc-ttl">M2와 부동산 — 실전에서 어떻게 활용할까</div>
+      <div class="nc-body">
+        <b>M2 증가율과 부동산 가격 상관관계</b>를 이해하면 시장 방향성을 예측하는 데 도움이 됩니다.<br><br>
+        <b>주목해야 할 M2 시그널:</b><br>
+        · M2 증가율 &gt; 8%: 자산 가격 상승 압력 강함 (버블 경계)<br>
+        · M2 증가율 4~7%: 온건한 성장 구간, 펀더멘털 위주 가격 형성<br>
+        · M2 증가율 &lt; 3%: 유동성 부족, 가격 조정 가능성<br><br>
+        <b>체크 방법:</b> 한국은행 경제통계시스템(ECOS, ecos.bok.or.kr) → 통화·금융 → M2 항목에서 매월 M2 증가율 확인 가능. 무료.<br><br>
+        <b>미 연준(Fed)의 M2도 중요:</b> 글로벌 달러 유동성은 한국 자금 흐름에도 영향을 미칩니다. Fed 금리가 낮으면 달러가 신흥국으로 유입됩니다.
+      </div>
+      <span class="nc-stat ns-info">→ ECOS에서 M2 + 한은 기준금리 함께 모니터링</span>
+    </div>
+  </div>
+
+  <!-- ══ 4. 환율 ══ -->
+  <div class="sh"><span class="sh-label">④ 환율과 부동산 — 글로벌 자금의 방향</span></div>
+  <div class="cards-3" style="margin-bottom:28px;">
+    <div class="nc warn">
+      <div class="nc-cat warn">건설원가 경로</div>
+      <div class="nc-ttl">원달러 환율↑ → 분양가 상승 압력</div>
+      <div class="nc-body">
+        원/달러 환율이 오르면(원화 약세) 수입 건설 자재 단가가 상승합니다. 철근·구리·시멘트 원료의 상당 부분이 수입 의존입니다.<br><br>
+        <b>경로:</b> 환율 1,500원 수준 → 철강·시멘트 수입 원가↑ → 건설원가 상승 → 시행사 분양가 인상 → 기존 주택 가격 하한선 지지.<br><br>
+        2026년 환율 약 1,390원대 — 고환율이지만 2025년 최고점(1,507원) 대비 소폭 안정.
+      </div>
+      <span class="nc-stat ns-warn">⚠ 고환율 = 공사비↑ = 신규 공급 비용↑</span>
+    </div>
+    <div class="nc up">
+      <div class="nc-cat up">외국인 투자 경로</div>
+      <div class="nc-ttl">환율 하락 시 외국인 부동산 투자 매력↑</div>
+      <div class="nc-body">
+        원화가 강세(환율↓)이면 외국 투자자 입장에서 한국 부동산을 달러로 환산했을 때 비싸집니다 → 투자 유입 감소.<br><br>
+        반대로 원화 약세(환율↑)이면 외국인이 달러로 한국 부동산을 <b>싸게</b> 살 수 있어 투자 매력이 오릅니다. 다만 외국인 직접 투자보다 <b>리츠·펀드를 통한 간접 투자</b>가 더 큰 영향을 미칩니다.<br><br>
+        한국은 외국인 주택 취득에 대한 규제(토허제 포함)로 직접 투자 효과는 제한적이나, 상업용 부동산·물류센터에는 글로벌 자금이 직접 영향을 줍니다.
+      </div>
+      <span class="nc-stat ns-up">▲ 원화 약세 = 외국인 투자 관점에서 한국 자산 할인</span>
+    </div>
+    <div class="nc dn">
+      <div class="nc-cat dn">PF·금융 비용 경로</div>
+      <div class="nc-ttl">고환율 → PF 브릿지론 비용 추가 압박</div>
+      <div class="nc-body">
+        부동산 PF 대출은 주로 원화 표시이지만, 고환율 → 국내 인플레이션 상승 → 한국은행 금리 인상 → PF 조달 비용 상승으로 이어집니다.<br><br>
+        고환율이 지속되면 건설사의 자재 구매 비용 상승 + 금융 비용 상승이 동시에 발생해 PF 사업성이 악화됩니다. 이는 착공 포기·미분양 증가로 이어질 수 있습니다.<br><br>
+        2026년 환율 고공 지속 + 기준금리 2.75% 인상 = <b>PF 시장에 이중 압박</b>.
+      </div>
+      <span class="nc-stat ns-dn">▼ 고환율 + 고금리 = PF 부실 위험 증폭</span>
+    </div>
+  </div>
+
+  <!-- ══ 5. GDP · 경기사이클 ══ -->
+  <div class="sh"><span class="sh-label">⑤ 경기사이클과 부동산 — 경제 흐름 속 투자 타이밍</span></div>
+  <div class="cards-2" style="margin-bottom:12px;">
+    <div class="nc info">
+      <div class="nc-cat info">GDP와 부동산 수요</div>
+      <div class="nc-ttl">경제 성장 → 소득↑ → 주거 수요↑</div>
+      <div class="nc-body">
+        <b>GDP 성장률</b>은 경제 전체의 생산 활동 증가를 측정합니다. GDP가 높으면 ① 고용 증가 → 소득↑ → 주거 수요↑, ② 기업 투자 증가 → 도시 집중 심화 → 특정 지역 수요↑ 경로로 부동산에 긍정적 영향을 줍니다.<br><br>
+        2026년 한국 GDP 성장률 전망 <b>+2.1%</b>는 잠재성장률(2.0~2.5%) 수준으로 <b>안정적 성장</b>을 의미합니다. 경기침체 없는 완만한 성장 구간에서는 부동산 가격이 큰 조정 없이 유지되거나 소폭 상승하는 경향이 있습니다.<br><br>
+        <b>주의:</b> GDP 성장이 강해도 금리 인상이 동반되면 부동산에 대한 순효과는 상쇄될 수 있습니다.
+      </div>
+      <span class="nc-stat ns-info">→ GDP +2.1% = 경기침체 없는 구간 → 부동산 하방 리스크 제한</span>
+    </div>
+    <div class="nc purple">
+      <div class="nc-cat purple">경기 선행지수</div>
+      <div class="nc-ttl">경기 선행지수로 부동산 타이밍 잡기</div>
+      <div class="nc-body">
+        <b>경기 선행지수(CLI)</b>는 GDP보다 3~6개월 앞서 움직이는 지표입니다. 선행지수가 반등하면 경기 회복이 예고되며, 이는 부동산 매수 선행 신호로 활용됩니다.<br><br>
+        <b>한국 경기 선행지수 구성 요소:</b><br>
+        · 주가지수(KOSPI) — 경기 심리 선행<br>
+        · 장단기 금리 스프레드 — 신용 환경 신호<br>
+        · 재고 순환 — 실물 경기<br>
+        · 건설 수주액 — 부동산 공급 선행<br><br>
+        <b>실전 활용:</b> 통계청 경기종합지수 웹사이트에서 매월 발표. 선행지수 6개월 연속 상승 = 경기 회복 신호 = 부동산 회복 전조.
+      </div>
+      <span class="nc-stat ns-purple">→ 선행지수 반등 6개월 후 부동산 거래량 증가 패턴</span>
+    </div>
+  </div>
+  <div class="nc neutral" style="margin-bottom:28px;">
+    <div class="nc-cat neutral">경기 국면별 부동산 전략</div>
+    <div class="nc-ttl">4분면 투자 매트릭스 — 경기 국면 × 금리 방향</div>
+    <div class="nc-body" style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:8px;">
+      <div style="padding:12px;background:#F0F4FA;border-radius:5px;border-left:3px solid var(--up);">
+        <div style="font-size:.63rem;font-weight:700;color:var(--up);margin-bottom:4px;">경기↑ + 금리↓ — 최고 환경</div>
+        <div style="font-size:.68rem;color:var(--ink2);line-height:1.6;">경기 회복 + 통화 완화. 부동산 강세장. <b>최적 매수 타이밍.</b> 2021년 상반기, 2024년 하반기 유사.</div>
+      </div>
+      <div style="padding:12px;background:#FEF9F0;border-radius:5px;border-left:3px solid var(--warn);">
+        <div style="font-size:.63rem;font-weight:700;color:var(--warn);margin-bottom:4px;">경기↑ + 금리↑ — 혼조</div>
+        <div style="font-size:.68rem;color:var(--ink2);line-height:1.6;">경기 과열 → 중앙은행 금리 인상. 실물 수요↑이지만 대출 비용↑. <b>입지 선별 투자</b> 필요. 2026년 현재와 유사.</div>
+      </div>
+      <div style="padding:12px;background:#FFF0F0;border-radius:5px;border-left:3px solid var(--dn);">
+        <div style="font-size:.63rem;font-weight:700;color:var(--dn);margin-bottom:4px;">경기↓ + 금리↑ — 최악 환경</div>
+        <div style="font-size:.68rem;color:var(--ink2);line-height:1.6;">스태그플레이션. 경기 침체 + 고금리. <b>매도·현금 보유 전략.</b> 2022년 하반기 한국이 이 구간 진입.</div>
+      </div>
+      <div style="padding:12px;background:#F0F8F4;border-radius:5px;border-left:3px solid var(--teal);">
+        <div style="font-size:.63rem;font-weight:700;color:var(--teal);margin-bottom:4px;">경기↓ + 금리↓ — 침체 바닥</div>
+        <div style="font-size:.68rem;color:var(--ink2);line-height:1.6;">경기침체 → 금리 인하 대응. 반등 직전 구간. <b>공포 매수 타이밍.</b> 2023년 한국이 이 구간, 2024년 상승으로 전환.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ 6. 가계부채 ══ -->
+  <div class="sh"><span class="sh-label">⑥ 가계부채와 시스템 리스크 — 한국 부동산의 아킬레스건</span></div>
+  <div class="cards-2" style="margin-bottom:28px;">
+    <div class="nc dn">
+      <div class="nc-cat dn">가계부채 구조</div>
+      <div class="nc-ttl">가계부채/GDP 102% — OECD 최상위의 의미</div>
+      <div class="nc-body">
+        한국의 <b>가계부채/GDP 비율이 102%</b>로 OECD 주요국 중 최상위권입니다. 이는 GDP와 맞먹는 규모의 빚을 가계가 지고 있다는 의미입니다.<br><br>
+        <b>왜 위험한가?</b><br>
+        · 금리 1%p 상승 → 가계 이자 부담 연간 약 15~20조 원 추가<br>
+        · 부동산 가격 20% 하락 → 담보 부족(깡통주택) 급증 → 은행 부실<br>
+        · 가처분소득의 40% 이상을 원리금 상환에 사용하는 가계 증가<br><br>
+        <b>왜 유지되나?</b><br>
+        · 한국 전세 제도: 전세보증금이 사실상 무이자 가계 부채<br>
+        · 부동산 담보 문화: 아파트를 담보로 한 주택담보대출 중심<br>
+        · 장기 상환 구조: 30~40년 분할 상환으로 단기 충격 완화
+      </div>
+      <span class="nc-stat ns-dn">▼ 가계부채 102% = 금리 충격에 가장 취약한 구조</span>
+    </div>
+    <div class="nc warn">
+      <div class="nc-cat warn">전세 구조 분석</div>
+      <div class="nc-ttl">전세제도 — 세계에서 유일한 한국형 레버리지</div>
+      <div class="nc-body">
+        <b>전세</b>는 임차인이 집주인에게 목돈(보증금)을 맡기고, 매달 임대료 없이 거주하는 한국 고유 제도입니다. 집주인은 이 보증금을 <b>무이자로 활용</b>해 다른 부동산을 매수하는 갭투자가 가능합니다.<br><br>
+        <b>경제적 의미:</b><br>
+        · 임차인 관점: 월세 없이 거주하는 대신 목돈을 묶어 두는 기회비용 발생<br>
+        · 집주인 관점: 무이자 부채(전세금)로 레버리지 극대화<br>
+        · 시장 관점: 전세보증금 총액이 수백조 원에 달하는 <b>시장 내 숨겨진 부채</b><br><br>
+        <b>리스크:</b> 집값 하락 시 전세보증금 반환 불능(역전세) → 전세사기. 2023년 전세사기 사태가 이 구조적 취약성에서 발생했습니다.
+      </div>
+      <span class="nc-stat ns-warn">⚠ 전세 = 한국만의 부채 구조 — 가계부채 통계에 부분 반영</span>
+    </div>
+  </div>
+
+  <!-- ══ 7. 인구구조 ══ -->
+  <div class="sh"><span class="sh-label">⑦ 인구구조와 장기 수요 — 30년 후 부동산을 결정하는 힘</span></div>
+  <div class="cards-2" style="margin-bottom:12px;">
+    <div class="nc dn">
+      <div class="nc-cat dn">장기 수요 리스크</div>
+      <div class="nc-ttl">합계출산율 0.75명 — 부동산 장기 수요에 무슨 의미?</div>
+      <div class="nc-body">
+        한국 합계출산율이 <b>0.75명</b>(2024년 기준)으로 세계 최저 수준입니다. 인구 감소는 장기 주택 수요에 직접적인 하락 압력을 줍니다.<br><br>
+        <b>수요 감소 경로:</b> 출산율↓ → 20년 후 청년 인구↓ → 신규 주택 수요자↓ → 주택 수요 구조적 감소 → (수도권 외 지방부터) 가격 하락.<br><br>
+        <b>그러나 서울은 예외?</b> 인구는 줄어도 서울 집중화가 심해집니다. 지방 인구가 서울로 몰리는 한 서울 수요는 유지될 수 있습니다. <b>결국 지방 소멸 + 서울 집중이라는 양극화 구조.</b>
+      </div>
+      <span class="nc-stat ns-dn">▼ 출산율 0.75 → 장기 지방 부동산 하방 리스크 명확</span>
+    </div>
+    <div class="nc up">
+      <div class="nc-cat up">단기 수요 지지 요인</div>
+      <div class="nc-ttl">1인 가구 증가 + 이민 유입 = 단기 수요 지지</div>
+      <div class="nc-body">
+        인구 감소에도 불구하고 <b>가구 수</b>는 오히려 늘어나고 있습니다. 이유: 1인 가구·2인 가구 비중이 빠르게 늘고 있기 때문입니다.<br><br>
+        <b>1인 가구 증가 효과:</b><br>
+        · 전국 1인 가구 비중: 2024년 약 34%, 2030년 40% 전망<br>
+        · 소형(전용 30~40㎡) 아파트·오피스텔 수요↑<br>
+        · 1인 가구는 편의시설·교통 중심 입지 선호 → 역세권 소형 강세<br><br>
+        <b>외국인 인구 유입:</b> 2025~2026년 국내 외국인 거주자 약 250만 명. 산업 현장 외국인 노동자 주거 수요도 무시 못 하는 규모입니다.
+      </div>
+      <span class="nc-stat ns-up">▲ 1인 가구 34% + 이민 유입 = 소형 주택 단기 수요 견고</span>
+    </div>
+  </div>
+  <div class="nc neutral" style="margin-bottom:28px;">
+    <div class="nc-cat neutral">세대별 부동산 수요 구조 변화</div>
+    <div class="nc-ttl">베이비부머 은퇴 + MZ세대 진입 — 수요 패턴의 세대 교체</div>
+    <div class="nc-body" style="margin-top:8px;">
+      <div class="pop-chart">
+        <div>
+          <div style="font-size:.63rem;font-weight:700;color:var(--ink2);margin-bottom:8px;">주택 수요 연령 비중 변화 (추정)</div>
+          <div class="pop-bar-item">
+            <span class="pop-bar-lbl">2030세대</span>
+            <div class="pop-bar-track"><div class="pop-bar-fill" style="width:38%;background:#1A4A9A;"></div></div>
+            <span class="pop-bar-val" style="color:#1A4A9A;">38%</span>
+          </div>
+          <div class="pop-bar-item">
+            <span class="pop-bar-lbl">4050세대</span>
+            <div class="pop-bar-track"><div class="pop-bar-fill" style="width:42%;background:#0A6E42;"></div></div>
+            <span class="pop-bar-val" style="color:#0A6E42;">42%</span>
+          </div>
+          <div class="pop-bar-item">
+            <span class="pop-bar-lbl">6070세대</span>
+            <div class="pop-bar-track"><div class="pop-bar-fill" style="width:20%;background:#935200;"></div></div>
+            <span class="pop-bar-val" style="color:#935200;">20%</span>
+          </div>
+        </div>
+        <div>
+          <div style="font-size:.63rem;font-weight:700;color:var(--ink2);margin-bottom:8px;">세대별 주거 선호 트렌드</div>
+          <div style="font-size:.68rem;color:var(--ink2);line-height:1.75;">
+            <b>MZ(2030세대):</b> 소형·역세권·직주근접. 아파트보다 접근성 중시. 청약 포기 → 전세·월세 선호. 단, 청약 가점 낮아 로또 청약 도전.<br><br>
+            <b>4050 세대:</b> 자녀 교육 위한 학군 입지 선호. 중형(84~102㎡) 수요 핵심층. 갈아타기 수요로 거래량 주도.<br><br>
+            <b>베이비부머(6070):</b> 자산 현금화 수요 증가. 은퇴 후 지방 귀촌·다운사이징. 상속·증여 수요 발생.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ 시나리오 시뮬레이터 ══ -->
+  <div class="sh"><span class="sh-label">경제 시나리오 시뮬레이터 — 지표 변화 시 부동산 영향</span></div>
+  <div class="scenario-box" style="margin-bottom:28px;">
+    <div class="sc-ttl">경제 조건 변화 → 부동산 시장 예상 영향</div>
+    <div class="sc-tabs">
+      <button class="sc-tab active-nt" onclick="showScenario('base')">현재 기준 (2026.07)</button>
+      <button class="sc-tab" onclick="showScenario('cut')">금리 인하 시나리오</button>
+      <button class="sc-tab" onclick="showScenario('hike')">추가 금리 인상 시나리오</button>
+      <button class="sc-tab" onclick="showScenario('recession')">경기침체 시나리오</button>
+    </div>
+    <div id="sc-base" class="sc-panel active">
+      <div style="font-size:.7rem;color:var(--ink2);margin-bottom:10px;">📍 현재 상황: 기준금리 2.75%, CPI +2.8%, GDP +2.1%, 서울 주간 +0.27%</div>
+      <div class="sc-grid">
+        <div class="sc-item"><div class="sc-item-lbl">서울 매매 방향</div><div class="sc-item-val si-up">상승 유지</div><div class="sc-item-sub">실수요 견고, 공급 부족. 주간 +0.2~0.3% 지속 예상</div></div>
+        <div class="sc-item"><div class="sc-item-lbl">거래량</div><div class="sc-item-val si-nt">보통</div><div class="sc-item-sub">금리 부담으로 거래 활성화는 제한. 선택적 실수요 거래</div></div>
+        <div class="sc-item"><div class="sc-item-lbl">전세 시장</div><div class="sc-item-val si-up">전세↑</div><div class="sc-item-sub">매수 부담 증가 → 전세 수요 이동. 전세가 강세</div></div>
+        <div class="sc-item"><div class="sc-item-lbl">PF 리스크</div><div class="sc-item-val si-nt" style="color:var(--warn);">주의</div><div class="sc-item-sub">4Q 만기 집중. 13.5조 만기 도래 — 지속 모니터링 필요</div></div>
+      </div>
+    </div>
+    <div id="sc-cut" class="sc-panel">
+      <div style="font-size:.7rem;color:var(--ink2);margin-bottom:10px;">📉 가정: 한은 기준금리 2.75% → 2.25%로 0.5%p 인하 (2026년 하반기)</div>
+      <div class="sc-grid">
+        <div class="sc-item"><div class="sc-item-lbl">서울 매매</div><div class="sc-item-val si-up">강세 전환</div><div class="sc-item-sub">대출 한도↑ + 구매력↑ → 잠재 수요 폭발. 강남·마용성 먼저 반응</div></div>
+        <div class="sc-item"><div class="sc-item-lbl">거래량</div><div class="sc-item-val si-up">급증</div><div class="sc-item-sub">대기 수요 해소. 특히 갈아타기·첫 매수층 움직임</div></div>
+        <div class="sc-item"><div class="sc-item-lbl">전세 시장</div><div class="sc-item-val si-nt">보합→하락</div><div class="sc-item-sub">매수 전환 증가 → 전세 수요 일부 이탈. 전세가 압력 완화</div></div>
+        <div class="sc-item"><div class="sc-item-lbl">PF 리스크</div><div class="sc-item-val si-up">완화</div><div class="sc-item-sub">조달 비용↓ → PF 차환 부담 감소. 미분양 해소 속도↑</div></div>
+      </div>
+    </div>
+    <div id="sc-hike" class="sc-panel">
+      <div style="font-size:.7rem;color:var(--ink2);margin-bottom:10px;">📈 가정: 한은 기준금리 2.75% → 3.25%로 0.5%p 추가 인상 (2026년 4Q)</div>
+      <div class="sc-grid">
+        <div class="sc-item"><div class="sc-item-lbl">서울 매매</div><div class="sc-item-val si-dn">상승 둔화</div><div class="sc-item-sub">금리 부담↑ 대출 한도↓. 외곽·중저가부터 조정. 강남은 상대적 방어</div></div>
+        <div class="sc-item"><div class="sc-item-lbl">거래량</div><div class="sc-item-val si-dn">감소</div><div class="sc-item-sub">월 상환액 추가 증가 → 매수 포기. 거래절벽 재현 가능성</div></div>
+        <div class="sc-item"><div class="sc-item-lbl">전세 시장</div><div class="sc-item-val si-up">전세↑</div><div class="sc-item-sub">매수 대신 전세 유지 선택. 전세 수요↑ → 전세가 상승</div></div>
+        <div class="sc-item"><div class="sc-item-lbl">PF 리스크</div><div class="sc-item-val si-dn">악화</div><div class="sc-item-sub">조달 비용↑ + 미분양↑. 중소 시행사 PF 부실 우려 증가</div></div>
+      </div>
+    </div>
+    <div id="sc-recession" class="sc-panel">
+      <div style="font-size:.7rem;color:var(--ink2);margin-bottom:10px;">⚠️ 가정: GDP 성장률 마이너스 전환, 실업률 4%↑, 금리 인하 대응</div>
+      <div class="sc-grid">
+        <div class="sc-item"><div class="sc-item-lbl">서울 매매</div><div class="sc-item-val si-dn">하락 전환</div><div class="sc-item-sub">실업↑ + 소득↓ → 매수 심리 냉각. 고점 대비 10~20% 조정 가능</div></div>
+        <div class="sc-item"><div class="sc-item-lbl">거래량</div><div class="sc-item-val si-dn">급감</div><div class="sc-item-sub">거래절벽. 공포 심리로 관망. 역설적으로 바닥권 접근</div></div>
+        <div class="sc-item"><div class="sc-item-lbl">전세 시장</div><div class="sc-item-val si-dn">역전세↑</div><div class="sc-item-sub">매매가↓ → 전세가↓ → 역전세 위험. 전세보증금 반환 불능 사례 증가</div></div>
+        <div class="sc-item"><div class="sc-item-lbl">기회 포인트</div><div class="sc-item-val si-up">저가 매수</div><div class="sc-item-sub">공포 극대화 구간이 장기 투자 최적 진입점. 2023년 패턴 반복</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ 상관관계 요약표 ══ -->
+  <div class="sh"><span class="sh-label">경제 지표 × 부동산 상관관계 요약</span></div>
+  <div class="corr-table" style="margin-bottom:28px;">
+    <table>
+      <thead>
+        <tr>
+          <th style="width:130px;">경제 지표</th>
+          <th style="width:90px;">현재 값</th>
+          <th style="width:100px;">부동산 영향</th>
+          <th>메커니즘 요약</th>
+          <th style="width:120px;">상관 강도</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>한은 기준금리</td>
+          <td>2.75%</td>
+          <td><span class="tag-dn">역(-)상관</span></td>
+          <td>금리↑ → 대출비용↑ → 구매력↓ → 수요↓. 단, 한국은 공급·전세 구조로 완충</td>
+          <td><div class="corr-bar"><div class="cbar cbar-neg" style="width:80%;"></div><span style="font-size:.6rem;color:var(--dn);">강함</span></div></td>
+        </tr>
+        <tr>
+          <td>소비자물가(CPI)</td>
+          <td>+2.8%</td>
+          <td><span class="tag-mix">복합</span></td>
+          <td>단기: 실물자산 헷지로 가격↑. 장기: 금리 인상 압력 → 역효과</td>
+          <td><div class="corr-bar"><div class="cbar cbar-mix" style="width:55%;"></div><span style="font-size:.6rem;color:var(--warn);">중간</span></div></td>
+        </tr>
+        <tr>
+          <td>GDP 성장률</td>
+          <td>+2.1%</td>
+          <td><span class="tag-up">정(+)상관</span></td>
+          <td>성장↑ → 고용·소득↑ → 주거 수요↑ → 가격 지지. 침체 시 가격 하락</td>
+          <td><div class="corr-bar"><div class="cbar cbar-pos" style="width:65%;"></div><span style="font-size:.6rem;color:var(--up);">중강</span></div></td>
+        </tr>
+        <tr>
+          <td>M2 통화량 증가</td>
+          <td>+5.4%</td>
+          <td><span class="tag-up">정(+)상관</span></td>
+          <td>유동성↑ → 자산 매수 수요↑ → 가격↑. M2 급증 시 버블 신호</td>
+          <td><div class="corr-bar"><div class="cbar cbar-pos" style="width:75%;"></div><span style="font-size:.6rem;color:var(--up);">강함</span></div></td>
+        </tr>
+        <tr>
+          <td>원/달러 환율</td>
+          <td>~1,390원</td>
+          <td><span class="tag-mix">복합</span></td>
+          <td>환율↑ → 건설원가↑(분양가↑) 동시에 PF비용↑. 외국인 투자 유입 효과는 제한적</td>
+          <td><div class="corr-bar"><div class="cbar cbar-mix" style="width:40%;"></div><span style="font-size:.6rem;color:var(--warn);">약중간</span></div></td>
+        </tr>
+        <tr>
+          <td>가계부채/GDP</td>
+          <td>102%</td>
+          <td><span class="tag-dn">리스크 지표</span></td>
+          <td>높을수록 금리 충격에 취약. 시스템 리스크 증가. 가격 상방보다 하방 압력 누적</td>
+          <td><div class="corr-bar"><div class="cbar cbar-neg" style="width:70%;"></div><span style="font-size:.6rem;color:var(--dn);">위험 수준</span></div></td>
+        </tr>
+        <tr>
+          <td>실업률</td>
+          <td>약 3.1%</td>
+          <td><span class="tag-dn">역(-)상관</span></td>
+          <td>실업↑ → 소득 불안 → 매수 포기 → 수요↓. 고용 안정이 부동산의 기반</td>
+          <td><div class="corr-bar"><div class="cbar cbar-neg" style="width:60%;"></div><span style="font-size:.6rem;color:var(--dn);">중강</span></div></td>
+        </tr>
+        <tr>
+          <td>합계출산율</td>
+          <td>0.75명</td>
+          <td><span class="tag-nt">장기 하락</span></td>
+          <td>10~30년 후 수요 감소. 단기 효과 없음. 지방부터 → 수도권 외곽 → 서울 순서로 영향</td>
+          <td><div class="corr-bar"><div class="cbar cbar-nt" style="width:35%;"></div><span style="font-size:.6rem;color:var(--blue);">장기적</span></div></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- ══ 학습 핵심 포인트 ══ -->
+  <div class="sh"><span class="sh-label">학습 핵심 포인트 — 경제-부동산 연결 8가지</span></div>
+  <div class="policy-box" style="margin-bottom:28px;">
+    <div class="pb-ttl">경제를 알면 부동산이 보인다 — 초보자가 반드시 알아야 할 거시경제 지식</div>
+    <div class="timeline">
+      <div class="tl-item">
+        <div class="tl-date">핵심 개념 ① — 가장 중요</div>
+        <div class="tl-ttl">금리는 부동산의 혈압이다</div>
+        <div class="tl-body">기준금리는 부동산 시장의 혈압과 같습니다. 너무 낮으면(저금리) 과열 버블, 너무 높으면(고금리) 시장 경색. <b>2021년 0.5%</b>의 초저금리 → 버블 형성, <b>2022년 3.5%</b>의 급격 인상 → 시장 충격. 현재 <b>2.75%</b>는 고금리 구간이지만 공급 부족이 가격을 지지 중. 금리 인하 신호가 나오면 시장이 먼저 반응합니다.</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-date">핵심 개념 ②</div>
+        <div class="tl-ttl">부동산은 인플레이션을 먹고 자란다</div>
+        <div class="tl-body">장기적으로 부동산 명목 가격은 인플레이션을 반영해 오릅니다. 1970년대 서울 아파트 1,000만원 → 현재 10억원+의 배경에는 50년간의 누적 인플레이션이 있습니다. <b>연 2~3% 인플레이션</b>이 지속되면 30년 후 물가는 현재의 1.8~2.4배. 부동산은 이 인플레이션을 자동으로 반영하는 실물자산입니다. 단, 실질 수익률(명목 - 인플레이션)을 항상 계산해야 합니다.</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-date">핵심 개념 ③</div>
+        <div class="tl-ttl">돈이 많이 풀리면 집값이 오른다 — 유동성 법칙</div>
+        <div class="tl-body">중앙은행이 돈을 많이 찍어낼수록(M2↑) 시중 돈이 넘쳐나고, 이 돈이 수익을 찾아 자산 시장으로 흘러들어옵니다. <b>2020~2021년 전 세계 M2 폭증</b>이 글로벌 부동산 버블의 핵심 원인이었습니다. 한국 M2도 2020~2021년 15~20% 급증 → 서울 아파트 2년 만에 2배 상승. 반대로 긴축(M2 증가 둔화)은 자산 가격 조정 압력이 됩니다.</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-date">핵심 개념 ④</div>
+        <div class="tl-ttl">미국 연준(Fed)이 한국 집값을 움직인다</div>
+        <div class="tl-body">미국 중앙은행(Fed)의 금리 결정이 한국 부동산에 영향을 미칩니다. <b>경로:</b> Fed 금리↑ → 달러 강세 → 원달러 환율↑ → 한국 수입 물가↑ → 한은도 금리 인상 압박 → 한국 주담대 금리↑ → 부동산 수요↓. 반대로 Fed가 금리를 내리면 달러 약세 → 원화 강세 → 수입 물가 안정 → 한은 인하 여력↑. 글로벌 금리 사이클을 항상 모니터링해야 합니다.</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-date">핵심 개념 ⑤</div>
+        <div class="tl-ttl">GDP 성장이 멈추면 지방 부동산이 먼저 꺾인다</div>
+        <div class="tl-body">경기침체 시 부동산 하락은 지방부터 시작됩니다. <b>이유:</b> 지방은 실수요 기반이 약하고 투자 수요와 인구 유입이 없기 때문입니다. 서울 핵심 입지는 경기침체에도 가장 늦게, 가장 적게 떨어집니다. 2008년 금융위기, 2022년 금리 충격 모두 지방→수도권 외곽→강북→강남 순서로 하락했습니다. <b>투자 입지를 정할 때 경기 방어력이 핵심입니다.</b></div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-date">핵심 개념 ⑥</div>
+        <div class="tl-ttl">가계부채 102% — 한국 부동산의 시한폭탄?</div>
+        <div class="tl-body">GDP 대비 가계부채 <b>102%</b>는 금리 충격에 매우 취약한 구조입니다. 기준금리 1%p 상승 시 가계 추가 이자 부담은 연간 15~20조 원 수준입니다. 그러나 단기간에 폭발하지 않는 이유: ① 장기 분할 상환으로 즉각 충격 완화 ② 집주인이 전세보증금(무이자)으로 부채 일부 상쇄 ③ 정부의 정책 대응 여지. 하지만 구조적 취약성이 남아 있어 <b>외부 충격(글로벌 금융위기 등)에는 크게 흔들릴 수 있습니다.</b></div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-date">핵심 개념 ⑦</div>
+        <div class="tl-ttl">출산율 0.75명 — 언제부터 집값에 영향을 줄까?</div>
+        <div class="tl-body">저출산의 부동산 영향은 매우 장기적(15~30년)입니다. 지금 태어나는 아이들이 주택 수요자가 되는 시점은 2040~2050년대입니다. 그러나 <b>이미 지방 소도시에서는 인구 감소 → 주택 가격 하락이 현실화</b>되고 있습니다. 서울은 지방에서 인구를 흡수하는 한 단기 수요를 유지하지만, 2040년대 이후는 서울도 예외가 되기 어렵습니다. <b>20~30년 보유 예정 투자자는 인구 구조를 반드시 고려해야 합니다.</b></div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-date">핵심 개념 ⑧ — 실전 적용</div>
+        <div class="tl-ttl">경제 지표 모니터링 루틴 — 매달 이 3가지만 보세요</div>
+        <div class="tl-body"><b>① 한국은행 금융통화위원회 결정(ECOS, 매월):</b> 기준금리 결정문 1줄 요약으로 금리 방향 파악. <b>② 한국부동산원 주간 아파트 가격동향(매주 수요일):</b> 서울·수도권 주간 변동률 확인. 연속 3주 이상 방향이 같으면 추세로 인정. <b>③ 통계청 소비자물가지수(매월):</b> CPI 3% 이상이면 금리 인하 어렵다는 신호. 이 3가지 지표를 매달 10분만 확인하면 시장 흐름을 놓치지 않습니다.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="src-note">
+    <b>데이터 기준</b> — 한국은행 ECOS(기준금리·M2) · 통계청 CPI · 한국부동산원 주간 아파트 가격동향 · BIS 가계부채 통계 · 통계청 합계출산율 · IMF·KDI GDP 성장률 전망 · 2026.09.23 기준
+  </div>
+
+</div>
+
+<script>
+function showScenario(id) {
+  document.querySelectorAll('.sc-panel').forEach(p => p.classList.remove('active'));
+  document.getElementById('sc-' + id).classList.add('active');
+  document.querySelectorAll('.sc-tab').forEach(t => {
+    t.className = 'sc-tab';
+  });
+  const tab = event.currentTarget;
+  if (id === 'base') tab.classList.add('active-nt');
+  else if (id === 'cut') tab.classList.add('active-up');
+  else if (id === 'hike' || id === 'recession') tab.classList.add('active-dn');
+}
+</script>
+
+</body>
+</html>

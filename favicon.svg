@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <rect width="32" height="32" rx="5" fill="#0C2040"/>
+  <!-- Towers -->
+  <rect x="9" y="7" width="2.5" height="15" rx="0.5" fill="#C8A84B"/>
+  <rect x="20.5" y="7" width="2.5" height="15" rx="0.5" fill="#C8A84B"/>
+  <!-- Tower caps -->
+  <rect x="8.5" y="6" width="3.5" height="2" rx="0.5" fill="#D4B860"/>
+  <rect x="20" y="6" width="3.5" height="2" rx="0.5" fill="#D4B860"/>
+  <!-- Cables left -->
+  <line x1="10.25" y1="7" x2="3" y2="21" stroke="#5A9FD4" stroke-width="0.9" opacity="0.95"/>
+  <line x1="10.25" y1="7" x2="6.5" y2="21" stroke="#5A9FD4" stroke-width="0.8" opacity="0.85"/>
+  <line x1="10.25" y1="7" x2="14" y2="21" stroke="#5A9FD4" stroke-width="0.8" opacity="0.85"/>
+  <!-- Cables right -->
+  <line x1="21.75" y1="7" x2="29" y2="21" stroke="#5A9FD4" stroke-width="0.9" opacity="0.95"/>
+  <line x1="21.75" y1="7" x2="25.5" y2="21" stroke="#5A9FD4" stroke-width="0.8" opacity="0.85"/>
+  <line x1="21.75" y1="7" x2="18" y2="21" stroke="#5A9FD4" stroke-width="0.8" opacity="0.85"/>
+  <!-- Bridge deck -->
+  <rect x="2" y="21" width="28" height="2.5" rx="0.8" fill="#2258C4"/>
+  <!-- Water shimmer -->
+  <rect x="2" y="25" width="28" height="1" rx="0.5" fill="#1A3A6A" opacity="0.6"/>
+  <rect x="4" y="26.5" width="22" height="0.7" rx="0.3" fill="#1A3A6A" opacity="0.35"/>
+</svg>

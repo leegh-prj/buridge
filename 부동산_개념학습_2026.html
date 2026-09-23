@@ -1,0 +1,883 @@
+﻿<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/favicon.svg">
+<meta name="theme-color" content="#0C2040">
+<meta property="og:site_name" content="부릿지 BuRIDGE">
+<meta property="og:type" content="website">
+<meta property="og:title" content="개념학습 | 부릿지 BuRIDGE">
+<meta property="og:description" content="LTV·DTI·DSR, Cap Rate, 전세가율 등 부동산 핵심 개념 완전 정리.">
+<meta property="og:url" content="https://buridge.vercel.app/부동산_개념학습_2026.html">
+<meta property="og:image" content="https://buridge.vercel.app/og-image.svg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="ko_KR">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="개념학습 | 부릿지 BuRIDGE">
+<meta name="twitter:description" content="LTV·DTI·DSR, Cap Rate, 전세가율 등 부동산 핵심 개념 완전 정리.">
+<meta name="twitter:image" content="https://buridge.vercel.app/og-image.svg">
+<title>부동산 개념학습 2026</title>
+<style>
+:root{
+  --ink:#1A2E44;--ink2:#374F6B;--ink3:#68839C;
+  --paper:#F3F6FB;--sf:#FFFFFF;--sf2:#EDF2FA;--sf3:#E8F0FF;
+  --rule:#D0D8E8;--accent:#1A4A9A;--acc-lt:#EBF1FF;
+  --ok:#0A6E42;--ok-lt:#E4F3EC;--ok-bd:#7CC4A0;
+  --ng:#B91818;--ng-lt:#FDF0F0;--ng-bd:#EFA0A0;
+  --warn:#935200;--warn-lt:#FEF4E4;--warn-bd:#C97200;
+  --purple:#5B21B6;--pur-lt:#EDE9FE;
+  --r:6px;--font:'Apple SD Gothic Neo','Noto Sans KR',system-ui,sans-serif;
+}
+@media(prefers-color-scheme:dark){:root{
+  --ink:#D8E5F5;--ink2:#97AECA;--ink3:#5E7A9A;
+  --paper:#0A1929;--sf:#10243C;--sf2:#162E4A;--sf3:#0A1E44;
+  --rule:#1C3254;--accent:#4478D8;--acc-lt:#0A1E44;
+  --ok:#22C55E;--ok-lt:#082014;--ok-bd:#14583A;
+  --ng:#F07070;--ng-lt:#2A0808;--ng-bd:#702020;
+  --warn:#FBBF24;--warn-lt:#251800;--warn-bd:#8A5000;
+  --purple:#A78BFA;--pur-lt:#1E0A40;
+}}
+:root[data-theme=light]{--ink:#1A2E44;--ink2:#374F6B;--ink3:#68839C;--paper:#F3F6FB;--sf:#FFFFFF;--sf2:#EDF2FA;--sf3:#E8F0FF;--rule:#D0D8E8;--accent:#1A4A9A;--acc-lt:#EBF1FF;--ok:#0A6E42;--ok-lt:#E4F3EC;--ok-bd:#7CC4A0;--ng:#B91818;--ng-lt:#FDF0F0;--ng-bd:#EFA0A0;--warn:#935200;--warn-lt:#FEF4E4;--warn-bd:#C97200;--purple:#5B21B6;--pur-lt:#EDE9FE;}
+:root[data-theme=dark]{--ink:#D8E5F5;--ink2:#97AECA;--ink3:#5E7A9A;--paper:#0A1929;--sf:#10243C;--sf2:#162E4A;--sf3:#0A1E44;--rule:#1C3254;--accent:#4478D8;--acc-lt:#0A1E44;--ok:#22C55E;--ok-lt:#082014;--ok-bd:#14583A;--ng:#F07070;--ng-lt:#2A0808;--ng-bd:#702020;--warn:#FBBF24;--warn-lt:#251800;--warn-bd:#8A5000;--purple:#A78BFA;--pur-lt:#1E0A40;}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:var(--font);background:var(--paper);color:var(--ink);min-height:100vh;line-height:1.6;}
+button{cursor:pointer;font-family:var(--font);}
+input{font-family:var(--font);}
+a{color:inherit;text-decoration:none;}
+/* Layout */
+.app{max-width:760px;margin:0 auto;padding:0 16px 60px;}
+.hd{display:flex;justify-content:space-between;align-items:center;padding:16px 0 14px;border-bottom:1px solid var(--rule);margin-bottom:20px;}
+.hd-logo{font-size:.95rem;font-weight:800;color:var(--ink);letter-spacing:-.02em;}
+.hd-logo em{color:var(--ink3);font-style:normal;font-weight:400;font-size:.78rem;margin-left:6px;}
+.hd-right{display:flex;gap:8px;align-items:center;}
+.btn-sm{background:none;border:1px solid var(--rule);border-radius:4px;padding:5px 11px;font-size:.73rem;color:var(--ink3);transition:all .15s;}
+.btn-sm:hover{border-color:var(--accent);color:var(--accent);}
+/* Tabs — underline style */
+.tabs{display:flex;border-bottom:1px solid var(--rule);margin-bottom:24px;overflow-x:auto;}
+.tab{padding:10px 16px;border:none;background:none;border-bottom:2px solid transparent;font-size:.8rem;font-weight:600;color:var(--ink3);cursor:pointer;transition:all .15s;white-space:nowrap;margin-bottom:-1px;}
+.tab.act{color:var(--accent);border-bottom-color:var(--accent);}
+.tab:hover:not(.act){color:var(--ink2);}
+/* Panels */
+.panel{display:none;animation:fd .2s ease;}
+.panel.act{display:block;}
+@keyframes fd{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:none}}
+/* Section headers */
+.sec-hd{display:flex;align-items:center;gap:10px;margin-bottom:16px;margin-top:28px;}
+.sec-hd:first-child{margin-top:0;}
+.sec-icon{width:30px;height:30px;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:.9rem;flex-shrink:0;}
+.sec-title{font-size:.98rem;font-weight:800;color:var(--ink);letter-spacing:-.02em;}
+.sec-sub{font-size:.72rem;color:var(--ink3);margin-top:1px;}
+/* Accordion */
+.acc{display:flex;flex-direction:column;gap:6px;}
+.ac{background:var(--sf);border:1px solid var(--rule);border-radius:var(--r);overflow:hidden;transition:border-color .2s;}
+.ac.open{border-color:var(--accent);}
+.ac-hd{display:flex;justify-content:space-between;align-items:center;padding:12px 14px;cursor:pointer;transition:background .15s;}
+.ac-hd:hover{background:var(--sf2);}
+.ac-htxt{display:flex;align-items:center;gap:10px;}
+.ac-tag{padding:2px 7px;border-radius:3px;font-size:.62rem;font-weight:700;flex-shrink:0;}
+.ac-name{font-size:.88rem;font-weight:700;color:var(--ink);}
+.ac-aro{font-size:.8rem;color:var(--ink3);transition:transform .2s;flex-shrink:0;}
+.ac.open .ac-aro{transform:rotate(180deg);}
+.ac-body{display:none;padding:0 14px 14px;}
+.ac.open .ac-body{display:block;}
+.ac-body p{font-size:.82rem;color:var(--ink2);line-height:1.75;margin-bottom:10px;}
+.ac-body p:last-child{margin-bottom:0;}
+.ac-body strong{color:var(--ink);font-weight:700;}
+.ac-body em{font-style:normal;color:var(--accent);font-weight:600;}
+/* Formula box */
+.fbox{background:var(--sf3);border:1px solid var(--acc-lt);border-radius:var(--r);padding:10px 13px;margin:10px 0;font-size:.8rem;color:var(--ink);font-weight:600;}
+.fbox span{color:var(--ink3);font-weight:400;font-size:.74rem;margin-left:6px;}
+/* Example box */
+.ex{background:var(--ok-lt);border-left:3px solid var(--ok);border-radius:0 var(--r) var(--r) 0;padding:10px 14px;margin:10px 0;font-size:.79rem;color:var(--ink2);line-height:1.65;}
+.ex strong{color:var(--ok);}
+/* Warning box */
+.wb{background:var(--warn-lt);border-left:3px solid var(--warn-bd);border-radius:0 var(--r) var(--r) 0;padding:10px 14px;margin:10px 0;font-size:.79rem;color:var(--warn);line-height:1.65;}
+/* Table */
+.tbl-wrap{overflow-x:auto;margin:12px 0;border-radius:var(--r);border:1px solid var(--rule);}
+table{width:100%;border-collapse:collapse;font-size:.77rem;}
+th{background:var(--sf2);color:var(--ink2);font-weight:700;padding:9px 12px;text-align:left;border-bottom:1px solid var(--rule);}
+td{padding:8px 12px;border-bottom:1px solid var(--rule);color:var(--ink2);vertical-align:top;}
+tr:last-child td{border-bottom:none;}
+tr:nth-child(even) td{background:var(--sf2);}
+.td-ok{color:var(--ok);font-weight:600;}
+.td-ng{color:var(--ng);font-weight:600;}
+.td-acc{color:var(--accent);font-weight:600;}
+/* Calc panel */
+.calc-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+@media(max-width:520px){.calc-grid{grid-template-columns:1fr;}}
+.ccard{background:var(--sf);border:1px solid var(--rule);border-radius:var(--r);padding:16px;}
+.ccard-title{font-size:.86rem;font-weight:800;color:var(--ink);margin-bottom:3px;letter-spacing:-.02em;}
+.ccard-sub{font-size:.7rem;color:var(--ink3);margin-bottom:12px;}
+.cinput-row{margin-bottom:9px;}
+.clabel{font-size:.7rem;color:var(--ink3);margin-bottom:4px;display:block;}
+.cinput{width:100%;border:1px solid var(--rule);border-radius:var(--r);padding:8px 11px;font-size:.83rem;color:var(--ink);background:var(--sf2);outline:none;transition:border-color .2s;}
+.cinput:focus{border-color:var(--accent);}
+.cbtn{width:100%;background:var(--accent);color:#fff;border:none;border-radius:var(--r);padding:9px;font-size:.81rem;font-weight:700;margin-top:5px;transition:opacity .15s;}
+.cbtn:hover{opacity:.88;}
+.cresult{margin-top:10px;padding:11px;background:var(--sf3);border-radius:var(--r);display:none;}
+.cr-val{font-size:1.2rem;font-weight:800;color:var(--accent);font-variant-numeric:tabular-nums;}
+.cr-step{font-size:.71rem;color:var(--ink3);margin-top:5px;line-height:1.75;}
+/* Comparison panel */
+.cmp-tabs{display:flex;gap:5px;flex-wrap:wrap;margin-bottom:16px;}
+.ct{padding:5px 12px;border:1px solid var(--rule);border-radius:4px;font-size:.74rem;font-weight:600;color:var(--ink3);background:none;transition:all .15s;}
+.ct.act{background:var(--accent);border-color:var(--accent);color:#fff;}
+.cmp-panel{display:none;}
+.cmp-panel.act{display:block;}
+.cmp-title{font-size:.95rem;font-weight:800;color:var(--ink);margin-bottom:5px;letter-spacing:-.02em;}
+.cmp-desc{font-size:.76rem;color:var(--ink3);margin-bottom:14px;line-height:1.6;}
+/* Diff badge */
+.diff-a{background:#DCF5E7;color:#0A6E42;padding:2px 7px;border-radius:3px;font-size:.66rem;font-weight:700;}
+.diff-b{background:#E0EDFF;color:#1A4A9A;padding:2px 7px;border-radius:3px;font-size:.66rem;font-weight:700;}
+.diff-c{background:#FEF5DB;color:#935200;padding:2px 7px;border-radius:3px;font-size:.66rem;font-weight:700;}
+.diff-d{background:#FDEAEA;color:#B91818;padding:2px 7px;border-radius:3px;font-size:.66rem;font-weight:700;}
+:root[data-theme=dark] .diff-a{background:#0A3020;color:#5ACA88;}:root[data-theme=dark] .diff-b{background:#0A1E44;color:#7AAAE8;}:root[data-theme=dark] .diff-c{background:#2A1800;color:#EAC86C;}:root[data-theme=dark] .diff-d{background:#2A0808;color:#EF9090;}
+@media(prefers-color-scheme:dark){.diff-a{background:#0A3020;color:#5ACA88;}.diff-b{background:#0A1E44;color:#7AAAE8;}.diff-c{background:#2A1800;color:#EAC86C;}.diff-d{background:#2A0808;color:#EF9090;}}
+/* Glossary */
+.g-search{width:100%;border:1px solid var(--rule);border-radius:var(--r);padding:10px 14px;font-size:.86rem;background:var(--sf);color:var(--ink);outline:none;transition:border-color .2s;margin-bottom:14px;}
+.g-search:focus{border-color:var(--accent);}
+.g-idx{display:flex;flex-wrap:wrap;gap:4px;margin-bottom:12px;}
+.gi{padding:4px 9px;border:1px solid var(--rule);border-radius:3px;font-size:.7rem;color:var(--ink3);background:none;cursor:pointer;transition:all .15s;}
+.gi.act{background:var(--accent);border-color:var(--accent);color:#fff;}
+.glist{display:flex;flex-direction:column;gap:6px;}
+.gitem{background:var(--sf);border:1px solid var(--rule);border-radius:var(--r);padding:12px 14px;display:none;}
+.gitem.show{display:block;}
+.gt{font-size:.86rem;font-weight:800;color:var(--ink);margin-bottom:2px;letter-spacing:-.01em;}
+.gc{font-size:.7rem;color:var(--ink3);margin-bottom:5px;}
+.gd{font-size:.78rem;color:var(--ink2);line-height:1.7;}
+.ge{font-size:.74rem;color:var(--accent);margin-top:4px;}
+.g-count{font-size:.72rem;color:var(--ink3);margin-bottom:10px;}
+</style>
+</head>
+<body>
+<div class="app">
+<div class="hd">
+  <div class="hd-logo">부동산 개념학습 <em>2026</em></div>
+  <div class="hd-right">
+    <a class="btn-sm" href="./index.html">← 홈</a>
+    <button class="btn-sm" onclick="toggleTheme()" id="thbtn">테마</button>
+  </div>
+</div>
+
+<div class="tabs" id="tabs">
+  <button class="tab act" onclick="showTab('개념',this)">📚 핵심개념</button>
+  <button class="tab" onclick="showTab('계산',this)">🧮 계산연습</button>
+  <button class="tab" onclick="showTab('비교',this)">⚖️ 비교분석</button>
+  <button class="tab" onclick="showTab('용어',this)">📖 용어사전</button>
+</div>
+
+<!-- ═══════════════ 핵심개념 ═══════════════ -->
+<div class="panel act" id="panel-개념">
+
+  <!-- 대출 규제 -->
+  <div class="sec-hd">
+    <div class="sec-icon" style="background:#DBEAFE;">💰</div>
+    <div><div class="sec-title">대출 규제 시스템</div><div class="sec-sub">LTV · DSR · 스트레스 DSR · 정책대출</div></div>
+  </div>
+  <div class="acc">
+    <div class="ac">
+      <div class="ac-hd" onclick="toggleAcc(this)">
+        <div class="ac-htxt"><span class="ac-tag" style="background:#DBEAFE;color:#1D4ED8;">LTV</span><span class="ac-name">LTV — 주택담보인정비율</span></div>
+        <span class="ac-aro">▼</span>
+      </div>
+      <div class="ac-body">
+        <p><strong>LTV(Loan-to-Value)</strong>는 담보 주택의 감정평가액 대비 최대 대출 가능 금액 비율입니다. 대출자의 소득과 관계없이 <em>담보 자산 가치</em>를 기준으로 한도를 설정합니다.</p>
+        <div class="fbox">LTV(%) = 대출금액 ÷ 담보주택 감정평가액 × 100 <span>→ 예) 6억 주택에 4.2억 대출 = LTV 70%</span></div>
+        <div class="tbl-wrap"><table>
+          <tr><th>지역 구분</th><th>무주택자</th><th>1주택자</th><th>다주택자</th></tr>
+          <tr><td>투기과열지구</td><td class="td-ok">9억↓ 50%<br>9억↑ 40%</td><td class="td-ng">40~50%</td><td class="td-ng">대출 불가</td></tr>
+          <tr><td>조정대상지역</td><td class="td-ok">5억↓ 70%<br>5억↑ 60%</td><td class="td-ng">50~60%</td><td class="td-ng">대출 불가</td></tr>
+          <tr><td>비규제지역</td><td class="td-ok">70~80%</td><td class="td-ok">70%</td><td class="td-acc">60%</td></tr>
+        </table></div>
+        <div class="wb">⚠ 10·15 대책(2025.10.16~): 서울·규제지역 주담대 한도 상한액 추가 — 15억↓ 최대 6억, 15~25억 최대 4억, 25억↑ 최대 2억. LTV%와 금액 한도 중 더 낮은 값 적용.</div>
+        <div class="ex"><strong>실전 예시:</strong> 서울 강남 아파트 20억 (투기과열). LTV 40% = 8억인데, 10·15 대책 한도 4억 적용 → <strong>최대 대출 4억</strong>.</div>
+      </div>
+    </div>
+    <div class="ac">
+      <div class="ac-hd" onclick="toggleAcc(this)">
+        <div class="ac-htxt"><span class="ac-tag" style="background:#FEE2E2;color:#B91C1C;">DSR</span><span class="ac-name">DSR — 총부채원리금상환비율</span></div>
+        <span class="ac-aro">▼</span>
+      </div>
+      <div class="ac-body">
+        <p><strong>DSR(Debt Service Ratio)</strong>은 연소득 대비 모든 금융 부채의 연간 원리금 합계 비율입니다. LTV가 담보 기준이라면 DSR은 <em>소득 기준</em>입니다. 두 기준 중 더 낮은 한도가 실질 대출 한도입니다.</p>
+        <div class="fbox">DSR(%) = 연간 전체 원리금 합계 ÷ 연소득 × 100 <span>→ 규제: 은행 40%, 2금융권 50%</span></div>
+        <p>포함 범위: 주담대·신용대출·카드론·자동차할부·학자금 등 <em>모든 금융기관</em> 원리금. 이자만이 아닌 원금+이자 합산 기준입니다.</p>
+        <div class="ex"><strong>실전 예시:</strong> 연봉 6,000만, 기존 신용대출 월 원리금 50만 = 연 600만. DSR 40% = 최대 연 2,400만. 주담대 원리금 가용 = 2,400 - 600 = <strong>연 1,800만(월 150만)</strong>만 추가 대출 가능.</div>
+        <div class="wb">⚠ 1억 초과 대출부터 DSR 적용. 정책대출(디딤돌·보금자리론)은 별도 DSR 산정방식 적용. 2금융권도 합산되므로 비은행 대출 많을수록 주담대 한도 크게 감소.</div>
+      </div>
+    </div>
+    <div class="ac">
+      <div class="ac-hd" onclick="toggleAcc(this)">
+        <div class="ac-htxt"><span class="ac-tag" style="background:#FEF9C3;color:#A16207;">스트레스</span><span class="ac-name">스트레스 DSR — 미래 금리 상승 대비 안전판</span></div>
+        <span class="ac-aro">▼</span>
+      </div>
+      <div class="ac-body">
+        <p><strong>스트레스 DSR</strong>은 변동금리 대출 시 실제 금리에 가산금리(스트레스 금리)를 더해 DSR을 산정하는 제도입니다. 지금 금리가 낮더라도 앞으로 오를 수 있으니 <em>여유를 두고 빌리도록</em> 강제하는 규제입니다.</p>
+        <div class="fbox">산정 금리 = 실제 대출 금리 + 스트레스 가산금리 <span>→ 하한 3.0% 적용(서울·규제지역)</span></div>
+        <div class="tbl-wrap"><table>
+          <tr><th>단계</th><th>시행 시기</th><th>가산금리</th><th>적용 지역</th></tr>
+          <tr><td>1단계</td><td>2024.2</td><td class="td-acc">+0.38%p</td><td>전국 은행권</td></tr>
+          <tr><td>2단계</td><td>2024.7</td><td class="td-acc">+0.75%p</td><td>전국 은행·2금융권</td></tr>
+          <tr><td>10·15 강화</td><td>2025.10.16</td><td class="td-ng">하한 3.0%</td><td>서울·규제지역</td></tr>
+          <tr><td>3단계</td><td>2026.7</td><td class="td-ng">+1.5%p</td><td>전국 모든 금융기관</td></tr>
+        </table></div>
+        <div class="ex"><strong>실전 예시:</strong> 실제 금리 2.8% (하한 3.0% 미달) → 3.0%로 DSR 산정. 금리가 실제보다 높게 계산되니 대출 한도가 줄어듭니다.</div>
+      </div>
+    </div>
+    <div class="ac">
+      <div class="ac-hd" onclick="toggleAcc(this)">
+        <div class="ac-htxt"><span class="ac-tag" style="background:#DCFCE7;color:#15803D;">정책대출</span><span class="ac-name">디딤돌·보금자리·특례보금자리 완전 정리</span></div>
+        <span class="ac-aro">▼</span>
+      </div>
+      <div class="ac-body">
+        <p>서민·실수요자를 위한 <strong>정책 모기지 3형제</strong>. 시중금리보다 낮은 금리로 공급되지만 소득·주택가격·용도 등 요건이 다릅니다.</p>
+        <div class="tbl-wrap"><table>
+          <tr><th>구분</th><th>디딤돌</th><th>보금자리론</th><th>특례보금자리</th></tr>
+          <tr><td>소득 요건</td><td class="td-ok">7천만↓<br>(신혼 8.5천)</td><td class="td-acc">제한 없음</td><td class="td-acc">제한 없음</td></tr>
+          <tr><td>주택 가격</td><td class="td-ok">5억↓</td><td class="td-acc">9억↓</td><td class="td-acc">9억↓</td></tr>
+          <tr><td>대출 한도</td><td class="td-ok">최대 4억</td><td class="td-acc">최대 5억</td><td class="td-acc">최대 5억</td></tr>
+          <tr><td>금리 유형</td><td>고정·혼합</td><td>장기 고정</td><td>고정·혼합</td></tr>
+          <tr><td>2026 기준 금리</td><td class="td-acc">2.35~3.95%</td><td>4.15~4.65%</td><td>4.25~4.85%</td></tr>
+        </table></div>
+        <div class="wb">⚠ 정책대출도 DSR 규제 적용. 단, 산정 방식이 일반 대출과 달라 유리한 경우 있음. 생애최초 보금자리론은 12억↓ 주택까지 가능.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 세금 체계 -->
+  <div class="sec-hd">
+    <div class="sec-icon" style="background:#FEE2E2;">🧾</div>
+    <div><div class="sec-title">세금 체계 완전 정복</div><div class="sec-sub">취득세 · 재산세 · 종부세 · 양도세</div></div>
+  </div>
+  <div class="acc">
+    <div class="ac">
+      <div class="ac-hd" onclick="toggleAcc(this)">
+        <div class="ac-htxt"><span class="ac-tag" style="background:#FEE2E2;color:#B91C1C;">취득세</span><span class="ac-name">취득세 — 살 때 한번만 내는 세금</span></div>
+        <span class="ac-aro">▼</span>
+      </div>
+      <div class="ac-body">
+        <p>주택 취득 시 1회 납부. 과표는 취득가액(실거래가). 지방세로 시·군·구에 납부합니다.</p>
+        <div class="tbl-wrap"><table>
+          <tr><th>취득 주체</th><th>주택 가격</th><th>세율</th><th>비고</th></tr>
+          <tr><td rowspan="3">1주택자</td><td>6억↓</td><td class="td-ok">1%</td><td>+농특세·지방교육세 ≈ 1.1%</td></tr>
+          <tr><td>6억~9억</td><td class="td-acc">1~3% 비례</td><td>구간 내 누진</td></tr>
+          <tr><td>9억↑</td><td class="td-ng">3%</td><td>+농특세 포함 ≈ 3.3%</td></tr>
+          <tr><td>조정 2주택</td><td>전체</td><td class="td-ng">8%</td><td>2020년 7·10 대책~</td></tr>
+          <tr><td>조정 3주택↑·법인</td><td>전체</td><td class="td-ng">12%</td><td>이재명 정부 유지</td></tr>
+          <tr><td>생애최초</td><td>12억↓</td><td class="td-ok">200만원 한도 감면</td><td>소득 요건 없음</td></tr>
+        </table></div>
+        <div class="ex"><strong>실전 계산:</strong> 강남 아파트 15억, 본인 2번째 주택, 조정대상지역 → 15억 × 8% = <strong>1.2억 취득세</strong>. 거래 전 반드시 계산 필요.</div>
+      </div>
+    </div>
+    <div class="ac">
+      <div class="ac-hd" onclick="toggleAcc(this)">
+        <div class="ac-htxt"><span class="ac-tag" style="background:#FEF9C3;color:#A16207;">보유세</span><span class="ac-name">재산세 + 종합부동산세 — 매년 보유 비용</span></div>
+        <span class="ac-aro">▼</span>
+      </div>
+      <div class="ac-body">
+        <p><strong>과세 기준일: 매년 6월 1일</strong>. 이 날 소유자에게 당해 연도 세금 부과. 매매 잔금일을 6.1 이전/이후로 조정하면 당해 세금 부담자가 달라집니다.</p>
+        <div class="tbl-wrap"><table>
+          <tr><th>구분</th><th>재산세</th><th>종합부동산세</th></tr>
+          <tr><td>납부 시기</td><td>7월·9월 각 1/2</td><td>12월 (연 1회)</td></tr>
+          <tr><td>과세 기준</td><td>주택 공시가 60%</td><td>공시가 합산 - 기본공제</td></tr>
+          <tr><td>1주택 기본공제</td><td>—</td><td>12억 공제</td></tr>
+          <tr><td>다주택 기본공제</td><td>—</td><td>9억 공제</td></tr>
+          <tr><td>세율(주택)</td><td>0.1~0.4%</td><td>0.5~5%(이재명 복원)</td></tr>
+        </table></div>
+        <p>이재명 정부(2025.8~): 종부세 공정시장가액비율 100% 복원, 다주택자 중과세율 2021년 수준(최대 5%) 재시행. 1주택자 세율은 동결.</p>
+        <div class="ex"><strong>실전 예시:</strong> 서울 공시가 10억 1주택 → 재산세: 10억×60%×0.35%≈약 210만. 종부세: 공시가 10억 &lt; 12억 공제 → <strong>종부세 없음</strong>. 공시가 15억 → 종부세 과세 대상(15-12=3억 초과분에 세율 적용).</div>
+      </div>
+    </div>
+    <div class="ac">
+      <div class="ac-hd" onclick="toggleAcc(this)">
+        <div class="ac-htxt"><span class="ac-tag" style="background:#EDE9FE;color:#6D28D9;">양도세</span><span class="ac-name">양도소득세 — 팔 때 내는 세금, 복잡하지만 핵심만</span></div>
+        <span class="ac-aro">▼</span>
+      </div>
+      <div class="ac-body">
+        <p><strong>1가구 1주택 비과세 요건</strong> (가장 중요): 조정지역 취득 시 <em>보유 2년 + 거주 2년</em> 모두 충족. 비규제지역은 보유 2년만으로 가능. 매매가 12억 이하는 전액 비과세, 12억 초과분만 과세.</p>
+        <div class="fbox">양도세 = (양도가액 - 취득가액 - 필요경비) × 세율 <span>→ 장기보유특별공제(최대 80%) 차감 가능</span></div>
+        <div class="tbl-wrap"><table>
+          <tr><th>보유 기간</th><th>기본세율</th><th>단기 중과</th></tr>
+          <tr><td>1년 미만</td><td>—</td><td class="td-ng">70%</td></tr>
+          <tr><td>1~2년</td><td>—</td><td class="td-ng">60%</td></tr>
+          <tr><td>2년 이상</td><td class="td-ok">6~45% (누진)</td><td>해당없음</td></tr>
+        </table></div>
+        <p><strong>다주택자 중과(이재명 정부 2026.1~)</strong>: 조정지역 2주택 기본세율+20%p, 3주택↑ +30%p. 최고 세율 최대 75%까지 가능.</p>
+        <p><strong>장기보유특별공제</strong>: 1주택자 최대 80%(보유 80%, 거주 20%), 다주택자 최대 30%.</p>
+        <div class="ex"><strong>절세 전략:</strong> 다주택자는 ①비조정지역(중과 없음) 먼저 처분 → ②조정지역 순차 정리 → ③최종 1주택 2년 거주 후 비과세 활용이 일반적 로드맵.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 시장 지표 -->
+  <div class="sec-hd">
+    <div class="sec-icon" style="background:#DCFCE7;">📊</div>
+    <div><div class="sec-title">시장 지표 해석법</div><div class="sec-sub">PIR · 전세가율 · K-HAI · 낙찰가율 · 미분양</div></div>
+  </div>
+  <div class="acc">
+    <div class="ac">
+      <div class="ac-hd" onclick="toggleAcc(this)">
+        <div class="ac-htxt"><span class="ac-tag" style="background:#DCFCE7;color:#15803D;">PIR</span><span class="ac-name">PIR (주택가격소득비율) — 시장 거품 측정</span></div>
+        <span class="ac-aro">▼</span>
+      </div>
+      <div class="ac-body">
+        <div class="fbox">PIR = 주택 중위가격 ÷ 가구 연소득 중위값 <span>→ 서울 2026년 약 18~22</span></div>
+        <p>PIR 10 = 소득 전액을 10년 모아야 집을 살 수 있는 수준. 세계 주요 도시 PIR: 홍콩 25↑, 서울 18~22, 런던 15, 뉴욕 12 수준. <em>높을수록 시장이 과열</em>이거나 소득 대비 집값이 비쌈.</p>
+        <p>PIR의 한계: 중위값이라 강남·강북 양극화 반영 안 됨. 서울 강남만의 PIR은 전체 서울보다 훨씬 높습니다.</p>
+      </div>
+    </div>
+    <div class="ac">
+      <div class="ac-hd" onclick="toggleAcc(this)">
+        <div class="ac-htxt"><span class="ac-tag" style="background:#FEF9C3;color:#A16207;">전세가율</span><span class="ac-name">전세가율 — 갭투자·역전세 위험 바로미터</span></div>
+        <span class="ac-aro">▼</span>
+      </div>
+      <div class="ac-body">
+        <div class="fbox">전세가율(%) = 전세가 ÷ 매매가 × 100 <span>→ 서울 2026년 약 55~65%</span></div>
+        <p><strong>전세가율 높을 때</strong>: 갭이 작아져 소액으로 갭투자 가능 → 갭투자 활성화 → 집값 상승 압력. 단, 집값이 하락하면 전세가도 떨어져 <em>역전세</em>(임대인이 보증금을 돌려주지 못하는 상황) 위험 증가.</p>
+        <div class="tbl-wrap"><table>
+          <tr><th>전세가율</th><th>시장 해석</th><th>갭투자</th><th>역전세 위험</th></tr>
+          <tr><td class="td-ok">40~50%</td><td>매매 강세 시장</td><td>자금 많이 필요</td><td class="td-ok">낮음</td></tr>
+          <tr><td class="td-acc">55~70%</td><td>균형 시장</td><td>보통</td><td class="td-acc">보통</td></tr>
+          <tr><td class="td-ng">75~90%↑</td><td>전세 강세 or 과열</td><td>소액 가능</td><td class="td-ng">매우 높음</td></tr>
+        </table></div>
+        <div class="wb">⚠ 2022~2023년 수도권 전세가율 80% 초과 → 집값 하락 후 역전세·깡통전세 급증. 빌라왕 사태·전세 사기 배경. HUG 전세보증보험 가입 필수.</div>
+      </div>
+    </div>
+    <div class="ac">
+      <div class="ac-hd" onclick="toggleAcc(this)">
+        <div class="ac-htxt"><span class="ac-tag" style="background:#DBEAFE;color:#1D4ED8;">시장지표</span><span class="ac-name">K-HAI · 낙찰가율 · 미분양 · 매수우위지수</span></div>
+        <span class="ac-aro">▼</span>
+      </div>
+      <div class="ac-body">
+        <p><strong>K-HAI (주택구입부담지수)</strong>: 중위소득 가구가 중위 주택을 구입할 수 있는 능력. 100 = 딱 맞음, 150 = 소득의 1.5배 필요. 서울 K-HAI는 150~200 수준으로 구입 부담 극심.</p>
+        <p><strong>KB 매수우위지수</strong>: 100 이상 = 매수 희망자 > 매도자(상승 압력). 2026년 상반기 서울 120~140대(매수 우위). 미분양 현황과 반대 방향으로 움직이는 경향.</p>
+        <p><strong>낙찰가율</strong> = 낙찰가 ÷ 감정평가액 × 100. 100% 이상이면 감정가보다 비싸게 팔림(시장 과열). 2021년 서울 130~140%. 2022~2023년 70%대로 급락.</p>
+        <p><strong>미분양 주택 수</strong>: 7만 호↑는 정부 공식 경보 기준. 2023년 전국 6.5만 호 고점 후 감소. 지방(특히 지방 중소도시) 미분양은 PF 부실·건설사 위기로 이어집니다.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- 임대차 제도 -->
+  <div class="sec-hd">
+    <div class="sec-icon" style="background:#EDE9FE;">🏠</div>
+    <div><div class="sec-title">임대차 제도 완전 이해</div><div class="sec-sub">임대차 3법 · 전월세신고제 · 보증금 보호</div></div>
+  </div>
+  <div class="acc">
+    <div class="ac">
+      <div class="ac-hd" onclick="toggleAcc(this)">
+        <div class="ac-htxt"><span class="ac-tag" style="background:#EDE9FE;color:#6D28D9;">임대차3법</span><span class="ac-name">임대차 3법 — 세입자 보호 3종 세트 (2020~)</span></div>
+        <span class="ac-aro">▼</span>
+      </div>
+      <div class="ac-body">
+        <p>2020년 7월 31일 시행. 임차인 보호를 강화했지만 전세 매물 감소·전세가 상승 부작용도 발생한 양면의 제도입니다.</p>
+        <div class="tbl-wrap"><table>
+          <tr><th>법률</th><th>핵심 내용</th><th>비고</th></tr>
+          <tr><td><strong>① 계약갱신청구권</strong></td><td>임차인이 1회 갱신 요구 가능 → 최대 4년(2+2) 거주 보장</td><td>집주인은 실거주 등 예외 사유 있을 때만 거절 가능</td></tr>
+          <tr><td><strong>② 전월세상한제</strong></td><td>갱신 시 임대료 최대 5% 이내만 인상 가능</td><td>신규 계약에는 미적용 — 전세가 급등의 원인</td></tr>
+          <tr><td><strong>③ 전월세신고제</strong></td><td>보증금 6천만 or 월세 30만 초과 시 30일 이내 신고 의무</td><td>미신고 시 최대 100만원 과태료</td></tr>
+        </table></div>
+        <div class="wb">⚠ 신규 계약엔 5% 상한 미적용 → 임대인이 갱신 요구 예상 시 신규 계약가를 대폭 올리는 전략 사용 → 전세가 급등 부작용. 2022~2023년 역전세가 발생한 주요 배경 중 하나.</div>
+      </div>
+    </div>
+    <div class="ac">
+      <div class="ac-hd" onclick="toggleAcc(this)">
+        <div class="ac-htxt"><span class="ac-tag" style="background:#DCFCE7;color:#15803D;">보증보험</span><span class="ac-name">전세보증금반환보증 — 세입자 최후의 안전망</span></div>
+        <span class="ac-aro">▼</span>
+      </div>
+      <div class="ac-body">
+        <p>집주인이 보증금을 돌려주지 못할 때 HUG(주택도시보증공사)·SGI서울보증이 먼저 임차인에게 지급 후 집주인에게 구상권 행사하는 제도.</p>
+        <div class="tbl-wrap"><table>
+          <tr><th>항목</th><th>내용</th></tr>
+          <tr><td>가입 주체</td><td>임차인(세입자)이 보험료 납부</td></tr>
+          <tr><td>가입 요건</td><td>전세가율 90%(공시가 기준 126%) 이하, 계약기간 1/2 이내 신청</td></tr>
+          <tr><td>HUG 보증료</td><td>연 0.115~0.154% (주택 유형·신용에 따라 차등)</td></tr>
+          <tr><td>최대 보증 한도</td><td>수도권 7억, 그 외 5억</td></tr>
+        </table></div>
+        <div class="ex"><strong>권고:</strong> 전세 계약 시 HUG·SGI 보증보험 무조건 가입. 특히 빌라·다세대는 깡통전세 위험이 높아 가입이 사실상 필수입니다. 집주인의 세금 체납 여부도 등기부 확인 필수.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 정비사업 -->
+  <div class="sec-hd">
+    <div class="sec-icon" style="background:#FEF9C3;">🏗</div>
+    <div><div class="sec-title">재건축·재개발 정비사업</div><div class="sec-sub">절차 · 차이점 · 권리산정 · 분담금</div></div>
+  </div>
+  <div class="acc">
+    <div class="ac">
+      <div class="ac-hd" onclick="toggleAcc(this)">
+        <div class="ac-htxt"><span class="ac-tag" style="background:#FEF9C3;color:#A16207;">절차</span><span class="ac-name">재건축·재개발 전체 절차 한눈에</span></div>
+        <span class="ac-aro">▼</span>
+      </div>
+      <div class="ac-body">
+        <div class="tbl-wrap"><table>
+          <tr><th>단계</th><th>재건축</th><th>재개발</th><th>소요 기간</th></tr>
+          <tr><td>1</td><td>안전진단 D등급↑</td><td>노후불량건축물 확인</td><td>1~2년</td></tr>
+          <tr><td>2</td><td colspan="2" style="text-align:center">정비구역 지정 + 정비계획 수립</td><td>1~2년</td></tr>
+          <tr><td>3</td><td colspan="2" style="text-align:center">조합 설립 인가 (재건축 3/4, 재개발 2/3 동의)</td><td>1~2년</td></tr>
+          <tr><td>4</td><td colspan="2" style="text-align:center">사업시행계획 인가</td><td>1~2년</td></tr>
+          <tr><td>5</td><td colspan="2" style="text-align:center">관리처분계획 인가 ← 권리가액·분담금 확정</td><td>1~2년</td></tr>
+          <tr><td>6</td><td colspan="2" style="text-align:center">이주·철거 → 착공</td><td>1~2년</td></tr>
+          <tr><td>7</td><td colspan="2" style="text-align:center">준공·입주·이전고시</td><td>3~4년</td></tr>
+        </table></div>
+        <p style="font-size:.76rem;color:var(--ink3);margin-top:6px;">총 소요 기간: 평균 10~15년. 규제·민원·소송으로 20년 이상 걸리는 사례도 있습니다.</p>
+      </div>
+    </div>
+    <div class="ac">
+      <div class="ac-hd" onclick="toggleAcc(this)">
+        <div class="ac-htxt"><span class="ac-tag" style="background:#FEE2E2;color:#B91C1C;">핵심계산</span><span class="ac-name">비례율·권리가액·분담금 계산법</span></div>
+        <span class="ac-aro">▼</span>
+      </div>
+      <div class="ac-body">
+        <div class="fbox">비례율 = (총수입 - 총사업비) ÷ 종전 자산 총평가액 × 100</div>
+        <div class="fbox">권리가액 = 종전 자산 평가액 × 비례율</div>
+        <div class="fbox">추가분담금 = 분양가(새 아파트) - 권리가액 <span>→ 음수면 환급</span></div>
+        <div class="ex"><strong>실전 계산:</strong> 종전 자산 4억, 비례율 110%, 새 아파트 분양가 5억.<br>
+          권리가액 = 4억 × 110% = <strong>4.4억</strong><br>
+          추가분담금 = 5억 - 4.4억 = <strong>6천만 원 납부</strong><br>
+          만약 분양가 4억이었다면: 4억 - 4.4억 = -4천만 → <strong>4천만 환급</strong></div>
+        <div class="wb">⚠ 재건축 초과이익환수(이재명 정부 2026.3~): 환수율 50%로 상향. 조합원 1인당 초과이익 3천만 초과분에 누진 적용. 강남 대형 재건축 분담금이 수억씩 증가하는 원인.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 투자 수익 분석 -->
+  <div class="sec-hd">
+    <div class="sec-icon" style="background:#DBEAFE;">📈</div>
+    <div><div class="sec-title">투자 수익 분석 심화</div><div class="sec-sub">Cap Rate · NOI · 레버리지 · DCF</div></div>
+  </div>
+  <div class="acc">
+    <div class="ac">
+      <div class="ac-hd" onclick="toggleAcc(this)">
+        <div class="ac-htxt"><span class="ac-tag" style="background:#DBEAFE;color:#1D4ED8;">Cap Rate</span><span class="ac-name">Cap Rate & NOI — 상업용 부동산 핵심 가치 지표</span></div>
+        <span class="ac-aro">▼</span>
+      </div>
+      <div class="ac-body">
+        <div class="fbox">NOI = 총가능임대수입 - 공실손실 - 운영비용(관리비·보험·수선비) <span>→ 대출이자 제외</span></div>
+        <div class="fbox">Cap Rate(%) = NOI ÷ 자산가격 × 100 <span>→ 낮을수록 자산가격이 높은 상태</span></div>
+        <p>Cap Rate가 <em>낮아질수록</em> 같은 NOI에서 자산 가격이 높아집니다. 저금리 환경 → 요구수익률↓ → Cap Rate↓ → 가격↑. 금리 상승 → Cap Rate↑ → 가격↓.</p>
+        <div class="ex"><strong>실전:</strong> 오피스텔 12억, 연임대 2,400만, 공실손실 200만, 운영비 400만.<br>
+          NOI = 2,400-200-400 = <strong>1,800만</strong><br>
+          Cap Rate = 1,800만 ÷ 12억 = <strong>1.5%</strong> (주거용 오피스텔은 낮음. 오피스는 보통 4~6%)</div>
+      </div>
+    </div>
+    <div class="ac">
+      <div class="ac-hd" onclick="toggleAcc(this)">
+        <div class="ac-htxt"><span class="ac-tag" style="background:#DCFCE7;color:#15803D;">레버리지</span><span class="ac-name">레버리지 — 빌려서 수익률을 증폭시키는 원리</span></div>
+        <span class="ac-aro">▼</span>
+      </div>
+      <div class="ac-body">
+        <div class="fbox">양(+) 레버리지 조건: 부동산 총자본수익률 > 대출금리</div>
+        <div class="fbox">자기자본수익률(ROE) = (순이익 ÷ 자기자본) × 100</div>
+        <div class="ex"><strong>레버리지 효과 실전:</strong><br>
+          10억 아파트, 자기자본 3억, 대출 7억(금리 4%), 1년 후 12억 매각.<br>
+          총이익 = 2억. 이자비용 = 7억×4% = 2,800만.<br>
+          순이익 ≈ 2억 - 2,800만 = 1.72억.<br>
+          ROE = 1.72억 ÷ 3억 ≈ <strong>57%</strong> (총자본수익률 20%의 약 3배 증폭)</div>
+        <div class="wb">⚠ 역(-) 레버리지: 총수익률 &lt; 대출금리 → 손실 증폭. 금리 급등(2022~2023년) 시 고레버리지 투자자가 이자+집값 하락으로 이중 타격. 레버리지는 양날의 검.</div>
+      </div>
+    </div>
+    <div class="ac">
+      <div class="ac-hd" onclick="toggleAcc(this)">
+        <div class="ac-htxt"><span class="ac-tag" style="background:#EDE9FE;color:#6D28D9;">DCF</span><span class="ac-name">DCF (현금흐름할인법) — 부동산 가치의 이론적 계산</span></div>
+        <span class="ac-aro">▼</span>
+      </div>
+      <div class="ac-body">
+        <div class="fbox">DCF 가치 = Σ (미래 각 연도 NOI ÷ (1+할인율)^n) + 잔존가치 현재가치</div>
+        <p>할인율 = 투자자 요구수익률(위험 프리미엄 포함). 할인율이 높을수록 미래 현금흐름의 현재가치가 낮아져 → 자산 가격 하락.</p>
+        <p>금리 상승 → 무위험 수익률↑ → 요구수익률(할인율)↑ → DCF 가치↓ → 부동산 가격 하락. 이것이 금리와 부동산 가격이 <em>역관계</em>인 이론적 근거입니다.</p>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /panel-개념 -->
+
+<!-- ═══════════════ 계산연습 ═══════════════ -->
+<div class="panel" id="panel-계산">
+  <p style="font-size:.82rem;color:var(--ink3);margin-bottom:20px;">숫자를 입력하면 단계별 풀이를 보여줍니다. 실전 감각을 기르는 데 집중하세요.</p>
+  <div class="calc-grid">
+
+    <div class="ccard">
+      <div class="ccard-title">🏦 LTV 대출 한도 계산</div>
+      <div class="ccard-sub">담보 가치 기준 최대 대출 금액 산출</div>
+      <div class="cinput-row"><label class="clabel">주택 감정평가액 (억원)</label><input class="cinput" id="ltv-price" type="number" placeholder="예: 6" oninput="calcLTV()"></div>
+      <div class="cinput-row"><label class="clabel">적용 LTV (%)</label><input class="cinput" id="ltv-pct" type="number" placeholder="예: 70" oninput="calcLTV()"></div>
+      <div class="cinput-row"><label class="clabel">한도 캡 (억원, 없으면 비움)</label><input class="cinput" id="ltv-cap" type="number" placeholder="예: 6 (10·15 대책 기준)" oninput="calcLTV()"></div>
+      <div class="cresult" id="ltv-r">
+        <div class="cr-val" id="ltv-ans"></div>
+        <div class="cr-step" id="ltv-step"></div>
+      </div>
+    </div>
+
+    <div class="ccard">
+      <div class="ccard-title">💳 DSR 추가 대출 가능 계산</div>
+      <div class="ccard-sub">소득 기준 상환 가능한 추가 대출 금액</div>
+      <div class="cinput-row"><label class="clabel">연소득 (만원)</label><input class="cinput" id="dsr-income" type="number" placeholder="예: 6000" oninput="calcDSR()"></div>
+      <div class="cinput-row"><label class="clabel">DSR 상한 (%)</label><input class="cinput" id="dsr-pct" type="number" placeholder="예: 40" oninput="calcDSR()"></div>
+      <div class="cinput-row"><label class="clabel">기존 연 원리금 합계 (만원)</label><input class="cinput" id="dsr-exist" type="number" placeholder="예: 600" oninput="calcDSR()"></div>
+      <div class="cresult" id="dsr-r">
+        <div class="cr-val" id="dsr-ans"></div>
+        <div class="cr-step" id="dsr-step"></div>
+      </div>
+    </div>
+
+    <div class="ccard">
+      <div class="ccard-title">📊 Cap Rate 계산</div>
+      <div class="ccard-sub">순영업이익(NOI) 기반 수익률 산출</div>
+      <div class="cinput-row"><label class="clabel">연간 총임대수입 (만원)</label><input class="cinput" id="cap-gross" type="number" placeholder="예: 2400" oninput="calcCap()"></div>
+      <div class="cinput-row"><label class="clabel">공실 및 손실 (만원)</label><input class="cinput" id="cap-vacancy" type="number" placeholder="예: 200" oninput="calcCap()"></div>
+      <div class="cinput-row"><label class="clabel">연간 운영비용 (만원)</label><input class="cinput" id="cap-opex" type="number" placeholder="예: 400" oninput="calcCap()"></div>
+      <div class="cinput-row"><label class="clabel">자산 매입가격 (억원)</label><input class="cinput" id="cap-price" type="number" placeholder="예: 12" oninput="calcCap()"></div>
+      <div class="cresult" id="cap-r">
+        <div class="cr-val" id="cap-ans"></div>
+        <div class="cr-step" id="cap-step"></div>
+      </div>
+    </div>
+
+    <div class="ccard">
+      <div class="ccard-title">🔄 전월세 전환율 계산</div>
+      <div class="ccard-sub">보증금 일부를 월세로 전환하는 이율</div>
+      <div class="cinput-row"><label class="clabel">전환하는 보증금 (만원)</label><input class="cinput" id="conv-dep" type="number" placeholder="예: 10000" oninput="calcConv()"></div>
+      <div class="cinput-row"><label class="clabel">전환 후 월세 (만원/월)</label><input class="cinput" id="conv-mo" type="number" placeholder="예: 50" oninput="calcConv()"></div>
+      <div class="cresult" id="conv-r">
+        <div class="cr-val" id="conv-ans"></div>
+        <div class="cr-step" id="conv-step"></div>
+      </div>
+    </div>
+
+    <div class="ccard">
+      <div class="ccard-title">🏗 재건축 분담금 계산</div>
+      <div class="ccard-sub">비례율·권리가액·추가분담금 단계별 산출</div>
+      <div class="cinput-row"><label class="clabel">종전 자산 평가액 (억원)</label><input class="cinput" id="rb-old" type="number" placeholder="예: 4" oninput="calcRB()"></div>
+      <div class="cinput-row"><label class="clabel">비례율 (%)</label><input class="cinput" id="rb-ratio" type="number" placeholder="예: 110" oninput="calcRB()"></div>
+      <div class="cinput-row"><label class="clabel">새 아파트 분양가 (억원)</label><input class="cinput" id="rb-new" type="number" placeholder="예: 5" oninput="calcRB()"></div>
+      <div class="cresult" id="rb-r">
+        <div class="cr-val" id="rb-ans"></div>
+        <div class="cr-step" id="rb-step"></div>
+      </div>
+    </div>
+
+    <div class="ccard">
+      <div class="ccard-title">📉 레버리지 수익률 계산</div>
+      <div class="ccard-sub">자기자본수익률(ROE) vs 총자본수익률 비교</div>
+      <div class="cinput-row"><label class="clabel">총 매입가격 (억원)</label><input class="cinput" id="lev-total" type="number" placeholder="예: 10" oninput="calcLev()"></div>
+      <div class="cinput-row"><label class="clabel">자기자본 (억원)</label><input class="cinput" id="lev-equity" type="number" placeholder="예: 3" oninput="calcLev()"></div>
+      <div class="cinput-row"><label class="clabel">대출 금리 (%)</label><input class="cinput" id="lev-rate" type="number" placeholder="예: 4" oninput="calcLev()"></div>
+      <div class="cinput-row"><label class="clabel">1년 후 매각가 (억원)</label><input class="cinput" id="lev-sell" type="number" placeholder="예: 12" oninput="calcLev()"></div>
+      <div class="cresult" id="lev-r">
+        <div class="cr-val" id="lev-ans"></div>
+        <div class="cr-step" id="lev-step"></div>
+      </div>
+    </div>
+
+  </div>
+</div><!-- /panel-계산 -->
+
+<!-- ═══════════════ 비교분석 ═══════════════ -->
+<div class="panel" id="panel-비교">
+  <div class="cmp-tabs">
+    <button class="ct act" onclick="showCmp('reg',this)">규제지역 비교</button>
+    <button class="ct" onclick="showCmp('loan',this)">대출 상품 비교</button>
+    <button class="ct" onclick="showCmp('rebuild',this)">재건축 vs 재개발</button>
+    <button class="ct" onclick="showCmp('rent',this)">전세 vs 월세</button>
+    <button class="ct" onclick="showCmp('rate',this)">고정 vs 변동금리</button>
+  </div>
+
+  <div class="cmp-panel act" id="cmp-reg">
+    <div class="cmp-title">규제지역별 적용 규제 비교</div>
+    <div class="cmp-desc">규제 지역 지정에 따라 LTV·취득세·청약·세금 등 전면적으로 달라집니다. 부동산 거래 전 반드시 확인해야 합니다.</div>
+    <div class="tbl-wrap"><table>
+      <tr><th>규제 항목</th><th>투기과열지구</th><th>조정대상지역</th><th>비규제지역</th></tr>
+      <tr><td>대표 지역</td><td>강남3구·마포·성동·용산 등</td><td>서울 대부분·수도권 일부</td><td>지방 중소도시</td></tr>
+      <tr><td>무주택 LTV</td><td class="td-ng">9억↓ 50%<br>9억↑ 40%</td><td class="td-acc">5억↓ 70%<br>5억↑ 60%</td><td class="td-ok">70~80%</td></tr>
+      <tr><td>1주택 LTV</td><td class="td-ng">40~50%</td><td class="td-ng">50~60%</td><td class="td-acc">70%</td></tr>
+      <tr><td>다주택 취득</td><td class="td-ng">원칙 대출 불가</td><td class="td-ng">원칙 대출 불가</td><td class="td-acc">60%</td></tr>
+      <tr><td>취득세 (2주택)</td><td class="td-ng">8%</td><td class="td-ng">8%</td><td class="td-acc">1~3%</td></tr>
+      <tr><td>양도세 중과</td><td class="td-ng">2주택 +20%p<br>3주택 +30%p</td><td class="td-ng">동일</td><td class="td-ok">중과 없음</td></tr>
+      <tr><td>청약 1순위</td><td class="td-ng">세대주·무주택·납입 24회↑</td><td class="td-ng">세대원·1주택·24회↑</td><td class="td-ok">6회↑</td></tr>
+      <tr><td>재건축 조합원<br>분양권 전매</td><td class="td-ng">원칙 금지</td><td class="td-acc">조건부 허용</td><td class="td-ok">허용</td></tr>
+      <tr><td>분양가상한제</td><td class="td-ng">의무 적용</td><td class="td-acc">국토부 지정시</td><td class="td-ok">일반 미적용</td></tr>
+    </table></div>
+  </div>
+
+  <div class="cmp-panel" id="cmp-loan">
+    <div class="cmp-title">주요 정책대출 상품 비교 (2026 기준)</div>
+    <div class="cmp-desc">디딤돌·보금자리·특례보금자리·버팀목 중 나에게 맞는 상품을 선택하는 것이 이자 절약의 첫걸음입니다.</div>
+    <div class="tbl-wrap"><table>
+      <tr><th>항목</th><th>디딤돌</th><th>보금자리론</th><th>특례보금자리</th><th>버팀목 전세</th></tr>
+      <tr><td>용도</td><td>매매</td><td>매매</td><td>매매</td><td>전세</td></tr>
+      <tr><td>소득요건</td><td class="td-ng">7천(신혼8.5천)</td><td class="td-ok">없음</td><td class="td-ok">없음</td><td class="td-ng">5천(신혼6천)</td></tr>
+      <tr><td>주택가격</td><td class="td-ng">5억↓</td><td class="td-acc">9억↓</td><td class="td-acc">9억↓</td><td class="td-ng">수도권 4억↓</td></tr>
+      <tr><td>대출 한도</td><td class="td-ng">4억</td><td class="td-acc">5억</td><td class="td-acc">5억</td><td class="td-ng">2.2억(수도권)</td></tr>
+      <tr><td>금리(2026)</td><td class="td-ok">2.35~3.95%</td><td class="td-acc">4.15~4.65%</td><td class="td-acc">4.25~4.85%</td><td class="td-ok">2.1~2.9%</td></tr>
+      <tr><td>금리 유형</td><td>고정·혼합</td><td>장기 고정</td><td>고정·혼합</td><td>고정</td></tr>
+      <tr><td>DSR 산정</td><td>별도 방식</td><td>일반 DSR</td><td>일반 DSR</td><td>별도</td></tr>
+      <tr><td>생애최초 혜택</td><td class="td-ok">금리 0.1% 추가인하</td><td class="td-ok">12억↓까지 가능</td><td class="td-acc">해당</td><td>—</td></tr>
+    </table></div>
+    <div class="wb">⚠ 정책대출 요건은 자주 변경됩니다. 최신 조건은 주택금융공사(HF) 홈페이지에서 확인하세요.</div>
+  </div>
+
+  <div class="cmp-panel" id="cmp-rebuild">
+    <div class="cmp-title">재건축 vs 재개발 핵심 차이</div>
+    <div class="cmp-desc">둘 다 노후 주거지를 새 아파트로 바꾸는 사업이지만 대상·절차·권리가 크게 다릅니다.</div>
+    <div class="tbl-wrap"><table>
+      <tr><th>구분</th><th>재건축</th><th>재개발</th></tr>
+      <tr><td>주요 대상</td><td>노후 아파트·연립·빌라 단지</td><td>단독·다세대 혼재 열악 주거지</td></tr>
+      <tr><td>사업 범위</td><td>단지 내부만</td><td>도로·공원 등 기반시설 포함 지역 전체</td></tr>
+      <tr><td>토지 수용</td><td class="td-ok">불필요 (토지 소유자 = 조합원)</td><td class="td-ng">강제 수용 가능</td></tr>
+      <tr><td>세입자 권리</td><td class="td-ng">보호 약함 (이사비 정도)</td><td class="td-acc">주거이전비 + 이사비 지급 의무</td></tr>
+      <tr><td>안전진단</td><td class="td-ng">필수 (D등급↑)</td><td class="td-ok">불필요</td></tr>
+      <tr><td>조합 설립 동의</td><td>구분소유자 3/4↑</td><td>토지등소유자 2/3↑</td></tr>
+      <tr><td>초과이익 환수</td><td class="td-ng">재건축 초과이익환수 50% (2026.3~)</td><td class="td-ok">해당 없음</td></tr>
+      <tr><td>사업 성격</td><td>민간 주도</td><td>공공 개입 더 많음</td></tr>
+      <tr><td>대표 사례</td><td>압구정·반포·잠실 아파트</td><td>흑석·한남·신반포·왕십리</td></tr>
+    </table></div>
+  </div>
+
+  <div class="cmp-panel" id="cmp-rent">
+    <div class="cmp-title">전세 vs 월세 — 임차인 관점 비교</div>
+    <div class="cmp-desc">어떤 방식이 유리한지는 금리 수준·전환율·거주 기간·자금 상황에 따라 달라집니다.</div>
+    <div class="tbl-wrap"><table>
+      <tr><th>항목</th><th>전세</th><th>월세</th></tr>
+      <tr><td>초기 자금</td><td class="td-ng">대규모 보증금 필요</td><td class="td-ok">보증금 소액</td></tr>
+      <tr><td>월 부담</td><td class="td-ok">없음 (보증금만)</td><td class="td-ng">매월 월세 지출</td></tr>
+      <tr><td>금리 하락 시</td><td class="td-ng">전세 수요↑ → 전세가↑</td><td class="td-ok">상대적으로 유리</td></tr>
+      <tr><td>금리 상승 시</td><td class="td-ok">전세→월세 이동 → 전세가↓</td><td class="td-ng">집주인이 월세 인상 압박</td></tr>
+      <tr><td>역전세 위험</td><td class="td-ng">있음 (보증금 미반환 위험)</td><td class="td-ok">없음</td></tr>
+      <tr><td>세금 혜택</td><td>—</td><td class="td-ok">월세 세액공제 가능 (총급여 8천 이하)</td></tr>
+      <tr><td>이사 유연성</td><td class="td-ng">보증금 회수 시간 필요</td><td class="td-ok">상대적으로 유연</td></tr>
+      <tr><td>유리한 시기</td><td>저금리·전세가 안정기</td><td>고금리·전세가 급등기</td></tr>
+    </table></div>
+    <p style="font-size:.77rem;color:var(--ink3);margin-top:10px;">전환율 계산: 전세 1억을 월 55만으로 전환 시 전환율 = 660만 ÷ 1억 = 6.6%. 기준금리+2%p(약 4.5%)보다 높으면 월세가 임대인에게 유리합니다.</p>
+  </div>
+
+  <div class="cmp-panel" id="cmp-rate">
+    <div class="cmp-title">고정금리 vs 변동금리 주담대 비교</div>
+    <div class="cmp-desc">금리 방향 예측이 핵심입니다. 완전한 예측은 불가능하므로 자신의 리스크 허용 수준과 보유 기간을 고려하세요.</div>
+    <div class="tbl-wrap"><table>
+      <tr><th>항목</th><th>고정금리</th><th>변동금리</th></tr>
+      <tr><td>금리 변동</td><td class="td-ok">만기까지 불변</td><td class="td-ng">6개월~1년마다 변경</td></tr>
+      <tr><td>초기 금리 수준</td><td class="td-ng">일반적으로 높음</td><td class="td-ok">일반적으로 낮음</td></tr>
+      <tr><td>금리 상승 시</td><td class="td-ok">상환액 고정 — 유리</td><td class="td-ng">상환액 증가 — 불리</td></tr>
+      <tr><td>금리 하락 시</td><td class="td-ng">재대출 없이는 혜택 없음</td><td class="td-ok">자동으로 상환액 감소</td></tr>
+      <tr><td>스트레스 DSR 영향</td><td class="td-ok">가산금리 적용 제외</td><td class="td-ng">스트레스 가산금리 적용</td></tr>
+      <tr><td>추천 상황</td><td>금리 저점, 장기 거주 예정</td><td>금리 고점, 단기 2~3년 계획</td></tr>
+      <tr><td>중도상환 수수료</td><td class="td-ng">3년 이내 1~2%</td><td class="td-acc">짧을수록 낮음</td></tr>
+      <tr><td>최근 추세</td><td>고정 선호 확대 (변동 불확실성)</td><td>금리 인하 기대 시 인기</td></tr>
+    </table></div>
+    <div class="wb">⚠ 혼합형(5년 고정 후 변동 전환) 상품도 있습니다. 스트레스 DSR 하한 3.0% 적용으로 변동금리의 한도가 더 제한됩니다.</div>
+  </div>
+</div><!-- /panel-비교 -->
+
+<!-- ═══════════════ 용어사전 ═══════════════ -->
+<div class="panel" id="panel-용어">
+  <input class="g-search" id="gsearch" type="text" placeholder="용어를 검색하세요 (예: DSR, 전세가율, 재건축...)" oninput="filterGloss()">
+  <div class="g-idx" id="gidx"></div>
+  <div class="g-count" id="gcnt"></div>
+  <div class="glist" id="glist"></div>
+</div>
+
+</div><!-- /app -->
+<script>
+/* ─── 테마 ─── */
+var TH=['auto','light','dark'];
+function applyTheme(t){t==='auto'?document.documentElement.removeAttribute('data-theme'):document.documentElement.setAttribute('data-theme',t);var b=document.getElementById('thbtn');if(b)b.textContent=t==='auto'?'테마':t==='light'?'☀ 라이트':'☾ 다크';}
+function toggleTheme(){var i=(TH.indexOf(localStorage.getItem('xth')||'auto')+1)%3;localStorage.setItem('xth',TH[i]);applyTheme(TH[i]);}
+applyTheme(localStorage.getItem('xth')||'auto');
+
+/* ─── 탭 ─── */
+function showTab(id,btn){
+  document.querySelectorAll('.panel').forEach(function(p){p.classList.remove('act');});
+  document.querySelectorAll('.tab').forEach(function(b){b.classList.remove('act');});
+  var p=document.getElementById('panel-'+id);if(p)p.classList.add('act');
+  if(btn)btn.classList.add('act');
+}
+
+/* ─── 아코디언 ─── */
+function toggleAcc(hd){hd.parentElement.classList.toggle('open');}
+
+/* ─── 비교 탭 ─── */
+function showCmp(id,btn){
+  document.querySelectorAll('.cmp-panel').forEach(function(p){p.classList.remove('act');});
+  document.querySelectorAll('.ct').forEach(function(b){b.classList.remove('act');});
+  var p=document.getElementById('cmp-'+id);if(p)p.classList.add('act');
+  if(btn)btn.classList.add('act');
+}
+
+/* ─── 계산기 ─── */
+function getN(id){return parseFloat(document.getElementById(id).value)||0;}
+function showR(id,val,step){var r=document.getElementById(id);r.style.display='block';document.getElementById(id.replace('-r','-ans')).textContent=val;document.getElementById(id.replace('-r','-step')).innerHTML=step;}
+function hideR(id){var r=document.getElementById(id);if(r)r.style.display='none';}
+
+function calcLTV(){
+  var price=getN('ltv-price'),pct=getN('ltv-pct'),cap=getN('ltv-cap');
+  if(!price||!pct){hideR('ltv-r');return;}
+  var loan=price*pct/100;
+  var result=cap>0?Math.min(loan,cap):loan;
+  var step='① LTV 기준: '+price+'억 × '+pct+'% = '+loan.toFixed(2)+'억<br>';
+  if(cap>0)step+='② 한도 캡: '+cap+'억<br>③ 실질 한도: min('+loan.toFixed(2)+', '+cap+') = <b>'+result.toFixed(2)+'억</b>';
+  else step+='② 최대 대출: <b>'+result.toFixed(2)+'억</b>';
+  showR('ltv-r','최대 대출 '+result.toFixed(2)+'억원',step);
+}
+
+function calcDSR(){
+  var income=getN('dsr-income'),pct=getN('dsr-pct'),exist=getN('dsr-exist');
+  if(!income||!pct){hideR('dsr-r');return;}
+  var maxTotal=income*pct/100;
+  var avail=Math.max(0,maxTotal-exist);
+  var step='① 연소득: '+income+'만원<br>② DSR '+pct+'%: '+income+'×'+pct+'% = <b>'+maxTotal.toFixed(0)+'만/년</b><br>③ 기존 원리금: '+exist+'만<br>④ 추가 가용: '+maxTotal.toFixed(0)+' - '+exist+' = <b>'+avail.toFixed(0)+'만/년 (월 '+Math.round(avail/12)+'만)</b>';
+  showR('dsr-r','추가 연 '+avail.toFixed(0)+'만원 (월 '+Math.round(avail/12)+'만)',step);
+}
+
+function calcCap(){
+  var gross=getN('cap-gross'),vac=getN('cap-vacancy'),opex=getN('cap-opex'),price=getN('cap-price');
+  if(!gross||!price){hideR('cap-r');return;}
+  var noi=gross-vac-opex;
+  var cap=noi/(price*10000)*100;
+  var step='① 총임대: '+gross+'만<br>② 공실손실: -'+vac+'만<br>③ 운영비: -'+opex+'만<br>④ NOI = <b>'+noi+'만원/년</b><br>⑤ Cap Rate = '+noi+'만 ÷ '+price+'억 = <b>'+cap.toFixed(2)+'%</b>';
+  showR('cap-r','Cap Rate '+cap.toFixed(2)+'% / NOI '+noi+'만원',step);
+}
+
+function calcConv(){
+  var dep=getN('conv-dep'),mo=getN('conv-mo');
+  if(!dep||!mo){hideR('conv-r');return;}
+  var rate=mo*12/dep*100;
+  var legal=2.5+2;
+  var step='① 연환산 월세: '+mo+'만 × 12 = '+(mo*12)+'만<br>② 전환 보증금: '+dep+'만<br>③ 전환율 = '+(mo*12)+'÷'+dep+'×100 = <b>'+rate.toFixed(2)+'%</b><br>④ 법정기준(기준금리+2%p): '+legal+'%<br>'+(rate>legal?'→ 법정 기준 초과 (임대인 유리)':'→ 법정 기준 이내 (임차인 보호)');
+  showR('conv-r','전환율 '+rate.toFixed(2)+'%',step);
+}
+
+function calcRB(){
+  var old=getN('rb-old'),ratio=getN('rb-ratio'),newv=getN('rb-new');
+  if(!old||!ratio){hideR('rb-r');return;}
+  var right=old*ratio/100;
+  var diff=newv-right;
+  var step='① 종전 자산: '+old+'억<br>② 비례율: '+ratio+'%<br>③ 권리가액 = '+old+'억 × '+ratio+'% = <b>'+right.toFixed(2)+'억</b><br>';
+  if(newv>0)step+='④ 분양가: '+newv+'억<br>⑤ 추가분담금 = '+newv+' - '+right.toFixed(2)+' = <b>'+(diff>=0?'+':'')+diff.toFixed(2)+'억 ('+(diff>0?'납부':'환급')+')</b>';
+  showR('rb-r',newv?'권리가액 '+right.toFixed(2)+'억 / '+(diff>=0?'분담금 +'+diff.toFixed(2):'환급 '+Math.abs(diff).toFixed(2))+'억':'권리가액 '+right.toFixed(2)+'억',step);
+}
+
+function calcLev(){
+  var total=getN('lev-total'),equity=getN('lev-equity'),rate=getN('lev-rate'),sell=getN('lev-sell');
+  if(!total||!equity||!sell){hideR('lev-r');return;}
+  var loan=total-equity;
+  var interest=loan*rate/100;
+  var gain=(sell-total);
+  var netGain=gain-interest;
+  var roe=netGain/equity*100;
+  var totalRoe=gain/total*100;
+  var step='① 대출: '+loan.toFixed(1)+'억 × '+rate+'% = 이자 '+interest.toFixed(2)+'억<br>② 매각차익: '+sell+'억 - '+total+'억 = '+gain.toFixed(1)+'억<br>③ 순이익: '+gain.toFixed(1)+' - '+interest.toFixed(2)+' = <b>'+netGain.toFixed(2)+'억</b><br>④ 총자본수익률: '+totalRoe.toFixed(1)+'%<br>⑤ 자기자본수익률(ROE): '+netGain.toFixed(2)+'÷'+equity+'억 = <b>'+roe.toFixed(1)+'%</b>'+(roe>totalRoe?' (레버리지 ✓ 증폭)':' (⚠ 역레버리지)');
+  showR('lev-r','ROE '+roe.toFixed(1)+'% vs 총자본 '+totalRoe.toFixed(1)+'%',step);
+}
+
+/* ─── 용어사전 ─── */
+var GLOSS=[
+  {t:'갭투자',c:'투자',d:'매매가와 전세가의 차액(갭)만 자기자본으로 투자해 주택을 취득하는 방식. 전세보증금을 레버리지로 활용합니다.',e:'10억 매매, 8억 전세 → 갭 2억 투자'},
+  {t:'경매낙찰가율',c:'시장',d:'감정평가액 대비 낙찰 가격 비율. 100% 초과면 시장 강세.',e:'낙찰가율 115% = 감정가보다 15% 비싸게 낙찰'},
+  {t:'계약갱신청구권',c:'임대차',d:'임차인이 최대 1회 계약 갱신을 요청할 수 있는 권리. 총 4년(2+2) 거주 보장.'},
+  {t:'공시가격',c:'세금',d:'정부(국토부)가 과세 목적으로 공식 발표하는 부동산 가격. 재산세·종부세·건강보험료 기준.'},
+  {t:'공실률',c:'투자',d:'전체 임대 가능 면적 중 임차인이 없는 비율. 높을수록 수익 감소.'},
+  {t:'관리처분계획',c:'재건축',d:'정비사업에서 종전 자산을 평가하고 새 아파트 권리를 배분하는 계획. 인가 후 이주 시작.',e:'관리처분인가 = 이주 시작의 신호'},
+  {t:'기준금리',c:'경제',d:'한국은행 금융통화위원회가 결정하는 정책금리. 시중금리의 기준. 2025년 5월 2.5%.',e:'기준금리 2.5% (2025.5~)'},
+  {t:'낙찰가율',c:'경매',d:'경매에서 낙찰가 ÷ 감정평가액 × 100. 시장 과열/침체 파악 지표.',e:'2021년 서울 130% → 2023년 70%대'},
+  {t:'노출면적',c:'건축',d:'전용면적 + 공용면적(복도·계단 등). 아파트 분양 시 광고에 나오는 면적.'},
+  {t:'Cap Rate',c:'투자',d:'연간 순영업이익(NOI) ÷ 자산가격 × 100. 상업용 부동산 수익성 평가 핵심 지표.',e:'NOI 3천만 ÷ 10억 = Cap Rate 3%'},
+  {t:'다주택자',c:'세금',d:'1세대 기준 2채 이상 주택 보유자. 취득세·양도세·종부세 중과 대상.',e:'조정지역 2주택 취득세 8%'},
+  {t:'단기양도세',c:'세금',d:'1년 미만 보유 시 70%, 1~2년 60% 세율. 단기 투기 억제 목적.'},
+  {t:'대지권',c:'건축',d:'집합건물(아파트) 구분소유자가 토지에 대해 갖는 공유 지분권.'},
+  {t:'도시정비법',c:'재건축',d:'재건축·재개발 등 정비사업의 절차·권리를 규정하는 법률.'},
+  {t:'DSR',c:'대출',d:'총부채원리금상환비율. 연소득 대비 모든 금융기관 원리금 합계 비율. 규제: 은행 40%.',e:'연봉 6천×40% = 연 2,400만 한도'},
+  {t:'디딤돌 대출',c:'대출',d:'무주택 실수요자 저금리 정책대출. 부부합산 7천만↓, 5억 이하 주택, 최대 4억.',e:'금리 2.35~3.95%'},
+  {t:'레버리지',c:'투자',d:'타인 자본(대출)을 활용해 자기자본수익률을 증폭시키는 투자 기법.',e:'총수익률 > 대출금리 = 양(+)레버리지'},
+  {t:'LTV',c:'대출',d:'주택담보인정비율. 담보가치 대비 대출금 비율.',e:'6억 주택에 4.2억 대출 = LTV 70%'},
+  {t:'매수우위지수',c:'시장',d:'KB부동산 지표. 100 초과면 매수자 > 매도자(가격 상승 압력).'},
+  {t:'미분양',c:'시장',d:'공급되었으나 팔리지 않은 주택. 전국 7만 호 이상이면 위험 수위.',e:'2023년 전국 고점 6.5만 호'},
+  {t:'분양가상한제',c:'정책',d:'택지비+건축비+이윤 이내로 분양가 제한. 투기과열지구 의무 적용.'},
+  {t:'비례율',c:'재건축',d:'(총수입-총사업비) ÷ 종전 자산 총평가액 × 100. 100% 초과면 사업성 양호.',e:'비례율 110%: 종전 4억 → 권리가액 4.4억'},
+  {t:'생애최초',c:'대출',d:'태어나서 한 번도 주택을 소유한 적 없는 상태. 취득세 감면·대출 우대.'},
+  {t:'안전진단',c:'재건축',d:'재건축 가능 여부 판단 조사. D등급 이상이어야 재건축 가능. 구조안전성 가중치 50%.'},
+  {t:'역전세',c:'임대차',d:'집값 하락으로 전세가가 기존 보증금보다 낮아져 임대인이 보증금을 돌려주지 못하는 상황.'},
+  {t:'양도세',c:'세금',d:'주택 양도 시 발생한 시세차익에 부과하는 세금. 1가구 1주택 12억↓ 비과세.',e:'2년 거주+보유(조정지역) 비과세 요건'},
+  {t:'용적률',c:'건축',d:'대지면적 대비 건물 연면적 비율. 높을수록 더 많이 올릴 수 있음.',e:'준주거지역 최대 500%'},
+  {t:'운영비용',c:'투자',d:'NOI 계산 시 차감하는 비용. 관리비·보험료·수선비 등. 대출이자 제외.'},
+  {t:'임대차 3법',c:'임대차',d:'2020.7 시행. 계약갱신청구권·전월세상한제·전월세신고제 3가지 묶음.'},
+  {t:'임대소득세',c:'세금',d:'연 임대수입 2천만 원 이하: 분리과세(14%). 2천만 초과: 종합과세.'},
+  {t:'재건축',c:'재건축',d:'노후 아파트·연립 단지를 철거 후 재건축. 토지 수용 없음. 안전진단 필수.'},
+  {t:'재개발',c:'재건축',d:'열악 주거지역 전체를 기반시설과 함께 정비. 토지 강제수용 가능.'},
+  {t:'재건축초과이익환수',c:'재건축',d:'조합원 초과이익 일부를 국가가 환수. 이재명 정부 2026.3~ 최대 50%.'},
+  {t:'전세가율',c:'시장',d:'전세가 ÷ 매매가 × 100. 높을수록 갭투자 활성화·역전세 위험 증가.',e:'서울 2026년 약 55~65%'},
+  {t:'전월세신고제',c:'임대차',d:'보증금 6천만 or 월세 30만 초과 임대차 계약을 30일 이내 신고 의무.'},
+  {t:'전월세상한제',c:'임대차',d:'계약 갱신 시 임대료를 직전의 5% 이내로만 인상 가능. 신규계약 미적용.'},
+  {t:'전환율',c:'임대차',d:'전세보증금 일부를 월세로 전환할 때 적용하는 연환산 이율.',e:'보증금 1억 → 월 50만: 전환율 6%'},
+  {t:'조정대상지역',c:'정책',d:'투기 억제를 위해 지정하는 규제 지역. 투기과열지구보다 한 단계 완화.'},
+  {t:'종부세',c:'세금',d:'종합부동산세. 6월 1일 기준 고가 주택 보유자에게 12월 부과. 1주택 12억 초과분.'},
+  {t:'주거이전비',c:'재개발',d:'재개발 구역 세입자가 받는 이주 보상. 가계지출 조사표 기준 4개월분.'},
+  {t:'주택청약종합저축',c:'청약',d:'국민·민영 모두 청약 가능한 통합 상품. 월 2~50만 납입. 1인 1계좌.'},
+  {t:'중도금 대출',c:'대출',d:'아파트 분양 후 입주 전까지 공정률에 따라 나눠 나가는 건설자금 대출.'},
+  {t:'지역주택조합',c:'청약',d:'무주택자가 모여 아파트를 공동으로 건설하는 조합. 사업 실패 리스크 큼.'},
+  {t:'취득세',c:'세금',d:'부동산 취득 시 1회 납부. 1주택 6억↓ 1%, 다주택자 8~12%.'},
+  {t:'투기과열지구',c:'정책',d:'가장 강한 규제 지역. LTV 40~50%, 재건축 전매 금지, 청약 제한.'},
+  {t:'특례보금자리',c:'대출',d:'소득 무관 9억↓ 주택, 최대 5억, 금리 4.25~4.85%'},
+  {t:'K-HAI',c:'시장',d:'주택구입부담지수. 100=중위소득으로 중위주택 구입 가능. 서울 150~200.',e:'서울 K-HAI 150: 소득 1.5배 필요'},
+  {t:'PIR',c:'시장',d:'주택가격소득비율. 주택 중위가격 ÷ 가구 연소득 중위. 서울 약 18~22.',e:'PIR 20: 20년 전액 저축해야 구입 가능'},
+  {t:'PF(프로젝트파이낸싱)',c:'금융',d:'건설 프로젝트의 미래 수익을 담보로 자금을 조달하는 방식. 미분양 급증 시 부실화.'},
+  {t:'NOI',c:'투자',d:'순영업이익. 총임대수입 - 공실손실 - 운영비용. 대출이자 미포함.',e:'총임대 2,400 - 공실 200 - 운영비 400 = NOI 1,800만'},
+  {t:'보금자리론',c:'대출',d:'소득 무관, 9억↓ 주택, 최대 5억, 장기 고정금리 정책 모기지.',e:'금리 4.15~4.65%'},
+  {t:'버팀목전세',c:'대출',d:'무주택 서민 전세자금 지원. 부부합산 5천만 이하, 수도권 4억↓, 최대 2.2억.',e:'금리 2.1~2.9%'},
+  {t:'3기 신도시',c:'공급',d:'남양주왕숙·하남교산·인천계양·고양창릉·부천대장 5곳. GTX 연계 계획.'},
+  {t:'GTX',c:'공급',d:'광역급행철도. GTX-A 2025.12 전구간 개통. B는 2030, C는 2027 예정.'},
+  {t:'DCF',c:'투자',d:'현금흐름할인법. 미래 NOI를 할인율로 할인해 현재가치 산정. 할인율↑→가치↓.'},
+  {t:'스트레스DSR',c:'대출',d:'변동금리 대출 시 가산금리 더해 DSR 산정. 서울·규제지역 하한 3.0%.',e:'2025.10.16~ 서울 하한 3.0%'},
+  {t:'10·15대책',c:'정책',d:'2025.10.16 시행. 서울·규제지역 주담대 한도 차등화 + 스트레스 DSR 하한 3.0%.'},
+  {t:'분담금',c:'재건축',d:'재건축에서 권리가액이 분양가보다 낮을 때 조합원이 추가로 납부하는 금액.'},
+  {t:'권리가액',c:'재건축',d:'종전 자산 평가액 × 비례율. 이 금액으로 새 아파트를 배분받음.',e:'4억 × 110% = 4.4억 권리가액'},
+  {t:'권리산정기준일',c:'재건축',d:'이 날 이후 취득자의 조합원 자격 제한. 투기과열지구 정비사업 적용.'}
+];
+
+var _filt='all',_search='';
+var CATS=['전체','대출','세금','시장','투자','임대차','재건축','정책','경제','공급','청약','금융','경매','건축'];
+
+function buildGloss(){
+  var idx=document.getElementById('gidx');
+  var html='<button class="gi act" onclick="filtCat(\'all\',this)">전체</button>';
+  CATS.slice(1).forEach(function(c){html+='<button class="gi" onclick="filtCat(\''+c+'\',this)">'+c+'</button>';});
+  idx.innerHTML=html;
+  var list=document.getElementById('glist');
+  list.innerHTML='';
+  GLOSS.forEach(function(g,i){
+    var d=document.createElement('div');d.className='gitem show';d.dataset.cat=g.c;d.dataset.t=g.t;d.dataset.d=g.d;
+    d.innerHTML='<div class="gt">'+g.t+'</div><div class="gc">'+g.c+'</div><div class="gd">'+g.d+'</div>'+(g.e?'<div class="ge">예) '+g.e+'</div>':'');
+    list.appendChild(d);
+  });
+  updateGCnt();
+}
+
+function filtCat(cat,btn){
+  _filt=cat;
+  document.querySelectorAll('.gi').forEach(function(b){b.classList.remove('act');});
+  if(btn)btn.classList.add('act');
+  filterGloss();
+}
+
+function filterGloss(){
+  _search=document.getElementById('gsearch').value.trim().toLowerCase();
+  var items=document.querySelectorAll('.gitem');
+  items.forEach(function(item){
+    var catOk=_filt==='all'||item.dataset.cat===_filt;
+    var srchOk=!_search||item.dataset.t.toLowerCase().indexOf(_search)>-1||item.dataset.d.toLowerCase().indexOf(_search)>-1;
+    item.classList.toggle('show',catOk&&srchOk);
+  });
+  updateGCnt();
+}
+
+function updateGCnt(){
+  var shown=document.querySelectorAll('.gitem.show').length;
+  document.getElementById('gcnt').textContent='총 '+GLOSS.length+'개 용어 중 '+shown+'개 표시';
+}
+
+buildGloss();
+</script>
+</body>
+</html>

@@ -1,0 +1,939 @@
+﻿<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/favicon.svg">
+<meta name="theme-color" content="#0C2040">
+<meta property="og:site_name" content="부릿지 BuRIDGE">
+<meta property="og:type" content="website">
+<meta property="og:title" content="내집마련 플래너 | 부릿지 BuRIDGE">
+<meta property="og:description" content="자금 계획부터 계약까지, 내 집 마련 단계별 플래너.">
+<meta property="og:url" content="https://buridge.vercel.app/부동산_내집마련플래너_2026.html">
+<meta property="og:image" content="https://buridge.vercel.app/og-image.svg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="ko_KR">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="내집마련 플래너 | 부릿지 BuRIDGE">
+<meta name="twitter:description" content="자금 계획부터 계약까지, 내 집 마련 단계별 플래너.">
+<meta name="twitter:image" content="https://buridge.vercel.app/og-image.svg">
+<title>내집마련 플래너 | 부릿지 BuRIDGE</title>
+<style>
+:root {
+  --bg:#F2F5FA;--surface:#FFFFFF;--surface2:#F7F9FC;--surface3:#EEF2F8;
+  --border:#DDE3EE;--border2:#C5CDD9;
+  --t1:#0D1B2A;--t2:#4A5568;--t3:#8A99A8;
+  --accent:#1A56DB;--accent-lt:#EBF2FF;--accent-dk:#1345B8;
+  --green:#0D7A3E;--green-lt:#EAFAF0;--green-bd:#B6E8CC;
+  --orange:#B45309;--orange-lt:#FFF8ED;--orange-bd:#F6D87A;
+  --red:#C0392B;--red-lt:#FEF2F0;--red-bd:#FBBCB8;
+  --purple:#5B21B6;--purple-lt:#F5F0FF;--purple-bd:#C9B8F0;
+  --teal:#0B7285;--teal-lt:#E7F8F9;--teal-bd:#9DDDE6;
+  --r:10px;--r-lg:14px;
+  --shadow:0 2px 12px rgba(13,27,42,.07);
+  --shadow-lg:0 6px 24px rgba(13,27,42,.10);
+}
+@media(prefers-color-scheme:dark){:root{
+  --bg:#0D1B2A;--surface:#17263A;--surface2:#1C3050;--surface3:#1A2B40;
+  --border:#2A3F58;--border2:#3A5270;
+  --t1:#E8F0FC;--t2:#8BA4C0;--t3:#55728F;
+  --accent:#5B9EFF;--accent-lt:#152040;--accent-dk:#7BB8FF;
+  --green:#3DD68C;--green-lt:#0A2418;--green-bd:#1A5432;
+  --orange:#FBBF24;--orange-lt:#1E1000;--orange-bd:#6B4A00;
+  --red:#F87171;--red-lt:#1A0808;--red-bd:#6B1414;
+  --purple:#A78BFA;--purple-lt:#170E30;--purple-bd:#4C2E8A;
+  --teal:#67E8F9;--teal-lt:#041820;--teal-bd:#0C5060;
+}}
+:root[data-theme="light"]{--bg:#F2F5FA;--surface:#FFFFFF;--surface2:#F7F9FC;--surface3:#EEF2F8;--border:#DDE3EE;--border2:#C5CDD9;--t1:#0D1B2A;--t2:#4A5568;--t3:#8A99A8;--accent:#1A56DB;--accent-lt:#EBF2FF;--accent-dk:#1345B8;--green:#0D7A3E;--green-lt:#EAFAF0;--green-bd:#B6E8CC;--orange:#B45309;--orange-lt:#FFF8ED;--orange-bd:#F6D87A;--red:#C0392B;--red-lt:#FEF2F0;--red-bd:#FBBCB8;--purple:#5B21B6;--purple-lt:#F5F0FF;--purple-bd:#C9B8F0;--teal:#0B7285;--teal-lt:#E7F8F9;--teal-bd:#9DDDE6;}
+:root[data-theme="dark"]{--bg:#0D1B2A;--surface:#17263A;--surface2:#1C3050;--surface3:#1A2B40;--border:#2A3F58;--border2:#3A5270;--t1:#E8F0FC;--t2:#8BA4C0;--t3:#55728F;--accent:#5B9EFF;--accent-lt:#152040;--accent-dk:#7BB8FF;--green:#3DD68C;--green-lt:#0A2418;--green-bd:#1A5432;--orange:#FBBF24;--orange-lt:#1E1000;--orange-bd:#6B4A00;--red:#F87171;--red-lt:#1A0808;--red-bd:#6B1414;--purple:#A78BFA;--purple-lt:#170E30;--purple-bd:#4C2E8A;--teal:#67E8F9;--teal-lt:#041820;--teal-bd:#0C5060;}
+
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Apple SD Gothic Neo','Noto Sans KR','Malgun Gothic',sans-serif;background:var(--bg);color:var(--t1);font-size:15px;line-height:1.65;}
+
+/* NAV */
+nav{background:var(--surface);border-bottom:1px solid var(--border);padding:0 20px;display:flex;align-items:center;height:50px;position:sticky;top:0;z-index:100;box-shadow:var(--shadow);}
+.nav-logo{font-weight:800;font-size:14px;color:var(--accent);text-decoration:none;margin-right:16px;white-space:nowrap;}
+.nav-links{display:flex;gap:2px;overflow-x:auto;scrollbar-width:none;flex:1;}
+.nav-links::-webkit-scrollbar{display:none;}
+.nav-links a{font-size:12px;color:var(--t2);text-decoration:none;padding:5px 9px;border-radius:6px;white-space:nowrap;transition:all .15s;}
+.nav-links a:hover,.nav-links a.active{background:var(--accent);color:#fff;}
+
+/* HEADER */
+.page-hd{background:linear-gradient(140deg,#0F3580 0%,#1A56DB 55%,#0891B2 100%);color:#fff;padding:36px 20px 28px;text-align:center;}
+.page-hd .eyebrow{font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;opacity:.7;margin-bottom:8px;}
+.page-hd h1{font-size:clamp(20px,4vw,30px);font-weight:900;margin-bottom:8px;line-height:1.2;}
+.page-hd .sub{font-size:13px;opacity:.85;max-width:480px;margin:0 auto 14px;}
+.page-hd .badges{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;}
+.page-hd .badge{background:rgba(255,255,255,.18);border:1px solid rgba(255,255,255,.3);border-radius:20px;font-size:11px;padding:3px 12px;}
+
+/* LAYOUT */
+.wrap{max-width:900px;margin:0 auto;padding:24px 16px 60px;}
+
+/* CARDS */
+.card{background:var(--surface);border:1px solid var(--border);border-radius:var(--r-lg);padding:22px 20px;box-shadow:var(--shadow);margin-bottom:16px;}
+.sec-title{font-size:16px;font-weight:800;margin-bottom:16px;display:flex;align-items:center;gap:8px;}
+.step-chip{background:var(--accent);color:#fff;font-size:11px;font-weight:700;padding:3px 10px;border-radius:12px;}
+
+/* INPUT GRID */
+.ig{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+@media(max-width:580px){.ig{grid-template-columns:1fr;}}
+.field{display:flex;flex-direction:column;gap:5px;}
+.field label{font-size:12px;font-weight:700;color:var(--t2);display:flex;align-items:center;gap:4px;}
+.fw{position:relative;display:flex;align-items:center;}
+.fw input[type=number]{width:100%;background:var(--surface2);border:1.5px solid var(--border2);border-radius:8px;padding:9px 44px 9px 12px;font-size:15px;font-weight:700;color:var(--t1);outline:none;-moz-appearance:textfield;transition:border-color .15s;}
+.fw input[type=number]::-webkit-inner-spin-button{display:none;}
+.fw input[type=number]:focus{border-color:var(--accent);}
+.fw .u{position:absolute;right:10px;font-size:11px;color:var(--t3);font-weight:600;}
+.fprev{font-size:12px;color:var(--accent);font-weight:700;min-height:15px;}
+.fhint{font-size:11px;color:var(--t3);line-height:1.4;}
+
+/* RADIO */
+.rg{display:flex;gap:6px;flex-wrap:wrap;}
+.rg input[type=radio]{display:none;}
+.rc{display:inline-block;padding:6px 13px;border:1.5px solid var(--border2);border-radius:20px;font-size:12px;font-weight:600;color:var(--t2);cursor:pointer;transition:all .15s;}
+.rg input:checked+.rc{background:var(--accent);border-color:var(--accent);color:#fff;}
+
+/* SELECT */
+select{width:100%;background:var(--surface2);border:1.5px solid var(--border2);border-radius:8px;padding:9px 12px;font-size:13px;color:var(--t1);outline:none;cursor:pointer;transition:border-color .15s;}
+select:focus{border-color:var(--accent);}
+
+/* CHECKBOX */
+.cb-row{display:flex;align-items:center;gap:8px;padding:10px 12px;background:var(--green-lt);border:1px solid var(--green-bd);border-radius:8px;cursor:pointer;}
+.cb-row input[type=checkbox]{width:16px;height:16px;cursor:pointer;accent-color:var(--green);}
+.cb-row span{font-size:13px;font-weight:600;color:var(--green);flex:1;}
+.cb-row small{font-size:11px;color:var(--t3);}
+
+/* BIG RESULT */
+.big-res{background:var(--accent-lt);border:2px solid var(--accent);border-radius:var(--r-lg);padding:18px 20px;margin-bottom:14px;}
+.big-res .br-label{font-size:11px;font-weight:700;color:var(--accent);letter-spacing:.08em;text-transform:uppercase;margin-bottom:4px;}
+.big-res .br-val{font-size:clamp(26px,5vw,38px);font-weight:900;color:var(--accent);line-height:1.1;font-variant-numeric:tabular-nums;}
+.big-res .br-note{font-size:12px;color:var(--t2);margin-top:6px;line-height:1.5;}
+
+/* RESULT GRID */
+.rg3{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:14px;}
+.rg2{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:14px;}
+@media(max-width:500px){.rg3,.rg2{grid-template-columns:1fr 1fr;}}
+.ri{background:var(--surface2);border:1px solid var(--border);border-radius:8px;padding:12px 14px;}
+.ri .rl{font-size:10px;font-weight:700;color:var(--t3);letter-spacing:.05em;text-transform:uppercase;margin-bottom:5px;}
+.ri .rv{font-size:17px;font-weight:800;font-variant-numeric:tabular-nums;line-height:1.2;}
+.ri .rs{font-size:11px;color:var(--t3);margin-top:3px;line-height:1.4;}
+.rv.c-acc{color:var(--accent);}
+.rv.c-grn{color:var(--green);}
+.rv.c-org{color:var(--orange);}
+.rv.c-red{color:var(--red);}
+.rv.c-pur{color:var(--purple);}
+
+/* STAGE BAR */
+.stage-bar{display:flex;gap:0;border:1px solid var(--border2);border-radius:8px;overflow:hidden;margin-bottom:14px;}
+.stage-item{flex:1;padding:10px 12px;text-align:center;background:var(--surface2);}
+.stage-item+.stage-item{border-left:1px solid var(--border2);}
+.stage-item .si-label{font-size:10px;font-weight:700;color:var(--t3);text-transform:uppercase;letter-spacing:.04em;margin-bottom:4px;}
+.stage-item .si-val{font-size:14px;font-weight:800;font-variant-numeric:tabular-nums;}
+.stage-item .si-when{font-size:10px;color:var(--t3);margin-top:2px;}
+.stage-item.hi{background:var(--accent-lt);}
+.stage-item.hi .si-label{color:var(--accent);}
+.stage-item.hi .si-val{color:var(--accent);}
+
+/* GOV LOAN */
+.gov-eligible{background:var(--green-lt);border:1.5px solid var(--green-bd);border-radius:var(--r-lg);padding:16px 18px;margin-bottom:12px;}
+.gov-eligible .ge-badge{display:inline-block;background:var(--green);color:#fff;font-size:10px;font-weight:700;padding:2px 8px;border-radius:4px;margin-bottom:8px;}
+.gov-eligible .ge-name{font-size:15px;font-weight:800;color:var(--green);margin-bottom:4px;}
+.gov-eligible .ge-rate{font-size:22px;font-weight:900;color:var(--green);font-variant-numeric:tabular-nums;}
+.gov-eligible .ge-save{font-size:12px;color:var(--green);font-weight:600;margin-top:4px;}
+.gov-eligible .ge-cond{font-size:12px;color:var(--t2);margin-top:8px;line-height:1.6;border-top:1px solid var(--green-bd);padding-top:8px;}
+.gov-not{background:var(--surface2);border:1px dashed var(--border2);border-radius:var(--r-lg);padding:14px 16px;margin-bottom:12px;}
+.gov-not .gn-title{font-size:13px;font-weight:700;color:var(--t3);margin-bottom:6px;}
+.gov-not .gn-why{font-size:12px;color:var(--t3);line-height:1.6;}
+
+/* GAP BOX */
+.gap-box{border-radius:var(--r-lg);padding:16px 18px;margin-bottom:14px;}
+.gap-box.feasible{background:var(--green-lt);border:2px solid var(--green-bd);}
+.gap-box.stretch{background:var(--orange-lt);border:2px solid var(--orange-bd);}
+.gap-box.hard{background:var(--red-lt);border:2px solid var(--red-bd);}
+.gap-box .gb-tag{font-size:11px;font-weight:700;margin-bottom:6px;}
+.gap-box.feasible .gb-tag{color:var(--green);}
+.gap-box.stretch .gb-tag{color:var(--orange);}
+.gap-box.hard .gb-tag{color:var(--red);}
+.gap-box .gb-main{font-size:24px;font-weight:900;font-variant-numeric:tabular-nums;line-height:1.2;margin-bottom:4px;}
+.gap-box.feasible .gb-main{color:var(--green);}
+.gap-box.stretch .gb-main{color:var(--orange);}
+.gap-box.hard .gb-main{color:var(--red);}
+.gap-box .gb-sub{font-size:12px;color:var(--t2);line-height:1.5;}
+
+/* APPRECIATION */
+.appr-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:12px;}
+@media(max-width:480px){.appr-grid{grid-template-columns:1fr;}}
+.appr-card{border-radius:8px;padding:14px;border:1.5px solid;}
+.appr-card.safe{background:var(--green-lt);border-color:var(--green-bd);}
+.appr-card.warn{background:var(--orange-lt);border-color:var(--orange-bd);}
+.appr-card.danger{background:var(--red-lt);border-color:var(--red-bd);}
+.appr-card .ac-rate{font-size:11px;font-weight:700;margin-bottom:6px;}
+.appr-card.safe .ac-rate{color:var(--green);}
+.appr-card.warn .ac-rate{color:var(--orange);}
+.appr-card.danger .ac-rate{color:var(--red);}
+.appr-card .ac-price{font-size:18px;font-weight:900;font-variant-numeric:tabular-nums;margin-bottom:2px;}
+.appr-card .ac-diff{font-size:11px;color:var(--t2);}
+.appr-card .ac-msg{font-size:11px;margin-top:6px;font-weight:600;}
+.appr-card.safe .ac-msg{color:var(--green);}
+.appr-card.warn .ac-msg{color:var(--orange);}
+.appr-card.danger .ac-msg{color:var(--red);}
+
+/* TIMELINE GRID */
+.tl-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:12px;}
+@media(max-width:480px){.tl-grid{grid-template-columns:1fr 1fr;}}
+.tl-card{background:var(--surface2);border:1px solid var(--border);border-radius:8px;padding:12px;text-align:center;}
+.tl-card .tc-save{font-size:11px;font-weight:700;color:var(--t3);margin-bottom:4px;}
+.tl-card .tc-time{font-size:16px;font-weight:900;font-variant-numeric:tabular-nums;color:var(--t1);}
+.tl-card .tc-note{font-size:10px;color:var(--t3);margin-top:3px;}
+
+/* PROGRESS */
+.prog{margin:14px 0;}
+.prog-hd{display:flex;justify-content:space-between;font-size:11px;color:var(--t2);font-weight:600;margin-bottom:5px;}
+.prog-bar{height:8px;background:var(--surface3);border-radius:4px;overflow:hidden;}
+.prog-fill{height:100%;border-radius:4px;transition:width .5s;background:linear-gradient(90deg,var(--accent),#0891B2);}
+
+/* COST TABLE */
+.cost-row{display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid var(--border);font-size:13px;}
+.cost-row:last-child{border-bottom:none;font-weight:800;font-size:14px;padding-top:10px;}
+.cost-row .cr-l{color:var(--t2);}
+.cost-row .cr-v{font-weight:600;font-variant-numeric:tabular-nums;}
+.cost-row.total .cr-l,.cost-row.total .cr-v{color:var(--accent);}
+
+/* ALTERNATIVE */
+.alt-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:14px;}
+@media(max-width:500px){.alt-grid{grid-template-columns:1fr;}}
+.alt-card{background:var(--surface2);border:1px solid var(--border);border-radius:var(--r);padding:14px 16px;}
+.alt-card .alt-icon{font-size:22px;margin-bottom:8px;}
+.alt-card .alt-title{font-size:13px;font-weight:800;margin-bottom:4px;color:var(--t1);}
+.alt-card .alt-desc{font-size:12px;color:var(--t2);line-height:1.5;}
+.alt-card .alt-cta{display:inline-block;margin-top:8px;font-size:11px;font-weight:700;color:var(--accent);background:var(--accent-lt);padding:3px 8px;border-radius:4px;}
+
+/* PRICE TABLE */
+.tbl-scroll{overflow-x:auto;margin-top:12px;}
+table.pt{width:100%;border-collapse:collapse;font-size:12px;min-width:480px;}
+table.pt th{background:var(--surface2);font-size:11px;font-weight:700;color:var(--t2);padding:9px 11px;text-align:left;border-bottom:2px solid var(--border);}
+table.pt td{padding:9px 11px;border-bottom:1px solid var(--border);color:var(--t1);vertical-align:top;line-height:1.5;}
+table.pt tr:hover td{background:var(--surface2);}
+table.pt .pr{font-weight:700;color:var(--accent);white-space:nowrap;}
+
+/* CHECKLIST */
+.check-steps{display:flex;flex-direction:column;gap:10px;margin-top:14px;}
+.cs{display:flex;gap:12px;background:var(--surface2);border-radius:var(--r);border:1px solid var(--border);padding:12px 14px;}
+.cs-no{background:var(--accent);color:#fff;min-width:26px;height:26px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:800;flex-shrink:0;margin-top:1px;}
+.cs-title{font-size:13px;font-weight:800;margin-bottom:3px;}
+.cs-desc{font-size:12px;color:var(--t2);line-height:1.5;}
+.cs-tag{display:inline-block;font-size:10px;font-weight:700;padding:2px 7px;border-radius:3px;margin-top:5px;}
+.tag-now{background:var(--accent-lt);color:var(--accent);}
+.tag-key{background:var(--red-lt);color:var(--red);}
+.tag-later{background:var(--surface3);color:var(--t3);border:1px solid var(--border);}
+
+/* INFO BOX */
+.info-box{background:var(--teal-lt);border:1px solid var(--teal-bd);border-radius:8px;padding:11px 14px;font-size:12px;color:var(--t1);line-height:1.6;margin-bottom:14px;}
+.info-box b{color:var(--teal);}
+.warn-box{background:var(--orange-lt);border:1px solid var(--orange-bd);border-radius:8px;padding:11px 14px;font-size:12px;color:var(--t1);line-height:1.6;margin-bottom:14px;}
+.warn-box b{color:var(--orange);}
+
+/* DIVIDER */
+.dv{height:1px;background:var(--border);margin:20px 0;}
+.regnote{font-size:11px;color:var(--t3);margin-top:10px;line-height:1.6;}
+
+/* FOOTER */
+footer{text-align:center;padding:20px;font-size:11px;color:var(--t3);border-top:1px solid var(--border);}
+footer a{color:var(--accent);text-decoration:none;}
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="index.html" style="display:flex;flex-direction:column;gap:1px;line-height:1.15;">
+    <span>🌉 부릿지</span>
+    <span style="font-size:9px;font-weight:700;letter-spacing:.12em;color:var(--t3);">Bu<b style="color:var(--accent);">RIDGE</b></span>
+  </a>
+  <div class="nav-links">
+    <a href="부동산_일일학습_2026.html">일일학습</a>
+    <a href="부동산_최신동향_2026.html">최신동향</a>
+    <a href="부동산_경제분석_2026.html">거시경제</a>
+    <a href="부동산_지도분석_2026.html">지도분석</a>
+    <a href="부동산_내집마련플래너_2026.html" class="active">내집마련 플래너</a>
+    <a href="부동산_청약가이드_2026.html">청약 가이드</a>
+  </div>
+</nav>
+
+<div class="page-hd">
+  <div class="eyebrow">My Home Purchase Planner</div>
+  <h1>내 집 마련 플래너 2026</h1>
+  <p class="sub">소득·저축 입력 → 대출한도·구매가능 가격·달성 플랜 즉시 계산<br>2026년 LTV/DSR/스트레스DSR·취득세·정부 대출 완전 반영</p>
+  <div class="badges">
+    <span class="badge">스트레스 DSR +3% 적용</span>
+    <span class="badge">생애최초 취득세 50% 감면</span>
+    <span class="badge">디딤돌·보금자리론 자격 진단</span>
+    <span class="badge">집값 상승 리스크 시뮬레이션</span>
+  </div>
+</div>
+
+<div class="wrap">
+
+<!-- ══ STEP 1: 내 재무 현황 ══ -->
+<div class="card">
+  <div class="sec-title"><span class="step-chip">STEP 1</span> 내 재무 현황 입력</div>
+
+  <div class="ig" style="margin-bottom:14px;">
+    <div class="field">
+      <label>연소득 <span style="color:var(--t3);font-weight:400;">(세전, 개인/부부합산)</span></label>
+      <div class="fw"><input type="number" id="income" value="6000" min="0" step="100" oninput="fp('p-income',this.value);calc()"><span class="u">만원</span></div>
+      <div class="fprev" id="p-income"></div>
+      <div class="fhint">부부가 함께 신청 시 합산 소득 입력</div>
+    </div>
+    <div class="field">
+      <label>현재 유동 자산 <span style="color:var(--t3);font-weight:400;">(현금·예금·주식)</span></label>
+      <div class="fw"><input type="number" id="savings" value="5000" min="0" step="100" oninput="fp('p-savings',this.value);calc()"><span class="u">만원</span></div>
+      <div class="fprev" id="p-savings"></div>
+      <div class="fhint">청약저축·펀드 등 매수 시 사용 가능한 자산</div>
+    </div>
+    <div class="field">
+      <label>전세보증금 <span style="color:var(--t3);font-weight:400;">(퇴거 시 회수 금액)</span></label>
+      <div class="fw"><input type="number" id="jeonse" value="0" min="0" step="100" oninput="fp('p-jeonse',this.value);calc()"><span class="u">만원</span></div>
+      <div class="fprev" id="p-jeonse"></div>
+      <div class="fhint">현재 전세 거주 시 → 이사하면 돌려받는 금액</div>
+    </div>
+    <div class="field">
+      <label>기존 대출 월 상환액</label>
+      <div class="fw"><input type="number" id="exist-repay" value="0" min="0" step="10" oninput="fp('p-repay',this.value);calc()"><span class="u">만원</span></div>
+      <div class="fprev" id="p-repay"></div>
+      <div class="fhint">자동차할부·신용대출·학자금 등 모두 포함</div>
+    </div>
+    <div class="field">
+      <label>매월 저축 가능액</label>
+      <div class="fw"><input type="number" id="monthly-add" value="200" min="0" step="10" oninput="fp('p-madd',this.value);calc()"><span class="u">만원</span></div>
+      <div class="fprev" id="p-madd"></div>
+      <div class="fhint">목표 달성 기간 계산에 사용</div>
+    </div>
+    <div class="field">
+      <label>희망 매수 지역</label>
+      <select id="region" onchange="calc()">
+        <option value="hotzone">서울 투기과열구역 (강남·서초·마포·성동 등)</option>
+        <option value="adjust" selected>서울 조정대상지역 (노원·강서·은평 등)</option>
+        <option value="metro">수도권 비규제 (수원·용인·인천·하남 등)</option>
+        <option value="local">지방 비규제 (부산·대구·대전 등)</option>
+      </select>
+    </div>
+  </div>
+
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:12px;">
+    <div class="field">
+      <label>현재 주택 보유 수</label>
+      <div class="rg">
+        <label><input type="radio" name="owned" value="0" checked onchange="calc()"><span class="rc">무주택</span></label>
+        <label><input type="radio" name="owned" value="1" onchange="calc()"><span class="rc">1주택</span></label>
+        <label><input type="radio" name="owned" value="2" onchange="calc()"><span class="rc">2주택+</span></label>
+      </div>
+    </div>
+    <div class="field">
+      <label>대출 유형</label>
+      <select id="loan-rate" onchange="calc()">
+        <option value="0.038">3.8% — 디딤돌(요건 충족 시 자동 적용)</option>
+        <option value="0.043" selected>4.3% — 시중은행 고정형 평균</option>
+        <option value="0.047">4.7% — 시중은행 변동형 평균</option>
+        <option value="0.055">5.5% — 보수적 시나리오</option>
+      </select>
+    </div>
+  </div>
+
+  <label class="cb-row" onclick="">
+    <input type="checkbox" id="first-home" onchange="calc()">
+    <span>🎁 생애최초 주택구입자입니다 (취득세 50% 감면 적용)</span>
+    <small>본인·배우자·세대원 전원 무주택 + 주택가 12억 이하</small>
+  </label>
+</div>
+
+<!-- ══ STEP 2: 지금 살 수 있는 집 ══ -->
+<div class="card">
+  <div class="sec-title"><span class="step-chip" style="background:var(--green);">STEP 2</span> 지금 당장 살 수 있는 집</div>
+
+  <div class="big-res">
+    <div class="br-label">현재 구매 가능 최대가</div>
+    <div class="br-val" id="r-max">—</div>
+    <div class="br-note" id="r-max-note">—</div>
+  </div>
+
+  <div class="stage-bar">
+    <div class="stage-item">
+      <div class="si-label">계약금 (10%)</div>
+      <div class="si-val" id="r-contract">—</div>
+      <div class="si-when">계약 당일 필요 현금</div>
+    </div>
+    <div class="stage-item hi">
+      <div class="si-label">대출</div>
+      <div class="si-val" id="r-loan">—</div>
+      <div class="si-when" id="r-loan-when">잔금일 실행</div>
+    </div>
+    <div class="stage-item">
+      <div class="si-label">잔금 (자기자금)</div>
+      <div class="si-val" id="r-self">—</div>
+      <div class="si-when">잔금일 현금</div>
+    </div>
+  </div>
+
+  <div class="rg3">
+    <div class="ri">
+      <div class="rl">DSR 기준 최대 대출</div>
+      <div class="rv c-acc" id="r-dsr">—</div>
+      <div class="rs" id="r-dsr-note">스트레스 금리 기준</div>
+    </div>
+    <div class="ri">
+      <div class="rl">LTV 기준 대출 상한</div>
+      <div class="rv c-acc" id="r-ltv-loan">—</div>
+      <div class="rs" id="r-ltv-note">—</div>
+    </div>
+    <div class="ri">
+      <div class="rl">월 원리금 상환액</div>
+      <div class="rv" id="r-monthly">—</div>
+      <div class="rs" id="r-monthly-note">30년 원리금균등</div>
+    </div>
+    <div class="ri">
+      <div class="rl">취득세 (지방교육세 포함)</div>
+      <div class="rv c-org" id="r-tax">—</div>
+      <div class="rs" id="r-tax-note">—</div>
+    </div>
+    <div class="ri">
+      <div class="rl">중개수수료 + 등기비용</div>
+      <div class="rv" id="r-side">—</div>
+      <div class="rs">부대비용 합계</div>
+    </div>
+    <div class="ri">
+      <div class="rl">총 자기자금 지출</div>
+      <div class="rv c-red" id="r-total-self">—</div>
+      <div class="rs">취득비용 포함 실지출</div>
+    </div>
+  </div>
+
+  <div style="background:var(--surface2);border-radius:8px;padding:12px 14px;margin-bottom:10px;">
+    <div style="font-size:11px;font-weight:700;color:var(--t3);margin-bottom:6px;">📍 이 예산으로 갈 수 있는 곳</div>
+    <div id="r-area-guide" style="font-size:13px;color:var(--t1);line-height:1.7;">—</div>
+  </div>
+
+  <div class="regnote">* DSR 40% 한도(은행권), 스트레스 DSR +3.0% 가산. 25억 초과 주담대 불가(2024.9~). 실제 한도는 금융기관·신용도·물건지에 따라 다를 수 있습니다.</div>
+</div>
+
+<!-- ══ STEP 3: 정부 대출 자격 진단 ══ -->
+<div class="card">
+  <div class="sec-title"><span class="step-chip" style="background:var(--green);">STEP 3</span> 정부 대출 자격 진단</div>
+  <div class="info-box"><b>정부 정책 대출</b>은 시중은행보다 1~2%p 낮은 금리로, 요건을 충족한다면 반드시 우선 검토해야 합니다. 아래는 목표 주택가 기준으로 자동 진단됩니다.</div>
+  <div id="gov-result">
+    <div style="text-align:center;padding:20px;color:var(--t3);font-size:13px;">STEP 4에서 목표 주택 가격을 입력하면 자격 여부를 자동 진단합니다</div>
+  </div>
+</div>
+
+<!-- ══ STEP 4: 목표 주택 설정 ══ -->
+<div class="card">
+  <div class="sec-title"><span class="step-chip" style="background:var(--purple);">STEP 4</span> 목표 주택 설정 &amp; 갭 분석</div>
+
+  <div class="ig" style="margin-bottom:16px;">
+    <div class="field">
+      <label>목표 주택 가격</label>
+      <div class="fw"><input type="number" id="target" value="0" min="0" step="1000" placeholder="0" oninput="fp('p-target',this.value);calc()"><span class="u">만원</span></div>
+      <div class="fprev" id="p-target">입력하면 플랜 자동 계산</div>
+    </div>
+    <div class="field">
+      <label>목표 주택 위치</label>
+      <select id="target-region" onchange="calc()">
+        <option value="hotzone">서울 투기과열구역 (LTV 40%)</option>
+        <option value="adjust" selected>서울 조정대상지역 (LTV 50%)</option>
+        <option value="metro">수도권 비규제 (LTV 60%)</option>
+        <option value="local">지방 비규제 (LTV 70%)</option>
+      </select>
+    </div>
+  </div>
+
+  <div id="target-result">
+    <div style="text-align:center;padding:24px;color:var(--t3);font-size:13px;">
+      목표 주택 가격을 입력하면 갭 분석과 달성 플랜이 나타납니다
+    </div>
+  </div>
+</div>
+
+<!-- ══ STEP 5: 집값 상승 리스크 ══ -->
+<div class="card" id="appr-section" style="display:none;">
+  <div class="sec-title"><span class="step-chip" style="background:var(--orange);">STEP 5</span> 집값 상승 vs 저축 속도 — 현실 체크</div>
+  <div class="warn-box">내가 돈을 모으는 동안 집값도 오릅니다. 저축 속도가 집값 상승 속도를 따라잡지 못하면 <b>영원히 살 수 없게 될 수도 있습니다.</b> 아래 시나리오로 현실을 점검하세요.</div>
+  <p style="font-size:12px;color:var(--t2);margin-bottom:4px;" id="appr-months-note"></p>
+  <div class="appr-grid" id="appr-grid"></div>
+  <div style="margin-top:12px;font-size:12px;color:var(--t2);line-height:1.6;" id="appr-conclusion"></div>
+</div>
+
+<!-- ══ STEP 6: 달성 시나리오 ══ -->
+<div class="card" id="tl-section" style="display:none;">
+  <div class="sec-title"><span class="step-chip" style="background:var(--purple);">STEP 6</span> 저축 시나리오별 달성 기간</div>
+  <p style="font-size:12px;color:var(--t2);margin-bottom:2px;">부족 자금 <b id="tl-gap"></b> 기준. 연 이자수익 미포함 (보수적 계산)</p>
+  <div class="tl-grid" id="tl-grid"></div>
+  <div class="prog" style="margin-top:16px;">
+    <div class="prog-hd"><span id="prog-label">현재 달성률</span><span id="prog-pct">0%</span></div>
+    <div class="prog-bar"><div class="prog-fill" id="prog-fill" style="width:0%"></div></div>
+  </div>
+  <div style="font-size:12px;color:var(--t2);margin-top:4px;" id="tl-pace"></div>
+</div>
+
+<!-- ══ 취득 비용 상세 ══ -->
+<div class="card" id="cost-card" style="display:none;">
+  <div class="sec-title" style="margin-bottom:10px;"><span class="step-chip" style="background:var(--t3);">₩</span> 목표 주택 총 비용 상세</div>
+  <div id="cost-body"></div>
+</div>
+
+<!-- ══ STEP 7: 대안 전략 ══ -->
+<div class="card" id="alt-section" style="display:none;">
+  <div class="sec-title"><span class="step-chip" style="background:var(--teal);">STEP 7</span> 대안 전략 제안</div>
+  <p style="font-size:12px;color:var(--t2);margin-bottom:14px;">목표 달성이 쉽지 않다면 아래 전략을 함께 검토하세요.</p>
+  <div class="alt-grid" id="alt-grid"></div>
+</div>
+
+<div class="dv"></div>
+
+<!-- ══ 지역별 시세 가이드 ══ -->
+<div class="card">
+  <div class="sec-title" style="margin-bottom:4px;"><span class="step-chip" style="background:var(--t3);">📍</span> 예산별 구매 가능 지역 가이드 (2026 기준)</div>
+  <p style="font-size:11px;color:var(--t3);margin-bottom:8px;">30평형(전용 84㎡) 아파트 기준 참고가. 단지·연식·층수에 따라 편차 큼.</p>
+  <div class="tbl-scroll">
+    <table class="pt">
+      <thead><tr><th>예산</th><th>서울 (주요 지역)</th><th>수도권</th><th>지방</th></tr></thead>
+      <tbody>
+        <tr><td class="pr">3억 미만</td><td>빌라·오피스텔 소형</td><td>인천 부평·계양, 시흥·안산</td><td>대전 구도심, 청주, 광주</td></tr>
+        <tr><td class="pr">3~5억</td><td>구로·금천 구축 소형, 중랑 빌라</td><td>수원 팔달·안양 동안 구축</td><td>부산 사상·사하, 대구 달서</td></tr>
+        <tr><td class="pr">5~7억</td><td>도봉·중랑·강북 구축 아파트</td><td>의정부·구리·성남 수정</td><td>부산 연제·부산진 구축</td></tr>
+        <tr><td class="pr">7~10억</td><td>노원·강서·관악 20평대</td><td>동탄2 소형, 하남, 인천 송도</td><td>부산 해운대 구축, 대구 수성</td></tr>
+        <tr><td class="pr">10~15억</td><td>성동·광진·강동 소형 신축</td><td>성남 분당 구축, 과천 구축 30평</td><td>부산 수영·해운대 신축</td></tr>
+        <tr><td class="pr">15~20억</td><td>마포·용산·동작 30평</td><td>과천 신축, 동탄 프리미엄</td><td>—</td></tr>
+        <tr><td class="pr">20~30억</td><td>강남·서초·송파 소형(20평)</td><td>판교 구축 일부</td><td>—</td></tr>
+        <tr><td class="pr">30억+</td><td>강남·서초·송파 30평+ 프리미엄</td><td>—</td><td>—</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="regnote">* 2026년 8월 호가·실거래가 참고. 실제 매수 전 국토부 실거래가 공개시스템, 호갱노노, 네이버부동산 교차 확인 필수.</div>
+</div>
+
+<!-- ══ 체크리스트 ══ -->
+<div class="card">
+  <div class="sec-title"><span class="step-chip" style="background:var(--t3);">✔</span> 내 집 마련 단계별 체크리스트</div>
+  <div class="check-steps">
+    <div class="cs"><div class="cs-no">1</div><div><div class="cs-title">재무 현황 정리 & 신용점수 관리</div><div class="cs-desc">연소득·보유자산·부채를 정리하고 신용점수(NICE/KCB)를 확인합니다. 신용점수 900점 이상이면 주담대 우대금리 적용 가능. 불필요한 카드론·신용대출은 상환해 DSR 여유를 확보하세요.</div><span class="cs-tag tag-now">지금 바로</span></div></div>
+    <div class="cs"><div class="cs-no">2</div><div><div class="cs-title">청약통장 납입 & 청약 가점 계산</div><div class="cs-desc">주택청약종합저축의 가입 기간, 납입 횟수·금액을 확인합니다. 무주택 기간(만점 32점), 부양가족 수(만점 35점), 청약통장 가입기간(만점 17점) 합산 가점을 계산해 두세요. 가점이 낮으면 추첨제 물량을 노리거나 SH·LH 공공분양을 검토합니다.</div><span class="cs-tag tag-now">지금 바로</span></div></div>
+    <div class="cs"><div class="cs-no">3</div><div><div class="cs-title">정부 대출 자격 사전 확인</div><div class="cs-desc">디딤돌 대출(연소득 6천만원 이하, 주택가 5억 이하, LTV 70%, 금리 2.35~3.95%), 보금자리론(연소득 7천만원 이하, 주택가 6억 이하) 해당 여부를 주택도시기금 포털에서 확인합니다. 시중 금리보다 1~2%p 낮습니다.</div><span class="cs-tag tag-now">지금 바로</span></div></div>
+    <div class="cs"><div class="cs-no">4</div><div><div class="cs-title">대출 사전 심사 (Pre-Approval)</div><div class="cs-desc">원하는 은행 2~3곳에 주담대 사전 심사를 신청합니다. DSR·LTV 기준 실제 한도와 적용 금리를 파악합니다. 사전 심사는 신용점수에 영향을 최소화하는 "조회용"으로 진행하세요.</div><span class="cs-tag tag-now">목표 3개월 전</span></div></div>
+    <div class="cs"><div class="cs-no">5</div><div><div class="cs-title">매물 탐색 & 임장 (현장 방문)</div><div class="cs-desc">네이버부동산·호갱노노·국토부 실거래가 시스템으로 시세를 파악합니다. 최소 10~20개 매물을 직접 방문(임장)하고 입지(교통·학군·상권), 단지 상태, 주변 개발 호재를 확인합니다. 토지거래허가구역(토허제) 해당 여부도 사전 확인 필수.</div><span class="cs-tag tag-now">목표 1~2개월 전</span></div></div>
+    <div class="cs"><div class="cs-no">6</div><div><div class="cs-title">등기부등본 & 권리관계 확인</div><div class="cs-desc">계약 전 반드시 인터넷등기소에서 말소사항 포함 전부 등기부등본을 발급·확인합니다. 근저당·가압류·가등기·위반건축물 여부를 체크하세요. 실거래가 신고 내역도 교차 검토합니다.</div><span class="cs-tag tag-key">계약 전 필수</span></div></div>
+    <div class="cs"><div class="cs-no">7</div><div><div class="cs-title">매매계약 체결 & 계약금 지급</div><div class="cs-desc">계약금(보통 주택가의 10%)을 지급하고 매매계약서를 작성합니다. 잔금일·명도 조건·하자 특약 등을 꼼꼼히 기재합니다. 공인중개사 정상 등록 여부를 국가공간정보 포털에서 확인하세요.</div><span class="cs-tag tag-key">계약 당일</span></div></div>
+    <div class="cs"><div class="cs-no">8</div><div><div class="cs-title">잔금 납부 & 소유권 이전 등기</div><div class="cs-desc">잔금일에 대출을 실행하고 잔금을 지급합니다. 동시에 법무사에 소유권 이전 등기를 의뢰합니다. 취득세는 잔금일(취득일)로부터 60일 이내 위택스(wetax.go.kr)에서 신고·납부해야 합니다. 기한을 넘기면 가산세가 부과됩니다.</div><span class="cs-tag tag-later">잔금일</span></div></div>
+    <div class="cs"><div class="cs-no">9</div><div><div class="cs-title">전입신고 & 확정일자 취득</div><div class="cs-desc">이사 당일 주민센터 또는 정부24에서 전입신고를 완료합니다. 임차인 권리 보호를 위해 확정일자도 함께 받아 두세요. 소유자로서 재산세 납부, 관리비 정상화, 하자 보수 청구 절차도 진행합니다.</div><span class="cs-tag tag-later">이전 즉시</span></div></div>
+  </div>
+</div>
+
+</div><!-- /wrap -->
+
+<footer>
+  <p>2026.09.23 기준 · LTV·DSR·취득세 계산은 참고용이며 실제 한도는 금융기관·관할 세무서 기준을 따릅니다.</p>
+  <p style="margin-top:4px;"><a href="index.html">← 홈으로</a></p>
+</footer>
+
+<script>
+// ═══ 상수 ═══
+const DSR_CAP = 0.40, STRESS = 0.03, TERM = 30;
+const LTV_MAP = { hotzone:0.40, adjust:0.50, metro:0.60, local:0.70 };
+const LTV_LBL = { hotzone:'투기과열 40%', adjust:'조정 50%', metro:'수도권 60%', local:'지방 70%' };
+const REG_LBL = { hotzone:'서울 투기과열', adjust:'서울 조정지역', metro:'수도권 비규제', local:'지방 비규제' };
+
+// ═══ 유틸 ═══
+function gn(id){ return parseFloat(document.getElementById(id).value)||0; }
+function gs(id){ return document.getElementById(id).value; }
+function gr(nm){ return parseInt(document.querySelector(`input[name="${nm}"]:checked`)?.value??'0'); }
+function gc(id){ return document.getElementById(id).checked; }
+
+function fp(id, v){
+  const el=document.getElementById(id); if(!el)return;
+  const n=parseFloat(v)*10000;
+  el.textContent = (!v||n===0) ? '없음 / 0원' : fmt(n);
+}
+
+function fmt(won){
+  if(!won||isNaN(won))return '0원';
+  const neg=won<0, abs=Math.round(Math.abs(won));
+  let s;
+  if(abs>=100000000){ const e=Math.floor(abs/1e8), m=Math.round((abs%1e8)/1e4); s=m>0?`${e}억 ${m.toLocaleString()}만원`:`${e}억원`; }
+  else { const m=Math.round(abs/1e4); s=m>0?`${m.toLocaleString()}만원`:'0원'; }
+  return (neg?'-':'')+s;
+}
+function fmtM(m){
+  if(!isFinite(m)||m>600)return '30년+';
+  const y=Math.floor(m/12),mo=m%12;
+  return y>0?(mo>0?`${y}년 ${mo}개월`:`${y}년`):`${mo}개월`;
+}
+function set(id,v){ const e=document.getElementById(id); if(e)e.innerHTML=v; }
+function show(id,v=true){ const e=document.getElementById(id); if(e)e.style.display=v?'':'none'; }
+
+// ═══ 금융 계산 ═══
+function pmtF(r,n){ if(r<=0)return 1/n; return r*Math.pow(1+r,n)/(Math.pow(1+r,n)-1); }
+
+function dsrLoan(income, existRepay, rate){
+  const stress=rate+STRESS;
+  const maxMo=income*DSR_CAP/12-existRepay;
+  if(maxMo<=0)return 0;
+  return Math.max(0, maxMo/pmtF(stress/12,TERM*12));
+}
+
+// 취득세 (지방교육세 포함)
+function acqTax(price, owned, firstHome){
+  if(owned>=2)return price*0.132;
+  if(owned===1)return price*0.088;
+  let rate;
+  if(price<=600000000)rate=0.01;
+  else if(price<=900000000)rate=(price*2/300000000-3)/100;
+  else rate=0.03;
+  let tax=price*rate*1.1;
+  if(firstHome&&price<=1200000000)tax*=0.5;
+  return tax;
+}
+
+// 중개수수료 (2021.10 개정)
+function agentFee(price){
+  if(price<50000000)return Math.min(price*0.006,250000);
+  if(price<200000000)return Math.min(price*0.005,800000);
+  if(price<900000000)return price*0.004;
+  if(price<1200000000)return price*0.005;
+  if(price<1500000000)return price*0.006;
+  return price*0.007;
+}
+
+// 등기비용
+function regCost(price){ return Math.max(1500000, price*0.0012); }
+
+// 총 부대비용
+function sideCosts(price,owned,firstHome){
+  return acqTax(price,owned,firstHome)+agentFee(price)+regCost(price);
+}
+
+// 현재 최대 구매가 (이진 탐색)
+function maxAffordable(avail, dsrL, ltv, owned, firstHome){
+  let lo=0, hi=5000000000;
+  for(let i=0;i<60;i++){
+    const mid=(lo+hi)/2;
+    const loan=Math.min(mid*ltv,dsrL,2500000000);
+    const self=(mid-loan)+sideCosts(mid,owned,firstHome);
+    if(self<=avail)lo=mid; else hi=mid;
+  }
+  return lo;
+}
+
+// 구매 가능 지역 가이드
+function areaGuide(p){
+  if(p<300000000)return '인천 부평·계양, 경기 시흥·안산 소형 아파트';
+  if(p<500000000)return '경기 수원 팔달·안양 동안 구축, 인천 서구';
+  if(p<700000000)return '서울 도봉·중랑·강북 구축 소형, 경기 의정부·구리';
+  if(p<1000000000)return '서울 노원·강서·관악 20평대, 동탄2 소형, 하남, 인천 송도';
+  if(p<1500000000)return '서울 성동·광진·강동 소형 신축, 성남 분당·과천 구축 30평';
+  if(p<2000000000)return '서울 마포·용산·동작 30평, 과천 신축, 동탄 프리미엄';
+  if(p<3000000000)return '강남·서초·송파 소형(20평대) 신축, 판교 구축';
+  return '강남·서초·송파 30평+ 프리미엄 신축 단지';
+}
+
+// 정부 대출 자격 진단
+function govLoans(income, targetPrice, owned, rate){
+  const out = [];
+  if(targetPrice<=0)return out;
+
+  // 디딤돌
+  if(owned===0 && targetPrice<=500000000){
+    const eligible = income<=60000000;
+    const eligibleCo = income<=85000000; // 부부합산
+    if(eligible||eligibleCo){
+      const dRate = 0.035; // 중간 금리
+      const dLoan = Math.min(250000000, targetPrice*0.70);
+      const marketLoan = Math.min(250000000, targetPrice*0.70);
+      const monthlyDi = dLoan*pmtF(dRate/12,TERM*12);
+      const monthlyMk = marketLoan*pmtF(rate/12,TERM*12);
+      const totalSave = (monthlyMk-monthlyDi)*12*TERM;
+      out.push({
+        name:'디딤돌 대출'+(eligibleCo&&!eligible?' (부부합산)':''),
+        eligible:true, rate:'2.35~3.95%', maxLoan:dLoan, ltv:0.70,
+        totalSave, monthlyDiff: monthlyMk-monthlyDi,
+        cond: eligible?'연소득 6천만원 이하':'부부합산 8.5천만원 이하',
+        detail:`무주택 세대원 전원 · 주택가 5억 이하 · LTV 70% · 최대 2.5억 · 30년`,
+        action:'주택도시기금(nhuf.go.kr)에서 상품 조회 → 은행 방문 신청'
+      });
+    }
+  }
+
+  // 보금자리론
+  if(owned<=1 && targetPrice<=600000000){
+    const eligible = income<=70000000;
+    const eligibleCo = income<=80000000;
+    if(eligible||eligibleCo){
+      const bRate = 0.0365;
+      const bLoan = Math.min(360000000, targetPrice*0.70);
+      const monthlyBo = bLoan*pmtF(bRate/12,TERM*12);
+      const monthlyMk = bLoan*pmtF(rate/12,TERM*12);
+      const totalSave = (monthlyMk-monthlyBo)*12*TERM;
+      out.push({
+        name:'보금자리론'+(eligibleCo&&!eligible?' (1자녀 기준)':''),
+        eligible:true, rate:'3.35~3.75%', maxLoan:bLoan, ltv:0.70,
+        totalSave, monthlyDiff: monthlyMk-monthlyBo,
+        cond: eligible?'연소득 7천만원 이하':'부부합산 8천만원 이하(1자녀)',
+        detail:`무주택 또는 처분조건 1주택 · 주택가 6억 이하 · LTV 70% · 최대 3.6억`,
+        action:'한국주택금융공사(hf.go.kr)에서 신청'
+      });
+    }
+  }
+
+  return out;
+}
+
+// 대안 전략 생성
+function altStrategies(gap, maxPrice, targetPrice, monthsToGoal, income, owned){
+  const alts=[];
+  if(gap>0){
+    alts.push({
+      icon:'🗳️',
+      title:'청약 전략',
+      desc:'분양가 상한제 단지는 시세보다 10~30% 저렴. 청약가점(최대 84점)을 계산하고, 가점이 낮으면 추첨제 비율이 높은 중소형 단지를 노리세요. SH·LH 공공분양도 검토.',
+      cta:'청약홈 바로가기'
+    });
+    if(targetPrice>maxPrice*1.2){
+      alts.push({
+        icon:'🪜',
+        title:'주거 사다리 전략',
+        desc:`지금 살 수 있는 ${fmt(maxPrice)} 이하 소형 아파트를 먼저 매수하고, 자산을 키워 목표 집으로 갈아타세요. 전세 끼고 사면 실거주 없이 자산을 불릴 수 있습니다 (갭투자 위험성 숙지 필요).`,
+        cta:'일일학습: 갭투자 리스크 확인'
+      });
+    }
+    if(monthsToGoal>60){
+      alts.push({
+        icon:'💰',
+        title:'저축 확대 & 부업',
+        desc:'월 저축액을 100만원 늘리면 달성 기간이 크게 단축됩니다. 프리랜서·부업 소득, 연말정산 환급금, 상여금을 별도 주택 목적 통장에 적립하세요.',
+        cta:'목표 저축액 시뮬레이션 확인'
+      });
+    }
+    if(owned===0){
+      alts.push({
+        icon:'🏛️',
+        title:'생애최초 & 정부 지원 총정리',
+        desc:'생애최초 취득세 50% 감면 + 디딤돌/보금자리론 우대금리 + 청년 주택드림 대출(청년 대상) 중복 혜택이 가능합니다. 요건을 꼼꼼히 확인하면 수천만원을 절약할 수 있습니다.',
+        cta:'주택도시기금 포털 확인'
+      });
+    }
+  }
+  return alts;
+}
+
+// ═══ 메인 계산 ═══
+function calc(){
+  const income     = gn('income')*1e4;
+  const savings    = gn('savings')*1e4;
+  const jeonse     = gn('jeonse')*1e4;
+  const existRepay = gn('exist-repay')*1e4;
+  const monthlyAdd = gn('monthly-add')*1e4;
+  const owned      = gr('owned');
+  const region     = gs('region');
+  const rate       = parseFloat(gs('loan-rate'));
+  const firstHome  = gc('first-home');
+  const targetP    = gn('target')*1e4;
+  const targetReg  = gs('target-region');
+
+  const avail = savings+jeonse; // 총 가용 자금
+  const ltv   = LTV_MAP[region]||0.50;
+  const tgtLtv= LTV_MAP[targetReg]||0.50;
+
+  const dsrL  = dsrLoan(income,existRepay,rate);
+  const maxP  = maxAffordable(avail,dsrL,ltv,owned,firstHome);
+  const actL  = Math.min(maxP*ltv,dsrL,2.5e9);
+  const selfP = maxP-actL;
+  const sideC = sideCosts(maxP,owned,firstHome);
+  const totalSelf = selfP+sideC;
+  const monthlyPay = actL*pmtF(rate/12,TERM*12);
+  const stressPay  = actL*pmtF((rate+STRESS)/12,TERM*12);
+  const dsrUsed    = income>0?(monthlyPay*12+existRepay*12)/income:0;
+
+  // ── STEP 2 렌더
+  set('r-max', fmt(maxP));
+  const addNote = jeonse>0 ? ` (유동자산 ${fmt(savings)} + 전세보증금 ${fmt(jeonse)})` : '';
+  set('r-max-note', `자기자금 ${fmt(selfP)} + 대출 ${fmt(actL)}${addNote}`);
+  set('r-contract', fmt(maxP*0.10));
+  set('r-loan', fmt(actL));
+  set('r-loan-when', `LTV ${LTV_LBL[region]} · DSR ${(dsrUsed*100).toFixed(1)}%`);
+  set('r-self', fmt(selfP-maxP*0.10>0?selfP-maxP*0.10:0));
+  set('r-dsr', fmt(dsrL));
+  set('r-dsr-note', `스트레스 ${((rate+STRESS)*100).toFixed(1)}% 기준 · 월 ${fmt(actL*pmtF((rate+STRESS)/12,TERM*12))}/월`);
+  set('r-ltv-loan', `주택가의 ${(ltv*100).toFixed(0)}%`);
+  set('r-ltv-note', REG_LBL[region]+' 기준 · 주택가 × '+Math.round(ltv*100)+'%');
+  set('r-monthly', fmt(monthlyPay)+'/월');
+  set('r-monthly-note', `(스트레스 금리 기준 ${fmt(stressPay)}/월)`);
+  const tax=acqTax(maxP,owned,firstHome);
+  set('r-tax', fmt(tax));
+  const taxLabel = owned===0 ? (firstHome?'생애최초 50% 감면 적용':'1주택 취득') : owned===1?'2주택(조정)':'3주택+';
+  set('r-tax-note', taxLabel+' 취득세 + 지방교육세');
+  const af=agentFee(maxP), rc=regCost(maxP);
+  set('r-side', fmt(af+rc));
+  set('r-total-self', fmt(totalSelf));
+  set('r-area-guide', areaGuide(maxP));
+
+  // ── STEP 3: 정부 대출 진단
+  const govL = govLoans(income, targetP||maxP*0.9, owned, rate);
+  if(govL.length>0){
+    let html='';
+    govL.forEach(g=>{
+      const savedMo = Math.round(g.monthlyDiff/1e4);
+      const savedTot = Math.round(g.totalSave/1e6);
+      html+=`<div class="gov-eligible">
+        <span class="ge-badge">✅ 자격 해당</span>
+        <div class="ge-name">${g.name}</div>
+        <div style="display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;">
+          <div><div style="font-size:11px;color:var(--green);font-weight:700;">적용 금리</div><div class="ge-rate">${g.rate}</div></div>
+          <div><div style="font-size:11px;color:var(--green);font-weight:700;">월 절약 (시중 대비)</div><div class="ge-rate">월 ${savedMo}만원</div></div>
+          <div><div style="font-size:11px;color:var(--green);font-weight:700;">30년 총 절약</div><div class="ge-rate">약 ${savedTot}백만원</div></div>
+        </div>
+        <div class="ge-cond">
+          <b>조건:</b> ${g.cond} · ${g.detail}<br>
+          <b>신청:</b> ${g.action}
+        </div>
+      </div>`;
+    });
+    set('gov-result',html);
+  } else if(targetP>0||maxP>0){
+    let reasons=[];
+    if(income>85000000)reasons.push('연소득이 8.5천만원 초과 (디딤돌 한도 초과)');
+    if((targetP||maxP)>600000000)reasons.push('목표 주택가가 6억 초과 (보금자리론 한도 초과)');
+    if(owned>=1)reasons.push('현재 주택 보유 (무주택 조건 미충족)');
+    if(reasons.length===0)reasons.push('현재 입력 조건에서 해당 정부 대출 없음');
+    set('gov-result',`<div class="gov-not">
+      <div class="gn-title">⚪ 정부 우대 대출 자격 미해당</div>
+      <div class="gn-why">${reasons.map(r=>'• '+r).join('<br>')}<br><br>
+      시중 금리 대출로 진행 시 DSR 40% 한도 내에서 최대 ${fmt(dsrL)} 대출 가능합니다.</div>
+    </div>`);
+  }
+
+  // ── STEP 4+: 목표 분석
+  show('appr-section',false); show('tl-section',false); show('cost-card',false); show('alt-section',false);
+
+  if(targetP>0){
+    const tgtL    = Math.min(targetP*tgtLtv,dsrL,2.5e9);
+    const tgtTax  = acqTax(targetP,owned,firstHome);
+    const tgtAf   = agentFee(targetP);
+    const tgtRc   = regCost(targetP);
+    const tgtSide = tgtTax+tgtAf+tgtRc;
+    const tgtSelf = (targetP-tgtL)+tgtSide;
+    const gap     = Math.max(0,tgtSelf-avail);
+    const canBuy  = avail>=tgtSelf;
+    const tgtMPay = tgtL*pmtF(rate/12,TERM*12);
+    const tgtDSR  = income>0?(tgtMPay*12+existRepay*12)/income:0;
+    const dsrOK   = tgtDSR<=DSR_CAP;
+
+    let boxCls='hard', status='';
+    if(canBuy&&dsrOK){ boxCls='feasible'; status='✅ 지금 바로 구매 가능한 범위입니다'; }
+    else if(gap<avail*0.3||(monthlyAdd>0&&gap/monthlyAdd<24)){ boxCls='stretch'; status='🔶 조금만 더 저축하면 가능합니다'; }
+    else { boxCls='hard'; status='🔴 현재 조건으로는 장기 계획이 필요합니다'; }
+
+    const html=`
+      <div class="gap-box ${boxCls}">
+        <div class="gb-tag">${status}${!dsrOK?' ⚠️ DSR 초과 — 대출 한도 부족':''}</div>
+        <div class="gb-main">부족 자금 ${fmt(gap)}</div>
+        <div class="gb-sub">목표가 ${fmt(targetP)} · 필요 자기자금 <b>${fmt(tgtSelf)}</b> (대출 ${fmt(tgtL)} + 잔금자기자금 + 취득비용 ${fmt(tgtSide)})<br>현재 보유 가용자금 ${fmt(avail)} → 부족분 <b>${fmt(gap)}</b></div>
+      </div>
+      <div class="rg3">
+        <div class="ri"><div class="rl">목표 대출</div><div class="rv c-acc">${fmt(tgtL)}</div><div class="rs">${REG_LBL[targetReg]} LTV ${Math.round(tgtLtv*100)}% 기준</div></div>
+        <div class="ri"><div class="rl">목표 월 상환액</div><div class="rv">${fmt(tgtMPay)}/월</div><div class="rs">DSR ${(tgtDSR*100).toFixed(1)}% 사용</div></div>
+        <div class="ri"><div class="rl">목표 취득세</div><div class="rv c-org">${fmt(tgtTax)}</div><div class="rs">${firstHome?'생애최초 50% 감면':'지방교육세 포함'}</div></div>
+      </div>`;
+    set('target-result',html);
+
+    // ── STEP 5: 집값 상승 리스크
+    if(gap>0 && monthlyAdd>0){
+      const months = Math.ceil(gap/monthlyAdd);
+      show('appr-section',true);
+      set('appr-months-note',`현재 페이스(월 ${fmt(monthlyAdd)} 저축)로 ${fmtM(months)} 후 달성. 그 사이 집값이 오르면:`);
+      const scenarios=[
+        {rate:0,cls:'safe',label:'집값 상승 없음 (0%/년)',msg:'현재 계획대로 달성 가능'},
+        {rate:0.03,cls:'warn',label:'연 3% 상승 (최근 평균)',msg:'집값이 더 올라 목표 금액 재조정 필요'},
+        {rate:0.05,cls:'danger',label:'연 5% 상승 (강세장)',msg:'저축 속도보다 상승이 빨라 따라잡기 어려움'}
+      ];
+      let apprHtml='';
+      let hasRace=false;
+      scenarios.forEach(s=>{
+        const newPrice = targetP*Math.pow(1+s.rate,months/12);
+        const newTgtL  = Math.min(newPrice*tgtLtv,dsrL,2.5e9);
+        const newSide  = sideCosts(newPrice,owned,firstHome);
+        const newSelf  = (newPrice-newTgtL)+newSide;
+        const newGap   = Math.max(0,newSelf-avail);
+        const newMonths= monthlyAdd>0?Math.ceil(newGap/monthlyAdd):Infinity;
+        const diff     = newPrice-targetP;
+        if(s.rate>0&&newMonths>months*1.1)hasRace=true;
+        apprHtml+=`<div class="appr-card ${s.cls}">
+          <div class="ac-rate">${s.label}</div>
+          <div class="ac-price">${fmt(newPrice)}</div>
+          <div class="ac-diff">${s.rate>0?'+'+fmt(diff)+' 상승':fmt(targetP)+' 유지'}</div>
+          <div class="ac-msg">${s.rate===0?'달성 가능':'새 필요자금 '+fmt(newSelf)+'<br>추가 저축기간 '+fmtM(newMonths-months)}</div>
+        </div>`;
+      });
+      set('appr-grid',apprHtml);
+      set('appr-conclusion', hasRace
+        ? `⚠️ <b>집값 상승 속도가 저축 속도보다 빠릅니다.</b> 저축액을 늘리거나 목표 주택 가격을 낮추거나, 청약·사다리 전략을 검토하세요.`
+        : `✅ 현재 저축 페이스로 집값 상승을 따라잡을 수 있는 범위입니다. 목표대로 꾸준히 저축하세요.`
+      );
+    }
+
+    // ── STEP 6: 달성 시나리오
+    show('tl-section', gap>0);
+    if(gap>0){
+      set('tl-gap',fmt(gap));
+      const saves=[{l:'월 100만원',v:1000000},{l:'월 150만원',v:1500000},{l:'월 200만원',v:2000000},{l:'월 300만원',v:3000000},{l:'월 500만원',v:5000000},{l:'월 1,000만원',v:10000000}];
+      const tlHtml=saves.map(s=>{
+        const m=Math.ceil(gap/s.v);
+        const note=m<=24?'✅ 단기':m<=60?'🔶 중기':m<=120?'📋 장기':'⚠️ 어려움';
+        return `<div class="tl-card"><div class="tc-save">${s.l}</div><div class="tc-time">${fmtM(m)}</div><div class="tc-note">${note}</div></div>`;
+      }).join('');
+      set('tl-grid',tlHtml);
+
+      const pct=Math.min(100,avail/tgtSelf*100);
+      document.getElementById('prog-fill').style.width=pct.toFixed(1)+'%';
+      set('prog-pct',pct.toFixed(1)+'%');
+      set('prog-label',`목표 자기자금 달성률 (${fmt(avail)} / ${fmt(tgtSelf)})`);
+      const curM=monthlyAdd>0?Math.ceil(gap/monthlyAdd):0;
+      set('tl-pace', monthlyAdd>0&&gap>0
+        ?`현재 월 ${fmt(monthlyAdd)} 저축 기준 → 약 ${fmtM(curM)} 후 달성 (집값 상승 미포함)`
+        :gap<=0?'✅ 이미 충분한 자금을 보유하고 있습니다!':'월 저축액을 입력하면 기간을 자동 계산합니다');
+    }
+
+    // ── 비용 상세
+    show('cost-card',true);
+    set('cost-body',`
+      <div class="cost-row"><span class="cr-l">목표 주택 매매가</span><span class="cr-v">${fmt(targetP)}</span></div>
+      <div class="cost-row"><span class="cr-l">대출금</span><span class="cr-v">- ${fmt(tgtL)}</span></div>
+      <div class="cost-row"><span class="cr-l">잔금 자기자금 (계약금 포함)</span><span class="cr-v">${fmt(targetP-tgtL)}</span></div>
+      <div class="cost-row"><span class="cr-l">취득세 (지방교육세 포함${firstHome?' · 생애최초 50% 감면':''})</span><span class="cr-v">${fmt(tgtTax)}</span></div>
+      <div class="cost-row"><span class="cr-l">중개수수료</span><span class="cr-v">${fmt(tgtAf)}</span></div>
+      <div class="cost-row"><span class="cr-l">등기비용 (법무사 + 등록면허세 등)</span><span class="cr-v">${fmt(tgtRc)}</span></div>
+      <div class="cost-row total"><span class="cr-l">총 자기자금 필요액</span><span class="cr-v">${fmt(tgtSelf)}</span></div>
+      <div class="cost-row" style="font-size:12px;"><span class="cr-l" style="color:var(--t3);">계약 당일 필요 현금 (계약금 10%)</span><span class="cr-v" style="color:var(--t3);">${fmt(targetP*0.10)}</span></div>
+    `);
+
+    // ── STEP 7: 대안 전략
+    const alts=altStrategies(gap,maxP,targetP,gap>0&&monthlyAdd>0?Math.ceil(gap/monthlyAdd):0,income,owned);
+    if(alts.length>0){
+      show('alt-section',true);
+      set('alt-grid',alts.map(a=>`<div class="alt-card"><div class="alt-icon">${a.icon}</div><div class="alt-title">${a.title}</div><div class="alt-desc">${a.desc}</div><span class="alt-cta">${a.cta} →</span></div>`).join(''));
+    }
+
+  } else {
+    set('target-result','<div style="text-align:center;padding:24px;color:var(--t3);font-size:13px;">목표 주택 가격을 입력하면 갭 분석과 달성 플랜이 나타납니다</div>');
+    set('gov-result','<div style="text-align:center;padding:20px;color:var(--t3);font-size:13px;">STEP 4에서 목표 주택 가격을 입력하면 자격 여부를 자동 진단합니다</div>');
+  }
+}
+
+// 초기화
+['income','savings','jeonse','exist-repay','monthly-add'].forEach(id=>{
+  fp('p-'+id.replace('exist-repay','repay').replace('monthly-add','madd'), gn(id));
+});
+fp('p-income',gn('income')); fp('p-savings',gn('savings')); fp('p-jeonse',gn('jeonse'));
+fp('p-repay',gn('exist-repay')); fp('p-madd',gn('monthly-add'));
+calc();
+</script>
+</body>
+</html>

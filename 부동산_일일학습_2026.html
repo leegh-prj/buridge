@@ -1,0 +1,4703 @@
+﻿<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/favicon.svg">
+<meta name="theme-color" content="#0C2040">
+<meta property="og:site_name" content="부릿지 BuRIDGE">
+<meta property="og:type" content="website">
+<meta property="og:title" content="일일학습 72강 | 부릿지 BuRIDGE">
+<meta property="og:description" content="부동산 핵심 개념 72강. 퀴즈·실전 예시로 하루 1강씩 완벽 이해.">
+<meta property="og:url" content="https://buridge.vercel.app/부동산_일일학습_2026.html">
+<meta property="og:image" content="https://buridge.vercel.app/og-image.svg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="ko_KR">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="일일학습 72강 | 부릿지 BuRIDGE">
+<meta name="twitter:description" content="부동산 핵심 개념 72강. 퀴즈·실전 예시로 하루 1강씩 완벽 이해.">
+<meta name="twitter:image" content="https://buridge.vercel.app/og-image.svg">
+<title>일일학습 | 부릿지 BuRIDGE</title>
+<style>
+:root {
+  --bg: #0f1117;
+  --surface: #1a1d27;
+  --surface2: #22263a;
+  --border: #2e3248;
+  --text: #e8eaf0;
+  --text2: #9aa0bc;
+  --accent: #4f8ef7;
+  --accent2: #7c5af0;
+  --green: #2ecc71;
+  --orange: #f39c12;
+  --red: #e74c3c;
+  --yellow: #f1c40f;
+  --radius: 12px;
+  --font: 'Pretendard', 'Apple SD Gothic Neo', sans-serif;
+}
+@media (prefers-color-scheme: light) {
+  :root {
+    --bg: #f0f2f8;
+    --surface: #ffffff;
+    --surface2: #e8ecf5;
+    --border: #d0d6e8;
+    --text: #1a1d2e;
+    --text2: #5a6282;
+  }
+}
+:root[data-theme="light"] {
+  --bg: #f0f2f8; --surface: #ffffff; --surface2: #e8ecf5;
+  --border: #d0d6e8; --text: #1a1d2e; --text2: #5a6282;
+}
+:root[data-theme="dark"] {
+  --bg: #0f1117; --surface: #1a1d27; --surface2: #22263a;
+  --border: #2e3248; --text: #e8eaf0; --text2: #9aa0bc;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: var(--font); background: var(--bg); color: var(--text); min-height: 100vh; }
+
+/* HEADER */
+header {
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  padding: 0 24px;
+  display: flex; align-items: center; justify-content: space-between;
+  height: 56px; position: sticky; top: 0; z-index: 100;
+}
+.logo { font-size: 16px; font-weight: 700; display: flex; align-items: center; gap: 8px; }
+.logo a { color: var(--text); text-decoration: none; }
+.logo span { color: var(--accent); }
+.hdr-right { display: flex; align-items: center; gap: 16px; }
+.streak-badge {
+  background: linear-gradient(135deg, #f39c12, #e74c3c);
+  color: #fff; font-size: 12px; font-weight: 700;
+  padding: 4px 10px; border-radius: 20px; display: flex; align-items: center; gap: 4px;
+}
+.theme-btn {
+  background: var(--surface2); border: 1px solid var(--border);
+  color: var(--text2); padding: 6px 12px; border-radius: 8px;
+  cursor: pointer; font-size: 12px; transition: all .2s;
+}
+.theme-btn:hover { color: var(--text); border-color: var(--accent); }
+.back-btn {
+  color: var(--text2); text-decoration: none; font-size: 13px;
+  display: flex; align-items: center; gap: 4px;
+}
+.back-btn:hover { color: var(--accent); }
+
+/* MAIN LAYOUT */
+main { max-width: 860px; margin: 0 auto; padding: 32px 20px 80px; }
+
+/* DATE NAV */
+.date-nav {
+  display: flex; align-items: center; justify-content: space-between;
+  margin-bottom: 28px;
+}
+.nav-btn {
+  background: var(--surface); border: 1px solid var(--border);
+  color: var(--text2); padding: 8px 16px; border-radius: 8px;
+  cursor: pointer; font-size: 13px; transition: all .2s;
+}
+.nav-btn:hover { border-color: var(--accent); color: var(--accent); }
+.nav-btn:disabled { opacity: .35; cursor: not-allowed; }
+.date-center { text-align: center; }
+.date-label { font-size: 13px; color: var(--text2); margin-bottom: 2px; }
+.date-big { font-size: 22px; font-weight: 800; letter-spacing: -.5px; }
+.lesson-num { font-size: 12px; color: var(--text2); margin-top: 2px; }
+
+/* LESSON CARD */
+.lesson-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  margin-bottom: 20px;
+}
+.lesson-header {
+  padding: 20px 24px 16px;
+  border-bottom: 1px solid var(--border);
+  display: flex; align-items: flex-start; justify-content: space-between; gap: 12px;
+}
+.cat-chip {
+  font-size: 11px; font-weight: 700; padding: 3px 10px;
+  border-radius: 20px; white-space: nowrap; flex-shrink: 0;
+}
+.lesson-title { font-size: 20px; font-weight: 800; line-height: 1.3; margin-bottom: 4px; }
+.lesson-sub { font-size: 13px; color: var(--text2); }
+
+/* SECTIONS */
+.section { padding: 20px 24px; border-bottom: 1px solid var(--border); }
+.section:last-child { border-bottom: none; }
+.sec-label {
+  font-size: 11px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase;
+  color: var(--text2); margin-bottom: 12px;
+}
+.concept-text { font-size: 15px; line-height: 1.8; color: var(--text); }
+.concept-text strong { color: var(--accent); }
+
+/* FORMULA BOX */
+.formula-box {
+  background: var(--surface2);
+  border-left: 3px solid var(--accent2);
+  border-radius: 0 8px 8px 0;
+  padding: 14px 18px;
+  margin: 12px 0;
+  font-family: 'Courier New', monospace;
+  font-size: 14px;
+  line-height: 1.6;
+}
+.formula-box .f-title { font-size: 11px; color: var(--text2); margin-bottom: 6px; font-family: var(--font); font-weight: 700; letter-spacing: .05em; }
+
+/* EXAMPLE STEPS */
+.example-box {
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 16px 18px;
+  margin-top: 12px;
+}
+.example-title { font-size: 12px; font-weight: 700; color: var(--orange); margin-bottom: 10px; display: flex; align-items: center; gap: 6px; }
+.step { display: flex; gap: 10px; margin-bottom: 8px; align-items: flex-start; }
+.step-num {
+  background: var(--accent); color: #fff;
+  font-size: 11px; font-weight: 700;
+  width: 20px; height: 20px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 1px;
+}
+.step-text { font-size: 14px; line-height: 1.6; }
+.step-text em { color: var(--green); font-style: normal; font-weight: 700; }
+.result-box {
+  background: linear-gradient(135deg, rgba(79,142,247,.12), rgba(124,90,240,.12));
+  border: 1px solid rgba(79,142,247,.3);
+  border-radius: 8px; padding: 12px 16px; margin-top: 12px;
+  font-size: 14px; font-weight: 600;
+}
+
+/* TIP BOX */
+.tip-box {
+  background: rgba(241,196,15,.08);
+  border: 1px solid rgba(241,196,15,.25);
+  border-radius: 8px; padding: 12px 16px;
+  font-size: 13px; line-height: 1.6;
+  display: flex; gap: 10px; align-items: flex-start;
+}
+.tip-icon { font-size: 16px; flex-shrink: 0; }
+
+/* QUIZ */
+.quiz-box { }
+.quiz-q { font-size: 15px; font-weight: 600; margin-bottom: 16px; line-height: 1.5; }
+.quiz-options { display: flex; flex-direction: column; gap: 8px; }
+.quiz-opt {
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: 8px; padding: 12px 16px;
+  font-size: 14px; cursor: pointer; transition: all .2s;
+  text-align: left; color: var(--text);
+}
+.quiz-opt:hover:not(:disabled) { border-color: var(--accent); background: rgba(79,142,247,.08); }
+.quiz-opt.correct { background: rgba(46,204,113,.12) !important; border-color: var(--green) !important; color: var(--green) !important; }
+.quiz-opt.wrong { background: rgba(231,76,60,.08) !important; border-color: var(--red) !important; color: var(--red) !important; }
+.quiz-opt:disabled { cursor: not-allowed; }
+.quiz-explain {
+  margin-top: 14px; padding: 12px 16px;
+  background: var(--surface2); border-radius: 8px;
+  font-size: 13px; line-height: 1.6; display: none;
+}
+.quiz-explain.show { display: block; }
+
+/* DONE BUTTON */
+.done-wrap { padding: 20px 24px; }
+.done-btn {
+  width: 100%; padding: 14px;
+  border-radius: 10px; border: none;
+  font-size: 15px; font-weight: 700; cursor: pointer;
+  transition: all .2s;
+}
+.done-btn.undone {
+  background: linear-gradient(135deg, var(--accent), var(--accent2));
+  color: #fff;
+}
+.done-btn.undone:hover { opacity: .9; transform: translateY(-1px); }
+.done-btn.done-state {
+  background: rgba(46,204,113,.15);
+  border: 1px solid var(--green);
+  color: var(--green);
+  cursor: default;
+}
+
+/* CALENDAR */
+.cal-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 20px 24px;
+  margin-bottom: 20px;
+}
+.cal-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px; }
+.cal-title { font-size: 15px; font-weight: 700; }
+.cal-stat { font-size: 12px; color: var(--text2); }
+.cal-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 6px;
+}
+.cal-dow {
+  font-size: 10px; font-weight: 700; color: var(--text2);
+  text-align: center; padding: 4px 0;
+  letter-spacing: .05em;
+}
+.cal-day {
+  aspect-ratio: 1;
+  border-radius: 6px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 12px; font-weight: 600;
+  cursor: pointer; transition: all .15s;
+  border: 1px solid transparent;
+}
+.cal-day.empty { background: transparent; cursor: default; }
+.cal-day.future { background: var(--surface2); color: var(--text2); cursor: default; }
+.cal-day.past-done { background: rgba(46,204,113,.2); border-color: rgba(46,204,113,.4); color: var(--green); }
+.cal-day.past-miss { background: var(--surface2); color: var(--text2); opacity: .5; }
+.cal-day.today { background: var(--accent); color: #fff; font-weight: 800; }
+.cal-day.today.done-today { background: var(--green); }
+.cal-day:not(.empty):not(.future):hover { border-color: var(--accent); }
+
+/* STATS ROW */
+.stats-row {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px;
+  margin-bottom: 20px;
+}
+.stat-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 16px;
+  text-align: center;
+}
+.stat-val { font-size: 24px; font-weight: 800; font-variant-numeric: tabular-nums; }
+.stat-lab { font-size: 11px; color: var(--text2); margin-top: 2px; }
+
+/* COLORS BY CATEGORY */
+.cat-market  { background: rgba(52,152,219,.15); color: #3498db; }
+.cat-finance { background: rgba(155,89,182,.15); color: #9b59b6; }
+.cat-tax     { background: rgba(231,76,60,.15); color: #e74c3c; }
+.cat-rebuild { background: rgba(39,174,96,.15); color: #27ae60; }
+.cat-invest  { background: rgba(241,196,15,.15); color: #d4a017; }
+.cat-law     { background: rgba(52,73,94,.3); color: #8e9fc5; }
+.cat-eval    { background: rgba(230,126,34,.15); color: #e67e22; }
+
+@media (max-width: 600px) {
+  main { padding: 20px 12px 60px; }
+  .lesson-header { flex-direction: column; }
+  .stats-row { grid-template-columns: repeat(3, 1fr); gap: 8px; }
+  .stat-val { font-size: 20px; }
+}
+</style>
+</head>
+<body>
+<header>
+  <div class="logo">
+    <a href="index.html" style="display:flex;flex-direction:column;gap:1px;line-height:1.2;text-decoration:none;color:inherit;">
+      <span>🌉 <span style="color:var(--accent);">부릿지</span></span>
+      <span style="font-size:9px;font-weight:700;letter-spacing:.12em;color:var(--text2);">Bu<b style="color:var(--accent);">RIDGE</b></span>
+    </a>
+  </div>
+  <div class="hdr-right">
+    <div class="streak-badge" id="streakBadge">🔥 0일 연속</div>
+    <button class="theme-btn" onclick="toggleTheme()">테마</button>
+    <a href="index.html" class="back-btn">← 홈</a>
+  </div>
+</header>
+
+<main>
+  <!-- Stats Row -->
+  <div class="stats-row">
+    <div class="stat-card">
+      <div class="stat-val" id="statStreak">0</div>
+      <div class="stat-lab">🔥 연속 학습일</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-val" id="statTotal">0</div>
+      <div class="stat-lab">📚 총 완료 강의</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-val" id="statQuiz">0%</div>
+      <div class="stat-lab">✅ 퀴즈 정답률</div>
+    </div>
+  </div>
+
+  <!-- Date Navigation -->
+  <div class="date-nav">
+    <button class="nav-btn" id="btnPrev" onclick="goDay(-1)">← 이전</button>
+    <div class="date-center">
+      <div class="date-label">오늘의 부동산 강의</div>
+      <div class="date-big" id="dateDisplay"></div>
+      <div class="lesson-num" id="lessonNum"></div>
+    </div>
+    <button class="nav-btn" id="btnNext" onclick="goDay(1)" disabled>다음 →</button>
+  </div>
+
+  <!-- Lesson Card -->
+  <div class="lesson-card" id="lessonCard">
+    <!-- injected by JS -->
+  </div>
+
+  <!-- Calendar -->
+  <div class="cal-card">
+    <div class="cal-header">
+      <div class="cal-title" id="calMonth"></div>
+      <div class="cal-stat" id="calStat"></div>
+    </div>
+    <div class="cal-grid" id="calGrid"></div>
+  </div>
+</main>
+
+<script>
+// ─── LESSON BANK (112 lessons) ────────────────────────────────────────────
+const LESSONS = [
+  {
+    cat: 'market', catLabel: '시장동향',
+    title: '서울 아파트 가격, 어떻게 읽나요?',
+    sub: '실거래가지수 vs 호가 vs KB시세 차이 이해',
+    concept: `부동산 가격을 나타내는 지표는 크게 세 가지입니다. <strong>실거래가지수</strong>는 국토교통부에 신고된 실제 거래 가격의 변동을 추적합니다. <strong>KB시세</strong>는 KB국민은행이 중개사 설문으로 조사하는 시장 추정가입니다. <strong>호가(呼價)</strong>는 집주인이 원하는 가격으로, 실거래가와 차이가 클 수 있습니다.
+
+2026년 7월 현재, 서울 아파트 주간 매매가격 상승률은 <strong>+0.27%</strong>로 상승세가 이어지고 있습니다(연누계 +5.42%). 화성 동탄은 6.30 토허제 신규 지정 이후에도 +1.29%를 기록하며 강세를 보입니다.`,
+    formula: { title: '가격 변동률 계산', lines: ['변동률(%) = (이번주 지수 − 전주 지수) ÷ 전주 지수 × 100', '예) 113.2 → 113.54: (113.54−113.2)/113.2 × 100 = +0.30%'] },
+    example: {
+      title: '📊 실전 예시: 서울 아파트 지수 읽기',
+      steps: [
+        '한국부동산원 주간 아파트가격 동향 확인 (매주 목요일 발표)',
+        '서울 매매 지수가 113.20 → 113.54로 변동',
+        '변동률 = (113.54 − 113.20) ÷ 113.20 × 100',
+        '계산: 0.34 ÷ 113.20 × 100 = <em>+0.30%</em>'
+      ],
+      result: '주간 +0.30% = 연율 환산 시 약 +15.6% 수준의 상승 속도'
+    },
+    tip: '💡 KB시세는 매매·전세 모두 있어요. 주택담보대출 LTV 계산 시 KB시세가 기준이 되므로 반드시 체크하세요.',
+    quiz: {
+      q: '다음 중 금융기관이 주택담보대출 한도 계산 시 기준으로 사용하는 지표는?',
+      opts: ['국토부 실거래가', 'KB시세', '호가', '공시지가'],
+      ans: 1,
+      explain: 'KB국민은행 시세(KB시세)가 금융기관의 LTV 계산 기준으로 사용됩니다. 공시지가는 세금 기준, 실거래가는 세금 신고 기준이에요.'
+    }
+  },
+  {
+    cat: 'finance', catLabel: '대출·금융',
+    title: 'LTV·DTI·DSR — 대출 3총사 완전 정복',
+    sub: '내 대출 한도를 결정하는 핵심 지표 이해',
+    concept: `주택담보대출 한도는 세 가지 규제 비율이 동시에 적용됩니다. <strong>LTV(주택담보대출비율)</strong>는 집값 대비 대출 한도입니다. <strong>DTI(총부채상환비율)</strong>는 연 소득 대비 원리금 상환 비율입니다. <strong>DSR(총부채원리금상환비율)</strong>은 모든 대출 원리금의 합산 비율로 가장 까다로운 규제입니다.
+
+2026년 현재, <strong>스트레스 DSR 3단계</strong>가 적용되어 스트레스 금리 3%가 가산됩니다. 서울 투기지역은 LTV 40%, DSR 40%가 원칙입니다.`,
+    formula: { title: '3가지 비율 공식', lines: ['LTV = 대출금액 ÷ 주택가격 × 100', 'DTI = 연간 원리금 상환액 ÷ 연소득 × 100', 'DSR = 모든 대출 연간 원리금 ÷ 연소득 × 100'] },
+    example: {
+      title: '🏦 실전 예시: 10억 아파트 대출 한도 계산',
+      steps: [
+        '주택가격: 10억원 / 연소득: 8,000만원 / 기존 신용대출 없음',
+        'LTV 40% 적용: 최대 대출 4억원',
+        'DSR 40% 적용: 연간 원리금 한도 = 8,000만 × 40% = 3,200만원',
+        '30년 만기, 금리 4% 가정 시 월 상환 약 191만원 → 연 2,292만원',
+        'DSR 기준 가능 대출: <em>약 4.8억원</em> → LTV 4억이 더 낮아 최종 4억'
+      ],
+      result: '최종 대출 한도: 4억원 (LTV 규제가 바인딩)'
+    },
+    tip: '💡 스트레스 DSR 3단계에서는 실제 금리에 3%를 더한 가산 금리로 DSR을 계산합니다. 금리 4%이면 7%로 계산해 한도가 대폭 줄어요.',
+    quiz: {
+      q: '연소득 6,000만원인 직장인이 DSR 40% 규제를 받을 때, 연간 최대 원리금 상환 가능액은?',
+      opts: ['1,200만원', '2,000만원', '2,400만원', '3,000만원'],
+      ans: 2,
+      explain: 'DSR 40% = 6,000만원 × 40% = 2,400만원이 연간 원리금 상환 한도입니다. 월 200만원 수준이에요.'
+    }
+  },
+  {
+    cat: 'tax', catLabel: '세금·세제',
+    title: '취득세 완전 정복 — 집 살 때 세금 얼마?',
+    sub: '주택 수·가격·조정지역에 따른 취득세 계산',
+    concept: `주택을 살 때 내는 취득세는 <strong>주택 수와 가격</strong>에 따라 달라집니다. 1주택자(조정지역)는 6억 이하 1%, 6~9억 1~3% 비례, 9억 초과 3%입니다. <strong>2주택자는 8%, 3주택 이상·법인은 12%</strong>의 중과세율이 적용됩니다.
+
+취득세에는 지방교육세(취득세의 10%)와 농어촌특별세(0.2%, 전용 85㎡ 초과)가 추가됩니다.`,
+    formula: { title: '취득세 세율표 (조정지역 기준)', lines: ['1주택: 6억↓ 1%, 6~9억 1~3%, 9억↑ 3%', '2주택: 8% (조정지역)', '3주택↑: 12%', '법인: 12%', '총 납부액 = 취득세 × 1.1 + (85㎡초과시 × 0.002)'] },
+    example: {
+      title: '💰 실전 예시: 12억 아파트 1주택자 취득세',
+      steps: [
+        '취득가액: 12억원 / 1주택자 / 전용 84㎡',
+        '9억 초과이므로 취득세율 3%',
+        '취득세 = 12억 × 3% = 360만원',
+        '지방교육세 = 360만 × 10% = 36만원',
+        '84㎡는 85㎡ 이하라 농특세 제외'
+      ],
+      result: '최종 납부 = 360만 + 36만 = <em>396만원</em> (취득가액의 약 0.33%)'
+    },
+    tip: '💡 취득세는 취득일로부터 60일 이내 신고·납부해야 합니다. 늦으면 20% 가산세가 붙어요!',
+    quiz: {
+      q: '2주택자가 조정대상지역에서 세 번째 주택을 취득할 때 적용되는 취득세율은?',
+      opts: ['3%', '8%', '12%', '15%'],
+      ans: 2,
+      explain: '3주택 이상자(조정지역)는 12%의 중과세율이 적용됩니다. 2주택자가 조정지역에 추가 취득하면 3주택이 되어 12%입니다.'
+    }
+  },
+  {
+    cat: 'rebuild', catLabel: '재건축·재개발',
+    title: '재건축 분담금 — 내 부담금 계산하기',
+    sub: '비례율·권리가액·분담금의 개념과 계산법',
+    concept: `재건축 사업에서 조합원이 부담하는 비용을 <strong>분담금(추가분담금)</strong>이라 합니다. 분담금이 생기는 이유는 새 아파트 건축비가 종전 자산가치보다 크기 때문입니다.
+
+<strong>비례율</strong>은 사업 수익성을 나타내며, 종후평가액에서 총사업비를 뺀 값을 종전평가액으로 나눈 비율입니다. 비례율이 100% 이상이면 사업성이 좋다는 의미입니다.`,
+    formula: { title: '재건축 핵심 공식 3가지', lines: ['비례율 = (종후평가액 - 총사업비) ÷ 종전평가액 × 100', '권리가액 = 종전평가액 × 비례율', '분담금 = 분양가(조합원가) - 권리가액'] },
+    example: {
+      title: '🏗️ 실전 예시: 강동구 재건축 사례',
+      steps: [
+        '종전평가액(내 집): 4억원 / 비례율: 110%',
+        '권리가액 = 4억 × 110% = 4.4억원',
+        '조합원 분양가(84㎡): 9억원',
+        '분담금 = 9억 - 4.4억 = <em>4.6억원</em>',
+        '→ 4억짜리 집을 팔고 4.6억을 더 내면 9억 신축 아파트 취득'
+      ],
+      result: '총 투자: 4억(종전) + 4.6억(분담) = 8.6억 → 9억 신축 입주'
+    },
+    tip: '💡 비례율이 100% 미만이면 사업성이 나쁜 것. 재건축 조합 가입 전 비례율 추정치를 꼭 확인하세요.',
+    quiz: {
+      q: '종전평가액 5억원, 비례율 120%, 조합원 분양가 8억원이라면 분담금은?',
+      opts: ['2억원', '2.6억원', '3억원', '3.5억원'],
+      ans: 0,
+      explain: '권리가액 = 5억 × 120% = 6억. 분담금 = 8억 - 6억 = 2억원입니다.'
+    }
+  },
+  {
+    cat: 'invest', catLabel: '투자분석',
+    title: 'Cap Rate와 NOI — 수익형 부동산 기초',
+    sub: '오피스텔·상가 투자 수익률 계산법',
+    concept: `수익형 부동산의 핵심 지표는 <strong>NOI(순영업소득)</strong>와 <strong>Cap Rate(자본환원율)</strong>입니다. NOI는 연간 임대수입에서 공실, 관리비, 보험료, 재산세 등 운영비용을 제한 순수익입니다. Cap Rate는 자산가치 대비 NOI 비율로, 투자 기대수익률을 나타냅니다.
+
+한국 오피스텔 Cap Rate는 지역마다 다르지만, 서울 도심 프라임 오피스는 4~5%, 수익형 오피스텔은 4~6% 수준입니다.`,
+    formula: { title: '수익형 부동산 핵심 공식', lines: ['NOI = 가능총소득(PGI) - 공실손실 - 운영비용', 'Cap Rate = NOI ÷ 부동산 가치 × 100', '부동산 가치 = NOI ÷ Cap Rate', 'DSCR = NOI ÷ 연간 부채상환액'] },
+    example: {
+      title: '🏢 실전 예시: 오피스텔 투자 수익 분석',
+      steps: [
+        '취득가: 5억원 / 월세: 120만원 / 연 임대소득: 1,440만원',
+        '공실률 5% 가정: 공실손실 72만원',
+        '운영비(관리비·보험·세금): 연 200만원',
+        'NOI = 1,440 - 72 - 200 = <em>1,168만원</em>',
+        'Cap Rate = 1,168만 ÷ 5억 × 100 = <em>2.34%</em>'
+      ],
+      result: 'Cap Rate 2.34% → 국고채 3.5%보다 낮아 매력도 낮음'
+    },
+    tip: '💡 Cap Rate가 시장 금리보다 낮으면 수익성보다 가격 상승에 베팅하는 것입니다. 안정적 현금흐름을 원한다면 Cap Rate ≥ 기준금리 + 2%를 목표로 하세요.',
+    quiz: {
+      q: 'NOI가 연 3,000만원이고 Cap Rate가 5%일 때 이 부동산의 수익환원법에 의한 가치는?',
+      opts: ['3억원', '5억원', '6억원', '15억원'],
+      ans: 2,
+      explain: '부동산 가치 = NOI ÷ Cap Rate = 3,000만 ÷ 0.05 = 6억원입니다.'
+    }
+  },
+  {
+    cat: 'law', catLabel: '법령·규제',
+    title: '토지거래허가구역(토허제) 완전 이해',
+    sub: '지정 의미, 절차, 2026년 현황',
+    concept: `<strong>토지거래허가구역(토허제)</strong>은 부동산 투기 우려가 있는 지역에서 일정 규모 이상의 토지 거래 시 지자체 허가를 받아야 하는 제도입니다. 서울시 강남·송파·서초·강동구 주요 단지가 지정되어 있습니다.
+
+토허제 지역에서 주택을 사면 <strong>2년 실거주 의무</strong>가 생깁니다. 전세를 끼고 사는 '갭투자'가 사실상 불가능합니다. 2026년 6월 30일에는 <strong>화성 동탄이 신규 토허제 지역으로 추가 지정</strong>됐습니다. 서울 25개 구 전체 + 경기 일부 지역이 대상입니다.`,
+    formula: { title: '토허제 핵심 체크리스트', lines: ['대상: 주거지역 18㎡ 초과 토지(건물 포함)', '의무: 허가 후 2년 실거주 (위반시 이행강제금)', '불가: 전세 끼고 취득, 임대 목적 취득', '허가기관: 해당 구청(자치구)'] },
+    example: {
+      title: '🚫 실전 예시: 토허제 지역 투자 시나리오',
+      steps: [
+        '송파구 잠실엘스 84㎡, 매매가 25억원',
+        '토허제 지정 구역으로 구청 허가 필요',
+        '허가 요건: 실거주 목적 확인서 제출',
+        '취득 후 2년간 타인에게 임대 불가',
+        '위반 시: 취득가액의 10% 이행강제금 → <em>2.5억원</em>'
+      ],
+      result: '토허제 지역은 갭투자 불가 + 2년 실거주 의무로 유동성 제약'
+    },
+    tip: '💡 토허제는 매매 계약 전 반드시 해당 구청에 허가가 필요한 구역인지 확인하세요. 사전 허가 없이 계약하면 무효입니다.',
+    quiz: {
+      q: '토지거래허가구역에서 주택 취득 시 의무 실거주 기간은?',
+      opts: ['6개월', '1년', '2년', '3년'],
+      ans: 2,
+      explain: '토지거래허가구역에서 주택을 취득하면 2년 실거주 의무가 부과됩니다. 위반 시 이행강제금이 부과됩니다.'
+    }
+  },
+  {
+    cat: 'eval', catLabel: '감정평가',
+    title: '감정평가 3방식 — 가치를 산정하는 세 가지 방법',
+    sub: '원가방식·비교방식·수익방식의 원리와 적용',
+    concept: `감정평가사가 부동산 가치를 산정할 때는 <strong>3가지 방식</strong>을 사용합니다. <strong>원가방식</strong>은 토지가격 + 건물재조달원가에서 감가수정을 빼는 방법입니다. <strong>비교방식</strong>은 유사 거래 사례와 비교해 가격을 추정합니다. <strong>수익방식</strong>은 장래 수익의 현재가치로 평가합니다.
+
+실무에서는 세 방식으로 시산가액을 각각 구한 뒤, <strong>조화 평균</strong>을 통해 최종 감정가액을 결정합니다.`,
+    formula: { title: '3방식 핵심 공식', lines: ['원가방식: 적산가액 = 재조달원가 × (1 - 감가수정)', '비교방식: 비준가액 = 사례가 × 사정보정 × 시점수정 × 지역×개별요인', '수익방식: 수익가액 = NOI ÷ 환원이율(Cap Rate)'] },
+    example: {
+      title: '🏠 실전 예시: 단독주택 3방식 평가',
+      steps: [
+        '원가방식: 토지 3억 + 건물(재조달원가 2억×0.7) = 4.4억',
+        '비교방식: 인근 거래사례 5억 × 0.96(시점) × 0.95(개별) = 4.56억',
+        '수익방식: NOI 1,800만 ÷ 4.5% = 4억',
+        '시산가액 조정: 비교방식 중심, 3방식 가중평균',
+        '최종 감정가액: <em>약 4.3억원</em>'
+      ],
+      result: '3방식이 모두 비슷할수록 신뢰도 높은 감정평가'
+    },
+    tip: '💡 아파트는 비교방식(거래사례) 중심, 상업용 부동산은 수익방식 중심, 신축건물은 원가방식이 상대적으로 중요합니다.',
+    quiz: {
+      q: '수익형 부동산에서 NOI가 연 2,400만원이고 환원이율이 6%일 때 수익방식에 의한 평가액은?',
+      opts: ['2억원', '3억원', '4억원', '5억원'],
+      ans: 2,
+      explain: '수익가액 = NOI ÷ 환원이율 = 2,400만 ÷ 0.06 = 4억원입니다.'
+    }
+  },
+  {
+    cat: 'market', catLabel: '시장동향',
+    title: '전세가율 — 매매 vs 전세의 관계',
+    sub: '전세가율로 읽는 갭투자 위험도와 시장 심리',
+    concept: `<strong>전세가율</strong>은 매매가 대비 전세가의 비율입니다. 전세가율이 높으면 전세가가 매매가에 근접한 것으로, 갭투자(전세 끼고 매입)가 수월해집니다. 동시에 <strong>역전세 위험</strong>이 커집니다.
+
+서울 평균 전세가율은 2026년 현재 약 <strong>55~58%</strong> 수준입니다. 지역에 따라 강남구 50% 내외, 노원·도봉구 65% 이상 차이가 납니다. 전세가율 70% 이상이면 깡통전세 위험 신호입니다.`,
+    formula: { title: '전세가율 공식', lines: ['전세가율(%) = 전세가 ÷ 매매가 × 100', '갭 = 매매가 - 전세가', '역전세 발생조건: 전세 만기 시 전세가 > 현재 전세가'] },
+    example: {
+      title: '📊 실전 예시: 전세가율별 리스크 분석',
+      steps: [
+        '노원구 84㎡ 아파트: 매매 8억, 전세 5.6억',
+        '전세가율 = 5.6 ÷ 8 × 100 = 70%',
+        '갭투자 필요 자금: 8억 - 5.6억 = 2.4억',
+        '만기 시 전세가 하락 → 집주인이 차액 보전 못하면 역전세',
+        '전세가율 70%는 위험 구간 → <em>임차인 보증보험 필수</em>'
+      ],
+      result: '전세가율 70% 이상: 갭투자 수월하나 역전세·깡통 위험 ↑'
+    },
+    tip: '💡 전세 계약 전 HUG(주택도시보증공사) 전세보증보험 가입 여부 확인! 전세가율 100% 초과 = 깡통전세, 보증보험도 거절될 수 있어요.',
+    quiz: {
+      q: '매매가 10억원 아파트의 전세가가 6억원일 때 전세가율은?',
+      opts: ['50%', '55%', '60%', '65%'],
+      ans: 2,
+      explain: '전세가율 = 6억 ÷ 10억 × 100 = 60%입니다.'
+    }
+  },
+  {
+    cat: 'tax', catLabel: '세금·세제',
+    title: '양도소득세 — 집 팔 때 세금 계산법',
+    sub: '양도세 계산 구조, 비과세 요건, 장기보유공제',
+    concept: `집을 팔 때 발생하는 이익에 대해 <strong>양도소득세</strong>를 냅니다. 과세 표준에 따라 6%~45%의 누진세율이 적용됩니다. 하지만 1세대 1주택자로서 보유 2년 이상(조정지역은 거주 2년 이상)이면 <strong>12억원까지 비과세</strong>입니다.
+
+장기보유특별공제(장특공제)는 보유·거주 기간에 따라 최대 80%까지 공제받을 수 있어 세금을 크게 줄여줍니다.`,
+    formula: { title: '양도세 계산 구조', lines: ['양도차익 = 양도가액 - 취득가액 - 필요경비', '과세표준 = 양도차익 - 장특공제 - 기본공제(250만)', '세율: 1.2억↓ 6%, ~4.6억 15%, ~8.8억 24%, ~1.5억 35%, 초과 38%/40%/42%/45%'] },
+    example: {
+      title: '💰 실전 예시: 2주택자 양도세 계산',
+      steps: [
+        '매도가 15억, 취득가 8억, 필요경비 3,000만원',
+        '양도차익 = 15억 - 8억 - 3,000만 = 6.7억',
+        '2주택자(조정지역): 장특공제 없음, 기본세율 + 20%p 중과',
+        '과세표준 6.7억 - 250만 ≒ 6.675억',
+        '누진세 계산 후 중과 20%p 가산 → 대략 <em>3억원 내외</em>'
+      ],
+      result: '2주택 중과세 적용 시 세금 부담 급증 → 1주택 정리 후 매도 전략 중요'
+    },
+    tip: '💡 1주택 비과세 요건: ① 1세대 1주택 ② 2년 이상 보유 ③ 조정지역은 2년 거주 ④ 양도가 12억 이하. 12억 초과분은 과세됩니다.',
+    quiz: {
+      q: '1세대 1주택자(조정지역)가 양도세 비과세 혜택을 받으려면 최소 몇 년 거주해야 하나요?',
+      opts: ['1년', '2년', '3년', '5년'],
+      ans: 1,
+      explain: '조정대상지역 1세대 1주택의 경우 2년 이상 보유 + 2년 이상 거주 요건을 모두 충족해야 비과세가 가능합니다.'
+    }
+  },
+  {
+    cat: 'finance', catLabel: '대출·금융',
+    title: '기준금리와 부동산 — 금리가 집값에 미치는 영향',
+    sub: '한은 기준금리 2.75% 인상(7.16)의 부동산 시장 의미',
+    concept: `한국은행 <strong>기준금리</strong>는 모든 대출 금리의 기준이 됩니다. 기준금리가 오르면 주담대 금리도 오르고, 월 상환액이 증가해 수요가 위축됩니다. 반대로 금리가 내리면 이자 부담이 줄어 매수 수요가 살아납니다.
+
+2026년 9월 21일 기준금리가 <strong>2.50%→2.75%</strong>로 인상됐습니다(복수 출처). 주담대 변동금리는 3.8~4.8%, 고정금리는 4.0~5.0% 수준으로 상향됩니다. 스트레스 DSR 3%와 결합 시 대출 한도가 추가 감소할 전망입니다.`,
+    formula: { title: '금리 인상 시 부동산 영향 메커니즘', lines: ['기준금리↑ → 주담대 금리↑ → 월 상환액↑ → 구매력↓', '월 상환 = 대출원금 × [r(1+r)^n] / [(1+r)^n - 1]', '(r=월이율, n=상환개월수)'] },
+    example: {
+      title: '📈 실전 예시: 금리 변화에 따른 월 상환액 변동',
+      steps: [
+        '대출 4억원, 30년 만기 원리금균등상환',
+        '금리 3.5%: 월 상환 약 179만원',
+        '금리 4.5%: 월 상환 약 203만원',
+        '금리 5.5%: 월 상환 약 227만원',
+        '1%p 인상 시 <em>월 24만원, 연 288만원</em> 부담 증가'
+      ],
+      result: '금리 2%p 인상 시 월 상환 48만원 증가 → 연 576만원 추가 부담'
+    },
+    tip: '💡 스트레스 DSR은 현재 금리에 3%를 가산해 계산합니다. 지금 4% 금리라면 7%로 계산하는 것이라 대출 한도가 크게 줄어요.',
+    quiz: {
+      q: '기준금리가 0.5%p 인하될 때 일반적으로 예상되는 주택시장 영향은?',
+      opts: ['매수 수요 감소', '전세 수요 증가', '매수 수요 증가', '주택 공급 증가'],
+      ans: 2,
+      explain: '금리 인하 → 대출 이자 부담 감소 → 월 상환액 감소 → 매수 여력 증가 → 매수 수요 증가 → 가격 상승 압력.'
+    }
+  },
+  {
+    cat: 'market', catLabel: '시장동향',
+    title: '수도권 vs 비수도권 — 양극화 읽기',
+    sub: '서울·수도권 집중과 지방 미분양 현황',
+    concept: `2026년 한국 부동산 시장의 가장 큰 특징은 <strong>극심한 지역 양극화</strong>입니다. 서울은 주간 +0.30%로 상승세를 유지하고 있지만, 지방 광역시와 중소도시는 미분양이 속출하고 있습니다.
+
+특히 <strong>화성(동탄)</strong>은 GTX-A 개통 수혜로 한때 급등했다가 최근 상승세가 둔화되고 있습니다. PF(프로젝트파이낸싱) 부실로 인해 지방 건설사들의 어려움이 지속되고 있습니다.`,
+    formula: { title: '지역별 주간 가격 변동 (2026.07)', lines: ['서울: +0.30% / 수도권 전체: +0.21%', '경기: +0.23% / 인천: +0.03%', '화성(동탄): +0.73% (수도권 최고)', '전국 평균: +0.11%'] },
+    example: {
+      title: '🗺️ 실전 예시: 투자지역 선택 전략',
+      steps: [
+        '서울 강남권: 고점 대비 회복세, 25억 대출 한도 규제',
+        '서울 외곽(노원·도봉): 상대적 저평가, 전세가율 높음',
+        '수도권 GTX역 인접: 교통 수혜로 상승 지속',
+        '지방 거점도시: 미분양 적체, 입주 물량 부담',
+        '결론: <em>서울·GTX 수혜지 집중, 지방은 선별적 접근</em>'
+      ],
+      result: '수도권 집중 현상 지속 → 인구·일자리 있는 곳 위주 투자'
+    },
+    tip: '💡 미분양 현황은 국토교통부 통계누리(stat.molit.go.kr)에서 매월 확인 가능합니다. 전국 미분양 6만호 이상이면 시장 경색 신호입니다.',
+    quiz: {
+      q: '2026년 7월 기준 주간 아파트 가격 상승률이 가장 높은 지역은?',
+      opts: ['서울 강남구', '화성(동탄)', '인천 연수구', '경기 과천'],
+      ans: 1,
+      explain: '화성(동탄)이 +0.73%로 수도권 최고 상승률을 기록했습니다. GTX-A 효과와 개발 기대감이 반영됐습니다.'
+    }
+  },
+  {
+    cat: 'rebuild', catLabel: '재건축·재개발',
+    title: '재건축 초과이익 환수제 — 세금 폭탄 피하기',
+    sub: '재건축 부담금 계산 구조와 절감 전략',
+    concept: `<strong>재건축 초과이익 환수제</strong>는 재건축으로 조합원이 얻은 이익이 1인당 8,000만원을 초과하면 그 초과분을 누진세율로 환수하는 제도입니다. 환수 비율은 초과이익 구간에 따라 10%~50%입니다.
+
+2023년 완화로 면제 기준이 상향되었고, 장기 보유자에게 추가 공제가 도입됐습니다. 그러나 강남 재건축 단지는 여전히 수억원의 부담금 가능성이 있습니다.`,
+    formula: { title: '초과이익 환수세율 구간', lines: ['면제: 1인당 초과이익 8,000만↓', '10%: 8,000만~1.1억', '20%: 1.1억~1.4억', '30%: 1.4억~1.7억', '40%: 1.7억~2억', '50%: 2억 초과'] },
+    example: {
+      title: '🏗️ 실전 예시: 강남 재건축 부담금 계산',
+      steps: [
+        '조합원 1인당 초과이익: 3억원',
+        '8,000만까지: 면제',
+        '8,000만~1.1억(3,000만): 10% = 300만',
+        '1.1억~1.4억(3,000만): 20% = 600만',
+        '1.4억~1.7억(3,000만): 30% = 900만',
+        '1.7억~2억(3,000만): 40% = 1,200만',
+        '2억~3억(1억): 50% = 5,000만 → <em>총 8,000만원</em>'
+      ],
+      result: '3억 초과이익 → 부담금 8,000만원 (실질 세율 약 26.7%)'
+    },
+    tip: '💡 재건축 부담금은 준공 후 5개월 이내 부과됩니다. 입주 전 자금계획에 반드시 포함하세요.',
+    quiz: {
+      q: '재건축 초과이익 환수제에서 1인당 면제 기준금액은?',
+      opts: ['3,000만원', '5,000만원', '8,000만원', '1억원'],
+      ans: 2,
+      explain: '2023년 완화 이후 면제 기준은 1인당 8,000만원입니다. 8,000만원 이하 초과이익은 환수하지 않습니다.'
+    }
+  },
+  {
+    cat: 'invest', catLabel: '투자분석',
+    title: 'DSCR — 대출 상환 능력 지표 이해',
+    sub: '부채상환비율로 보는 수익형 부동산 안전성',
+    concept: `<strong>DSCR(부채상환비율, Debt Service Coverage Ratio)</strong>은 부동산이 창출하는 NOI가 대출 원리금 상환에 얼마나 여유가 있는지 보여주는 지표입니다. DSCR = NOI ÷ ADS(연간 부채상환액)입니다.
+
+금융기관은 보통 DSCR <strong>1.2 이상</strong>을 대출 기준으로 삼습니다. 즉, NOI가 대출 상환액의 1.2배 이상 되어야 안전하다고 봅니다. DSCR 1.0 미만이면 수익으로 이자도 못 내는 위험 상태입니다.`,
+    formula: { title: 'DSCR 계산 공식', lines: ['DSCR = NOI ÷ ADS', 'ADS = 연간 원리금(원금+이자) 상환액', 'DSCR ≥ 1.2: 안전 / 1.0~1.2: 주의 / 1.0↓: 위험'] },
+    example: {
+      title: '🏢 실전 예시: 꼬마빌딩 DSCR 분석',
+      steps: [
+        '꼬마빌딩 NOI: 연 6,000만원',
+        '대출: 10억원, 금리 4.5%, 20년 만기',
+        'ADS(연간 원리금): 약 7,588만원',
+        'DSCR = 6,000만 ÷ 7,588만 = <em>0.79</em>',
+        '→ DSCR < 1.0: 수익으로 대출 상환 불가 (위험)'
+      ],
+      result: 'DSCR 0.79 → 월 임대수익으로 이자도 못 갚는 구조. 자기자본 투입 필요'
+    },
+    tip: '💡 수익형 부동산 투자 전 반드시 DSCR을 계산하세요. NOI가 ADS의 최소 1.2배여야 안정적 투자입니다.',
+    quiz: {
+      q: 'NOI가 연 3,600만원이고 연간 ADS가 3,000만원일 때 DSCR은?',
+      opts: ['0.83', '1.0', '1.2', '1.5'],
+      ans: 2,
+      explain: 'DSCR = 3,600만 ÷ 3,000만 = 1.2. 딱 은행의 최소 기준인 1.2입니다.'
+    }
+  },
+  {
+    cat: 'law', catLabel: '법령·규제',
+    title: '공시가격 — 세금 계산의 기준',
+    sub: '공시지가·공시가격·과세표준의 관계',
+    concept: `부동산 관련 세금은 시세가 아닌 <strong>공시가격</strong>을 기준으로 계산됩니다. 토지는 <strong>공시지가(표준·개별)</strong>, 주택은 <strong>공시가격(표준·개별주택·공동주택)</strong>이 기준입니다.
+
+공시가격은 시세의 80% 수준(현실화율)을 목표로 하며, 매년 1월 1일 기준으로 국토부와 지자체가 산정합니다. <strong>재산세·종부세</strong>는 공시가격에 공정시장가액비율을 곱한 과세표준으로 계산합니다.`,
+    formula: { title: '공시가격 기반 세금 계산', lines: ['과세표준 = 공시가격 × 공정시장가액비율', '재산세 공정시장가액비율: 주택 60%', '종부세 공정시장가액비율: 주택 60%', '종부세 과세표준 = (공시가격합계 - 공제액) × 60%'] },
+    example: {
+      title: '📋 실전 예시: 공시가격 10억 아파트 세금 기준',
+      steps: [
+        '아파트 공시가격: 10억원 (시세 약 12~13억)',
+        '재산세 과세표준 = 10억 × 60% = 6억',
+        '재산세율(0.1~0.4%) 적용',
+        '종부세: 공시가 10억 - 기본공제 9억 = 1억이 과세 대상',
+        '1억 × 60% = 6,000만이 종부세 과세표준'
+      ],
+      result: '공시가 10억 1주택자: 재산세 약 100만원 수준, 종부세 과세 해당(최소)'
+    },
+    tip: '💡 공시가격은 국토부 부동산공시가격알리미(realtyprice.kr)에서 조회할 수 있어요. 매년 4~5월에 확인 가능합니다.',
+    quiz: {
+      q: '종합부동산세를 계산할 때 사용하는 기준 가격은?',
+      opts: ['실거래가', 'KB시세', '공시가격', '기준시가'],
+      ans: 2,
+      explain: '종부세는 공시가격을 기준으로 계산합니다. 공시가격에 공정시장가액비율(60%)을 곱한 값이 과세표준이 됩니다.'
+    }
+  },
+  {
+    cat: 'market', catLabel: '시장동향',
+    title: '3기 신도시 — 공급 대책의 현황과 전망',
+    sub: '남양주왕숙·하남교산·인천계양·고양창릉·부천대장 현황',
+    concept: `정부는 수도권 주택 공급을 위해 <strong>3기 신도시 5곳</strong>을 지정했습니다: 남양주 왕숙(6.6만호), 하남 교산(3.2만호), 인천 계양(1.7만호), 고양 창릉(3.8만호), 부천 대장(2만호). 총 17만호 이상 공급이 목표입니다.
+
+그러나 LH(한국토지주택공사) PF 부실, 사업비 증가, 토지 보상 지연 등으로 <strong>입주 일정이 대폭 지연</strong>되고 있습니다. 당초 2025~2026년 분양 계획이 2027~2028년으로 밀린 곳이 많습니다.`,
+    formula: { title: '3기 신도시 핵심 현황', lines: ['남양주 왕숙: 6.6만호 / GTX-B 수혜 예정', '하남 교산: 3.2만호 / 지하철 3호선 연장', '고양 창릉: 3.8만호 / GTX-A 연결', '인천 계양: 1.7만호 / GTX-D 예정', '부천 대장: 2.0만호 / 교통 인프라 보강 중'] },
+    example: {
+      title: '🏙️ 실전 예시: 3기 신도시가 기존 시장에 미치는 영향',
+      steps: [
+        '공급 기대 → 인근 기존 아파트 매수 심리 위축',
+        '분양가 상한제 적용 → 시세보다 30~40% 저렴 예상',
+        '청약 로또 현상 가능성',
+        '입주 시 일시적 공급 과잉 → 인근 전세가 하락 가능',
+        '장기적으로는 서울 집중 완화 효과 기대'
+      ],
+      result: '3기 신도시 분양 시점에 인근 기존 아파트 매도 물량 증가 가능성'
+    },
+    tip: '💡 3기 신도시 청약을 원한다면 모집공고 최소 6개월 전부터 청약가점·순위를 체크하세요. LH청약플러스(apply.lh.or.kr)에서 사전 등록 가능합니다.',
+    quiz: {
+      q: '3기 신도시 중 계획 세대수가 가장 많은 곳은?',
+      opts: ['하남 교산', '고양 창릉', '남양주 왕숙', '인천 계양'],
+      ans: 2,
+      explain: '남양주 왕숙이 약 6.6만호로 3기 신도시 중 가장 규모가 큽니다.'
+    }
+  },
+  {
+    cat: 'finance', catLabel: '대출·금융',
+    title: 'PF(프로젝트파이낸싱) 위기 — 건설업 리스크의 이해',
+    sub: '부동산 PF 구조와 부실이 시장에 미치는 영향',
+    concept: `<strong>PF(Project Financing)</strong>는 미래 분양 수익을 담보로 대출을 받아 건물을 짓는 방식입니다. 한국 부동산 개발사업의 대부분이 PF로 이루어집니다. 문제는 금리 인상과 분양 침체로 <strong>PF 부실이 급증</strong>했다는 것입니다.
+
+지방 중소 건설사를 중심으로 PF 대출 상환이 어려워지고, 저축은행·증권사 등 제2금융권에서 부실 채권이 쌓이고 있습니다. 대형 건설사 일부도 PF 우발채무로 위기를 맞았습니다.`,
+    formula: { title: 'PF 구조 이해', lines: ['사업시행자: 시행사(SPC)', '대주단: 은행·저축은행·증권사', '시공사: 연대보증 제공', '브릿지론 → 본PF → 분양 → 상환', 'PF 부실: 브릿지론 → 본PF 전환 실패'] },
+    example: {
+      title: '⚠️ 실전 예시: PF 부실이 내 집에 미치는 영향',
+      steps: [
+        '시행사가 PF 상환 불가 → 공사 중단',
+        '미완공 아파트 입주 불가 → 분양자 피해',
+        '연대보증 시공사에 책임 → 건설사 경영위기',
+        '금융기관 부실채권 증가 → 대출 금리 인상 가능성',
+        '→ 분양 계약 시 <em>시공사 신용등급 필수 확인</em>'
+      ],
+      result: 'PF 부실 → 공사중단 → 입주지연 위험. 시공사 신용도·보증보험 확인 필수'
+    },
+    tip: '💡 분양 계약 전 HUG 분양보증이 있는지 확인하세요. 분양보증이 있으면 시행사 부도 시에도 HUG가 공사를 완료하거나 분양대금을 환급합니다.',
+    quiz: {
+      q: 'PF 사업에서 미래 분양 수익을 담보로 대출을 받아 건물을 짓는 주체는?',
+      opts: ['시공사', '시행사', '금융기관', '감정평가사'],
+      ans: 1,
+      explain: '시행사(SPC)가 분양 수익을 담보로 PF 대출을 받아 개발사업을 진행합니다. 시공사는 실제 건설을 담당하며 연대보증을 서는 경우가 많습니다.'
+    }
+  },
+  {
+    cat: 'eval', catLabel: '감정평가',
+    title: '토지 감정평가 — 공시지가와 현실화율',
+    sub: '표준지공시지가·개별공시지가의 차이와 활용',
+    concept: `토지의 가치를 공식적으로 나타내는 것이 <strong>공시지가</strong>입니다. <strong>표준지공시지가</strong>는 국토부가 전국 대표 토지 50만 필지를 선정해 감정평가법인이 평가합니다. <strong>개별공시지가</strong>는 표준지를 기준으로 지자체가 나머지 필지를 산정합니다.
+
+공시지가의 현실화율(시세 반영률)은 65~70% 수준으로, 실거래가보다 낮습니다. 재산세·양도세·취득세의 기준시가로 활용됩니다.`,
+    formula: { title: '공시지가 관련 공식', lines: ['현실화율 = 공시지가 ÷ 시세 × 100', '개별공시지가 = 표준지공시지가 × 토지특성비교표', '토지 보상가 = 감정평가액 (공시지가 기준 × 1.0 이상)'] },
+    example: {
+      title: '🌍 실전 예시: 공시지가 조회 방법',
+      steps: [
+        '부동산공시가격알리미(realtyprice.kr) 접속',
+        '지번 또는 도로명 주소 입력',
+        '개별공시지가 확인 (㎡당 얼마)',
+        '면적 곱해 토지 공시지가 계산',
+        '실거래가와 비교해 현실화율 추정'
+      ],
+      result: '공시지가는 세금의 기준 → 현실화율 상승 시 세금 부담 증가 주의'
+    },
+    tip: '💡 재개발 구역 지정 시 토지 보상은 공시지가 기준이 아니라 감정평가액으로 결정됩니다. 보통 공시지가보다 높지만, 시세보다 낮은 경우가 많아요.',
+    quiz: {
+      q: '전국 대표 토지를 선정해 감정평가법인이 직접 평가하는 공시지가는?',
+      opts: ['개별공시지가', '표준지공시지가', '기준시가', '과세표준'],
+      ans: 1,
+      explain: '표준지공시지가는 국토부가 전국 약 50만 필지의 대표 토지를 선정해 감정평가사가 직접 조사·평가한 것입니다.'
+    }
+  },
+  {
+    cat: 'market', catLabel: '시장동향',
+    title: '청약 제도 완전 정리 — 내 집 마련의 지름길',
+    sub: '청약통장·가점·순위·특별공급 체계 이해',
+    concept: `<strong>주택청약</strong>은 신규 분양 아파트를 추첨·가점 방식으로 배정받는 제도입니다. 주택청약종합저축 가입이 필수이며, 납입 횟수와 금액에 따라 청약 자격이 결정됩니다. 가점제와 추첨제로 나뉘며, 가점이 높을수록 유리합니다.
+
+<strong>특별공급</strong>은 신혼부부·다자녀·기관추천·노부모부양 등 특정 조건을 만족하면 가점과 무관하게 청약할 수 있는 제도입니다. 전체 공급의 약 65~85%가 특별공급입니다.`,
+    formula: { title: '청약 가점 계산법 (만점 84점)', lines: ['무주택기간: 최대 32점 (15년 이상)', '부양가족수: 최대 35점 (6명 이상)', '청약통장 가입기간: 최대 17점 (15년 이상)', '가점 계산기: apply.lh.or.kr'] },
+    example: {
+      title: '🏠 실전 예시: 내 청약 가점 계산',
+      steps: [
+        '무주택기간: 7년 → 16점',
+        '부양가족: 배우자+자녀2 = 3명 → 20점',
+        '청약통장 가입: 5년 → 7점',
+        '합계 가점: 16+20+7 = 43점',
+        '서울 84㎡ 평균 당첨 가점 60점대 → <em>추첨제 노려야</em>'
+      ],
+      result: '가점 43점: 서울 당첨 어려움, 수도권 외곽·특별공급 위주 전략'
+    },
+    tip: '💡 청약통장은 매달 2만~50만원 납입 가능합니다. 가점에는 가입기간이 중요하므로 자녀에게도 일찍 가입시키는 것이 유리해요.',
+    quiz: {
+      q: '청약 가점제에서 부양가족 항목의 최고 점수와 이를 위해 필요한 부양가족 수는?',
+      opts: ['25점, 5명 이상', '30점, 5명 이상', '35점, 6명 이상', '35점, 7명 이상'],
+      ans: 2,
+      explain: '부양가족 가점은 최대 35점이며, 부양가족 6명 이상 시 만점을 받습니다. (본인 제외, 배우자와 직계가족 포함)'
+    }
+  },
+  {
+    cat: 'law', catLabel: '법령·규제',
+    title: '임대차 3법 — 세입자와 집주인의 권리',
+    sub: '계약갱신청구권·전월세상한제·전월세신고제 이해',
+    concept: `2020년 시행된 <strong>임대차 3법</strong>은 세입자 권익을 크게 강화했습니다. <strong>계약갱신청구권</strong>은 세입자가 계약 만료 시 1회에 한해 갱신을 청구할 수 있는 권리입니다. <strong>전월세상한제</strong>는 갱신 시 임대료 인상을 5% 이내로 제한합니다. <strong>전월세신고제</strong>는 6,000만원 이상 전세 계약을 의무적으로 신고해야 합니다.
+
+부작용으로 신규 전세 물량 감소와 전세 시세 급등 현상이 나타났습니다.`,
+    formula: { title: '임대차 3법 핵심 체크', lines: ['계약갱신: 2+2년(총 4년) 보장', '임대료 인상 상한: 갱신 시 5%', '신고 의무: 보증금 6,000만 or 월세 30만↑', '집주인 실거주 시 갱신 거절 가능'] },
+    example: {
+      title: '📋 실전 예시: 계약갱신 거절 사유',
+      steps: [
+        '세입자 계약갱신 요구 (2년 연장 요청)',
+        '집주인 실거주 목적 → 거절 가능',
+        '그러나 실거주 없이 제3자 임대 시 세입자에게 손해배상',
+        '갱신 거절 후 2년 내 동일 조건으로 재임대 금지',
+        '위반 시: 세입자 손해 + 손해액의 <em>3배 이내</em> 배상'
+      ],
+      result: '집주인 실거주를 이유로 갱신 거절 시, 실제 거주하지 않으면 법적 책임'
+    },
+    tip: '💡 임대차계약은 관할 주민센터 또는 부동산거래관리시스템(rtms.molit.go.kr)에서 30일 이내 신고해야 합니다.',
+    quiz: {
+      q: '임대차 3법에서 계약갱신청구권 행사 시 임대료 인상 상한은?',
+      opts: ['3%', '5%', '7%', '10%'],
+      ans: 1,
+      explain: '전월세상한제에 따라 계약 갱신 시 임대료 인상은 5% 이내로 제한됩니다.'
+    }
+  },
+  {
+    cat: 'invest', catLabel: '투자분석',
+    title: '레버리지 효과 — 대출로 수익률 높이기',
+    sub: 'ROE와 레버리지 효과, 양날의 검 이해하기',
+    concept: `<strong>레버리지(Leverage)</strong>는 타인의 자본(대출)을 활용해 자기자본 수익률(ROE)을 높이는 전략입니다. 자산 수익률이 대출 금리보다 높으면 레버리지 효과가 플러스(+)입니다.
+
+반대로 자산 가격이 하락하거나 임대 수익이 줄면, 대출 이자가 손실을 <strong>증폭</strong>시킵니다. 이것이 레버리지의 '양날의 검' 특성입니다.`,
+    formula: { title: '레버리지 ROE 계산', lines: ['총자산수익률(ROA) = NOI ÷ 총자산가치', 'ROE = (NOI - ADS) ÷ 자기자본', '레버리지 효과 = ROE - ROA', '양(+)이면 유리, 음(-)이면 불리'] },
+    example: {
+      title: '📊 실전 예시: 레버리지 효과 비교',
+      steps: [
+        '10억 건물, NOI 4,000만, ROA = 4%',
+        '자기자본 100%: ROE = 4,000만/10억 = 4%',
+        '대출 60%(6억, 금리 4%): ADS = 2,400만',
+        'ROE = (4,000-2,400) ÷ 4억 = 1,600/4억 = 4%',
+        '대출 금리=수익률 → 레버리지 효과 없음'
+      ],
+      result: 'ROA > 대출금리 = 레버리지 유리 / ROA < 대출금리 = 레버리지 불리'
+    },
+    tip: '💡 금리 상승기에 높은 레버리지는 위험합니다. 대출 금리가 수익률을 초과하면 부채가 손실을 키웁니다. LTV는 낮출수록 안전해요.',
+    quiz: {
+      q: '자산 총수익률(ROA)이 3.5%이고 대출 금리가 4.5%일 때 레버리지 효과는?',
+      opts: ['플러스(+): 유리', '마이너스(-): 불리', '중립: 효과 없음', '계산 불가'],
+      ans: 1,
+      explain: '대출 금리(4.5%)가 ROA(3.5%)보다 높으면 레버리지 효과가 마이너스(-). 빌린 돈의 이자가 수익보다 커서 오히려 손해입니다.'
+    }
+  },
+  {
+    cat: 'tax', catLabel: '세금·세제',
+    title: '종합부동산세 — 다주택자의 세금 폭탄',
+    sub: '종부세 계산 구조, 세율, 절감 방법',
+    concept: `<strong>종합부동산세(종부세)</strong>는 공시가격 합산액이 일정 기준을 초과하는 고가 부동산 보유자에게 부과되는 국세입니다. 1주택자는 12억, 다주택자는 9억(공동 명의 시 18억)이 기준입니다.
+
+세율은 1주택자 0.5~2.7%, 다주택자(조정지역 2주택 이상)는 1.2~5.0%의 중과세율이 적용됩니다. 공시가격이 오를수록 종부세 부담이 커집니다.`,
+    formula: { title: '종부세 계산 구조', lines: ['과세표준 = (공시가격 합계 - 공제액) × 60%', '1주택 공제: 12억 / 다주택 공제: 9억', '세율: 0.5~2.7%(1주택) / 1.2~5.0%(다주택)', '납부: 매년 12월 (분납 가능)'] },
+    example: {
+      title: '💰 실전 예시: 2주택자 종부세 계산',
+      steps: [
+        '보유: 서울 아파트 2채 (공시가 합계 20억)',
+        '공제: 9억 차감 → 과세 대상: 11억',
+        '과세표준: 11억 × 60% = 6.6억',
+        '다주택 중과세율 적용(약 2~3% 구간)',
+        '종부세: 약 1,300~1,500만원 + 재산세 이중부과'
+      ],
+      result: '다주택자 종부세 연간 1,500만원 이상 → 월 임대소득과 비교 필수'
+    },
+    tip: '💡 부부 공동 명의 시 종부세 기본공제가 18억(9억×2)으로 늘어나 절세 효과가 있습니다. 단, 지분율에 따라 공제액이 달라져요.',
+    quiz: {
+      q: '종합부동산세에서 1세대 1주택자의 기본 공제 금액은?',
+      opts: ['6억원', '9억원', '12억원', '15억원'],
+      ans: 2,
+      explain: '1세대 1주택자는 공시가격 12억원까지 공제됩니다. 12억 초과분에 대해 종부세가 부과됩니다.'
+    }
+  },
+  {
+    cat: 'market', catLabel: '시장·동향',
+    title: '전용면적·공급면적·계약면적 — 평수의 비밀',
+    sub: '아파트 면적 표시 방법과 실제 사용 공간 계산',
+    concept: `아파트 광고에서 면적은 세 가지로 표기됩니다. <strong>전용면적</strong>은 현관문 안쪽, 실제 내가 단독으로 사용하는 공간입니다. <strong>공급면적</strong>은 전용면적 + 주거공용면적(복도·계단 지분)입니다. <strong>계약면적</strong>은 공급면적 + 기타공용면적(지하주차장·관리사무소 지분)으로 가장 넓습니다.
+
+청약·등기에서는 <strong>전용면적</strong>이 기준입니다. 84㎡는 전용 84㎡를 의미하며, 과거 단위인 '평'으로 환산하면 1㎡ = 0.3025평입니다.`,
+    formula: { title: '면적 환산 공식', lines: ['평 → ㎡: ÷ 0.3025', '㎡ → 평: × 0.3025', '전용 84㎡ = 약 25.4평', '공급면적 = 전용 + 주거공용(복도·계단 지분)', '계약면적 = 공급 + 기타공용(주차장 등)'] },
+    example: {
+      title: '📐 실전 예시: 84㎡ 아파트 면적 분석',
+      steps: [
+        '광고: 전용 84.99㎡ (약 25.7평)',
+        '공급면적: 111.05㎡ (공용부 포함)',
+        '계약면적: 137.42㎡ (지하주차장 지분 포함)',
+        '실제 사용 공간: 전용 84.99㎡가 핵심',
+        '취득세·청약 가점 등 모든 기준 = 전용면적'
+      ],
+      result: '같은 "84㎡"라도 전용/공급/계약 면적이 모두 다름 — 반드시 전용면적 확인!'
+    },
+    tip: '💡 오피스텔은 전용면적 개념이 다릅니다. 전용률(전용/공급)이 55~65% 수준으로 아파트(75~80%)보다 낮아 실제 생활 공간이 좁습니다.',
+    quiz: {
+      q: '아파트 청약 신청 시 면적 기준으로 사용하는 면적은?',
+      opts: ['계약면적', '공급면적', '전용면적', '기타공용면적'],
+      ans: 2,
+      explain: '청약·등기·취득세 모두 전용면적이 기준입니다. 전용면적은 현관문 안쪽 단독 사용 공간을 의미합니다.'
+    }
+  },
+  {
+    cat: 'law', catLabel: '법률·계약',
+    title: '아파트 매매 계약 절차 — 계약금부터 잔금까지',
+    sub: '부동산 거래 단계별 흐름과 체크포인트',
+    concept: `부동산 매매는 <strong>계약금 → 중도금 → 잔금</strong>의 3단계로 이루어집니다. 계약금은 보통 매매가의 10%이며, 계약서 작성 시 지급합니다. 중도금은 5~60일 후 10~30% 추가 지급(생략 가능)합니다. 잔금은 잔금일에 나머지 금액을 지급하고 동시에 소유권을 이전받습니다.
+
+잔금일에 <strong>등기 이전</strong>을 완료해야 진정한 소유자가 됩니다. 등기 전까지는 법적으로 소유권이 없습니다.`,
+    formula: { title: '매매 거래 단계', lines: ['① 계약금: 매매가 × 10% → 계약서 작성', '② 중도금: 매매가 × 10~30% (선택)', '③ 잔금일: 나머지 금액 지급 + 열쇠 인수', '④ 소유권이전등기: 잔금일 당일 또는 직후', '취득세: 취득일(잔금일)로부터 60일 내 신고'] },
+    example: {
+      title: '🏠 실전 예시: 7억 아파트 매매 절차',
+      steps: [
+        '계약서 작성 → 계약금 7,000만원 지급',
+        '30일 후 → 중도금 없이 바로 잔금일 지정',
+        '잔금일: 나머지 6억 3,000만원 지급',
+        '동시에 공인중개사 통해 소유권이전등기 신청',
+        '취득세 60일 내 신고 납부(약 700만원, 1%)'
+      ],
+      result: '등기 완료 시점부터 법적 소유자 — 등기부등본으로 확인 필수'
+    },
+    tip: '💡 잔금 전 반드시 등기부등본을 다시 확인하세요. 계약 후 잔금 전 사이에 근저당이 추가 설정될 수 있습니다.',
+    quiz: {
+      q: '부동산 매매에서 법적 소유권이 이전되는 시점은?',
+      opts: ['계약서 작성 시', '계약금 지급 시', '잔금 지급 시', '소유권이전등기 완료 시'],
+      ans: 3,
+      explain: '부동산 소유권은 소유권이전등기가 완료되어야 법적으로 인정됩니다. 잔금을 지급해도 등기 전까지는 법적 소유자가 아닙니다.'
+    }
+  },
+  {
+    cat: 'law', catLabel: '법률·계약',
+    title: '중개수수료 완전 정리 — 복비 얼마 내야 할까?',
+    sub: '매매·전세·월세별 중개보수 상한 요율 계산',
+    concept: `공인중개사에게 지급하는 <strong>중개보수(복비)</strong>는 법으로 상한이 정해져 있습니다. 매매는 거래금액에 따라 0.4~0.7%가 상한이며, 전세는 0.3~0.4%, 월세는 보증금 + 월세×100 환산 후 0.3~0.4%입니다.
+
+중개보수는 <strong>협의 가능</strong>합니다. 상한 요율은 최대치이며, 그 이하로 협의할 수 있습니다. 중개보수 외에 실비(서류 발급비 등)는 별도 청구될 수 있습니다.`,
+    formula: { title: '중개보수 상한 요율 (주거용)', lines: ['매매: 5,000만↓ 0.6% / 5천~2억 0.5% / 2~9억 0.4% / 9억↑ 0.7%', '전세: 5,000만↓ 0.5% / 5천~1억 0.4% / 1억↑ 0.3%', '월세: (보증금 + 월세×100) × 요율', '상한 초과 수수료 요구 시 신고 가능'] },
+    example: {
+      title: '💼 실전 예시: 10억 아파트 매매 중개보수',
+      steps: [
+        '매매가: 10억원',
+        '9억 초과 요율 적용: 0.7%',
+        '상한 중개보수: 10억 × 0.7% = 700만원',
+        '실제로는 협의 후 500~600만원으로 조정 가능',
+        '부가세 10% 추가: 최종 550~660만원'
+      ],
+      result: '법정 상한은 700만원이지만 협의로 낮출 수 있음 — 부가세 포함 여부 확인'
+    },
+    tip: '💡 중개보수는 매수인과 매도인 각각 지급합니다. 10억 매매 시 양측 합산 최대 1,400만원의 중개보수가 발생할 수 있습니다.',
+    quiz: {
+      q: '5억원 아파트 전세 계약 시 중개보수 상한 요율은?',
+      opts: ['0.3%', '0.4%', '0.5%', '0.7%'],
+      ans: 0,
+      explain: '전세 거래금액 1억원 이상 구간의 중개보수 상한 요율은 0.3%입니다. 5억 × 0.3% = 150만원이 상한입니다.'
+    }
+  },
+  {
+    cat: 'market', catLabel: '시장·동향',
+    title: '분양가상한제 — 분양가 규제의 이해',
+    sub: '분양가상한제 적용 지역, 효과, 로또 청약의 원리',
+    concept: `<strong>분양가상한제</strong>는 신규 아파트 분양가를 택지비 + 건축비 기준으로 상한을 두는 제도입니다. 시세보다 낮게 분양가가 책정되어 당첨 즉시 수억 원 이익이 생기는 <strong>'로또 청약'</strong>이 발생합니다.
+
+분양가상한제 적용 단지에는 <strong>전매 제한</strong>(2~10년)과 <strong>실거주 의무</strong>(2~5년)가 부과됩니다. 이 의무를 위반하면 분양권이 취소될 수 있습니다.`,
+    formula: { title: '분양가 산정 기준', lines: ['분양가 = 택지비 + 건축비(기본형 건축비 × 가산비)', '시세 대비 분양가 비율 확인 필수', '전매 제한: 수도권 분양가상한제 최대 10년', '실거주 의무: 2~5년 (지역별 상이)'] },
+    example: {
+      title: '🎰 실전 예시: 로또 청약 수익 구조',
+      steps: [
+        '분양가상한제 아파트: 분양가 7억원',
+        '인근 동일 단지 시세: 12억원',
+        '당첨 즉시 시세차익: 5억원',
+        '전매 제한 5년 후 매도 가능',
+        '실거주 의무 3년 → 의무 기간 중 임대 불가'
+      ],
+      result: '시세차익 5억 but 전매제한 5년 + 실거주 3년 — 장기 보유 계획 필요'
+    },
+    tip: '💡 분양가상한제 단지는 전매 제한 중 증여·상속도 제한될 수 있습니다. 청약 전 반드시 분양 공고문의 전매 제한 조건을 확인하세요.',
+    quiz: {
+      q: '분양가상한제의 주된 부작용으로 나타나는 현상은?',
+      opts: ['공급 과잉', '로또 청약 과열 경쟁', '분양가 상승', '전세 매물 증가'],
+      ans: 1,
+      explain: '분양가상한제로 시세보다 낮은 분양가가 책정되면, 당첨 즉시 시세차익이 발생해 청약 과열(로또 청약)이 발생합니다.'
+    }
+  },
+  {
+    cat: 'rebuild', catLabel: '재건축·재개발',
+    title: '재개발 vs 재건축 — 완벽한 차이 이해',
+    sub: '대상·주체·절차·투자 관점 비교',
+    concept: `<strong>재건축</strong>은 노후 아파트·공동주택을 허물고 다시 짓는 사업으로, 기반시설(도로·공원 등)은 그대로 둡니다. 반면 <strong>재개발</strong>은 노후 주거지의 기반시설까지 통째로 정비하는 사업입니다.
+
+재건축은 안전진단 통과가 필수(D등급 이하)이며, 초과이익환수제(재건축초과이익부담금)가 적용됩니다. 재개발은 토지 등 소유자 2/3 이상 동의가 필요하며 세입자 보상 문제가 복잡합니다.`,
+    formula: { title: '재건축 vs 재개발 비교', lines: ['재건축: 아파트 등 공동주택 / 안전진단 필수 / 초과이익환수', '재개발: 단독·다세대 혼재 지역 / 기반시설 포함 / 세입자 보상', '공통: 조합 설립 → 사업시행인가 → 관리처분 → 이주 → 착공', '투자: 입주권 취득 → 재건축초과이익부담금 유의'] },
+    example: {
+      title: '🏗️ 실전 예시: 재건축 투자 흐름',
+      steps: [
+        '안전진단 D등급 통과 → 재건축 추진 확정',
+        '조합설립 → 시공사 선정 → 사업시행인가',
+        '관리처분계획 인가 → 이주 및 철거',
+        '착공 후 2~3년 → 입주',
+        '준공 후 초과이익부담금 납부 의무'
+      ],
+      result: '재건축: 전 과정 10~15년 / 재개발: 15~20년 — 장기 투자 관점 필수'
+    },
+    tip: '💡 재건축초과이익부담금은 준공 후 조합원 1인당 수천만~수억원이 부과될 수 있습니다. 사업성 검토 시 반드시 포함해야 합니다.',
+    quiz: {
+      q: '재건축 사업 추진을 위해 반드시 통과해야 하는 절차는?',
+      opts: ['분양가상한제 심사', '안전진단', '토지수용 동의', '임대료 심사'],
+      ans: 1,
+      explain: '재건축은 건물이 노후·불량하다는 것을 증명하는 안전진단(D등급 이하)을 통과해야 추진할 수 있습니다.'
+    }
+  },
+  {
+    cat: 'invest', catLabel: '투자분석',
+    title: '임대 수익률 계산법 — 월세 투자 옳은가?',
+    sub: '총수익률·순수익률 계산과 투자 판단 기준',
+    concept: `임대 투자의 수익성은 <strong>수익률</strong>로 판단합니다. <strong>총수익률(Gross Yield)</strong>은 연 임대료를 매입가로 나눈 것으로, 세금과 비용을 고려하지 않습니다. <strong>순수익률(Net Yield)</strong>은 연 임대료에서 관리비·세금·공실 비용을 빼고 계산한 실질 수익률입니다.
+
+서울 아파트 평균 수익률은 1.5~2.5%, 오피스텔은 3~4%, 상가는 3~5% 수준입니다.`,
+    formula: { title: '임대 수익률 공식', lines: ['총수익률 = 연 임대료 ÷ 매입가 × 100', '순수익률 = (연 임대료 - 연 비용) ÷ 매입가 × 100', '연 비용 = 재산세 + 관리비 + 보험료 + 공실 손실', '손익분기 판단: 순수익률 > 은행 정기예금 금리'] },
+    example: {
+      title: '🏢 실전 예시: 5억 오피스텔 수익률 계산',
+      steps: [
+        '매입가: 5억원 (전세 1억 끼고 실투자 4억)',
+        '월세: 100만원 → 연 임대료 1,200만원',
+        '총수익률: 1,200 ÷ 50,000만 × 100 = 2.4%',
+        '연 비용(재산세+관리비): 약 200만원',
+        '순수익률: (1,200-200) ÷ 50,000 × 100 = 2.0%'
+      ],
+      result: '실투자 4억 기준 순수익률: 1,000 ÷ 40,000 × 100 = 2.5% — 은행 금리와 비교 필수'
+    },
+    tip: '💡 공실 기간(임차인 공백)을 반드시 고려하세요. 연 2개월 공실만 발생해도 연 임대료가 약 17% 줄어들어 수익률이 급감합니다.',
+    quiz: {
+      q: '매입가 3억원, 연 임대료 900만원, 연 비용 150만원일 때 순수익률은?',
+      opts: ['1.5%', '2.5%', '3.0%', '3.5%'],
+      ans: 1,
+      explain: '순수익률 = (900만 - 150만) ÷ 30,000만 × 100 = 750 ÷ 30,000 × 100 = 2.5%입니다.'
+    }
+  },
+  {
+    cat: 'invest', catLabel: '투자분석',
+    title: '부동산 경매 기초 — 싸게 사는 방법',
+    sub: '경매 절차, 권리분석, 명도의 이해',
+    concept: `부동산 <strong>경매</strong>는 채무자가 빚을 갚지 못할 때 법원이 강제로 부동산을 매각하는 제도입니다. 시세보다 20~30% 싸게 살 수 있지만, <strong>권리분석</strong>이 잘못되면 보증금을 날리거나 추가 부담이 생깁니다.
+
+핵심 개념: <strong>최저입찰가</strong>(감정가의 70~80%), <strong>낙찰가율</strong>(감정가 대비 낙찰 비율), <strong>명도</strong>(기존 세입자를 내보내는 과정)입니다. 명도가 어려울수록 낙찰가가 낮아집니다.`,
+    formula: { title: '경매 핵심 지표', lines: ['최저입찰가: 감정가 × 70~80% (유찰 시 추가 20% 감액)', '낙찰가율: 낙찰가 ÷ 감정가 × 100', '인수 여부: 말소기준권리 이후 임차인은 낙찰자 인수', '명도비용: 합의금 + 이사비(수백만~수천만원)'] },
+    example: {
+      title: '⚖️ 실전 예시: 경매 수익 계산',
+      steps: [
+        '감정가: 8억원 / 최저입찰가: 5.6억원 (70%)',
+        '낙찰가: 6.5억원 (낙찰가율 81%)',
+        '권리분석: 말소기준권리 이후 임차인 없음',
+        '명도: 점유자 이사비 300만원 협의',
+        '인근 시세: 8.5억원 → 예상 시세차익 약 2억원'
+      ],
+      result: '낙찰 후 취득세 + 명도비 포함 총 취득가: 약 6.8억 → 시세 대비 1.7억 이익'
+    },
+    tip: '💡 경매 초보자는 임차인이 없는 빈집(명도 부담 없음) 또는 선순위 임차인이 정리된 물건부터 도전하세요. 권리분석은 전문가 도움을 받는 것을 권장합니다.',
+    quiz: {
+      q: '부동산 경매에서 감정가 5억원 아파트가 한 번 유찰됐을 때 최저입찰가는?',
+      opts: ['3억원', '3.5억원', '4억원', '4.5억원'],
+      ans: 1,
+      explain: '1회 유찰 시 최저입찰가는 감정가의 70%입니다. 5억 × 70% = 3.5억원. 추가 유찰 시 3.5억 × 80% = 2.8억원이 됩니다.'
+    }
+  },
+  {
+    cat: 'market', catLabel: '시장·동향',
+    title: 'GTX·교통 호재와 부동산 — 접근성 프리미엄',
+    sub: '교통 개발 호재가 부동산 가격에 미치는 영향',
+    concept: `<strong>GTX(수도권광역급행철도)</strong>는 기존 지하철보다 3~4배 빠른 광역 교통망으로, 경기 외곽에서 서울 도심까지 20~30분대 이동이 가능합니다. GTX 역세권 발표 즉시 인근 부동산 가격이 급등하는 경향이 있습니다.
+
+교통 호재의 부동산 영향은 <strong>발표 → 착공 → 개통</strong> 단계로 나뉩니다. '소문에 사서 뉴스에 팔아라' 원칙처럼, 개통 이후 실망 매물이 나오기도 합니다.`,
+    formula: { title: 'GTX 노선 현황 (2026년)', lines: ['GTX-A: 수서~동탄(개통완료) / 수서~파주(운행중)', 'GTX-B: 인천~마석 (공사중, 2030년 목표)', 'GTX-C: 수원~덕정 (공사중, 2028년 목표)', '역세권 프리미엄: 도보 10분 이내 역세권 +10~30%'] },
+    example: {
+      title: '🚄 실전 예시: GTX-A 동탄역 효과',
+      steps: [
+        'GTX-A 노선 발표(2018년) → 동탄 아파트 단기 급등',
+        '착공 지연 우려로 2021~2022년 조정',
+        '2024년 개통 확정 후 재차 상승',
+        '동탄역 도보 5분 단지: 비역세권 대비 +3~5억 프리미엄',
+        '서울 출퇴근 가능 → 실수요층 유입 지속'
+      ],
+      result: '교통 호재는 발표·착공·개통 3단계 중 발표 단계 상승폭이 가장 큼'
+    },
+    tip: '💡 교통 호재 투자 시 예정 노선과 확정 노선을 구분하세요. 예정 단계에서는 무산·지연 리스크가 크며, 착공 이후가 더 안전한 투자 시점입니다.',
+    quiz: {
+      q: 'GTX 역세권 부동산 투자에서 가장 큰 가격 상승이 발생하는 시점은?',
+      opts: ['노선 개통 후', '공사 착공 후', '노선 발표·확정 시', '운행 1년 후'],
+      ans: 2,
+      explain: '교통 호재는 "소문에 사서 뉴스에 팔아라" 원칙처럼 노선 발표·확정 시 가장 큰 기대감이 반영되어 가격이 급등합니다.'
+    }
+  },
+  {
+    cat: 'market', catLabel: '시장·동향',
+    title: '미분양 리스크 — 미분양 주택의 의미와 투자',
+    sub: '미분양 증가의 의미, 위험 신호 읽는 법',
+    concept: `<strong>미분양 주택</strong>은 신규 분양 후 계약이 안 된 남은 세대입니다. 전국 미분양이 <strong>6만 세대</strong>를 넘으면 시장 위기 신호로 봅니다. 특히 <strong>준공 후 미분양</strong>(악성 미분양)은 건설사 자금난과 직결됩니다.
+
+미분양 주택은 위험하기도 하지만, 시공사·시행사가 할인 분양하는 경우 저가 매수 기회가 되기도 합니다. 단, <strong>PF 부실</strong>로 시공사가 부도나면 입주 자체가 불가능할 수 있습니다.`,
+    formula: { title: '미분양 위험 지표', lines: ['전국 미분양 6만 세대↑: 시장 위기 신호', '준공후 미분양(악성): 건설사 도산 위험', '미분양률 = 미분양 / 분양물량 × 100', '2026년 전국 미분양: 약 4.5만 세대 (주의 구간)'] },
+    example: {
+      title: '⚠️ 실전 예시: 미분양 투자 체크리스트',
+      steps: [
+        '시공사 신용도 확인 (10대 건설사 여부)',
+        '할인율: 분양가 대비 10~20% 할인 여부',
+        '입지: 역세권·직주근접·학군 등 실수요 확인',
+        '준공 여부: 준공 후 미분양은 즉시 입주 가능 (장점)',
+        '잔금 대출 가능 여부: 미분양은 중도금 대출 막힌 경우 많음'
+      ],
+      result: '미분양 = 무조건 위험이 아님 — 입지·시공사·할인율 3가지 체크 후 판단'
+    },
+    tip: '💡 국토교통부 통계누리 시스템에서 매월 미분양 통계를 공개합니다. 지역별·기간별 미분양 추이를 확인해 시장 온도를 파악할 수 있습니다.',
+    quiz: {
+      q: '전국 미분양 주택이 몇 세대를 초과하면 시장 위기 신호로 보는가?',
+      opts: ['2만 세대', '4만 세대', '6만 세대', '10만 세대'],
+      ans: 2,
+      explain: '전국 미분양 주택이 6만 세대를 넘으면 부동산 시장 위기 신호로 봅니다. 2008년 금융위기 당시 16만 세대를 기록했습니다.'
+    }
+  },
+  {
+    cat: 'invest', catLabel: '투자분석',
+    title: '오피스텔 투자 분석 — 아파트와 무엇이 다른가',
+    sub: '오피스텔 장단점, 수익률, 세금 구조 비교',
+    concept: `<strong>오피스텔</strong>은 업무용 건축물이지만 주거도 가능한 복합 부동산입니다. 취득세가 아파트(1~3%)와 달리 <strong>4.6%</strong> 고정입니다. 주택 수 산정에서 제외되어 다주택 규제를 피할 수 있지만, 전용률이 낮아(55~65%) 실제 생활 공간이 좁습니다.
+
+주거용으로 사용하면 주택 수에 포함될 수 있어 청약·대출에 영향을 줍니다. 임대 수익률은 서울 기준 3~4% 수준으로 아파트(1.5~2%)보다 높습니다.`,
+    formula: { title: '오피스텔 vs 아파트 비교', lines: ['취득세: 오피스텔 4.6% / 아파트 1~3%', '전용률: 오피스텔 55~65% / 아파트 75~80%', '수익률: 오피스텔 3~4% / 아파트 1.5~2%', '주택수: 업무용=제외 / 주거용=포함'] },
+    example: {
+      title: '🏢 실전 예시: 3억 오피스텔 투자 분석',
+      steps: [
+        '매입가: 3억원 / 취득세 4.6% = 1,380만원',
+        '전용률 60% → 계약 25평 기준 전용 15평',
+        '월세 80만원 → 연 960만원',
+        '총수익률: 960 ÷ 30,000 × 100 = 3.2%',
+        '세금·공실 제외 순수익률: 약 2.5%'
+      ],
+      result: '취득세 부담이 크지만 다주택 규제 우회 + 아파트보다 높은 수익률 — 세금 구조 먼저 확인'
+    },
+    tip: '💡 오피스텔을 주거용으로 임대하면 전입신고를 하고 주택 수에 포함됩니다. 업무용으로 임대하면 주택 수에서 제외되지만 임차인이 주거용으로 쓰기 어렵습니다.',
+    quiz: {
+      q: '오피스텔의 취득세율은?',
+      opts: ['1%', '2%', '3%', '4.6%'],
+      ans: 3,
+      explain: '오피스텔은 업무용 건축물로 취득세 4.6%(지방교육세 포함)가 적용됩니다. 아파트의 1~3%보다 높습니다.'
+    }
+  },
+  {
+    cat: 'market', catLabel: '시장·동향',
+    title: '부동산 사이클 4단계 — 시장의 흐름 읽기',
+    sub: '회복·확장·과열·침체의 반복 패턴 이해',
+    concept: `부동산 시장은 <strong>회복 → 확장 → 과열 → 침체</strong>의 4단계 사이클을 반복합니다. 각 단계마다 거래량, 가격, 심리가 다르게 나타납니다.
+
+투자 최적 시점은 <strong>회복 초기</strong>입니다. 이때는 가격이 낮고 거래가 살아나는 신호가 보입니다. 반대로 <strong>과열기</strong>에 진입하면 최고점에서 물리는 위험이 있습니다.`,
+    formula: { title: '사이클 4단계 특징', lines: ['① 침체기: 거래량↓ 가격↓ 공포 심리 — 매수 준비', '② 회복기: 거래량↑ 가격 바닥 확인 — 최적 매수', '③ 확장기: 거래량↑↑ 가격↑↑ 낙관 심리 — 보유', '④ 과열기: 거래 과열 가격 급등 — 매도 타이밍'] },
+    example: {
+      title: '📈 실전 예시: 2022~2026 서울 사이클',
+      steps: [
+        '2022년 상반기: 과열 최고점 (강남 아파트 신고가)',
+        '2022년 하반기: 금리 인상 충격 → 침체 시작',
+        '2023년: 거래절벽 / 역전세 공포 → 침체 심화',
+        '2024년 상반기: 거래 회복 신호 / 토허제 완화 기대',
+        '2025~2026년: 회복기 진입 — 강남·마용성 중심 반등'
+      ],
+      result: '2023년 침체 공포에 매수한 투자자가 2026년 회복기 수혜 — 공포 시 행동이 수익으로'
+    },
+    tip: '💡 사이클 단계는 지역별로 다릅니다. 강남이 회복기일 때 지방은 침체기일 수 있습니다. 항상 지역별 거래량과 미분양 데이터를 함께 보세요.',
+    quiz: {
+      q: '부동산 사이클에서 장기 투자 관점의 최적 매수 시점은?',
+      opts: ['과열기 (신고가 갱신 중)', '확장기 (가격 상승 중)', '회복기 초입 (거래량 증가 시작)', '침체기 깊숙한 공포 구간'],
+      ans: 2,
+      explain: '회복기 초입에 거래량이 증가하고 가격 바닥이 확인되면 최적 매수 시점입니다. 침체 공포 최고조 직후가 가장 저렴한 시기입니다.'
+    }
+  },
+  {
+    cat: 'eval', catLabel: '가격·평가',
+    title: '용적률·건폐율 — 건물 규모를 결정하는 기준',
+    sub: '토지 위에 얼마나 크게 건물을 지을 수 있나',
+    concept: `<strong>건폐율</strong>은 토지 면적 대비 건물 바닥 면적(1층) 비율입니다. 대지를 얼마나 덮을 수 있는지를 제한합니다. <strong>용적률</strong>은 토지 면적 대비 건물 연면적(모든 층 합계) 비율입니다. 건물을 얼마나 높이 지을 수 있는지를 결정합니다.
+
+용적률이 높을수록 더 많은 세대가 들어서고 사업성이 높아집니다. 재건축·재개발에서 <strong>용적률 인센티브</strong>가 사업성의 핵심입니다.`,
+    formula: { title: '건폐율·용적률 공식', lines: ['건폐율 = 건물 바닥 면적 ÷ 대지 면적 × 100', '용적률 = 건물 연면적(전층 합) ÷ 대지 면적 × 100', '주거지역 용적률: 1종 100% / 2종 200% / 3종 300%', '상업지역: 최대 1,000%'] },
+    example: {
+      title: '🏗️ 실전 예시: 1,000㎡ 토지 건물 규모',
+      steps: [
+        '토지: 1,000㎡ / 용적률 200% / 건폐율 60%',
+        '건폐율 60%: 1층 바닥 최대 600㎡',
+        '용적률 200%: 연면적 최대 2,000㎡',
+        '2,000 ÷ 600 = 약 3.3층 → 최대 3~4층 건물',
+        '용적률 300%로 변경 시: 5층 이상 건물 가능'
+      ],
+      result: '용적률이 높아질수록 더 높은 건물 → 더 많은 분양 세대 → 재건축 사업성 UP'
+    },
+    tip: '💡 재건축·재개발 투자 시 현재 용적률과 법적 최대 용적률 차이(용적률 여유분)가 클수록 사업성이 좋습니다. 이를 "용적률 인센티브"라 부릅니다.',
+    quiz: {
+      q: '토지 면적 500㎡, 건물 연면적 1,500㎡일 때 용적률은?',
+      opts: ['100%', '200%', '300%', '400%'],
+      ans: 2,
+      explain: '용적률 = 연면적 ÷ 대지면적 × 100 = 1,500 ÷ 500 × 100 = 300%입니다.'
+    }
+  },
+  {
+    cat: 'eval', catLabel: '가격·평가',
+    title: '공시가격 현실화율 — 시세와 공시가의 관계',
+    sub: '공시가격이 세금에 미치는 영향 이해',
+    concept: `<strong>공시가격</strong>은 정부(국토교통부)가 공식 고시하는 부동산 가격으로, 세금 부과 기준이 됩니다. <strong>현실화율</strong>은 시세 대비 공시가격의 비율입니다. 현실화율이 높아질수록 재산세·종부세 부담이 늘어납니다.
+
+2021~2022년 문재인 정부는 현실화율을 90%까지 올리는 로드맵을 추진했으나, 2023년 이후 현실화율을 낮추는 방향으로 전환되었습니다.`,
+    formula: { title: '공시가격 관련 공식', lines: ['현실화율 = 공시가격 ÷ 시세 × 100', '2026년 아파트 현실화율: 약 68~72%', '재산세 과세표준: 공시가 × 60%(주택)', '종부세 과세표준: 공시가 합산 × 60%'] },
+    example: {
+      title: '💰 실전 예시: 시세 10억 아파트 세금 계산',
+      steps: [
+        '시세: 10억원 / 현실화율 70%',
+        '공시가격: 10억 × 70% = 7억원',
+        '재산세 과세표준: 7억 × 60% = 4.2억',
+        '재산세: 약 90~120만원 (누진세율)',
+        '9억 이하라 종부세 없음 (1주택자 기준)'
+      ],
+      result: '공시가격 7억 → 재산세 약 100만원/년 — 현실화율이 오르면 세금 직접 증가'
+    },
+    tip: '💡 공시가격은 매년 1월 1일 기준으로 산정되며 4~5월에 공시됩니다. 이의신청(60일 이내)이 가능하므로 불합리하게 높다고 판단되면 이의를 제기할 수 있습니다.',
+    quiz: {
+      q: '시세 8억원 아파트의 공시가격 현실화율이 70%일 때, 공시가격은?',
+      opts: ['4억원', '5억 6,000만원', '6억원', '7억원'],
+      ans: 1,
+      explain: '공시가격 = 시세 × 현실화율 = 8억 × 70% = 5억 6,000만원입니다.'
+    }
+  },
+  {
+    cat: 'law', catLabel: '법률·계약',
+    title: '청약 가점제 완전 정복 — 내 점수 계산하기',
+    sub: '무주택 기간·부양가족·청약통장 3가지 가점 계산법',
+    concept: `청약 가점제는 <strong>무주택 기간(32점) + 부양가족 수(35점) + 청약통장 가입 기간(17점)</strong>의 3가지 항목 합산 총 84점이 만점입니다.
+
+무주택 기간은 30세 이상 또는 결혼한 날부터 기산됩니다. 부양가족은 주민등록상 동일 세대원이어야 하며, 직계존속(부모)은 3년 이상 동거 시 포함됩니다. 가점이 높을수록 인기 단지 당첨 확률이 높아집니다.`,
+    formula: { title: '가점제 점수표', lines: ['무주택 기간: 1년 미만 2점 ~ 15년↑ 32점 (2점씩)', '부양가족: 0명 5점 ~ 6명↑ 35점 (5점씩)', '청약통장: 6개월 미만 1점 ~ 15년↑ 17점', '총점 = 무주택(최대32) + 부양(최대35) + 통장(최대17)'] },
+    example: {
+      title: '📝 실전 예시: 35세 직장인 가점 계산',
+      steps: [
+        '무주택 기간: 7년 → 16점',
+        '부양가족: 배우자 + 자녀 1명 = 2명 → 15점',
+        '청약통장: 10년 가입 → 12점',
+        '총 가점: 16 + 15 + 12 = 43점',
+        '서울 인기 단지 당첨 커트라인: 보통 55~65점'
+      ],
+      result: '43점은 서울 인기 단지 당첨 어려움 — 경기 외곽 또는 추첨제 비율 높은 단지 공략 필요'
+    },
+    tip: '💡 부양가족 6명 이상(35점)이 만점입니다. 직계존속 동거 3년 조건을 채우면 부모님 2명을 부양가족으로 추가할 수 있어 가점이 큰 폭으로 오릅니다.',
+    quiz: {
+      q: '청약 가점제 총 만점은?',
+      opts: ['64점', '74점', '84점', '100점'],
+      ans: 2,
+      explain: '청약 가점제 만점은 84점입니다. 무주택 기간 32점 + 부양가족 35점 + 청약통장 17점의 합산입니다.'
+    }
+  },
+  {
+    cat: 'law', catLabel: '법률·계약',
+    title: '임대차 3법 핵심 정리 — 세입자 보호 제도',
+    sub: '계약갱신청구권·전월세상한제·전세신고제 이해',
+    concept: `2020년 도입된 <strong>임대차 3법</strong>은 세입자 권리를 강화했습니다. <strong>계약갱신청구권</strong>은 임차인이 1회에 한해 계약 갱신을 요구할 수 있는 권리로, 이를 통해 최대 4년(2+2년) 거주가 보장됩니다. <strong>전월세상한제</strong>는 갱신 시 임대료 인상을 5% 이내로 제한합니다. <strong>전월세신고제</strong>는 보증금 6,000만원 또는 월세 30만원 초과 시 30일 이내 신고 의무입니다.`,
+    formula: { title: '임대차 3법 핵심', lines: ['계약갱신청구권: 1회 행사, 2년 연장 보장', '전월세상한제: 갱신 시 임대료 5% 이내 인상', '전월세신고제: 30일 내 신고 (6,000만↑ 또는 월30만↑)', '집주인 실거주 시 갱신 거절 가능 (2년 실거주 의무)'] },
+    example: {
+      title: '🔑 실전 예시: 계약갱신청구권 행사',
+      steps: [
+        '2022년 전세 2억원으로 2년 계약 체결',
+        '2024년 만기 → 임차인 갱신청구권 행사',
+        '집주인은 거절 불가 (실거주 사유 없을 시)',
+        '갱신 임대료: 2억 × 5% = 1,000만원 인상 한도',
+        '2억 1,000만원으로 2년 연장 → 총 4년 거주 보장'
+      ],
+      result: '갱신청구권으로 2억에서 2.1억으로만 올려 2년 추가 거주 보장 — 세입자 권리 강력'
+    },
+    tip: '💡 집주인이 "실거주"를 이유로 갱신을 거절했는데 실제로 입주하지 않으면, 세입자는 손해배상 청구가 가능합니다.',
+    quiz: {
+      q: '임대차 3법에서 계약갱신청구권 행사 시 최대 임대료 인상 한도는?',
+      opts: ['2%', '3%', '5%', '10%'],
+      ans: 2,
+      explain: '전월세상한제에 따라 계약 갱신 시 임대료 인상은 직전 임대료의 5% 이내로 제한됩니다.'
+    }
+  },
+  {
+    cat: 'tax', catLabel: '세금·세제',
+    title: '상속·증여 부동산 절세법 — 가족 간 자산 이전',
+    sub: '증여세·상속세 기본 구조와 절세 타이밍 전략',
+    concept: `부동산을 자녀에게 넘기는 방법은 <strong>증여</strong>와 <strong>상속</strong> 두 가지입니다. <strong>증여</strong>는 살아있는 동안 무상으로 주는 것, <strong>상속</strong>은 사망 후 재산이 이전되는 것입니다.
+
+증여세는 수증자(받는 사람)가 납부하며, 직계존비속 간에는 10년마다 <strong>5,000만원까지 공제</strong>됩니다. 미성년 자녀는 2,000만원이 공제됩니다. 상속세는 최고 세율이 50%로 OECD 최고 수준입니다. 부동산 가격이 낮을 때 증여하면 절세 효과가 큽니다.`,
+    formula: { title: '증여·상속 핵심 공식', lines: ['증여세 = (증여재산 - 공제액) × 세율 (10~50%)', '직계존비속 공제: 10년간 5,000만원', '미성년자 공제: 10년간 2,000만원', '상속세 = (상속재산 - 공제액) × 세율 (10~50%)', '일괄공제: 5억원 (배우자 포함 시 최대 30억)'] },
+    example: {
+      title: '💰 실전 예시: 공시가 5억 아파트 증여',
+      steps: [
+        '공시가 5억 아파트를 성인 자녀에게 증여',
+        '10년 내 사전 증여 없다고 가정',
+        '증여재산 5억 - 공제 5,000만 = 과세표준 4.5억',
+        '증여세: 4.5억 × 20% - 1,000만(누진공제) = 8,000만원',
+        '절세 전략: 공시가 낮을 때 + 10년 단위 분할 증여'
+      ],
+      result: '공시가 5억 증여세 약 8,000만원 — 부동산 가격이 오르기 전 증여할수록 절세'
+    },
+    tip: '💡 증여 후 5년 이내에 증여자가 사망하면 해당 증여 재산이 상속재산에 합산됩니다. 건강이 나쁜 부모에게는 증여보다 상속이 유리할 수 있습니다.',
+    quiz: {
+      q: '성인 자녀에게 부동산을 증여할 때 10년마다 공제되는 기본 공제액은?',
+      opts: ['1,000만원', '2,000만원', '3,000만원', '5,000만원'],
+      ans: 3,
+      explain: '직계존비속(부모→자녀, 조부모→손자녀) 간 증여 시 10년마다 5,000만원이 공제됩니다. 미성년자 자녀는 10년마다 2,000만원 공제입니다.'
+    }
+  },
+  {
+    cat: 'law', catLabel: '법률·계약',
+    title: '임대사업자 등록 제도 — 혜택과 의무 총정리',
+    sub: '민간임대주택법상 임대사업자 등록의 장단점',
+    concept: `<strong>임대사업자 등록</strong>은 주택 임대를 사업으로 신고하는 제도입니다. 등록 시 세금 혜택(재산세·종부세·양도세 감면)을 받지만, <strong>의무 임대 기간</strong>(10년) 동안 임대료 5% 상한, 의무 거주 불가 등의 제약도 따릅니다.
+
+2020년 임대사업자 제도가 크게 개편되어 단기(4년) 임대가 폐지되고 장기(10년) 일반·공공지원 민간임대만 남았습니다. 등록 시 혜택이 줄었지만 다주택자 종부세 합산 배제 등 일부 혜택은 유지됩니다.`,
+    formula: { title: '임대사업자 등록 핵심', lines: ['의무 임대기간: 10년 (장기일반민간임대)', '임대료 상한: 연 5% 이내', '혜택: 종부세 합산 배제 (일정 요건)', '혜택: 취득세 50~100% 감면 (면적·가격 기준)', '의무 위반 시: 과태료 + 세금 추징'] },
+    example: {
+      title: '📋 실전 예시: 임대사업자 등록 손익 계산',
+      steps: [
+        '전용 60㎡ 이하 아파트 2채 보유 (공시가 각 4억)',
+        '임대사업자 등록 시: 종부세 합산 배제 → 절감',
+        '미등록 시 종부세: 2채 공시가 8억 → 약 50만원',
+        '등록 시: 임대료 5% 상한 의무 + 10년 임대 의무',
+        '10년간 임대료 자유 인상 불가 = 기회비용'
+      ],
+      result: '임대사업자 = 세금 절감 vs 장기 의무 부담의 트레이드오프 — 장기 보유 계획 확정 시 유리'
+    },
+    tip: '💡 임대사업자 등록은 지방자치단체(구청)와 세무서 두 곳에 동시 신고해야 합니다. 한 곳만 신고하면 세금 혜택을 받을 수 없습니다.',
+    quiz: {
+      q: '2020년 개편 이후 현재 유지되는 민간임대주택 의무 임대기간은?',
+      opts: ['4년', '6년', '8년', '10년'],
+      ans: 3,
+      explain: '2020년 7월 임대사업자 제도 개편으로 단기(4년) 임대가 폐지되고, 장기일반민간임대(10년)만 유지됩니다.'
+    }
+  },
+  {
+    cat: 'rebuild', catLabel: '재건축·재개발',
+    title: '관리처분계획 — 재개발·재건축의 핵심 단계',
+    sub: '관리처분계획 인가, 이주, 분양의 전체 흐름',
+    concept: `<strong>관리처분계획(관처)</strong>은 재건축·재개발 사업에서 조합원이 새 아파트를 어떻게 배분받을지 결정하는 핵심 계획서입니다. 조합원 총회 결의 → 시장·군수 인가 절차를 거칩니다.
+
+관처 인가 후 조합원은 이주를 해야 하며, 이주 기간 동안 이주비(대출)를 지원받습니다. 관처에는 <strong>분양 자격·평형·분담금·권리가액</strong>이 확정되며, 인가 이후부터 조합원 지위 양도가 가능한 경우가 많아 투자 거래가 활발해집니다.`,
+    formula: { title: '관리처분계획 핵심 내용', lines: ['권리가액 = 종전 자산평가액 × 비례율', '분담금 = 새 아파트 분양가 - 권리가액', '비례율 = (종후평가 - 총사업비) ÷ 종전평가 × 100', '관처 인가 후: 이주비 지원 + 조합원 지위 양도 가능'] },
+    example: {
+      title: '🏗️ 실전 예시: 관리처분 인가 전후 투자 흐름',
+      steps: [
+        '관처 인가 전: 조합원 지위 양도 제한 (원칙)',
+        '관처 인가 후: 조합원 지위 양도 가능 → 거래 활성화',
+        '분담금 확정 → 투자자 실투자금 계산 가능',
+        '이주 완료 → 철거 → 착공',
+        '착공 후 2~3년 → 입주권 완성'
+      ],
+      result: '관처 인가 = 불확실성 제거 시점 → 가격 급등 타이밍. 단, 이미 기대가 반영되어 있는 경우 많음'
+    },
+    tip: '💡 관리처분계획 인가는 재건축·재개발의 사실상 마지막 관문입니다. 인가 후 사업 무산 확률은 극히 낮아 투자 안전성이 높아집니다. 반면 인가 전 투자는 사업 지연·무산 리스크가 있습니다.',
+    quiz: {
+      q: '재건축에서 관리처분계획 인가 이후 조합원에게 발생하는 의무는?',
+      opts: ['추가 분담금 즉시 납부', '이주 후 철거', '새 아파트 즉시 취득', '조합 탈퇴 금지'],
+      ans: 1,
+      explain: '관리처분계획 인가 이후 조합원은 기존 주택에서 이주하고 건물을 철거해야 합니다. 이주비 대출 지원을 받아 임시 거처를 마련합니다.'
+    }
+  },
+  {
+    cat: 'eval', catLabel: '가격·평가',
+    title: '감정평가 3방식 — 부동산 가치를 구하는 3가지 방법',
+    sub: '원가법·비교법·수익환원법의 원리와 적용 대상',
+    concept: `감정평가사가 부동산 가치를 산정할 때 사용하는 방법은 세 가지입니다. <strong>원가법</strong>은 토지가치 + 건물 재조달원가 - 감가상각으로 계산합니다. <strong>비교법(거래사례비교법)</strong>은 유사 부동산의 실제 거래 사례를 기준으로 보정합니다. <strong>수익환원법(직접환원법)</strong>은 임대 수익을 환원이율로 나눠 가치를 산정합니다.
+
+아파트는 주로 비교법, 공장·창고는 원가법, 상가·임대 빌딩은 수익환원법이 주로 적용됩니다.`,
+    formula: { title: '감정평가 3방식 공식', lines: ['원가법: 재조달원가 - 감가수정액 + 토지가치', '비교법: 사례가격 × 사정보정 × 시점수정 × 개별요인', '수익환원법: NOI(순영업이익) ÷ 환원이율(Cap Rate)', '환원이율 = 시장 기대수익률 (4~6% 일반적)'] },
+    example: {
+      title: '📊 실전 예시: 상가 빌딩 수익환원법 평가',
+      steps: [
+        '연간 임대료: 6,000만원',
+        '연간 비용(관리비·세금·공실): 1,200만원',
+        'NOI = 6,000 - 1,200 = 4,800만원',
+        '시장 환원이율: 5%',
+        '감정평가액 = 4,800만 ÷ 5% = 9억 6,000만원'
+      ],
+      result: '수익환원법 = NOI ÷ Cap Rate → 임대 수익이 많을수록, 환원이율이 낮을수록 감정가 높아짐'
+    },
+    tip: '💡 감정평가 3방식은 공인중개사·감정평가사 시험의 핵심 출제 영역입니다. 각 방식이 어떤 유형의 부동산에 적용되는지(원가→공장, 비교→아파트, 수익→상가)를 암기하세요.',
+    quiz: {
+      q: '아파트 감정평가에 주로 사용되는 감정평가 방법은?',
+      opts: ['원가법', '거래사례비교법', '수익환원법', '원가법+수익환원법'],
+      ans: 1,
+      explain: '아파트는 시장에 거래 사례가 풍부해 유사 거래 사례를 기준으로 하는 거래사례비교법이 주로 적용됩니다. 상가는 수익환원법, 특수 공장은 원가법이 주로 쓰입니다.'
+    }
+  },
+  {
+    cat: 'finance', catLabel: '대출·금융',
+    title: '디딤돌·버팀목 — 정부 저금리 대출 완전 정리',
+    sub: '주택도시기금 대출 종류, 금리, 자격 요건',
+    concept: `정부는 <strong>주택도시기금</strong>을 통해 시중 금리보다 낮은 정책 대출을 지원합니다. 대표 상품은 <strong>디딤돌 대출</strong>(주택 구입용)과 <strong>버팀목 전세자금대출</strong>(전세 임차용)입니다.
+
+<strong>디딤돌 대출</strong>: 무주택 세대주, 주택가격 5억 이하(신혼 6억), 연소득 6,000만원 이하(신혼 8,500만). 금리 연 2.15~3.0% 수준. <strong>버팀목 전세대출</strong>: 임차보증금 수도권 3억(지방 2억) 이하, 연소득 5,000만원(신혼 7,500만) 이하. 금리 1.8~2.4% 수준입니다.`,
+    formula: { title: '디딤돌 vs 버팀목 비교', lines: ['디딤돌: 주택 구입용 / 최대 4억 / 금리 2.15~3.0%', '버팀목: 전세자금 / 수도권 최대 2억2천 / 금리 1.8~2.4%', '공통: 무주택 세대주 + 소득 기준 충족', '신혼부부·다자녀 가구: 우대금리 추가 적용'] },
+    example: {
+      title: '🏠 실전 예시: 신혼부부 디딤돌 대출',
+      steps: [
+        '조건: 신혼(결혼 7년 이내), 연소득 8,000만원, 무주택',
+        '매수 주택: 4억 5,000만원 (5억 이하 조건 충족)',
+        '최대 대출: 4억원 (주택가격의 80% LTV 기준)',
+        '적용 금리: 약 2.6% (신혼 우대 적용)',
+        '월 상환: 4억, 30년, 2.6% → 약 160만원'
+      ],
+      result: '시중 금리(4.5%) 대비 디딤돌 2.6% → 월 43만원 절감, 30년 합계 약 1.5억 절약'
+    },
+    tip: '💡 디딤돌·버팀목 대출은 주택도시기금 포털(nhuf.molit.go.kr)에서 온라인 신청 가능합니다. 은행 방문 전 먼저 자격 요건을 확인하세요. 소득·자산 기준을 초과하면 신청이 거절됩니다.',
+    quiz: {
+      q: '디딤돌 대출의 주요 지원 대상은?',
+      opts: ['다주택 투자자', '무주택 세대주 (소득 기준 충족)', '임대사업자', '법인'],
+      ans: 1,
+      explain: '디딤돌 대출은 무주택 세대주로 연소득 6,000만원 이하(신혼부부 8,500만원 이하)인 실수요자를 위한 정부 정책 대출입니다.'
+    }
+  },
+  {
+    cat: 'market', catLabel: '시장·동향',
+    title: '부동산 심리지수 — 시장 온도 읽는 선행지표',
+    sub: 'PIR·HAI·매수우위지수·소비자심리지수 활용법',
+    concept: `부동산 가격 자체보다 <strong>시장 심리 지표</strong>가 방향성을 먼저 알려줍니다. 핵심 지표 4가지를 이해해야 합니다.
+
+<strong>PIR(Price-to-Income Ratio)</strong>: 연소득 대비 주택가격 배수. 서울 15~20배 = 소득 15~20년치 모아야 집 구입. <strong>HAI(주택구입가능성지수)</strong>: 100 이하면 중위소득 가구가 중위가격 주택 구입 불가. <strong>매수우위지수</strong>: 매수자가 많으면 100 초과, 매도자가 많으면 미만. <strong>소비자심리지수(CCSI)</strong>: 향후 주택 구입 의향 반영.`,
+    formula: { title: '심리지수 4가지', lines: ['PIR = 주택 중위가격 ÷ 가구 중위연소득', '서울 PIR: 약 15~20 (세계 최고 수준)', 'HAI = (가구소득/대출상환액) × 100 (100↑ = 구입 가능)', '매수우위지수: 100↑ = 매수 우세, 100↓ = 매도 우세'] },
+    example: {
+      title: '📊 실전 예시: 2026년 7월 서울 심리 지표 해석',
+      steps: [
+        'PIR 서울: 약 18배 → 월소득 전액 18년 저축해야 집 구입',
+        '매수우위지수: 110 수준 → 매수 > 매도 (상승 심리)',
+        'HAI: 약 65 → 중위소득 가구 중위 주택 구입 불가',
+        '주택구입계획: 6개월 내 구입 계획 가구 비중 상승',
+        '→ 심리는 상승 우세이나 실제 구매력은 제한적'
+      ],
+      result: '매수 심리↑ + 구매력 제한↑ = 상승 속도 완만 예상. 강남 현금 매수층은 예외'
+    },
+    tip: '💡 KB부동산 리브온과 한국부동산원에서 매주 매수우위지수와 소비자심리지수를 공개합니다. 지수가 급격히 변하는 구간(상승 전환 또는 하락 전환)이 투자 타이밍 신호입니다.',
+    quiz: {
+      q: 'PIR(Price-to-Income Ratio) 지수가 18이라는 것의 의미는?',
+      opts: ['집값이 18% 상승했다는 의미', '월소득 18개월을 모아야 집을 살 수 있다', '연소득을 18년 모아야 집을 살 수 있다', '집값이 소득의 18%다'],
+      ans: 2,
+      explain: 'PIR(주택가격/연소득 배수)이 18이면 연소득 전액을 18년 모아야 중위가격 주택을 살 수 있다는 의미입니다. 서울 PIR 18은 세계적으로도 최고 수준입니다.'
+    }
+  },
+  {
+    cat: 'law', catLabel: '법률·계약',
+    title: '부동산 계약 해제·해지 — 위약금과 손해배상',
+    sub: '계약금 몰수·배액 배상·해제 요건의 법적 이해',
+    concept: `부동산 매매계약 후 한쪽이 계약을 취소하면 <strong>위약금</strong>이 발생합니다. 원칙은 이렇습니다: 매수인이 포기하면 계약금 몰수(계약금 반환 없음), 매도인이 파기하면 계약금의 두 배 배상(배액 배상)입니다.
+
+단, 이미 <strong>중도금이 지급된 후</strong>에는 단순 포기나 배액 배상으로 해제할 수 없고 쌍방 합의 또는 법원 판결이 필요합니다. 중도금 지급은 계약의 이행 개시로 보기 때문입니다.`,
+    formula: { title: '계약 해제 위약금 기준', lines: ['매수인 해제: 계약금 전액 몰수 (돌려받지 못함)', '매도인 해제: 계약금 × 2배 반환 (배액 배상)', '중도금 지급 후: 일방 해제 불가 → 합의 또는 소송', '위약금 약정 없으면: 민법상 손해배상 청구로 해결'] },
+    example: {
+      title: '⚖️ 실전 예시: 매도인 일방 해제 시',
+      steps: [
+        '매매가 10억, 계약금 1억 수령',
+        '집값이 갑자기 2억 올라 매도인이 계약 파기 원함',
+        '매도인은 계약금 배액(2억원) 반환해야 해제 가능',
+        '중도금(2억) 이미 받은 경우: 배액 배상 불가',
+        '소송 또는 합의로만 해결 가능'
+      ],
+      result: '배액 배상 2억 vs 집값 상승 2억 = 매도인 손익 0 → 법적으로 계약 이행 강제'
+    },
+    tip: '💡 계약서에 "특약사항: 중도금 지급 전까지 매도인·매수인 각자 해제 가능"이라고 명시하면 중도금 전까지 해제권을 명확히 할 수 있습니다. 계약서 특약이 분쟁 예방의 핵심입니다.',
+    quiz: {
+      q: '매도인이 이미 계약금 1억원을 받은 후 일방적으로 계약을 해제하려면 매수인에게 얼마를 반환해야 하는가?',
+      opts: ['5,000만원', '1억원', '1억 5,000만원', '2억원'],
+      ans: 3,
+      explain: '매도인이 계약을 일방 해제할 때는 받은 계약금의 2배(배액)를 반환해야 합니다. 계약금 1억 × 2 = 2억원을 반환해야 합니다.'
+    }
+  },
+  {
+    cat: 'law', catLabel: '법률·계약',
+    title: '등기 절차 완전 정리 — 소유권 이전의 전 과정',
+    sub: '잔금일 당일 등기 신청부터 등기완료까지',
+    concept: `부동산 소유권이전등기는 잔금 지급과 동시에 진행하는 것이 원칙입니다. 등기를 빨리 완료해야 제3자에게 소유권을 주장(대항)할 수 있습니다. 일반적으로 법무사에게 위임해 처리합니다.
+
+등기 신청 후 <strong>3~5일 내</strong>에 등기가 완료됩니다. 등기 비용은 <strong>취득세 + 교육세 + 농특세 + 등기수수료 + 법무사 보수</strong>로 구성됩니다. 셀프 등기(직접 신청)도 가능하나 실수 위험이 있습니다.`,
+    formula: { title: '등기 비용 구성', lines: ['취득세: 매매가 × 1~3% (주택)', '지방교육세: 취득세 × 10%', '농특세: (85㎡ 초과 시) 취득세 × 20%', '등기신청 수수료: 1만 5,000원~', '법무사 보수: 30~70만원 (물건가액 기준)'] },
+    example: {
+      title: '📝 실전 예시: 잔금일 등기 신청 흐름',
+      steps: [
+        '잔금일 전: 법무사에게 서류(인감증명·주민등록등본 등) 전달',
+        '잔금일: 매도인과 잔금 교환 동시에 법무사 입회',
+        '법무사가 당일 등기소에 등기신청서 접수',
+        '3~5 영업일 후: 등기 완료 → 등기부등본 확인',
+        '취득세 신고: 잔금일로부터 60일 내 필수'
+      ],
+      result: '등기 비용(취득세 포함) 미리 준비 + 잔금일에 법무사 동행 → 소유권 안전 확보'
+    },
+    tip: '💡 잔금일에 반드시 최신 등기부등본(당일 발급)을 확인하세요. 잔금 지급 직전까지도 새 근저당이 설정될 수 있습니다. 인터넷등기소에서 스마트폰으로 실시간 확인 가능합니다.',
+    quiz: {
+      q: '부동산 매수 후 취득세 신고·납부 기한은?',
+      opts: ['잔금일로부터 30일', '잔금일로부터 60일', '등기완료 후 30일', '다음 해 5월'],
+      ans: 1,
+      explain: '취득세는 취득일(잔금일)로부터 60일 이내에 신고·납부해야 합니다. 기한을 넘기면 20%의 가산세가 부과됩니다.'
+    }
+  },
+  {
+    cat: 'finance', catLabel: '대출·금융',
+    title: 'DSCR — 대출 상환능력 심층 분석 지표',
+    sub: '부동산 투자 대출에서 DSCR의 의미와 활용법',
+    concept: `<strong>DSCR(Debt Service Coverage Ratio, 부채상환비율)</strong>은 부동산에서 발생하는 순수익(NOI)이 대출 원리금 상환액(ADS)을 얼마나 커버하는지 나타내는 지표입니다. 주로 상업용 부동산·수익형 부동산 대출에서 활용됩니다.
+
+DSCR 1.0이면 NOI = 대출 상환액으로 겨우 손익분기점. 일반적으로 금융기관은 <strong>DSCR 1.2 이상</strong>을 대출 승인 기준으로 봅니다. DSCR이 낮으면 공실 발생 시 대출 상환에 차질이 생깁니다.`,
+    formula: { title: 'DSCR 공식과 판단 기준', lines: ['DSCR = NOI(순영업이익) ÷ ADS(연간 원리금)', 'DSCR 1.2↑: 안전 (대출 승인 기준)', 'DSCR 1.0~1.2: 주의 (공실 시 위험)', 'DSCR 1.0↓: 위험 (대출 상환 불가 상황)'] },
+    example: {
+      title: '🏢 실전 예시: 상가 건물 DSCR 계산',
+      steps: [
+        '상가 매입가 10억 / 대출 6억(금리 4.5%, 20년)',
+        'NOI: 연 임대료 5,000만 - 비용 800만 = 4,200만원',
+        'ADS: 6억 × 연 원리금(4.5%, 20년) ≈ 4,600만원',
+        'DSCR = 4,200 ÷ 4,600 = 0.91',
+        'DSCR 0.91 → 위험! 공실 한 달이면 상환 차질'
+      ],
+      result: 'DSCR 0.91 = 임대 수익으로 대출 상환 불가 → 대출 규모 줄이거나 매입가 재협상 필요'
+    },
+    tip: '💡 DSCR은 수익형 부동산 투자 시 반드시 계산해야 합니다. 공실률 10%를 가정한 스트레스 DSCR도 함께 계산해 최악의 시나리오에서도 1.0 이상을 유지하는지 확인하세요.',
+    quiz: {
+      q: '상업용 부동산 대출에서 금융기관이 일반적으로 요구하는 최소 DSCR 기준은?',
+      opts: ['0.8 이상', '1.0 이상', '1.2 이상', '1.5 이상'],
+      ans: 2,
+      explain: '금융기관은 일반적으로 DSCR 1.2 이상을 대출 승인 기준으로 요구합니다. 1.0이면 손익분기점에 불과해 공실 발생 시 즉시 위험 상태가 됩니다.'
+    }
+  },
+  {
+    cat: 'market', catLabel: '시장·동향',
+    title: '서울 지역별 투자 특성 — 강남·강북·마용성·노도강',
+    sub: '권역별 가격 수준, 상승성, 실수요 기반 비교 분석',
+    concept: `서울 아파트 시장은 크게 4개 권역으로 나뉩니다. <strong>강남3구(강남·서초·송파)</strong>는 최고가 밀집 지역으로 현금 매수 위주이며 하락 방어력이 가장 강합니다. <strong>마용성(마포·용산·성동)</strong>은 도심 접근성과 개발 호재가 결합된 중상위 권역입니다. <strong>노도강(노원·도봉·강북)</strong>은 서울 내 상대적 저가 권역으로 GTX 수혜와 가성비 실수요가 공존합니다. <strong>강동·강서·양천</strong>은 학군·교통 균형형 권역입니다.`,
+    formula: { title: '2026년 권역별 특성 요약', lines: ['강남3구: 84㎡ 30~50억 / 전세가율 40~45% / 현금 위주', '마용성: 84㎡ 15~25억 / 재개발 호재 / 직주근접 강세', '노도강: 84㎡ 8~13억 / GTX-C 수혜 / 갈아타기 수요', '강동: 84㎡ 12~18억 / GTX-D(예정) / 한강 조망'] },
+    example: {
+      title: '🗺️ 실전 예시: 10억 예산, 권역별 선택지',
+      steps: [
+        '강남3구: 10억으로 구입 불가 (30억+ 필요)',
+        '마용성: 마포·성동 소형(59㎡) 가능 → 상승 여력↑',
+        '노도강: 노원 84㎡ 중형 가능 → 실거주 만족도↑',
+        '강동: 84㎡ 매수 가능 → GTX-D 기대 + 학군 유지',
+        '결론: 투자 목적→마용성 소형, 실거주→노도강·강동 중형'
+      ],
+      result: '10억 예산 기준: 투자 가성비 최고는 마용성 소형 / 실거주 가성비 최고는 노도강·강동'
+    },
+    tip: '💡 같은 10억이라도 강남3구 극소형(30㎡)보다 노도강 대형(84㎡)이 거주 만족도는 훨씬 높습니다. 투자와 실거주 목적에 따라 전략을 분리해야 합니다.',
+    quiz: {
+      q: '2026년 기준 서울에서 대출 없는 현금 매수 비중이 가장 높은 권역은?',
+      opts: ['노원·도봉·강북', '마포·용산·성동', '강남·서초·송파', '관악·동작'],
+      ans: 2,
+      explain: '강남3구(강남·서초·송파)는 25억 초과 주담대 한도 2억 규제와 고가 주택 특성상 현금 매수 비중이 가장 높습니다. 고소득자·자산가 중심의 시장입니다.'
+    }
+  },
+  {
+    cat: 'invest', catLabel: '투자분석',
+    title: '갭투자 원리와 리스크 — 전세 끼고 집 사기',
+    sub: '전세보증금을 활용한 레버리지 구조와 역전세 위험',
+    concept: `<strong>갭투자</strong>란 매매가와 전세가의 차이(갭)만큼의 자기자본으로 주택을 매수하는 투자 방법입니다. 전세보증금을 사실상 무이자 대출로 활용하는 구조입니다.
+
+예를 들어 매매가 5억, 전세 4억이면 갭(1억)만 투자해 5억짜리 부동산을 보유할 수 있습니다. 레버리지 효과가 크지만, 집값이 전세가 아래로 떨어지면 <strong>역전세</strong> 문제가 발생합니다. 2023년 전세사기 사태가 갭투자 구조의 취약점에서 비롯됐습니다.`,
+    formula: { title: '갭투자 핵심 계산', lines: ['갭 = 매매가 - 전세가 = 실투자금', '수익률 = (매매가 상승분) ÷ 갭 × 100', '역전세 위험 = 전세가 > 집값 상황', '전세가율 80% 이상 = 갭 20% 이하 = 고위험'] },
+    example: {
+      title: '📊 실전 예시: 갭투자 수익/손실 시나리오',
+      steps: [
+        '매매가 5억, 전세 4억 → 갭 1억 투자',
+        '1년 후 집값 6억 상승 시: 수익 1억 → ROI 100%',
+        '1년 후 집값 4.2억 하락 시: 갭 2,000만원 손실',
+        '최악: 집값 3.8억 → 전세보증금 4억 반환 불가',
+        '역전세 시 집주인이 4,000만원 추가 마련해야'
+      ],
+      result: '갭투자는 상승장에서 고수익이지만 하락장에서 역전세·깡통전세 직격탄'
+    },
+    tip: '💡 갭투자 전 반드시 확인: 전세가율 70% 이하 + 인근 전세 공급량 + 임차인 보증보험(HUG) 가입 여부. 전세가율이 높을수록 갭투자 위험이 커집니다.',
+    quiz: {
+      q: '매매가 6억, 전세가 4억 8,000만원인 아파트의 갭투자 실투자금은?',
+      opts: ['4,800만원', '1억 2,000만원', '1억 8,000만원', '2억 4,000만원'],
+      ans: 1,
+      explain: '갭 = 매매가 - 전세가 = 6억 - 4억 8,000만원 = 1억 2,000만원. 이 금액이 실투자금(자기자본)입니다.'
+    }
+  },
+  {
+    cat: 'law', catLabel: '법률·계약',
+    title: '전세사기 유형과 예방법 — 내 보증금 지키기',
+    sub: '빌라왕·신탁사기·이중계약 등 주요 전세사기 패턴',
+    concept: `<strong>전세사기</strong>는 임차인의 보증금을 돌려주지 않는 사기 행위로, 2022~2023년 사태 이후 사회적 문제가 됐습니다. 주요 유형은 ① <strong>깡통전세</strong>(선순위 대출+전세금 &gt; 집값), ② <strong>이중계약</strong>(같은 집에 두 명 이상 전세 계약), ③ <strong>신탁 사기</strong>(신탁등기 후 무단 전세), ④ <strong>빌라왕</strong>(다수 주택 보유 후 전세금 편취)입니다.
+
+예방의 핵심은 계약 전 <strong>등기부등본 + 건축물대장 + 확정일자 + 전세보증보험</strong>의 4단계 체크입니다.`,
+    formula: { title: '전세사기 예방 4단계', lines: ['① 등기부등본: 근저당·가압류·신탁등기 확인', '② 건축물대장: 불법 건축물·용도 변경 확인', '③ 계약 후 즉시: 전입신고 + 확정일자 받기', '④ 전세보증보험(HUG/SGI): 보증금 보호 필수'] },
+    example: {
+      title: '⚠️ 실전 예시: 깡통전세 체크법',
+      steps: [
+        '빌라 매매가 2억, 전세가 1억 9,000만원 요청',
+        '등기부등본 확인: 선순위 근저당 7,000만원 발견',
+        '경매 시 배당: 근저당(7,000) → 전세금(1.9억) 순서',
+        '경매 낙찰가 2억 × 70%(매각율) = 1.4억',
+        '근저당 7,000만 공제 후 임차인 배당: 7,000만원뿐'
+      ],
+      result: '전세보증금 1.9억 중 7,000만원만 회수 → 1억 2,000만원 손실 → 전세보증보험이 유일한 방어수단'
+    },
+    tip: '💡 전세보증보험(HUG 전세보증)은 보증금 전액을 보호합니다. 연 보험료는 보증금의 약 0.12~0.15%입니다. 2억 전세면 연 24~30만원으로 보증금 전액 보호 가능합니다.',
+    quiz: {
+      q: '전세 계약 후 보증금을 최우선으로 보호받으려면 반드시 해야 하는 두 가지 행위는?',
+      opts: ['공증 + 은행 통보', '전입신고 + 확정일자', '등기부등본 열람 + 공증', '계약서 공증 + 법무사 확인'],
+      ans: 1,
+      explain: '전입신고(주민센터 또는 정부24)와 확정일자(동사무소 또는 계약서에 도장)를 받아야 대항력과 우선변제권이 생깁니다. 이 두 가지가 전세 보호의 핵심입니다.'
+    }
+  },
+  {
+    cat: 'market', catLabel: '시장·동향',
+    title: '주택 유형 완전 비교 — 아파트·빌라·오피스텔·단독',
+    sub: '유형별 장단점, 투자·거주 적합성, 세금 차이',
+    concept: `주거용 부동산은 크게 <strong>아파트·연립(빌라)·다세대·오피스텔·단독주택</strong>으로 구분됩니다. 유형마다 거주 편의성, 가격 상승성, 세금, 대출 조건이 다릅니다.
+
+아파트는 환금성(팔기 쉬움)과 가격 상승성에서 압도적 우위입니다. 빌라(연립·다세대)는 초기 비용이 낮지만 전세사기 위험이 높고 가격 상승이 느립니다. 오피스텔은 수익률이 높지만 취득세 4.6%의 부담이 있습니다.`,
+    formula: { title: '주택 유형별 핵심 비교', lines: ['아파트: 취득세 1~3% / 환금성↑↑ / 대출 조건 유리', '빌라(연립): 취득세 1~3% / 환금성↓ / 전세사기 위험↑', '오피스텔: 취득세 4.6% / 수익률 높음 / 전용률 낮음', '단독주택: 취득세 1~3% / 토지 포함 / 재개발 기대가치'] },
+    example: {
+      title: '🏠 실전 예시: 3억 예산, 어떤 유형?',
+      steps: [
+        '아파트: 수도권 30㎡ 소형 (환금성↑ 하지만 관리비 높음)',
+        '빌라: 수도권 50~60㎡ 중형 (넓지만 전세사기·환금성 위험)',
+        '오피스텔: 서울 도심 25㎡ (임대수익 3~4%, 취득세 4.6%)',
+        '단독주택: 경기 외곽 60~80㎡ (재개발 기대 but 유동성 낮음)',
+        '결론: 실거주→ 아파트, 임대수익→ 오피스텔, 재개발 기대→ 단독'
+      ],
+      result: '목적(실거주/임대/개발기대)에 따라 최적 유형이 다름 — 아파트가 범용 최강'
+    },
+    tip: '💡 아파트는 같은 단지·층수·방향이면 시세가 투명해 사기 피해 위험이 낮습니다. 빌라·다세대는 시세 파악이 어렵고 전세 피해 사례가 집중됩니다. 초보자는 아파트부터 시작하세요.',
+    quiz: {
+      q: '다음 중 취득세율이 다른 하나는?',
+      opts: ['아파트', '연립주택(빌라)', '다세대주택', '오피스텔'],
+      ans: 3,
+      explain: '오피스텔은 업무용 건축물로 취득세 4.6%가 적용됩니다. 아파트·연립·다세대는 주택으로 1~3%의 취득세가 부과됩니다.'
+    }
+  },
+  {
+    cat: 'tax', catLabel: '세금·세제',
+    title: '부동산 세금 3단계 — 살 때·보유할 때·팔 때',
+    sub: '취득세·재산세·양도세의 발생 시점과 계산 원리',
+    concept: `부동산 세금은 <strong>취득 단계 → 보유 단계 → 처분 단계</strong>의 세 시점에 발생합니다. 초보자가 가장 많이 놓치는 것이 보유 단계(재산세·종부세)와 처분 단계(양도세)의 합산 부담입니다.
+
+세 가지 세금을 모두 합산해야 실질 수익률을 계산할 수 있습니다. 양도차익이 아무리 크더라도 세금을 제외한 세후 수익률이 진짜 투자 성과입니다.`,
+    formula: { title: '부동산 3단계 세금 요약', lines: ['① 취득세: 매수 시 1회 납부 (1~12%)', '② 재산세: 매년 7월·9월 (공시가 기준)', '③ 종부세: 매년 12월 (공시가 기준액 초과 시)', '④ 양도세: 매도 시 양도차익에 과세 (6~45%+중과)'] },
+    example: {
+      title: '💰 실전 예시: 10억 매수 → 13억 매도 세금 총계산',
+      steps: [
+        '취득세(매수 시): 10억 × 3% = 3,000만원',
+        '재산세(연간): 약 130~150만원 × 보유 5년 = 약 700만원',
+        '종부세: 공시가 약 7억(현실화율 70%) → 1주택 12억 미만 해당없음',
+        '양도차익: 13억 - 10억 - 취득비용 = 약 2.7억',
+        '양도세(1주택 2년 이상 보유): 비과세 또는 장기보유공제 적용'
+      ],
+      result: '세금 합계 약 3,700만원. 양도차익 3억 - 세금 3,700만 = 실수령 약 2억 6,300만원'
+    },
+    tip: '💡 1세대 1주택자가 2년 이상 보유·거주하면 양도세가 비과세됩니다(12억 이하 양도차익). 이 혜택이 부동산 투자에서 가장 강력한 세금 절세 수단입니다.',
+    quiz: {
+      q: '1세대 1주택자가 9억원에 매수한 아파트를 2년 이상 보유 후 11억원에 매도할 때 양도세는?',
+      opts: ['약 1,000만원', '약 2,000만원', '비과세', '약 5,000만원'],
+      ans: 2,
+      explain: '1세대 1주택자가 2년 이상 보유·거주 시 양도차익 12억원까지 비과세입니다. 11억 매도(차익 2억)는 12억 기준 이하라 양도세가 없습니다.'
+    }
+  },
+  {
+    cat: 'invest', catLabel: '투자분석',
+    title: '상가 투자 분석 — 월세 수익의 왕?',
+    sub: '상가 투자 수익률, 공실 위험, 권리금 구조',
+    concept: `<strong>상가(상업용 부동산)</strong>는 임대 수익률이 아파트(1.5~2%)보다 높아(3~5%) 월세 투자 수단으로 인기입니다. 하지만 공실 위험이 크고 경기에 민감하며, <strong>권리금</strong>이라는 아파트에 없는 독특한 비용 구조가 있습니다.
+
+<strong>권리금</strong>은 기존 임차인이 새 임차인에게 받는 영업권·시설·바닥(위치) 가치입니다. 집주인이 아닌 임차인 간의 거래이며, 상가임대차보호법으로 일부 보호됩니다.`,
+    formula: { title: '상가 투자 핵심 지표', lines: ['수익률 = 연 임대료 ÷ 매입가 × 100', '권리금 = 바닥권리금 + 시설권리금 + 영업권리금', '환산보증금 = 보증금 + (월세 × 100)', '상가임대차법 적용: 환산보증금 9억 이하'] },
+    example: {
+      title: '🏪 실전 예시: 상가 투자 수익성 분석',
+      steps: [
+        '상가 매입가: 3억 / 보증금 3,000만 + 월세 150만',
+        '연 임대료: 1,800만원',
+        '총수익률: 1,800 ÷ 30,000 × 100 = 6.0%',
+        '공실 2개월 가정 시: 1,500만 → 수익률 5.0%',
+        '재산세·관리비 연 100만 제외 순수익률: 4.7%'
+      ],
+      result: '상가 수익률 4~6%는 아파트(1.5~2%)보다 높지만 공실·경기침체 리스크 감수 필요'
+    },
+    tip: '💡 상가 투자 황금 법칙: ① 1층 코너 자리, ② 배후 유동인구 3,000명 이상/일, ③ 공실률 5% 미만 상권. 이 3가지를 동시에 충족하는 상가가 진정한 우량 물건입니다.',
+    quiz: {
+      q: '상가에서 기존 임차인이 새 임차인에게 받는 영업권·위치 가치에 대한 대가를 무엇이라 하는가?',
+      opts: ['관리비', '권리금', '보증금', '임대료'],
+      ans: 1,
+      explain: '권리금은 기존 임차인이 새 임차인에게 받는 바닥권리금(위치 가치)·시설권리금·영업권리금의 합산액입니다. 상가임대차보호법으로 일정 부분 보호됩니다.'
+    }
+  },
+  {
+    cat: 'market', catLabel: '시장·동향',
+    title: '부동산 시세 조회 방법 — 진짜 가격 찾는 법',
+    sub: '실거래가·KB시세·호가의 차이와 올바른 활용법',
+    concept: `부동산 가격을 조회하는 방법은 크게 세 가지입니다. <strong>실거래가</strong>는 실제 계약된 가격으로 국토교통부 실거래가 공개시스템에서 조회합니다. <strong>KB시세</strong>는 KB국민은행이 중개사 협조로 산출한 시세로 금융기관 대출 기준입니다. <strong>호가</strong>는 매도인이 원하는 가격으로 실제 거래 가격과 차이가 있을 수 있습니다.
+
+세 가지를 비교해야 시장의 실제 온도를 파악할 수 있습니다.`,
+    formula: { title: '시세 조회 플랫폼 정리', lines: ['실거래가: 국토부 실거래가공개시스템(rt.molit.go.kr)', 'KB시세: KB부동산 리브온(kbland.kr) — 대출 기준', '호가: 네이버부동산·직방·다방 — 매도인 원하는 가격', '공시가격: 부동산공시가격알리미(부동산원) — 세금 기준'] },
+    example: {
+      title: '🔍 실전 예시: 같은 아파트 4가지 가격 비교',
+      steps: [
+        '서울 노원구 84㎡ A단지',
+        '호가: 7억 5,000만원 (매도인 희망)',
+        'KB시세: 7억 2,000만원 (은행 대출 기준)',
+        '실거래가: 7억원 (3개월 전 실제 거래)',
+        '공시가격: 5억원 (현실화율 71%)'
+      ],
+      result: '실거래가(7억)가 가장 신뢰할 수 있는 기준. 호가(7.5억)와 5,000만원 차이 → 협상 여지'
+    },
+    tip: '💡 실거래가 조회 시 최근 3~6개월 거래 데이터를 확인하세요. 층수·방향·수리 여부에 따라 가격 차이가 크므로, 같은 조건의 거래만 비교해야 합니다.',
+    quiz: {
+      q: '은행이 주택담보대출 한도(LTV)를 산정할 때 기준으로 사용하는 시세는?',
+      opts: ['국토부 실거래가', 'KB시세', '매도인 호가', '공시가격'],
+      ans: 1,
+      explain: 'KB국민은행 시세(KB시세)가 금융기관의 LTV 산정 기준입니다. 실거래가·호가·공시가격이 아닌 KB시세가 대출 가능 금액을 결정합니다.'
+    }
+  },
+  {
+    cat: 'law', catLabel: '법률·계약',
+    title: '주택임대차보호법 — 임차인의 최소 방어선',
+    sub: '대항력·우선변제권·최우선변제권의 의미와 요건',
+    concept: `<strong>주택임대차보호법(주임법)</strong>은 임차인(세입자)을 보호하기 위한 법률입니다. 세 가지 핵심 권리를 알아야 합니다.
+
+<strong>대항력</strong>은 임차인이 이사(점유)와 전입신고를 마치면 다음날 0시부터 새 집주인에게도 임대차를 주장할 수 있는 권리입니다. <strong>우선변제권</strong>은 확정일자를 받으면 경매 시 순위에 따라 보증금을 돌려받는 권리입니다. <strong>최우선변제권</strong>은 소액 임차인이 경매 시 다른 채권자보다 먼저 일정액을 받는 권리입니다.`,
+    formula: { title: '임차인 3대 권리 요건', lines: ['대항력: 이사(점유) + 전입신고 → 다음날 0시부터', '우선변제권: 대항력 + 확정일자', '최우선변제권: 소액보증금 (서울 5,500만 이하)', '소액임차인 최우선 변제액: 서울 1,650만원'] },
+    example: {
+      title: '⚖️ 실전 예시: 경매 시 임차인 보호',
+      steps: [
+        '임차인: 2023.01.01 전입신고 + 확정일자',
+        '근저당 설정일: 2022.06.01 (임차인보다 선순위)',
+        '경매 낙찰가: 3억원',
+        '배당: 1순위 근저당(2억) → 2순위 임차인(1억)',
+        '보증금 1.5억 중 1억만 회수 → 5,000만원 손실'
+      ],
+      result: '선순위 근저당보다 확정일자가 늦으면 보증금 전액 보호 불가 → 계약 전 등기부 필수 확인'
+    },
+    tip: '💡 전입신고와 확정일자는 계약 당일 또는 다음날 바로 받으세요. 하루라도 늦으면 그 사이 설정된 근저당에 밀릴 수 있습니다. 정부24 앱에서 바로 전입신고 가능합니다.',
+    quiz: {
+      q: '임차인이 대항력을 갖추기 위한 두 가지 요건은?',
+      opts: ['확정일자 + 공증', '이사(점유) + 전입신고', '전입신고 + 확정일자', '계약서 공증 + 이사'],
+      ans: 1,
+      explain: '대항력은 임차물의 점유(이사)와 전입신고를 마친 다음날 0시부터 발생합니다. 확정일자는 우선변제권을 위한 추가 요건입니다.'
+    }
+  },
+  {
+    cat: 'eval', catLabel: '가격·평가',
+    title: '토지 투자 기초 — 땅 투자는 어떻게 하나',
+    sub: '지목·용도지역·개발제한구역·땅값 계산법',
+    concept: `<strong>토지 투자</strong>는 아파트와 달리 개발 가능성과 용도에 따라 가치가 결정됩니다. 핵심 개념은 <strong>지목</strong>(토지의 용도 분류: 전·답·대·임야 등)과 <strong>용도지역</strong>(주거·상업·공업·녹지지역)입니다.
+
+가장 중요한 것은 <strong>개발행위 가능 여부</strong>입니다. 개발제한구역(그린벨트), 농업진흥구역, 절대보존 임야는 건물을 지을 수 없습니다. 용도지역이 바뀌면(용도변경) 토지 가치가 급등하며, 이 기대감이 토지 투자의 핵심입니다.`,
+    formula: { title: '토지 가치 결정 요소', lines: ['토지가치 = 위치 × 용도지역 × 개발 가능성 × 접근성', '공시지가: 정부 고시 땅값 (세금 기준)', '감정평가액: 공시지가의 120~200% (시세 추정)', '용도지역 순서(가치): 상업 > 주거 > 공업 > 녹지 > 농림'] },
+    example: {
+      title: '🌍 실전 예시: 토지 투자 체크리스트',
+      steps: [
+        '지목 확인: 대지(건물 가능) vs 전·답(전용 필요)',
+        '용도지역: 자연녹지→주거지역 변경 예정 지역 주목',
+        '도로 접면: 도로에 닿아야 건축허가 가능',
+        '개발제한: 그린벨트·농진구역 해제 뉴스 체크',
+        '교통 호재: GTX역·고속도로 IC 예정지 반경 2km'
+      ],
+      result: '토지 투자 = 개발 가능성 × 교통 호재의 조합 — 인내심 있는 장기 투자'
+    },
+    tip: '💡 토지이용계획확인원(eum.go.kr, 무료)에서 해당 토지의 용도지역·규제·개발행위 가능 여부를 즉시 확인할 수 있습니다. 토지 투자 전 반드시 확인하세요.',
+    quiz: {
+      q: '토지의 가치를 가장 크게 결정하는 요소는?',
+      opts: ['공시지가', '지목 분류', '용도지역', '토지 면적'],
+      ans: 2,
+      explain: '용도지역(주거·상업·공업·녹지)이 토지의 건축 가능 규모와 사용 용도를 결정해 토지 가치의 가장 핵심 요소입니다. 같은 크기 토지도 용도지역에 따라 수십 배 가치 차이가 납니다.'
+    }
+  },
+  {
+    cat: 'finance', catLabel: '대출·금융',
+    title: '주담대 금리 구조 — 고정금리 vs 변동금리',
+    sub: '금리 유형 선택 기준과 MCI·MCG 보험 이해',
+    concept: `주택담보대출 금리는 크게 <strong>고정금리</strong>와 <strong>변동금리</strong>로 나뉩니다. <strong>고정금리</strong>는 대출 기간 내내 금리가 동일해 상환액이 일정합니다. <strong>변동금리</strong>는 6개월 또는 1년마다 시장 금리에 연동해 변합니다(주로 COFIX 연동).
+
+금리 인상기에는 고정금리가 유리하고, 금리 인하기에는 변동금리가 유리합니다. 초보자는 변동성이 적은 <strong>혼합금리</strong>(5년 고정 후 변동)를 선택하는 경우가 많습니다.`,
+    formula: { title: '금리 유형 비교', lines: ['고정금리: 금리 확정, 예측 가능, 초기 금리 높음', '변동금리: COFIX+가산금리, 초기 낮지만 불확실', '혼합금리: 5년 고정 후 변동 전환 (가장 일반적)', 'MCI·MCG 보험: 채무자 사망·장애 시 대출 대신 납부'] },
+    example: {
+      title: '📊 실전 예시: 3억 대출 금리 비교',
+      steps: [
+        '변동금리 4.2% → 월 상환 약 148만원',
+        '고정금리 4.8% → 월 상환 약 157만원',
+        '1년 후 변동금리 5.5%로 인상 시 → 월 172만원',
+        '1년 후 변동금리 3.5%로 인하 시 → 월 134만원',
+        '금리 방향 예측 어려우면 혼합금리(5년 고정) 선택'
+      ],
+      result: '2026년 금리 불확실성 구간 → 혼합형(5년 고정) 또는 고정금리가 안전 선택'
+    },
+    tip: '💡 대출 갈아타기(대환대출)를 적극 활용하세요. 금리가 0.5%p 이상 낮아지는 상품이 있으면 중도상환수수료(잔여 기간 비례 감소)를 내고 갈아타는 것이 유리한 경우가 많습니다.',
+    quiz: {
+      q: '변동금리 주담대의 기준이 되는 국내 주요 지표금리는?',
+      opts: ['CD금리', 'COFIX', 'KOSPI', '기준금리'],
+      ans: 1,
+      explain: 'COFIX(자금조달비용지수)는 은행이 자금을 조달하는 비용을 반영한 지수로, 변동금리 주담대의 기준이 됩니다. 은행연합회가 매월 공시합니다.'
+    }
+  },
+  {
+    cat: 'invest', catLabel: '투자분석',
+    title: '부동산 포트폴리오 전략 — 분산투자로 리스크 줄이기',
+    sub: '자산 배분, 지역 분산, 유형 분산의 실전 전략',
+    concept: `주식 투자처럼 부동산도 <strong>포트폴리오 분산</strong>이 중요합니다. 한 지역·한 유형에만 집중하면 해당 지역 규제나 시장 침체 시 전체 자산이 흔들립니다.
+
+분산 전략의 3가지 축은 ① <strong>지역 분산</strong>(서울+수도권+지방), ② <strong>유형 분산</strong>(아파트+오피스텔+상가+리츠), ③ <strong>수익 유형 분산</strong>(시세차익형+임대수익형)입니다. 초보자는 먼저 실거주 아파트 1채를 확보한 후 수익형 자산을 추가하는 단계적 접근이 안전합니다.`,
+    formula: { title: '포트폴리오 구성 예시', lines: ['안전형: 실거주 아파트 70% + 리츠 30%', '균형형: 실거주 아파트 50% + 수익형 30% + 리츠 20%', '성장형: 아파트 40% + 상가 30% + 오피스텔 20% + 리츠 10%', '핵심 원칙: 전체 자산의 50% 이상을 유동성 높은 자산으로'] },
+    example: {
+      title: '💼 실전 예시: 총 자산 10억 포트폴리오',
+      steps: [
+        '실거주 아파트(강북): 5억 (안전 기반)',
+        '수익형 오피스텔(역세권): 2억 (임대 수익 월 60만)',
+        '상장 리츠 2종: 1억 (배당 수익 연 5%)',
+        '예비 현금(긴급 대응): 2억',
+        '연 현금흐름: 임대 720만 + 리츠 배당 500만 = 약 1,220만원'
+      ],
+      result: '10억 포트폴리오 → 연 1,220만원 현금흐름 + 자산 가격 상승 기대 + 2억 현금 안전망'
+    },
+    tip: '💡 레버리지(대출)를 활용하면 포트폴리오 규모를 키울 수 있지만, 전체 부채 규모가 총자산의 50%를 넘지 않도록 관리하세요. 금리 상승기에 과도한 레버리지는 현금흐름 마이너스로 이어집니다.',
+    quiz: {
+      q: '부동산 포트폴리오 분산의 3가지 핵심 축이 아닌 것은?',
+      opts: ['지역 분산', '유형 분산', '수익 유형 분산', '계약 시기 분산'],
+      ans: 3,
+      explain: '부동산 포트폴리오 분산의 3축은 지역 분산(서울·수도권·지방), 유형 분산(아파트·오피스텔·상가·리츠), 수익 유형 분산(시세차익형·임대수익형)입니다. 계약 시기 분산은 부동산보다 금융 자산 전략에 가깝습니다.'
+    }
+  },
+  {
+    cat: 'invest', catLabel: '투자분석',
+    title: '리츠(REITs) — 소액으로 하는 부동산 간접투자',
+    sub: '리츠의 구조, 종류, 수익 구조 이해',
+    concept: `<strong>리츠(REITs, 부동산투자신탁)</strong>는 다수 투자자의 자금을 모아 부동산에 투자하고 임대 수익과 매각 차익을 배당하는 부동산 간접투자 수단입니다. 소액(수만원)으로도 빌딩·물류센터·호텔 등 대형 부동산에 투자할 수 있습니다.
+
+국내 상장 리츠는 주식처럼 거래소에서 매매할 수 있습니다. 법인세 면제 혜택으로 수익의 90% 이상을 배당합니다. 평균 배당수익률은 4~6% 수준입니다.`,
+    formula: { title: '리츠 수익 구조', lines: ['배당수익률 = 연간 배당금 ÷ 주가 × 100', '국내 주요 리츠: SK리츠, 롯데리츠, ESR켄달스퀘어리츠 등', '투자 자산: 오피스·물류·리테일·호텔·주거', '세금: 배당소득세 15.4% (분리과세 선택 가능)'] },
+    example: {
+      title: '💼 실전 예시: 리츠 투자 수익 계산',
+      steps: [
+        '리츠 주식 100만원어치 매수 (주가 5,000원 × 200주)',
+        '연간 배당금: 주당 250원 → 총 50,000원',
+        '배당수익률: 50,000 ÷ 1,000,000 × 100 = 5%',
+        '배당소득세 15.4% 제외: 실수령 42,300원',
+        '은행 정기예금(3%) 대비 세후 수익 유리'
+      ],
+      result: '100만원으로 물류센터·오피스 투자 — 세후 배당수익률 약 4.2%'
+    },
+    tip: '💡 리츠 투자 시 금리와 역의 상관관계를 기억하세요. 금리가 오르면 대출 이자 부담 증가 + 예금 대비 매력 감소로 리츠 주가가 하락하는 경향이 있습니다.',
+    quiz: {
+      q: '상장 리츠(REITs)의 배당 관련 법적 의무는?',
+      opts: ['수익의 50% 이상 배당', '수익의 70% 이상 배당', '수익의 90% 이상 배당', '배당 의무 없음'],
+      ans: 2,
+      explain: '리츠는 법인세 면제 혜택 대신 수익의 90% 이상을 의무적으로 배당해야 합니다. 이 때문에 높은 배당수익률을 제공합니다.'
+    }
+  },
+  {
+    cat: 'law', catLabel: '법률·계약',
+    title: '생애최초 주택구입자 혜택 완전 가이드',
+    sub: '취득세 감면·대출 우대·청약 가점 — 첫 집 살 때 받는 모든 혜택',
+    concept: `<strong>생애최초 주택구입자</strong>란 본인과 배우자·세대원 전원이 한 번도 주택을 소유한 적 없는 사람입니다. 2022년부터 정부는 이 조건에 해당하면 대폭 강화된 혜택을 제공합니다.
+
+핵심 혜택은 세 가지입니다. ① <strong>취득세 50% 감면</strong>(주택가 12억 이하), ② <strong>디딤돌 대출</strong>(연소득 8.5천만원 이하, 5억 이하 주택, LTV 70%, 금리 2.35~3.95%), ③ <strong>청약 생애최초 특별공급</strong>(소득 기준 충족 시 일정 물량 우선 배정)입니다.
+
+이 세 가지를 모두 활용하면 수천만원을 아낄 수 있어 철저한 사전 준비가 필수입니다.`,
+    formula: { title: '생애최초 혜택 3종 세트', lines: ['① 취득세 50% 감면: 주택가 12억 이하 적용', '② 디딤돌 대출: 금리 2.35~3.95% (시중 대비 1~2%p↓)', '③ 청약 특공: 공공분양 15%, 민영주택 20% 물량', '① + ② 중복 적용 가능 (③은 청약 시 별도 신청)'] },
+    example: {
+      title: '💡 실전 예시: 6억 아파트 생애최초 구매',
+      steps: [
+        '취득세 (일반): 6억 × 1% × 1.1(지방교육세) = 660만원',
+        '취득세 (생애최초 50% 감면): 330만원 → 330만원 절약',
+        '디딤돌 대출: 금리 3.2% (연소득 5천만원 기준)',
+        '시중 주담대 4.5% 대비 월 24만원 절약 × 30년 = 총 8,640만원 절약',
+        '합계 혜택: 취득세 330만 + 이자 절약 8,640만 = 약 9천만원'
+      ],
+      result: '첫 집 마련 시 생애최초 요건 충족 여부 반드시 확인 — 최대 1억원에 가까운 혜택 가능'
+    },
+    tip: '💡 생애최초 청약 특별공급 신청 시 소득 기준이 있습니다. 공공분양은 월평균 소득 130% 이하(3인 가구 기준 약 648만원), 민영주택은 160% 이하가 기준입니다. 배우자 소득도 합산됩니다.',
+    quiz: {
+      q: '생애최초 주택구입 취득세 감면율(2026년 기준, 주택가 12억 이하)은?',
+      opts: ['20% 감면', '30% 감면', '50% 감면', '100% 면제'],
+      ans: 2,
+      explain: '2022년부터 생애최초 주택구입자는 취득세를 50% 감면받습니다(주택가 12억 이하). 이전에 있던 감면 한도(200만원)는 폐지되어 더 고가 주택도 큰 혜택을 받습니다.'
+    }
+  },
+  {
+    cat: 'invest', catLabel: '투자분석',
+    title: '주거 사다리 전략 — 소형 → 중형 → 대형 갈아타기',
+    sub: '한 번에 큰 집 못 사도 단계적으로 목표에 다가가는 전략',
+    concept: `<strong>주거 사다리(Property Ladder) 전략</strong>은 한 번에 원하는 집을 살 수 없을 때, 현재 예산 범위 내의 소형 주택을 먼저 구매한 후 자산을 키워 더 큰 집으로 갈아타는 방법입니다.
+
+핵심 원리는 <strong>부동산 자산이 렌트비 없이 가치를 키워준다는 것</strong>입니다. 5억 짜리 아파트가 10% 오르면 5천만원 이익이지만, 전세를 사는 동안에는 집값 상승에서 소외됩니다. 소형 먼저 사두고 상승분을 발판 삼아 목표 집으로 이동하는 전략입니다.
+
+단, 취득세·양도세·중개수수료 등 거래 비용이 매번 발생하므로 <strong>최소 3~5년 이상 보유 후 갈아타는 것이 유리</strong>합니다.`,
+    formula: { title: '사다리 전략 수익 구조', lines: ['Step 1: 5억 소형 아파트 매수 (대출 50%)', 'Step 2: 5년간 보유 → 집값 6.5억 상승 (30% 가정)', 'Step 3: 1.5억 차익으로 10억 아파트 계약금 마련', '거래 비용: 취득세 + 양도세 + 중개수수료 공제 후 실수익 계산'] },
+    example: {
+      title: '🪜 실전 예시: 5억 → 10억 갈아타기',
+      steps: [
+        '2024년 5억 아파트 매수 (자기자금 3억, 대출 2억)',
+        '2029년 시세 7억으로 상승 (5년간 +40%)',
+        '양도차익 2억 중 양도세(1세대 1주택 2년 이상 보유 비과세 검토)',
+        '비과세 요건 충족 시 2억 전액 활용 가능',
+        '2억 차익 + 기존 자기자금 → 10억 목표 주택 계약금 4억 확보'
+      ],
+      result: '5년 보유 + 비과세 활용 → 목표 주택 달성. 단, 비과세 요건(2년 이상 거주·보유) 반드시 충족 필요'
+    },
+    tip: '💡 갈아타기 시 양도세 비과세 요건이 핵심입니다. 1세대 1주택은 2년 이상 보유(조정지역은 2년 이상 거주도 필수)하면 양도소득세가 전액 비과세됩니다. 단, 1주택자가 새 집을 계약한 후 구 집을 팔 때는 일시적 2주택 비과세 특례(3년 이내 처분)를 활용하세요.',
+    quiz: {
+      q: '1세대 1주택 양도소득세 비과세 요건(조정대상지역)으로 올바른 것은?',
+      opts: ['1년 이상 보유', '2년 이상 보유만 충족', '2년 이상 보유 + 2년 이상 거주', '3년 이상 보유 + 1년 이상 거주'],
+      ans: 2,
+      explain: '조정대상지역 소재 1세대 1주택은 2년 이상 보유 + 2년 이상 거주 요건을 모두 충족해야 비과세입니다. 비규제지역은 2년 보유만으로도 비과세가 가능합니다.'
+    }
+  },
+  {
+    cat: 'law', catLabel: '법률·계약',
+    title: '청약 가점제 완전 계산법 — 나의 가점은 몇 점?',
+    sub: '무주택 기간·부양가족·청약통장 가입기간으로 최대 84점 산정',
+    concept: `<strong>청약 가점제</strong>는 민영주택 청약 시 무주택 기간·부양가족 수·청약통장 가입기간 세 가지를 점수화해 높은 가점자에게 우선권을 주는 제도입니다. 최대 84점으로, 가점이 높을수록 인기 단지에 당첨될 확률이 높아집니다.
+
+세 항목 배점: ① <strong>무주택 기간</strong> 최대 32점 (만 30세 이상부터 1년당 2점), ② <strong>부양가족 수</strong> 최대 35점 (본인 5점, 1인 추가마다 5점), ③ <strong>청약통장 가입기간</strong> 최대 17점 (6개월 미만 1점, 15년 이상 17점).
+
+서울 인기 단지는 보통 60~70점 이상이어야 당첨 가능성이 있습니다.`,
+    formula: { title: '청약 가점 계산표', lines: ['① 무주택 기간: 30세(or 혼인) 기점, 1년당 2점, 최대 32점', '② 부양가족: 본인 5점 + 추가 1인당 5점, 최대 35점', '  (배우자·직계존속·직계비속, 동일 세대 등록 필수)', '③ 청약통장 6개월→1점, 1년→2점, ..., 15년→17점', '합산 최대 84점'] },
+    example: {
+      title: '📊 실전 예시: 33세 미혼 직장인 가점 계산',
+      steps: [
+        '무주택 기간: 30세부터 → 3년 경과 → 3 × 2 = 6점',
+        '부양가족: 본인만 → 5점',
+        '청약통장: 5년 납입 → 6점',
+        '합산: 6 + 5 + 6 = 17점',
+        '결론: 서울 인기 단지 가점제 당첨 어려움 → 추첨제 물량, 특별공급, 신도시 청약 검토'
+      ],
+      result: '17점은 저가점 — 하지만 해마다 2~3점씩 오름. 5년 후 약 27점으로 수도권 외곽 당첨 가능성 발생'
+    },
+    tip: '💡 부양가족 가점은 "세대원" 기준입니다. 부모님을 주민등록상 같은 세대에 등록하면 1인당 5점 추가. 단, 부모님이 다른 주택을 보유하고 있으면 무주택 세대원으로 인정되지 않아 부양가족 점수를 받지 못합니다.',
+    quiz: {
+      q: '청약 가점제에서 부양가족 1명당 추가 점수는?',
+      opts: ['2점', '3점', '5점', '7점'],
+      ans: 2,
+      explain: '부양가족 점수는 본인 5점 기준, 1명 추가마다 5점씩 증가합니다. 최대 6인 이상(35점)까지 인정됩니다. 배우자·직계존속(부모·조부모)·직계비속(자녀)이 모두 포함되지만 주민등록상 같은 세대여야 합니다.'
+    }
+  },
+  {
+    cat: 'law', catLabel: '법률·계약',
+    title: '계약 전 필수 확인 10가지 — 이것만 체크하면 사기 예방',
+    sub: '등기부등본부터 실거주 의무까지, 계약 전 반드시 확인할 사항',
+    concept: `부동산 계약은 생애 최대 금액의 거래입니다. 한 번의 실수가 수천만~수억원의 피해로 이어질 수 있습니다. 아래 10가지를 계약 전 반드시 확인하세요.
+
+가장 중요한 것은 <strong>등기부등본 최신 발급 확인</strong>입니다. 계약 당일 직접 인터넷등기소(iros.go.kr)에서 발급해 근저당·가압류·압류·가등기 여부를 확인하세요. 중개사가 제공하는 등기부등본은 수일 전 발급본일 수 있습니다.`,
+    formula: { title: '계약 전 체크리스트 10', lines: ['① 등기부등본 (당일 직접 발급) — 근저당·가압류 확인', '② 실소유자 = 매도인 본인 확인 (신분증·인감증명)', '③ 공인중개사 정상 등록 여부 (국가공간정보포털)', '④ 건축물대장·토지이용계획 확인 (위반건축물 여부)', '⑤ 실거래가 신고 내역 vs 매도 희망가 비교', '⑥ 전세/임차인 현황 (선순위 임차권 존재 여부)', '⑦ 취득세·양도세 시뮬레이션 사전 계산', '⑧ 토지거래허가구역·개발제한구역 여부', '⑨ 관리비 체납·하자 이력 (관리사무소 확인)', '⑩ 특약사항 (명도·하자보수 책임) 계약서 명기'] },
+    example: {
+      title: '⚠️ 실전 사례: 가압류를 확인 못 해 피해',
+      steps: [
+        '매수자 A: 시세 8억 아파트 계약금 8천만원 지급',
+        '계약 당일 등기부등본 미확인 — 전날 가압류 설정',
+        '잔금일에 가압류 사실 확인 → 대출 불가',
+        '계약 해제 요청했지만 매도인 잠적 → 계약금 반환 소송',
+        '결과: 1년간 법적 분쟁, 소송 비용 발생'
+      ],
+      result: '계약 당일 직접 발급한 등기부등본 1장이 8천만원을 지킬 수 있었다'
+    },
+    tip: '💡 계약서 특약에는 반드시 "잔금 지급 전 기존 담보 및 권리관계를 말소할 것"을 명시하세요. 또한 명도(이사 날짜), 하자 보수 책임, 옵션 포함 여부를 구체적으로 기재해야 나중에 분쟁을 예방할 수 있습니다.',
+    quiz: {
+      q: '부동산 매매계약 전 가장 먼저 해야 할 확인 사항은?',
+      opts: ['관리비 체납 여부', '중개수수료 협의', '등기부등본 최신 발급 확인', '이사 날짜 협의'],
+      ans: 2,
+      explain: '등기부등본 최신 발급 확인이 가장 중요합니다. 근저당·가압류·압류 등의 권리관계가 계약 당일 기준으로 깨끗한지 확인해야 계약금을 보호할 수 있습니다. 반드시 계약 당일 직접 발급하세요.'
+    }
+  },
+  {
+    cat: 'eval', catLabel: '가격·평가',
+    title: '임장(현장방문) 실전 체크리스트 — 발품이 수천만원을 아낀다',
+    sub: '방문 전·방문 시·방문 후 단계별로 확인해야 할 모든 것',
+    concept: `<strong>임장(臨場)</strong>은 부동산 현장을 직접 방문해 매물의 입지·상태·주변 환경을 확인하는 과정입니다. 수억원짜리 결정을 사진 몇 장으로 하는 것은 위험합니다. 최소 3회 이상(평일/주말/야간) 방문하는 것이 이상적입니다.
+
+임장에서 확인해야 할 핵심은 <strong>입지 가치</strong>(교통·학군·상권), <strong>단지 상태</strong>(노후도·관리 수준), <strong>향·층·구조</strong>(일조량·소음·동선), <strong>주변 호재·악재</strong>(재개발·혐오시설)입니다. 이 네 가지가 미래 시세를 결정합니다.`,
+    formula: { title: '임장 3단계 체크리스트', lines: ['[방문 전] 네이버부동산·호갱노노·실거래가 시세 파악', '[방문 전] 단지 연식·세대수·주요 학군·교통 노선 조사', '[방문 시] 로비·엘리베이터·주차장 관리 상태 확인', '[방문 시] 향(남향 최고)·층·소음(도로변·철로) 직접 체감', '[방문 시] 주변 혐오시설(묘지·고압선·유흥가) 도보 확인', '[방문 후] 호가 vs 실거래가 괴리, 매도자 급매 여부 파악'] },
+    example: {
+      title: '🚶 실전 예시: 노원구 임장 하루 루틴',
+      steps: [
+        '오전 9시: 지하철 출근 시간 혼잡도 직접 체험',
+        '오전 10시: 단지 3개 방문, 로비·주차장·승강기 상태 확인',
+        '오전 11시: 인근 초등학교·마트·병원 도보 접근성 확인',
+        '오후 2시: 공인중개사 사무소 방문 → 급매 물건·실매도가 파악',
+        '저녁 7시: 동일 단지 재방문 — 조명·소음·주차난 야간 확인'
+      ],
+      result: '하루 임장으로 시세보다 2천만원 저렴한 급매 발견 — 계약금 10% 당일 지급으로 선점'
+    },
+    tip: '💡 공인중개사를 처음 방문할 때는 "○○ 아파트 급매 없나요?"보다 "이 동네 1~2년 사이 어떤 게 잘 팔렸나요?"라고 물어보세요. 실제 거래 분위기와 매수자 유형, 가격 추이를 자연스럽게 파악할 수 있습니다.',
+    quiz: {
+      q: '부동산 임장(현장방문) 시 가장 우선적으로 확인해야 할 핵심 요소는?',
+      opts: ['벽지·바닥재 상태', '입지 가치(교통·학군·상권)', '옵션 가전제품 포함 여부', '이웃 주민 직업'],
+      ans: 1,
+      explain: '임장의 핵심은 입지 가치 확인입니다. 인테리어는 바꿀 수 있지만 입지는 바꿀 수 없습니다. 교통(역세권), 학군(초등학교 배정), 상권(마트·병원)이 향후 시세를 결정하는 핵심 요소입니다.'
+    }
+  },
+
+  // ── 추가 강의 (72강) ──────────────────────────────────────────────────────
+  {
+    cat: 'protection', catLabel: '전세·계약',
+    title: '전세사기 방지 체크리스트 — 계약 전 반드시 확인',
+    sub: '등기부등본·전입신고·확정일자 3단계로 보증금 지키기',
+    concept: `전세사기는 2023~2025년 사이 수만 명의 피해자를 낳은 최대 부동산 사기 중 하나입니다. 핵심 위험 요소는 <strong>깡통전세</strong>(전세가율 80% 이상), <strong>다중 담보</strong>(근저당 과다 설정), <strong>신탁 등기</strong>(소유자 ≠ 계약권자)입니다.
+
+2026년 현재 전세보증금 반환보증(HUG·HF) 가입 조건이 강화됐고, 전세 사기 피해자 지원법이 시행 중입니다. 그러나 사후 구제보다 <strong>사전 예방</strong>이 훨씬 중요합니다.`,
+    formula: { title: '전세 계약 전 필수 3단계', lines: ['① 등기부등본 확인: 을구 근저당 합계 < (매매가 - 전세가)', '② 전입신고 + 확정일자: 잔금일 당일 동사무소 방문', '③ 전세보증보험 가입: HUG or HF (보증료 연 0.128~0.154%)'] },
+    example: {
+      title: '🔍 실전 예시: 전세 계약 전 안전 점검',
+      steps: [
+        '등기부등본 열람(700원): 을구 근저당 설정액 확인 → 2억이면 전세보증금 포함 담보 총액 계산',
+        '매매가 6억, 근저당 2억, 전세 3억 → 경매 시 배당 순위 확인',
+        '전세가율 = 3억 ÷ 6억 = 50% → 안전 구간 (80% 이상이면 위험)',
+        '잔금일 당일 전입신고 + 확정일자 → 대항력·우선변제권 확보',
+        'HUG 전세보증보험 가입 → 보증금 100% 보장'
+      ],
+      result: '등기부등본 확인 → 전세가율 점검 → 전입신고+확정일자 → 보증보험 순서로 체크'
+    },
+    tip: '💡 계약 당일 등기부등본을 다시 떼세요. 계약서 작성 직전 소유자가 바뀌거나 근저당이 추가되는 경우가 있습니다. "오늘 날짜" 등기부만 유효합니다.',
+    quiz: {
+      q: '전세 계약 후 보증금을 법적으로 보호받으려면 잔금일 당일 무엇을 해야 하나요?',
+      opts: ['부동산 중개사무소 방문', '전입신고 + 확정일자', '법무사 선임', '매매계약서 재작성'],
+      ans: 1,
+      explain: '잔금일 당일 전입신고를 하면 "대항력"(집주인이 바뀌어도 계속 거주 가능), 확정일자를 받으면 "우선변제권"(경매 시 보증금 우선 배당)이 생깁니다. 이 두 가지를 당일에 완료해야 법적 보호를 받습니다.'
+    }
+  },
+  {
+    cat: 'tax', catLabel: '세금·세제',
+    title: '2026 세제개편안 — 집 가진 사람이라면 꼭 알아야 할 변화',
+    sub: '종부세 실거주 우대 + 양도세 보유공제 2029년 폐지 예정',
+    concept: `2026년 8월 3일, 정부가 부동산 세제를 <strong>전면 개편</strong>하는 방안을 발표했습니다. 핵심 방향은 '주택 수 기준'에서 <strong>'가액 + 실거주 여부' 기준</strong>으로의 전환입니다.
+
+주요 내용: ① 종부세 — 시가 20억 이하 실거주 1주택자 면제(2027년~), 32억 초과 고가 강화 ② 양도세 — 2029년부터 보유공제 폐지, 거주공제(연 4%)만 최대 40% ③ 다주택자 양도세 중과 2028년까지 유예. 5년 세수 효과: 13조 3,000억원 예상.`,
+    formula: { title: '세제개편 핵심 비교', lines: ['[종부세] 현행: 공시가 12억 초과 과세 → 개편: 시가 20억↓ 실거주 면제(2027~)', '[양도세] 현행: 보유+거주 각 4% → 개편: 보유공제 폐지, 거주공제만(2029~)', '[중과] 다주택 +20~30%p → 2028년까지 유예 중'] },
+    example: {
+      title: '💰 실전 예시: 세제개편이 내 세금에 미치는 영향',
+      steps: [
+        '사례: 서초구 아파트 시가 18억, 실거주 8년, 1주택자',
+        '현행 종부세: 공시가 약 13억(현실화율 72%) → 12억 초과분 1억 × 60% × 0.5% = 약 30만원',
+        '개편 후(2027년~): 시가 18억 < 20억 + 실거주 → 종부세 면제',
+        '양도세: 현행 보유 8년+거주 8년 → 장특공제 64% / 2029년 이후 거주공제만 32%'
+      ],
+      result: '종부세: 면제 효과. 양도세: 2029년 이후 매도 시 공제율 절반 감소 → 조기 매도 또는 거주기간 극대화 검토 필요'
+    },
+    tip: '💡 세제개편안은 국회 통과 후 확정됩니다. 정부안 = 확정이 아닙니다. 세금 전략 결정 전 국회 통과 여부를 반드시 확인하세요.',
+    quiz: {
+      q: '2026년 8월 세제개편안에서, 2029년부터 1주택 장기보유특별공제가 어떻게 바뀌나요?',
+      opts: ['보유·거주 각 4%씩 적용(현행 유지)', '거주공제만 인정, 보유공제는 폐지 예정', '장특공제 전체 폐지', '다주택자도 장특공제 적용'],
+      ans: 1,
+      explain: '2029년부터(개편안) 보유기간 공제(연 4%)는 폐지되고, 실거주기간 공제(연 4%, 최대 40%)만 인정됩니다. 즉 실거주 없이 보유만 한 경우 2029년 이후에는 장특공제가 거의 사라집니다.'
+    }
+  },
+  {
+    cat: 'market', catLabel: '시장동향',
+    title: '부동산 사이클 4국면 — 지금 어느 단계인가?',
+    sub: '회복→상승→후퇴→침체 사이클로 시장 흐름 읽기',
+    concept: `부동산 시장은 경기 사이클과 함께 <strong>4국면</strong>을 반복합니다. ① <strong>회복기</strong>: 거래량 서서히 증가, 미분양 감소, 투자 심리 개선 ② <strong>상승기</strong>: 가격 급등, 투기 수요 유입, 규제 강화 ③ <strong>후퇴기</strong>: 거래량 감소, 가격 정체, 매수 관망 ④ <strong>침체기</strong>: 가격 하락, 경매 증가, 미분양 급증.
+
+2026년 8월 현재 서울은 '상승기' 중후반 또는 '후퇴기' 초입 국면으로 분석됩니다. 상승폭이 +0.27%→+0.25%→+0.26%로 둔화·반등을 반복하며, 세제개편과 금리 인상이 가격 압력을 가하고 있습니다.`,
+    formula: { title: '사이클 4국면 핵심 지표', lines: ['회복기: 거래량↑ 미분양↓ 경매낙찰가↑', '상승기: 가격↑↑ 분양경쟁률↑ 규제↑', '후퇴기: 거래량↓ 호가↓ 매물증가', '침체기: 실거래가↓ PF부실↑ 미분양↑↑'] },
+    example: {
+      title: '📊 실전 예시: 2026년 서울 시장 국면 진단',
+      steps: [
+        '거래량: 2026년 상반기 정상 수준 유지 → 상승기 특징',
+        '가격: 주간 +0.25~0.27% → 상승기, 단 둔화 조짐',
+        '규제: 기준금리 2.75% + 스트레스 DSR 3단계 → 후퇴기 압력',
+        '공급: 수도권 준공 -52.4% → 공급부족으로 하락 제한',
+        '종합: 상승기 말기 — 세제·금리가 임박한 전환점 신호'
+      ],
+      result: '서울 2026: 상승기 말기 / 후퇴기 초입 혼재. 강남-강북 양극화로 지역별 국면 차이 심화'
+    },
+    tip: '💡 사이클 국면을 정확히 알 수 있는 사람은 없습니다. 중요한 것은 "현재 어느 방향으로 움직이고 있는가"입니다. 거래량 추이(국토부 실거래가), 미분양 수(국토부 주택통계), 한국부동산원 주간 변동률을 함께 보세요.',
+    quiz: {
+      q: '부동산 사이클에서 "침체기"의 주요 특징은?',
+      opts: ['거래량 급증 + 가격 급등', '미분양 증가 + 경매 물건 증가 + 가격 하락', '분양 경쟁률 최고점 + 규제 강화', '전세가율 하락 + 갭 축소'],
+      ans: 1,
+      explain: '침체기는 수요 감소로 미분양이 급증하고, 자금 부담으로 경매 물건이 늘어나며, 가격이 하락합니다. 이 시기는 위기이기도 하지만 역설적으로 바닥 매수 기회가 형성되는 국면이기도 합니다.'
+    }
+  },
+  {
+    cat: 'policy', catLabel: '정책·규제',
+    title: '재개발 vs 재건축 — 차이점과 절차 완전 이해',
+    sub: '정비사업 두 가지의 핵심 차이, 조합원 입주권 이해',
+    concept: `<strong>재건축</strong>은 노후 공동주택(아파트·연립)을 허물고 새 아파트를 짓는 것입니다. 자체 추진이 가능하고 토지를 이미 소유한 조합원이 주도합니다. <strong>재개발</strong>은 노후 주거지역(단독주택·다세대가 혼재한 구역) 전체를 새로 개발하는 것으로, 공익적 성격이 강하고 도시·군 정비계획에 따라 추진됩니다.
+
+핵심 차이: ① 대상 물건(재건축=아파트, 재개발=단독·다세대 지역) ② 안전진단 필요 여부(재건축만 해당) ③ 세입자 보상(재개발은 주거이전비 지급) ④ 투자 위험도(재개발이 사업기간 더 길고 불확실).`,
+    formula: { title: '정비사업 핵심 절차', lines: ['① 기본계획 → ② 정비구역지정 → ③ 조합설립인가', '④ 사업시행인가 → ⑤ 관리처분계획 → ⑥ 이주·철거', '⑦ 착공·분양 → ⑧ 준공·입주 → ⑨ 청산', '소요 기간: 빠르면 8년, 평균 12~15년'] },
+    example: {
+      title: '🏗️ 실전 예시: 재개발 구역 투자 전 체크리스트',
+      steps: [
+        '조합설립인가 단계 확인 → 인가 전이면 사업 무산 위험',
+        '권리가액 계산: 종전 감정평가액 × 비례율 = 내 권리가액',
+        '분양가와 비교: 분양가 > 권리가액 → 추가 분담금 발생',
+        '이주비 대출 가능 여부: 이주비 70% 이상 대출 가능한지 확인',
+        '현금청산 위험: 감정평가가 낮으면 분양권 포기 후 현금 받는 게 유리할 수도 있음'
+      ],
+      result: '재개발 투자는 조합설립 인가 이후 + 사업시행 인가 직전이 상승 기대와 위험의 균형점'
+    },
+    tip: '💡 조합원 입주권은 분양권과 다릅니다. 조합원 입주권은 멸실 전 매매도 취득세가 과세되고, 양도세 비과세 요건(2년 거주)도 별도 판단이 필요합니다. 반드시 세무사와 상담하세요.',
+    quiz: {
+      q: '재건축과 재개발의 가장 큰 차이는?',
+      opts: ['재건축은 국가가 주도, 재개발은 민간 주도', '재건축은 주로 아파트, 재개발은 단독·다세대 노후 주거지역 대상', '재개발만 안전진단이 필요', '재건축은 이주비 지원이 없음'],
+      ans: 1,
+      explain: '재건축은 노후 아파트·연립을 대상으로 하고, 재개발은 단독주택·다세대가 혼재한 노후 주거지역 전체를 정비합니다. 재건축은 안전진단(구조 위험도 평가)이 필수이며, 재개발은 세입자 주거이전비 지급 등 공익적 절차가 추가됩니다.'
+    }
+  },
+  {
+    cat: 'finance', catLabel: '대출·금융',
+    title: '생애최초 주택구입 혜택 총정리 — 취득세·대출·청약',
+    sub: '생애최초라면 받을 수 있는 모든 혜택 한눈에',
+    concept: `생애최초 주택구입자에게는 세금·대출·청약 세 방면에서 혜택이 주어집니다.
+
+<strong>① 취득세 감면</strong>: 주택가 12억 이하, 취득세 50% 감면(최대 200만원 한도). 취득 후 3년 내 직접 거주 의무.
+<strong>② 대출 우대</strong>: 생애최초 구입자는 LTV를 최대 80%(비규제지역)까지 적용 가능. 일반 무주택자보다 10%p 추가.
+<strong>③ 청약 특별공급</strong>: 생애최초 특별공급은 공공·민간 모두 일정 물량 배정. 일반 청약보다 당첨 확률 높음.`,
+    formula: { title: '생애최초 혜택 계산', lines: ['취득세 감면: Min(취득세 × 50%, 200만원)', '예) 취득세 500만원 → 250만원 감면 (한도 200만원 적용)', 'LTV: 규제지역 40% → 생애최초 우대 없음(2024년 이후)', '비규제지역: 70% → 생애최초 80%'] },
+    example: {
+      title: '🏠 실전 예시: 8억 아파트 생애최초 구입',
+      steps: [
+        '매매가 8억, 비규제지역, 전용 84㎡ 이하',
+        '취득세: 8억 × 1% (6~9억 누진) = 약 200만원 → 감면 100만원 → 실납 100만원',
+        'LTV 70%(비규제) → 대출 한도 5억 6,000만원',
+        '생애최초 특별공급 청약 자격 동시 보유 확인',
+        '취득 후 3년 내 실거주 의무 이행 → 감면 유지'
+      ],
+      result: '취득세 100만원 절감. 비규제지역 LTV 최대 활용. 특별공급 청약 기회도 병행 검토.'
+    },
+    tip: '💡 생애최초 감면 신청은 취득세 신고 시점(잔금일 후 60일 내)에 해야 합니다. 기간이 지나면 환급이 어렵습니다. 반드시 잔금 전 세무사 또는 주민센터에 문의하세요.',
+    quiz: {
+      q: '생애최초 주택 취득세 감면의 주택 가격 한도는?',
+      opts: ['6억원 이하', '9억원 이하', '12억원 이하', '15억원 이하'],
+      ans: 2,
+      explain: '생애최초 취득세 50% 감면(최대 200만원 한도)은 주택 취득가액 12억원 이하인 경우에 적용됩니다. 12억 초과 고가 주택은 생애최초 감면이 적용되지 않습니다.'
+    }
+  },
+  {
+    cat: 'market', catLabel: '시장동향',
+    title: '강남 vs 강북 — 2026년 역전 현상의 의미',
+    sub: '세제개편이 바꾼 서울 내 지역별 수요 흐름',
+    concept: `2026년 8월 6일 발표된 한국부동산원 8월 1주 데이터에서 이례적인 현상이 나타났습니다. 강남구(+0.01%)·서초구(+0.02%)의 주간 상승폭이 강북 중구(+0.54%)·중랑구(+0.52%)·성북구(+0.49%)에 역전당했습니다.
+
+원인은 <strong>세제개편안 발표 효과</strong>입니다. 종부세 강화(32억 초과), 양도세 보유공제 폐지 예정이 고가 주택 보유자들의 관망세를 유도한 반면, 상대적으로 저렴한 강북·경기 남부로 '덜 똘똘한 한 채' 수요가 이동했습니다.`,
+    formula: { title: '2026.08.20 발표 — 서울 지역별 주간 변동률', lines: ['강북 강세: 중구 +0.54%, 중랑 +0.52%, 성북 +0.49%, 노원 +0.46%', '강남 관망: 강남구 +0.01%, 서초구 +0.02%, 송파 +0.15%', '경기 강세: 용인 기흥 +0.52%, 분당 +0.43%, 광명 +0.42%', '서울 전체 평균: +0.26% (77주 연속)'] },
+    example: {
+      title: '🗺️ 실전 분석: 역전 현상이 투자 전략에 주는 시사점',
+      steps: [
+        '강남 고가 주택: 세제 불확실성 + 25억 초과 주담대 2억 한도 → 매수 관망',
+        '강북 중저가: 상대적 저가 메리트 + 역세권 GTX 기대 + 세 부담 낮음',
+        '경기 남부: 용인 기흥구(GTX-A 수원 연장) + 분당(재건축 기대) 강세',
+        '일시적 현상 vs 추세 전환: 세제 불확실성 해소 시 강남 반등 가능성',
+        '결론: 강남 관망은 단기 효과, 공급 부족 구조는 여전히 강남 지지'
+      ],
+      result: '단기 역전은 세제 불확실성 효과. 중기적으로 강남의 구조적 공급 부족이 가격 하방 지지'
+    },
+    tip: '💡 "강남이 빠지면 강북도 빠진다"는 전통 패턴이 2026년에는 약해지고 있습니다. 실거주 수요 + GTX 교통 호재가 강북·경기의 독자적 상승 동력이 되고 있습니다.',
+    quiz: {
+      q: '2026년 8월 1주 한국부동산원 발표에서 서울 강남구의 주간 매매 변동률은?',
+      opts: ['+0.54%', '+0.26%', '+0.01%', '-0.03%'],
+      ans: 2,
+      explain: '강남구는 +0.01%로 사실상 보합에 가까운 수준을 기록했습니다. 세제개편안 발표(8.3) 이후 32억 초과 고가 주택 보유자들의 관망세가 강남 아파트 거래에 영향을 미쳤습니다.'
+    }
+  },
+  {
+    cat: 'finance', catLabel: '대출·금융',
+    title: '주담대 금리 비교 전략 — 변동 vs 혼합 vs 고정',
+    sub: '2026년 금리 상승기에 유리한 대출 구조 선택법',
+    concept: `주택담보대출 금리는 크게 세 가지로 나뉩니다. <strong>변동금리</strong>는 6개월마다 금리가 바뀝니다(코픽스 연동). <strong>혼합형</strong>은 5년 고정 후 변동으로 전환됩니다. <strong>고정금리(주기형)</strong>는 만기까지 금리가 고정됩니다.
+
+2026년 8월 현재 코픽스가 3.05%로 3%대 재진입한 상황에서, 5대 은행 변동형 4.02~6.37%, 혼합·고정형 4.68~7.39%입니다. 기준금리 추가 인상(8.27 금통위) 전망 속에서 <strong>혼합형이나 고정형이 상대적으로 유리</strong>할 수 있습니다.`,
+    formula: { title: '대출 유형별 비교 (2026.07 기준)', lines: ['변동(6개월): 4.02~6.37% / 스트레스 +1.5%p 가산', '혼합(5년고정): 4.68~7.39% / 스트레스 +0.75%p 가산', '고정(주기형): 비슷한 수준 / 스트레스 +0.5%p 가산', '스트레스 DSR 3단계: 변동이 한도 가장 많이 줄어듦'] },
+    example: {
+      title: '💳 실전 예시: 5억 대출 유형별 월 상환액 비교',
+      steps: [
+        '대출: 5억원 / 30년 만기 / 연소득 1억원',
+        '변동 4.5%: 월 253만원 → 기준금리 1% 오르면 월 287만원',
+        '혼합 5.0%: 월 268만원 → 5년간 고정, 이후 변동',
+        '고정 5.2%: 월 275만원 → 30년 내내 동일',
+        '금리 추가 인상 전망 시: 혼합/고정이 변동보다 유리'
+      ],
+      result: '금리 인상기에는 혼합·고정형 우선 검토. 단, 중도상환수수료(3년 내 1.2~1.5%) 감안해야 함'
+    },
+    tip: '💡 "낮은 금리 = 좋은 대출"이 항상 맞지는 않습니다. 스트레스 DSR 가산 비율(변동 > 혼합 > 고정)을 고려하면 고정형을 선택했을 때 오히려 대출 한도가 더 크게 나올 수 있습니다.',
+    quiz: {
+      q: '스트레스 DSR 3단계에서 스트레스 금리를 가장 많이 가산하는 대출 유형은?',
+      opts: ['고정금리(주기형)', '혼합형(5년 고정)', '변동금리', '모두 동일'],
+      ans: 2,
+      explain: '스트레스 DSR 3단계에서는 변동금리에 +1.5%p(100% 적용), 혼합형에 +0.75%p(50% 적용), 고정(주기)형에 +0.375%p(25% 적용) 순으로 가산됩니다. 변동금리가 가장 불리합니다.'
+    }
+  },
+  {
+    cat: 'basic', catLabel: '기초지식',
+    title: '아파트 공동관리비 완전 이해 — 매달 나가는 돈',
+    sub: '관리비 항목별 기준, 절감 방법, 체크포인트',
+    concept: `아파트 관리비는 집을 보유하는 동안 매달 지출되는 고정비용입니다. 관리비 항목은 크게 ① <strong>일반관리비</strong>(관리소 인건비·행정비), ② <strong>청소·소독비</strong>, ③ <strong>경비비</strong>, ④ <strong>시설관리비</strong>(엘리베이터·설비), ⑤ <strong>수선유지비</strong>(장충금), ⑥ <strong>전기·수도·가스</strong>(사용량 비례)로 구성됩니다.
+
+2026년 서울 평균 아파트(84㎡) 관리비는 약 25~35만원/월 수준입니다. 단지 규모가 클수록 관리비가 낮아지는 경향이 있습니다.`,
+    formula: { title: '관리비 구성과 절감 포인트', lines: ['장기수선충당금: 의무 적립 (국토부 요율 고시)', '반환권: 퇴거 시 소유자에게 돌려받음 (세입자 주의!)', '관리비 항목별 비교: 동일 면적 단지간 큰 차이 가능', '아파트 매수 전: 관리비 고지서 6개월치 요청해 확인'] },
+    example: {
+      title: '📋 실전 예시: 관리비 비교로 실비용 계산',
+      steps: [
+        '단지 A: 84㎡, 100가구 소규모 → 관리비 45만원/월',
+        '단지 B: 84㎡, 1,000가구 대단지 → 관리비 28만원/월',
+        '연간 차이: (45-28) × 12 = 204만원',
+        '30년 보유 시: 약 6,120만원 차이 → 매수 가격 협상 시 감안',
+        '장충금 잔액도 확인: 많이 쌓인 단지 = 대수선 비용 이미 준비됨'
+      ],
+      result: '관리비가 낮은 대단지가 장기적으로 유리. 매수 전 관리비 명세서 6개월치 반드시 확인'
+    },
+    tip: '💡 장기수선충당금은 세입자가 냈더라도 퇴거 시 집주인에게 돌려달라고 할 수 있습니다. 계약서에 "장충금은 임대인 부담"으로 명시하거나, 퇴거 시 납부 내역서를 제출하고 반환을 요청하세요.',
+    quiz: {
+      q: '아파트 관리비에서 퇴거 시 임차인이 돌려받을 수 있는 항목은?',
+      opts: ['전기료', '장기수선충당금', '경비비', '청소비'],
+      ans: 1,
+      explain: '장기수선충당금은 건물의 대규모 수선·교체 비용을 위해 적립하는 항목으로, 실질적으로 소유자가 부담해야 합니다. 세입자가 관리비에 포함해 납부했다면, 퇴거 시 임대인에게 납부한 금액 전체를 반환 청구할 수 있습니다.'
+    }
+  },
+  {
+    cat: 'basic', catLabel: '기초지식',
+    title: 'GTX와 부동산 가격 — 교통 호재가 집값에 미치는 영향',
+    sub: '역세권 프리미엄, 예정 vs 실제 개통 효과 비교',
+    concept: `GTX(광역급행철도)는 서울 외곽에서 강남까지 30분대를 목표로 하는 고속 지하철입니다. 2026년 현재 GTX-A(파주~동탄)이 일부 운행 중이며, B(송도~마석)·C(수원~덕정)·D·E 등이 계획 또는 추진 중입니다.
+
+GTX 역세권 집값은 <strong>발표 단계</strong>(예비타당성 통과)부터 오르기 시작해, <strong>착공 단계</strong>에서 최고조에 달하고, <strong>개통 후</strong>에는 재료 소멸로 상승폭이 줄거나 조정이 오는 경향이 있습니다.`,
+    formula: { title: 'GTX 역세권 효과 시기별 분류', lines: ['노선 계획 발표: 선도 상승 (정보 비대칭)', '예비타당성 통과: 2차 상승 (실현 가능성 확인)', '착공: 최고 기대감 (매수 경쟁 최고조)', '개통 전후: 재료 소멸 → 조정 가능성', '이후: 실제 이용자 증가 시 2차 안정 상승'] },
+    example: {
+      title: '🚄 실전 예시: GTX-A 수원역 수혜 지역 분석',
+      steps: [
+        '수원 영통구 2026년 7월 주간 상승률: +1.19% (서울 전체 평균의 4.7배)',
+        'GTX-A 수원 연장 확정 발표 이후 매수 수요 급증',
+        '기존 아파트 + GTX 수혜 기대 = 이중 프리미엄',
+        '리스크: GTX 개통 지연 가능성, 분당선·1호선 이미 연결된 지역',
+        '판단: 교통 개선 실질 효과 + 공사 완료 전후 매도 타이밍 중요'
+      ],
+      result: '역세권 프리미엄은 개통 전에 최고조. 발표→착공→개통 각 단계별 매수·매도 타이밍 차별화 필요'
+    },
+    tip: '💡 GTX 예정 노선이라도 예비타당성 조사 탈락, 착공 지연, 노선 변경이 잦습니다. "계획"과 "확정"을 구분하세요. 예타 통과 = 착공 예정, 착공 = 개통 확정은 아닙니다.',
+    quiz: {
+      q: 'GTX 역세권 집값 상승이 가장 큰 시기는 일반적으로 언제인가요?',
+      opts: ['개통 직후', '착공 단계 또는 그 직전', '계획 발표 10년 후', '역세권 아파트 준공 시'],
+      ans: 1,
+      explain: '역세권 부동산은 "기대감"에 가장 강하게 반응합니다. 계획 발표보다 실현 가능성이 높아지는 착공 단계 전후에 집값 상승이 최고조에 달하고, 개통 후에는 재료 소멸로 오히려 조정이 오는 경향이 있습니다.'
+    }
+  },
+  {
+    cat: 'basic', catLabel: '기초지식',
+    title: '분양권과 입주권 — 차이를 알아야 투자한다',
+    sub: '분양권 전매 제한, 입주권 거래 세금, 보유기간 계산법',
+    concept: `<strong>분양권</strong>은 신규 분양 아파트에 당첨됐을 때 받는 권리입니다. 아직 건물이 없는 상태에서 분양가를 납부하고, 입주 시 아파트 소유자가 됩니다. <strong>조합원 입주권</strong>은 재건축·재개발 구역에서 기존 부동산을 소유하고 있다가 새 아파트를 받을 권리입니다.
+
+핵심 차이: ① 분양권은 계약일 = 보유기간 시작, 입주권은 멸실일(철거일)이 기준 ② 분양권은 전매 제한(규제지역 3년)이 있고, 입주권은 제한이 적음 ③ 양도세 계산 방법이 다름.`,
+    formula: { title: '분양권 vs 조합원 입주권 핵심 차이', lines: ['보유기간: 분양권=계약일 / 입주권=부동산 취득일', '전매제한: 분양권(규제지역 소유권이전등기일까지) / 입주권(제한 없음)', '양도세: 분양권 매도 → 70%단일세율(1년미만) or 60%(2년미만)', '1주택 비과세: 입주권은 대체취득 특례 적용 가능'] },
+    example: {
+      title: '📋 실전 예시: 분양권 거래 세금 계산',
+      steps: [
+        '수도권 규제지역 분양권, 분양가 8억, 프리미엄(웃돈) 1.5억',
+        '전매제한 지역: 소유권이전등기일(보통 입주 후)까지 전매 금지',
+        '만약 전매 가능 지역: 1년 미만 보유 → 양도차익 1.5억 × 70% = 1.05억원 세금',
+        '2년 이상 보유 후 전매: 일반 세율 적용 + 장특공제 적용 가능',
+        '입주권은 주택 보유 수 포함 여부가 분양권과 다름'
+      ],
+      result: '분양권 단기 매도는 세금이 70%로 매우 높음. 1~2년 이상 보유 또는 전매 제한 해제 후 거래 필요'
+    },
+    tip: '💡 분양권을 보유 중일 때 다른 주택을 취득하면 2주택으로 간주될 수 있습니다. 일시적 2주택 특례 요건(3년 내 기존 주택 처분)을 반드시 확인하세요.',
+    quiz: {
+      q: '1년 미만 보유한 수도권 규제지역 분양권을 양도할 때 적용되는 양도세율은?',
+      opts: ['6~45% (일반 세율)', '60%', '70%', '80%'],
+      ans: 2,
+      explain: '분양권을 1년 미만 보유 후 양도할 경우 70% 단일세율이 적용됩니다(지방소득세 별도 10% 추가). 단기 분양권 거래는 세금 부담이 매우 크므로 주의가 필요합니다.'
+    }
+  },
+  {
+    cat: 'trend', catLabel: '시장동향',
+    title: '강남구 첫 마이너스 — 이게 하락 신호일까, 조정일까?',
+    sub: '14주 만의 첫 하락 전환 배경과 초보자가 읽어야 할 3가지 포인트',
+    concept: `2026년 8월 2주, 강남구 아파트 주간 매매가 변동률이 <strong>-0.02%</strong>로 14주 만에 처음으로 마이너스가 됐습니다. 서초구는 <strong>-0.04%</strong>로 16주 만의 첫 하락 전환입니다.
+
+초보자들이 흔히 오해하는 것이 있습니다. "마이너스 = 하락 신호"라고 바로 결론짓는 것입니다. 하지만 부동산 시장에서 주간 변동률 -0.02~-0.04%는 <strong>'통계적 소음'에 가까운 미세한 수치</strong>입니다. 이것을 '폭락'으로 읽으면 안 됩니다.
+
+다만 이것이 중요한 이유는 따로 있습니다. <strong>14주 연속 상승하던 강남이 처음으로 멈췄다는 방향 전환의 신호</strong>입니다. 세제개편안 발표(8.3) 후 고가 주택 보유자들이 관망에 들어가면서 매수 호가가 꺾이는 첫 신호로 해석됩니다.`,
+    formula: { title: '강남 하락 전환 3가지 포인트', lines: [
+      '① 규모 해석: -0.02~-0.04%는 10억 집이 200~400만원 하락 — 오차 범위 수준',
+      '② 배경: 세제개편으로 공시가 22억+(시가 32억+) 고가 강남 매수 관망세',
+      '③ 의미: "강남 불패"의 심리적 균열 — 방향 전환의 신호로 읽는 것이 핵심'
+    ]},
+    example: {
+      title: '📋 실전 이해: 강남 -0.02%의 실제 의미',
+      steps: [
+        '매매가 15억짜리 강남 아파트 → -0.02% = 실제 하락액 약 300만원',
+        '같은 주 강북 중랑구 +0.46% → 15억짜리 집이면 +690만원 상승',
+        '결론: 수치로는 강북이 강남을 이기는 역전 현상이 실제로 발생 중',
+        '주의: 1~2주 데이터로 트렌드 확정 금물 — 3~4주 연속 확인 후 판단'
+      ],
+      result: '강남 첫 하락 전환은 "세제개편이 시장에 효과를 발휘하기 시작했다"는 신호. 아직 추세 전환을 판단하기에는 너무 이른 단계'
+    },
+    tip: '💡 부동산 주간 지수는 표본 오차가 있습니다. 한 주 -0.02%보다 3~4주 연속 방향이 더 중요합니다. 다음 수요일(8.20 발표) 데이터를 함께 보세요.',
+    quiz: {
+      q: '강남구 주간 매매 변동률이 -0.02%를 기록했다는 뜻은?',
+      opts: [
+        '강남 아파트값이 대폭 하락해 폭락 신호다',
+        '매매가 거래 자체가 없어진 것이다',
+        '주간 기준 소폭 하락으로, 추세 판단은 3~4주 연속 데이터가 필요하다',
+        '전세가만 하락한 것이다'
+      ],
+      ans: 2,
+      explain: '-0.02%는 10억 기준 약 200만원 수준의 미미한 수치입니다. 중요한 것은 "14주 만의 첫 하락 방향 전환"이라는 사실입니다. 폭락이 아닌 추세 변화의 초기 신호로 해석해야 하며, 3~4주 연속 확인 후 판단하는 것이 바람직합니다.'
+    }
+  },
+  {
+    cat: 'tax', catLabel: '세금/세제',
+    title: '세제개편안 핵심 수치 완전 정리 — 종부세 14억·양도세 장특공제 상한',
+    sub: '공시가 14억 실거주 공제 상향, 비거주 9억 하향, 장특공제 상한 신설 실전 계산',
+    concept: `2026년 8월 3일 정부가 발표한 세제개편안이 현재 입법예고 중입니다(8.4~8.20). 핵심을 숫자로 정리하면:
+
+<strong>종부세(2027년 시행)</strong>
+- 1주택 실거주: 공시가 기본공제 <strong>12억→14억</strong> 상향 (시가 약 20억)
+- 1주택 비거주: 12억→<strong>9억</strong>으로 하향 (실거주 안 하면 더 많이 냄)
+- 공정시장가액비율: 60%→<strong>70%</strong> (3주택+ 80%)
+
+<strong>양도세 장기보유특별공제 상한 신설(2028~)</strong>
+- 2028년 매도: 장특공제 최대 <strong>2억원</strong>
+- 2029년 이후 매도: 장특공제 최대 <strong>1억원</strong>
+- 기존: 보유 15년 + 거주 10년 = 80% 공제 무제한 → 이제 상한이 생김`,
+    formula: { title: '세제개편안 Before → After 비교', lines: [
+      '종부세 실거주: 공시가 12억 → 14억 (상향, 혜택↑)',
+      '종부세 비거주: 공시가 12억 → 9억 (하향, 부담↑)',
+      '장특공제: 최대 80% 무제한 → 2028년 2억·2029년 1억 상한',
+      '다주택 양도세: 중과세율 → 2027년 -5%p, 2028년 -10%p 한시 완화'
+    ]},
+    example: {
+      title: '📋 실전 예시: 장특공제 상한의 실제 영향',
+      steps: [
+        '강남 아파트 20년 전 5억에 취득, 현재 20억 → 양도차익 15억',
+        '현행: 보유 20년·거주 15년 = 장특공제 80% → 과세대상 3억 → 세금 약 7,800만원',
+        '개편 후(2029년): 장특공제 80%로 계산하면 12억이지만 상한 1억 적용',
+        '과세대상 15억 - 1억 = 14억 → 세금 약 5억원대 (기존 대비 수억 원 증가)',
+        '결론: 장기 보유·거주자도 2028년 이전 매도 전략 재검토 필요'
+      ],
+      result: '장특공제 상한 신설은 장기 보유 후 양도 전략을 완전히 바꾸는 파급력 있는 변화. 2027년까지 판단 필요'
+    },
+    tip: '💡 세제개편안은 아직 국회를 통과하지 않았습니다(9.3 정기국회 제출 예정). 야당 협의 과정에서 수치가 달라질 수 있으니, 확정 전 큰 의사결정(매도·이주)은 신중하게 접근하세요.',
+    quiz: {
+      q: '세제개편안에 따라 2027년부터 1주택 실거주자의 종부세 기본공제 기준(공시가)은?',
+      opts: ['9억원', '12억원 (현행 유지)', '14억원', '20억원'],
+      ans: 2,
+      explain: '1주택 실거주자의 종부세 기본공제는 공시가 기준 12억원에서 14억원으로 상향됩니다(시가 약 20억원). 비거주 1주택자는 9.1 국무회의 확정으로 12억 현행 유지(초안 9억 하향 계획 철회)됐습니다. 단, 국회 심의(9.3~)에서 추가 변경 가능성이 있습니다.'
+    }
+  },
+  {
+    cat: 'finance', catLabel: '금융/대출',
+    title: '기준금리 2.75%와 8.27 금통위 — 초보자가 알아야 할 3가지',
+    sub: '매파적 동결·소수의견 인상·주담대 전략 완전 이해',
+    concept: `현재 기준금리는 <strong>2.75%</strong>입니다(2026년 7월 16일, 3년 6개월 만의 첫 인상). 오는 8월 27일(목) 다음 금통위가 예정돼 있습니다.
+
+시장 컨센서스는 "매파적 동결"입니다. "동결이지만 인상을 강하게 시사"하는 것을 뜻합니다. 1~2명의 금통위원이 인상 소수의견을 낼 것으로 예상됩니다.
+
+초보자가 알아야 할 핵심: <strong>기준금리 인상 → 3~6개월 후 주담대 금리 상승</strong>이 공식입니다. 그런데 7월 인상(2.50%→2.75%)의 영향이 이제 막 주담대에 반영되는 시점입니다. 현재 주담대 변동금리는 연 4.02~6.37%, 고정·혼합형은 4.68~7.39% 수준입니다.`,
+    formula: { title: '금통위 결과별 주담대 영향 시나리오', lines: [
+      '① 동결(가능성 60~70%): 주담대 금리 현 수준 유지. 변동형 선택 시 일시 유리',
+      '② 소수의견 인상(예상): 다음 인상 예고 신호. 혼합·고정형으로 갈아탈 시기',
+      '③ 인상(가능성 30~40%): 주담대 0.25%p 추가 상승 → 30년 5억 대출 월 7~8만원 증가',
+      '핵심: 금리 인상 사이클에서는 고정·혼합형이 변동형보다 유리'
+    ]},
+    example: {
+      title: '📋 실전 계산: 금리 0.25%p 인상이 내 대출에 미치는 영향',
+      steps: [
+        '대출 원금 4억원, 30년 만기, 현재 변동금리 5.0%',
+        '현재 월 상환액: 약 214만원',
+        '금리 0.25%p 인상 → 5.25% → 월 상환액 약 221만원',
+        '월 7만원 증가 = 연 84만원 부담 증가',
+        '5억 대출이면 월 약 9만원, 연 108만원 증가'
+      ],
+      result: '0.25%p 인상은 생각보다 크지 않지만, 2.50%→2.75%(0.25%p) + 추가 인상 가능성이 누적되면 부담이 커짐. 고정·혼합형 전환 시점 검토 필요'
+    },
+    tip: '💡 변동금리 주담대는 보통 6개월마다 금리가 재조정됩니다. 금통위 후 바로 오르는 것이 아니라 다음 금리 재산정일에 오릅니다. 본인 대출의 금리재산정일을 반드시 확인하세요.',
+    quiz: {
+      q: '"매파적 동결"이란 무엇을 의미하는가?',
+      opts: [
+        '금리를 내리면서 경기 부양을 강조하는 것',
+        '금리를 동결하되 추후 인상 가능성을 강하게 시사하는 것',
+        '금리를 동결하되 인하 의지도 표명하는 것',
+        '금리를 큰 폭으로 인상하는 것'
+      ],
+      ans: 1,
+      explain: '"매파적(hawkish)"은 물가 안정을 위해 금리 인상에 적극적인 성향을 뜻합니다. 매파적 동결은 이번에는 금리를 유지하지만, 앞으로 인상할 의지를 강하게 시사하는 표현입니다. 이 경우 시장은 대출 금리가 추후 오를 것을 선반영하기도 합니다.'
+    }
+  },
+  {
+    cat: 'region', catLabel: '지역분석',
+    title: '경기도 남부 핫스팟 — 성남·광명·분당·병점의 공통점',
+    sub: '8월 2주 경기 선두 지역들이 가진 3가지 공통 호재 분석',
+    concept: `2026년 8월 2주 경기도 상위 상승 지역 순위: 성남 중원 +0.55%, 화성 병점 +0.42%, 광명 +0.40%, 분당 +0.39%, 용인기흥 +0.33%.
+
+이 지역들에는 3가지 공통점이 있습니다.
+
+① <strong>GTX 수혜권</strong>: 광명(GTX-B), 분당(GTX-A 판교역), 용인기흥(GTX-A 수원 연장), 병점(SRT) — 광역 교통 개선이 핵심 호재
+② <strong>상대적 저평가</strong>: 서울 강남 대비 가격 갭이 크지만 직주 근접성은 유사. 세제개편 후 '덜 비싼 대안'으로 수요 이전
+③ <strong>직주근접 수요</strong>: 성남 중원(판교테크노밸리·성남산업단지), 용인기흥(삼성·SK하이닉스 반도체 클러스터) — 산업단지 직주 수요가 가격을 지지`,
+    formula: { title: '경기 상승 지역 선택 체크리스트', lines: [
+      '① GTX 노선 확인: 계획 발표보다 착공 이후가 실질 상승 구간',
+      '② 서울 직장 통근 시간: 편도 60분 이내 = 실거주 수요 탄탄',
+      '③ 지역 내 일자리: 산업단지·R&D클러스터 위치 확인',
+      '④ 공급량: 대규모 신도시 추가 분양 예정 여부 → 과잉 공급 주의'
+    ]},
+    example: {
+      title: '📋 실전 분석: 광명 vs 분당 — 어디가 더 유리할까?',
+      steps: [
+        '광명: GTX-B(착공 예정), 2040 철거 예정 광명 재건축 대단지, KTX 광명역 접근성',
+        '분당: GTX-A 판교 연결, 판교테크노밸리 직주, 재건축 기대(1기 신도시)',
+        '광명 장점: 가격 낮음, GTX-B 미반영 여지, 서울 접근성',
+        '분당 장점: 실수요 탄탄, 재건축 기대, 고급 주거 인프라',
+        '결론: 실거주라면 분당(안정적 수요), 투자라면 광명(GTX 기대 여지)'
+      ],
+      result: '경기 남부 핫스팟은 GTX+일자리+상대적 저평가의 3박자. 단, GTX는 아직 계획 단계인 것이 많아 "착공 확정" 여부를 반드시 확인할 것'
+    },
+    tip: '💡 GTX는 "계획 발표 → 예비타당성 통과 → 착공 → 개통" 4단계가 있습니다. 계획 발표 단계에서 집값이 가장 많이 오르고, 개통 후 재료 소멸로 조정이 오는 경우도 있습니다. 본인이 사려는 지역의 GTX가 몇 단계인지 확인하세요.',
+    quiz: {
+      q: '2026년 8월 2주 경기도 주간 상승률 1위를 기록한 지역은?',
+      opts: ['용인 기흥 +0.33%', '분당 +0.39%', '성남 중원 +0.55%', '화성 병점 +0.42%'],
+      ans: 2,
+      explain: '2026년 8월 2주(8.13 발표) 경기도 주간 상승률 1위는 성남 중원구 +0.55%입니다. 전주에 1위였던 용인 기흥(+0.52%)을 제치고 성남 중원이 선두로 올라섰습니다. 광명 +0.40%, 분당 +0.39%, 병점 +0.42%가 뒤를 이었습니다.'
+    }
+  },
+  {
+    cat: 'strategy', catLabel: '투자전략',
+    title: '공급 절벽 2028~2029 — 지금 사야 할까, 기다려야 할까?',
+    sub: '준공 -47.6% 수도권 공급 쇼크가 내 매수 결정에 주는 신호',
+    concept: `2026년 상반기 수도권 준공(입주) 물량이 전년 동기 대비 <strong>-47.6%</strong>로 반토막났습니다. 인허가도 -8.1%. 지금 짓지 않으면 2028~2029년에 입주할 집이 없다는 뜻입니다.
+
+부동산 사이클의 중요한 공식: <strong>인허가 감소 → 2~3년 후 준공 감소 → 입주 절벽 → 공급 부족 → 가격 상승 압력</strong>.
+
+이것이 현재 기준금리 2.75%의 고금리에도 불구하고 서울 집값이 78주 연속 상승을 이어가는 구조적 이유 중 하나입니다. 수요는 인구구조상 일정한데, 공급이 줄면 가격은 오를 수밖에 없습니다.
+
+그렇다면 지금 사야 할까요? 이것은 개인 상황에 따라 다릅니다. "공급 절벽이 가격을 지지한다"는 사실과 "지금 내가 감당할 수 있는지"는 별개의 문제입니다.`,
+    formula: { title: '매수 타이밍 판단 4가지 기준', lines: [
+      '① 대출 상환 여력: 월 소득 대비 원리금 30% 이하 — 초과하면 스트레스 위험',
+      '② 거주 기간: 최소 5년 이상 거주 가능 → 단기 변동성 흡수 가능',
+      '③ 공급 사이클: 2028~29 공급 절벽 → 수요 유지 시 가격 상방 지지',
+      '④ 금리 방향: 금리 피크 확인 후 고정·혼합형 확보 → 리스크 관리'
+    ]},
+    example: {
+      title: '📋 실전 시나리오: A씨의 매수 결정 프레임',
+      steps: [
+        '조건: 연소득 8,000만원, 현재 전세 6억, 목표 아파트 10억 (강북)',
+        '대출 한도: DSR 40% 적용 → 연 상환 3,200만원 → 4억 대출 가능',
+        '자기자금 6억 + 대출 4억 = 10억 매수 가능',
+        '월 상환액: 약 196만원 (4억, 30년, 5.5%) → 소득 대비 29.4% → 적정',
+        '2028~29 공급 절벽 → 강북 실수요 수요 유지 예상 → 5~7년 보유 전략'
+      ],
+      result: '"공급 절벽 + 5년 이상 보유 + 상환 여력 30% 이내" 3조건 충족 시 실거주 매수는 합리적 선택. 단, 투자 목적이라면 강남 세제 부담 vs 강북 저가 메리트를 비교 필수'
+    },
+    tip: '💡 공급 절벽은 평균적인 방향을 제시하지만, 지역별 편차가 큽니다. 수도권 평균이 -47.6%여도 특정 지역은 대규모 신도시로 공급이 넘칠 수 있습니다. 내가 사려는 지역의 2027~2029 입주 예정 물량을 부동산원 홈페이지에서 반드시 확인하세요.',
+    quiz: {
+      q: '2026년 상반기 수도권 준공 물량이 전년 동기 대비 얼마나 감소했는가?',
+      opts: ['-8.1%', '-20.4%', '-47.6%', '-52.4% (6월 단월)'],
+      ans: 2,
+      explain: '2026년 상반기 수도권 준공(입주) 물량은 전년 동기 대비 -47.6%로 반토막났습니다(-52.4%는 6월 단월 기준). 인허가도 -8.1% 감소해, 2028~2029년 입주 절벽이 구조적으로 예정된 상황입니다. 이것이 고금리 속에서도 서울 집값이 지속 상승하는 공급 측면 이유입니다.'
+    }
+  },
+  {
+    cat: 'finance', catLabel: '금융/대출',
+    title: '금통위 기준금리 3.00% 인상 — 초보자가 꼭 알아야 할 3가지 변화',
+    sub: '예상 깨고 0.25%p 추가 인상 — 내 주담대와 매수 전략에 미치는 영향',
+    concept: `한국은행 금융통화위원회가 2026년 9월 21일 기준금리를 <strong>2.75%→3.00%</strong>로 0.25%p 인상했습니다. 시장이 예상한 '매파적 동결'을 뒤집은 결정이었습니다.
+
+<strong>기준금리 인상의 3가지 실질 영향:</strong>
+
+① <strong>주담대 금리 상승 (3~6개월 시차):</strong> 변동금리 대출자는 향후 금리 인상분이 반영돼 월 상환액이 증가합니다. 기준금리 0.25%p 인상 시 3억원 변동금리 대출 기준 월 상환액 약 10만~15만원 증가 예상.
+
+② <strong>매수 심리 냉각:</strong> 이미 2주 연속 하락 중인 강남·서초에 추가 충격. 고가 주택 매수 관망세가 더욱 강해질 가능성.
+
+③ <strong>고정금리 vs 변동금리 선택:</strong> 증권사들은 최종금리 3.25~3.50% 전망. 추가 인상 예상 시 고정·혼합형 금리가 유리합니다.`,
+    formula: { title: '기준금리 인상 충격 계산법', lines: [
+      '① 대출 원금 × 인상폭 ÷ 12 = 월 추가 이자',
+      '예: 3억 × 0.25% ÷ 12 = 월 +6.25만원',
+      '② 변동 vs 고정 금리차 확인: 현재 고정형이 불리해도 추가 인상 시 역전',
+      '③ 최종금리 도달 시점까지 고정형이 총 비용 유리'
+    ]},
+    example: {
+      title: '변동금리 대출자 영향 시뮬레이션',
+      items: [
+        '현재 대출: 3억원, 변동금리 4.5%, 월 상환 152만원',
+        '기준금리 3.00% 반영 후(약 6개월 뒤): 변동금리 약 4.75%',
+        '조정 후 월 상환: 약 158만원 (+6만원/월, +72만원/년)',
+        '최종금리 3.50% 시: 변동금리 약 5.25% → 월 상환 약 166만원 (+14만원)'
+      ],
+      result: '지금 변동금리 대출자라면 고정·혼합형 전환을 검토할 시점. 단, 중도상환수수료(통상 0.6~1.5%)와 전환 비용을 먼저 비교할 것'
+    },
+    tip: '💡 기준금리 ≠ 대출금리. 기준금리 0.25%p 인상이 주담대에 즉시 반영되지 않습니다. 코픽스(COFIX) 기반 변동금리는 다음 달 코픽스 고시일에 반영되고, 고정금리는 금융채·국채 수익률 변동에 따라 이미 선반영됩니다.',
+    quiz: {
+      q: '기준금리가 2.75%에서 3.00%로 인상됐을 때, 3억원 변동금리 주담대의 월 이자 증가분은 대략 얼마인가?',
+      opts: ['약 3만원', '약 6만원', '약 15만원', '약 25만원'],
+      ans: 1,
+      explain: '0.25%p 인상 × 3억원 ÷ 12개월 = 월 약 6.25만원 증가. 변동금리는 코픽스 기반으로 즉시가 아닌 다음 고시일에 반영됩니다.'
+    }
+  },
+  {
+    cat: 'trend', catLabel: '시장동향',
+    title: '강남·서초 2주 연속 하락 — 이번엔 진짜 하락 추세일까?',
+    sub: '강남 -0.05% · 서초 -0.09%로 낙폭 확대 — 추세와 조정의 차이',
+    concept: `8월 3주(8.19 발표): 강남구 <strong>-0.05%</strong>(전주 -0.02%), 서초구 <strong>-0.09%</strong>(전주 -0.04%)로 <strong>2주 연속 하락하며 낙폭까지 확대</strong>됐습니다. 서울 전체는 +0.22%로 79주 연속 상승을 이어갔습니다.
+
+<strong>하락이 더 진행될 수 있는 요인:</strong>
+- 기준금리 3.00% 인상 → 고가 주택 매수 부담 증가
+- 세제개편안 관망세 (공시가 14억 초과 구간 세부담 증가)
+- 대출 규제 (25억 초과 주택 최대 2억 한도)
+
+<strong>반등 가능성 요인:</strong>
+- 공급 절벽 구조 (수도권 준공 -47.6%)
+- 강북으로 빠진 수요가 강남 저가 단지로 귀환 가능
+- 토지거래허가구역으로 실거주 매물 잠김 지속`,
+    formula: { title: '추세 하락 vs 조정 구분법', lines: [
+      '① 주간 하락 → 3~4주 이상 지속 시 추세 신호',
+      '② 낙폭 확대 여부 → 확대되면 추세 강화',
+      '③ 전세가율 변화 → 매매만 하락하고 전세 유지 시 조정 가능성',
+      '④ 거래량 확인 → 거래 급감이면 관망, 거래량 유지면 실수요 조정'
+    ]},
+    example: {
+      title: '8월 3주 강남·서초 데이터 분석',
+      items: [
+        '강남구: 8월 2주 -0.02% → 8월 3주 -0.05% (낙폭 2.5배 확대)',
+        '서초구: 8월 2주 -0.04% → 8월 3주 -0.09% (낙폭 2.25배 확대)',
+        '전세 동향: 강남 전세 -0.03%, 서초 전세 -0.08% (매매와 동반 하락)',
+        '판단: 매매·전세 동반 하락 + 낙폭 확대 = 단순 조정보다 추세 진입 가능성'
+      ],
+      result: '3~4주 연속 하락 + 낙폭 유지 시 추세 하락 신호. 현재는 "조정 vs 추세" 판단 시점. 다음 주(8월 4주) 데이터가 결정적'
+    },
+    tip: '💡 강남 하락이 서울 전체 하락을 의미하지 않습니다. 강북(성북 +0.45%, 중랑 +0.44%)은 여전히 강세입니다. 지역별 미시 데이터를 구분해서 읽는 것이 핵심 역량입니다.',
+    quiz: {
+      q: '8월 3주(8.19 발표) 기준 강남구 아파트 주간 매매 변동률은?',
+      opts: ['+0.02%', '-0.02%', '-0.05%', '-0.09%'],
+      ans: 2,
+      explain: '강남구는 -0.05%(전주 -0.02%에서 낙폭 확대), 서초구는 -0.09%(전주 -0.04%에서 낙폭 확대)로 2주 연속 하락이 확인됐습니다.'
+    }
+  },
+  {
+    cat: 'tax', catLabel: '세금/세제',
+    title: '세제개편안 차관회의 통과 — 국무회의 9.1 후 국회 심의 시나리오',
+    sub: '입법예고 → 차관회의 8.27 통과 — 국회에서 무엇이 바뀔 수 있나',
+    concept: `정부 세제개편안이 2026년 8월 27일 차관회의를 통과했습니다. 다음 절차: <strong>국무회의(9.1) → 정기국회 제출(9.3)</strong>.
+
+<strong>확정 수치 (정부안):</strong>
+- 종부세 1주택 실거주: 공시가 <strong>12억→14억</strong> (시가 약 20억)
+- 비거주 1주택: 공시가 <strong>9억</strong>으로 하향
+- 공정시장가액비율: <strong>60%→70%</strong> (3주택+ 80%)
+- 장특공제 상한: 2028년 2억 / 2029년+ 1억
+- 다주택 중과: 2027년 -5%p / 2028년 -10%p 한시 완화
+
+<strong>국회 심의에서 바뀔 수 있는 것:</strong>
+야당이 다수인 국회에서 핵심 수치가 조정될 수 있습니다. 특히 종부세 기준 14억 → 상향 또는 하향 조정, 장특공제 상한 폐지 또는 완화 등이 협의 쟁점이 됩니다.`,
+    formula: { title: '세제개편 영향 체크리스트', lines: [
+      '① 공시가 14억 이하 1주택 실거주 → 종부세 면제 (혜택)',
+      '② 공시가 14억 초과 → 공정시장가액비율 70% 적용 → 세부담 증가 가능',
+      '③ 다주택자: 양도세 중과 2028까지 유예 → 매도 시기 전략 중요',
+      '④ 2029년 보유공제 폐지 → 장기 보유자 거주공제로 전환 필요'
+    ]},
+    example: {
+      title: '세제개편안 대상별 영향',
+      items: [
+        '시가 15억 실거주 1주택자: 공시가 약 10억 → 14억 기준 미달 → 종부세 면제 (혜택)',
+        '시가 25억 실거주 1주택자: 공시가 약 17억 → 14억 초과 → 종부세 부과, 공정시장가액비율 70% 적용',
+        '2주택자: 양도세 중과 2028년까지 유예 → 2027~28년 매도 시 일반세율 적용',
+        '장기보유자: 2028년 이후 장특공제 2억 상한 → 고가 1주택 절세 전략 변경 필요'
+      ],
+      result: '시가 20억(공시가 14억) 기준선이 세부담 분기점. 이 기준 이하 실거주자는 혜택, 초과 고가 주택 보유자는 불이익 가능'
+    },
+    tip: '💡 차관회의 통과 = 확정이 아닙니다. 국회 심의에서 수치가 바뀔 수 있습니다. 세금 전략은 최종 국회 통과 후에 세무사와 확인하는 것이 안전합니다.',
+    quiz: {
+      q: '정부 세제개편안(차관회의 8.27 통과)에서 1주택 실거주자의 종부세 비과세 공시가 기준은?',
+      opts: ['9억', '12억', '14억', '20억'],
+      ans: 2,
+      explain: '1주택 실거주자 종부세 비과세 기준이 공시가 12억→14억으로 상향됩니다(시가 약 20억). 비거주 1주택자는 오히려 9억으로 하향됩니다.'
+    }
+  },
+  {
+    cat: 'strategy', catLabel: '투자전략',
+    title: '금리 인상기 부동산 전략 — 고정금리·갈아타기·지역 선택 3가지',
+    sub: '기준금리 3.00% 시대 — 초보자가 지금 당장 점검해야 할 것들',
+    concept: `기준금리가 3.00%로 올랐고 증권사들은 최종금리 3.25~3.50%를 전망합니다. 금리 인상기에는 부동산 매수·보유 전략도 바뀌어야 합니다.
+
+<strong>지금 해야 할 3가지 점검:</strong>
+
+① <strong>대출 유형 점검:</strong> 변동금리 대출자라면 고정·혼합형 전환을 검토. 단, 중도상환수수료(0.6~1.5%)와 남은 의무보유 기간을 먼저 확인.
+
+② <strong>상환 여력 재계산:</strong> 금리 3.50% 도달 시 내 월 상환액은 얼마인지 시뮬레이션. 소득의 30%를 넘으면 스트레스 구간.
+
+③ <strong>지역 선택 재검토:</strong> 금리 인상기에는 고가 주택 낙폭이 크고, 저가·실수요 지역은 상대적 강세. 강남 고가보다 강북 저가가 단기 리스크 낮음.`,
+    formula: { title: '금리 인상기 매수 적정성 4단계 체크', lines: [
+      '① 월 상환액 ÷ 월 소득 ≤ 30% 확인',
+      '② 금리 3.50% 가정 후 상환액 재계산 (스트레스 테스트)',
+      '③ 5년 이상 거주 계획 → 단기 변동성 흡수 가능',
+      '④ 매수 지역 공급 물량 확인 (2027~2029 입주 예정)'
+    ]},
+    example: {
+      title: '금리 3.00% 시대 시나리오별 상환액',
+      items: [
+        '3억 변동금리 4.5% → 현재 월 상환 152만원',
+        '금리 4.75%(기준금리 3.00% 반영 후): 월 158만원 (+6만)',
+        '금리 5.00%(기준금리 3.25% 반영 후): 월 161만원 (+9만)',
+        '금리 5.25%(기준금리 3.50% 반영 후): 월 166만원 (+14만)'
+      ],
+      result: '최종금리 3.50% 도달 시 3억 대출 기준 현재 대비 월 14만원, 연 168만원 추가. 미리 고정·혼합형으로 전환하면 이 위험을 차단 가능'
+    },
+    tip: '💡 금리 인상기에 모든 부동산이 하락하는 것은 아닙니다. 실수요 강한 지역(강북 저가, 마용성)과 공급 부족 지역은 금리 충격을 일부 흡수합니다. 금리와 공급을 함께 보는 것이 핵심입니다.',
+    quiz: {
+      q: '기준금리 인상이 주담대 변동금리에 영향을 미치는 시차는?',
+      opts: ['즉시 반영', '약 1~2주', '약 3~6개월', '1년 후'],
+      ans: 2,
+      explain: '변동금리는 코픽스(COFIX) 기준으로 다음 고시일에 반영되며, 기준금리 인상 후 실제 대출 금리 변동까지 통상 3~6개월이 소요됩니다.'
+    }
+  },
+  {
+    cat: 'trend', catLabel: '시장동향',
+    title: '서울 +0.29% 상승폭 확대의 역설 — 강남 -0.11% 속 강북이 시장을 끌어올리다',
+    sub: '8월 4주 25구 중 23구 상승 — 양극화가 심화될수록 서울 평균은 상승?',
+    concept: `8월 4주(8.27 발표): 서울 전체 +0.29%로 전주(+0.22%) 대비 오히려 상승폭이 확대됐습니다. 그런데 강남구는 <strong>-0.11%</strong>(3주 연속 하락, 낙폭 급확대)입니다. 어떻게 이게 가능할까요?
+
+<strong>이유는 강북 14개구(+0.40%)의 광범위한 강세입니다:</strong>
+- 중랑 +0.56%, 성북·강북 +0.55%, 도봉·노원 +0.54%
+- 서울 25개구 중 23개구 상승 (하락은 강남·서초 2개구만)
+
+강남구(-0.11%)가 강하게 하락해도, 나머지 23개구가 평균 +0.40% 이상 오르면 서울 전체 평균은 상승할 수 있습니다. 강남구의 가격 비중이 크지만, 22개 강북·기타 구의 물량 합산이 더 크기 때문입니다.`,
+    formula: { title: '서울 지역별 가중 평균 이해하기', lines: [
+      '서울 평균 = (각 구의 가격변동 × 해당 구 아파트 비중)의 합',
+      '강남구 비중 약 12%, 강북 14개구 합산 비중 약 55%',
+      '강남 -0.11% × 12% = -0.013%p 기여',
+      '강북 14개구 +0.40% × 55% = +0.22%p 기여 → 평균 상승 견인'
+    ]},
+    example: {
+      title: '8월 4주 서울 상위·하위 지역 비교',
+      items: [
+        '서울 최고: 중랑구 +0.56% (5주 연속 강세)',
+        '서울 최저: 강남구 -0.11% (3주 연속 하락, 낙폭 확대)',
+        '강북 14개구 합산: +0.40% (상승폭 확대)',
+        '서울 전체: +0.29% (23/25구 상승 — 광범위한 강세)'
+      ],
+      result: '강남 하락 = 서울 하락이 아닙니다. 강남이 흔들려도 강북 실수요 강세가 서울 전체를 끌어올리는 구조가 형성됐습니다'
+    },
+    tip: '💡 서울 아파트 "평균" 상승률만 보면 오해하기 쉽습니다. 강남 하락 vs 강북 상승이라는 내부 양극화를 반드시 지역별로 쪼개서 확인해야 합니다.',
+    quiz: {
+      q: '8월 4주(8.27 발표) 서울 아파트 주간 매매 변동률은?',
+      opts: ['+0.22%', '+0.25%', '+0.29%', '+0.35%'],
+      ans: 2,
+      explain: '서울 +0.29%(전주 +0.22%에서 상승폭 확대). 강남구 -0.11%(3주 연속↓) 속에서도 강북 14개구 +0.40%가 서울 전체를 끌어올렸습니다.'
+    }
+  },
+  {
+    cat: 'tax', catLabel: '세금/세제',
+    title: '양도세 기본공제 250만→2,500만원 — 10배 인상의 의미와 조건',
+    sub: '10년 이상 거주·양도가액 30억원 이하 조건 충족 시 최대 2,250만원 추가 절세',
+    concept: `2026년 세제개편안(차관회의 8.27 통과)에 포함된 <strong>양도소득세 기본공제 10배 인상</strong>이 주목받고 있습니다.
+
+<strong>변경 내용:</strong>
+- 현행: 양도소득세 기본공제 <strong>250만원</strong>
+- 개편안: <strong>2,500만원</strong> (10배 인상)
+- 조건: ① 10년 이상 거주, ② 양도가액 30억원 이하
+
+<strong>초보자가 알아야 할 핵심:</strong>
+양도세 기본공제는 양도차익에서 무조건 빼주는 금액입니다. 기존 250만원에서 2,500만원으로 올라가면, 양도차익이 2,500만원 이하인 경우 양도세가 0이 됩니다. 장기 실거주자에게 큰 혜택입니다.`,
+    formula: { title: '양도세 기본공제 적용 계산법', lines: [
+      '양도세 = (양도차익 - 장특공제 - 기본공제) × 세율',
+      '현행: 기본공제 250만원',
+      '개편안: 기본공제 2,500만원 (10년 거주 + 30억 이하)',
+      '절세액 = (2,500 - 250)만원 × 양도세율 → 최대 수백만원 절세'
+    ]},
+    example: {
+      title: '기본공제 인상 효과 예시',
+      items: [
+        '양도차익 5,000만원, 10년 거주, 시가 15억 매도',
+        '현행: 5,000만 - 250만(기본공제) = 4,750만 × 세율',
+        '개편안: 5,000만 - 2,500만(기본공제) = 2,500만 × 세율',
+        '세율 38% 가정: 절세액 약 855만원 (2,250만 × 38%)'
+      ],
+      result: '10년 이상 거주한 실거주자가 30억 이하 주택을 매도할 때 최대 수백만원 추가 절세 가능. 단, 국회 통과 후 최종 확정'
+    },
+    tip: '💡 양도가액 30억원 이하 조건이 핵심입니다. 강남 고가(30억+) 주택은 혜택 대상이 아닙니다. 강북·경기의 중저가 장기 실거주자가 주된 수혜층입니다.',
+    quiz: {
+      q: '세제개편안의 양도세 기본공제 인상 조건으로 옳은 것은?',
+      opts: ['5년 이상 거주, 20억 이하', '10년 이상 거주, 30억 이하', '15년 이상 거주, 25억 이하', '조건 없이 모든 1주택자'],
+      ans: 1,
+      explain: '양도세 기본공제 250만→2,500만원 인상은 ① 10년 이상 거주 + ② 양도가액 30억원 이하 두 조건을 모두 충족해야 합니다.'
+    }
+  },
+  {
+    cat: 'region', catLabel: '지역분석',
+    title: '강북 5연속 강세 해부 — 중랑·성북·강북·도봉·노원의 공통점',
+    sub: '저가 강북이 서울을 이끄는 이유 — 수요 구조·가격 메리트·접근성',
+    concept: `8월 4주까지 5주 연속으로 강북 지역이 서울 상위권을 차지하고 있습니다. 중랑·성북·강북·도봉·노원 — 이 지역들의 공통점은 무엇일까요?
+
+<strong>강북 저가 지역 강세의 4가지 이유:</strong>
+
+① <strong>가격 메리트:</strong> 강남 시가 30억vs 강북 7~10억. 같은 서울에서 3~4배 가격 차이는 실수요·투자 모두 강북으로 유인.
+
+② <strong>'덜 똘똘한 한 채' 수요:</strong> 세제개편 후 고가 강남 대신 저가 강북으로 한 채를 사는 전략. 종부세·양도세 부담이 적음.
+
+③ <strong>교통 인프라 개선:</strong> GTX-B(청량리·망우), 동부선(노원-강남), 면목선(중랑) 등 강북을 강남과 연결하는 교통망 확충 기대.
+
+④ <strong>재개발 기대:</strong> 노원·도봉·강북 일대 노후 주택 재개발 사업 지속 진행 중.`,
+    formula: { title: '강북 투자 메리트 분석 기준', lines: [
+      '① 가격 대비 교통 접근성: 강남까지 30분 이내 + 10억 이하',
+      '② 재개발·재건축 가능성: 노후도 30년+ + 조합 설립 여부',
+      '③ 전세가율: 60~70% 수준 → 갭 3~4억대 투자 가능',
+      '④ 인프라 일정: GTX/지하철 착공 확정 시 프리미엄 반영'
+    ]},
+    example: {
+      title: '강북 5개 구 8월 4주 변동률',
+      items: [
+        '중랑구: +0.56% (서울 1위, 면목선 기대)',
+        '성북구: +0.55% (GTX-B 청량리 수혜)',
+        '강북구: +0.55% (4·5호선 접근, 저가 메리트)',
+        '도봉구: +0.54% (1·7호선, 재개발 진행)',
+        '노원구: +0.54% (4·6·7호선, 중계동 학원가)'
+      ],
+      result: '5개 구 모두 서울 아파트 평균(+0.29%)을 크게 상회. 교통 인프라 + 저가격 + 재개발이라는 3박자가 수요를 끌어모으고 있습니다'
+    },
+    tip: '💡 강북 강세가 언제까지 이어질지는 금리 인상 속도에 달려 있습니다. 금리가 최종 3.50%까지 오르면 저가 강북도 매수 부담이 커질 수 있습니다. 전세가율과 거래량을 함께 모니터링하세요.',
+    quiz: {
+      q: '8월 4주(8.27 발표) 기준 서울에서 주간 매매 변동률이 가장 높은 자치구는?',
+      opts: ['성북구 +0.55%', '강북구 +0.55%', '중랑구 +0.56%', '도봉구 +0.54%'],
+      ans: 2,
+      explain: '중랑구 +0.56%로 서울 25개구 중 1위를 기록했습니다. 성북·강북 +0.55%, 도봉·노원 +0.54%가 뒤를 이었습니다.'
+    }
+  },
+  {
+    cat: 'tax', catLabel: '세금',
+    title: '국무회의 9.1 확정 — 비거주 종부세 9억 하향 철회, 왜 29일 만에 뒤집혔나?',
+    sub: '초안·차관회의·국무회의 — 세 단계에서 무엇이 달라졌는지 초보자 완전 정리',
+    concept: `2026년 9월 1일 국무회의에서 세법 개정안이 최종 확정됐습니다. 그런데 8월 3일 발표 후 불과 29일 만에 핵심 내용이 뒤바뀌었습니다. 왜 그랬을까요?
+
+【무엇이 바뀌었나】
+• 비거주 1주택 종부세 기본공제: 8.3 초안 9억 하향 → 9.1 확정 12억 현행 유지
+• 세부담 상한: 8.3 초안 200%로 상향 → 9.1 확정 150% 현행 유지
+• 비거주 부부 공동명의: 8.3 초안 각 4억(합계 8억) → 9.1 확정 각 6억(합계 12억)
+• ISA 혜택 축소: 8.3 초안 축소 계획 → 9.1 확정 전면 철회
+
+【무엇은 그대로인가】
+• 실거주 단독명의 1주택: 공시가 12억→14억 상향(시가 약 20억) ✅ 유지
+• 실거주 부부 공동명의: 각 9억 현행 유지 ✅ 유지
+• 공정시장가액비율: 60%→70% 상향(3주택+ 80%) ✅ 유지
+• 양도세 장특공제 상한, 다주택 중과 완화 일정 ✅ 유지`,
+    formula: `【왜 뒤집혔나? — 3가지 이유】
+① 여론 역풍: "비거주라도 1주택인데 세금을 더 올리느냐" 반발
+② 부동산 시장 영향: 비거주자가 급매 쏟아낼 경우 시장 교란 우려
+③ 정치적 부담: 야당 반대 + 수도권 의원 이탈 우려
+
+【9.3 정기국회 이후 변수】
+정부가 확정해도 국회 심의에서 또 바뀔 수 있습니다.
+• 야당이 반대하면 수정 가결 또는 부결 가능
+• 특히 양도세 보유공제 폐지(2029년), 장특공제 상한은 논란 예상`,
+    example: `A씨는 서울 공시가 12억 아파트를 1채 보유 중이며 비거주(전세 놓는 중)입니다.
+
+8월 3일 초안 기준:
+→ 비거주 공제 9억 적용 시 과세표준 12억-9억=3억 → 세금 발생
+
+9월 1일 확정 기준:
+→ 비거주도 기존 12억 공제 유지 → 공시가 12억 = 종부세 없음(공제 한도 내)
+
+차이: 연 수십~수백만원 세금 절감 효과 (공시가에 따라 다름)`,
+    tip: `초보자 핵심 정리:
+1. 종부세는 "공시가격 - 기본공제" 초과분에 과세됩니다
+2. 비거주 1주택자도 9.1 확정 기준 12억 공제 적용 (초안 9억에서 원상복구)
+3. 실거주자라면 14억까지 종부세 없음
+4. 공시가 12억 = 시가 약 17~18억 (공시가는 시세의 70~75% 수준)
+5. 국회 통과 전까지는 또 바뀔 수 있으므로 12월 납부 전 재확인 필요`,
+    quiz: {
+      q: '9.1 국무회의 확정 기준 비거주 1주택자의 종부세 기본공제 한도는?',
+      opts: ['9억원 (초안 하향안)', '10억원', '12억원 (현행 유지)', '14억원 (실거주 상향안)'],
+      ans: 2,
+      explain: '9.1 국무회의에서 비거주 1주택 종부세 기본공제 9억 하향 계획이 철회되어 현행 12억이 유지됐습니다. 실거주 단독명의는 14억으로 상향됩니다.'
+    }
+  },
+  {
+    cat: 'tax', catLabel: '세금',
+    title: '세제개편 확정 후 비거주자 전략 — 12억 현행 유지가 내 투자에 미치는 영향',
+    sub: '전세 놓는 1주택자·갭투자자·임박한 매도 예정자 — 각 상황별 달라지는 점',
+    concept: `국무회의 확정으로 비거주 1주택자의 종부세 부담이 당초 예상보다 줄어들었습니다. 이게 어떤 의미인지 상황별로 풀어봅니다.
+
+【비거주 1주택자 — 전세 놓는 경우】
+• 기존 우려: 9억 하향 시 공시가 10~14억대 아파트에 종부세 발생
+• 9.1 확정 후: 공시가 12억 이하면 종부세 없음 (현행 유지)
+• 의미: 공시가 12억(시가 약 17~18억) 이하 비거주 보유자는 종부세 영향 없음
+
+【부부 공동명의 — 비거주의 경우】
+• 초안: 각 4억(합계 8억) 하향 → 공시가 10억 아파트도 과세 대상
+• 확정: 각 6억(합계 12억) → 공시가 12억 이하 비거주 공동명의도 종부세 없음
+• 단독명의 vs 공동명의: 비거주라면 공동명의(합산 12억)가 여전히 유리
+
+【실거주자 — 변화 없음】
+• 단독명의: 12억→14억 상향 확정 (원안 유지)
+• 부부 공동명의: 각 9억(합계 18억) 현행 유지`,
+    formula: `【ISA 현행 유지 — 초보자에게 중요한 이유】
+ISA(개인종합자산관리계좌)는 절세 투자 계좌입니다.
+• 납입 한도: 연 2,000만원, 총 1억원
+• 비과세 한도: 서민형 400만원, 일반형 200만원 이내 이자·배당 비과세
+• 계약기간: 무제한 (9.1 확정으로 축소 철회)
+• 부동산 연계 활용: ISA 만기 자금 → 연금계좌 이전 시 추가 세제 혜택
+
+【세부담 상한 150% 유지 — 왜 중요한가】
+세부담 상한 = 직전 연도 세액 대비 올해 세액 최대 증가 한도
+150% 유지 → 갑자기 종부세가 2배 이상 오르는 사태 방지
+(200% 상향 시: 직전 100만원 → 올해 최대 200만원 가능)`,
+    example: `B씨 상황: 공시가 13억원 아파트 1채, 비거주(임대 중), 부부 단독명의
+
+초안(8.3) 기준:
+→ 비거주 기본공제 9억 → 과세표준 13억-9억=4억
+→ 종부세율 0.5%~적용 → 연간 수백만원 세금 예상
+
+확정(9.1) 기준:
+→ 비거주도 12억 공제 유지 → 과세표준 13억-12억=1억
+→ 종부세율 0.5%×60%(공정시장가액비율) → 연간 약 30만원 수준
+
+차이: 초안 대비 연간 수백만원 절감
+단, 공시가율 70%로 상향(2027년~)되면 과세표준이 다시 늘어남`,
+    tip: `오늘의 핵심 체크리스트:
+1. 내 아파트 공시가격 확인 → 국토부 공동주택 공시가격 알리미(realtyprice.kr)
+2. 비거주 단독명의라면 12억 이하 → 2027년 종부세 없음
+3. 비거주 부부 공동명의라면 각 6억(합계 12억) 이하 → 마찬가지
+4. 공시가율 70% 상향(2027년~)까지 고려해 중장기 계획 수립
+5. 국회 통과 여부 9~12월 모니터링 필수`,
+    quiz: {
+      q: '9.1 국무회의 확정 후 비거주 부부 공동명의 1주택의 종부세 기본공제 합산 한도는?',
+      opts: ['각 4억(합계 8억)', '각 6억(합계 12억)', '각 7억(합계 14억)', '각 9억(합계 18억)'],
+      ans: 1,
+      explain: '초안의 각 4억(합계 8억)에서 각 6억(합계 12억)으로 수정 확정됐습니다. 실거주 부부 공동명의는 각 9억(합계 18억) 현행 유지입니다.'
+    }
+  },
+  {
+    cat: 'region', catLabel: '지역분석',
+    title: '강북 전세가율 63.8% — 81개월 최고가 의미하는 것',
+    sub: '전세가율이 높아지면 시장이 어떻게 바뀌나? — 갭투자·역전세·실수요 관계 완전 정리',
+    concept: `2026년 9월 기준 강북구 아파트 전세가율이 63.8%로 81개월(약 6년 9개월) 만에 최고치를 기록했습니다. 노원·도봉구도 6~7년 만에 최고 수준입니다. 이게 왜 중요한 신호일까요?
+
+【전세가율이란?】
+전세가율 = (전세가 ÷ 매매가) × 100
+
+예시: 매매가 5억, 전세가 3억 2,000만원
+→ 전세가율 = 3억2,000만 ÷ 5억 × 100 = 64%
+
+【전세가율이 올라가는 이유】
+① 매매가가 오르는 속도보다 전세가가 더 빠르게 오를 때
+② 전세 물량이 줄어들 때 (실거주자 증가, 월세 전환 등)
+③ 새 아파트 입주 감소로 전세 공급이 줄 때
+
+강북은 지금 ①②③이 모두 작동 중입니다.`,
+    formula: `【전세가율 수준별 시장 해석】
+
+60% 이상 → 갭(매매-전세)이 좁음, 소액으로 갭투자 가능
+         → 전세가 하락 시 역전세 위험 상존
+
+70% 이상 → 역전세 고위험 구간 (세입자 보증금 반환 어려움)
+
+40~60% → 안정 구간 (강남권 현재 40~50%대)
+
+40% 이하 → 갭이 커서 갭투자 부담, 투자 수요 제한적
+
+【강북 63.8%의 의미】
+• 갭 = 매매가의 약 36% → 소액 갭투자 증가 여건
+• 30·40대 실수요자가 전세에서 매매로 이동 중 (전세가 오르니 차라리 사자)
+• 강남권(40~50%)과 20%p 차이 → 강남-강북 갭투자 환경 완전히 다름`,
+    example: `강북구 아파트 A동 84㎡ 기준:
+• 매매가: 5억 2,000만원
+• 전세가: 3억 3,100만원 (전세가율 63.7%)
+• 갭(실투자금): 1억 8,900만원
+
+강남구 아파트 B동 84㎡ 기준:
+• 매매가: 20억원
+• 전세가: 10억원 (전세가율 50%)
+• 갭(실투자금): 10억원
+
+→ 강북 갭투자 진입 비용: 약 2억원
+→ 강남 갭투자 진입 비용: 약 10억원
+→ 같은 전략이라도 강남은 5배 자금 필요`,
+    tip: `전세가율 63.8% 상황에서 초보자 주의사항:
+1. 전세가율이 높다 = 시장이 뜨겁다는 신호이지만, 역전세 위험도 함께 커집니다
+2. 내가 전세로 들어갈 때: 전세가율 70% 이상 단지는 보증금 반환 위험 주의
+3. 내가 갭투자할 때: 갭이 작아도 매매가 하락 시 손실이 갭 전체일 수 있습니다
+4. 전세보증금 반환보증(HUG) 가입 여부 반드시 확인
+5. 강북 전세가율 상승 = 강북 매매 수요 증가 신호로도 읽힌다`,
+    quiz: {
+      q: '전세가율 63.8%일 때, 매매가 5억 아파트의 갭(실투자금)은 얼마인가?',
+      opts: ['약 1억 5,000만원', '약 1억 8,100만원', '약 2억 5,000만원', '약 3억 2,000만원'],
+      ans: 1,
+      explain: '전세가율 63.8% → 전세가 = 5억×0.638 = 3억1,900만원. 갭 = 5억 - 3억1,900만원 = 1억8,100만원입니다. 전세가율이 높을수록 갭(실투자금)이 줄어들어 진입 장벽이 낮아집니다.'
+    }
+  },
+  {
+    cat: 'market', catLabel: '시장동향',
+    title: '강남 -0.41% 낙폭 급확대 — 4주 연속 하락이 진짜 추세 전환일까?',
+    sub: '매물 +61% 급증·압구정 9억 하락 — 강남 하락이 서울 전체로 번질 가능성은?',
+    concept: `2026년 9월 1주(9.3 발표) 한국부동산원 데이터에서 강남구가 -0.41%를 기록했습니다. 전주(-0.11%)보다 낙폭이 4배 급확대되며 4주 연속 하락입니다. 이것이 진짜 추세 전환일까요?
+
+【9월 1주 핵심 수치】
+• 서울 전체: +0.22% (전주 +0.29%, 상승폭 축소)
+• 강남구: -0.41% (전주 -0.11%, 낙폭 4배 급확대, 4주 연속↓)
+• 서초구: -0.23% (4주 연속↓)
+• 송파구: +0.01% (사실상 보합, 하락 전환 초읽기)
+• 성북구: +0.54% (서울 최고)
+• 중랑구: +0.52%
+• 노원구: +0.50%
+• 강북구: +0.45%
+• 경기도: +0.19% (전주 +0.23%)
+
+【강남 급락의 원인 3가지】
+① 세제개편안 영향: 실거주 혜택 확대 + 비거주·고가 주택 부담 강화 방향 → 강남 고가 주택 보유자 매도 결정
+② 기준금리 3.00% 인상 충격: 고가 주택일수록 보유 부담 커짐
+③ 매물 급증: 강남3구 매물 1년 전 대비 +61% 급증(1만6천→2만6천건)`,
+    formula: `【진짜 추세 전환인지 판단하는 기준】
+
+추세 전환 신호: 낙폭이 커지고, 거래량도 줄고, 매물이 쌓이는 상황
+일시적 조정: 낙폭은 커도 거래량 유지, 매물이 빠르게 소진되는 상황
+
+현재 강남 상황:
+• 낙폭: -0.41%로 급확대 → 추세 전환 신호
+• 매물: +61% 급증 → 추세 전환 신호
+• 거래량: 아직 확인 필요 → 판단 보류
+
+【강남 하락이 서울 전체로 번질까?】
+현재 강북·경기는 오히려 상승 중 → 서울 전체 하락 전환은 아님
+강남 하락 = 양극화 심화 (강남↓ 강북↑)
+서울 전체 하락 전환하려면: 강북도 매물 급증 + 거래 실종이 동시에 발생해야`,
+    example: `압구정동 한양3차 61㎡ 실제 사례:
+• 2026년 1월 실거래가: 77억5천만원
+• 2026년 9월 현재 호가: 약 68억5천만원
+• 하락폭: 9억원 (약 -11.6%)
+
+분석:
+• 9억 하락했지만 절대 금액이 여전히 68억 → 상위 0.1% 자산
+• 세제개편안 확정 전 팔려는 매도자와 더 떨어지길 기다리는 매수자 간 관망 대치
+• 이 단지의 하락이 강북 2억 아파트에 직접 영향 주지는 않음`,
+    tip: `초보자가 알아야 할 것:
+1. 강남 -0.41% 뉴스를 보고 "집값 폭락" 이라고 오해하지 마세요
+2. 서울 전체는 +0.22% 상승 중 — 강남3구 하락이 강북 상승으로 상쇄
+3. 강남 하락은 세제개편 + 금리 인상이 고가 주택에 집중된 결과
+4. 초보 내집마련 대상(5~10억 강북 아파트)은 오히려 상승 중
+5. 12월 국회 본회의 통과 전까지 시장 관망세 지속 예상`,
+    quiz: {
+      q: '9월 1주 기준 강남구 주간 아파트 매매 변동률은?',
+      opts: ['-0.11% (3주 연속)', '-0.23% (4주 연속)', '-0.41% (4주 연속, 낙폭 급확대)', '-0.54% (4주 연속)'],
+      ans: 2,
+      explain: '강남구는 9월 1주에 -0.41%를 기록, 전주(-0.11%)보다 낙폭이 4배 급확대됐습니다. 4주 연속 하락이며, 세제개편안 영향으로 매물이 전년 대비 +61% 급증한 결과입니다.'
+    }
+  },
+  {
+    cat: 'strategy', catLabel: '투자전략',
+    title: '서울 공급 극단적 쏠림 — 9월 서울 244가구 vs 경기 1.1만 가구, 내 청약 전략은?',
+    sub: '수도권 분양 지형이 바뀌고 있다 — 서울 포기하고 경기·인천으로 전략 전환하는 법',
+    concept: `2026년 9월 전국 분양 예정 물량은 33,268가구로 3년 만에 최대지만, 서울 몫은 244가구에 불과합니다(0.73%). 경기 11,686가구, 인천 8,019가구와 극단적으로 대비됩니다.
+
+【왜 서울 분양이 이렇게 적나?】
+① 사업성 악화: 공사비 급등 + 분양가상한제 → 이익이 안 나서 민간 건설사가 분양 안 함
+② 세제 불확실성: 세법 개정안 국회 통과 전 → 시행사들이 관망
+③ 재건축·재개발 지연: 서울 공급의 90%는 정비사업인데 인허가·착공이 늦어짐
+
+【9월 서울 주목 단지 (244가구 중)】
+• 브라운스톤월곡센트럴 (성북구 하월곡동): 145가구, 전용 59·74㎡
+  - 6호선 월곡역 도보권, 2027년 동북선 경전철 예정
+  - 성북구 +0.54% 강세 지역에 위치 → 시세 상승 수혜 가능성
+
+【9월 경기 주목 단지】
+• 성남복정2A1 신혼희망타운 (본청약 166가구): 55㎡ 기준 7.6~7.9억
+  - 공공분양, 전매제한 3년·거주의무 3년
+  - 성남 중원구 +0.54% 강세 지역`,
+    formula: `【경기·인천으로 청약 전략 전환하는 법】
+
+Step 1: 청약가점 확인
+• 가점 60점 이상: 서울 소형(전용 59㎡ 이하) 1순위 도전 가능
+• 가점 40~60점: 경기 주요 신도시 1순위 도전
+• 가점 40점 이하: 인천·경기 외곽 or 추첨제 비중 높은 단지 공략
+
+Step 2: 교통 호재 지역 선택
+GTX 개통 예정지 (GTX-A: 2024 개통, GTX-B: 2030 예정, GTX-C: 2028 예정)
+• 수원 영통 +0.65% — 반도체 클러스터 인접
+• 성남 분당 +0.53% — GTX-A 성남역 수혜
+• 용인 기흥 +0.43% — 반도체 직주근접
+
+Step 3: 분양가 vs 시세 갭 확인
+분양가가 인근 시세보다 낮으면 → 청약 당첨 후 시세차익 발생 가능`,
+    example: `가점 45점, 무주택 5년, 35세 직장인 A씨의 9월 청약 전략:
+
+서울: 244가구 대부분 가점 65점+ 필요 → 사실상 탈락 예상
+경기: 성남복정2A1 신혼희망타운 (본청약)
+  → 신혼부부 특별공급 or 생애최초 우선 검토
+  → 분양가 7.6~7.9억 vs 성남 인근 시세 9~10억 → 약 1~2억 시세차익 기대
+  → 전매제한 3년 / 거주의무 3년 → 최소 3년 실거주 계획 수립 필요
+
+결론: 서울 청약보다 경기 공공분양이 A씨에게 현실적인 선택`,
+    tip: `청약 초보자 핵심 체크리스트:
+1. 청약홈(apply.lh.or.kr)에서 내 청약가점 계산 (무주택 기간·부양가족·청약통장)
+2. 서울은 가점 60점+ 아니면 추첨제 비중 높은 소형에 집중
+3. 경기·인천으로 전략 전환 시 GTX·반도체·산업단지 인접 여부 확인
+4. 공공분양(LH·SH)은 시세보다 저렴 + 특별공급 별도 → 경쟁률 유리
+5. 당첨 후 전매제한·거주의무 기간 확인 필수 (어기면 당첨 취소)`,
+    quiz: {
+      q: '2026년 9월 서울 아파트 일반분양 예정 물량은 전체 전국 물량(33,268가구) 대비 어느 정도인가?',
+      opts: ['약 10% (3,327가구)', '약 5% (1,663가구)', '약 1% 미만 (244가구)', '약 20% (6,654가구)'],
+      ans: 2,
+      explain: '9월 서울 일반분양은 244가구로 전국 33,268가구의 0.73%에 불과합니다. 경기 11,686가구, 인천 8,019가구와 극단적으로 대비되며, 서울 청약 대신 경기·인천으로의 전략 전환이 필요한 이유입니다.'
+    }
+  },
+  {
+    cat: 'market', catLabel: '시장동향',
+    title: '강북 중위 매매가 10억 돌파 — 2008년 이래 최초, 강남 하락이 만든 역사적 역전',
+    sub: '강남 탈출 수요가 강북을 10억대로 끌어올린 구조적 변화 읽기',
+    concept: `2026년 9월 첫 주, 강북 14개구 평균 중위 매매가가 10억 167만원을 기록했습니다. 한국부동산원이 통계를 집계한 2008년 이래 강북 중위가가 10억 원대를 넘어선 것은 이번이 처음입니다.
+
+【무엇이 강북을 10억으로 끌어올렸나?】
+① 세제개편 풍선효과: 강남 -0.41% 하락 속 강북으로 실수요 이동
+② 매물 희소성: 강북 매물 3.6% 감소 vs 강남 매물 61% 급증
+③ 실거주 수요 집중: 토허제·세제 부담이 없는 15억 이하 단지로 자금 이동
+④ 노원·성북 신고가 행진: 성북 +0.54%, 노원 +0.63%
+
+【숫자로 보는 서울 중위가 현황 (2026.09 기준)】
+• 강북 14개구 중위: 10억 167만원 (역대 최초 10억 돌파)
+• 서울 전체 중위: 12억 9,167만원 (역대 최고)
+• 강남 11개구 추정 중위: 약 16~17억대
+
+【초보자를 위한 해석】
+"강북 10억 돌파"는 좋은 뉴스일까, 나쁜 뉴스일까?
+→ 이미 강북에 집을 가진 분: 자산가치 상승 (좋은 뉴스)
+→ 아직 강북에서 집을 사려는 분: 진입 장벽 상승 (나쁜 뉴스)
+→ 강남 매수를 고민하는 분: 강남 하락 + 강북 상승이라는 의외의 기회
+
+【핵심 질문: 이 추세는 지속될까?】
+- YES 측: 서울 공급 절벽 + 실거주 수요 탄탄 + 토허제로 강남 유입 차단
+- NO 측: 기준금리 3.00% 부담 + 강북 가격도 이미 높아진 진입 장벽
+- 결론: 단기 과열 가능성 있으나, 공급 구조상 강북 강세 기조는 당분간 유지 전망`,
+    formula: `강북 중위 매매가 = 강북 14개구 아파트 거래 중간값
+현재 10억 167만원 (2026.09 기준)
+
+서울 전체 중위 = 12억 9,167만원 (역대 최고)
+
+풍선효과 수치:
+강남3구 매물 +61%(1년 전比) vs 강북 매물 -3.6%
+→ 매물 희소성 격차 = 강북 가격 상승 압력`,
+    example: `[사례] 직장인 K씨 (서울 거주, 자산 6억)
+
+기존 계획: "강남 15억 아파트 목표, 3~4년 더 모아서"
+현실 점검:
+- 강남 15억: 종부세 개편안 영향 + 매물 61% 급증 → 당장은 관망 유리
+- 강북 성북·노원 10~12억: 이미 10억 돌파, 더 기다리면 추가 상승 부담
+
+판단: K씨는 강북 노원구 11억 단지를 레버리지 50% 활용
+- 자기자본 5.5억 + 대출 5.5억 (금리 3.5%)
+- 월 이자 약 160만원
+- 성북·노원 +0.54~+0.63% 주간 상승 추세 감안 시 단기 리스크 낮음
+
+결과: 강남 대기보다 강북 진입이 현 시점에선 합리적 선택`,
+    tip: `초보자가 알아야 할 것:
+1. "강북 10억 돌파"는 서울 부동산 지형이 바뀌고 있다는 신호
+2. 강남 하락 + 강북 상승이 동시에 일어나는 구조는 이례적
+3. 원인은 세제개편 + 토허제 + 공급 부족이 복합 작용
+4. 내 집 마련 예산이 10~12억이라면 지금 강북이 타이밍일 수 있음
+5. 단, 기준금리 3.00%에서 대출 이자 부담을 반드시 시뮬레이션할 것`,
+    quiz: {
+      q: '2026년 9월 기준 강북 14개구 중위 매매가가 역대 최초로 돌파한 금액은?',
+      opts: ['8억원', '9억원', '10억원', '11억원'],
+      ans: 2,
+      explain: '강북 14개구 중위 매매가가 10억 167만원으로 한국부동산원 통계 집계 시작(2008년) 이래 처음으로 10억 원을 돌파했습니다. 강남3구 매물 급증·하락과 강북 매물 감소·상승이 동시에 진행된 풍선효과의 결과입니다.'
+    }
+  },
+  {
+    cat: 'tax', catLabel: '세금·법률',
+    title: '세법개정안 국회 심의 시작 — 지금 국회에서 무엇이 바뀔 수 있나?',
+    sub: '9.3 정기국회 제출 후 12월 통과까지, 3개월 동안 봐야 할 핵심 변수',
+    concept: `2026년 9월 3일, 기획재정부는 세법개정안(11개 법률안)을 정기국회에 제출했습니다. 9.1 국무회의에서 확정된 내용이지만, 국회를 통과하기까지는 야당의 수정 요구와 협의 과정이 남아 있습니다.
+
+【확정안 핵심 내용 (9.1 국무회의)】
+• 실거주 1세대1주택 종부세 기본공제: 12억 → 14억원
+• 비거주 1주택 기본공제: 12억 현행 유지 (초안 9억 하향 철회)
+• 세부담 상한: 150% 현행 유지 (200% 상향 철회)
+• 공정시장가액비율: 60% → 70% (3주택+ 80%)
+• 양도세 장특공제 상한: 2028년 2억, 2029년+ 1억
+• 다주택 양도세 중과: 2027년 -5%p, 2028년 -10%p 한시 완화
+• 시행: 2027년 1월 1일 (국회 통과 시)
+
+【국회 심의 핵심 변수 3가지】
+① 장기보유특별공제 개편 여부
+  - 현행: 거주 여부 무관 연 2~4% 공제 (최대 80%)
+  - 개정 방향: 실거주 기간에 따른 차등 공제 검토
+  - 야당 입장: 원칙 동의하나 세율·기준 협의 요구
+
+② 비거주자 과세 범위 추가 조정
+  - 비거주 기본공제 12억 유지는 합의됐으나
+  - 다주택 비거주자 세율·상한에 대한 추가 논의 가능성
+
+③ ISA 비과세 한도 확대 (현행 유지 확정됐으나 국회서 상향 요구 가능성)
+
+【일정】
+9.3 제출 → 기재위 배정 → 10~11월 상임위 심사 → 12월 본회의 통과 목표
+→ 시행: 2027.1.1`,
+    formula: `세법개정안 통과 일정:
+9.3   정기국회 제출
+10~11월 기재위 상임위 심사
+12월   본회의 통과 목표
+2027.1.1 시행 예정 (통과 시)
+
+핵심 불확실성 = 야당 수정안
+• 장기보유공제 개편 범위
+• 비거주 과세 세율 조정
+→ 국회 논의에 따라 최종 내용 달라질 수 있음`,
+    example: `[사례] 비거주 1주택자 L씨
+
+현황: 서울 강북구 아파트 공시가 10억 (시가 약 14억), 지방 거주
+세제개편안 확정 내용: 비거주 기본공제 12억 유지 → 공시가 10억이면 종부세 비과세
+
+그런데 국회에서 바뀔 수 있는 것:
+• 공정시장가액비율 70% 상향은 확정 가능성 높음 (여야 이견 적음)
+• 장기보유공제 개편 시, L씨가 20년 보유 단지 매도 계획 영향 받을 수 있음
+• 비거주 세율 추가 논의 시, 공시가 12억 초과분 과세 방식 변경 가능
+
+L씨 전략:
+① 공정시장가액비율 70% 적용 후 예상 세금 미리 계산해 둘 것
+② 장기보유공제 개편안이 나오면 즉시 재계산 (매도 타이밍에 영향)
+③ 12월 본회의 전까지 최종 결정 유보`,
+    tip: `초보자가 알아야 할 것:
+1. "국무회의 확정"이 끝이 아닙니다 — 국회 통과가 진짜 확정
+2. 12월 본회의까지 야당 협상에 따라 내용이 일부 바뀔 수 있음
+3. 가장 중요한 변수: 장기보유특별공제 개편 + 비거주자 세율
+4. 지금은 "확정안 기준 세금 계산 + 국회 논의 추적"이 현명한 접근
+5. 2027년 1월 1일 시행 전에 최종 국회 통과 내용을 반드시 재확인할 것`,
+    quiz: {
+      q: '2026년 세법개정안이 국회 정기국회에 제출된 날짜는?',
+      opts: ['2026년 8월 3일 (세제개편안 발표일)', '2026년 9월 1일 (국무회의 확정일)', '2026년 9월 3일 (정기국회 제출일)', '2026년 12월 (본회의 목표일)'],
+      ans: 2,
+      explain: '세법개정안은 8.3 발표 → 8.27 차관회의 → 9.1 국무회의 최종 확정 → 9.3 정기국회 제출 순서로 진행됐습니다. 12월 본회의 통과 후 2027년 1월 1일 시행이 목표입니다.'
+    }
+  },
+  // ── 2026-09-07 신규 강의 ① ─────────────────────────────────────────────────
+  {
+    cat: 'law', catLabel: '법령·제도',
+    title: '기업형 임대주택 완전 정복 — 뉴스테이부터 공공지원 민간임대까지',
+    sub: '2026년 현황·세제 혜택·사업자 요건·임차인 장단점 총정리',
+    concept: `<strong>기업형 임대주택</strong>은 기업(법인)이 대규모로 주택을 건설·매입하여 장기 임대하는 제도입니다. 2015년 박근혜 정부가 '뉴스테이'로 도입, 2018년 <strong>공공지원 민간임대주택</strong>으로 개편됐습니다.
+
+2026년 현재 정부는 2030년까지 수도권에 공공지원 민간임대 <strong>2만1,000가구</strong> 착공 계획. LH는 2026년 <strong>3만7,399호</strong>(건설 11,669 + 매입 25,730) 공급 예정이며 57%가 수도권 집중입니다.
+
+핵심 특징:
+• <strong>의무임대기간 10년</strong> (공공지원민간임대 / 구 뉴스테이는 8년)
+• 임대료 증액 <strong>연 5% 이내</strong> 제한
+• 청약 자격 제한 없음 — 만 19세 이상 누구나
+• 의무기간 종료 후 분양전환 여부는 사업자 자율 결정 (법적 보장 없음)
+• 등록: 렌트홈(renthome.go.kr)을 통해 시장·군수·구청장에게 신청`,
+    formula: {
+      title: '기업형 임대사업자 세제 혜택 요약 (2026년 기준)',
+      lines: [
+        '【취득세】60㎡이하 100% 면제 / 60㎡초과(20호이상) 50% 감면 ─ 2027.12까지',
+        '【재산세】40㎡이하 100% / 40~60㎡ 75% / 60~85㎡ 50% 감면 ─ 2027.12까지',
+        '【종부세】건설형 2호이상·9억이하·149㎡이하 → 합산배제',
+        '         매입형 수도권6억·비수도권3억이하 → 합산배제',
+        '         30호이상 대규모 사업: 가액기준 3억 상향 추가 혜택',
+        '【소득세·법인세】85㎡이하·기준시가6억이하: 1호 75% / 2호이상 50% 감면 ─ 2028.12',
+        '【양도세 장특공제】8년이상 50% / 10년이상 70%'
+      ]
+    },
+    example: {
+      title: '🏢 실전 예시: 건설사의 기업형 임대 사업자 혜택 시뮬레이션',
+      steps: [
+        '건설사 A가 서울 노원구에 전용 59㎡ 아파트 100호 신축',
+        '렌트홈 통해 공공지원 민간임대사업자 등록 (취득일로부터 60일 내)',
+        '취득세: 원래 2억원 → 60㎡이하이므로 100% 면제 → <em>2억원 절감</em>',
+        '재산세: 40~60㎡ 구간으로 75% 감면 → 연간 세 부담 대폭 감소',
+        '종부세: 9억 이하·149㎡ 이하이므로 합산배제 → 보유세 0원'
+      ],
+      result: '100호 기준 취득세만 수십억 절감 → 임대료 경쟁력 확보 / 단, 10년 미이행 시 감면세액 전액 추징'
+    },
+    tip: '임차인 핵심 체크리스트: ① 의무기간(10년) 중 연 5% 초과 인상 → 불법 ② 의무기간 끝나면 분양전환 권리 없음(입주자 우선 분양권 법제화 미완) ③ 의무기간 후 임대료·분양가 규제 사라짐 → 계약 전 사업자의 향후 계획 반드시 확인 ④ 2026 세제개편안에서 등록임대 혜택은 단계적 축소(2027년까지 보장 → 2028년부터 감소 → 2029년+ 소멸) 방향으로 논의 중',
+    quiz: {
+      q: '공공지원 민간임대주택(기업형 임대)의 법정 의무임대기간은 몇 년인가요?',
+      opts: ['4년', '8년', '10년', '20년'],
+      ans: 2,
+      explain: '공공지원 민간임대주택(뉴스테이 후속)의 의무임대기간은 10년입니다. 구 뉴스테이(기업형 임대)는 8년이었으나 2018년 개편 후 10년으로 강화됐습니다. 의무기간을 어기면 감면받은 세금이 전액 추징됩니다.'
+    }
+  },
+  // ── 2026-09-07 신규 강의 ② ─────────────────────────────────────────────────
+  {
+    cat: 'market', catLabel: '시장동향',
+    title: '9월 1주 부동산 리포트 — 강남 4주 하락·금리 3%·세법 국회行',
+    sub: '2026년 9월 21일(일) 기준: 3대 변수(금리·세제·수급)가 만든 분열된 시장',
+    concept: `2026년 9월 첫째주 서울 아파트 시장은 <strong>강남권 하락 + 강북권 상승</strong>의 극심한 양극화가 이어집니다.
+
+【변수1: 기준금리 3.00% 충격】
+한국은행이 7월(2.75%)에 이어 <strong>8월 27일 3.00%로 2연속 인상</strong>. 2023년 이후 최고치. 주담대 변동금리 4.8%, 스트레스 DSR 3%와 맞물려 대출 한도 추가 감소.
+
+【변수2: 강남권 — 급매 속출, 거래 절벽】
+8월 31일 기준: 강남구 <strong>-0.41%</strong>(전주 -0.11%), 서초구 -0.23%. 아크로리버파크 84㎡ 5월 63억 → 8월 53.9억 (<strong>3개월 9.1억 하락</strong>). 강남3구 매물 서울 전체의 38.3%, 7월 거래량 전년比 31.8% 감소.
+
+【변수3: 강북권 — 실수요 유입 강세】
+성북 +0.54% / 중랑 +0.52% / 노원 +0.50%. 무주택 30~40대 실수요자가 자금 부담 낮은 강북으로 이동. 성북·노원·은평 매물 3.6% 감소.`,
+    formula: {
+      title: '2026년 9월 21일 핵심 부동산 지표 스냅샷',
+      lines: [
+        '기준금리: 3.00% (8.27 인상 / 2023년 이후 최고치)',
+        '서울 주간 매매: +0.22% / 전세: +0.21% (기준일 8.31)',
+        '강남구: -0.41% / 서초구: -0.23% / 송파구: +0.01%',
+        '성북: +0.54% / 중랑: +0.52% / 노원: +0.50% / 강북: +0.45%',
+        '서울 8월 누계: 매매 +1.14% / 전세 누계 +5.42%',
+        '강남3구 매물 비중: 38.3% (강남구 매물 11,041건 서울 最多)',
+        '9.10 한국부동산원 9월 2주 통계 발표 예정'
+      ]
+    },
+    example: {
+      title: '📊 실전 분석: 9월 10일 발표 전 시장 관전 포인트',
+      steps: [
+        '관전①: 강남 하락폭 확대 vs 둔화 — -0.41%에서 반등 신호 나오면 저점 형성 가능',
+        '관전②: 강북 상승세 지속 여부 — 금리 3% 충격이 실수요 매수 위축시키면 상승 둔화',
+        '관전③: 서울 전체 변동률 — 0.2%대 유지 vs 0.1%대로 하강 여부',
+        '관전④: 세법개정안 국회 심의(10~11월) — 야당 수정안 방향에 따라 강남 매물 추가 방출 가능성',
+        '초보자 액션: 9.10 한국부동산원 보도자료(reb.or.kr) 직접 확인하는 습관 만들기'
+      ],
+      result: '핵심 요약: 금리↑ + 세부담↑ = 강남 매도 압박 / 공급부족 + 실수요 = 강북·외곽 강세 → 이원화 장세 지속'
+    },
+    tip: '9월 첫째주 초보자 체크리스트: ① reb.or.kr → 주간아파트가격동향(매주 목요일 발표) ② 아크로리버파크 -9.1억은 세제 충격 첫 신호 → 강남 투자 매력 재검토 필요 ③ 기준금리 3% → 4억 대출 기준 월 상환 약 2만원 추가 부담 → 자금계획 재점검 ④ 전세가율: 서울 평균 55~58%, 노원·도봉 65%+ → 전세 계약 전 보증보험 필수',
+    quiz: {
+      q: '2026년 8월 27일 한국은행이 인상한 기준금리 수준은? (2연속 인상 결과)',
+      opts: ['2.50%', '2.75%', '3.00%', '3.25%'],
+      ans: 2,
+      explain: '한국은행은 7월 2.75%, 8월 27일 3.00%로 2연속 인상했습니다. 기준금리 3%는 2023년 이후 최고치이며, 강남권 급매 증가와 강북권 실수요 이동의 배경이 되고 있습니다.'
+    }
+  },
+  {
+    cat: 'market', catLabel: '시장동향',
+    title: '아크로리버파크 3개월 -9.1억 해부 — 강남 급락의 진짜 원인과 바닥 신호 찾기',
+    sub: '세제 충격·금리·매물 폭탄이 겹친 강남 고가 아파트 가격 조정 메커니즘',
+    concept: `2026년 5월 63억원이던 서초구 반포동 아크로리버파크 전용 84㎡가 8월 53억 9천만원에 실거래됐습니다. 3개월 만에 9억 1천만원(-14.4%) 하락입니다. 이 사례는 강남 고가 주택 시장에 무슨 일이 벌어지고 있는지 보여주는 상징적 데이터입니다.
+
+【3가지 원인의 겹침】
+
+① 세제 충격: 8.3 세제개편안 발표 이후 40억 초과 고가 주택에 종부세·양도세 부담 대폭 강화. 보유 비용이 늘어 급매 압박.
+② 금리 충격: 8.27 기준금리 3.00% 인상. 63억 아파트 담보 대출 월 이자 수백만원 추가.
+③ 매물 폭탄: 압구정·청담·반포 1개월에 2,700건+ 신규 매물. 매도 경쟁 심화 → 가격 인하.
+
+【다른 강남 급매 사례】
+• 반포미도1차 84㎡: 41.8억 → 40.2억 (-1.65억)
+• 압구정·청담 일부 단지 호가 8억 인하 매물 출현
+• 강남3구 거래 비중: 5월 16.1% → 8월 9.1% (연중 최저)
+
+【바닥 신호는 어디서 찾나?】
+① 급매물 소화 후 신규 매물 감소 시작
+② 국회 세법 심의 결과 확정 → 불확실성 해소
+③ 기준금리 인하 사이클 전환 (현재는 인상 방향)
+④ 강남3구 거래량 반등 (현재 연중 최저 9.1%)`,
+    formula: `아크로리버파크 84㎡ 가격 추이:
+5월 실거래: 63억원
+8월 실거래: 53억 9천만원
+하락액: -9억 1천만원
+하락률: -14.4% (3개월)
+
+세제개편 충격 계산 (예시):
+• 공시가 40억대 가정
+• 종부세 개편 전: 약 3,000만원/년
+• 종부세 개편 후: 약 4,500만원/년 (+1,500만원)
+→ 보유 비용 증가 → 급매 선택 유인 강화`,
+    example: `[사례] 강남 아파트 보유자 P씨 고민
+
+현황: 반포 아파트 시가 55억 (공시가 35억), 1주택 실거주
+세제개편 후 변화:
+- 기본공제 12억 → 14억 상향 → 오히려 유리
+- 세부담 상한 150% 유지 → 급격한 세금 증가 없음
+- 공정시장가액비율 70% 상향 → 세금 소폭 증가
+
+결론: P씨처럼 실거주 1주택자라면 세제 부담 변화가 크지 않음. 급매 압박은 주로 다주택자·비거주자·초고가(40억+) 보유자에 집중.
+
+초보자 핵심 포인트: "아크로리버파크 -9.1억" 뉴스가 두렵다면 → 내 관심 아파트(5~12억 강북·강남 중저가)와는 시장 구조가 다름을 이해할 것`,
+    tip: `초보자가 알아야 할 것:
+1. 강남 급락 뉴스 ≠ 서울 전체 하락 — 강남 고가(30억+)와 강북 중저가(5~12억)는 별개 시장
+2. 아크로리버파크 -14.4%는 극단적 사례 — 10~15억 강북 아파트는 오히려 상승 중
+3. 급매가 나오는 이유: 세금 부담 > 매도 손실 → 팔아야 이득인 구간 도달
+4. 바닥 신호: 매물 수 감소 + 거래량 반등 + 세법 불확실성 해소
+5. 지금 강남 매수는 "낙폭 과대 저점 매수"vs "추가 하락 함정" — 세법 확정 후가 안전`,
+    quiz: {
+      q: '2026년 아크로리버파크 84㎡가 5월에서 8월 사이 3개월 동안 하락한 금액은?',
+      opts: ['-3억원(-5%)', '-5억원(-8%)', '-9억 1천만원(-14.4%)', '-15억원(-24%)'],
+      ans: 2,
+      explain: '아크로리버파크 전용 84㎡는 5월 63억원에서 8월 53억 9천만원으로 9억 1천만원(-14.4%) 하락했습니다. 세제개편 충격 + 금리 3% + 매물 급증이 겹친 결과로, 주로 40억 초과 고가 주택에 집중된 현상입니다.'
+    }
+  },
+  {
+    cat: 'market', catLabel: '시장동향',
+    title: '한국부동산원 통계 직접 읽는 법 — 매주 수요일 발표, 초보자 해석 가이드',
+    sub: '숫자 뒤에 숨겨진 맥락 읽기 — +0.22%가 의미하는 것과 의미하지 않는 것',
+    concept: `한국부동산원은 매주 수요일 '주간아파트가격동향'을 발표합니다. 뉴스가 이 수치를 인용하지만, 숫자의 의미를 제대로 이해하려면 발표 구조를 알아야 합니다.
+
+【발표 구조】
+• 발표일: 매주 수요일 오전
+• 조사 기준일: 발표일 직전 일요일 (예: 9.10 발표 → 9.7 기준)
+• 조사 방법: 전국 부동산원 직원이 표본 단지 시세를 직접 조사
+• 발표 경로: reb.or.kr → 통계정보 → 주간아파트가격동향 → 보도자료
+
+【숫자 읽는 법】
+서울 +0.22%의 의미:
+- "서울 전체 아파트 표본 가격이 전주보다 평균 0.22% 올랐다"
+- 실거래가 아닌 호가(시세) 기반 추정값 → 실제 거래가와 다를 수 있음
+- 강남 -0.41%와 강북 +0.54%가 합산된 평균치
+
+주의할 점:
+① 주간 변동률은 작아 보여도 누적 시 큰 차이 — +0.22%/주 × 52주 = 연 11%+
+② "강남 -0.41%"는 강남구 표본 전체 평균 — 단지마다 편차 큼
+③ 하락 전환이라도 실제 거래 성사까지는 시간 차이 존재
+
+【바로 확인하는 법】
+1. reb.or.kr 접속
+2. 통계정보 → 주택가격동향조사
+3. 주간아파트가격동향 → 보도자료 탭
+4. 최신 보도자료 PDF 다운로드 → "서울" 표 찾기`,
+    formula: `주간 변동률 → 연간 환산:
+주간 +0.22% × 52주 ≈ 연 +11.4%
+주간 -0.41% × 52주 ≈ 연 -21.3% (단순 계산)
+
+체크리스트 (매주 수요일):
+□ 서울 전체 변동률 (기준선)
+□ 강남구·서초구·송파구 (하락세 지속 여부)
+□ 노원·성북·도봉 (강세 지속 여부)
+□ 경기 전체 (수도권 풍선효과 확인)
+□ 전세 변동률 (매매와 방향 비교)`,
+    example: `[실전 연습] 9월 2주 발표(9.10) 읽기
+
+예상 발표 항목 vs 해석:
+• 강남구 -0.45%: "전주 -0.41%보다 악화 → 하락 가속화 시나리오 진행 중"
+• 강남구 -0.20%: "낙폭 절반 축소 → 급매 소화 후 안정화 신호"
+• 송파구 -0.10%: "처음 하락 전환 → 강남권 전체 약세 확산"
+• 노원구 +0.50%: "강세 유지 → 풍선효과 지속"
+• 서울 전체 +0.15%: "전주 +0.22%에서 둔화 → 강남 영향 시작"
+
+→ 내일(9.10) 실제 발표값과 비교해보세요!`,
+    tip: `초보자 부동산원 통계 활용 팁:
+1. 매주 수요일 오전 reb.or.kr 북마크 저장 후 확인하는 습관 만들기
+2. 한 주 수치만 보지 말고 4~8주 추세를 봐야 방향성 판단 가능
+3. "서울 +0.XX%"는 전국뉴스 헤드라인 — 강남·강북 분리해서 해석
+4. 전세가율이 60% 넘으면 깡통전세 위험 — 전세 계약 전 반드시 확인
+5. 이 사이트(부릿지)는 매주 수요일 발표 직후 업데이트됩니다`,
+    quiz: {
+      q: '한국부동산원 주간아파트가격동향 발표일은?',
+      opts: ['매주 월요일', '매주 수요일', '매주 금요일', '매월 첫째 주 화요일'],
+      ans: 1,
+      explain: '한국부동산원은 매주 수요일 오전 주간아파트가격동향을 발표합니다. 조사 기준일은 발표 직전 일요일(예: 수요일 발표 → 직전 일요일 기준)이며, reb.or.kr에서 직접 보도자료를 확인할 수 있습니다.'
+    }
+  },
+  {
+    cat: 'market', catLabel: '시장동향',
+    title: '강남 -0.41% → -0.13% 낙폭 급축소 — 바닥 신호인가, 일시적 반등인가?',
+    sub: '5주 연속 하락에서 낙폭이 줄었을 때 진짜 바닥을 판별하는 4가지 기준',
+    concept: `2026년 9월 21일 발표된 9월 2주 데이터에서 강남구가 -0.41%에서 -0.13%로 낙폭이 대폭 축소됐습니다. 5주 연속 하락은 지속됐지만 방향이 달라졌습니다. 이것이 진짜 바닥 신호일까요?
+
+【낙폭 축소 이유 2가지】
+① 급매물 소화: -0.41%는 급매물이 한꺼번에 나온 단기 충격. 주요 급매가 소화되면 낙폭 자연 둔화.
+② 세법 불확실성 일부 해소: 9.3 국회 제출로 최악 시나리오(추가 세율 인상) 가능성 줄어 관망세 다소 완화.
+
+【4가지 바닥 판별 기준】
+① 거래량 반등: 강남3구 거래 비중이 9.1%(연중 최저)에서 반등하면 신호
+② 매물 수 감소: 현재 급증한 매물(전년비 +61%)이 줄기 시작해야 함
+③ 세법 확정: 12월 국회 본회의 통과 → 불확실성 제거 후 수요 복귀
+④ 금리 방향: 한은 기준금리 인하 사이클 전환 시 매수 심리 회복
+
+【지금(9.10 기준) 상황】
+- 거래량: 아직 연중 최저권 (바닥 신호 미확인)
+- 매물: 여전히 급증 상태 (바닥 신호 미확인)
+- 세법: 국회 심의 진행 중, 12월 확정까지 3개월 (불확실성 잔존)
+- 금리: 3.00%, 추가 인상 가능성 논의 중 (하락 전환 미확인)
+→ 현재는 "단기 낙폭 둔화"이지 "추세 반전(바닥)"은 아님`,
+    formula: `강남구 낙폭 추이 (5주):
+1주: -0.02%
+2주: -0.05% (↓ 악화)
+3주: -0.11% (↓ 악화)
+4주: -0.41% (↓ 급악화 — 세제개편 충격)
+5주: -0.13% (↑ 개선 — 급매 소화)
+
+바닥 체크리스트:
+□ 거래량 반등 여부 (매월 확인)
+□ 매물 수 감소 여부 (매주 확인)
+□ 12월 세법 본회의 통과 (이후 확인)
+□ 기준금리 인하 사이클 (한은 금통위 일정)`,
+    example: `[실전 적용] 강남 아파트 매수 타이밍 고민 중인 M씨
+
+상황: 20억대 서초구 아파트 매수 희망, 지금이 저점인지 고민
+
+9.10 데이터 해석:
+- 낙폭 축소 = "급락 멈춤" (급매 소화 단계)
+- 하지만 4가지 바닥 기준 중 0개 충족 상태
+
+M씨 결론:
+- 지금 매수는 "바닥 매수"가 아닌 "하락 중 진입" 가능성
+- 12월 세법 확정 + 거래량 반등 신호 확인 후 매수가 더 안전
+- 단, 급매로 나온 물건 중 시세 대비 10%+ 할인된 것이라면
+  장기 보유 전제로 선취매 고려 가능 (세법 확정 후 가격 반등 기대)`,
+    tip: `초보자가 알아야 할 것:
+1. "낙폭 축소"와 "바닥 확인"은 완전히 다른 신호
+2. 단 1주 데이터로 추세 전환 판단하면 위험 — 최소 3~4주 연속 확인 필요
+3. 강남 낙폭 축소가 강북 매수 신호인 것도 아님 — 시장은 분리되어 있음
+4. 지금 강남은 "관망이 정답"인 구간 (세법 + 금리 불확실성 해소 전)
+5. 매주 수요일 reb.or.kr 확인하며 4가지 바닥 기준 체크하는 습관 만들기`,
+    quiz: {
+      q: '2026년 9월 2주(9.10 발표) 강남구 주간 아파트 매매 변동률은?',
+      opts: ['+0.13% (반등 전환)', '-0.41% (전주와 동일)', '-0.13% (낙폭 대폭 축소)', '-0.50% (낙폭 추가 확대)'],
+      ans: 2,
+      explain: '강남구는 9월 2주에 -0.13%를 기록, 전주(-0.41%)보다 낙폭이 0.28%p 대폭 축소됐습니다. 5주 연속 하락은 지속됐으나, 급매물 소화와 세법 불확실성 일부 해소로 낙폭이 둔화됐습니다. 바닥 확정 신호는 아직 미확인 상태입니다.'
+    }
+  },
+  {
+    cat: 'tax', catLabel: '세금·법률',
+    title: '세법개정안 기재위 심사 돌입 — 10~11월 3개월이 부동산 시장 운명을 가른다',
+    sub: '국회 조세소위 심사 진입 후 12월 본회의까지, 변수별 시나리오 총정리',
+    concept: `세법개정안(11개 법률안)이 9.3 정기국회에 제출된 후 기획재정위원회(기재위)에 배정됐습니다. 이제 10~11월 기재위 조세소위원회 심사가 본격화됩니다. 여기서 무엇이 달라질 수 있고, 부동산 시장에 어떤 영향을 미칠까요?
+
+【국회 심사 프로세스】
+기재위 접수 → 조세소위원회 심사(10~11월) → 기재위 전체회의 의결 → 본회의 통과(12월) → 2027.1.1 시행
+
+【조세소위 핵심 쟁점 3가지】
+
+① 종부세 기본공제 기준
+- 정부안: 실거주 14억 / 비거주 12억
+- 야당 요구: 중산층 기준선 조정 검토
+- 시장 영향: 기준이 높아지면 과세 대상 축소 → 강남 매물 감소 가능성
+
+② 장기보유특별공제 개편 범위
+- 정부안: 보유 기간별 공제 상한 2028년 2억·2029년 1억
+- 야당 요구: 개편 시기 조정·실거주 기간 비례 공제 강화
+- 시장 영향: 강남 장기보유자 매도 타이밍 계산 바뀜
+
+③ 다주택자 양도세 중과 유예 기간
+- 정부안: 2028년까지 한시 유예
+- 쟁점: 기간 연장 or 단축 여부
+- 시장 영향: 유예 기간 길수록 다주택자 매물 잠김 지속
+
+【시나리오별 부동산 영향】
+A. 정부안 원안 통과: 현재 시장 흐름 지속 (강남 관망, 강북 강세)
+B. 야당 수정안 반영: 종부세 기준 완화 → 강남 매물 일부 감소 → 하락 둔화
+C. 합의 실패·협의 장기화: 불확실성 지속 → 연말까지 관망세 연장`,
+    formula: `세법개정안 국회 일정:
+9.3    정기국회 제출 완료
+10~11월 기재위 조세소위 심사 (핵심 구간)
+12월   기재위 전체회의 → 본회의 통과 목표
+2027.1.1 시행 예정
+
+3가지 핵심 관찰 포인트:
+□ 종부세 기준선 변경 여부 (14억/12억 유지?)
+□ 장기보유공제 상한 조정 여부
+□ 다주택 양도세 유예 기간 변동 여부`,
+    example: `[사례] 투자자 N씨의 세법 심의 추적 전략
+
+N씨 상황: 강남 아파트 2채 보유, 매도 시기 고민 중
+
+현재 불확실성:
+- 다주택 양도세 중과 유예 기간 변동 가능성
+- 장기보유공제 상한 조정 시 보유 매력 변화
+
+N씨 전략:
+1. 10월 조세소위 심사 결과 추적 (뉴스 키워드: '조세소위', '기재위')
+2. 장기보유공제 상한이 현행 유지되면 → 보유 지속
+3. 상한 하향 확정되면 → 2027.12 이전 매도 검토
+4. 다주택 유예 연장 시 → 추가 매도 연기 가능
+
+핵심: 12월 이전에 방향이 결정됨 → 10~11월이 실질적 의사결정 기간`,
+    tip: `초보자가 알아야 할 것:
+1. "국회 제출 = 확정"이 아님 — 10~11월 조세소위 심사에서 내용 바뀔 수 있음
+2. 뉴스 키워드 저장: '조세소위원회', '세법개정안 기재위', '종부세 심사'
+3. 가장 중요한 변수: 장기보유특별공제 개편 시기와 상한 변경
+4. 세법 확정 전까지는 강남 고가 주택 매수·매도 모두 관망이 현명
+5. 12월 본회의 통과 후 2026년 연말이 실질적 의사결정 데드라인`,
+    quiz: {
+      q: '세법개정안의 국회 최종 통과 목표 시점과 시행 예정일은?',
+      opts: ['2026년 10월 통과, 즉시 시행', '2026년 12월 통과, 2027년 1월 1일 시행', '2027년 3월 통과, 2027년 7월 시행', '2027년 12월 통과, 2028년 시행'],
+      ans: 1,
+      explain: '세법개정안은 10~11월 기재위 조세소위 심사 → 12월 본회의 통과 → 2027년 1월 1일 시행이 목표입니다. 야당 수정 요구에 따라 최종 내용이 달라질 수 있어 10~11월 조세소위 심사 과정이 핵심 변수입니다.'
+    }
+  },
+  {
+    cat: 'market', catLabel: '시장동향',
+    title: '추석 연휴와 부동산 시장 — 연휴 전후 시장 패턴과 가을 이사철 전략',
+    sub: '연휴 전 급매, 연휴 후 반등? 역대 추석 전후 부동산 패턴으로 본 2026년 전망',
+    concept: `2026년 추석 연휴는 9월 17일(수)~21일(일)입니다. 연휴 전후는 부동산 시장에 어떤 영향을 줄까요? 특히 올해는 강남 하락·강북 상승이 극명하게 갈린 상황에서 추석이 전환점이 될지 주목됩니다.
+
+【추석 전후 부동산 시장 일반 패턴】
+① 연휴 직전 (1~2주): 급매 소화 후 관망세 강화. 매도·매수 모두 연휴 후로 결정 미룸.
+② 연휴 기간: 거래 정지 (계약 사실상 불가). 온라인 매물 탐색·호가 변동만 일어남.
+③ 연휴 직후 (가을 이사철): 10~11월 전통 부동산 성수기 시작. 전세 이동 수요 증가. 매수 문의 회복.
+
+【2026년 추석의 특수 변수】
+• 9.17 동시 이벤트: 미 연준 금리 결정(한국 새벽 3시) + 부동산원 9월 3주 발표 → 연휴 기간 동안 시장 해석 경쟁
+• 세법 불확실성: 10월 조세소위 심사 돌입 직전 → 연휴 후 시장 방향에 세법 변수가 결정적
+• 강남 공급 과잉: 매물 37일간 17.2% 급증 → 연휴 후에도 매물 적체 이어질 가능성
+
+【지역별 추석 후 전망】
+• 강남 (고가): 세법 불확실성 지속 → 관망세 연장, 추가 하락 압력
+• 강북 (중저가): 가을 이사철 + 실수요 유입 → 상승 지속 가능성
+• 전세 시장: 추석 후 이사철로 전세 수요 증가 → 전세가율 추가 상승 가능
+
+【초보자 추석 부동산 활용법】
+연휴 기간을 공부 기간으로 활용:
+① reb.or.kr에서 9월 3주 데이터 확인 (9.17 발표)
+② 관심 단지 호가 변동 체크 (네이버 부동산)
+③ 세법개정안 야당 수정안 추이 파악
+④ 10월 이후 청약 일정 정리 (아크메르동탄 등)`,
+    formula: `2026 추석 연휴 일정:
+9.17(수) — 연휴 시작 + 연준 금리결정(새벽 3시) + 부동산원 3주 발표(오전)
+9.18(목) ~ 9.21(일) — 추석 연휴 (거래 사실상 없음)
+9.22(월) — 연휴 후 첫 거래일 (가을 이사철 시작)
+
+핵심 체크포인트 (연휴 후):
+□ 9.24(수) 9월 4주 부동산원 발표
+□ 10월 기재위 조세소위 심사 일정
+□ 아크메르동탄 청약 공고 여부`,
+    example: `[사례] 강북 아파트 매수 고민 중인 S씨
+
+상황: 성북구 아파트 11억 매수 희망, 추석 전에 계약할지 후에 할지 고민
+
+추석 전 매수 장단점:
+- 장점: 연휴 전 매도자 심리 약화 → 추가 협상 여지
+- 단점: 9.17 연준 인상 시 금리 부담 증가, 연휴 후 추가 급매 출현 가능성
+
+추석 후 매수 장단점:
+- 장점: 가을 이사철 본격화 → 매물 경쟁 시작 전 매수 기회
+- 단점: 강북 매수세 회복 → 호가 상승 가능성
+
+S씨 결론: 9.17 연준 결정 확인 후 → 인상 시 금리 재계산 → 10월 초 결정이 합리적`,
+    tip: `추석 연휴 부동산 공부 체크리스트:
+1. 9.17(수) reb.or.kr → 9월 3주 데이터 확인 (연휴 중 발표)
+2. 연준 25bp 인상 시 → 내 대출 금리 재계산 (고정vs변동)
+3. 관심 단지 네이버 부동산에서 호가 변동 모니터링
+4. 10월 세법 조소위 심사 시작 → 뉴스 키워드 설정해두기
+5. 가을 이사철(10~11월)이 진짜 매수 타이밍 — 서두르지 말 것`,
+    quiz: {
+      q: '2026년 추석 연휴 기간은?',
+      opts: ['9.13~9.17', '9.15~9.19', '9.17~9.21', '9.20~9.24'],
+      ans: 2,
+      explain: '2026년 추석 연휴는 9월 17일(수)~21일(일)입니다. 9.17에는 미 연준 금리 결정(한국 새벽 3시)과 한국부동산원 9월 3주 데이터 발표가 동시에 있어, 연휴 중 시장 해석이 중요합니다. 연휴 후 9.22(월)부터 가을 이사철이 시작됩니다.'
+    }
+  },
+  {
+    cat: 'summary', catLabel: '종합정리',
+    title: '🎉 100강 마일스톤 — 강남 vs 강북 양극화 완전 정리 · 지금까지 배운 핵심 인사이트 10가지',
+    sub: '부릿지 일일학습 100강 달성 기념 — 초보자가 꼭 기억해야 할 2026년 부동산 핵심 공식 10선',
+    concept: `부릿지 일일학습 100강을 달성하셨습니다! 지금까지 함께 공부한 내용 중에서 2026년 한국 부동산을 이해하는 데 가장 중요한 핵심 인사이트 10가지를 정리합니다.
+
+【인사이트 1: 서울 부동산은 하나의 시장이 아니다】
+강남(하락)과 강북(상승)이 동시에 일어나는 양극화 장세. "서울 +0.20%"라는 평균은 의미가 없다.
+
+【인사이트 2: 세제가 가격을 만든다】
+8.3 세제개편안 발표 → 강남 매물 37일간 17.2% 급증 → 강남 5주 연속 하락. 세금 정책이 시장 방향을 결정하는 시대.
+
+【인사이트 3: 금리 3%는 강남만 죽인다】
+15억 초과 고가 아파트는 금리에 민감. 반면 강북 10억 이하 실수요 단지는 금리보다 수요가 결정.
+
+【인사이트 4: 매물 수가 가격보다 먼저 움직인다】
+강남 매물 급증(전년비 +61%) → 거래 감소 → 가격 하락. 매물 변화를 보면 가격 방향을 예측할 수 있다.
+
+【인사이트 5: 강북 중위가 10억 돌파는 구조적 변화】
+2008년 통계 집계 이래 최초. 세제 풍선효과 + 실수요 이동 + 공급 부족의 복합 결과.
+
+【인사이트 6: 전세가율 60% 돌파는 위험 신호】
+강북구 63.8% (81개월 최고). 전세가율이 높을수록 깡통전세 위험 + 매매 전환 수요 증가.
+
+【인사이트 7: 공급이 없는 서울, 청약 전략을 바꿔야】
+9월 서울 분양 244가구 vs 경기 1.1만 가구. 서울 집착하면 기회를 놓친다.
+
+【인사이트 8: 국회를 봐야 부동산을 안다】
+세법개정안 → 국회 통과 전까지 불확실성 = 시장 관망. 10~11월 조세소위가 진짜 게임체인저.
+
+【인사이트 9: 기업형 임대 2027년 말 마지노선】
+등록임대 세제 혜택 2027년 말 종료 → 2029년 전면 소멸. 지금 매도 타이밍 설계가 중요.
+
+【인사이트 10: 바닥은 확인하고 사야 한다】
+강남 -0.41%→-0.13% 낙폭 축소 = 바닥 신호 아님. 거래량 반등 + 매물 감소 + 세법 확정 3가지 동시 충족 후 매수.`,
+    formula: `2026년 부동산 핵심 공식 요약:
+
+[가격방향] = 매물(공급) × 세금(비용) × 금리(대출) × 수요
+↓
+강남: 매물↑ × 세금↑ × 금리↑ × 수요↓ = 하락
+강북: 매물→ × 세금→ × 금리↑ × 수요↑ = 상승
+
+[바닥 판별] = 거래량 반등 + 매물 감소 + 세법 확정
+→ 3가지 충족 전까지는 "바닥 아님"으로 간주
+
+[청약 전략] = 서울 포기 × 경기·인천 옥석 가리기
+→ 역세권 + 분양가 합리성 + 입주 후 전세가율 확인`,
+    example: `[100강 기념 셀프 체크] 나는 얼마나 성장했나?
+
+❓ 다음 중 알게 된 것에 체크하세요:
+□ 한국부동산원 주간 데이터 직접 읽을 수 있다
+□ 강남 하락과 강북 상승의 원인을 설명할 수 있다
+□ 종부세 기본공제(실거주 14억 / 비거주 12억)를 안다
+□ 전세가율이 뭔지, 60% 이상이면 왜 위험한지 안다
+□ 공정시장가액비율, 세부담 상한의 개념을 안다
+□ 기업형 임대 의무기간(10년)과 세제 혜택 만료 시점을 안다
+□ 청약 가점제와 추첨제 차이를 안다
+□ DSR, LTV, DTI 계산 구조를 이해한다
+
+8개 중 6개 이상: 부동산 중급자
+4~5개: 부동산 초중급자
+3개 이하: 계속 공부 중 (101강부터도 함께!)`,
+    tip: `101강부터도 계속됩니다:
+1. 매주 수요일 → 부동산원 데이터 업데이트 (이 페이지에서)
+2. 10월 → 세법 조소위 심사 결과 추적
+3. 12월 → 세법 본회의 통과 여부 최종 확인
+4. 2027년 1월 → 종부세 개편 실제 적용 시작
+5. 꾸준히 배우는 사람이 결국 좋은 선택을 합니다 💪`,
+    quiz: {
+      q: '2026년 현재 강남 아파트 시장에서 "바닥 확인" 신호로 볼 수 없는 것은?',
+      opts: ['강남3구 거래량이 반등하기 시작함', '강남 매물 수가 감소하기 시작함', '낙폭이 -0.41%에서 -0.13%로 일시 줄어듦', '12월 세법 본회의 통과로 불확실성 해소'],
+      ans: 2,
+      explain: '낙폭 축소(-0.41%→-0.13%)는 "급매물 소화"의 신호일 수 있지만, 바닥 확인 신호는 아닙니다. 진짜 바닥 신호는 ①거래량 반등, ②매물 수 감소, ③세법 확정(불확실성 해소)이 동시에 충족될 때입니다. 단 1주 낙폭 축소로 바닥을 판단하는 것은 위험합니다.'
+    }
+  },
+
+  // 101강
+  {
+    cat: 'economics',
+    catLabel: '금리·국제',
+    title: '미국 연준 금리 인상이 내 주담대에 미치는 영향',
+    sub: 'FOMC 25bp 인상 확률 86.6% — 미국 금리가 한국 대출금리로 전달되는 경로',
+    concept: `미국 중앙은행(연준, Fed)이 금리를 올리면 왜 한국 주담대 금리도 따라 오를까요?
+
+[전달 경로]
+연준 금리 인상
+→ ① 미국 국채금리 상승 (즉각 반영)
+→ ② 한국 국고채금리 동반 상승 (자본 이동)
+→ ③ 한국 은행 자금조달 비용 상승
+→ ④ 주담대 고정금리 상승 (2~3개월 시차)
+→ ⑤ 월 상환액 증가 → 매수 수요 위축
+
+[2026년 9월 현황]
+· 연준 기준금리: 4.50% → 4.75% 인상 임박 (86.6% 확률)
+· 한국 기준금리: 3.00% (8.27 인상 확정)
+· 국고채 10년물: 4.6% (2022년 이후 최고)
+· 미국 10년물: 5% 근접
+
+핵심: 미국 금리가 오르면 한국 국고채도 따라 오르고, 이것이 고정금리 주담대 금리를 끌어올립니다. 변동금리보다 고정금리가 더 빠르게 국채금리를 반영합니다.`,
+    formula: `[주담대 고정금리 구조]
+고정금리 = 국고채 5년물 금리 + 가산금리(1.5~2.5%p)
+
+2026년 9월 기준:
+국고채 5년물: 약 4.3%
+→ 주담대 고정금리 최저: 5.8~6.8%
+
+[금리 1%p 인상 시 월 상환액 변화]
+대출금액   현행 5%      6% 시      증가액
+2억원      1,061천원   1,199천원   +138천원/월
+3억원      1,592천원   1,799천원   +207천원/월
+5억원      2,653천원   2,998천원   +345천원/월`,
+    example: `[실전 사례: 연준 인상 발표 후 대출 시점 전략]
+
+박씨(36)는 강북 아파트 구입을 위해 3억원 주담대를 알아보는 중.
+
+Q: "연준이 9.17에 금리 인상하면 바로 대출 금리가 오르나요?"
+
+A: 즉각 오르지 않습니다. 시차가 있습니다:
+· 연준 인상 발표 → 미국 국채 금리 상승 (즉시)
+· 한국 국고채 금리 상승 (1~2주)
+· 은행 조달비용 반영 (1~2개월)
+· 주담대 고정금리 적용 (2~3개월 후)
+
+→ 오늘 대출을 실행하면 현재 금리로 계약 가능.
+→ 2~3개월 후면 금리 인상분이 반영될 수 있음.
+
+※ 단, 이미 국고채 시장이 인상을 선반영해 올랐으므로
+  현재도 고점권. 금리 전략보다 매수 타이밍이 더 중요.`,
+    tip: `연준 금리 결정 후 체크리스트:
+1. CME 페드워치에서 "다음 회의" 인상 확률 확인
+2. 한국 국고채 5년물 금리 변화 확인 (네이버 금융 → 채권 → 국고채)
+3. 은행 주담대 공시금리 변화 확인 (2~3개월 후)
+4. 내 대출이 변동금리라면 다음 금리 재산정일 확인
+
+연준 결과(9.18 새벽) → 9.22(화) 시장 재개 시 국고채 금리 변화 주시`,
+    quiz: {
+      q: '미국 연준이 기준금리를 0.25%p 인상했을 때, 한국 고정금리 주담대에 인상분이 반영되는 일반적인 시차는?',
+      opts: ['즉시 (당일 반영)', '1~2주', '2~3개월', '6개월 이상'],
+      ans: 2,
+      explain: '연준 인상 → 미국 국채 금리 상승(즉시) → 한국 국고채 동반 상승(1~2주) → 은행 자금조달비용 반영 → 주담대 고정금리 적용까지 통상 2~3개월의 시차가 있습니다. 다만 국고채 시장은 FOMC 결정을 미리 선반영하는 경향이 있어, 실제로는 인상 발표 전에 금리가 오르는 경우도 많습니다.'
+    }
+  },
+
+  // 102강
+  {
+    cat: 'reconstruction',
+    catLabel: '재건축·재개발',
+    title: '재건축 조합원 분담금, 어떻게 계산하나?',
+    sub: '압구정 2구역 66층 사례 — 분담금 9억원의 의미와 재건축 수익성 구조',
+    concept: `재건축 사업에서 가장 중요한 숫자는 "조합원 분담금"입니다.
+
+[재건축 수익성 기본 구조]
+기존 아파트 매입가
++ 조합원 분담금 (추가로 내는 돈)
+= 새 아파트 취득 원가
+
+새 아파트 시세 - 취득 원가 = 재건축 수익
+
+[분담금을 결정하는 4대 요소]
+① 용적률: 높을수록 → 일반분양 증가 → 분담금 감소 ↓
+② 공사비: 높을수록 → 총사업비 증가 → 분담금 증가 ↑
+③ 일반분양가: 높을수록 → 수입 증가 → 분담금 감소 ↓
+④ 조합원 평형 선택: 넓을수록 → 분담금 증가 ↑
+
+2026년 핵심 변수:
+· 압구정 평당 공사비 1,300만원 돌파 (2023년 대비 30% 상승)
+· 서울 분양가상한제 적용 → 일반분양가 통제
+→ 두 요소 모두 분담금 上昇 압력`,
+    formula: {
+      title: '조합원 분담금 계산식',
+      lines: [
+        '총사업비 = 공사비 + 이주비 이자 + 설계·감리비 + 기부채납 비용',
+        '수입 = 일반분양 수입 + 상가·오피스텔 분양 수입',
+        '조합원 부담총액 = 총사업비 − 수입',
+        '1인당 분담금 = 조합원 부담총액 ÷ 조합원 수 (평형 비례 가중)',
+        '',
+        '[압구정 2구역 66층 시나리오 추정]',
+        '총사업비: 약 5조원 (2,391가구, 평당 공사비 1,300만원)',
+        '일반분양 수입: 약 3조원 (800가구 × 평균 37억원)',
+        '조합원 부담: 약 2조원',
+        '1인당 평균 분담금: 약 9억원 (조합원 2,200명 기준)',
+      ]
+    },
+    example: `[실전 사례: 압구정 2구역 현대아파트 조합원 A씨]
+
+현재 상황:
+· 기존 아파트 매입가: 40억원 (현재 시세 약 38억원)
+· 예상 조합원 분담금: 약 9억원
+· 기타 비용(이주비 이자 2~3년): 약 2억원
+· 총 취득 원가: 약 51억원
+
+재건축 후:
+· 새 아파트 예상 시세 (66층, 한강뷰): 70~80억원
+
+수익 시나리오:
+· 낙관: 80억 − 51억 = +29억원
+· 기본: 70억 − 51억 = +19억원
+· 위험: 공사비 추가 상승 + 분양가 통제 시 분담금 12억↑ → 수익 대폭 감소
+
+핵심 질문: "지금 38억에 사서 51억 들여 새 아파트 받는 게 맞나?"
+→ 70억 이상 확신 있을 때만 유효한 전략.`,
+    tip: `재건축 투자 전 반드시 확인하는 5가지:
+1. 사업시행인가 단계 확인 (초기일수록 불확실성 큼)
+2. 공사비 평당 단가 및 상승 여지 (1,300만원 시대)
+3. 분양가상한제 적용 여부 (일반분양가 제한 → 분담금 증가)
+4. 재건축초과이익환수제 납부액 (가격 상승분 최대 50% 부과)
+5. 이주 기간 대책 (통상 3~5년, 그 기간 임대비용 추가)
+
+압구정 지금 매입 시: 시세 38억 + 분담금 9억 + 이자·비용 = 51억+
+새 아파트가 51억 이상이어야 손익분기점`,
+    quiz: {
+      q: '재건축 조합원 분담금을 증가시키는 요인은?',
+      opts: ['용적률 상향으로 일반분양 세대 수 증가', '일반분양가 상승으로 사업 수입 증가', '평당 공사비 상승으로 총사업비 증가', '기부채납 비율 축소로 사업 부담 감소'],
+      ans: 2,
+      explain: '평당 공사비 상승은 총사업비를 늘려 조합원 부담(분담금)을 증가시킵니다. 반면 용적률 상향(일반분양 세대 증가), 일반분양가 상승(수입 증가), 기부채납 비율 축소(비용 감소)는 모두 조합원 분담금을 줄이는 방향으로 작용합니다.'
+    }
+  },
+
+  // 103강
+  {
+    cat: 'market',
+    catLabel: '시장분석',
+    title: '강남3구 완전 동반 하락 — 바닥인가, 추세 전환인가?',
+    sub: '9.17 공식 발표 — 강남 -0.36%·서초 -0.26%·송파 -0.12% 동반 하락 구조 형성',
+    concept: `2026년 9월 21일 한국부동산원 9월 3주 발표에서 강남3구가 완전히 동반 하락했습니다.
+
+[현황]
+강남구: -0.36% (전주 -0.13%에서 낙폭 재확대, 6주 연속 하락)
+서초구: -0.26% (전주 -0.10%에서 재확대)
+송파구: -0.12% (전주 보합권에서 하락 전환 — 강남3구 완전 동반 하락)
+
+[중요한 구조 변화: 강남3구 동반 하락의 의미]
+① 강남-서초 따로, 송파 선방 → 강남 전역 하락 압력 확산
+② 낙폭 등락 패턴: -0.02% → -0.05% → -0.11% → -0.41% → -0.13% → -0.36%
+   ↑ 잠깐 둔화됐다가 다시 재확대 → "바닥 반등"이 아님을 시사
+
+[바닥 vs 추세 전환 판별 기준]
+바닥 신호 아님:
+  · 낙폭만 일시 줄어드는 것 (→ 급매물 소화에 불과)
+  · 거래량 여전히 500건 이하
+  · 세법 불확실성 해소 안 됨
+
+바닥 신호 가능:
+  · 거래량 급반등 + 매물 감소 동시 발생
+  · 10~11월 세법 기재위 심사 결과 완화 확정
+  · 연준 인상 사이클 종료 공식 선언`,
+    formula: `[강남구 6주 낙폭 추이 분석]
+주차    낙폭    전주比     해석
+9월 1주  -0.02%  —        하락 시작
+9월 1주  -0.05%  ▼0.03    확대
+8월 4주  -0.11%  ▼0.06    급확대
+8월 3주  -0.41%  ▼0.30    낙폭 급확대 (급매물 출회)
+9월 2주  -0.13%  ▲0.28    일시 둔화 (급매물 소화)
+9월 3주  -0.36%  ▼0.23    낙폭 재확대 ← 오늘
+
+→ 패턴: 낙폭 확대-둔화-재확대 반복 = 추세적 하락
+   단순 낙폭 둔화를 바닥으로 오해하지 않도록 주의`,
+    example: `[실전 사례: "9월 2주 -0.13%를 보고 바닥이라 생각했던 김씨"]
+
+9월 10일 (9월 2주 발표 당시):
+"강남 -0.41% → -0.13%로 개선됐으니 바닥 아닐까?"
+→ 이때 매수를 검토했다면?
+
+9월 17일 (9월 3주 발표):
+강남 -0.36%로 낙폭 재확대. 바닥이 아니었음.
+
+교훈:
+· 1주 낙폭 둔화는 "급매물 소화"일 뿐
+· 진짜 바닥 신호: 거래량 반등 + 매물 감소 + 세법 확정 3가지 동시
+· 강남 고점 대비 누적 하락률 = 단순 주간 낙폭보다 중요
+
+2026년 현재 강남 고점 대비 누적 하락 추정:
+상위 단지 기준 5~15% 하락 (아크로리버파크 3개월 -9.1억 사례 등)`,
+    tip: `강남 시장 관찰 체크리스트:
+1. 매주 수요일 오전 한국부동산원 발표 수치 확인
+2. 낙폭이 줄어도 "바닥"으로 섣불리 판단하지 않기
+3. 강남3구 거래량 주시 (현재 9월 500건 이하)
+4. 10~11월 세법 기재위 심사 결과 추적
+5. 연준 금리 결정 (9.18 새벽 3시) 이후 시장 반응 주시
+
+다음 부동산원 발표: 추석 연휴로 9.24 대신 10.1(수) 가능성`,
+    quiz: {
+      q: '강남3구 완전 동반 하락 상황에서 "바닥 확인" 신호로 볼 수 있는 것은?',
+      opts: ['낙폭이 -0.41%에서 -0.13%로 일시 줄어듦', '강남구 6주 연속 하락 지속', '강남3구 월간 거래량이 1,000건으로 반등', '송파구가 하락 전환하여 강남3구 동반 하락'],
+      ans: 2,
+      explain: '거래량 급반등(현재 9월 서울 500건 이하)은 실제 매수세 회복을 의미하므로 바닥 신호 중 하나입니다. 낙폭 일시 둔화, 6주 연속 하락 지속, 3구 동반 하락은 오히려 하락 추세 지속 또는 확산을 시사합니다.'
+    }
+  },
+
+  // 104강
+  {
+    cat: 'history',
+    catLabel: '시장역사',
+    title: '서울 아파트 84주 연속 상승 — 역대 최장 기록의 의미',
+    sub: '역대 최장 85주(2020.6~2022.1)까지 단 1주 — 강남 하락 속에 왜 서울 전체는 오르나?',
+    concept: `서울 아파트가 84주 연속 상승하며 역대 최장 기록인 85주에 단 1주 차이까지 접근했습니다.
+
+[역대 서울 아파트 연속 상승 기록]
+1위: 85주 (2020년 6월 2주 ~ 2022년 1월 3주)
+     → 코로나 저금리 + 2030 영끌 + 규제 부작용 상승기
+2위: 84주 (현재 진행 중, 2026년 9월 21일 기준)
+     → 추석 연휴 후 10월 1일 발표에서 85주 경신 여부 확인
+
+[역설적 구조: 강남이 내려가는데 서울이 오르는 이유]
+강남3구: -0.36%, -0.26%, -0.12% (하락)
+강북: 중랑 +0.51%, 도봉 +0.47%, 서대문 +0.47%, 노원 +0.45%
+서울 전체: +0.16% (강북 강세가 강남 하락을 상쇄)
+
+→ "서울 상승"은 사실 "강북·중저가 실수요 상승"
+→ 강남은 별도의 하락 사이클 진행 중`,
+    formula: `[연속 상승 기간 계산법]
+부동산원 주간 발표 기준:
+· 전주 대비 서울 전체 변동률 > 0% = "상승 주" 카운트
+· 변동률 ≤ 0% = 기록 초기화
+
+현재 84주 연속 상승:
+2024년 9월 ~ 2026년 9월 21일 (약 21개월 연속)
+
+[역사적 맥락: 왜 85주 기록이 만들어졌나?]
+2020.6 ~ 2022.1 (코로나 시기):
+· 기준금리 0.5% (초저금리)
+· 코로나 유동성 + 2030 영끌 매수
+· 전세→매매 갭투자 폭발
+→ 결과: 서울 아파트 2년간 +60~80% 급등
+
+2026년 84주 상승 (2024~2026):
+· 기준금리 2.75%→3.00% (인상 추세)
+· 강남 하락 / 강북 실수요 상승 구조
+· 서울 전체 상승폭은 +0.10~0.25% 수준 (완만)`,
+    example: `[2020~2022 vs 2024~2026 상승 사이클 비교]
+
+구분          2020~2022        2024~2026
+기간          85주 (코로나)     현재 84주 진행
+기준금리      0.5% → 1.25%     2.75% → 3.00%
+상승 주역     강남+강북 동반     강북·중저가 위주
+월간 상승폭   +1~3%            +0.1~0.5%
+거래량        월 1만건+        월 3~5천건
+주요 원인     저금리+영끌       실수요+공급부족
+
+→ 2024~2026 상승은 2020~2022보다 훨씬 완만하고 구조가 다름
+→ 같은 "연속 상승"이라도 의미가 다름: 폭발적 상승 vs 완만한 유지`,
+    tip: `서울 상승 기록 관찰 포인트:
+1. 다음 발표 (10.1 추정): 85주 경신 시 역대 최장 타이
+2. 경신 여부보다 중요한 것: 강북 상승 지속 vs 강남 회복 여부
+3. 연준 9.18 결과 이후 금리 방향이 10월 시장 결정
+4. 세법개정안 10월 기재위 조세소위 심사 결과
+
+투자자를 위한 핵심:
+"서울 84주 연속 상승" 뉴스를 보고 매수 결정을 내리지 말 것.
+강남은 하락 사이클, 강북은 상승 사이클 — 지역별로 완전히 다른 시장`,
+    quiz: {
+      q: '2026년 9월 현재 서울 아파트가 84주 연속 상승할 수 있는 주요 이유는?',
+      opts: ['강남3구가 강세를 회복해 서울 전체를 끌어올렸다', '기준금리 3%에도 강북·중저가 실수요가 서울 평균을 플러스로 유지시켰다', '아파트 공급이 급감하여 강남 가격이 반등했다', '연준 금리 동결 기대로 매수 심리가 살아났다'],
+      ans: 1,
+      explain: '2026년 9월 기준 강남3구는 동반 하락 중입니다. 서울 전체가 84주 연속 상승을 이어갈 수 있는 이유는 강북·중저가 지역의 실수요가 강남 하락을 상쇄하기 때문입니다. 중랑구 +0.51%, 도봉구 +0.47% 등 강북 강세가 서울 전체 평균을 플러스로 유지시키고 있습니다.'
+    }
+  },
+
+  // 105강
+  {
+    cat: 'economics',
+    catLabel: '금리·국제',
+    title: '연준 25bp 인상 확정 — 워시 시대 통화정책과 한국 부동산 영향',
+    sub: '3.75%→4.00% 만장일치 · 점도표 연내 추가 1회 · "Higher for Longer" 2027년까지',
+    concept: `2026년 9월 21일 새벽(한국시간), 미 연준이 기준금리를 25bp 인상해 3.75%~4.00%로 확정했습니다.
+
+[핵심 포인트]
+① 의장: 케빈 워시 (파월 임기 2026년 초 종료 후 트럼프 지명)
+② 결정: 만장일치(12-0) 인상 — 예외 없이 강한 신호
+③ 의의: 2023년 7월 이후 3년 만의 첫 재인상, 2026년 들어 6차례 연속 동결 후 전환
+
+[점도표 충격]
+FOMC 위원 18명 중 16명이 연내 추가 1회 인상 지지:
+· 2026년 말 금리 전망: 6월 3.8% → 9월 4.0~4.25%
+· "Higher for Longer(고금리 장기화)" 2027년까지 지속
+· 연초 50bp 인하 전망이 완전히 뒤집힘
+
+[워시 의장 핵심 발언]
+"인플레이션이 너무 오랫동안 너무 높게 유지되고 있다"
+(Inflation has been too high for too long.)
+
+배경: 8월 CPI 근원물가 예상치 상회 + 고용 견조 + 국제유가 고공행진`,
+    formula: `[한국 부동산에 미치는 연쇄 효과]
+연준 25bp 인상 (4.00%)
+→ 한·미 금리차 1.00%p 역전
+→ 원달러 환율 상승 (1,368→1,377원)
+→ 한국 국고채 금리 상승 (3년물 4.053%)
+→ 미국 10년물 5.03% 돌파
+→ 한국 은행채 금리 상승
+→ 주담대 고정금리 상승 (5년 4.95~6.92%)
+→ 연말 주담대 상단 8% 근접 경고
+→ 실수요자 월 상환액 증가
+→ 매수 심리 추가 위축
+
+[한국은행 압박]
+한·미 금리차 1%p → 자본 유출 위험 증가
+→ 11월 금통위 추가 인상 가능성 급부상
+→ 한국 기준금리 3.00% → 3.25% 가능성`,
+    example: `[실전 사례: 3억원 주담대 보유자가 받는 영향]
+
+현황 (2026년 9월):
+· 주담대 변동금리: 약 5.5%
+· 월 상환액: 약 170만원 (30년 만기 원리금)
+
+만약 연말 주담대 8% 도달 시:
+· 월 상환액: 약 220만원
+· 증가액: +50만원/월, +600만원/년
+
+만약 한국은행도 11월 추가 인상(3.25%) 시:
+· 변동금리 주담대 추가 상승 → 재산정일에 즉각 반영
+· 신규 대출자: 고정금리 vs 변동금리 선택이 중요
+
+→ 오늘 연준 결정은 "2~3개월 후 내 대출 이자"에 직결.
+  지금 당장 내 대출 금리 유형(고정/변동)과 재산정일 확인 권장.`,
+    tip: `연준 인상 후 체크리스트:
+1. 내 주담대 금리 유형 확인 (고정/변동)
+2. 변동금리라면 다음 금리 재산정일 확인
+3. 한국은행 금통위 일정: 10월, 11월
+4. 10월 분양 물량 61개 단지 54,589가구 — 청약 전 실제 대출 가능 금액 재계산
+5. 연말까지 추가 인상 가능 (연내 1회 더) → 대출 여력 보수적으로 계산
+
+핵심 교훈: "미국이 금리 올리면 내 대출 이자도 오른다"
+— 시차는 2~3개월이지만 방향은 같다.`,
+    quiz: {
+      q: '2026년 9월 연준 금리 인상(3.75%→4.00%) 이후, 한국 주담대 고정금리가 올라가는 경로로 올바른 것은?',
+      opts: ['연준 인상 → 한국 기준금리 즉시 동반 인상 → 주담대 즉시 상승', '연준 인상 → 미 국채 금리 상승 → 한국 국고채 상승 → 은행 조달비용 상승 → 주담대 상승(2~3개월 시차)', '연준 인상 → 원달러 환율 하락 → 수입물가 하락 → 금리 인하 압력', '연준 인상 → 한국 주식시장 상승 → 부동산 매수 심리 강화'],
+      ans: 1,
+      explain: '연준 금리 인상 → 미국 국채 금리 상승 → 한국 국고채 금리 동반 상승(자본이동) → 은행 자금조달 비용 상승 → 주담대 고정금리 상승(2~3개월 시차). 연준 인상이 한국은행의 즉각적인 동반 인상을 의미하지는 않지만, 금리차 확대로 압박이 커집니다.'
+    }
+  },
+
+  // 106강
+  {
+    cat: 'economics',
+    catLabel: '금리·한국은행',
+    title: '한·미 금리차 1%p 역전 — 한국은행 11월 추가 인상 시나리오',
+    sub: '미국 4.00% vs 한국 3.00% — 1%p 역전 확대가 한국 부동산에 미치는 영향',
+    concept: `한국과 미국의 기준금리 차이(한·미 금리차)가 다시 1.00%p로 확대됐습니다.
+
+[현황]
+미국 기준금리: 3.75%~4.00% (9.18 인상 후)
+한국 기준금리: 3.00% (8.27 인상)
+한·미 금리차: 1.00%p (한국 < 미국)
+
+[금리차가 중요한 이유]
+① 자본 유출 위험: 달러 자산 수익률이 원화 자산보다 높으면
+   → 외국인 투자자가 한국 채권·주식 팔고 달러 자산 매수
+   → 원달러 환율 상승 (원화 약세)
+   → 수입물가 상승 → 인플레이션 압력
+
+② 한국은행의 딜레마:
+   - 금리 올리면: 가계 부채 부담 증가, 부동산 추가 하락
+   - 금리 안 올리면: 금리차 확대, 자본 유출, 환율 상승
+
+[2026년 한국은행 일정]
+10월 금통위: 동결 가능성 우세 (추석 직후, 경제 충격 확인 필요)
+11월 금통위: 추가 25bp 인상 가능성 급부상 (전문가 다수 전망)
+→ 11월 인상 시 한국 기준금리 3.25%`,
+    formula: `[한·미 금리차 추이]
+시점         미국     한국    금리차
+2026년 초    3.50%   2.75%   +0.75%p (미국>한국)
+2026.8.27   3.50%   3.00%   +0.50%p (인상으로 좁혀짐)
+2026.9.18   4.00%   3.00%   +1.00%p (다시 확대)
+→ 만약 11월 한은 인상: 4.00%   3.25%   +0.75%p
+
+[금리차 확대 시 원달러 환율 흐름]
+금리차 0.50%p → 환율 1,320~1,350원
+금리차 1.00%p → 환율 1,370~1,400원 (현재)
+금리차 1.25%p → 환율 1,400원+ 위험`,
+    example: `[실전 사례: 금리차가 내 생활에 미치는 영향]
+
+달씨는 자녀 유학 중 달러 환전 수요가 있음.
+
+2026년 초: 달러당 1,320원 → 1만달러 = 1,320만원
+2026년 9월 21일: 달러당 1,377원 → 1만달러 = 1,377만원
+차이: +57만원 (환율 상승으로 비용 증가)
+
+부동산 관점:
+① 환율 상승 → 외국인 한국 부동산 매입 관망
+② 수입물가 상승 → 건설 자재 비용 상승 → 분양가 압력
+③ 인플레이션 재점화 → 한국은행 추가 인상 유인 강화
+→ 11월 금통위 결정이 2026년 부동산 시장의 마지막 변수`,
+    tip: `한·미 금리차 모니터링 방법:
+1. 미국 연준 금리: federalreserve.gov 또는 CNBC
+2. 한국 기준금리: 한국은행 홈페이지 (bok.or.kr)
+3. 원달러 환율: 네이버 금융 → 환율
+4. 금통위 일정: 한국은행 공식 일정 확인
+
+2026년 남은 금통위 일정:
+· 10월 금통위: 동결 예상 (경제 상황 파악)
+· 11월 금통위: 25bp 추가 인상 가능성 (전문가 다수 전망)
+· 한국 기준금리 3.25% 도달 시 주담대 변동금리 추가 상승 예상`,
+    quiz: {
+      q: '한·미 금리차가 확대(한국 < 미국)될 때 나타나는 현상으로 올바르지 않은 것은?',
+      opts: ['원달러 환율 상승 (원화 약세)', '외국인의 한국 채권·주식 매도 증가', '한국의 수입물가 하락', '한국은행의 금리 인상 압박 증가'],
+      ans: 2,
+      explain: '한·미 금리차 확대 → 원화 약세(환율 상승) → 수입물가 상승(수입품 더 비싸짐). 따라서 "수입물가 하락"은 틀린 설명입니다. 원화 약세 시 달러 표시 수입품 가격이 원화로 더 비싸지므로 수입물가는 상승합니다.'
+    }
+  },
+
+  // 107강
+  {
+    cat: 'subscription',
+    catLabel: '청약·분양',
+    title: '10월 분양시장 완전 가이드 — 54,589가구 어떻게 고르나?',
+    sub: '추석 이연 물량 10월 집중 — 강남권 vs 외곽 선별 전략과 금리 충격 대응법',
+    concept: `10월에 전국 61개 단지 54,589가구(일반분양 36,199가구)가 쏟아집니다. 9월 추석 연휴로 이연된 물량이 한꺼번에 집중된 것입니다.
+
+[10월 분양시장 구조]
+공급 측: 54,589가구 — 올해 최대 월간 공급
+수요 측: 금리 충격 (연준 4.00%, 주담대 6~8%) + 세법 불확실성
+결과: 입지·분양가에 따른 초양극화
+
+[강남권 주요 예정 단지]
+· 디에이치 클래스트 (반포 1·2·4주구): 1,832가구 — 정비사업, 희소성 극대
+· 오티에르 반포 (신반포21차): 877가구 — 반포 한강변
+· 아크로 드 서초 (서초신동아): 567가구
+· 방배 포레스트자이 (방배13구역): 547가구
+· 써밋 더힐 (흑석11구역, 동작): 424가구
+
+[주의사항]
+· 일정은 변동 가능 — 모집공고 직접 확인 필수
+· 분양가상한제 적용 단지: 로또청약 가능하나 자금 계획 필수
+· 토지거래허가구역 (강남3구·용산·동탄): 실거주 의무 확인`,
+    formula: `[청약 당첨 가능성 계산]
+가점 청약: 가점 높을수록 유리 (무주택 기간 + 부양가족 + 청약통장)
+추첨 청약: 1주택자도 일부 가능, 무작위
+
+[청약 수익성 계산]
+분양가: A원
+예상 입주 시 시세: B원
+프리미엄: B - A = 수익 (단, 세금·중도금 이자 차감 필요)
+
+[금리 충격 반영 계산]
+중도금 대출 60%: 분양가 5억 기준 3억
+중도금 금리 6~8% × 2년 납입 = 이자 3,600~4,800만원
+→ 실제 취득 원가 = 분양가 + 중도금 이자 + 취득세 + 등기비용`,
+    example: `[실전 사례: 디에이치 클래스트 청약 계획 중인 박씨]
+
+조건:
+· 가점: 52점 (무주택 8년 + 부양가족 3명 + 통장 10년)
+· 예상 분양가: 15억원 (전용 84㎡ 기준)
+· 자금: 현금 5억 + 중도금 대출 9억
+
+계산:
+· 중도금 이자 (7% × 2년): 약 1.26억원
+· 취득세 (1.1%): 1,650만원
+· 총 취득 원가: 약 16.4억원
+
+입주 후 시세 전망:
+· 낙관 (반포 한강뷰 프리미엄): 25억 이상 → 수익 8억+
+· 기본: 20억 → 수익 3.6억
+
+결론: 가점 52점이면 당첨 확률이 있지만 반드시
+중도금 대출 실행 가능 여부와 실거주 의무(2년) 확인 필수.`,
+    tip: `청약 전 필수 체크리스트:
+1. 청약 자격 확인 (무주택 여부, 세대원 포함)
+2. 가점 계산 (청약홈 청약자격확인 메뉴)
+3. 모집공고 직접 확인 (분양가, 층수, 타입)
+4. 토지거래허가구역 여부 → 실거주 의무 확인
+5. 중도금 대출 가능 여부 (DSR 규제 적용)
+6. 입주 예정일 전 거주 대책
+
+10월 일정: 10.3(개천절)·10.9(한글날) 공휴일 → 10월 중순 이후 집중
+청약홈(applyHome.go.kr)에서 공고 날짜 직접 확인하세요`,
+    quiz: {
+      q: '10월 분양에서 강남권 정비사업(재건축·재개발) 단지가 금리 상승에도 상대적으로 청약 경쟁이 유지되는 주요 이유는?',
+      opts: ['금리가 올라도 강남은 실수요가 없기 때문', '분양가상한제로 시세 대비 낮은 분양가 + 강남 희소성으로 프리미엄 형성', '강남 정비사업은 중도금 대출이 적용되지 않아서', '추첨제 비율이 높아 가점 없어도 당첨되기 쉬워서'],
+      ans: 1,
+      explain: '강남권 정비사업 단지는 분양가상한제로 시세 대비 낮은 가격에 분양되는 경우가 많아 "로또 청약" 성격이 형성됩니다. 금리가 올라 중도금 이자 부담이 늘더라도, 분양가와 입주 후 시세 간 차이가 크면 청약 경쟁이 유지됩니다.'
+    }
+  },
+
+  // 108강
+  {
+    cat: 'policy',
+    catLabel: '통화정책',
+    title: '한국은행 금통위 완전 이해 — 10.22 결정이 부동산에 미치는 영향',
+    sub: '금통위 결정 구조 · 동결 vs 인상 시나리오 · 부동산 시장 영향 경로',
+    concept: `한국은행 금융통화위원회(금통위)는 기준금리를 결정하는 최고 의사결정 기구입니다.
+
+[금통위 기본 정보]
+· 구성: 7명 (한국은행 총재 + 부총재 + 5명의 외부 위원)
+· 회의 빈도: 연 8회 (격월 + 특별회의)
+· 2026년 10월 회의: 10월 22일(목)
+· 결정 발표: 오전 10시경
+
+[2026년 10월 22일 금통위 포인트]
+현행 기준금리: 3.00% (8.27 인상)
+한·미 금리차: 1.00%p (미국 4.00% - 한국 3.00%)
+
+선택지:
+① 동결 유지: 추석 연휴 후 경제 충격 파악 우선, 가계부채 부담 고려
+② 25bp 인상: 한·미 금리차 축소, 원화 약세 방어, 연준 뒤를 따라가는 신호
+③ 긴급 50bp: 가능성 매우 낮음
+
+전문가 다수: "10월 동결, 11월 인상"으로 전망
+→ 12월에 최종 확인하는 시나리오`,
+    formula: `[기준금리와 주담대 금리 연결 고리]
+한국은행 기준금리 (정책 신호)
+→ 단기 시장금리(콜금리, CD금리) 즉시 반응
+→ 은행 조달비용 변화
+→ 주담대 변동금리 (3개월~6개월 시차)
+→ 고정금리는 국고채 5년물 연동 (시장금리 선행)
+
+[10월 동결 vs 11월 인상 시나리오]
+시나리오       10월   11월   주담대 영향
+①동결·동결    3.00%  3.00%  현 수준 유지
+②동결·인상    3.00%  3.25%  12~1월 변동금리 상승
+③인상·인상    3.25%  3.50%  11~12월 급등
+현재 전망:     동결   인상 유력`,
+    example: `[실전 사례: 금통위 결정과 나의 대출]
+
+김씨는 현재 변동금리 주담대 3억원 (금리 5.5%)을 보유.
+다음 금리 재산정일: 2026년 12월 1일
+
+시나리오 ①: 10월 동결 + 11월 인상(3.25%)
+→ 12월 재산정 시 금리 약 5.8~6.0%로 상승
+→ 월 상환액 +7~10만원 증가
+
+시나리오 ②: 10월 인상(3.25%) + 11월 인상(3.50%)
+→ 12월 재산정 시 금리 약 6.2~6.5%로 상승
+→ 월 상환액 +20~30만원 증가
+
+→ 지금 해야 할 일:
+  1. 나의 대출 금리 재산정일 확인
+  2. 고정금리 전환 가능 여부 은행에 문의
+  3. 10.22 금통위 결과 발표 당일 확인`,
+    tip: `금통위 결정 모니터링 방법:
+1. 한국은행 공식: bok.or.kr → 통화정책 → 금통위
+2. 발표 당일 오전 10시: 한국은행 기자회견 생중계
+3. 총재 기자회견 핵심 문구 주목:
+   "향후 추가 조정 여부는..." → 인상 시사
+   "현 수준 유지 필요..." → 동결 기조
+
+2026년 남은 금통위:
+· 10월 22일 (목) — 동결 가능성 우세
+· 11월 말 — 25bp 인상 가능성 (전문가 다수)
+· 12월 없음 (연 8회, 이후 2027년 2월)`,
+    quiz: {
+      q: '한국은행 기준금리와 주담대 변동금리의 관계로 올바른 것은?',
+      opts: ['기준금리 인상 시 주담대 변동금리는 즉시 같은 폭으로 오른다', '기준금리 인상 시 주담대 변동금리는 3~6개월 시차를 두고 오른다', '기준금리와 주담대 금리는 아무 관계가 없다', '기준금리가 오르면 주담대 고정금리만 오르고 변동금리는 내려간다'],
+      ans: 1,
+      explain: '한국은행 기준금리 인상 → 단기 시장금리(콜금리·CD금리) 즉시 반응 → 은행 조달비용 상승 → 주담대 변동금리 상승(3~6개월 시차). 고정금리는 국고채 5년물에 연동되어 시장금리를 선행 반영하는 특성이 있습니다.'
+    }
+  },
+  {
+    id: 109,
+    category: '금융·시장 이해',
+    title: '금리 인상에도 주가가 오른다 — 금리·주가·부동산의 삼각관계',
+    keywords: ['금리', '코스피', '부동산', '피크아웃', '역설'],
+    concept: `연준이 9.18 금리를 25bp 인상했는데 코스피는 +2.2% 급등했습니다.
+"금리 오르면 주가 떨어진다"는 상식이 틀린 걸까요?
+
+아닙니다 — 상황에 따라 다릅니다.
+
+[금리 인상 초기]: 주가 하락 (할인율 상승, 기업가치 감소)
+[금리 인상 후기/피크아웃 기대]: 주가 반등 (더 이상 못 올린다는 안도감)
+
+9.22 반등의 핵심 이유:
+· 미 10년물 국채금리 5.00% → 4.95% 하락
+  → "이번이 마지막 인상에 가깝다" 시장 판단
+· 미중 정상회담(추석 연휴 중) 기대 + 유가 급락
+· 결과: 코스피 +2.20%, 원달러 1,386 → 1,364원 강세
+
+부동산은 주가와 다르게 반응합니다:
+· 주가: 기대(심리)로 즉각 반응
+· 부동산: 현금흐름(실질 이자 부담)으로 느리게 반응
+· 9.22 서울 시장: 코스피 급반등에도 매수 관망세 지속`,
+    formula: {
+      title: '금리 국면별 자산 반응 매트릭스',
+      lines: [
+        '          금리 인상 초기    금리 피크아웃 기대',
+        '─────────────────────────────────────────',
+        '채  권    가격 하락 ↓       가격 상승 ↑',
+        '주  식    즉각 하락 ↓       역설적 반등 ↑',
+        '부동산    천천히 하락 ↓     관망 → 매수세 전환',
+        '원  화    약세 ↓            강세 ↑',
+      ]
+    },
+    example: `9월 22일 실제 데이터:
+· 코스피:    7,162p (+2.20%) — 7,000p 지지 후 반등
+· 원달러:    1,364원 (9.18 대비 -22원, 원화 강세)
+· 미 10년물: 4.95% (인상 당일 5.00%에서 소폭 하락)
+· 한국 국고채 3년: ~4.05%, 10년: ~4.45%
+· 서울 아파트: 매수 관망세 지속 (KB 월간 +0.75%이나 거래 감소)
+
+핵심: 주가는 4일 만에 충격 회복, 부동산은 관망 지속
+→ 부동산은 주가보다 느리게 반응하는 실물자산`,
+    tip: `금리 사이클에서 부동산 매수 타이밍:
+1단계 — 금리 인상 초기: 관망 (금리 상단 미확인)
+2단계 — 금리 피크아웃 신호: 탐색 (10년물 하락 시작)
+3단계 — 금리 인하 시작: 적극 매수 신호
+
+현재 위치 (2026.09): 1단계 후반 ~ 2단계 진입
+(미 10년물 4.95% 하락 = 피크아웃 기대 초기)
+
+단, 한국: 한은 11월 추가 인상 가능성 → 아직 2단계 진입 전
+→ 2026년 말~2027년 초까지 관망 전략 유효`,
+    quiz: {
+      q: '연준이 금리를 인상했는데 미국 10년물 국채금리가 오히려 하락한 이유로 가장 적절한 것은?',
+      opts: ['연준이 실수로 금리를 올렸기 때문이다', '시장이 "이번이 마지막 인상에 가깝다"는 피크아웃을 기대하기 때문이다', '국채는 연준 금리와 항상 반대로 움직이기 때문이다', '한국은행이 개입해서 달러를 팔았기 때문이다'],
+      ans: 1,
+      explain: '단기 정책금리(연준 기준금리)와 장기 국채금리(10년물)는 다르게 움직일 수 있습니다. 시장이 "금리 인상이 거의 끝났다"는 피크아웃을 기대하면 장기 국채금리는 오히려 하락합니다. 9.22에 미 10년물이 5.00% → 4.95%로 하락한 것은 시장의 금리 사이클 피크아웃 기대를 반영한 것입니다.'
+    }
+  },
+  {
+    id: 110,
+    category: '시장 분석',
+    title: '추석 연휴 전후 부동산 시장 — 9.28 재개와 10.1 발표 완전 준비',
+    keywords: ['추석', '명절 효과', '금통위', '시장 재개', '부동산원 발표'],
+    concept: `2026년 추석 연휴(9.24~27) 4일이 시작됩니다.
+연휴 후 9.28(월) 시장 재개까지 무엇을 준비해야 할까요?
+
+[추석 연휴 중 부동산 패턴]
+· 거래량: 급감 (공인중개사 대부분 휴업)
+· 호가: 현상 유지 (급매 드물게 출현 — 연휴 후 이사 대비)
+· 임차 수요: 가을 이사철 준비 본격화
+· 가족 대화: 공동 투자 논의 → 연휴 후 매수 의향 증가
+
+[2026 추석 핵심 변수]
+1. 연준 25bp 인상 충격 흡수 중 (코스피 반등으로 일부 해소)
+2. 한은 11월 인상 가능성 → 대출 이자 추가 상승 우려
+3. 10월 분양 물량 54,589가구 대기
+4. 강남3구 하락 추세 + 서울 외곽 상승 지속 구조
+
+[연휴 후 주목 일정]
+· 9.28(월): 코스피 재개, 미중 정상회담 결과 반영
+· 10.1(수): 한국부동산원 9월 4주 공식 발표
+· 10.22(목): 금통위 결정 (동결 유력)`,
+    formula: {
+      title: '추석 연휴 전후 부동산 체크포인트',
+      lines: [
+        '시점         핵심 확인 사항',
+        '───────────────────────────────────────',
+        '9.22(화)    호가 현황 파악 · 급매 탐색',
+        '9.24~27     추석 연휴 — 시장 휴지기',
+        '9.28(월)    코스피·환율 재개 · 미중 정상 결과',
+        '10.1(수)    부동산원 9월 4주 공식 발표',
+        '10.22(목)   금통위 — 동결 vs 인상 결정',
+      ]
+    },
+    example: `역대 추석 전후 부동산 흐름 패턴:
+· 추석 전:    거래 감소, 급매 드물게 등장
+· 추석 연휴:  가족 부동산 대화 → 매수 의향 형성
+· 추석 후:    전세 이동 수요 증가, 10월 이사 러시
+
+2026 추석 이후 예상 시나리오:
+· 코스피 반등 지속 시 → 부동산 심리 회복 기대
+· 한은 11월 인상 확실화 시 → 매수 관망 연장
+· 10월 분양 물량 봇물 → 신규 수요 분산`,
+    tip: `추석 연휴 활용 체크리스트:
+□ 목표 단지 최근 실거래가 확인 (국토부 실거래가 앱)
+□ 주담대 변동금리 재산정일 확인 (대출 계약서)
+□ DSR·LTV 한도 재계산 (금리 상승 반영)
+□ 10월 분양 캘린더 확인 (54,589가구 중 관심 단지)
+□ 10.1 부동산원 발표 모니터링 예약
+□ 10.22 금통위 결과 모니터링 예약
+
+연말 금리 시나리오:
+· 시나리오①: 10월 동결 + 11월 인상(3.25%) → 주담대 변동 약 +0.2~0.3%p
+· 시나리오②: 10월·11월 연속 인상(3.50%) → 주담대 변동 약 +0.5%p`,
+    quiz: {
+      q: '2026년 추석 이후 첫 거래일과 한국부동산원 9월 4주 공식 발표일로 올바른 것은?',
+      opts: ['첫 거래일 9.25(금), 발표 9.24(목)', '첫 거래일 9.28(월), 발표 10.1(수)', '첫 거래일 9.22(화), 발표 9.24(목)', '첫 거래일 10.1(수), 발표 10.8(수)'],
+      ans: 1,
+      explain: '2026년 추석 연휴는 9월 24일(목)~27일(일)입니다. 따라서 첫 거래일은 9월 28일(월)입니다. 한국부동산원은 매주 수요일 전주 데이터를 발표하지만, 추석 연휴로 9.24 발표가 다음 주(10.1)로 밀렸습니다.'
+    }
+  },
+  {
+    id: 111,
+    category: '시장 분석',
+    title: '거래량 급감에도 가격이 오른다 — 서울 아파트 역설 해부',
+    keywords: ['거래절벽', '거래량', '호가', '관망세', '시장 분석'],
+    concept: `2026년 8월 서울 아파트 매매거래량은 3,046건.
+전월(7월 5,831건) 대비 -47.8% 급감했습니다.
+그런데 가격은 7월 전월 대비 +1.93%, 전년 대비 +14.56%.
+
+"거래가 없으면 가격이 떨어진다"는 통념이 틀린 걸까요?
+
+[거래량 급감 + 가격 유지의 조건]
+① 매도자가 급하지 않을 때
+  → 4~5월에 이미 급매 소진, 현재 여유 있는 매도자만 남음
+② 매수자가 관망하는 이유가 가격 불신이 아닐 때
+  → 금리 부담·규제 때문에 못 사는 것, 비싸서 안 사는 게 아님
+③ 공급이 제한될 때
+  → 토허제·실거주 의무로 매물 출회 제한
+
+이때 가격은 하락하지 않고 '동결'됩니다.
+거래절벽 = 가격 하락이 아니라 = 호가 견고 + 거래 공백`,
+    formula: {
+      title: '거래량-가격 관계 4가지 시나리오',
+      lines: [
+        '거래량↑ + 가격↑ = 강세장 (실수요+투자 유입)',
+        '거래량↑ + 가격↓ = 약세장 (공황 매도)',
+        '거래량↓ + 가격↑ = 거품/과열 (공급 부족)',
+        '거래량↓ + 가격↓ = 침체 (수요 붕괴)',
+        '★현재(2026.09): 거래량↓ + 가격↑ → 공급 제한형',
+      ]
+    },
+    example: `2026년 8월 실제 데이터:
+· 서울 매매거래: 3,046건 (-47.8% MoM)
+· 토허제 신청: 3,012건 (4월 8,896건 → 최저)
+· 아파트가격: 전월 +1.93%, 전년 +14.56%
+· 소형(30㎡↓) 1년 수익률: +19.79% (전 평형 최고)
+· 1.5억 미만 거래 비중: 79.9% (중저가 쏠림)
+
+→ 거래는 '바닥이 없는 중저가·소형' 위주로만 성립
+→ 강남 고가 주택: 호가는 높고 실거래 '0'에 가까움`,
+    tip: `거래량으로 시장 방향성 읽는 법:
+1. 거래량이 바닥 → 이후 반등 신호 (에너지 축적)
+2. 거래량 급증 + 가격 오름 → 본격 상승장 시작
+3. 거래량 급증 + 가격 내림 → 공황 매도, 바닥 근접
+
+2026.09 현재:
+· 강남권: 거래절벽 + 호가 견고 → 방향성 미결
+· 외곽/중저가: 소량 거래 + 가격 상승 → 실수요 견조
+→ 전체 시장이 한 방향이 아닌 '二極化' 진행 중`,
+    quiz: {
+      q: '서울 아파트 거래량이 급감했는데 가격이 유지되는 가장 핵심적인 이유는?',
+      opts: ['매수자가 갑자기 부자가 됐기 때문이다', '급매 매물이 이미 소진되고 여유 있는 매도자만 남아 호가를 지키기 때문이다', '정부가 가격을 인위적으로 지지하기 때문이다', '외국인이 대거 매수했기 때문이다'],
+      ans: 1,
+      explain: '거래절벽에서 가격이 유지되는 핵심은 매도자 구성의 변화입니다. 4~5월에 급매(가격 낮춰 파는 매물)가 소진된 후, 남은 매도자들은 대부분 여유 있는 상황이라 호가를 낮출 이유가 없습니다. 매수자가 관망해도 매도자는 버팁니다.'
+    }
+  },
+  {
+    id: 112,
+    category: '투자 전략',
+    title: '소형 아파트 +19.79% — 30㎡ 이하 고수익의 비밀과 리스크',
+    keywords: ['소형 아파트', '투자 수익률', '30㎡ 이하', '1인 가구', '전세가율'],
+    concept: `2026년 서울 소형 아파트(30㎡ 이하) 1년 가격 상승률: +19.79%.
+전 평형 중 압도적 최고 수익률입니다.
+
+왜 소형 아파트가 강할까요?
+
+[수요 측면]
+· 1인 가구 증가: 2026년 서울 1인 가구 비중 36% 돌파
+· MZ세대 첫 내집: 예산 한계로 소형부터
+· 외국인 유학생·직장인 임대 수요 견조
+
+[공급 측면]
+· 신규 공급 대부분 85㎡ 이상 대형 위주
+· 소형 신축 공급 희소 → 기존 소형 가격 상승 압력
+
+[가격 측면]
+· 총액이 낮아 대출 규제 영향 덜 받음 (DSR 부담 적음)
+· 1.5억 미만: 전세자금대출 활용 가능
+· 거래 회전율 높아 환금성 우수`,
+    formula: {
+      title: '소형 아파트 투자 수익 계산',
+      lines: [
+        '총 수익률 = (매도가 - 매입가) ÷ 실투자금 × 100',
+        '실투자금 = 매입가 - 전세보증금 (갭투자)',
+        '예: 매입 2억 / 전세 1.5억 → 실투자 5,000만원',
+        '1년 후 2.4억 매도 → 수익 4,000만원',
+        '수익률 = 4,000만 ÷ 5,000만 × 100 = 80%',
+      ]
+    },
+    example: `2026년 서울 소형 아파트 평형별 수익률:
+· 30㎡ 이하:  +19.79% (1년, 전 평형 최고)
+· 40㎡ 이하:  +15.2% 추정
+· 59㎡ 이하:  +12.1% 추정
+· 84㎡:       +10.8% 추정
+· 84㎡ 초과:  +8.3% 추정
+
+리스크 요인:
+① 임대차 3법: 계약갱신권으로 임차인 보호 강화
+② 토허제: 일부 소형도 규제 구역 포함
+③ 환금성: 대출 한도 낮아 매수자 풀 제한
+④ 관리비: 소형은 ㎡당 관리비 더 비쌈`,
+    tip: `소형 아파트 투자 체크리스트:
+□ 총액 1.5억 미만 여부 (전세자금대출 활용 가능)
+□ 1인 가구 비중 높은 역세권 여부
+□ 관리비 ㎡당 단가 확인 (소형은 비쌀 수 있음)
+□ 전세가율 확인 (70% 이상은 역전세 위험)
+□ 토허제·규제 구역 해당 여부
+
+2026년 주목 소형 지역:
+· 관악·노원·성북: 대학가 1인 수요 견조
+· 중구·용산: 외국인 임대 수요
+· 마포·성동: MZ 선호 + 전세 회전 빠름`,
+    quiz: {
+      q: '소형 아파트(30㎡ 이하) 투자의 핵심 리스크로 가장 거리가 먼 것은?',
+      opts: ['임차인 계약갱신권으로 마음대로 비우기 어렵다', '대출 한도가 낮아 매수자 풀이 제한된다', '공급이 풍부해 가격 하락 위험이 크다', '관리비가 ㎡당 대형 아파트보다 비쌀 수 있다'],
+      ans: 2,
+      explain: '소형 아파트는 신규 공급이 희소해 오히려 공급 부족이 강점입니다. 공급 풍부로 가격 하락 위험이 크다는 것은 틀린 설명입니다. 실제 리스크는 계약갱신권, 낮은 대출 한도, 높은 관리비 등입니다.'
+    }
+  }
+];
+
+// ─── STATE ───────────────────────────────────────────────────────────────────
+const TODAY = new Date();
+const todayStr = TODAY.toISOString().slice(0,10);
+let viewDate = new Date(TODAY);
+let state = {};
+
+function loadState() {
+  try { state = JSON.parse(localStorage.getItem('reEduState') || '{}'); }
+  catch { state = {}; }
+  state.done = state.done || {};
+  state.quizResults = state.quizResults || {};
+  state.lastDate = state.lastDate || null;
+}
+function saveState() {
+  localStorage.setItem('reEduState', JSON.stringify(state));
+}
+
+// 날짜별 강의 고정 (특정 날짜에 특정 강의 표시)
+const DATE_LESSON_OVERRIDES = {
+  '2026-09-07': LESSONS.length - 20,  // 93강: 기업형 임대주택 완전 정복
+  '2026-09-08': LESSONS.length - 19,  // 94강: 9월 1주 시장 리포트
+  '2026-09-09': LESSONS.length - 18,  // 95강: 아크로리버파크 -9.1억 해부
+  '2026-09-10': LESSONS.length - 16,  // 97강: 강남 -0.13% 낙폭 축소 — 바닥 신호 판별
+  '2026-09-15': LESSONS.length - 14,  // 99강: 추석 연휴와 부동산 시장
+  '2026-09-16': LESSONS.length - 12,  // 101강: 연준 금리 인상과 내 주담대
+  '2026-09-17': LESSONS.length - 10,  // 103강: 강남3구 완전 동반 하락 — 바닥인가, 추세 전환인가?
+  '2026-09-18': LESSONS.length - 8,   // 105강: 연준 25bp 인상 확정 — 워시 시대 통화정책
+  '2026-09-21': LESSONS.length - 6,   // 107강: 10월 분양시장 완전 가이드
+  '2026-09-22': LESSONS.length - 4,   // 109강: 금리 인상에도 주가가 오른다 — 삼각관계
+  '2026-09-23': LESSONS.length - 2,   // 111강: 거래량 급감에도 가격이 오른다 — 서울 아파트 역설
+};
+
+function dayKey(d) {
+  return (typeof d === 'string') ? d : d.toISOString().slice(0,10);
+}
+function getLessonIndex(d) {
+  const dk = dayKey(d);
+  if (DATE_LESSON_OVERRIDES[dk] !== undefined) return DATE_LESSON_OVERRIDES[dk];
+  const base = new Date('2026-01-01');
+  const diff = Math.floor((new Date(dk) - base) / 86400000);
+  return ((diff % LESSONS.length) + LESSONS.length) % LESSONS.length;
+}
+
+// ─── RENDER ──────────────────────────────────────────────────────────────────
+function formatDate(d) {
+  const ds = dayKey(d);
+  const dt = new Date(ds + 'T00:00:00');
+  const months = ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'];
+  const days = ['일','월','화','수','목','금','토'];
+  return `${dt.getFullYear()}년 ${months[dt.getMonth()]} ${dt.getDate()}일 (${days[dt.getDay()]})`;
+}
+
+function renderLesson() {
+  const dk = dayKey(viewDate);
+  const idx = getLessonIndex(dk);
+  const lesson = LESSONS[idx];
+  const isDone = !!state.done[dk];
+  const isToday = dk === todayStr;
+  const isFuture = dk > todayStr;
+
+  document.getElementById('dateDisplay').textContent = formatDate(viewDate);
+  document.getElementById('lessonNum').textContent = `강의 #${idx + 1} / ${LESSONS.length}`;
+  document.getElementById('btnPrev').disabled = false;
+  document.getElementById('btnNext').disabled = isToday || isFuture;
+
+  const catColors = {
+    market: 'cat-market', finance: 'cat-finance', tax: 'cat-tax',
+    rebuild: 'cat-rebuild', invest: 'cat-invest', law: 'cat-law', eval: 'cat-eval'
+  };
+
+  const qDone = state.quizResults[dk];
+
+  // 공식/예시/팁이 문자열일 수도, 객체일 수도 있으므로 양쪽 처리
+  const formulaHTML = (lesson.formula && typeof lesson.formula === 'object' && lesson.formula.lines)
+    ? `<div class="f-title">${lesson.formula.title || ''}</div>${lesson.formula.lines.map(l => `<div>${l}</div>`).join('')}`
+    : `<pre style="white-space:pre-wrap;font-size:13px;line-height:1.7;font-family:inherit">${lesson.formula || ''}</pre>`;
+
+  const exampleHTML = (lesson.example && typeof lesson.example === 'object' && lesson.example.steps)
+    ? `<div class="example-title">${lesson.example.title || ''}</div>
+       ${lesson.example.steps.map((s, i) => `
+         <div class="step">
+           <div class="step-num">${i+1}</div>
+           <div class="step-text">${s}</div>
+         </div>`).join('')}
+       <div class="result-box">📌 ${lesson.example.result || ''}</div>`
+    : `<pre style="white-space:pre-wrap;font-size:13px;line-height:1.7;font-family:inherit">${lesson.example || ''}</pre>`;
+
+  const tipHTML = (typeof lesson.tip === 'string')
+    ? lesson.tip.replace(/\n/g, '<br>')
+    : '';
+
+  document.getElementById('lessonCard').innerHTML = `
+    <div class="lesson-header">
+      <div>
+        <div class="lesson-title">${lesson.title}</div>
+        <div class="lesson-sub">${lesson.sub}</div>
+      </div>
+      <span class="cat-chip ${catColors[lesson.cat]}">${lesson.catLabel}</span>
+    </div>
+
+    <div class="section">
+      <div class="sec-label">개념 설명</div>
+      <div class="concept-text">${lesson.concept}</div>
+    </div>
+
+    <div class="section">
+      <div class="sec-label">핵심 공식</div>
+      <div class="formula-box">${formulaHTML}</div>
+    </div>
+
+    <div class="section">
+      <div class="sec-label">실전 예시</div>
+      <div class="example-box">${exampleHTML}</div>
+    </div>
+
+    <div class="section">
+      <div class="sec-label">학습 팁</div>
+      <div class="tip-box">
+        <div class="tip-icon">💡</div>
+        <div>${tipHTML}</div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="sec-label">오늘의 퀴즈</div>
+      <div class="quiz-box">
+        <div class="quiz-q">${lesson.quiz.q}</div>
+        <div class="quiz-options" id="quizOpts">
+          ${lesson.quiz.opts.map((o, i) => `
+            <button class="quiz-opt ${qDone !== undefined ? (i === lesson.quiz.ans ? 'correct' : (i === qDone && qDone !== lesson.quiz.ans ? 'wrong' : '')) : ''}"
+              onclick="answerQuiz(${i}, ${lesson.quiz.ans}, '${dk}')"
+              ${qDone !== undefined ? 'disabled' : ''}>
+              ${String.fromCharCode(9312 + i)} ${o}
+            </button>
+          `).join('')}
+        </div>
+        <div class="quiz-explain ${qDone !== undefined ? 'show' : ''}" id="quizExplain">
+          ${qDone === lesson.quiz.ans ? '✅ 정답입니다! ' : '❌ 오답입니다. '}${lesson.quiz.explain}
+        </div>
+      </div>
+    </div>
+
+    <div class="done-wrap">
+      <button class="done-btn ${isDone ? 'done-state' : 'undone'}"
+        onclick="${isDone ? '' : 'markDone()'}"
+        ${isDone ? 'disabled' : ''}>
+        ${isDone ? '✅ 오늘 학습 완료!' : '학습 완료 체크하기'}
+      </button>
+    </div>
+  `;
+
+  renderStats();
+  renderCalendar();
+}
+
+function answerQuiz(selected, correct, dk) {
+  state.quizResults[dk] = selected;
+  saveState();
+  renderLesson();
+}
+
+function markDone() {
+  const dk = dayKey(viewDate);
+  state.done[dk] = true;
+  state.lastDate = dk;
+  saveState();
+  renderLesson();
+}
+
+function goDay(delta) {
+  const d = new Date(viewDate);
+  d.setDate(d.getDate() + delta);
+  if (d > TODAY) return;
+  viewDate = d;
+  renderLesson();
+}
+
+// ─── STATS ───────────────────────────────────────────────────────────────────
+function calcStreak() {
+  let streak = 0;
+  let d = new Date(TODAY);
+  while (true) {
+    const dk = dayKey(d);
+    if (!state.done[dk]) break;
+    streak++;
+    d.setDate(d.getDate() - 1);
+  }
+  return streak;
+}
+
+function renderStats() {
+  const streak = calcStreak();
+  const total = Object.keys(state.done).length;
+  const quizKeys = Object.keys(state.quizResults);
+  let correct = 0;
+  quizKeys.forEach(k => {
+    const idx = getLessonIndex(k);
+    if (state.quizResults[k] === LESSONS[idx].quiz.ans) correct++;
+  });
+  const accuracy = quizKeys.length ? Math.round(correct / quizKeys.length * 100) : 0;
+
+  document.getElementById('statStreak').textContent = streak;
+  document.getElementById('statTotal').textContent = total;
+  document.getElementById('statQuiz').textContent = accuracy + '%';
+  document.getElementById('streakBadge').textContent = `🔥 ${streak}일 연속`;
+}
+
+// ─── CALENDAR ─────────────────────────────────────────────────────────────────
+function renderCalendar() {
+  const now = new Date(TODAY);
+  const year = now.getFullYear();
+  const month = now.getMonth();
+  const months = ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'];
+  document.getElementById('calMonth').textContent = `${year}년 ${months[month]} 학습 현황`;
+
+  const firstDay = new Date(year, month, 1).getDay();
+  const daysInMonth = new Date(year, month + 1, 0).getDate();
+  const doneThisMonth = Object.keys(state.done).filter(k => k.startsWith(`${year}-${String(month+1).padStart(2,'0')}`)).length;
+  document.getElementById('calStat').textContent = `이달 ${doneThisMonth}일 완료`;
+
+  const dows = ['일','월','화','수','목','금','토'];
+  let html = dows.map(d => `<div class="cal-dow">${d}</div>`).join('');
+  for (let i = 0; i < firstDay; i++) html += `<div class="cal-day empty"></div>`;
+  for (let d = 1; d <= daysInMonth; d++) {
+    const dk = `${year}-${String(month+1).padStart(2,'0')}-${String(d).padStart(2,'0')}`;
+    let cls = 'cal-day';
+    if (dk === todayStr) { cls += ' today'; if (state.done[dk]) cls += ' done-today'; }
+    else if (dk > todayStr) cls += ' future';
+    else if (state.done[dk]) cls += ' past-done';
+    else cls += ' past-miss';
+    html += `<div class="${cls}" title="${dk}">${d}</div>`;
+  }
+  document.getElementById('calGrid').innerHTML = html;
+}
+
+// ─── THEME ───────────────────────────────────────────────────────────────────
+function toggleTheme() {
+  const root = document.documentElement;
+  const curr = root.getAttribute('data-theme');
+  root.setAttribute('data-theme', curr === 'dark' ? 'light' : 'dark');
+}
+
+// ─── INIT ─────────────────────────────────────────────────────────────────────
+loadState();
+renderLesson();
+</script>
+</body>
+</html>
