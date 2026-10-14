@@ -72,14 +72,14 @@ body{font-family:var(--font);background:var(--paper);color:var(--ink);}
 
 /* ─ 히어로 스트립 ─ */
 .hero{background:var(--navy);border-bottom:1px solid #152A48;padding:24px 20px 20px;}
-.hero-ttl{font-size:.62rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#3A6490;margin-bottom:10px;}
+.hero-ttl{font-size:.72rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#5080A8;margin-bottom:10px;}
 .hero h1{font-size:1.4rem;font-weight:900;color:#D0E4F8;letter-spacing:-.03em;margin-bottom:6px;}
-.hero-sub{font-size:.75rem;color:#4A6888;line-height:1.6;margin-bottom:20px;}
+.hero-sub{font-size:.78rem;color:#7AA8C8;line-height:1.6;margin-bottom:20px;}
 .kpi-row{display:flex;gap:0;border:1px solid #1A3254;border-radius:4px;overflow:hidden;background:#081628;flex-wrap:wrap;}
 .kpi{padding:12px 18px;border-right:1px solid #1A3254;min-width:0;}
 .kpi:last-child{border-right:none;}
 .kpi-v{font-size:1.2rem;font-weight:900;font-variant-numeric:tabular-nums;letter-spacing:-.02em;}
-.kpi-l{font-size:.57rem;font-weight:600;color:#3A5A80;margin-top:2px;white-space:nowrap;}
+.kpi-l{font-size:.68rem;font-weight:600;color:#4A6A90;margin-top:2px;white-space:nowrap;}
 .kv-up{color:#40D078;} .kv-dn{color:#FF7070;} .kv-wn{color:#F0A020;} .kv-nt{color:#90B0D0;}
 @media(max-width:640px){.kpi-row{flex-direction:column;}.kpi{border-right:none;border-bottom:1px solid #1A3254;}}
 
@@ -96,7 +96,7 @@ body{font-family:var(--font);background:var(--paper);color:var(--ink);}
 .sh:first-child{margin-top:0;}
 .sh-label{font-size:.64rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--ink3);}
 .sh::after{content:'';flex:1;height:1px;background:var(--rule);}
-.sh-date{font-size:.61rem;color:var(--ink3);background:var(--surface2);padding:2px 7px;border:1px solid var(--rule);border-radius:3px;}
+.sh-date{font-size:.68rem;color:var(--ink3);background:var(--surface2);padding:2px 7px;border:1px solid var(--rule);border-radius:3px;}
 
 /* ─ 뉴스 카드 그리드 ─ */
 .cards-2{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
@@ -114,7 +114,7 @@ body{font-family:var(--font);background:var(--paper);color:var(--ink);}
 .nc.info::before{background:var(--blue);}
 .nc.neutral::before{background:var(--ink3);}
 
-.nc-cat{font-size:.6rem;font-weight:700;letter-spacing:.07em;text-transform:uppercase;margin-bottom:7px;}
+.nc-cat{font-size:.7rem;font-weight:700;letter-spacing:.07em;text-transform:uppercase;margin-bottom:7px;}
 .nc-cat.up{color:var(--up);} .nc-cat.dn{color:var(--dn);} .nc-cat.warn{color:var(--warn);}
 .nc-cat.info{color:var(--blue);} .nc-cat.neutral{color:var(--ink3);}
 .nc-ttl{font-size:.97rem;font-weight:800;color:var(--ink);line-height:1.35;margin-bottom:10px;letter-spacing:-.02em;}
@@ -126,10 +126,10 @@ body{font-family:var(--font);background:var(--paper);color:var(--ink);}
 .ns-warn{background:var(--warn-lt);color:var(--warn);}
 .ns-info{background:var(--blue-lt);color:var(--blue);}
 .ns-neutral{background:var(--surface2);color:var(--ink3);}
-.nc-src{font-size:.6rem;color:var(--ink3);margin-top:8px;border-top:1px solid var(--rule);padding-top:6px;}
+.nc-src{font-size:.68rem;color:var(--ink3);margin-top:8px;border-top:1px solid var(--rule);padding-top:6px;}
 
 /* ─ 주간 지수 테이블 ─ */
-.idx-table{background:var(--sf);border:1px solid var(--rule);border-radius:8px;overflow:hidden;}
+.idx-table{background:var(--sf);border:1px solid var(--rule);border-radius:8px;overflow-x:auto;-webkit-overflow-scrolling:touch;}
 .idx-table table{width:100%;border-collapse:collapse;font-size:.76rem;}
 .idx-table th{background:var(--surface2);color:var(--ink2);font-weight:700;padding:11px 14px;text-align:left;border-bottom:2px solid var(--rule);}
 .idx-table td{padding:10px 14px;border-bottom:1px solid var(--rule);color:var(--ink2);vertical-align:middle;line-height:1.55;}
@@ -171,6 +171,18 @@ body{font-family:var(--font);background:var(--paper);color:var(--ink);}
 /* 출처 안내 */
 .src-note{font-size:.68rem;color:var(--ink3);border-top:1px solid var(--rule);padding-top:14px;margin-top:36px;line-height:1.75;}
 .src-note b{font-weight:700;color:var(--ink2);}
+
+/* ─ 맨 위로 버튼 ─ */
+.back-top{position:fixed;bottom:24px;right:20px;width:40px;height:40px;border-radius:50%;background:var(--blue);color:#fff;border:none;font-size:1.1rem;cursor:pointer;opacity:0;pointer-events:none;transition:opacity .25s,transform .25s;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 12px rgba(0,0,0,.25);z-index:999;}
+.back-top.visible{opacity:.9;pointer-events:auto;}
+.back-top:hover{opacity:1;transform:translateY(-2px);}
+
+/* ─ 섹션 점프 내비 ─ */
+.sec-nav{background:var(--surface2);border-bottom:1px solid var(--rule);padding:8px 20px;display:flex;gap:8px;flex-wrap:wrap;align-items:center;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;}
+.sec-nav::-webkit-scrollbar{display:none;}
+.sec-nav-label{font-size:.62rem;font-weight:700;color:var(--ink3);white-space:nowrap;margin-right:4px;}
+.sec-nav a{font-size:.66rem;font-weight:600;color:var(--ink2);background:var(--sf);border:1px solid var(--rule);border-radius:4px;padding:3px 9px;text-decoration:none;white-space:nowrap;transition:all .15s;}
+.sec-nav a:hover{background:var(--blue);color:#fff;border-color:var(--blue);}
 </style>
 </head>
 <body>
@@ -181,7 +193,7 @@ body{font-family:var(--font);background:var(--paper);color:var(--ink);}
   <span class="hd-title">최신 동향</span>
   <div class="hd-right">
     <div class="live-dot"></div>
-    <span class="date-badge">2026.10.12 기준</span>
+    <span class="date-badge">2026.10.14 기준</span>
     <button class="theme-btn" onclick="toggleTheme()">🌙 테마</button>
   </div>
 </div>
@@ -201,14 +213,32 @@ body{font-family:var(--font);background:var(--paper);color:var(--ink);}
 </div>
 
 <div class="alert-bar">
-  <b>10.12 핵심</b> — 미 국채 10년물 <b>5.34%</b> 24년 만의 최고치 돌파 · 코스피 <b>-3.65%</b> 급락(6,384pt) · 원달러 <b>1,335원</b> 원화 강세 2년 만의 최저 · 미 CPI 9월 <b>10.14 발표 예정</b>(3.7% 예상) · 10.22 금통위 <b>동결 전망</b>
-  <span class="alert-chip">2026.10.12 업데이트</span>
+  <b>10.14 핵심</b> — 미 9월 CPI <b>3.6%</b> 확정(예상 부합) · 코스피 5거래일 급락 후 <b>10.14 반등</b>(6,062pt) · 원달러 <b>1,341원</b> · 연준 10월 FOMC <b>동결 유력</b> · 10.15(수) 부동산원 88주 발표
+  <span class="alert-chip">2026.10.14 업데이트</span>
 </div>
 
-<div class="main">
+<!-- H-4: 섹션 점프 내비 -->
+<nav class="sec-nav" id="secNav">
+  <span class="sec-nav-label">바로가기</span>
+  <a href="#sec-index">주간 지수</a>
+  <a href="#sec-1014">10.14 이슈</a>
+  <a href="#sec-1012">10.12 이슈</a>
+  <a href="#sec-1008">10.08 이슈</a>
+  <a href="#sec-1001">10.01 이슈</a>
+  <a href="#sec-929">9.29 이슈</a>
+  <a href="#sec-928">9.28 이슈</a>
+  <a href="#sec-923">9.23 이슈</a>
+  <a href="#sec-922">9.22 이슈</a>
+  <a href="#sec-918">연준 인상</a>
+</nav>
+
+<!-- H-4: 맨 위로 버튼 -->
+<button class="back-top" id="backTop" onclick="window.scrollTo({top:0,behavior:'smooth'})" title="맨 위로">↑</button>
+
+<div class="main" id="mainTop">
 
   <!-- 주요 지수 -->
-  <div class="sh"><span class="sh-label">주간 가격지수</span><span class="sh-date">2026.09.03 발표 (9월 1주 공식 · 조사기준 08.25~08.31)</span></div>
+  <div class="sh" id="sec-index"><span class="sh-label">주간 가격지수</span><span class="sh-date">2026.09.03 발표 (9월 1주 공식 · 조사기준 08.25~08.31)</span></div>
   <div class="summary-strip">
     <div class="ss-item">
       <div class="ss-v ss-up">+0.29%</div>
@@ -530,7 +560,7 @@ body{font-family:var(--font);background:var(--paper);color:var(--ink);}
   </div>
 
   <!-- 9.4 신규 뉴스 -->
-  <div class="sh"><span class="sh-label">9월 4일 주요 이슈</span><span class="sh-date">2026.10.12</span></div>
+  <div class="sh"><span class="sh-label">9월 4일 주요 이슈</span><span class="sh-date">2026.10.14</span></div>
   <div class="cards-3" style="margin-bottom:28px;">
     <div class="nc dn">
       <div class="nc-cat dn">풍선효과 · 9.4 확인</div>
@@ -543,7 +573,7 @@ body{font-family:var(--font);background:var(--paper);color:var(--ink);}
         <b>낙폭 추이 (강남구):</b> +0.01% → -0.02% → -0.05% → -0.11% → <b>-0.41%</b> (4주 연속 가속 하락)
       </div>
       <span class="nc-stat ns-dn">강남3구 매물 25,919건 · 서울의 38.3%</span>
-      <div class="nc-src">출처: 서울경제·아시아경제·헤럴드경제 2026.10.12</div>
+      <div class="nc-src">출처: 서울경제·아시아경제·헤럴드경제 2026.10.14</div>
     </div>
     <div class="nc info">
       <div class="nc-cat info">9월 청약 · 분양</div>
@@ -574,7 +604,7 @@ body{font-family:var(--font);background:var(--paper);color:var(--ink);}
   </div>
 
   <!-- 9.6 신규 뉴스 -->
-  <div class="sh"><span class="sh-label">9월 6일 주요 이슈</span><span class="sh-date">2026.10.12</span></div>
+  <div class="sh"><span class="sh-label">9월 6일 주요 이슈</span><span class="sh-date">2026.10.14</span></div>
   <div class="cards-3" style="margin-bottom:28px;">
     <div class="nc up">
       <div class="nc-cat up">강북 중위가 · 역사적 돌파</div>
@@ -613,12 +643,12 @@ body{font-family:var(--font);background:var(--paper);color:var(--ink);}
         <b>일정:</b> 국회 심의 → 12월 본회의 통과 목표 → 2027.1.1 시행 예정.
       </div>
       <span class="nc-stat ns-warn">⚠ 12월 본회의까지 3개월 — 야당 수정안 변수 주시</span>
-      <div class="nc-src">출처: BKL Legal / 신&김 법률사무소 / 기획재정부 2026.10.12</div>
+      <div class="nc-src">출처: BKL Legal / 신&김 법률사무소 / 기획재정부 2026.10.14</div>
     </div>
   </div>
 
   <!-- 9.7 기업형 임대 특집 -->
-  <div class="sh"><span class="sh-label">9월 7일 특집 · 기업형 임대주택</span><span class="sh-date">2026.10.12</span></div>
+  <div class="sh"><span class="sh-label">9월 7일 특집 · 기업형 임대주택</span><span class="sh-date">2026.10.14</span></div>
   <div class="cards-3" style="margin-bottom:28px;">
     <div class="nc info">
       <div class="nc-cat info">기업형 임대 · 세제 혜택</div>
@@ -678,7 +708,7 @@ body{font-family:var(--font);background:var(--paper);color:var(--ink);}
   </div>
 
   <!-- 9.9 신규 뉴스 -->
-  <div class="sh"><span class="sh-label">9월 9일 주요 이슈</span><span class="sh-date">2026.10.12</span></div>
+  <div class="sh"><span class="sh-label">9월 9일 주요 이슈</span><span class="sh-date">2026.10.14</span></div>
   <div class="cards-3" style="margin-bottom:28px;">
     <div class="nc dn">
       <div class="nc-cat dn">9.10 발표 결과 확인 · 강남 낙폭 둔화</div>
@@ -696,7 +726,7 @@ body{font-family:var(--font);background:var(--paper);color:var(--ink);}
         ⑤ 강남 11개구 합산: <b>+0.09%</b>
       </div>
       <span class="nc-stat ns-dn">강남 -0.13% 낙폭 둔화 · 5주 연속 하락 · 강북 강세 지속</span>
-      <div class="nc-src">출처: 한국부동산원 2026.10.12 발표 / 이코노믹포스트 / 조세금융신문</div>
+      <div class="nc-src">출처: 한국부동산원 2026.10.14 발표 / 이코노믹포스트 / 조세금융신문</div>
     </div>
     <div class="nc dn">
       <div class="nc-cat dn">강남 급락 실사례 · 9월</div>
@@ -728,12 +758,12 @@ body{font-family:var(--font);background:var(--paper);color:var(--ink);}
         • 대출 한도 제한 지속 → 강남 고가 주택 투자 수요 위축 계속
       </div>
       <span class="nc-stat ns-info">단기 1,330~1,350원 박스권 · 연준 9월 인상 여부가 변수</span>
-      <div class="nc-src">출처: kgosu.com / KB Think / MBC 2026.10.12</div>
+      <div class="nc-src">출처: kgosu.com / KB Think / MBC 2026.10.14</div>
     </div>
   </div>
 
   <!-- 9.10 공식 발표 결과 -->
-  <div class="sh"><span class="sh-label">9월 10일 — 9월 2주 공식 발표</span><span class="sh-date">2026.10.12 발표 (9.7 기준)</span></div>
+  <div class="sh"><span class="sh-label">9월 10일 — 9월 2주 공식 발표</span><span class="sh-date">2026.10.14 발표 (9.7 기준)</span></div>
   <div class="cards-3" style="margin-bottom:28px;">
     <div class="nc dn">
       <div class="nc-cat dn">9월 2주 핵심 발표 · 강남·서초 하락폭 축소</div>
@@ -746,7 +776,7 @@ body{font-family:var(--font);background:var(--paper);color:var(--ink);}
         <b>송파구</b>는 전주 +0.01% 보합에서 이번 주 하락 전환 여부가 시장 초점이었으며, "하락 전환 초읽기" 단계입니다. <b>강남 11개구 합산 +0.09%</b>로, 강남·서초 하락이 강동·영등포 등의 상승으로 일부 상쇄됐습니다.
       </div>
       <span class="nc-stat ns-dn">강남 5주 연속↓ 낙폭 급축소 · 서초도 축소 · 송파 하락전환 초읽기</span>
-      <div class="nc-src">출처: 한국부동산원 주간아파트가격동향 2026.10.12 발표 / 이코노믹포스트 2026.10.12</div>
+      <div class="nc-src">출처: 한국부동산원 주간아파트가격동향 2026.10.14 발표 / 이코노믹포스트 2026.10.14</div>
     </div>
     <div class="nc up">
       <div class="nc-cat up">9월 2주 · 강북 강세 지속</div>
@@ -764,7 +794,7 @@ body{font-family:var(--font);background:var(--paper);color:var(--ink);}
         강남·서초가 하락하는 와중에 강북의 중저가 실수요가 계속 집중되며 서울 내 양극화가 장기화되는 양상입니다.
       </div>
       <span class="nc-stat ns-up">강북 14개구 +0.36% · 강남↓ 속 서울 전체 플러스 유지</span>
-      <div class="nc-src">출처: 한국부동산원 2026.10.12 발표 / 조세금융신문 / 뉴스후플러스</div>
+      <div class="nc-src">출처: 한국부동산원 2026.10.14 발표 / 조세금융신문 / 뉴스후플러스</div>
     </div>
     <div class="nc warn">
       <div class="nc-cat warn">세법개정안 · 기재위 심의 현황</div>
@@ -782,7 +812,7 @@ body{font-family:var(--font);background:var(--paper);color:var(--ink);}
         ⑤ 공정시장가액비율 인상(2027년 70%) 철회 요구
       </div>
       <span class="nc-stat ns-warn">기재위 배정 완료 · 조세소위 심의 본격화 예고 · 12월 본회의 목표</span>
-      <div class="nc-src">출처: 뉴스핌 2026.09.03 / 법률신문 국회일정 2026.10.12 / 신앤김 법무법인</div>
+      <div class="nc-src">출처: 뉴스핌 2026.09.03 / 법률신문 국회일정 2026.10.14 / 신앤김 법무법인</div>
     </div>
   </div>
   <div class="cards-2" style="margin-bottom:28px;">
@@ -824,12 +854,12 @@ body{font-family:var(--font);background:var(--paper);color:var(--ink);}
         전주 +0.19% 유지 방향. 안양 동안구·수원 등 비규제 권역 강세 지속 예상. 이번 주 세부 수치는 reb.or.kr 공식 확인 요망.
       </div>
       <span class="nc-stat ns-dn">강남 낙폭 축소 · 강북 강세 · 서울 내 양극화 지속 국면</span>
-      <div class="nc-src">출처: 한국부동산원 9월 2주 발표 / 조세금융신문 / 더구루 2026.10.12</div>
+      <div class="nc-src">출처: 한국부동산원 9월 2주 발표 / 조세금융신문 / 더구루 2026.10.14</div>
     </div>
   </div>
 
   <!-- 9.15 신규 뉴스 -->
-  <div class="sh"><span class="sh-label">9월 15일 주요 이슈</span><span class="sh-date">2026.10.12</span></div>
+  <div class="sh"><span class="sh-label">9월 15일 주요 이슈</span><span class="sh-date">2026.10.14</span></div>
   <div class="cards-3" style="margin-bottom:28px;">
     <div class="nc warn">
       <div class="nc-cat warn">이중 이벤트 · 9.17(수)</div>
@@ -846,7 +876,7 @@ body{font-family:var(--font);background:var(--paper);color:var(--ink);}
         이후 추석 연휴(9.17~21)로 5일간 시장 휴식.
       </div>
       <span class="nc-stat ns-warn">⚠ 9.17 연준 인상 + 부동산원 발표 동시 — 연휴 후 시장 변동성 주의</span>
-      <div class="nc-src">출처: CME 페드워치 / 베타뉴스 / 한국부동산원 발표 일정 2026.10.12</div>
+      <div class="nc-src">출처: CME 페드워치 / 베타뉴스 / 한국부동산원 발표 일정 2026.10.14</div>
     </div>
     <div class="nc dn">
       <div class="nc-cat dn">서울 매물 · 37일 급증</div>
@@ -891,7 +921,7 @@ body{font-family:var(--font);background:var(--paper);color:var(--ink);}
   </div>
 
   <!-- 9.16 뉴스 -->
-  <div class="sh"><span class="sh-label">9월 16일 추석 전날 이슈</span><span class="sh-date">2026.10.12</span></div>
+  <div class="sh"><span class="sh-label">9월 16일 추석 전날 이슈</span><span class="sh-date">2026.10.14</span></div>
   <div class="cards-3" style="margin-bottom:28px;">
     <div class="nc warn">
       <div class="nc-cat warn">연준 · 카운트다운</div>
@@ -907,7 +937,7 @@ body{font-family:var(--font);background:var(--paper);color:var(--ink);}
         <b>한국 부동산 파급:</b> 인상 확정 시 → 국고채 금리 추가 상승 → 주담대 금리 고점 재경신 → 강남권 하락 압력 심화. 추석 연휴(9.17~21) 중 결과 공개 → 9.22(화) 시장 재개 시 변동성 주의.
       </div>
       <span class="nc-stat ns-warn">⚠ 연휴 중 결과 공개 — 9.22 시장 재개 시 즉각 반응 예상</span>
-      <div class="nc-src">출처: CME 페드워치 / 베타뉴스 / TokenPost 2026.10.12</div>
+      <div class="nc-src">출처: CME 페드워치 / 베타뉴스 / TokenPost 2026.10.14</div>
     </div>
     <div class="nc dn">
       <div class="nc-cat dn">채권시장 · 사이클 최고</div>
@@ -948,7 +978,7 @@ body{font-family:var(--font);background:var(--paper);color:var(--ink);}
   </div>
 
   <!-- ★ 9.17 9월 3주 공식 발표 결과 ★ -->
-  <div class="sh"><span class="sh-label">9월 17일 — 9월 3주 공식 발표 결과 (9.14 기준)</span><span class="sh-date">2026.10.12 발표 · 오늘 확정 수치</span></div>
+  <div class="sh"><span class="sh-label">9월 17일 — 9월 3주 공식 발표 결과 (9.14 기준)</span><span class="sh-date">2026.10.14 발표 · 오늘 확정 수치</span></div>
   <div class="cards-3" style="margin-bottom:12px;">
     <div class="nc dn">
       <div class="nc-cat dn">9월 3주 핵심 수치 · 강남3구 동반 하락 재확대</div>
@@ -962,7 +992,7 @@ body{font-family:var(--font);background:var(--paper);color:var(--ink);}
         <b>서울 전체:</b> <b>+0.16%</b> (전주 +0.20%에서 상승폭 3주 연속 축소). 전국 <b>+0.08%</b>. 수도권 <b>+0.15%</b>. 서울 <b>84주 연속 상승</b> — 역대 최장 기록(85주, 2020.6~2022.1)까지 단 1주 남음.
       </div>
       <span class="nc-stat ns-dn">강남3구 동반 하락 · 낙폭 재확대 · 서울 +0.16% 84주 연속</span>
-      <div class="nc-src">출처: 한국부동산원 주간아파트가격동향 2026.10.12 발표 / 세계일보 / 머니투데이</div>
+      <div class="nc-src">출처: 한국부동산원 주간아파트가격동향 2026.10.14 발표 / 세계일보 / 머니투데이</div>
     </div>
     <div class="nc up">
       <div class="nc-cat up">9월 3주 · 강북 구별 상세 수치</div>
@@ -980,7 +1010,7 @@ body{font-family:var(--font);background:var(--paper);color:var(--ink);}
         강남3구 동반 하락에도 불구하고 강북 저가 실수요가 서울 전체 평균을 플러스로 유지시키는 구조. 성북구는 올해에만 누적 14% 상승.
       </div>
       <span class="nc-stat ns-up">중랑 +0.51% 서울 최고 · 강북 실수요 강세 지속</span>
-      <div class="nc-src">출처: 한국부동산원 / 머니투데이 / 세계일보 2026.10.12</div>
+      <div class="nc-src">출처: 한국부동산원 / 머니투데이 / 세계일보 2026.10.14</div>
     </div>
     <div class="nc warn">
       <div class="nc-cat warn">9월 3주 · 수도권 및 지방 수치</div>
@@ -1000,7 +1030,7 @@ body{font-family:var(--font);background:var(--paper);color:var(--ink);}
         수도권은 전반 상승, 지방은 지역별 양극화 심화.
       </div>
       <span class="nc-stat ns-warn">경기 +0.18% · 지방 양극화 지속 · 제주·충남 하락</span>
-      <div class="nc-src">출처: 한국부동산원 2026.10.12 발표 / 세계일보</div>
+      <div class="nc-src">출처: 한국부동산원 2026.10.14 발표 / 세계일보</div>
     </div>
   </div>
   <div class="cards-2" style="margin-bottom:12px;">
@@ -1015,7 +1045,7 @@ body{font-family:var(--font);background:var(--paper);color:var(--ink);}
         추석 연휴(9.17~21)로 인해 다음 발표는 <b>9월 24일(수)</b>이 아닌 <b>10월 1일(수)</b>로 밀릴 가능성이 있습니다.
       </div>
       <span class="nc-stat ns-warn">84주 연속 · 역대 최장까지 1주 — 다음 발표 예의주시</span>
-      <div class="nc-src">출처: 머니투데이 / 세계일보 / 헤럴드경제 2026.10.12</div>
+      <div class="nc-src">출처: 머니투데이 / 세계일보 / 헤럴드경제 2026.10.14</div>
     </div>
     <div class="nc warn">
       <div class="nc-cat warn">미 연준 FOMC · 금리 결정 D-Day</div>
@@ -1039,7 +1069,7 @@ body{font-family:var(--font);background:var(--paper);color:var(--ink);}
   </div>
 
   <!-- 9.18 연준 결과 -->
-  <div class="sh"><span class="sh-label">9월 18일 — 미 연준 25bp 인상 확정 (워시 시대 첫 인상)</span><span class="sh-date">2026.09.18 새벽 3시 발표</span></div>
+  <div class="sh" id="sec-918"><span class="sh-label">9월 18일 — 미 연준 25bp 인상 확정 (워시 시대 첫 인상)</span><span class="sh-date">2026.09.18 새벽 3시 발표</span></div>
   <div class="cards-3" style="margin-bottom:28px;">
     <div class="nc dn">
       <div class="nc-cat dn">연준 · 만장일치 인상</div>
@@ -1087,7 +1117,7 @@ body{font-family:var(--font);background:var(--paper);color:var(--ink);}
         <b>한·미 금리차:</b> 미국 4.00% - 한국 3.00% = <b>1.00%p 역전 확대</b>. 한국은행 <b>11월 추가 인상</b> 가능성 급부상.
       </div>
       <span class="nc-stat ns-dn">원화 약세·채권 약세·주담대 상승 3중고 — 10월 부동산 냉각 압력</span>
-      <div class="nc-src">출처: KB의 생각 / 머니투데이 / 한국경제 2026.10.12</div>
+      <div class="nc-src">출처: KB의 생각 / 머니투데이 / 한국경제 2026.10.14</div>
     </div>
   </div>
 
@@ -1148,8 +1178,55 @@ body{font-family:var(--font);background:var(--paper);color:var(--ink);}
     </div>
   </div>
 
+  <!-- 10.14 미 9월 CPI 3.6% 확정 · 코스피 5거래일 급락 후 반등 · 원달러 1,341원 · 10.15 부동산원 발표 -->
+  <div class="sh" id="sec-1014"><span class="sh-label">10월 14일 — 미 CPI 3.6% 확정 · 코스피 5거래일 급락 후 반등(6,062pt) · 원달러 1,341원 · 10.15 부동산원 88주 발표 예정</span><span class="sh-date">2026.10.14</span></div>
+  <div class="cards-3" style="margin-bottom:28px;">
+    <div class="nc up">
+      <div class="nc-cat up">미국 물가 · 10.14 확정</div>
+      <div class="nc-ttl">미 9월 CPI 3.6% 확정 — 예상 부합, 연준 10월 FOMC 동결 유력</div>
+      <div class="nc-body">
+        미국 노동부가 9월 소비자물가지수(CPI)를 발표했습니다. 헤드라인 전년비 <b>3.6%</b>, 전월비 <b>+0.6%</b>. 예상 범위(3.6~3.7%) 내 발표.
+        <br><br>
+        <b>상승 주요인:</b> 9월 에너지 가격 급등(휘발유 +5%대). 근원(Core) CPI는 전년비 <b>2.5%</b>로 예상(2.4%)을 소폭 상회 — "troubling core CPI"(UOB 그룹 표현).<br><br>
+        <b>연준 영향:</b> 10월 28일 FOMC 인상 확률 약 22%, 동결 약 78%. 전반적으로 큰 충격 없이 소화. 11월·12월 경계심은 유지. 한국 금통위(10.22)도 동결 유력.
+      </div>
+      <span class="nc-stat ns-up">★ CPI 3.6% 예상 부합 — 시장 충격 없이 소화, 동결 유력 확인</span>
+      <div class="nc-src">출처: Investing.com · Cleveland Fed · FXStreet · 뉴스핌 2026.10.14</div>
+    </div>
+    <div class="nc dn">
+      <div class="nc-cat dn">국내 증시 · 5거래일 급락 후 반등</div>
+      <div class="nc-ttl">코스피 5거래일 연속 968p 급락 — 10.14 6,062pt 소폭 반등 시도</div>
+      <div class="nc-body">
+        10.08(목) 6,625→10.13 6,035까지 5거래일간 <b>-968pt(-13.8%)</b> 급락. 2019년 이후 최대 낙폭.
+        <br><br>
+        <b>하락 3대 원인:</b><br>
+        · 미 국채 5.3~5.34% 고공 — 위험자산 전반 조정<br>
+        · 중국 CXMT 메모리 덤핑 우려 — 삼성전자 -7.4%, SK하이닉스 -10.1%<br>
+        · 외국인 4.5조원 순매도 (AI 수익성 논란 겹침)<br><br>
+        10.14 코스피 6,062pt (+0.44%) 소폭 반등 출발. CPI 발표 후 선물 하락 전환 가능성은 잔존. 10.15 장에서 방향 재결정.
+      </div>
+      <span class="nc-stat ns-dn">▼ 누적 -968pt(-13.8%) 5거래일 — 단기 반등 시도, 추세 전환 여부 미확인</span>
+      <div class="nc-src">출처: 아시아경제·머니투데이·News1 2026.10.14</div>
+    </div>
+    <div class="nc warn">
+      <div class="nc-cat warn">10.15 이벤트 · 내일이 핵심</div>
+      <div class="nc-ttl">10.15(수) 부동산원 10월 2주 발표 — 서울 88주 연속 상승 경신 예상</div>
+      <div class="nc-body">
+        내일 10월 15일(수) 한국부동산원이 10월 2주 주간 아파트 가격 동향을 발표합니다. 서울 <b>88주 연속 상승</b> 경신 여부와 강남 낙폭 방향이 초점.
+        <br><br>
+        <b>전망 시나리오:</b><br>
+        · 서울 전체: 비강남권 강세 지속으로 88주 연속 상승 유력<br>
+        · 강남3구: 낙폭 지속(–0.3%대)  or 축소(–0.2%대) 여부 주목<br>
+        · 매물: 서초 +19%, 송파 +18.6%, 강남 +16.7% 급증 — 하방 압력 지속<br><br>
+        원달러 <b>1,341원</b>대 (10.12 1,335원 → 10.14 1,341원 소폭 상승). 코스피 급락 여파로 외자이탈 영향.
+      </div>
+      <span class="nc-stat ns-warn">★ 10.15 발표 — 88주 신기록 & 강남 낙폭 방향이 핵심 확인 포인트</span>
+      <div class="nc-src">출처: 머니투데이·아시아경제·파이낸셜뉴스 2026.10.14</div>
+    </div>
+  </div>
+
   <!-- 10.12 미 국채 5.34% 24년 만의 최고치 · 코스피 -3.65% 급락 · 원달러 1,335원 · 미 CPI 14일 대기 -->
-  <div class="sh"><span class="sh-label">10월 12일 — 미 국채 5.34% 24년 만의 최고치 · 코스피 -3.65% 급락 · 원달러 1,335원 원화 강세</span><span class="sh-date">2026.10.12</span></div>
+  <div class="sh" id="sec-1012"><span class="sh-label">10월 12일 — 미 국채 5.34% 24년 만의 최고치 · 코스피 -3.65% 급락 · 원달러 1,335원 원화 강세</span><span class="sh-date">2026.10.12</span></div>
   <div class="cards-3" style="margin-bottom:28px;">
     <div class="nc dn">
       <div class="nc-cat dn">글로벌 금융시장 · 10.12 쇼크</div>
@@ -1164,7 +1241,7 @@ body{font-family:var(--font);background:var(--paper);color:var(--ink);}
         <b>부동산 파급:</b> 미 국채 급등 → 한국 국고채 동반 상승 → 주담대 고정금리 상승 압력. 매수심리 추가 위축 가능. 10.15 부동산원 10월 2주 발표에서 88주 신기록 경신 여부 주목.
       </div>
       <span class="nc-stat ns-dn">▼ 코스피 -3.65% · 미 국채 5.34% — 24년 만의 최고치, 채권·주식 동반 급락</span>
-      <div class="nc-src">출처: 글로벌이코노믹·한국투자증권·이투데이 2026.10.12</div>
+      <div class="nc-src">출처: 글로벌이코노믹·한국투자증권·이투데이 2026.10.14</div>
     </div>
     <div class="nc info">
       <div class="nc-cat info">외환시장 · 원화 강세 역설</div>
@@ -1179,7 +1256,7 @@ body{font-family:var(--font);background:var(--paper);color:var(--ink);}
         <b>부동산 의미:</b> 원화 강세 → 수입물가 안정 → 국내 인플레 완화 → 금리 인상 압력 감소. 단, 수출기업 실적 부담으로 경기 불확실성 잔존. 전반적으로 중립~소폭 긍정적.
       </div>
       <span class="nc-stat ns-info">▲ 원달러 1,335원 · 2년 만의 최저 — 코스피 급락에도 원화 강세 역설</span>
-      <div class="nc-src">출처: 이투데이·씨티은행 환율·한국은행 2026.10.12</div>
+      <div class="nc-src">출처: 이투데이·씨티은행 환율·한국은행 2026.10.14</div>
     </div>
     <div class="nc warn">
       <div class="nc-cat warn">미국 물가 · 14일 발표 대기</div>
@@ -1195,12 +1272,12 @@ body{font-family:var(--font);background:var(--paper);color:var(--ink);}
         <b>한국 직결:</b> 10.14 CPI 결과 → 10.22 한은 금통위 결정에 연쇄 영향.
       </div>
       <span class="nc-stat ns-warn">★ CPI 3.7% 예상 — 14일 발표 결과가 10.22 금통위 방향을 결정</span>
-      <div class="nc-src">출처: 뉴스웨이·아시아경제·블록미디어 2026.10.12</div>
+      <div class="nc-src">출처: 뉴스웨이·아시아경제·블록미디어 2026.10.14</div>
     </div>
   </div>
 
   <!-- 10.08 부동산원 10월 1주 공식 발표 — 87주 신기록 연장 / 삼성전자 사상 최대 실적 -->
-  <div class="sh"><span class="sh-label">10월 8일 — 10월 1주 공식 발표 · 서울 87주 신기록 연장 · 삼성전자 3Q 사상 최대 실적</span><span class="sh-date">2026.10.08</span></div>
+  <div class="sh" id="sec-1008"><span class="sh-label">10월 8일 — 10월 1주 공식 발표 · 서울 87주 신기록 연장 · 삼성전자 3Q 사상 최대 실적</span><span class="sh-date">2026.10.08</span></div>
   <div class="cards-3" style="margin-bottom:28px;">
     <div class="nc up">
       <div class="nc-cat up">부동산원 10.8 공식 발표 · 87주 신기록 연장</div>
@@ -1213,7 +1290,7 @@ body{font-family:var(--font);background:var(--paper);color:var(--ink);}
         외곽: 서대문 <b>+0.36%</b>(서울 최상위), 강북 +0.35%, 금천 +0.34%, 관악 +0.33%, 도봉 +0.32%. 노·도·강·금·관 등 저가 외곽이 지수 유지. 서울 전세가격도 <b>87주 연속 상승</b> 지속.
       </div>
       <span class="nc-stat ns-up">▲ 87주 신기록 — 강남↓ + 외곽↑ 양극화 9주째</span>
-      <div class="nc-src">출처: 한국부동산원 주간 아파트 가격동향 2026.10.12 발표 (10월 1주 · 10.5 기준)</div>
+      <div class="nc-src">출처: 한국부동산원 주간 아파트 가격동향 2026.10.14 발표 (10월 1주 · 10.5 기준)</div>
     </div>
     <div class="nc warn">
       <div class="nc-cat warn">삼성전자 3Q 잠정실적 · 10.8 발표</div>
@@ -1226,7 +1303,7 @@ body{font-family:var(--font);background:var(--paper);color:var(--ink);}
         <b>부동산 연계:</b> 삼성·SK하이닉스 임직원 성과급 증가 → 강남 수요 모멘텀. 그러나 현재 강남은 9주 연속 하락 중 — 금리·세제 부담이 실적 호재를 압도하는 상황. 반등 계기보단 <b>"하락 속도 조절"</b> 역할 기대.
       </div>
       <span class="nc-stat ns-warn">★ 삼성 사상 최대 실적 — 강남 하락 속도 조절 기대</span>
-      <div class="nc-src">출처: 삼성전자 IR · 머니투데이 2026.10.12</div>
+      <div class="nc-src">출처: 삼성전자 IR · 머니투데이 2026.10.14</div>
     </div>
     <div class="nc info">
       <div class="nc-cat info">환율·금통위 전망 · 시장 안정</div>
@@ -1239,12 +1316,12 @@ body{font-family:var(--font);background:var(--paper);color:var(--ink);}
         <b>부동산 영향:</b> 금리 동결 → 주담대 금리 현 수준 유지 → 추가 악화 없음. 단, 3.00% 자체가 역대 최고 수준이므로 "동결 = 매수 신호"로 해석하기는 어려움.
       </div>
       <span class="nc-stat ns-info">▲ 원화 강세 + 금통위 동결 유력 — 단기 숨 고르기</span>
-      <div class="nc-src">출처: 이투데이·씨티은행 환율 2026.10.12</div>
+      <div class="nc-src">출처: 이투데이·씨티은행 환율 2026.10.14</div>
     </div>
   </div>
 
   <!-- 10.01 부동산원 9월 4주 공식 발표 — 86주 역대 최장 신기록 -->
-  <div class="sh"><span class="sh-label">10월 1일 — 9월 4주 공식 발표 · 서울 86주 연속 상승 역대 최장 신기록 · 미 국채 5.3% 돌파</span><span class="sh-date">2026.10.01</span></div>
+  <div class="sh" id="sec-1001"><span class="sh-label">10월 1일 — 9월 4주 공식 발표 · 서울 86주 연속 상승 역대 최장 신기록 · 미 국채 5.3% 돌파</span><span class="sh-date">2026.10.01</span></div>
   <div class="cards-3" style="margin-bottom:28px;">
     <div class="nc up">
       <div class="nc-cat up">역대 최장 신기록 · 부동산원 10.1 공식 발표</div>
@@ -1257,7 +1334,7 @@ body{font-family:var(--font);background:var(--paper);color:var(--ink);}
         서울 전체 상승폭은 전주 +0.16%에서 <b>+0.13%로 둔화</b>. 경기 +0.17%, 전국 +0.09%. 서울 전세가격도 <b>86주 연속 상승</b>(누적 +11.96%).
       </div>
       <span class="nc-stat ns-up">▲ 86주 신기록 — 실체는 강남↓ + 외곽↑ 양극화</span>
-      <div class="nc-src">출처: 한국부동산원 주간 아파트 가격동향 2026.10.12 발표 (9월 4주 · 9.21 기준)</div>
+      <div class="nc-src">출처: 한국부동산원 주간 아파트 가격동향 2026.10.14 발표 (9월 4주 · 9.21 기준)</div>
     </div>
     <div class="nc dn">
       <div class="nc-cat dn">글로벌 충격 · 미 국채 금리 2002년 이후 최고</div>
@@ -1270,7 +1347,7 @@ body{font-family:var(--font);background:var(--paper);color:var(--ink);}
         <b>부동산 직격:</b> 주담대 금리가 연동하는 5년물·10년물 국채금리 상승 → 대출한도 축소, 월 상환액 증가 → 매수 여력 추가 감소. 강남 하락 가속 우려.
       </div>
       <span class="nc-stat ns-dn">▼ 미 국채 24년 만에 최고 — 주담대 추가 상승 경고</span>
-      <div class="nc-src">출처: 머니투데이·파이낸셜뉴스 2026.10.12 보도</div>
+      <div class="nc-src">출처: 머니투데이·파이낸셜뉴스 2026.10.14 보도</div>
     </div>
     <div class="nc info">
       <div class="nc-cat info">글로벌 기술주 · 마이크론 FY2026 Q4 실적</div>
@@ -1283,12 +1360,12 @@ body{font-family:var(--font);background:var(--paper);color:var(--ink);}
         <b>부동산 연계:</b> 반도체 슈퍼사이클 → 삼성·SK 실적 기대 → 강남 전문직 소득 상승 모멘텀. 단, 미 국채 금리 급등이 기술주 상승 효과를 상쇄 중.
       </div>
       <span class="nc-stat ns-info">★ 마이크론 사상 최대 — HBM 완판, FY27 수급 타이트</span>
-      <div class="nc-src">출처: 머니투데이·뉴데일리 2026.10.12 보도</div>
+      <div class="nc-src">출처: 머니투데이·뉴데일리 2026.10.14 보도</div>
     </div>
   </div>
 
   <!-- 9.29 채권 패닉 진정 — 정부 개입 / 85주 연속 상승 -->
-  <div class="sh"><span class="sh-label">9월 29일 — 채권 패닉 1차 진정 · 정부 긴급 바이백 · 서울 85주 연속 상승 역대 최장</span><span class="sh-date">2026.09.29</span></div>
+  <div class="sh" id="sec-929"><span class="sh-label">9월 29일 — 채권 패닉 1차 진정 · 정부 긴급 바이백 · 서울 85주 연속 상승 역대 최장</span><span class="sh-date">2026.09.29</span></div>
   <div class="cards-3" style="margin-bottom:28px;">
     <div class="nc up">
       <div class="nc-cat up">코스피 · 패닉 진정</div>
@@ -1308,7 +1385,7 @@ body{font-family:var(--font);background:var(--paper);color:var(--ink);}
   </div>
 
   <!-- 9.28 추석 후 첫 거래일 — 채권 패닉 -->
-  <div class="sh"><span class="sh-label">9월 28일 — 추석 후 첫 거래일 · 코스피 7,000선 붕괴 · 채권 패닉</span><span class="sh-date">2026.09.28</span></div>
+  <div class="sh" id="sec-928"><span class="sh-label">9월 28일 — 추석 후 첫 거래일 · 코스피 7,000선 붕괴 · 채권 패닉</span><span class="sh-date">2026.09.28</span></div>
   <div class="cards-3" style="margin-bottom:28px;">
     <div class="nc dn">
       <div class="nc-cat dn">코스피 · 7,000선 붕괴</div>
@@ -1328,7 +1405,7 @@ body{font-family:var(--font);background:var(--paper);color:var(--ink);}
   </div>
 
   <!-- 9.23 추석 전 마지막 거래일 -->
-  <div class="sh"><span class="sh-label">9월 23일 — 추석 전 마지막 거래일 · 반도체 강세 · 거래절벽 극심</span><span class="sh-date">2026.09.23</span></div>
+  <div class="sh" id="sec-923"><span class="sh-label">9월 23일 — 추석 전 마지막 거래일 · 반도체 강세 · 거래절벽 극심</span><span class="sh-date">2026.09.23</span></div>
   <div class="cards-3" style="margin-bottom:28px;">
     <div class="nc up">
       <div class="nc-cat up">코스피 · 반도체 강세</div>
@@ -1348,7 +1425,7 @@ body{font-family:var(--font);background:var(--paper);color:var(--ink);}
   </div>
 
   <!-- 9.22 연준 충격 이후 역설적 반등 -->
-  <div class="sh"><span class="sh-label">9월 22일 — 연준 충격 역설적 흡수 · 코스피 급반등 · 추석 전 마지막 거래주</span><span class="sh-date">2026.09.22</span></div>
+  <div class="sh" id="sec-922"><span class="sh-label">9월 22일 — 연준 충격 역설적 흡수 · 코스피 급반등 · 추석 전 마지막 거래주</span><span class="sh-date">2026.09.22</span></div>
   <div class="cards-3" style="margin-bottom:28px;">
     <div class="nc up">
       <div class="nc-cat up">코스피 · 역설적 반등</div>
@@ -1467,7 +1544,7 @@ body{font-family:var(--font);background:var(--paper);color:var(--ink);}
         <div class="tl-body">부동산 매수 전 반드시 <b>등기부등본</b>을 열람해야 합니다. 등기부는 ① <b>표제부</b>(소재지·면적), ② <b>갑구</b>(소유권 변동·압류·가등기), ③ <b>을구</b>(근저당·전세권 등 담보물권)로 구성됩니다. 체크포인트: 을구 근저당 설정액이 매매가의 60% 이상이면 위험 신호, 갑구에 가압류·압류가 있으면 매수 재고, 가등기가 있으면 소유권 이전 후 번복 가능성 있음. 인터넷등기소에서 700원에 열람 가능합니다.</div>
       </div>
       <div class="tl-item">
-        <div class="tl-date">핵심 개념 ⑧ — 2026.10.12 최신 업데이트</div>
+        <div class="tl-date">핵심 개념 ⑧ — 2026.10.14 최신 업데이트</div>
         <div class="tl-ttl">9월 2주 강남 -0.13% 낙폭 급둔화 — 반등인가, 일시적 숨고르기인가?</div>
         <div class="tl-body">9월 2주(9.7기준) 강남구가 -0.13%(전주 -0.41%)로 낙폭이 대폭 축소됐습니다. 이는 두 가지로 해석됩니다. <b>숨고르기 해석:</b> 세법개정안이 정기국회에 제출(9.3)되면서 불확실성이 일부 해소, 급매물이 단기에 대거 소화된 후 시장이 잠시 관망하는 국면. <b>반등 조짐 해석:</b> 실거주 1주택 우대 확정 + 압구정·대치 재건축 기대감이 살아있어 낙폭 줄어들기 시작. <b>핵심 변수:</b> 12월 본회의 통과 전 기재위에서 내용이 얼마나 바뀌느냐가 다음 달 강남 방향을 결정합니다. 단기적으로 강남 -0.05~-0.15% 박스권, 강북 +0.30~0.40% 강세 지속 전망. 강남·서초 동반 5주 연속 하락에도 서울 전체는 강북이 지지하는 구조 계속.
         </div>
@@ -1481,7 +1558,7 @@ body{font-family:var(--font);background:var(--paper);color:var(--ink);}
   </div>
 
   <div class="src-note">
-    <b>데이터 출처</b> — 한국부동산원 주간 아파트 가격동향(2026.10.12 발표, 9월 2주 기준 9.7) · 이코노믹포스트·조세금융신문·뉴스후플러스(9월 2주 지역별 수치) · 한국은행 금통위(기준금리 3.00%, 8.27 인상 확정) · 국토교통부 주택통계(미분양 6.7만, 2026.06) · 기획재정부·뉴스핌(세법 개정안 정기국회 2026.09.03 제출) · 포스코이앤씨·이데일리(아크메르 동탄 청약 정보) · 2026.10.12 업데이트<br>
+    <b>데이터 출처</b> — 한국부동산원 주간 아파트 가격동향(2026.10.14 발표, 9월 2주 기준 9.7) · 이코노믹포스트·조세금융신문·뉴스후플러스(9월 2주 지역별 수치) · 한국은행 금통위(기준금리 3.00%, 8.27 인상 확정) · 국토교통부 주택통계(미분양 6.7만, 2026.06) · 기획재정부·뉴스핌(세법 개정안 정기국회 2026.09.03 제출) · 포스코이앤씨·이데일리(아크메르 동탄 청약 정보) · 2026.10.14 업데이트<br>
     ※ 9월 2주 지역별 구체 수치는 뉴스 보도 기반이며, 확정 공식 원문은 reb.or.kr 보도자료에서 직접 확인을 권장합니다.<br>
     투자 목적이 아닌 학습용 자료입니다. 실제 부동산 거래는 공인중개사·세무사와 상담하세요.
   </div>
@@ -1501,6 +1578,17 @@ function toggleTheme(){
   localStorage.setItem('buridge-theme', next);
   document.querySelector('.theme-btn').textContent = next === 'dark' ? '☀️ 테마' : '🌙 테마';
 }
+// H-4: 맨 위로 버튼 스크롤 이벤트
+window.addEventListener('scroll', function() {
+  const btn = document.getElementById('backTop');
+  if (btn) btn.classList.toggle('visible', window.scrollY > 400);
+});
+// L-3: 테마 버튼 초기 텍스트 동기화
+(function() {
+  const saved = localStorage.getItem('buridge-theme');
+  const btn = document.querySelector('.theme-btn');
+  if (btn && saved === 'dark') btn.textContent = '☀️ 테마';
+})();
 </script>
 </body>
 </html>
