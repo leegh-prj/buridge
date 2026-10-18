@@ -262,6 +262,23 @@ footer a{color:var(--accent);text-decoration:none;}
 .warn-score{background:var(--gold-lt);border:1.5px solid var(--gold-bd);border-radius:8px;padding:10px 14px;font-size:11px;line-height:1.6;margin-top:10px;display:flex;gap:8px;align-items:flex-start;}
 .warn-score b{color:var(--gold);}
 
+/* REC RECOMMENDATION */
+.rec-sp-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:16px;}
+@media(max-width:520px){.rec-sp-grid{grid-template-columns:repeat(2,1fr);}}
+.rec-prob-row{display:flex;align-items:center;gap:16px;flex-wrap:wrap;}
+.rec-prob-big{text-align:center;min-width:90px;}
+.rec-prob-detail{flex:1;min-width:160px;}
+.rec-input-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:14px;}
+@media(max-width:560px){.rec-input-grid{grid-template-columns:1fr;}}
+.rec-field-input{background:var(--surface2);border:1.5px solid var(--border2);border-radius:8px;padding:9px 12px;font-size:14px;color:var(--t1);width:100%;outline:none;transition:border-color .15s;}
+.rec-field-input:focus{border-color:var(--accent);}
+.rec-card{border-radius:var(--r);padding:14px;margin-bottom:10px;}
+.rec-card-head{display:flex;align-items:center;gap:8px;margin-bottom:8px;flex-wrap:wrap;}
+.rec-badge{font-size:10px;font-weight:800;padding:2px 8px;border-radius:4px;color:#fff;}
+.rec-badge-type{font-size:9px;font-weight:700;padding:1px 6px;border-radius:3px;color:#fff;margin-left:auto;white-space:nowrap;}
+.rec-card-desc{font-size:12px;color:var(--t2);line-height:1.6;margin-bottom:8px;}
+.rec-card-action{font-size:11px;font-weight:700;background:rgba(0,0,0,.04);padding:7px 10px;border-radius:6px;}
+
 </style>
 </head>
 <body>
@@ -286,9 +303,10 @@ footer a{color:var(--accent);text-decoration:none;}
   <p class="sub">가점 계산기 · 공고문 분석법 · 특별공급 자격 진단<br>청약에 관한 모든 것을 한 곳에서</p>
   <div class="badge-row">
     <span class="badge">실시간 가점 계산기</span>
+    <span class="badge">맞춤 청약 추천</span>
     <span class="badge">청약공고문 읽는 법</span>
-    <span class="badge">특별공급 6종 자격 진단</span>
-    <span class="badge">지역별 당첨 가능 점수</span>
+    <span class="badge">특별공급 자격 진단</span>
+    <span class="badge">커트라인 기반 당첨 확률</span>
   </div>
 </div>
 
@@ -374,6 +392,87 @@ footer a{color:var(--accent);text-decoration:none;}
   <div class="warn-score">
     <span style="font-size:16px;flex-shrink:0;">⚠️</span>
     <div><b>이 계산기는 참고용입니다.</b> 실제 청약 가점은 공고문 자격 요건·세대 구성·무주택 인정 기준에 따라 달라질 수 있으며, 본 계산 결과와 차이가 날 수 있습니다. 공식 가점은 반드시 <b>청약홈(applyhome.co.kr) → 청약가점 계산</b>에서 확인하세요. 잘못된 가점으로 청약 신청 시 당첨 취소 및 불이익이 발생할 수 있습니다.</div>
+  </div>
+</div>
+
+<!-- ══ 맞춤 청약 추천 계산기 ══ -->
+<div class="card" id="rec-section">
+  <div class="sec-title"><span class="chip" style="background:var(--purple);">추천</span> 내 조건 맞춤 청약 추천 — 실제 커트라인 기준</div>
+
+  <div class="info-box">
+    위 <b>가점 계산기 결과를 자동 반영</b>합니다. 아래 조건을 입력하면 2024~2026년 <b>실제 당첨 커트라인 데이터</b>를 기반으로 특별공급 자격·당첨 가능성·맞춤 전략을 순위별로 추천합니다.
+  </div>
+
+  <div class="rec-input-grid">
+    <div class="field">
+      <label>무주택 여부</label>
+      <select id="r-homeless" class="rec-field-input" onchange="calcRec()">
+        <option value="yes">세대원 전원 무주택</option>
+        <option value="no">1주택 보유 중</option>
+      </select>
+    </div>
+    <div class="field">
+      <label>혼인 상태</label>
+      <select id="r-marriage" class="rec-field-input" onchange="calcRec()">
+        <option value="single">미혼</option>
+        <option value="married-7" selected>기혼 7년 이내</option>
+        <option value="married-old">기혼 7년 초과</option>
+      </select>
+    </div>
+    <div class="field">
+      <label>미성년 자녀 수</label>
+      <select id="r-children" class="rec-field-input" onchange="calcRec()">
+        <option value="0">없음</option>
+        <option value="1">1명</option>
+        <option value="2">2명</option>
+        <option value="3">3명 이상</option>
+      </select>
+    </div>
+    <div class="field">
+      <label>만 나이</label>
+      <input type="number" id="r-age" class="rec-field-input" value="35" min="19" max="70" oninput="calcRec()">
+      <div class="fhint">청년 특공(19~39세) 자격 확인에 사용</div>
+    </div>
+    <div class="field">
+      <label>월 소득 <span style="font-weight:400;color:var(--t3);">(만원, 가구 합산 세전)</span></label>
+      <input type="number" id="r-income" class="rec-field-input" placeholder="예: 600 (600만원)" oninput="calcRec()">
+      <div class="fhint">미입력 시 소득 조건 생략하고 계산</div>
+    </div>
+    <div class="field">
+      <label>5년 이상 소득세 납부 여부</label>
+      <select id="r-incometax" class="rec-field-input" onchange="calcRec()">
+        <option value="yes">예 (근로·사업소득세 5년+)</option>
+        <option value="no">아니오 / 모름</option>
+      </select>
+      <div class="fhint">생애최초 특공 핵심 조건</div>
+    </div>
+    <div class="field">
+      <label>희망 지역</label>
+      <select id="r-region" class="rec-field-input" onchange="calcRec()">
+        <option value="gangnam">서울 강남권 (강남·서초·송파)</option>
+        <option value="seoul-hot">서울 준인기 (마포·용산·성동·광진·동작 등)</option>
+        <option value="seoul-gen">서울 일반 (강북·노원·도봉·중랑 등)</option>
+        <option value="gyeonggi-hot">경기 인기 (과천·하남·광명·분당·판교)</option>
+        <option value="gyeonggi-gen">경기 일반 (용인·수원·화성·남양주 등)</option>
+        <option value="incheon">인천 (검단·송도·청라 등)</option>
+        <option value="metro-city">지방 광역시 (부산·대구·광주·대전·울산)</option>
+        <option value="local">기타 지방</option>
+      </select>
+    </div>
+    <div class="field">
+      <label>희망 면적</label>
+      <select id="r-size" class="rec-field-input" onchange="calcRec()">
+        <option value="small">59㎡ 이하 (소형)</option>
+        <option value="mid" selected>59~85㎡ (국민평형)</option>
+        <option value="large">85㎡ 초과 (대형 — 100% 가점제)</option>
+      </select>
+      <div class="fhint">대형은 100% 가점제 적용 — 고가점 유리</div>
+    </div>
+  </div>
+
+  <!-- 결과 영역 -->
+  <div id="rec-result">
+    <div style="text-align:center;padding:28px;color:var(--t3);font-size:13px;background:var(--surface2);border-radius:var(--r);border:1.5px dashed var(--border2);">위 조건을 입력하면 맞춤 추천 결과가 나타납니다</div>
   </div>
 </div>
 
@@ -1033,6 +1132,7 @@ function calcScore(){
       <div class="sb-stag">📋 ${gi.grade} 맞춤 전략</div>
       <div class="sb-content">${gi.strategy}</div>
     </div>`;
+  calcRec();
 }
 
 calcScore();
@@ -1128,6 +1228,162 @@ function ftRow(color, tag, title, desc, amt){
   const C={red:'background:var(--red);color:#fff;',orange:'background:var(--orange-bd);color:#fff;',accent:'background:var(--accent);color:#fff;',green:'background:var(--green);color:#fff;'};
   const A={red:'color:var(--red);',orange:'color:var(--orange);',accent:'color:var(--accent);',green:'color:var(--green);'};
   return `<div class="ft-step"><span class="ft-tag" style="${C[color]||C.accent}">${tag}</span><div class="ft-body" style="flex:1;"><div class="ft-title">${title}</div><div class="ft-desc">${desc}</div></div><div class="ft-amt" style="${A[color]||A.accent}">${amt>0?fmtW(amt):'—'}</div></div>`;
+}
+
+// ── 청약 맞춤 추천 계산기
+var CUTLINES_DB = {
+  'gangnam':      {min:65,avg:71,max:74,label:'서울 강남권',note:'래미안원베일리 74점·디에이치라클라스 72점·개포더클래스 71점'},
+  'seoul-hot':    {min:57,avg:63,max:68,label:'서울 준인기',note:'이촌더샵 65점·경희궁자이 62점·고덕아르테온 63점'},
+  'seoul-gen':    {min:48,avg:55,max:63,label:'서울 일반',note:'최근 3년 실제 커트라인 48~63점 범위'},
+  'gyeonggi-hot': {min:55,avg:61,max:67,label:'경기 인기',note:'과천푸르지오써밋 66점·광명센트럴아이파크 60점'},
+  'gyeonggi-gen': {min:38,avg:47,max:57,label:'경기 일반',note:'용인·수원·화성·남양주 평균 42~52점'},
+  'incheon':      {min:30,avg:42,max:54,label:'인천',note:'검단·송도·청라 평균 35~50점'},
+  'metro-city':   {min:22,avg:35,max:50,label:'지방 광역시',note:'부산·대구·광주·대전 평균 28~45점'},
+  'local':        {min:10,avg:25,max:40,label:'기타 지방',note:'청주·전주·창원 평균 15~35점'}
+};
+
+function incomeBase(n) {
+  var b = {1:270,2:450,3:550,4:620,5:680,6:730};
+  return b[Math.min(n,6)] || 620;
+}
+
+function calcRec() {
+  var el = function(id){ return document.getElementById(id); };
+  var score    = parseInt(el('total-score').textContent) || 0;
+  var marriage = el('r-marriage').value;
+  var children = parseInt(el('r-children').value) || 0;
+  var age      = parseInt(el('r-age').value) || 35;
+  var income   = parseInt(el('r-income').value) || 0;
+  var taxPaid  = el('r-incometax').value === 'yes';
+  var homeless = el('r-homeless').value === 'yes';
+  var region   = el('r-region').value;
+  var size     = el('r-size').value;
+  var accYrs   = yearsFrom(el('account-date').value);
+  var payCount = Math.floor(accYrs * 12);
+  var family   = deps;
+  var cl       = CUTLINES_DB[region];
+  if (!cl) return;
+
+  var b160 = Math.round(incomeBase(family) * 1.6);
+  var b140 = Math.round(incomeBase(family) * 1.4);
+  var hasInc = income > 0;
+
+  // 특공 자격
+  var firstOk  = homeless && (!hasInc || income <= b160) && taxPaid && payCount >= 12;
+  var firstMsg = !homeless ? '무주택 조건 미충족'
+    : (hasInc && income > b160) ? '소득 초과 (기준 ' + b160 + '만원 이하)'
+    : !taxPaid ? '소득세 5년 납부 미충족'
+    : payCount < 12 ? '납입 ' + payCount + '회 (12회 필요)'
+    : '자격 충족';
+
+  var newlyOk  = marriage === 'married-7' && homeless;
+  var newlyMsg = marriage !== 'married-7' ? '혼인 7년 이내 조건 미충족'
+    : !homeless ? '무주택 조건 미충족' : '자격 충족 (소득 공고문 확인)';
+
+  var multiOk  = children >= 3;
+  var multiMsg = children < 2 ? '자녀 ' + children + '명 (민영 3명+ 필요)'
+    : children === 2 ? '공공분양만 해당' : '자격 충족';
+
+  var youthOk  = age >= 19 && age <= 39 && homeless && (!hasInc || income <= b140);
+  var youthMsg = (age < 19 || age > 39) ? '만 ' + age + '세 (19~39세 해당)'
+    : !homeless ? '무주택 조건 미충족'
+    : (hasInc && income > b140) ? '소득 초과 (기준 ' + b140 + '만원 이하)'
+    : '공공분양 전용 — 자격 충족';
+
+  // 당첨 확률
+  var prob, winLabel;
+  var gapMax = cl.max - cl.avg; var gapMin = cl.avg - cl.min;
+  if (score >= cl.max)           { prob = 95; winLabel = '매우 유력'; }
+  else if (score >= cl.avg)      { prob = Math.round(70 + (score-cl.avg)/gapMax*25); winLabel = '유리'; }
+  else if (score >= cl.min)      { prob = Math.round(30 + (score-cl.min)/gapMin*40); winLabel = '도전'; }
+  else if (score >= cl.min - 10) { prob = Math.round(8 + (score-(cl.min-10))/10*22); winLabel = '어려움'; }
+  else                           { prob = Math.max(2, Math.round(score/cl.min*8)); winLabel = '매우 어려움'; }
+
+  var gc = prob >= 70 ? 'var(--green)' : prob >= 40 ? 'var(--gold)' : prob >= 20 ? 'var(--orange)' : 'var(--red)';
+
+  // 추천 목록
+  var recs = [];
+  if (firstOk) recs.push({type:'🏠 생애최초 특별공급', badge:'특공 최우선', btype:'가점 무관', color:'green',
+    desc:'가점과 무관하게 소득·납입·소득세 기준만 충족하면 신청 가능. 민영 20%·공공 15% 물량 별도 배정.',
+    action:'특공 신청 후 일반공급도 동시 지원 가능 — 반드시 특공 먼저 신청'});
+  if (newlyOk && !firstOk) recs.push({type:'💑 신혼부부 특별공급', badge:'특공 최우선', btype:'가점 무관', color:'accent',
+    desc:'혼인 7년 이내 자격. 자녀 있으면 우선 선발. 민영 10%·공공 30% 물량 별도 배정.',
+    action:'신혼부부 특공 신청 후 같은 날 일반공급도 동시 신청 가능'});
+  if (multiOk) recs.push({type:'👨‍👩‍👧‍👦 다자녀 특별공급', badge:'특공', btype:'소득 무관(민영)', color:'purple',
+    desc:'미성년 자녀 ' + children + '명 확인. 소득 기준 없음(민영). 자녀 수 많을수록 우선 선발.',
+    action:'다자녀 특공 신청 (일반공급 동시 가능)'});
+  if (youthOk && !firstOk && !newlyOk) recs.push({type:'🎓 청년 특공 (공공분양)', badge:'공공 특공', btype:'만 '+age+'세', color:'orange',
+    desc:'공공분양 전용 우선 기회. LH·SH 위주. 경쟁률이 민영보다 낮은 편.',
+    action:'청약홈 LH·SH 공공분양 알림 설정 후 모니터링'});
+
+  if (score >= cl.avg) recs.push({type:'📊 가점제 일반공급 — ' + cl.label, badge:'가점제', btype:'당첨 '+prob+'%', color:'green',
+    desc:'내 점수 ' + score + '점 vs 평균 커트라인 ' + cl.avg + '점. 실제 사례: ' + cl.note + '.',
+    action:'85㎡ 초과 물량(100% 가점제) 우선 도전 — 경쟁 낮고 점수 효율 최대'});
+  else if (score >= cl.min) recs.push({type:'🔶 가점제 도전 — ' + cl.label, badge:'가점제 도전', btype:'당첨 '+prob+'%', color:'gold',
+    desc:'내 점수 ' + score + '점 / 커트 최저 ' + cl.min + '~평균 ' + cl.avg + '점. ' + cl.note + '.',
+    action:'경쟁률 낮은 비선호 타입 + 추첨제 비율 높은 물량 병행 신청'});
+  else recs.push({type:'🎲 추첨제 위주 전략', badge:'추첨제', btype:'가점 미달', color:'orange',
+    desc:'가점 ' + score + '점 → ' + cl.label + ' 커트라인 최저 ' + cl.min + '점 미달. 추첨제 60%+ 단지 또는 인근 지역 이동 추천.',
+    action:'추첨제 비율 높은 단지 집중 또는 지역 하향 검토'});
+
+  var CV = {green:'var(--green)',accent:'var(--accent)',purple:'var(--purple)',gold:'var(--gold)',orange:'var(--orange)',red:'var(--red)'};
+  var LV = {green:'var(--green-lt)',accent:'var(--accent-lt)',purple:'var(--purple-lt)',gold:'var(--gold-lt)',orange:'var(--orange-lt)',red:'var(--red-lt)'};
+  var BV = {green:'var(--green-bd)',accent:'#A0C0F0',purple:'var(--purple-bd)',gold:'var(--gold-bd)',orange:'var(--orange-bd)',red:'var(--red-bd)'};
+
+  var spList = [
+    {ok:firstOk,msg:firstMsg,icon:'🏠',name:'생애최초'},
+    {ok:newlyOk,msg:newlyMsg,icon:'💑',name:'신혼부부'},
+    {ok:multiOk,msg:multiMsg,icon:'👨‍👩‍👧‍👦',name:'다자녀'},
+    {ok:youthOk,msg:youthMsg,icon:'🎓',name:'청년(공공)'}
+  ];
+
+  var spHtml = spList.map(function(s) {
+    return '<div class="win-card '+(s.ok?'win-possible':'win-hard')+'" style="height:auto;padding:12px 10px;text-align:left;">'
+      +'<div style="font-size:20px;margin-bottom:5px;">'+s.icon+'</div>'
+      +'<div style="font-size:12px;font-weight:800;margin-bottom:4px;color:'+(s.ok?'var(--green)':'var(--red)')+';">'+(s.ok?'✅ ':'✗ ')+s.name+'</div>'
+      +'<div style="font-size:10px;color:var(--t3);line-height:1.4;">'+s.msg+'</div>'
+      +'</div>';
+  }).join('');
+
+  var recHtml = recs.map(function(r,i) {
+    return '<div class="rec-card" style="background:'+LV[r.color]+';border:1.5px solid '+BV[r.color]+';">'
+      +'<div class="rec-card-head">'
+      +'<span class="rec-badge" style="background:'+CV[r.color]+';">추천 '+(i+1)+'순위</span>'
+      +'<span style="font-size:13px;font-weight:800;color:var(--t1);">'+r.type+'</span>'
+      +'<span class="rec-badge-type" style="background:'+CV[r.color]+';">'+r.btype+'</span>'
+      +'</div>'
+      +'<div class="rec-card-desc">'+r.desc+'</div>'
+      +'<div class="rec-card-action" style="color:'+CV[r.color]+';"><b>▶</b> '+r.action+'</div>'
+      +'</div>';
+  }).join('');
+
+  var gw = Math.min(100, score/84*100).toFixed(1);
+
+  el('rec-result').innerHTML =
+    '<div style="font-size:12px;font-weight:700;color:var(--t2);margin-bottom:8px;">🔍 특별공급 자격 진단</div>'
+    +'<div class="rec-sp-grid">'+spHtml+'</div>'
+    +'<div style="background:linear-gradient(135deg,var(--surface2),var(--surface3));border:1.5px solid var(--border2);border-radius:var(--r-lg);padding:16px;margin-bottom:16px;">'
+    +'<div style="font-size:12px;font-weight:700;color:var(--t2);margin-bottom:12px;">📊 '+cl.label+' 가점제 당첨 가능성</div>'
+    +'<div class="rec-prob-row">'
+    +'<div class="rec-prob-big">'
+    +'<div style="font-size:52px;font-weight:900;color:'+gc+';line-height:1;font-variant-numeric:tabular-nums;">'+prob+'%</div>'
+    +'<div style="font-size:13px;font-weight:700;color:'+gc+';margin-top:4px;">'+winLabel+'</div>'
+    +'</div>'
+    +'<div class="rec-prob-detail">'
+    +'<div style="display:flex;justify-content:space-between;font-size:11px;margin-bottom:4px;"><span style="color:var(--t3);">내 점수</span><span style="font-weight:800;color:'+gc+';">'+score+'점 / 84점</span></div>'
+    +'<div style="height:10px;background:var(--surface3);border-radius:5px;overflow:hidden;margin-bottom:10px;">'
+    +'<div style="height:100%;width:'+gw+'%;background:'+gc+';border-radius:5px;transition:width .4s;"></div></div>'
+    +'<div style="display:flex;gap:10px;flex-wrap:wrap;font-size:11px;">'
+    +'<span style="background:var(--surface);border:1px solid var(--border);border-radius:6px;padding:4px 10px;"><span style="color:var(--t3);">최저</span> <b style="color:var(--t1);">'+cl.min+'점</b></span>'
+    +'<span style="background:var(--surface);border:1px solid var(--border);border-radius:6px;padding:4px 10px;"><span style="color:var(--t3);">평균</span> <b style="color:var(--t1);">'+cl.avg+'점</b></span>'
+    +'<span style="background:var(--surface);border:1px solid var(--border);border-radius:6px;padding:4px 10px;"><span style="color:var(--t3);">최고</span> <b style="color:var(--t1);">'+cl.max+'점</b></span>'
+    +'</div>'
+    +'<div style="font-size:10px;color:var(--t3);margin-top:8px;line-height:1.5;">📌 실제 사례: '+cl.note+'</div>'
+    +'</div></div></div>'
+    +'<div style="font-size:12px;font-weight:700;color:var(--t2);margin-bottom:10px;">🏆 맞춤 청약 전략 — '+recs.length+'가지 추천</div>'
+    +recHtml
+    +'<div class="warn-score" style="margin-top:4px;"><span style="font-size:16px;flex-shrink:0;">⚠️</span>'
+    +'<div>추천 결과는 <b>2024~2026년 실제 당첨 사례</b>를 기반으로 한 참고치입니다. 단지별 경쟁률·공급량·규제 변화에 따라 실제와 다를 수 있습니다. 실제 신청 전 반드시 청약홈 공고문을 확인하세요.</div></div>';
 }
 
 // ── 용어 사전
