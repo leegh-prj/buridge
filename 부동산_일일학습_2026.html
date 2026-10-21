@@ -185,25 +185,38 @@ main { max-width: 860px; margin: 0 auto; padding: 32px 20px 80px; }
 }
 .tip-icon { font-size: 16px; flex-shrink: 0; }
 
+/* CHECKLIST */
+.checklist-box { display: flex; flex-direction: column; gap: 5px; }
+.checklist-item {
+  display: flex; gap: 10px; align-items: flex-start;
+  font-size: 14px; line-height: 1.75; color: var(--text2); padding: 2px 0;
+}
+.cl-check {
+  flex-shrink: 0; width: 18px; height: 18px; border-radius: 4px;
+  border: 1.5px solid var(--accent); display: flex; align-items: center;
+  justify-content: center; margin-top: 3px; color: var(--accent); font-size: 11px;
+}
+
 /* QUIZ */
 .quiz-box { }
-.quiz-q { font-size: 16px; font-weight: 600; margin-bottom: 18px; line-height: 1.6; }
-.quiz-options { display: flex; flex-direction: column; gap: 9px; }
+.quiz-q { font-size: 15.5px; font-weight: 700; margin-bottom: 16px; line-height: 1.65; color: var(--text); }
+.quiz-options { display: flex; flex-direction: column; gap: 8px; }
 .quiz-opt {
   background: var(--surface2);
-  border: 1px solid var(--border);
-  border-radius: 8px; padding: 13px 16px;
-  font-size: 15px; cursor: pointer; transition: all .2s;
-  text-align: left; color: var(--text); line-height: 1.5;
+  border: 1.5px solid var(--border);
+  border-radius: 9px; padding: 12px 16px;
+  font-size: 14px; cursor: pointer; transition: all .18s;
+  text-align: left; color: var(--text); line-height: 1.55;
+  display: flex; align-items: flex-start; gap: 8px;
 }
-.quiz-opt:hover:not(:disabled) { border-color: var(--accent); background: rgba(79,142,247,.08); }
-.quiz-opt.correct { background: rgba(46,204,113,.12) !important; border-color: var(--green) !important; color: var(--green) !important; }
-.quiz-opt.wrong { background: rgba(231,76,60,.08) !important; border-color: var(--red) !important; color: var(--red) !important; }
+.quiz-opt:hover:not(:disabled) { border-color: var(--accent); background: rgba(79,142,247,.09); color: var(--text); }
+.quiz-opt.correct { background: rgba(46,204,113,.13) !important; border-color: var(--green) !important; color: var(--green) !important; font-weight: 600; }
+.quiz-opt.wrong { background: rgba(231,76,60,.09) !important; border-color: var(--red) !important; color: var(--red) !important; }
 .quiz-opt:disabled { cursor: not-allowed; }
 .quiz-explain {
   margin-top: 14px; padding: 14px 16px;
-  background: var(--surface2); border-radius: 8px;
-  font-size: 14px; line-height: 1.75; display: none;
+  background: var(--surface2); border-radius: 9px; border-left: 3px solid var(--accent);
+  font-size: 14px; line-height: 1.8; display: none;
 }
 .quiz-explain.show { display: block; }
 
@@ -5919,6 +5932,106 @@ but, 글로벌 달러 약세 효과 > 외국인 환전 수요
       ans: 2,
       explain: '변동금리 주담대는 COFIX(은행 자금 조달 비용 지수)에 연동됩니다. COFIX는 금통위 결정 후 약 5영업일 뒤 재산정·공시되며, 그 이후 각 은행이 대출금리를 조정합니다. 따라서 금통위 당일 즉각 혜택이 반영되지 않습니다.'
     }
+  },
+  {
+    num: 135,
+    date: '2026-10-21',
+    cat: '금통위',
+    catLabel: '한은 금통위',
+    sub: '채권 시장이 금통위 결과를 미리 알고 있다?',
+    title: '채권 금리는 금통위 결과를 미리 안다 — 국채 스왑 레이트로 내일 결과 예측하는 법',
+    concept: '채권 선도금리(Forward Rate)와 금리 스왑(IRS)으로 읽는 정책금리 기대',
+    text: `금통위 결정 전날, 채권 시장은 이미 내일 결과를 가격에 반영하고 있습니다. 어떻게 읽을 수 있을까요?
+
+**국채 금리 기울기(Yield Curve) 읽기**
+
+단기국채(1년물)와 장기국채(3년물·10년물)의 금리 차이로 시장 기대를 읽습니다.
+
+· 3년물 < 기준금리: 조만간 인하 기대 반영
+· 3년물 ≈ 기준금리: 동결 기대 반영
+· 3년물 > 기준금리: 추가 인상 기대 반영
+
+**현재 상황 (2026.10.21):**
+국채 3년물 2.98% — 기준금리 3.00%를 0.02%p 하회. 이는 시장이 내일 '동결'을 71.8% 확률로 반영하고 있다는 채권 시장의 신호입니다.
+
+**금리 스왑(IRS) 읽기**
+
+IRS는 '미래 기준금리를 지금 고정하는 계약'입니다. 1년 IRS 금리가 현재 기준금리보다 낮으면 → 1년 내 인하 기대가 우세. 지금 한국 1년 IRS: 2.85% (기준금리 3.00% 대비 -0.15%p) → 내년 말까지 1회 인하(25bp) 가능성이 절반 이상 반영된 상태.
+
+**부동산 연결고리**
+
+채권 시장이 인하를 가격에 많이 반영할수록, 주담대 고정금리(장기 국채 연동)는 먼저 내려갑니다. 반대로 동결·인상 기대가 강하면 고정금리가 올라갑니다. 오늘 채권 시장은 "내일 동결, 내년엔 인하"를 동시에 반영 중입니다.`,
+    formula: '금리 기대 읽기: 국채 3년물 - 기준금리 = X\n· X < 0: 인하 기대\n· X ≈ 0: 동결 기대\n· X > 0: 인상 기대',
+    example: `현재 수치로 계산:
+국채 3년물 2.98% − 기준금리 3.00% = −0.02%p
+→ 0에 매우 가까움 → 동결 압도적 기대
+
+1년 IRS 2.85% − 기준금리 3.00% = −0.15%p
+→ 1년 내 약 0.6회 인하(=25bp×60%) 반영`,
+    tip: `채권 금리는 매일 금융투자협회(kofiabond.or.kr)에서 확인할 수 있습니다. '국고채 3년' 금리를 기준금리(현재 3.00%)와 비교하는 습관을 들이면 금통위 전 시장 기대를 스스로 읽을 수 있게 됩니다.`,
+    checklist: `□ 금융투자협회 국고채 3년물 금리 확인 (3.00% 기준금리 대비 비교)
+□ 내일 금통위 결과 발표 시간 확인 (오전 10시)
+□ 1년 IRS 금리 확인 — 연내 추가 인하 기대 수준 파악
+□ 주담대 고정금리 현재 수준 스크린샷 보존 (발표 전후 비교용)`,
+    quiz: {
+      q: '국채 3년물 금리가 기준금리(3.00%)보다 낮은 2.85%로 형성되어 있다면, 채권 시장은 향후 금리 방향에 대해 어떤 기대를 반영하고 있는가?',
+      opts: ['추가 금리 인상 기대가 지배적이다', '금리 동결 또는 인하 기대가 지배적이다', '금리와 채권 가격은 무관하다', '3년물 금리가 낮을수록 주담대 금리가 반드시 오른다'],
+      ans: 1,
+      explain: '국채 금리는 시장 참여자들의 미래 금리 기대를 반영합니다. 3년물 금리(2.85%)가 현재 기준금리(3.00%)보다 낮다는 것은, 시장이 향후 3년 내 기준금리가 현재보다 낮아질 것(인하 또는 지속 동결 후 인하)을 기대한다는 의미입니다.'
+    }
+  },
+  {
+    num: 136,
+    date: '2026-10-21',
+    cat: '금통위',
+    catLabel: '한은 금통위',
+    sub: '금통위 발표 후 72시간 — 실수요자 단계별 행동 매뉴얼',
+    title: '금통위 발표 후 72시간 — 동결·인하 각 시나리오별 실수요자가 해야 할 일 완전 정복',
+    concept: '정책금리 결정 이후 주담대 금리 전파 경로와 실수요자 최적 행동 타이밍',
+    text: `내일(10.22) 금통위 결과가 나옵니다. 결과가 나온 후 어떻게 행동해야 할까요? 72시간 타임라인으로 정리합니다.
+
+**시나리오 A: 동결 (71.8% 확률)**
+
+**T+0 (발표 당일 오전 10시):** 결과 확인. 예상대로 동결이면 시장 반응 최소화. 이때 서두르지 마세요 — "동결이라 별 변화 없다"는 뉴스 홍수가 나올 것.
+
+**T+0 기자회견 (오전 11시):** 총재 발언 필청. 핵심: '11월 추가 인상 시사 여부'. 시사하면 → 고정금리 즉각 반응 가능.
+
+**T+1~2일 (10.23~24):** 은행별 고시 금리 확인. 동결이어도 조달 비용 변화에 따라 ±0.05%p 미세 조정 가능.
+
+**T+5영업일 (10.29):** COFIX 재산정 공시. 변동금리 대출자는 이날 금리 확인 필수.
+
+**시나리오 B: 인하 (28.2% 확률)**
+
+**T+0 (오전 10시):** 인하 서프라이즈. 즉각 계약 X — 혼란 속 호가 급등 가능. 냉정을 유지하세요.
+
+**T+1~3일:** 고정금리 먼저 반응(장기 국채 연동). 변동금리는 COFIX 재산정까지 대기.
+
+**T+5영업일 (10.29):** COFIX -0.20~0.25%p 반영 예상 → 그때 변동금리로 갈아탈지 고민.
+
+**공통 행동 원칙**
+발표 당일 30분~1시간은 투기성 반응 구간입니다. 이 구간에 부동산 계약·대출 결정을 하지 마세요.`,
+    formula: '금통위 후 주담대 반영 순서: 고정금리(T+1~3일) → 혼합금리(T+3~5일) → 변동금리(T+5영업일 COFIX 후)',
+    example: `동결 확정 시 내 주담대 시뮬레이션 (변동금리, 4.77%):
+· T+0: 변동 없음
+· T+5영업일: COFIX 3.27% 유지 → 4.77% 그대로
+· 연간 이자: 5억 × 4.77% = 약 2,385만원 (월 198만원)
+
+인하 확정 시 (25bp):
+· COFIX 3.02% 예상 → 4.52%
+· 연간 이자 절감: 5억 × 0.25% = 125만원 (월 10.4만원)`,
+    tip: `금통위 결과 당일 절대 하지 말아야 할 것: 분위기에 휩쓸린 계약, 인터넷 커뮤니티 소문에 근거한 대출 갈아타기, "지금 안 사면 끝"이라는 매도자 압박에 굴복. 금리 결정의 진짜 영향은 5영업일 후 COFIX가 나오고 나서야 숫자로 확인됩니다.`,
+    checklist: `□ 10.22 오전 10시 금통위 결정 발표 확인
+□ 11시 총재 기자회견 — "11월 추가 인상" 발언 여부 확인
+□ 10.22 오후 부동산원 10월 3주 발표 — 강남 11주 연속↓ 확정 여부
+□ 10.29(목) COFIX 재산정 날짜 달력 등록
+□ 현재 대출 금리 유형(변동/고정) 및 금리 수준 기록
+□ 관심 매물 발표 전후 호가 비교 준비`,
+    quiz: {
+      q: '금통위가 기준금리를 인하한 경우, 실수요자가 변동금리 주담대의 금리 인하 혜택을 실제로 확인할 수 있는 가장 빠른 시점은?',
+      opts: ['발표 당일 즉시', '발표 다음 날(T+1)', '발표 후 약 5영업일 COFIX 재산정 공시 이후', '다음 금통위(11월) 이후'],
+      ans: 2,
+      explain: '변동금리 주담대는 COFIX에 연동되고, COFIX는 금통위 발표 후 약 5영업일 뒤에 재산정·공시됩니다. 이 날짜 이전까지는 변동금리 차주가 실제 금리 변화를 확인하거나 체감할 수 없습니다. 고정금리는 장기 국채와 연동되어 T+1~3일 내 먼저 반응합니다.'
+    }
   }
 ];
 
@@ -5941,27 +6054,28 @@ function saveState() {
 
 // 날짜별 강의 고정 (특정 날짜에 특정 강의 표시)
 const DATE_LESSON_OVERRIDES = {
-  '2026-09-07': LESSONS.length - 42,  // 93강: 기업형 임대주택 완전 정복
-  '2026-09-08': LESSONS.length - 41,  // 94강: 9월 1주 시장 리포트
-  '2026-09-09': LESSONS.length - 40,  // 95강: 아크로리버파크 -9.1억 해부
-  '2026-09-10': LESSONS.length - 38,  // 97강: 강남 -0.13% 낙폭 축소 — 바닥 신호 판별
-  '2026-09-15': LESSONS.length - 36,  // 99강: 추석 연휴와 부동산 시장
-  '2026-09-16': LESSONS.length - 34,  // 101강: 연준 금리 인상과 내 주담대
-  '2026-09-17': LESSONS.length - 32,  // 103강: 강남3구 완전 동반 하락 — 바닥인가, 추세 전환인가?
-  '2026-09-18': LESSONS.length - 30,  // 105강: 연준 25bp 인상 확정 — 워시 시대 통화정책
-  '2026-09-21': LESSONS.length - 28,  // 107강: 10월 분양시장 완전 가이드
-  '2026-09-22': LESSONS.length - 26,  // 109강: 금리 인상에도 주가가 오른다 — 삼각관계
-  '2026-09-23': LESSONS.length - 24,  // 111강: 거래량 급감에도 가격이 오른다 — 서울 아파트 역설
-  '2026-09-28': LESSONS.length - 22,  // 113강: 채권 패닉이란 무엇인가 — 미 10년물 5.2%
-  '2026-09-29': LESSONS.length - 20,  // 115강: 서울 아파트 85주 연속 상승의 의미
-  '2026-10-01': LESSONS.length - 18,  // 117강: 서울 아파트 86주 연속 상승 신기록
-  '2026-10-08': LESSONS.length - 16,  // 119강: 삼성전자 3Q 사상 최대 실적과 강남 부동산
-  '2026-10-12': LESSONS.length - 12,  // 123강: 원달러 1,335원 2년 최저 — 반도체 네고의 비밀
-  '2026-10-14': LESSONS.length - 10,  // 125강: 미 CPI 3.6% 확정 — 시장이 움직이는 순서
-  '2026-10-15': LESSONS.length - 8,   // 127강: 코스피 서킷브레이커 발동
-  '2026-10-18': LESSONS.length - 6,   // 129강: 주담대 금리 COFIX 완전 정복
-  '2026-10-19': LESSONS.length - 4,   // 131강: 10.22 금통위 D-3 완전 시나리오 분석
-  '2026-10-20': LESSONS.length - 2,   // 133강: 코스피 폭락이 부동산에 즉각 반영되지 않는 이유
+  '2026-09-07': LESSONS.length - 44,  // 93강: 기업형 임대주택 완전 정복
+  '2026-09-08': LESSONS.length - 43,  // 94강: 9월 1주 시장 리포트
+  '2026-09-09': LESSONS.length - 42,  // 95강: 아크로리버파크 -9.1억 해부
+  '2026-09-10': LESSONS.length - 40,  // 97강: 강남 -0.13% 낙폭 축소 — 바닥 신호 판별
+  '2026-09-15': LESSONS.length - 38,  // 99강: 추석 연휴와 부동산 시장
+  '2026-09-16': LESSONS.length - 36,  // 101강: 연준 금리 인상과 내 주담대
+  '2026-09-17': LESSONS.length - 34,  // 103강: 강남3구 완전 동반 하락 — 바닥인가, 추세 전환인가?
+  '2026-09-18': LESSONS.length - 32,  // 105강: 연준 25bp 인상 확정 — 워시 시대 통화정책
+  '2026-09-21': LESSONS.length - 30,  // 107강: 10월 분양시장 완전 가이드
+  '2026-09-22': LESSONS.length - 28,  // 109강: 금리 인상에도 주가가 오른다 — 삼각관계
+  '2026-09-23': LESSONS.length - 26,  // 111강: 거래량 급감에도 가격이 오른다 — 서울 아파트 역설
+  '2026-09-28': LESSONS.length - 24,  // 113강: 채권 패닉이란 무엇인가 — 미 10년물 5.2%
+  '2026-09-29': LESSONS.length - 22,  // 115강: 서울 아파트 85주 연속 상승의 의미
+  '2026-10-01': LESSONS.length - 20,  // 117강: 서울 아파트 86주 연속 상승 신기록
+  '2026-10-08': LESSONS.length - 18,  // 119강: 삼성전자 3Q 사상 최대 실적과 강남 부동산
+  '2026-10-12': LESSONS.length - 14,  // 123강: 원달러 1,335원 2년 최저 — 반도체 네고의 비밀
+  '2026-10-14': LESSONS.length - 12,  // 125강: 미 CPI 3.6% 확정 — 시장이 움직이는 순서
+  '2026-10-15': LESSONS.length - 10,  // 127강: 코스피 서킷브레이커 발동
+  '2026-10-18': LESSONS.length - 8,   // 129강: 주담대 금리 COFIX 완전 정복
+  '2026-10-19': LESSONS.length - 6,   // 131강: 10.22 금통위 D-3 완전 시나리오 분석
+  '2026-10-20': LESSONS.length - 4,   // 133강: 코스피 폭락이 부동산에 즉각 반영되지 않는 이유
+  '2026-10-21': LESSONS.length - 2,   // 135강: 채권 금리로 내일 금통위 결과 예측하는 법
 };
 
 function dayKey(d) {
@@ -6007,9 +6121,9 @@ function renderLesson() {
   const catLabel = lesson.catLabel || lesson.category || '';
   const subText = lesson.sub || '';
 
-  // C-1: text 필드(93강+ 신규 구조) 우선 렌더링
+  // C-1: text 필드(93강+ 신규 구조) 우선 렌더링 — **bold** 마크다운 처리
   const conceptBody = lesson.text
-    ? lesson.text.replace(/\n/g, '<br>')
+    ? lesson.text.replace(/\*\*(.+?)\*\*/g, '<strong style="color:var(--text);font-weight:700">$1</strong>').replace(/\n/g, '<br>')
     : (lesson.concept || '');
   const conceptSub = (lesson.text && lesson.concept)
     ? `<p style="color:var(--ink2);font-style:italic;margin-bottom:14px;font-size:.88rem;border-left:3px solid var(--accent);padding-left:10px;line-height:1.6">${lesson.concept}</p>`
@@ -6033,7 +6147,12 @@ function renderLesson() {
     : `<pre style="white-space:pre-wrap;font-size:13px;line-height:1.7;font-family:inherit">${lesson.example || ''}</pre>`;
 
   const tipHTML = (typeof lesson.tip === 'string')
-    ? lesson.tip.replace(/\n/g, '<br>')
+    ? lesson.tip.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>').replace(/\n/g, '<br>')
+    : '';
+
+  const checklistHTML = lesson.checklist
+    ? lesson.checklist.trim().split('\n').filter(l => l.trim()).map(l =>
+        `<div class="checklist-item"><div class="cl-check">□</div><div>${l.replace(/^□\s*/, '')}</div></div>`).join('')
     : '';
 
   document.getElementById('lessonCard').innerHTML = `
@@ -6067,6 +6186,11 @@ function renderLesson() {
         <div>${tipHTML}</div>
       </div>
     </div>
+
+    ${checklistHTML ? `<div class="section">
+      <div class="sec-label">실전 체크리스트</div>
+      <div class="checklist-box">${checklistHTML}</div>
+    </div>` : ''}
 
     <div class="section">
       <div class="sec-label">오늘의 퀴즈</div>
