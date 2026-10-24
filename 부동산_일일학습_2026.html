@@ -307,6 +307,50 @@ main { max-width: 860px; margin: 0 auto; padding: 32px 20px 80px; }
   .stats-row { grid-template-columns: repeat(3, 1fr); gap: 8px; }
   .stat-val { font-size: 20px; }
 }
+
+/* SEARCH */
+.search-wrap { position: relative; margin-bottom: 20px; }
+.search-input {
+  width: 100%; box-sizing: border-box;
+  background: var(--surface); border: 1.5px solid var(--border);
+  border-radius: var(--radius); padding: 12px 38px 12px 42px;
+  font-size: 15px; color: var(--text); font-family: inherit;
+  outline: none; transition: border-color .2s;
+}
+.search-input:focus { border-color: var(--accent); }
+.search-input::placeholder { color: var(--text2); }
+.search-icon {
+  position: absolute; left: 13px; top: 50%; transform: translateY(-50%);
+  font-size: 16px; pointer-events: none; opacity: .55;
+}
+.search-clear {
+  position: absolute; right: 11px; top: 50%; transform: translateY(-50%);
+  background: none; border: none; color: var(--text2); font-size: 20px;
+  cursor: pointer; padding: 2px 6px; line-height: 1; display: none; border-radius: 4px;
+}
+.search-clear:hover { color: var(--text); background: var(--surface2); }
+.search-results {
+  position: absolute; top: calc(100% + 6px); left: 0; right: 0;
+  background: var(--surface); border: 1.5px solid var(--border);
+  border-radius: var(--radius); max-height: 360px; overflow-y: auto;
+  z-index: 200; box-shadow: 0 8px 28px rgba(0,0,0,.4);
+}
+.sr-header {
+  padding: 8px 14px; font-size: 11px; color: var(--text2);
+  border-bottom: 1px solid var(--border); font-weight: 700; letter-spacing: .05em; text-transform: uppercase;
+}
+.sr-item {
+  padding: 11px 14px; cursor: pointer; border-bottom: 1px solid var(--border); transition: background .13s;
+}
+.sr-item:last-child { border-bottom: none; }
+.sr-item:hover { background: var(--surface2); }
+.sr-meta { font-size: 11px; color: var(--text2); margin-bottom: 4px; display: flex; align-items: center; gap: 6px; }
+.sr-title { font-size: 14px; font-weight: 700; color: var(--text); margin-bottom: 3px; line-height: 1.4; }
+.sr-title mark, .sr-snippet mark {
+  background: rgba(79,142,247,.22); color: var(--accent); border-radius: 2px; padding: 0 2px;
+}
+.sr-snippet { font-size: 12px; color: var(--text2); line-height: 1.55; }
+.sr-empty { padding: 22px 14px; text-align: center; color: var(--text2); font-size: 13px; line-height: 1.7; }
 </style>
 </head>
 <body>
@@ -339,6 +383,16 @@ main { max-width: 860px; margin: 0 auto; padding: 32px 20px 80px; }
       <div class="stat-val" id="statQuiz">0%</div>
       <div class="stat-lab">✅ 퀴즈 정답률</div>
     </div>
+  </div>
+
+  <!-- Search -->
+  <div class="search-wrap" id="searchWrap">
+    <span class="search-icon">🔍</span>
+    <input class="search-input" id="searchInput" type="text" autocomplete="off"
+      placeholder="강의 검색... (예: LTV, 경매, 양도세, 재개발)"
+      oninput="onSearch(this.value)" onfocus="this.value && onSearch(this.value)">
+    <button class="search-clear" id="searchClear" onclick="clearSearch()">×</button>
+    <div class="search-results" id="searchResults" style="display:none"></div>
   </div>
 
   <!-- Date Navigation -->
@@ -6738,6 +6792,113 @@ function navigateToDate(dk) {
   renderLesson();
   document.getElementById('lessonCard').scrollIntoView({ behavior: 'smooth' });
 }
+
+// ─── SEARCH ──────────────────────────────────────────────────────────────────
+let _searchTimer = null;
+
+function _lessonDateMap() {
+  const map = {};
+  const end = new Date(todayStr + 'T00:00:00');
+  let d = new Date('2026-01-01T00:00:00');
+  while (d <= end) {
+    const dk = d.toISOString().slice(0, 10);
+    const idx = getLessonIndex(dk);
+    if (!(idx in map)) map[idx] = dk;
+    d.setDate(d.getDate() + 1);
+  }
+  return map;
+}
+
+function _flatLesson(lesson) {
+  const parts = [
+    lesson.title || '',
+    lesson.sub || '',
+    lesson.catLabel || '',
+    lesson.text || '',
+    lesson.concept || '',
+    lesson.tip || '',
+    lesson.checklist || '',
+    lesson.quiz ? lesson.quiz.q + ' ' + (lesson.quiz.opts || []).join(' ') : '',
+    lesson.formula
+      ? (typeof lesson.formula === 'object' ? (lesson.formula.title || '') + ' ' + (lesson.formula.lines || []).join(' ') : lesson.formula)
+      : '',
+  ];
+  return parts.join(' ').replace(/<[^>]+>/g, '').replace(/\s+/g, ' ');
+}
+
+function _hl(text, kw) {
+  const re = new RegExp('(' + kw.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + ')', 'gi');
+  return text.replace(re, '<mark>$1</mark>');
+}
+
+function _snip(text, kw) {
+  const lo = text.toLowerCase();
+  const pos = lo.indexOf(kw.toLowerCase());
+  if (pos === -1) return text.slice(0, 90) + '…';
+  const s = Math.max(0, pos - 28);
+  const e = Math.min(text.length, pos + kw.length + 60);
+  return (s > 0 ? '…' : '') + text.slice(s, e) + (e < text.length ? '…' : '');
+}
+
+function onSearch(val) {
+  clearTimeout(_searchTimer);
+  const clearBtn = document.getElementById('searchClear');
+  const panel = document.getElementById('searchResults');
+  if (clearBtn) clearBtn.style.display = val ? 'block' : 'none';
+  if (!val.trim()) { panel.style.display = 'none'; return; }
+  _searchTimer = setTimeout(() => _runSearch(val.trim()), 200);
+}
+
+function _runSearch(kw) {
+  const panel = document.getElementById('searchResults');
+  const dateMap = _lessonDateMap();
+  const catColors = { market:'cat-market', finance:'cat-finance', tax:'cat-tax', rebuild:'cat-rebuild', invest:'cat-invest', law:'cat-law', eval:'cat-eval' };
+  const hits = [];
+  LESSONS.forEach((lesson, idx) => {
+    if (!(idx in dateMap)) return;
+    const flat = _flatLesson(lesson);
+    if (flat.toLowerCase().includes(kw.toLowerCase())) hits.push({ idx, lesson, flat, date: dateMap[idx] });
+  });
+  if (!hits.length) {
+    panel.innerHTML = `<div class="sr-empty">🔎 <strong>${kw}</strong>에 해당하는 강의가 없어요<br><span style="font-size:11px;opacity:.7">다른 키워드로 검색해 보세요</span></div>`;
+  } else {
+    panel.innerHTML = `<div class="sr-header">🔍 ${hits.length}개 강의 검색됨</div>` +
+      hits.map(({ idx, lesson, flat, date }) =>
+        `<div class="sr-item" onclick="gotoLesson('${date}')">
+          <div class="sr-meta">#${idx+1}강 <span class="cat-chip ${catColors[lesson.cat]||'cat-market'}" style="font-size:10px;padding:2px 7px;margin:0">${lesson.catLabel||''}</span></div>
+          <div class="sr-title">${_hl(lesson.title, kw)}</div>
+          <div class="sr-snippet">${_hl(_snip(flat, kw), kw)}</div>
+        </div>`
+      ).join('');
+  }
+  panel.style.display = 'block';
+}
+
+function gotoLesson(dateStr) {
+  clearSearch();
+  viewDate = new Date(dateStr + 'T00:00:00');
+  renderLesson();
+  renderCalendar();
+  const card = document.getElementById('lessonCard');
+  if (card) card.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+function clearSearch() {
+  const inp = document.getElementById('searchInput');
+  const clr = document.getElementById('searchClear');
+  const pan = document.getElementById('searchResults');
+  if (inp) inp.value = '';
+  if (clr) clr.style.display = 'none';
+  if (pan) pan.style.display = 'none';
+}
+
+document.addEventListener('click', function(e) {
+  const wrap = document.getElementById('searchWrap');
+  if (wrap && !wrap.contains(e.target)) {
+    const pan = document.getElementById('searchResults');
+    if (pan) pan.style.display = 'none';
+  }
+});
 
 // ─── THEME ───────────────────────────────────────────────────────────────────
 function toggleTheme() {
