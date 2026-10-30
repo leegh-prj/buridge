@@ -106,6 +106,37 @@ main { max-width: 860px; margin: 0 auto; padding: 32px 20px 80px; }
 .date-label { font-size: 13px; color: var(--text2); margin-bottom: 2px; }
 .date-big { font-size: 22px; font-weight: 800; letter-spacing: -.5px; }
 .lesson-num { font-size: 12px; color: var(--text2); margin-top: 2px; }
+.today-btn {
+  margin-top: 6px; background: none; border: 1px solid var(--accent);
+  color: var(--accent); padding: 3px 12px; border-radius: 999px;
+  font-size: 11px; font-weight: 700; cursor: pointer;
+}
+.today-btn[hidden] { display: none; }
+
+/* 같은 날짜의 강의가 여러 개일 때 선택 탭 */
+.day-picks {
+  display: flex; flex-wrap: wrap; align-items: center; gap: 6px;
+  margin-bottom: 18px; padding-bottom: 14px; border-bottom: 1px dashed var(--border);
+}
+.day-picks-lab { font-size: 12px; font-weight: 700; color: var(--text2); margin-right: 4px; }
+.day-pick {
+  background: var(--surface2); border: 1px solid var(--border); color: var(--text2);
+  padding: 6px 12px; border-radius: 999px; font-size: 12px; cursor: pointer;
+  max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+  transition: all .15s;
+}
+.day-pick:hover { border-color: var(--accent); color: var(--accent); }
+.day-pick.on { background: var(--accent); border-color: var(--accent); color: #fff; font-weight: 700; }
+.next-lesson-btn {
+  margin-top: 10px; background: none; border: 1px solid var(--accent); color: var(--accent);
+  padding: 10px 18px; border-radius: 10px; font-size: 14px; font-weight: 700; cursor: pointer; width: 100%;
+}
+.kbd-hint { font-size: 11px; color: var(--text2); text-align: center; margin-top: 18px; opacity: .7; }
+.kbd-hint kbd {
+  border: 1px solid var(--border); border-bottom-width: 2px; border-radius: 4px;
+  padding: 0 5px; font-family: inherit; font-size: 10px;
+}
+@media (hover: none) { .kbd-hint { display: none; } }
 
 /* LESSON CARD */
 .lesson-card {
@@ -402,7 +433,7 @@ main { max-width: 860px; margin: 0 auto; padding: 32px 20px 80px; }
   <div class="search-wrap" id="searchWrap">
     <span class="search-icon">🔍</span>
     <input class="search-input" id="searchInput" type="text" autocomplete="off"
-      placeholder="강의 검색... (예: LTV, 경매, 양도세, 재개발)"
+      placeholder="강의 검색... (예: LTV, 경매, 양도세, FOMC)  ·  단축키 /"
       oninput="onSearch(this.value)">
     <button class="search-clear" id="searchClear" onclick="clearSearch()">×</button>
   </div>
@@ -413,13 +444,14 @@ main { max-width: 860px; margin: 0 auto; padding: 32px 20px 80px; }
   <!-- Date Navigation -->
   <div id="lessonSection">
     <div class="date-nav">
-      <button class="nav-btn" id="btnPrev" onclick="goDay(-1)">← 이전</button>
+      <button class="nav-btn" id="btnPrev" onclick="goDay(-1)" title="이전 날짜 (←)">← 이전</button>
       <div class="date-center">
         <div class="date-label">오늘의 부동산 강의</div>
         <div class="date-big" id="dateDisplay"></div>
         <div class="lesson-num" id="lessonNum"></div>
+        <button class="today-btn" id="btnToday" onclick="goToday()" hidden>오늘 강의로 ↻</button>
       </div>
-      <button class="nav-btn" id="btnNext" onclick="goDay(1)" disabled>다음 →</button>
+      <button class="nav-btn" id="btnNext" onclick="goDay(1)" title="다음 날짜 (→)" disabled>다음 →</button>
     </div>
 
     <!-- Lesson Card -->
@@ -435,6 +467,7 @@ main { max-width: 860px; margin: 0 auto; padding: 32px 20px 80px; }
       </div>
       <div class="cal-grid" id="calGrid"></div>
     </div>
+    <div class="kbd-hint"><kbd>←</kbd> <kbd>→</kbd> 날짜 이동 · <kbd>/</kbd> 검색 · <kbd>Esc</kbd> 검색 닫기</div>
   </div>
 </main>
 
@@ -7014,13 +7047,126 @@ KB 10월 수치는 10월 12일 기준(10.25 발표)이고, 8월 1.14% → 9월 1
       ans: 1,
       explain: '한국부동산원 주간 아파트 가격동향은 월요일을 기준으로 조사해 목요일에 발표합니다. 10월 4주 지수는 10월 26일(월) 기준이므로 10.27~28 코스피 급등이나 10.28 FOMC 결과는 반영되지 않습니다. KB 지수와는 표본과 조사 방식이 달라 수치가 다를 수 있고, 주간 변동률은 그 한 주의 변화일 뿐 연율이 아닙니다.'
     }
+  },
+
+  // ── 152강 ─────────────────────────────────────────────────────────────────
+  {
+    num: 152,
+    date: '2026-10-30',
+    cat: 'market',
+    catLabel: '시장·동향',
+    sub: '10월 4주 서울 전세 +0.17% > 매매 +0.09% — 전세가 매매보다 빨리 오를 때 일어나는 일',
+    title: '전세가 매매를 앞지를 때 — 전세가율·매매 전환·세입자 체크포인트',
+    concept: '전세가율 · 매매-전세 디커플링 · 대기 수요 · 갭 축소',
+    text: `10월 4주(10.26 기준) 서울 아파트 **매매는 +0.09%**로 2주 연속 상승폭이 줄었지만, **전세는 +0.17%**로 오히려 상승폭이 커졌습니다. 송파구는 매매가 8주째 내리는데 전세는 올해 누적 10% 넘게 올랐습니다. 매매와 전세가 따로 움직이는 이 현상을 읽는 법을 정리합니다.
+
+**■ 전세가율이란**
+전세가율 = 전세가 ÷ 매매가 × 100
+- 10억 아파트의 전세가 5억이면 전세가율 50%
+- 전세가 오르고 매매가 정체하면 → 전세가율 상승
+- 전세가율이 높을수록 **매매가와 전세가의 차이(갭)**가 줄어듭니다
+
+**■ 왜 전세가 매매보다 빨리 오르나**
+① **매수 대기 수요가 전세에 머묾** — 금리 부담·대출 규제·가격 고점 우려로 집을 사지 않고 전세로 기다리는 사람이 늘면 전세 수요가 커집니다.
+② **입주 물량 감소** — 새 아파트 입주가 적으면 전세 공급이 줄어듭니다(149강).
+③ **매매 시장의 관망** — 매매가는 사려는 사람과 팔려는 사람의 기대가 엇갈리면 정체하지만, 전세는 당장 살 곳이 필요한 **실수요**라 미루기 어렵습니다.
+
+**■ 이 흐름이 이어지면 생기는 일**
+- **갭 축소 → 매매 전환 압력**: 전세가 계속 오르면 "조금만 더 보태서 사자"는 수요가 생겨 매매가를 받칠 수 있습니다. 역사적으로 전세가 상승은 매매 반등의 선행 신호로 자주 거론됩니다.
+- **단, 예외도 있다**: 금리가 높고 대출 규제가 강하면 갭이 줄어도 매수 전환이 제한됩니다. 지금 강남권처럼 매매가 하락하면서 전세가 오르는 구간은 매수 심리보다 **보유 부담과 매물 증가**가 더 크게 작용하는 경우입니다.
+
+**■ 세입자 관점 체크포인트**
+전세가율이 너무 높은 집(특히 빌라·오피스텔)은 매매가가 조금만 내려도 **보증금이 집값보다 커지는 "깡통전세"** 위험이 있습니다. 아파트라도 전세가율 80% 이상이면 보증보험 가입 가능 여부와 선순위 대출을 반드시 확인하세요.`,
+    formula: '전세가율 = 전세가 ÷ 매매가 × 100\n갭 = 매매가 − 전세가\n예) 매매 10억, 전세 5억 → 전세가율 50%, 갭 5억\n   전세 +5% (5.25억), 매매 보합 → 전세가율 52.5%, 갭 4.75억',
+    example: `같은 단지에서 매매와 전세가 반대로 움직일 때 (가상 사례)
+
+1월: 매매 20억 / 전세 9억 → 전세가율 45% · 갭 11억
+10월: 매매 19억(-5%) / 전세 9.9억(+10%) → 전세가율 52% · 갭 9.1억
+
+해석:
+· 매매는 매물 증가·보유 부담으로 하락
+· 전세는 입주 감소·매수 대기 수요로 상승
+· 갭이 1.9억 줄어 매수 진입 문턱은 낮아짐
+· 하지만 금리·대출 규제가 그대로면 매수 전환은 제한적
+
+→ 갭 축소는 "매수 여건 개선" 신호일 뿐, 반등 확정 신호는 아닙니다.`,
+    tip: `**전세 재계약을 앞뒀다면 지금 같은 구간에서는 일찍 움직이는 편이 유리합니다.** 전세 상승폭이 커지는 시기에는 만기 2~3개월 전부터 같은 단지 전세 실거래가를 확인하고, 계약갱신청구권(1회, 5% 상한) 사용 여부를 미리 정하세요. 반대로 매수를 고민한다면 관심 단지의 갭이 몇 달째 줄고 있는지 기록해 두면 판단 근거가 됩니다.`,
+    checklist: `□ 관심 지역 매매·전세 주간 변동률 함께 기록
+□ 관심 단지 전세가율 계산 (전세 실거래 ÷ 매매 실거래)
+□ 갭(매매가 − 전세가)의 월별 변화 확인
+□ 2~3년 뒤 주변 입주 물량 확인 (149강)
+□ 전세 계약 시 전세가율 80% 이상이면 보증보험 가능 여부 확인
+□ 재계약 예정자: 계약갱신청구권 사용 여부 미리 결정`,
+    quiz: {
+      q: '서울 아파트 매매가 상승률은 줄고 전세가 상승률은 커졌습니다. 이때 일반적으로 나타나는 변화로 가장 적절한 것은?',
+      opts: ['전세가율이 낮아지고 갭이 커진다', '전세가율이 높아지고 갭이 줄어든다', '전세가율은 매매가와 무관하다', '전세가가 오르면 매매가는 반드시 함께 오른다'],
+      ans: 1,
+      explain: '전세가율은 전세가를 매매가로 나눈 값입니다. 전세가가 매매가보다 빠르게 오르면 전세가율이 높아지고, 매매가와 전세가의 차이(갭)는 줄어듭니다. 갭이 줄면 매수 진입 부담이 낮아져 매매 전환 수요가 생길 수 있지만, 금리와 대출 규제에 따라 반드시 매매가 상승으로 이어지지는 않습니다.'
+    }
+  },
+
+  // ── 153강 ─────────────────────────────────────────────────────────────────
+  {
+    num: 153,
+    date: '2026-10-30',
+    cat: 'rebuild',
+    catLabel: '재건축·재개발',
+    sub: '강남 -0.38%·서초 -0.35% 12주 연속 하락 — 부동산원 "재건축 추진 단지 가격 낮춘 매물"',
+    title: '하락장에서 재건축 단지가 먼저 빠지는 이유 — 금리·시간·불확실성',
+    concept: '미래가치 할인 · 사업 기간 · 분담금 불확실성 · 실거주 불편',
+    text: `한국부동산원은 10월 4주 강남권 하락 배경으로 **일부 지역과 재건축 추진 단지에서 가격을 낮춘 매물이 나왔다**고 설명했습니다. 강남구는 -0.38%, 서초구는 -0.35%로 12주 연속 하락했고, 송파구도 -0.22%로 8주째 내렸습니다. 왜 재건축 단지가 하락기에 먼저, 더 크게 움직일까요?
+
+**■ 재건축 단지 가격 = 미래 새 아파트 가치 − 시간과 위험의 비용**
+재건축 단지는 지금의 낡은 집이 아니라 **몇 년 뒤 완공될 새 아파트의 가치**를 미리 반영해 거래됩니다. 그래서 가격에 세 가지 요소가 크게 작용합니다.
+
+① **금리(할인율)** — 미래 가치를 현재로 당겨올 때 금리가 높을수록 현재가치가 줄어듭니다. 사업 기간이 길수록 금리 영향이 커집니다.
+② **사업 기간** — 조합 설립, 관리처분, 이주·철거, 착공, 입주까지 수년~10년 이상 걸립니다. 기간이 늘어날수록 기다리는 비용(이자·보유세)이 쌓입니다.
+③ **분담금 불확실성** — 공사비가 오르면 조합원이 내야 할 분담금이 늘어납니다(143강 권리가액·비례율).
+
+**■ 하락기에 재건축이 먼저 빠지는 이유**
+- **금리 민감도가 크다**: 같은 금리 상승에도 먼 미래 가치에 기대는 재건축 단지는 현재가치 하락폭이 더 큽니다.
+- **실거주 수요가 약하다**: 낡은 집이라 직접 살기보다 투자 목적 보유가 많고, 실수요가 받쳐주는 힘이 약합니다.
+- **보유 부담이 크다**: 고가 단지가 많아 보유세 부담이 크고, 강남권 하락 원인으로 보유세 부담이 함께 거론됩니다.
+- **매물이 먼저 나온다**: 투자 보유자는 시장 방향이 바뀌면 실거주자보다 빨리 매도에 나섭니다.
+
+**■ 반대로 상승기에는 먼저 오른다**
+금리가 내려가고 사업 속도가 붙으면 같은 원리로 재건축 단지가 시장보다 먼저, 크게 오릅니다. 그래서 재건축 단지는 **시장 방향을 앞서 보여주는 지표**로도 쓰입니다.`,
+    formula: '현재가치 = 미래 가치 ÷ (1 + 할인율)^기간\n예) 5년 뒤 30억 가치\n   할인율 4% → 30 ÷ 1.04^5 ≈ 24.66억\n   할인율 5% → 30 ÷ 1.05^5 ≈ 23.51억 (약 -1.15억, -4.7%)',
+    example: `금리와 사업 기간이 재건축 단지 가치에 미치는 영향 (단순화한 계산)
+미래 신축 가치 30억 가정, 분담금·세금은 제외
+
+| 할인율 | 5년 뒤 완공 | 10년 뒤 완공 |
+|---|---|---|
+| 4% | 약 24.7억 | 약 20.3억 |
+| 5% | 약 23.5억 | 약 18.4억 |
+
+· 금리 1%p 상승: 5년 사업 -4.7% / 10년 사업 -9.1%
+· 사업 기간 5년 지연(4% 기준): 24.7억 → 20.3억 (-18%)
+
+→ 사업 초기 단계(완공까지 먼 단지)일수록 금리·지연에 더 민감합니다.
+※ 실제 시세는 입지·용적률·분담금·규제 등 훨씬 많은 요인이 반영됩니다.`,
+    tip: `**재건축 단지를 볼 때는 "지금 몇 단계인가"부터 확인하세요.** 안전진단·조합설립 단계는 완공까지 멀어 금리와 사업 지연에 크게 흔들리고, 관리처분인가 이후는 일정이 비교적 확정돼 변동성이 줄어듭니다. 하락기에 재건축 급매가 나와도 사업 단계·예상 분담금·이주 시기를 확인하지 않고 "싸다"는 이유만으로 들어가면 오랜 기간 자금이 묶일 수 있습니다.`,
+    checklist: `□ 사업 단계 확인 (안전진단·조합설립·사업시행·관리처분·이주)
+□ 예상 완공 시점과 그때까지의 보유 비용(이자·보유세) 계산
+□ 예상 분담금과 공사비 인상 리스크 확인 (143강)
+□ 조합원 지위 양도 제한 여부 확인
+□ 같은 단지 최근 실거래와 급매 호가 비교
+□ 금리 방향(11.26 금통위·12월 FOMC) 함께 고려`,
+    quiz: {
+      q: '금리가 1%p 오를 때 현재가치 하락폭이 가장 클 것으로 예상되는 재건축 단지는? (다른 조건 동일)',
+      opts: ['관리처분인가 후 2년 뒤 입주 예정 단지', '착공해 3년 뒤 입주 예정 단지', '조합 설립 단계로 10년 뒤 완공 예상 단지', '완공된 신축 아파트'],
+      ans: 2,
+      explain: '재건축 단지의 현재가치는 미래 새 아파트 가치를 할인해서 계산하는데, 완공까지 기간이 길수록 같은 금리 변화에도 할인 효과가 커집니다. 10년 뒤 완공 예상 단지는 5년 사업보다 금리 1%p 상승 시 하락폭이 약 2배입니다. 완공된 신축은 미래가치 할인이 아니라 현재 수요·공급으로 가격이 정해지므로 상대적으로 덜 민감합니다.'
+    }
   }
 ];
 
 // ─── STATE ───────────────────────────────────────────────────────────────────
 const TODAY = new Date();
-const todayStr = TODAY.toISOString().slice(0,10);
+const todayStr = dayKey(TODAY);  // 로컬 날짜 기준 (UTC 변환 시 한국 오전 9시 전에는 전날이 됨)
 let viewDate = new Date(TODAY);
+let viewPick = null;  // 같은 날짜에 강의가 여러 개일 때 선택한 강의 index
+let currentKey = null;  // 지금 보고 있는 강의의 학습 상태 키
 let state = {};
 
 function loadState() {
@@ -7036,39 +7182,41 @@ function saveState() {
 
 // 날짜별 강의 고정 (특정 날짜에 특정 강의 표시)
 const DATE_LESSON_OVERRIDES = {
-  '2026-09-07': LESSONS.length - 59,  // 93강: 기업형 임대주택 완전 정복
-  '2026-09-08': LESSONS.length - 58,  // 94강: 9월 1주 시장 리포트
-  '2026-09-09': LESSONS.length - 57,  // 95강: 아크로리버파크 -9.1억 해부
-  '2026-09-10': LESSONS.length - 55,  // 97강: 강남 -0.13% 낙폭 축소 — 바닥 신호 판별
-  '2026-09-15': LESSONS.length - 53,  // 99강: 추석 연휴와 부동산 시장
-  '2026-09-16': LESSONS.length - 51,  // 101강: 연준 금리 인상과 내 주담대
-  '2026-09-17': LESSONS.length - 49,  // 103강: 강남3구 완전 동반 하락 — 바닥인가, 추세 전환인가?
-  '2026-09-18': LESSONS.length - 47,  // 105강: 연준 25bp 인상 확정 — 워시 시대 통화정책
-  '2026-09-21': LESSONS.length - 45,  // 107강: 10월 분양시장 완전 가이드
-  '2026-09-22': LESSONS.length - 43,  // 109강: 금리 인상에도 주가가 오른다 — 삼각관계
-  '2026-09-23': LESSONS.length - 41,  // 111강: 거래량 급감에도 가격이 오른다 — 서울 아파트 역설
-  '2026-09-28': LESSONS.length - 39,  // 113강: 채권 패닉이란 무엇인가 — 미 10년물 5.2%
-  '2026-09-29': LESSONS.length - 37,  // 115강: 서울 아파트 85주 연속 상승의 의미
-  '2026-10-01': LESSONS.length - 35,  // 117강: 서울 아파트 86주 연속 상승 신기록
-  '2026-10-08': LESSONS.length - 33,  // 119강: 삼성전자 3Q 사상 최대 실적과 강남 부동산
-  '2026-10-12': LESSONS.length - 29,  // 123강: 원달러 1,335원 2년 최저 — 반도체 네고의 비밀
-  '2026-10-14': LESSONS.length - 27,  // 125강: 미 CPI 3.6% 확정 — 시장이 움직이는 순서
-  '2026-10-15': LESSONS.length - 25,  // 127강: 코스피 서킷브레이커 발동
-  '2026-10-18': LESSONS.length - 23,  // 129강: 주담대 금리 COFIX 완전 정복
-  '2026-10-19': LESSONS.length - 21,  // 131강: 10.22 금통위 D-3 완전 시나리오 분석
-  '2026-10-20': LESSONS.length - 19,  // 133강: 코스피 폭락이 부동산에 즉각 반영되지 않는 이유
-  '2026-10-21': LESSONS.length - 17,  // 135강: 채권 금리로 내일 금통위 결과 예측하는 법
-  '2026-10-22': LESSONS.length - 15,  // 137강: 금통위 동결 확정 — 예상된 결과와 시장 반응 원리
-  '2026-10-23': LESSONS.length - 13,  // 139강: 금통위 동결 확정 D+1 — T+1 시장 소화 원리
-  '2026-10-24': LESSONS.length - 11,  // 141강: 부동산 경매 완전 입문 1강
-  '2026-10-26': LESSONS.length - 8,   // 144강: 양도소득세 완전 정복 1강
-  '2026-10-27': LESSONS.length - 6,   // 146강: FOMC가 내 주담대에 도착하는 경로
-  '2026-10-28': LESSONS.length - 4,   // 148강: 매물 데이터로 가격 방향 읽는 법
-  '2026-10-29': LESSONS.length - 2,   // 150강: FOMC 결과 읽는 법
+  '2026-09-07': LESSONS.length - 61,  // 93강: 기업형 임대주택 완전 정복
+  '2026-09-08': LESSONS.length - 60,  // 94강: 9월 1주 시장 리포트
+  '2026-09-09': LESSONS.length - 59,  // 95강: 아크로리버파크 -9.1억 해부
+  '2026-09-10': LESSONS.length - 57,  // 97강: 강남 -0.13% 낙폭 축소 — 바닥 신호 판별
+  '2026-09-15': LESSONS.length - 55,  // 99강: 추석 연휴와 부동산 시장
+  '2026-09-16': LESSONS.length - 53,  // 101강: 연준 금리 인상과 내 주담대
+  '2026-09-17': LESSONS.length - 51,  // 103강: 강남3구 완전 동반 하락 — 바닥인가, 추세 전환인가?
+  '2026-09-18': LESSONS.length - 49,  // 105강: 연준 25bp 인상 확정 — 워시 시대 통화정책
+  '2026-09-21': LESSONS.length - 47,  // 107강: 10월 분양시장 완전 가이드
+  '2026-09-22': LESSONS.length - 45,  // 109강: 금리 인상에도 주가가 오른다 — 삼각관계
+  '2026-09-23': LESSONS.length - 43,  // 111강: 거래량 급감에도 가격이 오른다 — 서울 아파트 역설
+  '2026-09-28': LESSONS.length - 41,  // 113강: 채권 패닉이란 무엇인가 — 미 10년물 5.2%
+  '2026-09-29': LESSONS.length - 39,  // 115강: 서울 아파트 85주 연속 상승의 의미
+  '2026-10-01': LESSONS.length - 37,  // 117강: 서울 아파트 86주 연속 상승 신기록
+  '2026-10-08': LESSONS.length - 35,  // 119강: 삼성전자 3Q 사상 최대 실적과 강남 부동산
+  '2026-10-12': LESSONS.length - 31,  // 123강: 원달러 1,335원 2년 최저 — 반도체 네고의 비밀
+  '2026-10-14': LESSONS.length - 29,  // 125강: 미 CPI 3.6% 확정 — 시장이 움직이는 순서
+  '2026-10-15': LESSONS.length - 27,  // 127강: 코스피 서킷브레이커 발동
+  '2026-10-18': LESSONS.length - 25,  // 129강: 주담대 금리 COFIX 완전 정복
+  '2026-10-19': LESSONS.length - 23,  // 131강: 10.22 금통위 D-3 완전 시나리오 분석
+  '2026-10-20': LESSONS.length - 21,  // 133강: 코스피 폭락이 부동산에 즉각 반영되지 않는 이유
+  '2026-10-21': LESSONS.length - 19,  // 135강: 채권 금리로 내일 금통위 결과 예측하는 법
+  '2026-10-22': LESSONS.length - 17,  // 137강: 금통위 동결 확정 — 예상된 결과와 시장 반응 원리
+  '2026-10-23': LESSONS.length - 15,  // 139강: 금통위 동결 확정 D+1 — T+1 시장 소화 원리
+  '2026-10-24': LESSONS.length - 13,  // 141강: 부동산 경매 완전 입문 1강
+  '2026-10-26': LESSONS.length - 10,  // 144강: 양도소득세 완전 정복 1강
+  '2026-10-27': LESSONS.length - 8,   // 146강: FOMC가 내 주담대에 도착하는 경로
+  '2026-10-28': LESSONS.length - 6,   // 148강: 매물 데이터로 가격 방향 읽는 법
+  '2026-10-29': LESSONS.length - 4,   // 150강: FOMC 결과 읽는 법
+  '2026-10-30': LESSONS.length - 2,   // 152강: 전세가 매매를 앞지를 때
 };
 
 function dayKey(d) {
-  return (typeof d === 'string') ? d : d.toISOString().slice(0,10);
+  if (typeof d === 'string') return d;
+  return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
 }
 function getLessonIndex(d) {
   const dk = dayKey(d);
@@ -7076,6 +7224,26 @@ function getLessonIndex(d) {
   const base = new Date('2026-01-01');
   const diff = Math.floor((new Date(dk) - base) / 86400000);
   return ((diff % LESSONS.length) + LESSONS.length) % LESSONS.length;
+}
+
+function lessonLabel(lesson, idx) {
+  return lesson.num ? `${lesson.num}강` : `강의 #${idx + 1}`;
+}
+// 그 날짜의 기본 강의 + 같은 날짜(date 필드)로 추가된 강의들
+function lessonsOnDate(dk) {
+  const base = getLessonIndex(dk);
+  const list = [base];
+  LESSONS.forEach((l, i) => { if (l.date === dk && i !== base) list.push(i); });
+  return list.sort((a, b) => a - b);
+}
+// 기본 강의는 날짜 키, 추가 강의는 '날짜~강의번호' 키로 학습 상태 저장
+function stateKey(dk, idx) {
+  return idx === getLessonIndex(dk) ? dk : `${dk}~${LESSONS[idx].num || idx + 1}`;
+}
+function lessonForKey(k) {
+  const [dk, n] = k.split('~');
+  if (n === undefined) return LESSONS[getLessonIndex(dk)];
+  return LESSONS.find(l => String(l.num) === n);
 }
 
 // ─── RENDER ──────────────────────────────────────────────────────────────────
@@ -7089,14 +7257,19 @@ function formatDate(d) {
 
 function renderLesson() {
   const dk = dayKey(viewDate);
-  const idx = getLessonIndex(dk);
+  const dayList = lessonsOnDate(dk);
+  const idx = (viewPick !== null && dayList.includes(viewPick)) ? viewPick : getLessonIndex(dk);
   const lesson = LESSONS[idx];
-  const isDone = !!state.done[dk];
+  const sk = stateKey(dk, idx);
+  currentKey = sk;
+  const isDone = !!state.done[sk];
+  const nextInDay = dayList.find(i => i !== idx && !state.done[stateKey(dk, i)]);
   const isToday = dk === todayStr;
   const isFuture = dk > todayStr;
 
   document.getElementById('dateDisplay').textContent = formatDate(viewDate);
-  document.getElementById('lessonNum').textContent = `강의 #${idx + 1} / ${LESSONS.length}`;
+  document.getElementById('lessonNum').textContent = `${lessonLabel(lesson, idx)} · 전체 ${LESSONS.length}개 강의`;
+  document.getElementById('btnToday').hidden = isToday;
   document.getElementById('btnPrev').disabled = false;
   document.getElementById('btnNext').disabled = isToday || isFuture;
 
@@ -7118,7 +7291,7 @@ function renderLesson() {
     ? `<p style="color:var(--ink2);font-style:italic;margin-bottom:14px;font-size:.88rem;border-left:3px solid var(--accent);padding-left:10px;line-height:1.6">${lesson.concept}</p>`
     : '';
 
-  const qDone = state.quizResults[dk];
+  const qDone = state.quizResults[sk];
 
   // 공식/예시/팁이 문자열일 수도, 객체일 수도 있으므로 양쪽 처리
   const formulaHTML = (lesson.formula && typeof lesson.formula === 'object' && lesson.formula.lines)
@@ -7144,7 +7317,15 @@ function renderLesson() {
         `<div class="checklist-item"><div class="cl-check">□</div><div>${l.replace(/^□\s*/, '')}</div></div>`).join('')
     : '';
 
+  const pickHTML = dayList.length > 1 ? `
+    <div class="day-picks" role="tablist" aria-label="이 날의 강의">
+      <span class="day-picks-lab">📚 이 날의 강의 ${dayList.length}개</span>
+      ${dayList.map(i => `<button class="day-pick ${i === idx ? 'on' : ''}" role="tab" aria-selected="${i === idx}"
+        title="${LESSONS[i].title.replace(/"/g, '&quot;')}" onclick="pickLesson(${i})">${state.done[stateKey(dk, i)] ? '✅ ' : ''}${lessonLabel(LESSONS[i], i)} · ${LESSONS[i].title.split(' — ')[0]}</button>`).join('')}
+    </div>` : '';
+
   document.getElementById('lessonCard').innerHTML = `
+    ${pickHTML}
     <div class="lesson-header">
       <div>
         <div class="lesson-title">${lesson.title}</div>
@@ -7188,7 +7369,7 @@ function renderLesson() {
         <div class="quiz-options" id="quizOpts">
           ${lesson.quiz.opts.map((o, i) => `
             <button class="quiz-opt ${qDone !== undefined ? (i === lesson.quiz.ans ? 'correct' : (i === qDone && qDone !== lesson.quiz.ans ? 'wrong' : '')) : ''}"
-              onclick="answerQuiz(${i}, ${lesson.quiz.ans}, '${dk}')"
+              onclick="answerQuiz(${i}, ${lesson.quiz.ans}, '${sk}')"
               ${qDone !== undefined ? 'disabled' : ''}>
               ${String.fromCharCode(9312 + i)} ${o}
             </button>
@@ -7204,8 +7385,10 @@ function renderLesson() {
       <button class="done-btn ${isDone ? 'done-state' : 'undone'}"
         onclick="${isDone ? '' : 'markDone()'}"
         ${isDone ? 'disabled' : ''}>
-        ${isDone ? '✅ 오늘 학습 완료!' : '학습 완료 체크하기'}
+        ${isDone ? '✅ 학습 완료!' : '학습 완료 체크하기'}
       </button>
+      ${isDone && nextInDay !== undefined ? `<button class="next-lesson-btn" onclick="pickLesson(${nextInDay})">
+        이 날의 다음 강의: ${lessonLabel(LESSONS[nextInDay], nextInDay)} →</button>` : ''}
     </div>
   `;
 
@@ -7220,9 +7403,8 @@ function answerQuiz(selected, correct, dk) {
 }
 
 function markDone() {
-  const dk = dayKey(viewDate);
-  state.done[dk] = true;
-  state.lastDate = dk;
+  state.done[currentKey] = true;
+  state.lastDate = dayKey(viewDate);
   saveState();
   renderLesson();
 }
@@ -7233,6 +7415,19 @@ function goDay(delta) {
   const limitDate = new Date('2026-01-01');
   if (d > TODAY || d < limitDate) return;
   viewDate = d;
+  viewPick = null;
+  renderLesson();
+}
+
+function pickLesson(i) {
+  viewPick = i;
+  renderLesson();
+  document.getElementById('lessonCard').scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+function goToday() {
+  viewDate = new Date(TODAY);
+  viewPick = null;
   renderLesson();
 }
 
@@ -7257,8 +7452,8 @@ function renderStats() {
   const quizKeys = Object.keys(state.quizResults);
   let correct = 0;
   quizKeys.forEach(k => {
-    const idx = getLessonIndex(k);
-    if (state.quizResults[k] === LESSONS[idx].quiz.ans) correct++;
+    const l = lessonForKey(k);
+    if (l && state.quizResults[k] === l.quiz.ans) correct++;
   });
   const accuracy = quizKeys.length ? Math.round(correct / quizKeys.length * 100) : 0;
 
@@ -7278,7 +7473,7 @@ function renderCalendar() {
 
   const firstDay = new Date(year, month, 1).getDay();
   const daysInMonth = new Date(year, month + 1, 0).getDate();
-  const doneThisMonth = Object.keys(state.done).filter(k => k.startsWith(`${year}-${String(month+1).padStart(2,'0')}`)).length;
+  const doneThisMonth = Object.keys(state.done).filter(k => !k.includes('~') && k.startsWith(`${year}-${String(month+1).padStart(2,'0')}`)).length;
   document.getElementById('calStat').textContent = `이달 ${doneThisMonth}일 완료`;
 
   const dows = ['일','월','화','수','목','금','토'];
@@ -7300,6 +7495,7 @@ function renderCalendar() {
 
 function navigateToDate(dk) {
   viewDate = new Date(dk + 'T00:00:00');
+  viewPick = null;
   renderLesson();
   document.getElementById('lessonCard').scrollIntoView({ behavior: 'smooth' });
 }
@@ -7312,11 +7508,13 @@ function _lessonDateMap() {
   const end = new Date(todayStr + 'T00:00:00');
   let d = new Date('2026-01-01T00:00:00');
   while (d <= end) {
-    const dk = d.toISOString().slice(0, 10);
+    const dk = dayKey(d);
     const idx = getLessonIndex(dk);
     if (!(idx in map)) map[idx] = dk;
     d.setDate(d.getDate() + 1);
   }
+  // 날짜가 지정된 강의는 그 날짜로 연결 (같은 날 추가 강의 포함)
+  LESSONS.forEach((l, i) => { if (l.date && l.date <= todayStr) map[i] = l.date; });
   return map;
 }
 
@@ -7388,9 +7586,9 @@ function _runSearch(kw) {
       const catClass = catColors[lesson.cat] || 'cat-market';
       const snip = _hl(_snip(flat, kw), kw);
       const title = _hl(lesson.title, kw);
-      return `<div class="sp-card" onclick="gotoLesson('${date}')">
+      return `<div class="sp-card" onclick="gotoLesson('${date}', ${idx})">
         <div class="sp-card-meta">
-          #${idx + 1}강
+          ${lessonLabel(lesson, idx)}
           <span class="cat-chip ${catClass}" style="font-size:10px;padding:2px 8px;margin:0">${lesson.catLabel || ''}</span>
         </div>
         <div class="sp-card-title">${title}</div>
@@ -7408,9 +7606,10 @@ function _runSearch(kw) {
   _showSearchMode(true);
 }
 
-function gotoLesson(dateStr) {
+function gotoLesson(dateStr, idx) {
   clearSearch();
   viewDate = new Date(dateStr + 'T00:00:00');
+  viewPick = (idx === undefined) ? null : idx;
   renderLesson();
   renderCalendar();
   const card = document.getElementById('lessonCard');
@@ -7445,6 +7644,20 @@ function toggleTheme() {
   const btn = document.querySelector('.theme-btn');
   if (btn) btn.textContent = saved === 'dark' ? '☀️ 라이트' : '🌙 다크';
 })();
+// 키보드 단축키: ←/→ 날짜 이동, / 검색, Esc 검색 닫기
+document.addEventListener('keydown', e => {
+  const typing = /^(INPUT|TEXTAREA|SELECT)$/.test(e.target.tagName);
+  if (e.key === 'Escape') {
+    if (document.getElementById('searchInput').value) clearSearch();
+    if (typing) e.target.blur();
+    return;
+  }
+  if (typing || e.metaKey || e.ctrlKey || e.altKey) return;
+  if (e.key === 'ArrowLeft') goDay(-1);
+  else if (e.key === 'ArrowRight' && !document.getElementById('btnNext').disabled) goDay(1);
+  else if (e.key === '/') { e.preventDefault(); document.getElementById('searchInput').focus(); }
+});
+
 loadState();
 renderLesson();
 </script>
