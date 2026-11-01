@@ -207,6 +207,9 @@ body{font-family:var(--font);background:var(--paper);color:var(--ink);}
 .sec-nav button{font-size:.62rem;font-weight:600;color:var(--ink3);background:none;border:1px dashed var(--rule);border-radius:4px;padding:3px 8px;cursor:pointer;white-space:nowrap;font-family:inherit;}
 .sec-nav button:hover{color:var(--blue);border-color:var(--blue);}
 .sh{scroll-margin-top:52px;}
+.hd-right .theme-btn,.date-badge{white-space:nowrap;}
+.hd-back,.hd-title{white-space:nowrap;}
+@media(max-width:480px){.nb-txt{display:none;}.hd-sep,.date-badge{display:none;}}
 .sh-toggle{margin-left:8px;flex-shrink:0;font-size:.62rem;font-weight:700;color:var(--blue);background:none;border:1px solid var(--rule);border-radius:999px;padding:3px 10px;cursor:pointer;font-family:inherit;white-space:nowrap;}
 .sh-toggle:hover{border-color:var(--blue);}
 .sh.is-collapsed{margin-bottom:6px;opacity:.85;}
@@ -223,7 +226,7 @@ body{font-family:var(--font);background:var(--paper);color:var(--ink);}
     <div class="live-dot"></div>
     <span class="date-badge">2026.11.01 기준</span>
     <button class="theme-btn" onclick="toggleTheme()">🌙 테마</button>
-    <button class="theme-btn" type="button" data-news-open>📰 TOP 5</button>
+    <button class="theme-btn" type="button" data-news-open aria-label="오늘의 뉴스 TOP 7">📰<span class="nb-txt"> TOP 7</span></button>
   </div>
 </div>
 

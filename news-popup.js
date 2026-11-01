@@ -1,4 +1,4 @@
-/* 오늘의 핵심 뉴스 TOP 5 팝업
+/* 오늘의 핵심 뉴스 TOP 7 팝업
  * - 매일 NEWS만 바꾸면 홈·최신동향·일일학습에 함께 반영됩니다.
  * - "오늘 하루 보지 않기": 오늘(로컬 날짜) 동안 다시 띄우지 않음 (localStorage)
  * - "닫기": 이번 방문(탭) 동안만 닫음 (sessionStorage) → 페이지를 옮겨도 다시 뜨지 않음
@@ -38,6 +38,18 @@
         title: '코스피 한 주 롤러코스터 — 10.30 -3.48% 5,730pt, 매도 사이드카',
         body: '하루 등락이 -1.46%에서 +6.63%까지 오갔습니다. 원달러는 1,334.3원으로 안정적이었습니다.',
         link: '부동산_최신동향_2026.html#sec-1031', linkLabel: '주간 정리 보기'
+      },
+      {
+        tag: '공급', tone: 'info',
+        title: '수도권 신규택지 6곳 7만6,700가구 — 서울 안은 1,000가구뿐',
+        body: '김포아라·구리건원·하남미사 등 모두 서울 경계 5km 이내 경기도입니다. 2030년 착공 목표라 단기 집값 효과는 제한적이라는 평가입니다.',
+        link: '부동산_일일학습_2026.html', linkLabel: '154강 택지 발표 읽는 법'
+      },
+      {
+        tag: '전세', tone: 'warn',
+        title: '서울 전세 +0.17% — 매매(+0.09%)의 약 2배, 오름폭 확대',
+        body: '매매는 2주 연속 둔화했지만 전세는 오름폭이 커졌습니다. 수도권 전세도 +0.17%입니다(부동산원 10월 4주).',
+        link: '부동산_일일학습_2026.html', linkLabel: '152강 전세 강세 읽는 법'
       }
     ],
     note: '언론 보도 기반 요약입니다. 투자 판단 전 원문과 공식 발표를 확인하세요.'
@@ -116,7 +128,7 @@
         <div class="bnp-hd">
           <div class="bnp-hd-txt">
             <div class="bnp-eyebrow">부릿지 TODAY</div>
-            <h2 class="bnp-ttl" id="bnp-title">오늘의 핵심 뉴스 TOP 5</h2>
+            <h2 class="bnp-ttl" id="bnp-title">오늘의 핵심 뉴스 TOP 7</h2>
             <div class="bnp-date">${esc(NEWS.label)} 기준</div>
           </div>
           <button type="button" class="bnp-x" data-act="close" aria-label="닫기">×</button>

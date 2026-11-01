@@ -131,6 +131,8 @@ main { max-width: 860px; margin: 0 auto; padding: 32px 20px 80px; }
   margin-top: 10px; background: none; border: 1px solid var(--accent); color: var(--accent);
   padding: 10px 18px; border-radius: 10px; font-size: 14px; font-weight: 700; cursor: pointer; width: 100%;
 }
+.hdr-right .theme-btn, .hdr-right .back-btn, .streak-badge, .logo span { white-space: nowrap; }
+@media (max-width: 480px) { .nb-txt { display: none; } }
 .kbd-hint { font-size: 11px; color: var(--text2); text-align: center; margin-top: 18px; opacity: .7; }
 .kbd-hint kbd {
   border: 1px solid var(--border); border-bottom-width: 2px; border-radius: 4px;
@@ -408,7 +410,7 @@ main { max-width: 860px; margin: 0 auto; padding: 32px 20px 80px; }
   <div class="hdr-right">
     <div class="streak-badge" id="streakBadge">🔥 0일 연속</div>
     <button class="theme-btn" onclick="toggleTheme()">테마</button>
-    <button class="theme-btn" type="button" data-news-open>📰 TOP 5</button>
+    <button class="theme-btn" type="button" data-news-open aria-label="오늘의 뉴스 TOP 7">📰<span class="nb-txt"> TOP 7</span></button>
     <a href="index.html" class="back-btn">← 홈</a>
   </div>
 </header>
