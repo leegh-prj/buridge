@@ -9,7 +9,7 @@
 <meta property="og:site_name" content="부릿지 BuRIDGE">
 <meta property="og:type" content="website">
 <meta property="og:title" content="부릿지 BuRIDGE — 부동산 완전 정복">
-<meta property="og:description" content="부동산 완전 초보를 위한 학습 플랫폼. 일일학습 72강, 최신동향, 세금가이드, 청약가이드 완전 무료.">
+<meta property="og:description" content="부동산 완전 초보를 위한 학습 플랫폼. 일일학습 157강, 최신동향, 세금가이드, 청약가이드 완전 무료.">
 <meta property="og:url" content="https://buridge.vercel.app/">
 <meta property="og:image" content="https://buridge.vercel.app/og-image.svg">
 <meta property="og:image:width" content="1200">
@@ -17,7 +17,7 @@
 <meta property="og:locale" content="ko_KR">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="부릿지 BuRIDGE — 부동산 완전 정복">
-<meta name="twitter:description" content="부동산 완전 초보를 위한 학습 플랫폼. 일일학습 72강, 최신동향, 세금가이드, 청약가이드 완전 무료.">
+<meta name="twitter:description" content="부동산 완전 초보를 위한 학습 플랫폼. 일일학습 157강, 최신동향, 세금가이드, 청약가이드 완전 무료.">
 <meta name="twitter:image" content="https://buridge.vercel.app/og-image.svg">
 <title>부릿지 BuRIDGE — 부동산 완전 정복</title>
 <style>
@@ -60,6 +60,9 @@ body{font-family:var(--font);background:var(--paper);color:var(--ink);min-height
 .live-dot{width:6px;height:6px;border-radius:50%;background:#40C070;animation:pulse 2s infinite;}
 @keyframes pulse{0%,100%{opacity:1;}50%{opacity:.3;}}
 .hd-date{font-size:.62rem;color:#3A6090;}
+.news-btn{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.16);color:#C8DAF0;font-size:.7rem;font-weight:700;padding:5px 11px;border-radius:999px;cursor:pointer;font-family:inherit;white-space:nowrap;}
+.news-btn:hover{background:rgba(255,255,255,.16);color:#fff;}
+@media(max-width:520px){.hd-date{display:none;}}
 
 /* ══ 히어로 ══ */
 .hero{
@@ -303,7 +306,8 @@ footer{
   </a>
   <div class="hd-right">
     <div class="live-pill"><div class="live-dot"></div>실시간 업데이트</div>
-    <span class="hd-date">2026.10.14 기준</span>
+    <button class="news-btn" type="button" data-news-open>📰 오늘의 뉴스 TOP 5</button>
+    <span class="hd-date">2026.11.01 기준</span>
   </div>
 </header>
 
@@ -317,32 +321,32 @@ footer{
       <div class="cert-row">
         <span class="cert-tag ct-ga">청약 가이드</span>
         <span class="cert-tag ct-gi">내집마련 플래너</span>
-        <span class="cert-tag ct-in">일일학습 72강</span>
+        <span class="cert-tag ct-in">일일학습 157강</span>
       </div>
     </div>
     <div class="hero-panel">
-      <div class="hp-ttl">8월 1주 공식 발표 (8.6 기준)</div>
+      <div class="hp-ttl">10월 4주 공식 발표 (10.26 기준)</div>
       <div class="hp-row">
         <span class="hp-label">서울 매매 주간</span>
-        <span class="hp-val hv-up">+0.26% <small style="font-size:.6rem;opacity:.7;">77주 연속↑</small></span>
+        <span class="hp-val hv-up">+0.09% <small style="font-size:.6rem;opacity:.7;">90주 연속↑</small></span>
       </div>
       <div class="hp-row">
         <span class="hp-label">서울 전세 주간</span>
-        <span class="hp-val hv-up">+0.25%</span>
-      </div>
-      <div class="hp-row">
-        <span class="hp-label">수도권 매매</span>
         <span class="hp-val hv-up">+0.17%</span>
       </div>
       <div class="hp-row">
+        <span class="hp-label">강남구 매매</span>
+        <span class="hp-val hv-dn">-0.38% <small style="font-size:.6rem;opacity:.7;">12주 연속↓</small></span>
+      </div>
+      <div class="hp-row">
         <span class="hp-label">한은 기준금리</span>
-        <span class="hp-val hv-nt">2.75% (8.27 금통위)</span>
+        <span class="hp-val hv-nt">3.00% (다음 11.26)</span>
       </div>
       <div class="hp-row">
         <span class="hp-label">원/달러 환율</span>
-        <span class="hp-val hv-up">1,424원 (원화 강세)</span>
+        <span class="hp-val hv-nt">1,334.3원 (10.30)</span>
       </div>
-      <div class="hp-date">한국부동산원 2026.08.06 발표 · 세제개편안 8.3 발표 반영</div>
+      <div class="hp-date">한국부동산원 2026.10.29 발표 · 2026.11.01 업데이트</div>
     </div>
   </div>
 </section>
@@ -351,12 +355,14 @@ footer{
 <div class="ticker">
   <span class="ticker-label">Latest</span>
   <div class="ticker-items">
-    <span class="ticker-item"><b>서울</b> 8월 1주 매매 <span class="up">+0.26%</span> 77주 연속 상승 · 강남 +0.01% vs 강북 중구 <span class="up">+0.54%</span> 역전 현상</span>
-    <span class="ticker-item"><b>세제개편</b> 8.3 발표 — 종부세 실거주 20억↓ 면제(2027년~) · 양도세 보유공제 2029년 폐지 예정</span>
-    <span class="ticker-item"><b>환율</b> 원/달러 <span class="up">1,424원</span>대로 급락 — 7월 초 1,501원 대비 77원 하락 · 원화 강세</span>
-    <span class="ticker-item"><b>금통위</b> 8.27 기준금리 <span class="nt">매파적 동결 전망</span> — 최종금리 3.25~3.50% 전망</span>
-    <span class="ticker-item"><b>미분양</b> 전국 <span class="dn">6만 7,464가구</span>(6월 말) · 악성 미분양 3만 가구 육박 · 지방 집중</span>
-    <span class="ticker-item"><b>공급절벽</b> 수도권 준공 <span class="dn">-52.4%</span>(6월) — 2028~29년 입주 절벽 경고 · 3기 신도시 착공 1~2년 앞당기기</span>
+    <span class="ticker-item"><b>서울</b> 10월 4주 매매 <span class="up">+0.09%</span> 90주 연속 상승(역대 최장) · 강남 11개구 <span class="dn">-0.02%</span> 하락</span>
+    <span class="ticker-item"><b>강남3구</b> 강남 <span class="dn">-0.38%</span> · 서초 <span class="dn">-0.35%</span> 12주 연속↓ · 송파 <span class="dn">-0.22%</span> 8주 연속↓</span>
+    <span class="ticker-item"><b>매물</b> 서울 아파트 <span class="nt">7만9,919건</span>(10.28) — 8만 건 육박, 연중 최고</span>
+    <span class="ticker-item"><b>분양</b> 11월 전국 <span class="up">5만6,533가구</span> 예정 — 작년 11월 대비 약 89%↑ · 수도권 56.6%</span>
+    <span class="ticker-item"><b>공급</b> 수도권 신규택지 6곳 <span class="up">7만6,700가구</span>(10.29) — 서울 경계 5km 이내 · 2030년 착공 목표</span>
+    <span class="ticker-item"><b>금리</b> 美 FOMC 3.75~4.00% 동결(10대 2) · 한은 <span class="nt">3.00%</span> · 다음 금통위 11.26</span>
+    <span class="ticker-item"><b>증시·환율</b> 코스피 <span class="dn">5,730.74pt</span>(10.30, -3.48%) · 원/달러 1,334.3원</span>
+    <span class="ticker-item"><b>규제</b> 서울 전역 토지거래허가구역 <span class="dn">12.31 만료</span> — 연장 여부 미정</span>
   </div>
 </div>
 
@@ -365,8 +371,8 @@ footer{
 
   <!-- 업데이트 배너 -->
   <div class="update-bar">
-    <span class="ub-icon">2026.10.14 업데이트</span>
-    <span><b>8월 1주 서울 +0.26%</b>(77주 연속 상승) · <b>세제개편안 8.3 발표</b>(종부세·양도세 전면 개편) · <b>세금 가이드 신규</b>(취득세·양도세 계산기·세제개편 반영) · 강남 관망 vs 강북 급등 역전 현상 · 원/달러 1,424원 급락</span>
+    <span class="ub-icon">2026.11.01 업데이트</span>
+    <span><b>10월 4주 서울 +0.09%</b>(90주 연속 상승, 2주 연속 둔화) · <b>강남 11개구 -0.02%</b> 하락 · 서울 매물 7만9,919건 연중 최고 · <b>11월 분양 5만6,533가구</b> · 토지거래허가구역 12.31 만료 · <b>일일학습 156~157강 신규</b></span>
   </div>
 
   <!-- ── 추천 학습 경로 ── -->
@@ -446,7 +452,7 @@ footer{
       <div class="c-badge" style="background:var(--teal-lt);color:var(--teal);">Daily</div>
       <div class="card-icon" style="background:var(--teal-lt);color:var(--teal);">📅</div>
       <div class="c-title">일일 학습</div>
-      <div class="c-desc">매일 자동으로 새 강의가 등장합니다. 72개 강의 로테이션 + 스트릭 추적 + 퀴즈 + 월간 캘린더.</div>
+      <div class="c-desc">매일 새 강의가 등장합니다. 157강까지 공개 + 그날 시장 이슈 강의 + 스트릭 추적 + 퀴즈 + 월간 캘린더.</div>
       <div class="c-footer">
         <div class="c-tags"><span class="tag">매일 자동</span><span class="tag">스트릭</span><span class="tag">퀴즈</span></div>
         <span class="c-arrow">→</span>
@@ -520,28 +526,28 @@ footer{
         <div class="feat-left">
           <div style="display:flex;align-items:center;gap:7px;margin-bottom:9px;">
             <span style="font-size:.58rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--ok);background:var(--ok-lt);padding:2px 7px;border-radius:3px;">최신 뉴스</span>
-            <span style="font-size:.6rem;color:var(--ink3);">2026.10.14 기준</span>
+            <span style="font-size:.6rem;color:var(--ink3);">2026.11.01 기준</span>
           </div>
           <div class="c-title" style="font-size:1rem;margin-bottom:7px;">최신 시장 동향</div>
-          <div class="c-desc">서울 8월 1주 <b style="color:var(--ok);">+0.26%</b> (77주 연속 상승). 강남 +0.01% vs 강북 중구 +0.54% 역전. 세제개편안(8.3) 발표, 원/달러 1,424원 급락, 미분양 6.7만 가구.</div>
+          <div class="c-desc">서울 10월 4주 <b style="color:var(--ok);">+0.09%</b> (90주 연속 상승, 역대 최장). 강남 -0.38%·서초 -0.35% 12주 연속 하락, 서울 전세 +0.17%. 매물 7만9,919건 연중 최고, 11월 분양 5.6만 가구, 토허구역 12.31 만료.</div>
         </div>
         <div class="feat-right">
           <div class="feat-stat">
-            <div class="fs-val fs-up">+0.26%</div>
-            <div class="fs-lbl">서울 8월 1주 매매</div>
+            <div class="fs-val fs-up">+0.09%</div>
+            <div class="fs-lbl">서울 10월 4주 매매</div>
           </div>
           <div class="feat-stat">
-            <div class="fs-val fs-up">77주</div>
+            <div class="fs-val fs-up">90주</div>
             <div class="fs-lbl">서울 연속 상승</div>
           </div>
           <div class="feat-stat">
-            <div class="fs-val" style="color:var(--warn);font-size:.9rem;">6.7만</div>
-            <div class="fs-lbl">전국 미분양(가구)</div>
+            <div class="fs-val" style="color:var(--warn);font-size:.9rem;">7.99만</div>
+            <div class="fs-lbl">서울 아파트 매물(건)</div>
           </div>
         </div>
       </div>
       <div class="c-footer">
-        <div class="c-tags"><span class="tag">주간 가격지수</span><span class="tag">2026.07 정책</span><span class="tag">PF 리스크</span><span class="tag">학습 포인트</span></div>
+        <div class="c-tags"><span class="tag">주간 가격지수</span><span class="tag">날짜별 이슈</span><span class="tag">매물·분양</span><span class="tag">오늘의 TOP 5</span></div>
         <span class="c-arrow">→</span>
       </div>
     </a>
@@ -690,5 +696,6 @@ footer{
   </div>
 </footer>
 
+<script src="news-popup.js" defer></script>
 </body>
 </html>
