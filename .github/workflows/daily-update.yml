@@ -1,0 +1,84 @@
+# 부릿지 데일리 자동 업데이트 — 매일 09:00 KST (GitHub 서버에서 실행, PC 꺼져 있어도 됨)
+# - Claude가 .claude/daily-update.md 절차대로 5개 파일을 수정
+# - 이 워크플로가 verify.mjs로 검증하고, 통과할 때만 커밋·push → Vercel 자동 배포
+# - 필요한 시크릿: CLAUDE_CODE_OAUTH_TOKEN (`claude setup-token`으로 발급)
+name: Daily update
+
+on:
+  schedule:
+    - cron: '0 0 * * *'   # 00:00 UTC = 09:00 KST
+  workflow_dispatch:       # Actions 탭에서 수동 실행
+
+permissions:
+  contents: write
+  id-token: write
+
+concurrency:
+  group: daily-update
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    env:
+      TZ: Asia/Seoul
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: 오늘 날짜·이미 했는지 확인
+        id: day
+        run: |
+          DAY=$(date +%F)
+          echo "day=$DAY" >> "$GITHUB_OUTPUT"
+          if node .claude/scripts/verify.mjs "$DAY"; then
+            echo "done=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "done=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Claude로 업데이트 작성
+        if: steps.day.outputs.done == 'false'
+        uses: anthropics/claude-code-action@v1
+        with:
+          claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          prompt: |
+            Run today's BuRIDGE daily site update. Today in Asia/Seoul is ${{ steps.day.outputs.day }}.
+            Read .claude/daily-update.md in this repository from start to finish and follow it exactly:
+            research with WebSearch and use only facts confirmed in articles, add 2 daily lessons, today's issue section in the trends page,
+            the TOP 7 news popup, home page numbers and og-image. Write all site text in Korean for beginners.
+            Use $RUNNER_TEMP (not /tmp) for the temporary lessons file.
+            Run node .claude/scripts/verify.mjs ${{ steps.day.outputs.day }} and fix failures until it passes.
+            Change only the 5 files listed in the runbook. Do NOT run git commit or git push — this workflow commits and pushes after verification.
+            Finish with a short report in Korean: lessons added, TOP 7 titles, key numbers changed, items you could not confirm, source URLs.
+          claude_args: >-
+            --model claude-opus-5-5
+            --max-turns 150
+            --allowedTools "Bash,Read,Write,Edit,Glob,Grep,WebSearch,WebFetch"
+
+      - name: 검증 후 커밋·push
+        if: steps.day.outputs.done == 'false'
+        env:
+          DAY: ${{ steps.day.outputs.day }}
+        run: |
+          node .claude/scripts/verify.mjs "$DAY"
+          FILES="index.html news-popup.js og-image.svg 부동산_최신동향_2026.html 부동산_일일학습_2026.html"
+          OTHER=$(git status --porcelain -- . $(for f in $FILES; do printf ":(exclude)%s " "$f"; done))
+          if [ -n "$OTHER" ]; then echo "5개 파일 외 변경이 있어 push하지 않습니다:"; echo "$OTHER"; exit 1; fi
+          git config user.name "leegh911-1848"
+          git config user.email "leegh911@gmail.com"
+          git add $FILES
+          N=$(grep -o "^\s*num: [0-9]*" 부동산_일일학습_2026.html | tail -1 | grep -o "[0-9]*")
+          git commit -m "${DAY//-/.} 업데이트 — $((N-1))강·${N}강 · 데일리 자동 업데이트" -m "Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>"
+          git pull --rebase origin master
+          node .claude/scripts/verify.mjs "$DAY"
+          git push origin HEAD:master
