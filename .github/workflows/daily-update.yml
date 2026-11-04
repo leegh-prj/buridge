@@ -8,6 +8,11 @@ on:
   schedule:
     - cron: '0 0 * * *'   # 00:00 UTC = 09:00 KST
   workflow_dispatch:       # Actions 탭에서 수동 실행
+    inputs:
+      test:
+        description: '연결 테스트만 (사이트 수정 없음)'
+        type: boolean
+        default: false
 
 permissions:
   contents: write
@@ -34,7 +39,21 @@ jobs:
         with:
           python-version: '3.12'
 
+      - name: 연결 테스트 (토큰·웹검색)
+        if: inputs.test
+        uses: anthropics/claude-code-action@v1
+        with:
+          claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          prompt: |
+            Connection test. Do not modify any files. Run one WebSearch for "코스피 마감" and reply in Korean with one line: the top result title.
+          claude_args: >-
+            --model claude-opus-5-5
+            --max-turns 5
+            --allowedTools "WebSearch"
+
       - name: 오늘 날짜·이미 했는지 확인
+        if: ${{ !inputs.test }}
         id: day
         run: |
           DAY=$(date +%F)
@@ -46,7 +65,7 @@ jobs:
           fi
 
       - name: Claude로 업데이트 작성
-        if: steps.day.outputs.done == 'false'
+        if: ${{ !inputs.test && steps.day.outputs.done == 'false' }}
         uses: anthropics/claude-code-action@v1
         with:
           claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
@@ -66,7 +85,7 @@ jobs:
             --allowedTools "Bash,Read,Write,Edit,Glob,Grep,WebSearch,WebFetch"
 
       - name: 검증 후 커밋·push
-        if: steps.day.outputs.done == 'false'
+        if: ${{ !inputs.test && steps.day.outputs.done == 'false' }}
         env:
           DAY: ${{ steps.day.outputs.day }}
         run: |
