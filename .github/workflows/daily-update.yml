@@ -1,4 +1,4 @@
-# 부릿지 데일리 자동 업데이트 — 매일 08:30 KST 시작 (GitHub 서버에서 실행, PC 꺼져 있어도 됨)
+# 부릿지 데일리 자동 업데이트 — 매일 06:15·07:45·08:30 KST 시작 (GitHub 서버에서 실행, PC 꺼져 있어도 됨)
 # - Claude가 .claude/daily-update.md 절차대로 5개 파일을 수정
 # - 이 워크플로가 verify.mjs로 검증하고, 통과할 때만 커밋·push → Vercel 자동 배포
 # - 필요한 시크릿: CLAUDE_CODE_OAUTH_TOKEN (`claude setup-token`으로 발급)
@@ -6,7 +6,10 @@ name: Daily update
 
 on:
   schedule:
-    - cron: '30 23 * * *' # 23:30 UTC = 08:30 KST (정각은 GitHub 지연이 커서 피함)
+    # GitHub 예약은 몇 시간씩 늦어질 수 있어 여러 번 걸어 둠 — 먼저 끝난 실행 뒤로는 검증 통과로 자동 건너뜀
+    - cron: '15 21 * * *' # 06:15 KST
+    - cron: '45 22 * * *' # 07:45 KST
+    - cron: '30 23 * * *' # 08:30 KST
   workflow_dispatch:       # Actions 탭에서 수동 실행
     inputs:
       test:
