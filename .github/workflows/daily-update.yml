@@ -33,6 +33,8 @@ jobs:
       TZ: Asia/Seoul
     steps:
       - uses: actions/checkout@v4
+        with:
+          ref: master # 대기 중이던 실행도 예약 시점이 아닌 최신 사이트를 받도록 (앞 실행이 이미 끝냈으면 건너뜀)
 
       - uses: actions/setup-node@v4
         with:
