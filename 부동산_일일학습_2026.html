@@ -9249,6 +9249,16 @@ document.addEventListener('keydown', e => {
 
 loadState();
 renderLesson();
+
+// ?lesson=176 (강의 번호) 또는 ?lesson=i1 (번호 없는 초기 강의 순서)로 특정 강의 바로 열기 — 정책 모음 등에서 연결
+(() => {
+  let ref = null;
+  try { ref = new URLSearchParams(location.search).get('lesson'); } catch (e) {}
+  if (!ref) return;
+  const idx = /^i\d+$/.test(ref) ? +ref.slice(1) : LESSONS.findIndex(l => String(l.num) === ref);
+  const date = LESSONS[idx] && _lessonDateMap()[idx];
+  if (date) gotoLesson(date, idx);
+})();
 </script>
 <script src="news-popup.js" defer></script>
 </body>

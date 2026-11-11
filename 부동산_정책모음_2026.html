@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/favicon.svg">
+<meta name="theme-color" content="#0C2040">
+<meta property="og:site_name" content="부릿지 BuRIDGE">
+<meta property="og:type" content="website">
+<meta property="og:title" content="부동산 정책 모음 | 부릿지 BuRIDGE">
+<meta property="og:description" content="대출·규제지역·토허구역·세금·공급·청약·임대차 — 지금 적용 중인 부동산 정책과 다가오는 일정을 초보자 눈높이로 한곳에 정리했습니다.">
+<meta property="og:url" content="https://buridge.vercel.app/부동산_정책모음_2026.html">
+<meta property="og:image" content="https://buridge.vercel.app/og-image.svg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="ko_KR">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="부동산 정책 모음 | 부릿지 BuRIDGE">
+<meta name="twitter:description" content="대출·규제지역·토허구역·세금·공급·청약·임대차 — 지금 적용 중인 부동산 정책과 다가오는 일정을 초보자 눈높이로 한곳에 정리했습니다.">
+<meta name="twitter:image" content="https://buridge.vercel.app/og-image.svg">
+<title>부동산 정책 모음 | 부릿지 BuRIDGE</title>
+<script>try{var t=localStorage.getItem('buridge-theme');if(t==='dark'||t==='light')document.documentElement.setAttribute('data-theme',t);}catch(e){}</script>
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<style>button,input,select,textarea{font-family:inherit}</style>
+<style>
+:root{
+  --bg:#F3F6FB;--sf:#FFFFFF;--rule:#D8E0EC;
+  --ink:#1A2E44;--ink2:#374F6B;--ink3:#68839C;
+  --navy:#0C2040;--blue:#1A4A9A;--blue-lt:#EBF1FF;--blue-mid:#3A70C8;
+  --ok:#0A6E42;--ok-lt:#E4F3EC;
+  --dn:#B71C1C;--dn-lt:#FFEBEE;
+  --warn:#935200;--warn-lt:#FEF4E4;
+  --accent:#2563EB;
+  --purple:#6D28D9;--purple-lt:#EDE9FF;
+  --gray:#5B6B7E;--gray-lt:#EEF1F5;
+  --font:Pretendard Variable, Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Apple SD Gothic Neo, Malgun Gothic, sans-serif;
+}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#0E1A2E;--sf:#152235;--rule:#1E3050;
+  --ink:#D0E0F0;--ink2:#8AAAC8;--ink3:#6A84A0;
+  --blue-lt:#0A1A34;--ok-lt:#0A2018;--dn-lt:#2A0A0A;--warn-lt:#2A1A00;--blue-mid:#4A90D8;--purple-lt:#1A1030;--gray-lt:#1A2638;
+  --ok:#4CC08A;--dn:#F07070;--warn:#E0A040;--accent:#6AA0F0;--purple:#A88AF0;--gray:#90A0B4;
+}}
+:root[data-theme="dark"]{
+  --bg:#0E1A2E;--sf:#152235;--rule:#1E3050;
+  --ink:#D0E0F0;--ink2:#8AAAC8;--ink3:#6A84A0;
+  --blue-lt:#0A1A34;--ok-lt:#0A2018;--dn-lt:#2A0A0A;--warn-lt:#2A1A00;--blue-mid:#4A90D8;--purple-lt:#1A1030;--gray-lt:#1A2638;
+  --ok:#4CC08A;--dn:#F07070;--warn:#E0A040;--accent:#6AA0F0;--purple:#A88AF0;--gray:#90A0B4;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:var(--font);background:var(--bg);color:var(--ink);min-height:100vh;line-height:1.6;}
+a{color:inherit;}
+
+/* ─ 헤더 ─ */
+.hd{background:var(--navy);height:50px;display:flex;align-items:center;padding:0 20px;gap:10px;}
+.hd-back{color:#7AA0C8;font-size:.75rem;text-decoration:none;}.hd-back:hover{color:#C0D8F0;}
+.hd-sep{color:#2A4870;}
+.hd-title{font-size:.9rem;font-weight:700;color:#D0E0F0;}
+.hd-right{margin-left:auto;}
+.hd-badge{font-size:.62rem;font-weight:700;padding:2px 8px;border-radius:3px;background:#0A1628;border:1px solid #1A3460;color:#70A0D0;white-space:nowrap;}
+
+/* ─ 히어로 ─ */
+.hero{background:var(--navy);border-bottom:1px solid #152A48;padding:28px 20px 26px;}
+.hero-in{max-width:1100px;margin:0 auto;}
+.hero-eyebrow{font-size:.62rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#4A78A8;margin-bottom:10px;}
+.hero h1{font-size:1.55rem;font-weight:900;color:#D0E4F8;letter-spacing:-.03em;margin-bottom:8px;line-height:1.35;}
+.hero-sub{font-size:.8rem;color:#7F9CBC;line-height:1.7;margin-bottom:22px;max-width:720px;}
+.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;}
+@media(max-width:820px){.kpis{grid-template-columns:repeat(2,1fr);}}
+.kpi,.pc,.tl-t{min-width:0;overflow-wrap:anywhere;}
+@media(max-width:420px){.kpi-v{font-size:.88rem;}.hero h1{font-size:1.3rem;}}
+.kpi{background:#081628;border:1px solid #1A3254;border-radius:6px;padding:12px 14px;}
+.kpi-l{font-size:.62rem;color:#6A8CB0;font-weight:600;margin-bottom:4px;}
+.kpi-v{font-size:1rem;font-weight:800;color:#B8D6F2;letter-spacing:-.02em;}
+.kpi-s{font-size:.62rem;color:#56789C;margin-top:3px;line-height:1.5;}
+
+/* ─ 레이아웃 ─ */
+.main{max-width:1100px;margin:0 auto;padding:28px 16px 80px;}
+.sh{display:flex;align-items:center;gap:10px;margin:40px 0 16px;scroll-margin-top:70px;}
+.sh:first-child{margin-top:0;}
+.sh-label{font-size:.95rem;font-weight:800;color:var(--ink);letter-spacing:-.02em;white-space:nowrap;}
+.sh::after{content:'';flex:1;height:1px;background:var(--rule);}
+.sh-note{font-size:.74rem;color:var(--ink3);margin:-8px 0 14px;line-height:1.7;}
+
+/* ─ 안내 박스 ─ */
+.guide{background:var(--sf);border:1px solid var(--rule);border-radius:8px;padding:16px 18px;font-size:.8rem;color:var(--ink2);line-height:1.75;}
+.guide b{color:var(--ink);}
+.legend{display:flex;flex-wrap:wrap;gap:6px 14px;margin-top:10px;}
+.legend span{display:inline-flex;align-items:center;gap:6px;font-size:.72rem;color:var(--ink2);}
+
+/* ─ 상태 배지 ─ */
+.st{display:inline-block;font-size:.64rem;font-weight:700;padding:2px 8px;border-radius:10px;white-space:nowrap;}
+.st-on{background:var(--ok-lt);color:var(--ok);}
+.st-soon{background:var(--blue-lt);color:var(--accent);}
+.st-bill{background:var(--purple-lt);color:var(--purple);}
+.st-talk{background:var(--warn-lt);color:var(--warn);}
+.st-end{background:var(--gray-lt);color:var(--gray);}
+.st-fake{background:var(--dn-lt);color:var(--dn);}
+
+/* ─ 일정 ─ */
+.tl{background:var(--sf);border:1px solid var(--rule);border-radius:8px;overflow:hidden;}
+.tl-row{display:grid;grid-template-columns:110px 1fr auto;gap:12px;align-items:center;padding:11px 16px;border-bottom:1px solid var(--rule);}
+.tl-row:last-child{border-bottom:none;}
+.tl-d{font-size:.78rem;font-weight:800;color:var(--ink);font-variant-numeric:tabular-nums;}
+.tl-d small{display:block;font-size:.64rem;font-weight:600;color:var(--ink3);}
+.tl-t{font-size:.8rem;color:var(--ink2);}
+.tl-t b{color:var(--ink);}
+.tl-row.near{background:linear-gradient(90deg,rgba(37,99,235,.07),transparent 60%);}
+@media(max-width:560px){.tl-row{grid-template-columns:1fr auto;}.tl-d{grid-column:1/-1;}}
+
+/* ─ 필터 ─ */
+.filters{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:14px;position:sticky;top:0;z-index:5;background:var(--bg);padding:10px 0;}
+.fbtn{border:1px solid var(--rule);background:var(--sf);color:var(--ink2);font-size:.76rem;font-weight:600;padding:7px 13px;border-radius:18px;cursor:pointer;}
+.fbtn.on{background:var(--navy);border-color:var(--navy);color:#fff;}
+:root[data-theme="dark"] .fbtn.on{background:var(--accent);border-color:var(--accent);}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]) .fbtn.on{background:var(--accent);border-color:var(--accent);}}
+.fcount{font-size:.72rem;color:var(--ink3);align-self:center;margin-left:4px;}
+
+/* ─ 정책 카드 ─ */
+.cat-h{display:flex;align-items:baseline;gap:8px;margin:26px 0 10px;}
+.cat-h:first-child{margin-top:0;}
+.cat-h h3{font-size:.9rem;font-weight:800;color:var(--ink);}
+.cat-h span{font-size:.72rem;color:var(--ink3);}
+.cards{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+@media(max-width:760px){.cards{grid-template-columns:1fr;}}
+.pc{background:var(--sf);border:1px solid var(--rule);border-radius:8px;padding:16px 18px;display:flex;flex-direction:column;gap:9px;}
+.pc-top{display:flex;align-items:flex-start;justify-content:space-between;gap:10px;}
+.pc-ttl{font-size:.92rem;font-weight:800;color:var(--ink);letter-spacing:-.02em;line-height:1.45;}
+.pc-dates{font-size:.7rem;color:var(--ink3);font-variant-numeric:tabular-nums;}
+.pc-one{font-size:.8rem;color:var(--ink);background:var(--bg);border-radius:6px;padding:9px 11px;line-height:1.65;}
+.pc ul{list-style:none;display:flex;flex-direction:column;gap:5px;}
+.pc li{font-size:.77rem;color:var(--ink2);line-height:1.65;padding-left:12px;position:relative;}
+.pc li::before{content:'';position:absolute;left:2px;top:.68em;width:4px;height:4px;border-radius:50%;background:var(--ink3);}
+.pc li b{color:var(--ink);}
+.pc-who{font-size:.74rem;color:var(--ink2);}
+.pc-who b{color:var(--ink);font-weight:700;}
+.pc-note{font-size:.72rem;color:var(--warn);background:var(--warn-lt);border-radius:5px;padding:6px 9px;line-height:1.6;}
+.pc-foot{display:flex;flex-wrap:wrap;gap:6px 12px;border-top:1px dashed var(--rule);padding-top:9px;margin-top:auto;}
+.pc-foot a{font-size:.7rem;text-decoration:none;}
+.pc-lsn{color:var(--accent);font-weight:600;}
+.pc-lsn:hover,.pc-src:hover{text-decoration:underline;}
+.pc-src{color:var(--ink3);}
+
+/* ─ 흐름 ─ */
+.flow{position:relative;padding-left:20px;}
+.flow::before{content:'';position:absolute;left:5px;top:6px;bottom:6px;width:2px;background:var(--rule);}
+.fl{position:relative;padding:0 0 16px;}
+.fl::before{content:'';position:absolute;left:-19px;top:6px;width:10px;height:10px;border-radius:50%;background:var(--sf);border:2px solid var(--blue-mid);}
+.fl-d{font-size:.72rem;font-weight:700;color:var(--accent);font-variant-numeric:tabular-nums;}
+.fl-t{font-size:.84rem;font-weight:800;color:var(--ink);margin:1px 0 2px;}
+.fl-b{font-size:.76rem;color:var(--ink2);line-height:1.65;}
+
+.disc{margin-top:40px;font-size:.72rem;color:var(--ink3);line-height:1.8;border-top:1px solid var(--rule);padding-top:16px;}
+</style>
+</head>
+<body>
+
+<div class="hd">
+  <a class="hd-back" href="./index.html">🌉 부릿지</a>
+  <span class="hd-sep">/</span>
+  <span class="hd-title">정책 모음</span>
+  <div class="hd-right"><span class="hd-badge">2026.11.11 기준</span></div>
+</div>
+
+<div class="hero">
+  <div class="hero-in">
+    <div class="hero-eyebrow">Policy Hub · 부동산 정책 모음</div>
+    <h1>지금 집을 사고, 빌리고, 팔 때<br>적용되는 정책은 무엇일까?</h1>
+    <p class="hero-sub">대출·규제지역·토지거래허가·세금·공급·청약·임대차 정책을 한곳에 모았습니다. 각 정책에 <b style="color:#B8D6F2">지금 상태</b>(시행 중·예정·국회 심의 중)와 <b style="color:#B8D6F2">누가 영향받는지</b>, 관련 강의와 출처 기사를 함께 달았습니다.</p>
+    <div class="kpis">
+      <div class="kpi"><div class="kpi-l">수도권·규제지역 주담대 한도</div><div class="kpi-v">6억 · 4억 · 2억</div><div class="kpi-s">집값 15억 이하 · 25억 이하 · 25억 초과</div></div>
+      <div class="kpi"><div class="kpi-l">규제지역 (투기과열·조정)</div><div class="kpi-v">서울 25개 구 + 경기 15곳</div><div class="kpi-s">10·15 대책 37곳 + 2026.7 동탄·기흥·구리</div></div>
+      <div class="kpi"><div class="kpi-l">서울 전역·경기 12곳 토허구역</div><div class="kpi-v">12.31 만료</div><div class="kpi-s">연장 여부 논의 중 (11.11 현재 미발표)</div></div>
+      <div class="kpi"><div class="kpi-l">2026 세제개편안 (양도세·종부세)</div><div class="kpi-v">국회 심의 중</div><div class="kpi-s">통과되면 2027년부터 단계 적용</div></div>
+    </div>
+  </div>
+</div>
+
+<div class="main">
+
+  <div class="guide">
+    <b>읽는 법</b> — 정부가 발표했다고 바로 적용되는 것은 아닙니다. 대출 규제는 보통 발표 다음 날부터, 세금은 법이 국회를 통과해야 바뀝니다. 그래서 카드마다 상태를 붙였습니다.
+    <div class="legend">
+      <span><i class="st st-on">시행 중</i> 지금 적용</span>
+      <span><i class="st st-soon">시행 예정</i> 날짜 확정</span>
+      <span><i class="st st-bill">국회 심의 중</i> 정부안, 바뀔 수 있음</span>
+      <span><i class="st st-talk">논의 중</i> 결정 전</span>
+      <span><i class="st st-fake">사실 아님</i> 소문</span>
+    </div>
+  </div>
+
+  <div class="sh" id="schedule"><span class="sh-label">다가오는 일정</span></div>
+  <p class="sh-note">날짜가 정해진 것만 적었습니다. 세제개편안 국회 처리일처럼 날짜가 확정되지 않은 일은 넣지 않았습니다.</p>
+  <div class="tl" id="timeline"></div>
+
+  <div class="sh" id="policies"><span class="sh-label">분야별 정책</span></div>
+  <div class="filters" id="filters"></div>
+  <div id="list"></div>
+
+  <div class="sh" id="flow"><span class="sh-label">대책 흐름 한눈에 (2025.6 ~ 2026.11)</span></div>
+  <p class="sh-note">어떤 순서로 규제가 쌓이고 풀렸는지 보면 다음 정책을 짐작하는 데 도움이 됩니다.</p>
+  <div class="flow" id="flowList"></div>
+
+  <div class="disc">
+    · 이 페이지는 공개된 기사·정부 발표를 초보자용으로 요약한 학습 자료입니다. 실제 대출·세금·청약은 개인 조건에 따라 달라지므로 계약 전 은행, 세무사, 청약홈·관할 관청에서 꼭 다시 확인하세요.<br>
+    · 출처 링크는 각 카드 아래에 있습니다. 보도마다 수치가 다른 경우 카드 안에 따로 적었습니다.<br>
+    · 마지막 확인: 2026.11.11
+  </div>
+</div>
+
+<script>
+// 관련 강의: n = 일일학습 강의 번호(num), i = 번호 없는 초기 강의의 순서(0부터)
+const L = (label, ref) => ({ label, href: './부동산_일일학습_2026.html?lesson=' + encodeURIComponent(ref) });
+
+const CATS = [
+  { id: 'loan', name: '대출', desc: '주담대 한도·LTV·DSR·전세대출' },
+  { id: 'zone', name: '규제지역·토허', desc: '투기과열·조정대상·토지거래허가구역' },
+  { id: 'tax', name: '세금', desc: '양도세·종부세·취득세' },
+  { id: 'supply', name: '공급', desc: '공급 대책·택지·건축 규제' },
+  { id: 'sub', name: '청약·분양', desc: '특별공급·새 분양 방식' },
+  { id: 'rent', name: '임대차', desc: '전세사기·전월세' },
+  { id: 'rumor', name: '소문 확인', desc: '사실이 아닌 것으로 확인된 이야기' },
+];
+
+const ST = {
+  on: ['st-on', '시행 중'], soon: ['st-soon', '시행 예정'], bill: ['st-bill', '국회 심의 중'],
+  talk: ['st-talk', '논의 중'], fake: ['st-fake', '사실 아님'],
+};
+
+const P = [
+  // ── 대출 ──
+  { cat: 'loan', st: 'on', title: '10·15 대책 — 집값별 주담대 한도', dates: '발표 2025.10.15 · 시행 10.16',
+    one: '수도권·규제지역에서 집을 살 때 주택담보대출은 집값에 따라 최대 6억·4억·2억 원까지만 나옵니다.',
+    pts: ['집값 <b>15억 원 이하 6억</b>, 15억 초과~25억 <b>4억</b>, 25억 초과 <b>2억</b>', 'LTV로 계산한 금액과 위 한도 중 <b>더 적은 쪽</b>이 적용', '재건축·재개발 이주비 대출은 집값과 관계없이 6억'],
+    who: '수도권·규제지역에서 15억 원 넘는 집을 사려는 사람',
+    lessons: [L('강의 #2 LTV·DTI·DSR', 'i1'), L('165강 금융위가 대출규제를 유지하는 이유', '165')],
+    src: [['금융위원회 2025.10.15', 'https://fsc.go.kr/no010101/85432']] },
+  { cat: 'loan', st: 'on', title: '규제지역 LTV 40%', dates: '2025.10.15 발표 · 규제지역 지정과 함께 적용',
+    one: '규제지역에서 무주택자가 집을 살 때 집값의 40%까지만 빌릴 수 있습니다(이전 70%).',
+    pts: ['대상: 무주택자, 기존 집을 팔기로 약속한 1주택자', '토지거래허가구역 안 상가·오피스텔 담보대출도 70% → 40%', '서울 전역이 규제지역이라 서울 아파트 대부분에 해당'],
+    who: '서울·경기 규제지역 첫 집 구입자',
+    lessons: [L('강의 #2 LTV·DTI·DSR', 'i1'), L('174강 규제지역과 비규제지역', '174')],
+    src: [['금융위원회 2025.10.15', 'https://fsc.go.kr/no010101/85432']] },
+  { cat: 'loan', st: 'on', title: '스트레스 DSR — 3단계와 수도권 하한 3%', dates: '3단계 2025.7.1 · 하한 3% 2025.10.16',
+    one: '대출 한도를 계산할 때 "앞으로 금리가 오를 수 있다"고 가정한 가산 금리를 더해 한도를 줄이는 제도입니다.',
+    pts: ['2025.7.1부터 3단계: 스트레스 금리 1.5%, 은행·2금융권 가계대출 전체에 적용', '10·15 대책으로 수도권·규제지역 주담대는 하한 <b>1.5% → 3.0%</b>', '실제 내는 이자가 아니라 <b>한도 계산에만</b> 쓰는 금리', '지방 주담대는 2단계 수준 유지 — 이 유예가 <b>2026.12.31</b> 끝남'],
+    who: '모든 주담대 차주, 특히 소득 대비 대출이 큰 사람',
+    lessons: [L('강의 #2 LTV·DTI·DSR', 'i1'), L('146강 FOMC가 내 주담대에 도착하는 경로', '146')],
+    src: [['금융위원회 2025.10.15', 'https://fsc.go.kr/no010101/85432'], ['파이낸셜뉴스 2026.6.19 (지방 유예)', 'https://www.fnnews.com/news/202606190946281228']] },
+  { cat: 'loan', st: 'on', title: '6·27 대책 — 수도권 주담대 6억 원 한도의 시작', dates: '발표 2025.6.27 · 시행 6.28',
+    one: '지금 대출 규제의 출발점입니다. 수도권에서 집을 사기 위한 주담대를 처음으로 6억 원으로 묶었습니다.',
+    pts: ['수도권·규제지역 2주택 이상은 집 사는 주담대 <b>금지</b>', '1주택자는 6개월 안에 기존 집을 팔기로 약속해야 대출 가능', '대출받으면 <b>6개월 안에 전입</b>해야 함', '생애최초 LTV 80% → 70%, 주담대 만기 최대 30년, 신용대출은 연소득 이내'],
+    who: '수도권 주택 매수자, 유주택자',
+    lessons: [L('165강 금융위가 대출규제를 유지하는 이유', '165')],
+    src: [['뉴시스 2025.6.27', 'https://www.newsis.com/view/NISX20250627_0003230564'], ['KB Think 2025.7.4', 'https://kbthink.com/loan-guide/627-regulation.html']] },
+  { cat: 'loan', st: 'on', title: '전세대출도 깐깐해짐', dates: '2025.7.21 · 9.8 · 10.29 단계 적용',
+    one: '집이 있는 사람이 전세대출을 받기 어려워졌고, 받은 전세대출은 다른 대출 한도에도 반영됩니다.',
+    pts: ['수도권·규제지역 전세대출 보증비율 90% → 80% (2025.7.21)', '1주택자 전세대출 한도 <b>2억 원</b>으로 통일 (2025.9.8)', '수도권·규제지역 1주택자 전세대출 이자를 <b>DSR에 포함</b> (2025.10.29)'],
+    who: '집을 가진 채 다른 곳에 전세로 사는 사람',
+    lessons: [L('163강 월세화 읽는 법', '163')],
+    src: [['금융위원회 2025.9.7', 'https://fsc.go.kr/no010101/85253'], ['금융위원회 2025.10.15', 'https://fsc.go.kr/no010101/85432']] },
+  { cat: 'loan', st: 'soon', title: '8·13 금융 대책 — 청년 대출과 전세대출 보증 제한', dates: '발표 2026.8.13 · 2027년부터',
+    one: '청년 첫 집 대출은 새로 생기고, 자기 집에 살지 않으면서 전세 사는 1주택자는 보증이 막힙니다.',
+    pts: ['<b>청년미래보금자리론</b>: 만 39세 이하 생애최초, 4억 원 이하·85㎡ 이하 <b>비아파트</b>, LTV 최대 80%, 2027년 1월 출시 목표', '수도권·규제지역 아파트를 가진 1주택자가 그 집에 산 적이 없으면 <b>전세대출 보증 제한</b> (보도 기준 "내년부터")', '2026년 가계대출 증가율 목표 1.5% → 3%. 이주비, 신축 입주 중도금·잔금대출은 은행별 총량에서 따로 관리'],
+    who: '청년 첫 집 구입자, 집을 세주고 전세 사는 1주택자',
+    note: '전세대출 보증비율 추가 인하, DSR 소득 산정 방식 변경도 보도됐지만 한 매체만 확인되고 시행일이 없어 넣지 않았습니다.',
+    lessons: [],
+    src: [['데일리안 2026.8.13', 'https://www.dailian.co.kr/news/view/1677818'], ['SBS Biz 2026.8.13', 'https://biz.sbs.co.kr/amp/article/20000328560'], ['KB Think 2026.8.13', 'https://kbthink.com/realestate/issue/hosing-260813.html']] },
+
+  // ── 규제지역·토허 ──
+  { cat: 'zone', st: 'on', title: '규제지역 — 서울 25개 구 + 경기 15곳', dates: '2025.10.16 지정 · 2026.7.1 추가',
+    one: '투기과열지구·조정대상지역으로 묶인 곳입니다. 대출·세금·청약 규칙이 비규제지역보다 엄격합니다.',
+    pts: ['10·15 대책: <b>서울 25개 구 전체</b> + 경기 12곳(과천, 광명, 성남 분당·수정·중원, 수원 영통·장안·팔달, 안양 동안, 의왕, 하남, 용인 수지)', '2026.7.1 추가: <b>화성 동탄구, 용인 기흥구, 구리시</b>', '규제지역이면 LTV 40%, 다주택 취득세·양도세 중과, 청약 재당첨 제한 등이 따라옴'],
+    who: '해당 지역에서 집을 사거나 가진 사람',
+    lessons: [L('174강 규제지역과 비규제지역', '174')],
+    src: [['비즈워치 2026.6.30', 'https://news.bizwatch.co.kr/article/real_estate/2026/06/30/0001'], ['비즈워치 2026.9.19', 'https://news.bizwatch.co.kr/article/real_estate/2026/09/17/0033']] },
+  { cat: 'zone', st: 'talk', title: '토지거래허가구역 — 서울 전역·경기 12곳, 12.31 만료', dates: '2025.10.20 ~ 2026.12.31',
+    one: '아파트를 사려면 구청 허가를 받고 직접 들어가 살아야 하는 구역입니다. 그래서 전세를 낀 "갭투자"가 사실상 막힙니다.',
+    pts: ['허가 후 <b>4개월 안에 입주</b>, <b>2년 실거주</b>', '만료일 <b>2026.12.31</b> — 연장할지 아직 발표되지 않음', '홍지선 국토부 장관(10.7 국감): 시장 상황을 보고 연장 여부 검토, 인천·남양주·평택·오산 등 확대에는 신중'],
+    who: '서울·경기 12곳에서 아파트를 사려는 사람',
+    lessons: [L('156강 토지거래허가구역 완전 정리', '156'), L('강의 #6 토허제 완전 이해', 'i5')],
+    src: [['비즈워치 2026.9.19', 'https://news.bizwatch.co.kr/article/real_estate/2026/09/17/0033'], ['SBS Biz 2026.10.7', 'https://biz.sbs.co.kr/amp/article/20000338718']] },
+  { cat: 'zone', st: 'on', title: '토허구역 실거주 유예 — 세입자 있는 집도 살 수 있게', dates: '1차 2026.5.29 · 2차 2026.10.1',
+    one: '세입자가 사는 집을 산 무주택자는 임대차가 끝날 때까지 입주를 미룰 수 있습니다.',
+    pts: ['1차(5.29 시행): 5.12 기준 세입자가 있는 집, 무주택 매수자만. 늦어도 <b>2028.5.11</b>까지 입주, 그 뒤 2년 실거주. 신청은 2026.12.31까지', '2차(10.1 시행): 세입자와 갱신계약을 하면 <b>2029년 말까지</b>(최장 3년 3개월) 입주 유예. 신청은 <b>2027.12.31</b>까지', '이보다 앞서 2.12에는 다주택자가 판 임대 중인 집에 2028.2.11까지 유예를 허용'],
+    who: '세입자 있는 집을 사려는 무주택자, 그 집 세입자',
+    lessons: [L('156강 토지거래허가구역 완전 정리', '156')],
+    src: [['경기일보 2026.5.12', 'https://www.kyeonggi.com/article/20260512580207'], ['YTN 2026.9.17', 'https://www.ytn.co.kr/_ln/0102_202609171641461174'], ['한국경제 2026.2.12', 'https://www.hankyung.com/article/202602121502Y']] },
+  { cat: 'zone', st: 'on', title: '그 밖의 토허구역 — 동탄·기흥·구리, 서울 4개 지역', dates: '각 구역별 만료일 다름',
+    one: '12.31에 끝나는 구역 말고도 기간이 다른 토허구역이 있습니다.',
+    pts: ['화성 동탄구·용인 기흥구·구리시: 2026.7.5 ~ <b>2027.12.31</b>', '서울 압구정·여의도·목동·성수(약 4.6㎢): 2026.4 1년 연장, <b>~2027.4.26</b>', '경기 그린벨트 토허구역 324.03㎢는 11.3 <b>해제</b>. 신규 택지 후보지 주변 39.33㎢(김포·구리·하남·의정부)만 2029.11.2까지 유지'],
+    who: '해당 구역 매수자, 토지 투자자',
+    lessons: [L('154강 공공택지 발표부터 입주까지', '154')],
+    src: [['비즈워치 2026.6.30', 'https://news.bizwatch.co.kr/article/real_estate/2026/06/30/0001'], ['헤럴드경제 2026.4.1', 'https://www.heraldk.com/article/2026040117000042686'], ['SBS Biz (그린벨트 해제)', 'https://biz.sbs.co.kr/amp/article/20000344013']] },
+
+  // ── 세금 ──
+  { cat: 'tax', st: 'on', title: '다주택자 양도세 중과 — 2026.5.10부터 다시 적용', dates: '2026.2.12 발표 · 유예 종료 5.9',
+    one: '4년간 미뤄 왔던 다주택자 양도세 중과가 다시 적용되고 있습니다.',
+    pts: ['조정대상지역 2주택: 기본세율 <b>+20%p</b>, 3주택 이상 <b>+30%p</b>', '중과 대상은 <b>장기보유특별공제를 받을 수 없음</b>', '서울 전역이 조정대상지역이라 서울 집을 여러 채 가진 사람에게 대부분 해당'],
+    who: '조정대상지역 다주택자',
+    note: '8월 세제개편안에 2027~2028년 한시 완화가 들어 있지만 아직 국회를 통과하지 않았습니다(아래 카드).',
+    lessons: [L('145강 양도소득세 2강 — 다주택 중과', '145')],
+    src: [['한국경제 2026.2.12', 'https://www.hankyung.com/article/202602121502Y'], ['SBS Biz 2026.8.3', 'https://biz.sbs.co.kr/amp/article/20000326347']] },
+  { cat: 'tax', st: 'bill', title: '2026 세제개편안 — 양도세', dates: '발표 2026.8.3 · 국무회의 9.1 · 2027년~',
+    one: '오래 "가지고 있던" 기간보다 실제로 "살았던" 기간을 더 쳐주는 방향으로 바뀝니다.',
+    pts: ['다주택 중과 한시 완화: 2주택 <b>2027년 +5%p, 2028년 +10%p</b> / 3주택 이상 2027년 +10%p, 2028년 +15%p', '1주택 장기보유특별공제: 2027년까지 현행(보유 연 4% + 거주 연 4%) → 2028년 보유 2% + 거주 6% → <b>2029년부터 거주 연 8%만</b>(최대 80%)', '공제 금액 한도 신설: 2028년 20억 원, 2029년부터 10억 원'],
+    who: '집을 팔 계획이 있는 1주택자(특히 거주 기간이 짧은 사람), 다주택자',
+    note: '정부안입니다. 국회 심의에서 바뀔 수 있습니다. 2027년 공제율은 보도마다 표현이 다릅니다.',
+    lessons: [L('145강 양도소득세 2강', '145'), L('강의 #64 2026 세제개편안', 'i63')],
+    src: [['SBS Biz 2026.8.3', 'https://biz.sbs.co.kr/amp/article/20000326347'], ['데일리안 2026.8.3', 'https://www.dailian.co.kr/news/view/1673348'], ['조세금융신문', 'https://www.tfmedia.co.kr/mobile/article.html?no=206139']] },
+  { cat: 'tax', st: 'bill', title: '2026 세제개편안 — 종부세', dates: '발표 2026.8.3 · 9.1 수정 확정 · 2027년~',
+    one: '실제 사는 1주택자는 공제가 늘고, 여러 채 가진 사람은 세금이 늘어나는 구조입니다.',
+    pts: ['1주택 기본공제: 실거주 <b>12억 → 14억 원</b>, 비거주 <b>12억 원 유지</b>(8.3안의 9억 하향은 9.1에 철회)', '비거주 부부 공동명의: 각 6억 원(합계 12억)', '세부담 상한: 200% 상향안 철회, <b>150% 유지</b>', '공정시장가액비율 60% → 2027년 70%(다주택 등은 2028년 80%)', '주택 수 대신 합산 가격 기준으로 과세, 과세표준 6억 원 넘는 구간 세율 인상'],
+    who: '공시가격이 높은 집 보유자, 다주택자, 비거주 1주택자',
+    note: '정부안입니다. 국회를 통과해야 시행됩니다. 올해(2026년분) 종부세는 12.1~15에 현행 기준으로 냅니다.',
+    lessons: [L('강의 #85 9.1 확정 — 비거주 9억 하향 철회', 'i84'), L('강의 #74 세제개편안 핵심 수치', 'i73')],
+    src: [['SBS Biz 2026.9.1', 'https://biz.sbs.co.kr/amp/article/20000332033'], ['데일리안 2026.8.5', 'https://www.dailian.co.kr/news/view/1674286/']] },
+  { cat: 'tax', st: 'on', title: '갈아타기 2주택 — 처분기한 3년 → 2년', dates: '2026.9.29 국무회의 · 시행 10.1',
+    one: '새 집을 먼저 사고 기존 집을 나중에 팔 때, 비과세를 받으려면 기존 집을 2년 안에 팔아야 합니다.',
+    pts: ['기존 집과 새 집이 <b>모두 조정대상지역</b>일 때 적용', '2026.8.3까지 취득했거나 계약금을 냈으면 종전처럼 3년', '상생임대주택 특례는 <b>2026년 말 종료</b>, 조정지역 매입임대 아파트 중과배제는 2027.12.31까지 판 집만'],
+    who: '집을 갈아타려는 1주택자, 임대사업자',
+    lessons: [L('144강 양도소득세 1강 — 비과세 요건', '144')],
+    src: [['아이뉴스24 2026.9.29', 'https://www.inews24.com/view/2010025']] },
+  { cat: 'tax', st: 'on', title: '취득세 — 규제지역 다주택 중과', dates: '현행 제도',
+    one: '조정대상지역에서 두 번째 집부터 취득세가 크게 오릅니다.',
+    pts: ['조정대상지역 2주택 <b>8%</b>, 3주택 이상 <b>12%</b>', '규제지역 확대로 서울 전역에 적용', '2026 지방세 개편안(8.26 발표): 40세 미만 생애최초 감면 한도 200만 → 300만 원, 오피스텔도 생애최초 감면 대상 — <b>입법 절차 진행 중</b>'],
+    who: '규제지역에서 추가로 집을 사는 사람, 청년 첫 집 구입자',
+    lessons: [L('강의 #3 취득세 완전 정복', 'i2')],
+    src: [['KB Think 2025.11.25', 'https://kbthink.com/tax/expert/column/251125.html'], ['MTN 2026.8.26', 'https://news.mtn.co.kr/news-detail/2026082608593115058']] },
+
+  // ── 공급 ──
+  { cat: 'supply', st: 'soon', title: '다세대·다가구 규제 완화 (건축법 시행령)', dates: '2026.11.3 국무회의 · 시행 11.12',
+    one: '빌라를 더 크고 높게 지을 수 있게 됩니다. 아파트가 아닌 주택 공급을 늘리려는 조치입니다.',
+    pts: ['다세대·다가구 면적 기준 <b>660㎡ → 1,000㎡</b>', '다가구 <b>3층 → 4층</b>', '일조권: 10~17m 구간은 5m 고정 이격, 다세대 주민공동시설 용적률 완화'],
+    who: '빌라 건축주·소유자, 빌라 전월세 세입자',
+    lessons: [],
+    src: [['정책브리핑 2026.11.3', 'https://www.korea.kr/news/policyNewsView.do?newsId=148974876']] },
+  { cat: 'supply', st: 'on', title: '8·13 주택 신속공급 방안', dates: '2026.8.13',
+    one: '수도권에 23만 호 이상을 더 짓고, 택지 발표부터 착공까지 걸리는 시간을 줄이겠다는 계획입니다.',
+    pts: ['수도권 <b>23만 호+α</b> 추가 (공공택지 16만+α, 도심 1.4~2.4만, 민간 5.9만)', '택지 발표 → 착공 <b>68개월 → 37개월</b>로 단축 목표', '재개발 조합설립 동의율 75% → 70%', '후속: 10.29 공공택지 6곳 <b>7만6,700가구</b>(김포아라 3만7,000, 구리건원 1만4,600, 하남미사 1만2,000 등) — 2030년 안 착공 목표'],
+    who: '수도권 실수요자, 재개발 지역 주민',
+    lessons: [L('154강 공공택지 발표부터 입주까지', '154'), L('149강 인허가·착공·준공', '149')],
+    src: [['KB Think 2026.8.13', 'https://kbthink.com/realestate/issue/hosing-260813.html'], ['SBS Biz (택지 6곳)', 'https://biz.sbs.co.kr/amp/article/20000344013']] },
+  { cat: 'supply', st: 'on', title: '1·29 도심 공급 방안', dates: '2026.1.29 · 착공 2027~2030',
+    one: '서울 도심과 주변 유휴 부지에 수도권 6만 가구를 짓겠다는 계획입니다.',
+    pts: ['수도권 6만 가구 (서울 약 3.2만)', '용산국제업무지구 1만 가구(서울시는 8천 가구 상한으로 보도), 태릉CC 6,800가구 등'],
+    who: '서울 실수요자',
+    note: '한 매체는 5.2만 가구로 보도해 수치가 엇갈립니다.',
+    lessons: [],
+    src: [['뉴시스 2026.1.29', 'https://www.newsis.com/view/NISX20260129_0003494986']] },
+  { cat: 'supply', st: 'on', title: '9·7 주택공급 확대 방안', dates: '2025.9.7 · 2030년까지',
+    one: '지금 공급 정책의 큰 틀입니다. 2030년까지 수도권에 135만 호를 착공한다는 목표입니다.',
+    pts: ['수도권 <b>135만 호 착공</b>(연평균 27만 호)', 'LH가 땅을 팔지 않고 직접 시행', '1기 신도시 6.3만 호 착공 목표'],
+    who: '수도권 실수요자, 1기 신도시 주민',
+    lessons: [L('149강 인허가·착공·준공', '149')],
+    src: [['뉴시스 2025.9.7', 'https://www.newsis.com/view/NISX20250907_0003318892']] },
+
+  // ── 청약·분양 ──
+  { cat: 'sub', st: 'on', title: '지분적립형 분양주택 — 전국 첫 광교 A17', dates: '청약 11.9~11 · 당첨 발표 11.18',
+    one: '집값의 25%만 내고 입주한 뒤, 나머지 지분을 20년에 걸쳐 나눠 사는 새로운 분양 방식입니다.',
+    pts: ['59㎡ 240가구, 분양가 6억5,010만~6억8,590만 원', '입주 때 25% → 5년마다 20%씩 → 마지막 15%를 내면 100% 소유', '<b>5년 실거주, 10년 전매제한</b>', '청년 특공 15%, 신생아 특공 20% 신설', '11.10 1순위 결과: 지분적립형 72가구에 7,233건, <b>100.46대 1</b> (같은 단지 공공분양 84㎡는 184.30대 1)'],
+    who: '목돈이 적은 무주택 청년·신혼부부',
+    lessons: [L('172강 지분적립형 분양주택', '172')],
+    src: [['비즈워치 2026.10.30', 'https://news.bizwatch.co.kr/article/real_estate/2026/10/30/0056'], ['뉴스1 11.10 (최신동향 11.11 인용)', './부동산_최신동향_2026.html#sec-1111']] },
+  { cat: 'sub', st: 'on', title: '민영주택 신생아 특별공급', dates: '2026.6.15 시행',
+    one: '2세 미만 자녀가 있는 무주택 가구가 민영 아파트 특별공급을 받을 수 있게 됐습니다.',
+    pts: ['민영주택 특별공급의 <b>10%</b> 배정, 태아 포함, 혼인 기간 요건 없음', '소득: 도시근로자 월평균의 130~160% 이하', '부동산 자산 3억3,100만 원 이하'],
+    who: '출산(예정) 무주택 가구',
+    lessons: [L('강의 #18 청약 제도 완전 정리', 'i17')],
+    src: [['경북매일 2026.6.14', 'https://www.kbmaeil.com/article/20260614500452']] },
+
+  // ── 임대차 ──
+  { cat: 'rent', st: 'on', title: '전세사기 특별법 2년 연장', dates: '2025.5.1 국회 통과 · ~2027.5.31',
+    one: '전세사기 피해자 지원 법의 효력이 2027년 5월 말까지 이어집니다.',
+    pts: ['2025.5.31까지 처음 계약한 세입자에게 적용', '유효기간 <b>2027.5.31</b>'],
+    who: '전세사기 피해 세입자',
+    lessons: [L('강의 #63 전세사기 방지 체크리스트', 'i62')],
+    src: [['SBS Biz 2025.5.2', 'https://biz.sbs.co.kr/amp/article/20000232374']] },
+  { cat: 'rent', st: 'on', title: '계약 중 전세 → 월세 전환율 상한', dates: '현행 (주택임대차보호법)',
+    one: '계약 기간 중에 전세를 월세로 바꿀 때는 법에서 정한 이율을 넘을 수 없습니다.',
+    pts: ['상한 = 기준금리 + 2%p와 연 10% 중 낮은 값', '기준금리 3.00%면 <b>연 5.0%</b>', '새 계약은 시장에서 정해져 이 상한과 다를 수 있음'],
+    who: '전세 세입자',
+    lessons: [L('163강 월세화 읽는 법', '163')],
+    src: [['세계일보 2026.11.3 (사이트 163강 인용)', './부동산_일일학습_2026.html?lesson=163']] },
+
+  // ── 소문 ──
+  { cat: 'rumor', st: 'fake', title: '"11월 중순 추가 대책" 소문', dates: '국토부 해명 2026.11.6',
+    one: '부천·수원 권선·안양 만안 규제지역 추가, 15억 이하 대출 6억 → 4억 축소 등이 담긴 글이 퍼졌지만 국토부는 사실이 아니라고 밝혔습니다.',
+    pts: ['국토부: 정부가 검토하거나 확정한 대책이 아님, <b>수사 의뢰</b> 예정', '2월·6월·10월에도 비슷한 글이 돌아 수사 의뢰', '정책은 국토부·금융위 <b>보도자료</b>와 정책브리핑(korea.kr)에서 확인하는 것이 가장 정확'],
+    who: '시장 전체',
+    lessons: [L('173강 "추가 대책 나온다" 소문 걸러내는 법', '173')],
+    src: [['경향신문 2026.11.6', 'https://khan.co.kr/article/202611061519001']] },
+];
+
+const TIMELINE = [
+  ['2026-11-12', '다세대·다가구 면적 1,000㎡·다가구 4층 <b>시행</b>'],
+  ['2026-11-18', '광교 A17 지분적립형 분양주택 당첨자 발표'],
+  ['2026-12-01', '2026년분 종부세 납부 시작 (12.15까지)'],
+  ['2026-12-31', '서울 전역·경기 12곳 <b>토허구역 만료</b> (연장 논의 중) · 지방 주담대 스트레스 DSR 유예 종료 · 상생임대주택 특례 종료 · 토허 실거주 1차 유예 신청 마감'],
+  ['2027-01-01', '청년미래보금자리론 출시 목표(1월) · 세제개편안이 국회를 통과하면 양도세 중과 완화 1단계·종부세 개편 시작'],
+  ['2027-04-26', '서울 압구정·여의도·목동·성수 토허구역 만료'],
+  ['2027-05-31', '전세사기 특별법 유효기간 만료'],
+  ['2027-12-31', '동탄·기흥·구리 토허구역 만료 · 토허 실거주 2차 유예 신청 마감 · 매입임대 아파트 중과배제 시한'],
+];
+
+const FLOW = [
+  ['2025.6.27', '6·27 가계부채 대책', '수도권 주담대 6억 한도, 다주택자 주담대 금지. 지금 대출 규제의 시작'],
+  ['2025.7.1', '스트레스 DSR 3단계', '모든 가계대출에 가산 금리 1.5% 반영'],
+  ['2025.9.7', '9·7 공급 대책 + 대출 추가 관리', '수도권 135만 호 착공 목표, 1주택자 전세대출 2억 한도'],
+  ['2025.10.15', '10·15 대책', '서울 전역·경기 12곳 규제지역·토허구역 지정, 집값별 주담대 6억·4억·2억'],
+  ['2026.1.29', '1·29 도심 공급 방안', '수도권 6만 가구, 용산·태릉 등'],
+  ['2026.2.12', '양도세 중과 유예 종료 발표', '5.9 종료 → 5.10부터 다주택 중과 재적용'],
+  ['2026.5.12', '토허 실거주 유예 1차', '세입자 있는 집도 무주택자가 살 수 있게'],
+  ['2026.6.30', '동탄·기흥·구리 규제지역 추가', '규제지역이 경기 15곳으로'],
+  ['2026.8.3', '2026 세제개편안', '양도세 거주 중심, 종부세 개편 (9.1 일부 수정, 국회 심의 중)'],
+  ['2026.8.13', '8·13 공급·금융 대책', '수도권 23만 호+α, 청년미래보금자리론, 전세대출 보증 제한'],
+  ['2026.9.16', '토허 실거주 유예 2차', '갱신계약 허용, 최장 2029년 말'],
+  ['2026.11.3', '건축법 시행령 개정 · 그린벨트 토허 해제', '빌라 면적·층수 완화(11.12 시행), 경기 그린벨트 토허 324㎢ 해제'],
+  ['2026.11.6', '국토부 "추가 대책설 사실 아냐"', '허위 글 수사 의뢰'],
+];
+
+const TODAY = '2026-11-11';
+const fmt = d => { const [y, m, dd] = d.split('-'); return `${y}.${+m}.${+dd}`; };
+const dDay = d => Math.round((new Date(d + 'T00:00:00') - new Date(TODAY + 'T00:00:00')) / 864e5);
+
+document.getElementById('timeline').innerHTML = TIMELINE.map(([d, t]) => {
+  const n = dDay(d);
+  return `<div class="tl-row${n <= 60 ? ' near' : ''}"><div class="tl-d">${fmt(d)}<small>${n > 0 ? 'D-' + n : n === 0 ? '오늘' : '지남'}</small></div><div class="tl-t">${t}</div><span></span></div>`;
+}).join('');
+
+document.getElementById('flowList').innerHTML = FLOW.map(([d, t, b]) =>
+  `<div class="fl"><div class="fl-d">${d}</div><div class="fl-t">${t}</div><div class="fl-b">${b}</div></div>`).join('');
+
+let cur = 'all';
+try { const h = location.hash.slice(1); if (CATS.some(c => c.id === h)) cur = h; } catch (e) {}
+
+function card(p) {
+  const [cls, lbl] = ST[p.st];
+  const lessons = p.lessons.map(l => `<a class="pc-lsn" href="${l.href}">📘 ${l.label}</a>`).join('');
+  const src = p.src.map(([n, u]) => `<a class="pc-src" href="${u}" target="_blank" rel="noopener">출처: ${n} ↗</a>`).join('');
+  return `<div class="pc">
+    <div class="pc-top"><div><div class="pc-ttl">${p.title}</div><div class="pc-dates">${p.dates}</div></div><span class="st ${cls}">${lbl}</span></div>
+    <div class="pc-one">${p.one}</div>
+    <ul>${p.pts.map(x => `<li>${x}</li>`).join('')}</ul>
+    <div class="pc-who"><b>누가 영향받나</b> · ${p.who}</div>
+    ${p.note ? `<div class="pc-note">⚠️ ${p.note}</div>` : ''}
+    <div class="pc-foot">${lessons}${src}</div>
+  </div>`;
+}
+
+function render() {
+  document.getElementById('filters').innerHTML =
+    [{ id: 'all', name: '전체' }, ...CATS].map(c => {
+      const n = c.id === 'all' ? P.length : P.filter(p => p.cat === c.id).length;
+      return `<button class="fbtn${cur === c.id ? ' on' : ''}" data-id="${c.id}">${c.name} ${n}</button>`;
+    }).join('');
+  const cats = cur === 'all' ? CATS : CATS.filter(c => c.id === cur);
+  document.getElementById('list').innerHTML = cats.map(c => {
+    const items = P.filter(p => p.cat === c.id);
+    return `<div class="cat-h"><h3>${c.name}</h3><span>${c.desc}</span></div><div class="cards">${items.map(card).join('')}</div>`;
+  }).join('');
+}
+document.getElementById('filters').addEventListener('click', e => {
+  const b = e.target.closest('.fbtn'); if (!b) return;
+  cur = b.dataset.id;
+  try { history.replaceState(null, '', cur === 'all' ? location.pathname : '#' + cur); } catch (e) {}
+  render();
+});
+render();
+</script>
+</body>
+</html>
