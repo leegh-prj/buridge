@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/favicon.svg">
+<meta name="theme-color" content="#0C2040">
+<meta property="og:site_name" content="부릿지 BuRIDGE">
+<meta property="og:type" content="website">
+<meta property="og:title" content="해외 부동산 분석 | 부릿지 BuRIDGE">
+<meta property="og:description" content="미국·중국·일본·영국·유럽·캐나다·호주·홍콩·싱가포르 — 나라별 최신 집값·금리와 한국 시장과의 비교를 초보자 눈높이로 정리했습니다.">
+<meta property="og:url" content="https://buridge.vercel.app/부동산_해외분석_2026.html">
+<meta property="og:image" content="https://buridge.vercel.app/og-image.svg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="ko_KR">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="해외 부동산 분석 | 부릿지 BuRIDGE">
+<meta name="twitter:description" content="미국·중국·일본·영국·유럽·캐나다·호주·홍콩·싱가포르 — 나라별 최신 집값·금리와 한국 시장과의 비교를 초보자 눈높이로 정리했습니다.">
+<meta name="twitter:image" content="https://buridge.vercel.app/og-image.svg">
+<title>해외 부동산 분석 | 부릿지 BuRIDGE</title>
+<script>try{var t=localStorage.getItem('buridge-theme');if(t==='dark'||t==='light')document.documentElement.setAttribute('data-theme',t);}catch(e){}</script>
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<style>button,input,select,textarea{font-family:inherit}</style>
+<style>
+:root{
+  --bg:#F3F6FB;--sf:#FFFFFF;--rule:#D8E0EC;
+  --ink:#1A2E44;--ink2:#374F6B;--ink3:#68839C;
+  --navy:#0C2040;--blue-lt:#EBF1FF;--accent:#2563EB;
+  --up:#C62828;--up-lt:#FDECEC;--dn:#1D5FD1;--dn-lt:#E8F0FD;
+  --warn:#935200;--warn-lt:#FEF4E4;
+  --font:Pretendard Variable, Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Apple SD Gothic Neo, Malgun Gothic, sans-serif;
+}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#0E1A2E;--sf:#152235;--rule:#1E3050;
+  --ink:#D0E0F0;--ink2:#8AAAC8;--ink3:#6A84A0;
+  --blue-lt:#0A1A34;--accent:#6AA0F0;
+  --up:#F07A7A;--up-lt:#2A1216;--dn:#6FA2F2;--dn-lt:#0E1F3A;--warn:#E0A040;--warn-lt:#2A1A00;
+}}
+:root[data-theme="dark"]{
+  --bg:#0E1A2E;--sf:#152235;--rule:#1E3050;
+  --ink:#D0E0F0;--ink2:#8AAAC8;--ink3:#6A84A0;
+  --blue-lt:#0A1A34;--accent:#6AA0F0;
+  --up:#F07A7A;--up-lt:#2A1216;--dn:#6FA2F2;--dn-lt:#0E1F3A;--warn:#E0A040;--warn-lt:#2A1A00;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:var(--font);background:var(--bg);color:var(--ink);min-height:100vh;line-height:1.6;}
+a{color:inherit;}
+
+.hd{background:var(--navy);height:50px;display:flex;align-items:center;padding:0 20px;gap:10px;}
+.hd-back{color:#7AA0C8;font-size:.75rem;text-decoration:none;}.hd-back:hover{color:#C0D8F0;}
+.hd-sep{color:#2A4870;}
+.hd-title{font-size:.9rem;font-weight:700;color:#D0E0F0;}
+.hd-right{margin-left:auto;}
+.hd-badge{font-size:.62rem;font-weight:700;padding:2px 8px;border-radius:3px;background:#0A1628;border:1px solid #1A3460;color:#70A0D0;white-space:nowrap;}
+
+.hero{background:var(--navy);border-bottom:1px solid #152A48;padding:28px 20px 26px;}
+.hero-in{max-width:1100px;margin:0 auto;}
+.hero-eyebrow{font-size:.62rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#4A78A8;margin-bottom:10px;}
+.hero h1{font-size:1.55rem;font-weight:900;color:#D0E4F8;letter-spacing:-.03em;margin-bottom:8px;line-height:1.35;}
+.hero-sub{font-size:.8rem;color:#7F9CBC;line-height:1.7;margin-bottom:22px;max-width:760px;}
+.hero-sub b{color:#B8D6F2;}
+.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;}
+@media(max-width:820px){.kpis{grid-template-columns:repeat(2,1fr);}}
+.kpi{background:#081628;border:1px solid #1A3254;border-radius:6px;padding:12px 14px;min-width:0;}
+.kpi-l{font-size:.62rem;color:#6A8CB0;font-weight:600;margin-bottom:4px;}
+.kpi-v{font-size:1rem;font-weight:800;color:#B8D6F2;letter-spacing:-.02em;}
+.kpi-s{font-size:.62rem;color:#56789C;margin-top:3px;line-height:1.5;}
+@media(max-width:420px){.kpi-v{font-size:.88rem;}.hero h1{font-size:1.3rem;}}
+
+.main{max-width:1100px;margin:0 auto;padding:24px 16px 80px;}
+.jump{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:6px;}
+.jump a{font-size:.74rem;font-weight:600;color:var(--accent);text-decoration:none;background:var(--blue-lt);padding:5px 11px;border-radius:14px;}
+.sh{display:flex;align-items:center;gap:10px;margin:40px 0 14px;scroll-margin-top:16px;}
+.sh-label{font-size:.95rem;font-weight:800;color:var(--ink);letter-spacing:-.02em;}
+.sh::after{content:'';flex:1;height:1px;background:var(--rule);}
+.sh-note{font-size:.74rem;color:var(--ink3);margin:-6px 0 14px;line-height:1.7;}
+
+.box{background:var(--sf);border:1px solid var(--rule);border-radius:8px;padding:16px 18px;position:relative;}
+.chart-ttl{font-size:.84rem;font-weight:800;color:var(--ink);}
+.chart-sub{font-size:.7rem;color:var(--ink3);margin:2px 0 10px;line-height:1.6;}
+.chart svg{display:block;}
+.chart text{font-family:var(--font);}
+.tip{position:absolute;pointer-events:none;background:var(--navy);color:#E0ECF8;font-size:.72rem;line-height:1.55;padding:7px 10px;border-radius:6px;white-space:nowrap;box-shadow:0 4px 14px rgba(0,0,0,.18);opacity:0;transition:opacity .1s;z-index:3;}
+.tip b{color:#fff;}
+
+.tbl-wrap{overflow-x:auto;background:var(--sf);border:1px solid var(--rule);border-radius:8px;}
+.tbl{width:100%;border-collapse:collapse;font-size:.77rem;}
+.tbl th,.tbl td{padding:9px 12px;border-bottom:1px solid var(--rule);text-align:left;vertical-align:top;line-height:1.6;}
+.tbl th{font-size:.68rem;color:var(--ink3);font-weight:700;background:var(--bg);white-space:nowrap;}
+.tbl td:first-child{font-weight:700;color:var(--ink);white-space:nowrap;}
+.tbl tr:last-child td{border-bottom:none;}
+.tbl .num{font-variant-numeric:tabular-nums;font-weight:700;color:var(--ink);white-space:nowrap;}
+.dir{display:inline-block;font-size:.66rem;font-weight:700;padding:1px 7px;border-radius:9px;white-space:nowrap;}
+.d-up{background:var(--up-lt);color:var(--up);}
+.d-dn{background:var(--dn-lt);color:var(--dn);}
+.d-hold{background:var(--bg);color:var(--ink3);border:1px solid var(--rule);}
+.kr td{background:var(--blue-lt);}
+
+.themes{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;}
+@media(max-width:860px){.themes{grid-template-columns:1fr;}}
+.theme h3{font-size:.88rem;font-weight:800;margin-bottom:6px;}
+.theme p{font-size:.77rem;color:var(--ink2);line-height:1.7;}
+.theme b{color:var(--ink);}
+
+.country{margin-bottom:12px;scroll-margin-top:16px;}
+.c-head{display:flex;align-items:center;gap:10px;margin-bottom:10px;flex-wrap:wrap;}
+.c-flag{font-size:1.4rem;}
+.c-name{font-size:1.05rem;font-weight:900;letter-spacing:-.02em;}
+.c-tag{font-size:.7rem;font-weight:700;color:var(--ink2);background:var(--bg);border:1px solid var(--rule);padding:2px 9px;border-radius:10px;}
+.c-one{font-size:.82rem;color:var(--ink);background:var(--bg);border-radius:6px;padding:10px 12px;line-height:1.7;margin-bottom:12px;}
+.metrics{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:8px;margin-bottom:12px;}
+.m{border:1px solid var(--rule);border-radius:6px;padding:10px 12px;min-width:0;}
+.m-l{font-size:.66rem;color:var(--ink3);font-weight:600;line-height:1.45;}
+.m-v{font-size:1.02rem;font-weight:800;letter-spacing:-.02em;margin:3px 0 1px;font-variant-numeric:tabular-nums;}
+.m-s{font-size:.66rem;color:var(--ink2);line-height:1.5;}
+.m-v.up{color:var(--up);}.m-v.dn{color:var(--dn);}
+.news{list-style:none;display:flex;flex-direction:column;gap:6px;margin-bottom:12px;}
+.news li{font-size:.78rem;color:var(--ink2);line-height:1.7;padding-left:12px;position:relative;}
+.news li::before{content:'';position:absolute;left:2px;top:.72em;width:4px;height:4px;border-radius:50%;background:var(--ink3);}
+.news b{color:var(--ink);}
+.kr-link{font-size:.78rem;color:var(--ink);background:var(--blue-lt);border-radius:6px;padding:10px 12px;line-height:1.7;margin-bottom:10px;}
+.kr-link b{color:var(--accent);}
+.note{font-size:.72rem;color:var(--warn);background:var(--warn-lt);border-radius:5px;padding:6px 10px;line-height:1.6;margin-bottom:10px;}
+.srcs{display:flex;flex-wrap:wrap;gap:4px 12px;border-top:1px dashed var(--rule);padding-top:9px;}
+.srcs a{font-size:.7rem;color:var(--ink3);text-decoration:none;}
+.srcs a:hover{text-decoration:underline;}
+
+.disc{margin-top:40px;font-size:.72rem;color:var(--ink3);line-height:1.8;border-top:1px solid var(--rule);padding-top:16px;}
+.disc a{color:var(--accent);}
+</style>
+</head>
+<body>
+
+<div class="hd">
+  <a class="hd-back" href="./index.html">🌉 부릿지</a>
+  <span class="hd-sep">/</span>
+  <span class="hd-title">해외 부동산 분석</span>
+  <div class="hd-right"><span class="hd-badge">2026.11.12 기준</span></div>
+</div>
+
+<div class="hero">
+  <div class="hero-in">
+    <div class="hero-eyebrow">Global Housing · 해외 부동산 분석</div>
+    <h1>금리가 다시 오르는 세계,<br>나라마다 집값은 어떻게 다를까?</h1>
+    <p class="hero-sub">2026년 하반기 영국·캐나다·호주·일본·유럽이 줄줄이 금리를 올렸고, 미국도 12월 인상 가능성이 거론됩니다. 그런데 집값 반응은 제각각입니다. <b>호주·캐나다는 하락</b>, <b>도쿄·홍콩은 상승</b>, <b>중국은 3년 넘게 하락</b> 중입니다. 나라별 최신 숫자와 한국 시장과의 연결고리를 정리했습니다.</p>
+    <div class="kpis">
+      <div class="kpi"><div class="kpi-l">미국 30년 고정 모기지</div><div class="kpi-v">7.18%</div><div class="kpi-s">11.5 주간 · 1년 전 6.22%</div></div>
+      <div class="kpi"><div class="kpi-l">중국 70대 도시 신축 집값</div><div class="kpi-v">전년 대비 -2.8%</div><div class="kpi-s">9월 · 70곳 중 49곳 전월 하락</div></div>
+      <div class="kpi"><div class="kpi-l">도쿄 23구 신축 맨션 평균</div><div class="kpi-v">1억7,925만 엔</div><div class="kpi-s">2026 회계연도 상반기 · +34.7%</div></div>
+      <div class="kpi"><div class="kpi-l">호주 기준금리</div><div class="kpi-v">4.85%</div><div class="kpi-s">11.3 · 올해 5번째 인상</div></div>
+    </div>
+  </div>
+</div>
+
+<div class="main">
+
+  <div class="jump">
+    <a href="#compare">한눈에 비교</a><a href="#rates">기준금리</a><a href="#themes">3가지 흐름</a><a href="#us">미국</a><a href="#cn">중국</a><a href="#jp">일본</a><a href="#uk">영국</a><a href="#eu">유럽</a><a href="#ca">캐나다</a><a href="#au">호주</a><a href="#hk">홍콩·싱가포르</a><a href="#korea">한국에 주는 시사점</a>
+  </div>
+
+  <div class="sh" id="compare"><span class="sh-label">한눈에 비교 — 집값 1년 변화</span></div>
+  <p class="sh-note">각 나라의 대표 집값 지수가 1년 전보다 몇 % 변했는지 비교합니다. 지수마다 조사 방식과 기준 시점이 달라 대략적인 방향을 보는 용도로만 쓰세요. 막대에 마우스를 올리면 기준과 출처가 나옵니다.</p>
+  <div class="box">
+    <div class="chart-ttl">대표 집값 지수 전년 대비 변동률 (%)</div>
+    <div class="chart-sub">빨강 = 상승, 파랑 = 하락. 도쿄 23구 신축 맨션 평균가(+34.7%)는 고가 단지 분양이 많으면 크게 뛰는 "평균 분양가"라 다른 지수와 같은 막대에 넣지 않았습니다.</div>
+    <div class="chart" id="chCompare"></div>
+    <div class="tip" id="tipCompare"></div>
+  </div>
+
+  <div class="sh" id="rates"><span class="sh-label">기준금리 비교</span></div>
+  <p class="sh-note">기준금리는 대출 금리의 출발점입니다. 중앙은행이 금리를 올리면 몇 달 뒤 주택담보대출 금리가 따라 오르고, 집을 사려는 사람의 대출 한도와 이자 부담이 바뀝니다.</p>
+  <div class="tbl-wrap"><table class="tbl" id="rateTbl"></table></div>
+
+  <div class="sh" id="themes"><span class="sh-label">2026년 하반기 세계 부동산 3가지 흐름</span></div>
+  <div class="themes">
+    <div class="box theme"><h3>① 다시 시작된 금리 인상</h3><p>AP는 2월 말 시작된 <b>미국-이란 전쟁</b>으로 유가와 물가가 오르며 미국 모기지 금리가 10월 초 <b>7.4%</b>(약 3년 만의 최고)까지 올랐다고 전했습니다. 영국(4.00%)·캐나다(2.50%)·호주(4.85%)가 인상했고, 유로존은 6·9월 인상 뒤 동결, 일본은 9월 인상했습니다.</p></div>
+    <div class="box theme"><h3>② 중국의 긴 침체</h3><p>중국 신축 집값은 3년 넘게 내리고 있고, 1~9월 부동산 개발투자는 <b>-20.6%</b>입니다. 헝다 본토 법인은 파산청산 절차에 들어갔고, 완커는 채무 재조정 중입니다. 정부는 9.29 생애 첫 주택 이자 지원으로 버티고 있습니다.</p></div>
+    <div class="box theme"><h3>③ 금리는 같아도 도시마다 다른 집값</h3><p>금리를 올린 호주는 3월 고점보다 <b>-6.7%</b>, 캐나다는 1년 전보다 <b>-3.4%</b>입니다. 반면 도쿄 신축(+34.7%)·홍콩(+9.3%)·싱가포르(+1.4%, 분기)는 올랐습니다. 같은 금리 흐름에도 결과가 다르니, 해외 사례를 볼 때는 공급·수요·대출 구조를 함께 봐야 하고 한국에 그대로 대입하면 안 됩니다.</p></div>
+  </div>
+
+  <div class="sh"><span class="sh-label">나라별 분석</span></div>
+  <div id="countries"></div>
+
+  <div class="sh" id="korea"><span class="sh-label">한국에 주는 시사점</span></div>
+  <div class="box">
+    <ul class="news">
+      <li><b>금리 인상의 집값 효과는 시차가 있습니다.</b> KB 아파트 매매가격지수를 분석한 국내 연구에서는 금리 인상의 집값 하락 효과가 <b>6개월 시점에 가장 크고 15개월 뒤에는 미미</b>해졌습니다(경향신문 2026.9.23). 호주가 3월 고점 뒤 7개월 연속 하락한 것도 이 시차와 함께 볼 수 있습니다.</li>
+      <li><b>미국 금리 → 환율 → 한국 금리.</b> 미국 기준금리(3.75~4.00%)가 한국(3.00%)보다 높아 미국이 더 올리면 원화 약세 압력과 한국 시장금리 상승 압력이 생깁니다. 12월 미국 인상 확률은 85~88%대로 보도됐습니다. 자세한 경로는 <a href="./부동산_일일학습_2026.html?lesson=146" style="color:var(--accent)">146강 FOMC가 내 주담대에 도착하는 경로</a>에서 다룹니다.</li>
+      <li><b>대출 금리가 거래를 좌우합니다.</b> 미국은 30년 고정 모기지 금리가 7%대로 오르자 NAR이 "대출 자격을 갖춘 매수자가 줄었다"고 했고, 기존주택 판매는 연율 399만 호로 올해 가장 부진한 수준입니다. 한국에서는 최근 주담대 변동금리가 고정금리보다 비싸지는 역전이 나타났습니다(<a href="./부동산_일일학습_2026.html?lesson=176" style="color:var(--accent)">176강</a>).</li>
+      <li><b>한국은행도 경고하고 있습니다.</b> 9월 금융안정보고서는 "수도권 중·저가 주택 중심의 높은 가격 상승세"를 위험 요인으로 꼽았습니다(보도 요약 기준).</li>
+      <li><b>중국 침체는 직접보다 간접 영향입니다.</b> 중국 집값이 한국 집값을 바로 움직이지는 않지만, 중국 경기 둔화는 한국 수출과 경기, 원/달러 환율을 거쳐 금리와 주택 수요에 영향을 줄 수 있습니다.</li>
+    </ul>
+  </div>
+
+  <div class="disc">
+    · 모든 수치는 각 나라 통계기관·중앙은행 발표와 언론 보도를 2026.11.12에 확인한 것입니다. 발표 주기가 달라 나라마다 기준 시점이 다릅니다(미국 8~9월, 중국 9월, 영국 10월 등).<br>
+    · "보도 요약 기준"으로 표시한 숫자는 원문 페이지를 직접 열지 못하고 기사 검색 결과로 확인한 것입니다.<br>
+    · 금리·환율 같은 거시 지표의 실시간 값은 <a href="./부동산_글로벌지표.html">글로벌 지표 트래커</a>에서 볼 수 있습니다.
+  </div>
+</div>
+
+<script>
+const S = {
+  spdji: ['S&P DJI 2026.10.27', 'https://press.spglobal.com/2026-10-27-S-P-Cotality-Case-Shiller-Index-Reports-Annual-Gain-in-August-2026'],
+  ap: ['AP(WCAX) 2026.11.5', 'https://www.wcax.com/2026/11/05/average-us-30-year-mortgage-rate-falls-718-this-week-its-third-straight-decline/'],
+  nar: ['NAR 2026.10.13', 'https://www.nar.realtor/newsroom/existing-home-sales-increased-1-5-in-september-according-to-nar-report'],
+  nahb: ['NAHB 2026.10', 'https://www.nahb.org/news-and-economics/press-releases/2026/10/single-family-starts-down-as-affordability-challenges-persist'],
+  lumber: ['NAHB 블로그 2026.10', 'https://www.nahb.org/blog/2026/10/canadian-lumber-antidumping-countervailing-duties'],
+  cn70: ['political.org 2026.10.18 (보도 요약)', 'https://political.org/2026/10/18/chinas-new-home-prices-fall-again-in-september-extending-slump-of-more-than-three-years/'],
+  nbs70: ['중국 국가통계국 2026.10.19', 'https://www.stats.gov.cn/english/PressRelease/202610/t20261019_1965629.html'],
+  nbsInv: ['중국 국가통계국 2026.10.20', 'https://www.stats.gov.cn/english/PressRelease/202610/t20261020_1965663.html'],
+  lpr: ['investingLive 2026.10', 'https://investinglive.com/central-banks/china-holds-loan-prime-rates-for-17th-month-as-policy-focus-shifts-to-short-term-rates/'],
+  cnSub: ['The Star 2026.9.29', 'https://www.thestar.com.my/business/business-news/2026/09/29/china-unveils-rate-cut-mortgage-subsidies-to-spur-growth'],
+  evg: ['Caixin 2026.8.22', 'https://www.caixinglobal.com/2026-08-22/court-opens-bankruptcy-liquidation-for-evergrandes-main-onshore-arm-102476712.html'],
+  vanke: ['Caixin 2026.6.1', 'https://www.caixinglobal.com/2026-06-01/vanke-keeps-focus-on-cutting-losses-restructuring-debt-as-cash-troubles-persist-102449816.html'],
+  cg: ['The Star 2026.2.17', 'https://www.thestar.com.my/business/business-news/2026/02/17/hong-kong-court-dismisses-bid-to-liquidate-country-garden'],
+  tokyo: ['교도(구마니치) 2026.10.20', 'https://kumanichi.com/articles/2048561'],
+  tokyo7: ['교도(구마니치) 2026.8.20', 'https://kumanichi.com/articles/2027127'],
+  boj: ['AP(political.org) 2026.10.29', 'https://political.org/2026/10/29/bank-of-japan-holds-rates-at-1-25-but-speeds-up-sell-off-of-stock-holdings-capping-week-of-central-bank-surprises/'],
+  jpForeign: ['The Real Deal 2025.12.17', 'https://therealdeal.com/international/2025/12/17/foreigners-soon-must-declare-nationality-to-buy-japan-homes'],
+  athome: ['앳홈 2026.9', 'https://www.athome.co.jp/corporate/news/data/market/chuuko-mansion-202609/'],
+  nw: ['Mortgage Solutions 2026.10.30', 'https://www.mortgagesolutions.co.uk/mortgage-news/2026/10/30/house-price-growth-at-weakest-in-nearly-three-years-nationwide/'],
+  lloyds: ['Mortgage Solutions 2026.11.6', 'https://www.mortgagesolutions.co.uk/mortgage-news/2026/11/06/house-prices-fall-for-second-consecutive-month-as-market-suffers-distinct-lack-of-momentum-lloyds/'],
+  boe: ['investingLive 2026.11.5', 'https://investinglive.com/central-banks/bank-of-england-raises-the-bank-rate-to-4-00-as-expected-in-a-9-0-vote/'],
+  ecb: ['ECB 2026.10.29', 'https://ecb.europa.eu/press/pr/date/2026/html/ecb.mp261029~9a493adf17.en.html'],
+  de: ['Agenzia Nova (독일 연방통계청)', 'https://www.agenzianova.com/en/news/German-house-prices-rise-06-percent-in-second-quarter/'],
+  boc: ['Advisor.ca 2026.10.28', 'https://www.advisor.ca/economy/policy/bank-of-canada-delivers-1st-hike-in-three-years/'],
+  crea: ['CREA 2026.10.16 (보도 요약)', 'https://creastats.crea.ca/en-ca/'],
+  rba: ['Cotality 2026.11.3', 'https://www.cotality.com/au/press-releases/housing-markets-set-to-weaken-further-as-rba-hikes-again-in-november'],
+  cot: ['PIP 2026.11 (보도 요약)', 'https://propertyinvestmentprofessionals.com.au/research-insights/cotality-home-value-index-october-2026-seventh-fall-brisbane-perth-lead'],
+  proptrack: ['Broker News 2026.11', 'https://www.brokernews.com.au/news/breaking-news/home-values-fall-for-seventh-month-as-indices-split-on-depth-290239.aspx'],
+  hk: ['The Standard 2026.10.28', 'https://www.thestandard.com.hk/property/article/346718/'],
+  sg: ['싱가포르 URA 2026.10.23', 'https://www.ura.gov.sg/Corporate/Media-Room/Media-Releases/pr26-73'],
+};
+
+// 전년 대비 집값 변동률 (이름, %, 기준, 출처)
+const COMPARE = [
+  ['홍콩 민간주택', 9.3, '9월 · 토지평가처(RVD) 지수', S.hk],
+  ['미국 20대 도시', 2.7, '8월 · 케이스-실러', S.spdji],
+  ['미국 전국', 2.1, '8월 · 케이스-실러', S.spdji],
+  ['미국 기존주택 중위가격', 1.3, '9월 · NAR, 39개월 연속 상승', S.nar],
+  ['독일 주거용', 0.6, '2분기 · 연방통계청(잠정)', S.de],
+  ['영국 (Nationwide)', 0.5, '10월 · 2024.1 이후 최저', S.nw],
+  ['영국 (Lloyds)', -1.2, '10월 · 2023.10 이후 최대 하락', S.lloyds],
+  ['중국 70대 도시 신축', -2.8, '9월 · 국가통계국, 보도 기준', S.cn70],
+  ['캐나다 (CREA 종합)', -3.4, '9월 · 보도 요약 기준', S.crea],
+];
+
+const RATES = [
+  ['한국', '3.00%', '10.22 동결', 'hold', '다음 금통위 11.26'],
+  ['미국', '3.75~4.00%', '10.28 동결 (10대 2)', 'hold', '12월 인상 확률 85~88%대 보도'],
+  ['일본', '1.25%', '10.30 동결 (8대 1)', 'up', '9월 인상, 12월 추가 인상 예상'],
+  ['중국', '1년 LPR 3.00% · 5년 3.50%', '10.20', 'hold', '17개월 동결, 대신 이자 지원·PSL 금리 인하'],
+  ['영국', '4.00%', '11.5 인상', 'up', '2023년 이후 첫 인상 (3.75% → 4.00%)'],
+  ['유로존', '예금금리 2.50%', '10.29 동결', 'hold', '6·9월 인상 뒤 동결'],
+  ['캐나다', '2.50%', '10.28 인상', 'up', '2023.7 이후 첫 인상'],
+  ['호주', '4.85%', '11.3 인상 (6대 3)', 'up', '올해 5번째, 2008년 이후 최고'],
+];
+const DIR = { up: ['d-up', '인상'], dn: ['d-dn', '인하'], hold: ['d-hold', '동결'] };
+const RSRC = { '미국': null, '일본': S.boj, '중국': S.lpr, '영국': S.boe, '유로존': S.ecb, '캐나다': S.boc, '호주': S.rba };
+
+const COUNTRIES = [
+  { id: 'us', flag: '', name: '미국', tag: '고금리 속 완만한 상승',
+    one: '집값은 1년 전보다 2% 안팎 올랐지만, 물가를 빼면 15개월 연속 하락입니다. 7%대 모기지 금리 때문에 거래는 올해 가장 부진한 수준입니다.',
+    m: [['케이스-실러 전국 (전년 대비)', '+2.1%', 'up', '8월 · 7월 +1.9%에서 확대'], ['케이스-실러 20대 도시', '+2.7%', 'up', '8월 · 시카고 +6.7%, 뉴욕 +6.2%'], ['30년 고정 모기지', '7.18%', '', '11.5 주간 · 3주 연속 하락, 10월 초 7.4%'], ['기존주택 판매 (연율)', '399만 호', '', '9월 · 전년 -2.2%'], ['기존주택 중위가격', '$417,500', 'up', '9월 · 전년 +1.3%'], ['주택 착공 (연율)', '122.1만 호', 'dn', '9월 · 전월 -5.2%, 3개월 연속 감소']],
+    news: ['S&P는 미국 집값이 <b>물가를 뺀 실질 기준으로 15개월 연속 하락</b>했다고 밝혔습니다.', '모기지 금리는 미국-이란 전쟁에 따른 유가·물가 상승으로 10월 초 <b>7.4%</b>까지 올랐다가 11.5 7.18%로 내려왔습니다. 10년물 국채금리도 10월 초 5.30%를 넘었다가 4.84%로 내려왔습니다.', 'NAR 로런스 윤: "8~9월이 올해 가장 판매가 부진한 두 달이었다."', '캐나다산 목재에 반덤핑·상계관세 약 34.75%와 별도 관세 10%가 붙어 건축비 부담이 커졌고, 주택건설협회(NAHB)는 관세 중단을 요구하고 있습니다.'],
+    kr: '<b>한국과 연결:</b> 미국 모기지 금리와 10년물 국채금리는 세계 금리의 기준점입니다. 미국 금리가 높게 유지되면 한국 시장금리와 원/달러 환율에도 부담이 됩니다.',
+    src: [S.spdji, S.ap, S.nar, S.nahb, S.lumber] },
+  { id: 'cn', flag: '', name: '중국', tag: '3년 넘는 하락',
+    one: '신축 집값이 3년 넘게 내리고 있습니다. 하락폭은 조금 줄었지만, 개발 투자와 착공은 여전히 크게 줄고 있습니다.',
+    m: [['70대 도시 신축 (전년 대비)', '-2.8%', 'dn', '9월 · 8월 -3.0%에서 축소 (보도 기준)'], ['전월보다 내린 도시', '49곳 / 70곳', 'dn', '9월 신축 · 기존주택은 59곳'], ['부동산 개발투자', '-20.6%', 'dn', '1~9월 누계, 5조3,364억 위안'], ['신축 판매액', '-13.9%', 'dn', '1~9월 · 착공 면적 -24.9%'], ['5년 대출우대금리(LPR)', '3.50%', '', '10.20 · 17개월 동결'], ['상하이 신축 (전년 대비)', '+2.8%', 'up', '9월 · 베이징 -2.7%, 선전 -1.0%']],
+    news: ['9.29 대책: 생애 첫 주택 구입자에게 <b>모기지 이자 연 1%p를 최대 5년</b> 지원합니다(120㎡·150만 위안 이하 주택, 10.1 시행). 같은 날 담보보완대출(PSL) 금리도 1.75% → 1.5%로 내렸습니다.', '헝다: 8.21 광저우 법원이 본토 핵심 법인의 <b>파산청산</b> 신청을 받아들였습니다. 하루 전 창업자 쉬자인은 무기징역을 선고받았습니다.', '완커: 1월 채권 상환 유예 뒤 S&P가 "선택적 디폴트"로 강등했고, 채무 재조정을 추진 중입니다.', '비구이위안: 해외 채무 재조정 뒤 2.16 홍콩 법원이 청산 청구를 기각했습니다.'],
+    kr: '<b>한국과 연결:</b> 중국 집값은 한국 집값에 직접 영향을 주지 않지만, 중국 경기 둔화는 한국 수출·환율을 거쳐 간접적으로 영향을 줍니다. 집값 하락이 길어지면 개발 투자와 착공이 함께 줄어드는 모습(1~9월 착공 면적 -24.9%)도 확인할 수 있습니다.',
+    src: [S.cn70, S.nbs70, S.nbsInv, S.lpr, S.cnSub, S.evg, S.vanke, S.cg] },
+  { id: 'jp', flag: '', name: '일본', tag: '도쿄 신축은 사상 최고',
+    one: '금리를 올리는 중에도 도쿄 신축 맨션 값은 크게 올랐습니다. 다만 9월에는 공급과 가격이 꺾이는 신호도 나왔습니다.',
+    m: [['도쿄 23구 신축 맨션 평균가', '1억7,925만 엔', 'up', '2026 회계연도 상반기(4~9월) · +34.7%'], ['수도권 신축 맨션 평균가', '1억1,494만 엔', 'up', '상반기 · +21.1%, 상반기 첫 1억 엔 돌파'], ['수도권 9월 단월 평균가', '9,552만 엔', 'dn', '전년 -4.1%, 공급 -40.1% (보도 요약 기준)'], ['일본은행 정책금리', '1.25%', '', '10.30 동결 · 9월 인상'], ['엔/달러', '약 157.9엔', '', '11.9']],
+    news: ['23구 7월 평균가는 <b>2억6,520만 엔</b>으로 단월 기준 역대 최고였습니다. 고가 타워맨션 분양 영향입니다.', '일본은행은 "기조적 물가가 목표 수준에 도달했다"고 평가했고, 시장은 12월(12.17~18) 추가 인상을 예상합니다.', '도쿄 23구 중고 맨션 9월 호가는 전월 -0.5%로 26개월 만에 내렸습니다(앳홈).', '외국인 부동산 취득 시 국적 신고 제도가 2026 회계연도부터 도입된다고 보도됐습니다.'],
+    kr: '<b>한국과 연결:</b> "평균 분양가"는 그 달에 어떤 단지가 분양했는지에 따라 크게 출렁입니다. 한국에서도 분양가 기사는 평균인지 중위값인지, 어떤 단지가 포함됐는지 확인해야 합니다(<a href="./부동산_일일학습_2026.html?lesson=175" style="color:var(--accent)">175강 중위가격 읽는 법</a>).',
+    note: '23구 9월 단월 수치는 확인하지 못했습니다.',
+    src: [S.tokyo, S.tokyo7, S.boj, S.athome, S.jpForeign] },
+  { id: 'uk', flag: '', name: '영국', tag: '금리 인상과 집값 둔화',
+    one: '영란은행이 11.5에 2023년 이후 처음으로 금리를 올렸고, 집값은 상승이 거의 멈췄거나 내리고 있습니다.',
+    m: [['Nationwide 집값 (전년 대비)', '+0.5%', 'up', '10월 · 2024.1 이후 최저, 평균 £273,566'], ['Lloyds 집값 (전년 대비)', '-1.2%', 'dn', '10월 · 전월 -0.6%, 평균 £296,285'], ['영란은행 기준금리', '4.00%', '', '11.5 · 3.75%에서 인상']],
+    news: ['Nationwide 수석이코노미스트: "금리 인상 기대가 모기지 금리 상승 압력을 만들고 있다."', 'Lloyds 지수는 2개월 연속 하락했고, 하락폭은 2023.10 이후 가장 컸습니다.'],
+    kr: '<b>한국과 연결:</b> 같은 나라에서도 지수마다 방향이 다를 수 있습니다(Nationwide +0.5% vs Lloyds -1.2%). 한국에서도 부동산원과 KB 지수가 다르게 나올 수 있으니 한 지수만 보고 판단하지 마세요.',
+    note: 'Nationwide 월간 변동은 보도마다 보합(0%)과 -0.3%로 다르고, 영란은행 표결도 9대0과 8대1로 엇갈립니다.',
+    src: [S.nw, S.lloyds, S.boe] },
+  { id: 'eu', flag: '', name: '유로존·독일', tag: '금리 동결, 집값 소폭 상승',
+    one: '유럽중앙은행은 올해 두 번 올린 뒤 동결했습니다. 독일 집값은 바닥을 지나 조금씩 오르고 있습니다.',
+    m: [['ECB 예금금리', '2.50%', '', '10.29 동결 · 6·9월 인상'], ['독일 주거용 부동산 (전년 대비)', '+0.6%', 'up', '2분기 · 전분기 +0.3% (잠정)']],
+    news: ['ECB는 "에너지 가격 상승이 물가 상방 위험"이라고 밝혔습니다.'],
+    kr: '<b>한국과 연결:</b> 금리 인상기에도 집값이 크게 무너지지 않고 횡보할 수 있다는 사례입니다.',
+    src: [S.ecb, S.de] },
+  { id: 'ca', flag: '', name: '캐나다', tag: '3년 만의 금리 인상',
+    one: '캐나다은행이 10.28에 2023.7 이후 처음으로 금리를 올렸고, 집값은 1년 전보다 내려 있습니다.',
+    m: [['캐나다은행 기준금리', '2.50%', '', '10.28 · +0.25%p'], ['CREA 종합 주택가격지수', '-3.4%', 'dn', '9월 전년 대비 · 전월 -0.4% (보도 요약 기준)']],
+    news: ['금리 인상은 0.25%p로, 약 3년 만의 방향 전환입니다.'],
+    kr: '<b>한국과 연결:</b> 내 주담대가 고정형·혼합형·변동형 중 무엇인지, 고정 기간이 언제 끝나는지 확인해 두면 금리 방향이 바뀔 때 부담 변화를 미리 계산할 수 있습니다.',
+    src: [S.boc, S.crea] },
+  { id: 'au', flag: '', name: '호주', tag: '연속 인상, 7개월 연속 하락',
+    one: '올해 다섯 번 금리를 올린 호주는 집값이 7개월째 내리고 있습니다. 금리 인상이 집값에 시차를 두고 반영되는 모습입니다.',
+    m: [['호주중앙은행 기준금리', '4.85%', '', '11.3 · 올해 5번째, 2008년 이후 최고'], ['Cotality 집값 (전월 대비)', '-1.2%', 'dn', '10월 · 7개월 연속 하락 (보도 요약 기준)'], ['3월 고점 대비', '-6.7%', 'dn', '5대 도시 합산은 -8.1%']],
+    news: ['지수마다 하락 깊이가 다릅니다. PropTrack은 10월 -0.3%, 고점 대비 -4.3%로 Cotality보다 작게 봅니다.', '금리 인상 결정은 6대 3으로 갈렸습니다.'],
+    kr: '<b>한국과 연결:</b> 금리를 여러 번 올린 뒤 몇 달에 걸쳐 집값이 내리는 모습은, 금리 인상의 집값 효과가 6개월 무렵 가장 크다는 국내 분석(경향신문 2026.9.23)과도 맞닿아 있습니다.',
+    src: [S.rba, S.cot, S.proptrack] },
+  { id: 'hk', flag: '', name: '홍콩·싱가포르', tag: '아시아 금융도시는 상승',
+    one: '금리 인상 흐름 속에서도 홍콩과 싱가포르 집값은 오르고 있습니다.',
+    m: [['홍콩 민간주택 (전년 대비)', '+9.3%', 'up', '9월 · 전월 +0.19%, 임대료 지수 사상 최고'], ['싱가포르 민간주택 (전분기 대비)', '+1.4%', 'up', '3분기 · 2분기 +0.5%, 임대료 +1.3%']],
+    news: ['홍콩은 연초보다 7.1% 올랐습니다.', '싱가포르 3분기 확정치는 속보치와 같았습니다.'],
+    kr: '<b>한국과 연결:</b> 임대료가 오르면 "사는 게 낫다"는 수요가 늘어 집값을 받칩니다. 한국에서 전셋값이 매매가보다 빨리 오를 때 매매 수요가 늘어나는 것과 같은 원리입니다.',
+    src: [S.hk, S.sg] },
+];
+
+const srcLink = ([n, u]) => `<a href="${u}" target="_blank" rel="noopener">출처: ${n} ↗</a>`;
+
+document.getElementById('rateTbl').innerHTML = '<thead><tr><th>나라</th><th>기준금리</th><th>최근 결정</th><th>방향</th><th>메모</th><th>출처</th></tr></thead><tbody>' +
+  RATES.map(([n, r, d, dir, memo]) => `<tr class="${n.includes('한국') ? 'kr' : ''}"><td>${n}</td><td class="num">${r}</td><td>${d}</td><td><span class="dir ${DIR[dir][0]}">${DIR[dir][1]}</span></td><td>${memo}</td><td>${RSRC[n] ? srcLink(RSRC[n]) : '<span style="color:var(--ink3);font-size:.7rem">부릿지 최신동향</span>'}</td></tr>`).join('') + '</tbody>';
+
+document.getElementById('countries').innerHTML = COUNTRIES.map(c => `<div class="box country" id="${c.id}">
+  <div class="c-head"><span class="c-name">${c.name}</span><span class="c-tag">${c.tag}</span></div>
+  <div class="c-one">${c.one}</div>
+  <div class="metrics">${c.m.map(([l, v, cls, s]) => `<div class="m"><div class="m-l">${l}</div><div class="m-v ${cls}">${v}</div><div class="m-s">${s}</div></div>`).join('')}</div>
+  <ul class="news">${c.news.map(n => `<li>${n}</li>`).join('')}</ul>
+  <div class="kr-link">${c.kr}</div>
+  ${c.note ? `<div class="note">⚠️ ${c.note}</div>` : ''}
+  <div class="srcs">${c.src.map(srcLink).join('')}</div>
+</div>`).join('');
+
+// 전년 대비 집값 막대 (0 기준 좌우)
+const css = n => getComputedStyle(document.documentElement).getPropertyValue(n).trim();
+function drawCompare() {
+  const box = document.getElementById('chCompare'), w = box.clientWidth;
+  const rowH = 30, padT = 8, h = padT + COMPARE.length * rowH + 22;
+  const labelW = Math.min(170, Math.max(110, w * 0.3));
+  const lo = -5, hi = 10, x = v => labelW + (v - lo) / (hi - lo) * (w - labelW - 44);
+  const up = css('--up'), dn = css('--dn'), ink = css('--ink'), ink2 = css('--ink2'), ink3 = css('--ink3'), rule = css('--rule');
+  let s = '';
+  [-5, 0, 5, 10].forEach(v => {
+    s += `<line x1="${x(v)}" x2="${x(v)}" y1="${padT}" y2="${h - 20}" stroke="${rule}" stroke-width="${v === 0 ? 1.5 : 1}"/>` +
+      `<text x="${x(v)}" y="${h - 6}" text-anchor="middle" font-size="10" fill="${ink3}">${v > 0 ? '+' : ''}${v}%</text>`;
+  });
+  COMPARE.forEach(([name, v, basis, src], i) => {
+    const yc = padT + i * rowH + rowH / 2, bh = 16, x0 = x(0), x1 = x(v), r = 4;
+    const left = Math.min(x0, x1), wid = Math.max(2, Math.abs(x1 - x0)), col = v >= 0 ? up : dn;
+    // 데이터 끝만 둥글게
+    const d = v >= 0
+      ? `M${left},${yc - bh / 2} H${left + wid - r} Q${left + wid},${yc - bh / 2} ${left + wid},${yc - bh / 2 + r} V${yc + bh / 2 - r} Q${left + wid},${yc + bh / 2} ${left + wid - r},${yc + bh / 2} H${left} Z`
+      : `M${left + wid},${yc - bh / 2} H${left + r} Q${left},${yc - bh / 2} ${left},${yc - bh / 2 + r} V${yc + bh / 2 - r} Q${left},${yc + bh / 2} ${left + r},${yc + bh / 2} H${left + wid} Z`;
+    const tip = `<b>${name} ${v > 0 ? '+' : ''}${v}%</b><br>${basis}<br><span style="opacity:.75">${src[0]}</span>`;
+    s += `<text x="${labelW - 10}" y="${yc + 4}" text-anchor="end" font-size="11.5" fill="${ink2}">${name}</text>` +
+      `<path d="${d}" fill="${col}"/>` +
+      `<text x="${v >= 0 ? x1 + 6 : x1 - 6}" y="${yc + 4}" text-anchor="${v >= 0 ? 'start' : 'end'}" font-size="11" font-weight="700" fill="${ink}">${v > 0 ? '+' : ''}${v}%</text>` +
+      `<rect x="0" y="${yc - rowH / 2}" width="${w}" height="${rowH}" fill="transparent" data-tip="${tip.replace(/"/g, '&quot;')}" style="cursor:pointer"/>`;
+  });
+  box.innerHTML = `<svg width="${w}" height="${h}" role="img" aria-label="나라별 집값 전년 대비 변동률">${s}</svg>`;
+  const tipEl = document.getElementById('tipCompare');
+  box.onmousemove = e => {
+    const el = e.target.closest('[data-tip]');
+    if (!el) { tipEl.style.opacity = 0; return; }
+    tipEl.innerHTML = el.dataset.tip;
+    const r = box.parentElement.getBoundingClientRect();
+    let left = e.clientX - r.left + 12;
+    if (left + tipEl.offsetWidth > r.width - 8) left = e.clientX - r.left - tipEl.offsetWidth - 12;
+    tipEl.style.left = left + 'px'; tipEl.style.top = (e.clientY - r.top - 10) + 'px'; tipEl.style.opacity = 1;
+  };
+  box.onmouseleave = () => { tipEl.style.opacity = 0; };
+}
+drawCompare();
+let rsz; addEventListener('resize', () => { clearTimeout(rsz); rsz = setTimeout(drawCompare, 150); });
+</script>
+</body>
+</html>
