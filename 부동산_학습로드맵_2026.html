@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/favicon.svg">
+<meta name="theme-color" content="#0C2040">
+<meta property="og:site_name" content="부릿지 BuRIDGE">
+<meta property="og:type" content="website">
+<meta property="og:title" content="학습 로드맵 — 10층 빌딩 올리기 | 부릿지 BuRIDGE">
+<meta property="og:description" content="부동산 기초부터 투자 전략까지, 63개 강의를 10개 층으로 나눈 순서대로 배우는 커리큘럼. 층마다 준공검사를 통과하면 다음 층이 열립니다.">
+<meta property="og:url" content="https://buridge.vercel.app/부동산_학습로드맵_2026.html">
+<meta property="og:image" content="https://buridge.vercel.app/og-image.svg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="ko_KR">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="학습 로드맵 — 10층 빌딩 올리기 | 부릿지 BuRIDGE">
+<meta name="twitter:description" content="부동산 기초부터 투자 전략까지, 63개 강의를 10개 층으로 나눈 순서대로 배우는 커리큘럼.">
+<meta name="twitter:image" content="https://buridge.vercel.app/og-image.svg">
+<title>학습 로드맵 | 부릿지 BuRIDGE</title>
+<script>try{var t=localStorage.getItem('buridge-theme');if(t==='dark'||t==='light')document.documentElement.setAttribute('data-theme',t);}catch(e){}</script>
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<style>button,input,select,textarea{font-family:inherit}</style>
+<style>
+:root{
+  --bg:#F3F6FB;--sf:#FFFFFF;--sf2:#F7F9FC;--rule:#D8E0EC;
+  --ink:#1A2E44;--ink2:#374F6B;--ink3:#68839C;
+  --navy:#0C2040;--navy2:#13305A;--accent:#2563EB;--blue-lt:#EBF1FF;
+  --lit:#F5B83D;--lit-glow:rgba(245,184,61,.45);--lit-lt:#FFF6E2;
+  --ok:#0A6E42;--ok-lt:#E4F3EC;--dn:#B71C1C;--dn-lt:#FFEBEE;
+  --scaf:#C9D3E0;
+  --font:Pretendard Variable, Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Apple SD Gothic Neo, Malgun Gothic, sans-serif;
+}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#0E1A2E;--sf:#152235;--sf2:#11203A;--rule:#22365A;
+  --ink:#D0E0F0;--ink2:#8AAAC8;--ink3:#6A84A0;
+  --accent:#6AA0F0;--blue-lt:#0F2142;--lit-lt:#2A2210;
+  --ok:#4CC08A;--ok-lt:#0A2018;--dn:#F07070;--dn-lt:#2A0A0A;--scaf:#2C4060;
+}}
+:root[data-theme="dark"]{
+  --bg:#0E1A2E;--sf:#152235;--sf2:#11203A;--rule:#22365A;
+  --ink:#D0E0F0;--ink2:#8AAAC8;--ink3:#6A84A0;
+  --accent:#6AA0F0;--blue-lt:#0F2142;--lit-lt:#2A2210;
+  --ok:#4CC08A;--ok-lt:#0A2018;--dn:#F07070;--dn-lt:#2A0A0A;--scaf:#2C4060;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:var(--font);background:var(--bg);color:var(--ink);min-height:100vh;line-height:1.6;}
+button{cursor:pointer;}
+a{color:inherit;}
+
+.hd{background:var(--navy);height:50px;display:flex;align-items:center;padding:0 20px;gap:10px;}
+.hd-back{color:#7AA0C8;font-size:.75rem;text-decoration:none;}.hd-back:hover{color:#C0D8F0;}
+.hd-sep{color:#2A4870;}
+.hd-title{font-size:.9rem;font-weight:700;color:#D0E0F0;}
+.hd-right{margin-left:auto;display:flex;gap:8px;align-items:center;}
+.hd-link{font-size:.7rem;color:#7AA0C8;text-decoration:none;border:1px solid #1A3460;border-radius:4px;padding:3px 9px;}
+.hd-link:hover{color:#C0D8F0;}
+
+/* ─ 히어로 ─ */
+.hero{background:linear-gradient(180deg,var(--navy) 0%,var(--navy2) 100%);padding:28px 20px 24px;}
+.hero-in{max-width:980px;margin:0 auto;display:grid;grid-template-columns:1fr auto;gap:22px;align-items:end;}
+@media(max-width:760px){.hero-in{grid-template-columns:1fr;}}
+.hero-eyebrow{font-size:.62rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#4A78A8;margin-bottom:10px;}
+.hero h1{font-size:1.55rem;font-weight:900;color:#D0E4F8;letter-spacing:-.03em;line-height:1.35;margin-bottom:8px;}
+.hero-sub{font-size:.8rem;color:#7F9CBC;line-height:1.7;max-width:560px;}
+.stats{display:grid;grid-template-columns:repeat(4,auto);gap:8px;}
+@media(max-width:760px){.stats{grid-template-columns:repeat(2,1fr);}}
+.stat{background:#081628;border:1px solid #1A3254;border-radius:8px;padding:10px 14px;min-width:96px;}
+.stat-v{font-size:1.1rem;font-weight:900;color:#E8F0FA;letter-spacing:-.02em;font-variant-numeric:tabular-nums;}
+.stat-l{font-size:.62rem;color:#6A8CB0;font-weight:600;margin-top:1px;}
+.stat.lit .stat-v{color:var(--lit);}
+
+.main{max-width:980px;margin:0 auto;padding:22px 16px 80px;}
+
+/* ─ 이어서 학습 ─ */
+.resume{display:flex;align-items:center;gap:14px;background:var(--sf);border:1px solid var(--rule);border-radius:12px;padding:14px 16px;margin-bottom:22px;box-shadow:0 2px 10px rgba(12,32,64,.05);}
+.resume-ic{width:44px;height:44px;border-radius:10px;background:var(--lit-lt);display:flex;align-items:center;justify-content:center;font-size:1.3rem;flex-shrink:0;}
+.resume-t{flex:1;min-width:0;}
+.resume-l{font-size:.68rem;color:var(--ink3);font-weight:700;}
+.resume-n{font-size:.92rem;font-weight:800;color:var(--ink);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.btn{border:none;border-radius:9px;font-weight:800;font-size:.84rem;padding:11px 18px;}
+.btn-main{background:var(--accent);color:#fff;box-shadow:0 3px 0 rgba(0,0,0,.18);}
+.btn-main:active{transform:translateY(2px);box-shadow:0 1px 0 rgba(0,0,0,.18);}
+.btn-main:disabled{background:var(--scaf);color:var(--ink3);box-shadow:none;cursor:default;}
+.btn-ghost{background:var(--sf2);color:var(--ink2);border:1px solid var(--rule);}
+.btn-lit{background:var(--lit);color:#3A2600;box-shadow:0 3px 0 #B9861F;}
+.btn-lit:active{transform:translateY(2px);box-shadow:0 1px 0 #B9861F;}
+
+/* ─ 빌딩 ─ */
+.building{max-width:760px;margin:0 auto;}
+.roof{height:46px;margin:0 28px;background:var(--navy);border-radius:10px 10px 0 0;position:relative;display:flex;align-items:center;justify-content:center;color:#B8D6F2;font-size:.74rem;font-weight:800;letter-spacing:.04em;}
+.roof::before{content:'';position:absolute;top:-16px;left:50%;width:2px;height:16px;background:var(--navy);}
+.roof::after{content:'';position:absolute;top:-22px;left:calc(50% - 4px);width:10px;height:10px;border-radius:50%;background:var(--lit);box-shadow:0 0 10px var(--lit-glow);}
+.floors{border-left:6px solid var(--navy);border-right:6px solid var(--navy);background:var(--navy);display:flex;flex-direction:column;gap:6px;padding:6px;}
+.floor{background:var(--sf);border-radius:6px;scroll-margin-top:90px;}
+.f-row{display:grid;grid-template-columns:62px 1fr;align-items:stretch;}
+.f-no{display:flex;flex-direction:column;align-items:center;justify-content:center;border-right:1px solid var(--rule);padding:10px 0;}
+.f-no b{font-size:1.15rem;font-weight:900;color:var(--ink);letter-spacing:-.03em;}
+.f-no span{font-size:.58rem;color:var(--ink3);font-weight:700;}
+.f-body{padding:12px 14px;min-width:0;}
+.f-top{display:flex;align-items:center;gap:8px;margin-bottom:8px;flex-wrap:wrap;}
+.f-name{font-size:.95rem;font-weight:800;color:var(--ink);letter-spacing:-.02em;}
+.f-badge{font-size:.62rem;font-weight:800;padding:2px 8px;border-radius:10px;}
+.fb-done{background:var(--ok-lt);color:var(--ok);}
+.fb-now{background:var(--lit-lt);color:#9A6A00;}
+:root[data-theme="dark"] .fb-now{color:var(--lit);}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]) .fb-now{color:var(--lit);}}
+.fb-lock{background:var(--sf2);color:var(--ink3);border:1px solid var(--rule);}
+.f-desc{font-size:.72rem;color:var(--ink3);margin:-4px 0 9px;line-height:1.55;}
+.windows{display:flex;flex-wrap:wrap;gap:7px;}
+.win{width:46px;height:40px;border-radius:5px;border:2px solid var(--rule);background:var(--sf2);display:flex;align-items:center;justify-content:center;font-size:.64rem;font-weight:800;color:var(--ink3);position:relative;font-variant-numeric:tabular-nums;transition:transform .1s;}
+.win:hover:not(:disabled){transform:translateY(-2px);}
+.win.done{background:var(--lit);border-color:#D99A1E;color:#3A2600;box-shadow:0 0 12px var(--lit-glow);}
+.win.next{border-color:var(--accent);color:var(--accent);background:var(--blue-lt);animation:pulse 1.6s ease-in-out infinite;}
+.win:disabled{cursor:default;opacity:.55;}
+.win.exam{width:auto;padding:0 10px;border-style:dashed;}
+.win.exam.passed{border-style:solid;background:var(--ok-lt);border-color:var(--ok);color:var(--ok);}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(37,99,235,.35);}50%{box-shadow:0 0 0 6px rgba(37,99,235,0);}}
+@media(prefers-reduced-motion:reduce){.win.next{animation:none;}}
+.f-prog{height:5px;background:var(--sf2);border-radius:3px;margin-top:10px;overflow:hidden;}
+.f-prog i{display:block;height:100%;background:var(--lit);border-radius:3px;}
+.floor.locked{background:repeating-linear-gradient(135deg,var(--sf2) 0 10px,var(--sf) 10px 20px);}
+.floor.locked .f-name{color:var(--ink3);}
+.lock-note{font-size:.72rem;color:var(--ink3);display:flex;align-items:center;gap:8px;flex-wrap:wrap;}
+.lock-note button{font-size:.7rem;font-weight:700;color:var(--accent);background:none;border:1px solid var(--rule);border-radius:6px;padding:3px 9px;}
+.rooms{border-top:1px dashed var(--rule);margin-top:10px;padding-top:8px;display:none;}
+.floor.open .rooms{display:block;}
+.room{display:flex;align-items:center;gap:10px;padding:7px 4px;border-radius:6px;width:100%;background:none;border:none;text-align:left;color:var(--ink2);font-size:.78rem;}
+.room:hover:not(:disabled){background:var(--sf2);}
+.room:disabled{cursor:default;opacity:.55;}
+.room-no{font-size:.66rem;font-weight:800;color:var(--ink3);width:40px;flex-shrink:0;font-variant-numeric:tabular-nums;}
+.room-t{flex:1;min-width:0;}
+.room-st{font-size:.72rem;flex-shrink:0;}
+.f-toggle{font-size:.68rem;color:var(--ink3);background:none;border:none;margin-left:auto;font-weight:700;}
+.ground{height:34px;margin:0 -10px;background:var(--navy);border-radius:0 0 8px 8px;display:flex;align-items:center;justify-content:center;color:#7F9CBC;font-size:.7rem;font-weight:700;letter-spacing:.06em;}
+.legend{display:flex;flex-wrap:wrap;gap:6px 16px;justify-content:center;margin:14px 0 4px;font-size:.7rem;color:var(--ink3);}
+.legend span{display:inline-flex;align-items:center;gap:6px;}
+.legend i{width:16px;height:13px;border-radius:3px;border:2px solid var(--rule);background:var(--sf2);display:inline-block;}
+.legend i.l-done{background:var(--lit);border-color:#D99A1E;}
+.legend i.l-next{border-color:var(--accent);background:var(--blue-lt);}
+
+.intro{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:28px;}
+@media(max-width:760px){.intro{grid-template-columns:1fr;}}
+.intro div{background:var(--sf);border:1px solid var(--rule);border-radius:10px;padding:14px 16px;}
+.intro h3{font-size:.84rem;font-weight:800;margin-bottom:4px;}
+.intro p{font-size:.74rem;color:var(--ink2);line-height:1.65;}
+
+/* ─ 학습 화면 (모달) ─ */
+.modal{position:fixed;inset:0;background:var(--bg);z-index:50;display:none;flex-direction:column;}
+.modal.on{display:flex;}
+.m-top{display:flex;align-items:center;gap:12px;padding:12px 16px;border-bottom:1px solid var(--rule);background:var(--sf);}
+.m-close{background:none;border:none;font-size:1.3rem;color:var(--ink3);line-height:1;padding:4px;}
+.m-bar{flex:1;height:10px;background:var(--sf2);border-radius:6px;overflow:hidden;border:1px solid var(--rule);}
+.m-bar i{display:block;height:100%;background:var(--lit);border-radius:6px;transition:width .25s;}
+.m-pct{font-size:.7rem;font-weight:800;color:var(--ink3);font-variant-numeric:tabular-nums;min-width:62px;text-align:right;}
+.m-body{flex:1;overflow-y:auto;}
+.m-in{max-width:720px;margin:0 auto;padding:22px 18px 30px;}
+.m-room{font-size:.7rem;font-weight:800;color:var(--accent);margin-bottom:4px;}
+.m-title{font-size:1.2rem;font-weight:900;letter-spacing:-.03em;line-height:1.4;margin-bottom:4px;}
+.m-sub{font-size:.8rem;color:var(--ink3);margin-bottom:18px;line-height:1.6;}
+.m-step{font-size:.66rem;font-weight:800;letter-spacing:.08em;color:var(--ink3);margin-bottom:8px;text-transform:uppercase;}
+.m-card{background:var(--sf);border:1px solid var(--rule);border-radius:12px;padding:18px 18px;font-size:.88rem;line-height:1.85;color:var(--ink);}
+.m-card strong,.m-card b{font-weight:800;}
+.m-card .lead{color:var(--ink2);font-style:italic;margin-bottom:12px;font-size:.84rem;border-left:3px solid var(--accent);padding-left:10px;line-height:1.6;}
+.m-card .f-title,.m-card .example-title{font-weight:800;margin-bottom:6px;}
+.m-card .step{display:flex;gap:10px;margin:6px 0;}
+.m-card .step-num{width:22px;height:22px;border-radius:50%;background:var(--blue-lt);color:var(--accent);font-size:.72rem;font-weight:800;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:3px;}
+.m-card .result-box{margin-top:10px;background:var(--lit-lt);border-radius:8px;padding:10px 12px;font-weight:700;}
+.m-card.formula{background:var(--sf2);font-variant-numeric:tabular-nums;}
+.m-card.tip{background:var(--lit-lt);border-color:transparent;}
+.chk{margin-top:14px;}
+.chk div{display:flex;gap:8px;font-size:.82rem;color:var(--ink2);padding:3px 0;}
+.md-table-wrap{overflow-x:auto;margin:10px 0 12px;}
+.md-table{border-collapse:collapse;width:100%;font-size:.8rem;line-height:1.55;}
+.md-table th,.md-table td{border:1px solid var(--rule);padding:7px 10px;text-align:left;vertical-align:top;}
+.md-table th{background:var(--sf2);font-weight:700;white-space:nowrap;}
+.quiz-q{font-size:1rem;font-weight:800;line-height:1.6;margin-bottom:14px;}
+.opts{display:flex;flex-direction:column;gap:9px;}
+.opt{text-align:left;background:var(--sf);border:2px solid var(--rule);border-bottom-width:4px;border-radius:12px;padding:12px 14px;font-size:.88rem;color:var(--ink);line-height:1.55;}
+.opt:hover:not(:disabled){border-color:var(--accent);}
+.opt.sel{border-color:var(--accent);background:var(--blue-lt);}
+.opt.right{border-color:var(--ok);background:var(--ok-lt);}
+.opt.wrong{border-color:var(--dn);background:var(--dn-lt);}
+.opt:disabled{cursor:default;}
+.m-foot{border-top:1px solid var(--rule);background:var(--sf);padding:12px 16px;}
+.m-foot-in{max-width:720px;margin:0 auto;display:flex;gap:10px;align-items:center;}
+.m-foot .grow{flex:1;}
+.feedback{max-width:720px;width:calc(100% - 32px);align-self:center;margin:0 0 10px;border-radius:12px;padding:12px 14px;font-size:.84rem;line-height:1.7;display:none;}
+.feedback.on{display:block;}
+.feedback.ok{background:var(--ok-lt);color:var(--ink);}
+.feedback.no{background:var(--dn-lt);color:var(--ink);}
+.feedback b{display:block;font-size:.92rem;margin-bottom:2px;}
+.feedback.ok b{color:var(--ok);}.feedback.no b{color:var(--dn);}
+.done-screen{text-align:center;padding:40px 10px 10px;}
+.done-key{font-size:3rem;margin-bottom:6px;}
+.done-screen h2{font-size:1.35rem;font-weight:900;letter-spacing:-.03em;margin-bottom:6px;}
+.done-screen p{font-size:.86rem;color:var(--ink2);line-height:1.7;}
+.done-pts{display:inline-flex;gap:10px;margin-top:16px;flex-wrap:wrap;justify-content:center;}
+.done-pts span{background:var(--lit-lt);border-radius:10px;padding:8px 14px;font-size:.82rem;font-weight:800;}
+.loading{text-align:center;padding:60px 10px;color:var(--ink3);font-size:.84rem;}
+.disc{margin-top:36px;font-size:.72rem;color:var(--ink3);line-height:1.8;border-top:1px solid var(--rule);padding-top:14px;}
+.disc a{color:var(--accent);}
+</style>
+</head>
+<body>
+
+<div class="hd">
+  <a class="hd-back" href="./index.html">🌉 부릿지</a>
+  <span class="hd-sep">/</span>
+  <span class="hd-title">학습 로드맵</span>
+  <div class="hd-right"><a class="hd-link" href="./부동산_일일학습_2026.html">오늘의 강의 →</a></div>
+</div>
+
+<div class="hero">
+  <div class="hero-in">
+    <div>
+      <div class="hero-eyebrow">Learning Roadmap · 10층 빌딩 올리기</div>
+      <h1>1층 기초부터 10층 투자 전략까지,<br>한 층씩 지어 올리는 부동산 공부</h1>
+      <p class="hero-sub">강의 한 개는 호실 하나입니다. 퀴즈를 맞히면 창문에 불이 켜지고, 한 층을 다 채운 뒤 <b style="color:#E8F0FA">준공검사</b>를 통과하면 다음 층 공사가 시작됩니다.</p>
+    </div>
+    <div class="stats" id="stats"></div>
+  </div>
+</div>
+
+<div class="main">
+  <div class="resume" id="resume"><div class="loading" style="padding:4px;width:100%">강의를 불러오는 중…</div></div>
+
+  <div class="building">
+    <div class="roof" id="roof">공정률 0%</div>
+    <div class="floors" id="floors"><div class="floor"><div class="loading">강의를 불러오는 중…</div></div></div>
+    <div class="ground">기초 · 부릿지 BuRIDGE</div>
+  </div>
+  <div class="legend">
+    <span><i class="l-done"></i>학습 완료(불 켜짐)</span>
+    <span><i class="l-next"></i>다음 학습</span>
+    <span><i></i>아직</span>
+    <span>📋 준공검사 — 층 마무리 시험</span>
+  </div>
+
+  <div class="intro">
+    <div><h3>🏗️ 순서대로 쌓기</h3><p>아래층에서 배운 개념이 위층에서 쓰입니다. 대출(3층)을 알아야 세금(4층)과 청약(6층) 계산이 쉬워지는 식입니다.</p></div>
+    <div><h3>📋 준공검사</h3><p>한 층의 강의를 마치면 그 층 퀴즈 중 5문제가 나옵니다. 4문제 이상 맞히면 준공, 다음 층이 열립니다. 이미 아는 층은 강의 없이 바로 검사를 봐도 됩니다.</p></div>
+    <div><h3>📐 연면적 쌓기</h3><p>퀴즈를 한 번에 맞히면 10㎡, 다시 풀어 맞히면 5㎡, 층 준공은 30㎡가 쌓입니다. 하루에 한 호실 이상 공부하면 연속 학습일이 늘어납니다.</p></div>
+  </div>
+
+  <div class="disc">
+    · 강의 내용은 <a href="./부동산_일일학습_2026.html">일일학습</a>과 같습니다. 일일학습은 그날 뉴스에 맞춘 강의, 로드맵은 기본 개념을 순서대로 익히는 코스입니다.<br>
+    · 대출·세금·청약 규칙은 자주 바뀝니다. 강의를 쓴 시점 이후 바뀐 내용은 <a href="./부동산_정책모음_2026.html">정책 모음</a>에서 최신 상태를 확인하세요.<br>
+    · 학습 기록은 이 브라우저에만 저장됩니다. 브라우저 기록을 지우면 처음부터 다시 시작합니다.
+  </div>
+</div>
+
+<div class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="mTitle">
+  <div class="m-top">
+    <button class="m-close" onclick="closeModal()" aria-label="닫기">✕</button>
+    <div class="m-bar"><i id="mBar"></i></div>
+    <div class="m-pct" id="mPct"></div>
+  </div>
+  <div class="m-body" id="mBody"></div>
+  <div class="feedback" id="fb"></div>
+  <div class="m-foot"><div class="m-foot-in" id="mFoot"></div></div>
+</div>
+
+<script>
+// ─── 커리큘럼: 일일학습 강의를 층(단원)별로 배치 ───
+// 강의 참조: 'i숫자' = 번호 없는 초기 강의의 순서(0부터), 숫자 = 강의 번호(num)
+const CURRICULUM = [
+  { f: 1, name: '첫걸음', desc: '면적·주택 유형·가격 보는 법 — 부동산 기본 용어', refs: ['i21', 'i48', 'i0', 'i51', 'i13', 'i69'] },
+  { f: 2, name: '집 사는 과정', desc: '임장부터 계약·잔금·등기까지 거래의 순서', refs: ['i61', 'i60', 'i22', 'i23', 'i43', 'i42'] },
+  { f: 3, name: '대출과 금리', desc: 'LTV·DSR, 고정·변동금리, 정책대출, 기준금리', refs: ['i1', 'i54', 'i127', '147', 'i40', 'i9', '146'] },
+  { f: 4, name: '세금', desc: '살 때·가질 때·팔 때 — 취득세·종부세·양도세', refs: ['i49', 'i2', 'i20', '144', '145', 'i36'] },
+  { f: 5, name: '전세와 월세', desc: '전세가율, 임차인 보호, 전세사기 예방, 월세화', refs: ['i7', 'i52', 'i18', 'i62', '163', 'i46'] },
+  { f: 6, name: '청약과 분양', desc: '청약 제도·가점, 분양권, 경쟁률과 미달 읽기', refs: ['i17', 'i59', 'i57', 'i71', 'i24', '169', '179'] },
+  { f: 7, name: '시장 읽기', desc: '가격지수·매물·거래량·심리지수로 시장 온도 재기', refs: ['151', '162', '148', '161', '158', '175', 'i31'] },
+  { f: 8, name: '정책과 규제', desc: '토허구역·규제지역, 공급 지표, 대출 규제의 이유', refs: ['156', '174', '173', '149', '154', '165'] },
+  { f: 9, name: '재건축·재개발·경매', desc: '정비사업의 절차와 분담금, 경매 기초', refs: ['i25', '143', 'i38', '181', '141', '142'] },
+  { f: 10, name: '투자 전략', desc: '레버리지·수익률·리츠·분산, 주거 사다리', refs: ['i19', 'i26', 'i4', 'i56', 'i55', 'i58'] },
+];
+const EXAM_N = 5, EXAM_PASS = 4;
+const STEP_NAMES = ['개념', '공식', '예시', '팁', '퀴즈'];
+
+// ─── 저장 ───
+const KEY = 'buridge-roadmap-v1';
+let st = { done: {}, floors: {}, area: 0, streak: { last: '', n: 0 } };
+try { const v = JSON.parse(localStorage.getItem(KEY)); if (v && v.done) st = Object.assign(st, v); } catch (e) {}
+const save = () => { try { localStorage.setItem(KEY, JSON.stringify(st)); } catch (e) {} };
+const today = () => { const d = new Date(); return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`; };
+function touchStreak() {
+  const t = today();
+  if (st.streak.last === t) return;
+  const y = new Date(); y.setDate(y.getDate() - 1);
+  const ys = `${y.getFullYear()}-${String(y.getMonth() + 1).padStart(2, '0')}-${String(y.getDate()).padStart(2, '0')}`;
+  st.streak = { last: t, n: st.streak.last === ys ? st.streak.n + 1 : 1 };
+}
+const liveStreak = () => {
+  const y = new Date(); y.setDate(y.getDate() - 1);
+  const ys = `${y.getFullYear()}-${String(y.getMonth() + 1).padStart(2, '0')}-${String(y.getDate()).padStart(2, '0')}`;
+  return (st.streak.last === today() || st.streak.last === ys) ? st.streak.n : 0;
+};
+
+// ─── 강의 불러오기 (일일학습 페이지의 LESSONS 배열을 그대로 사용) ───
+let LESSONS = [];
+const lessonOf = ref => /^i\d+$/.test(ref) ? LESSONS[+ref.slice(1)] : LESSONS.find(l => String(l.num) === ref);
+
+async function loadLessons() {
+  const res = await fetch('./부동산_일일학습_2026.html', { cache: 'no-cache' });
+  const html = await res.text();
+  const a = html.indexOf('const LESSONS');
+  const start = html.indexOf('[', a);
+  const end = html.slice(start).search(/\r?\n\];/);
+  LESSONS = new Function('return ' + html.slice(start, start + end) + '\n]')();
+}
+
+// 강의 본문 마크다운: **굵게** + | a | b | 표 (일일학습 페이지와 같은 규칙)
+function mdRender(src, pre) {
+  const bold = t => t.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
+  const isRow = l => /^\s*\|.*\|\s*$/.test(l);
+  const isSep = l => /^\s*\|(\s*:?-{2,}:?\s*\|)+\s*$/.test(l);
+  const cells = l => l.trim().slice(1, -1).split('|').map(c => bold(c.trim()));
+  const lines = String(src).split('\n');
+  const out = []; let text = [];
+  const flush = () => { if (text.length) out.push(text.map(bold).join(pre ? '\n' : '<br>')); text = []; };
+  for (let i = 0; i < lines.length; i++) {
+    if (!isRow(lines[i])) { text.push(lines[i]); continue; }
+    const rows = [];
+    while (i < lines.length && isRow(lines[i])) { if (!isSep(lines[i])) rows.push(cells(lines[i])); i++; }
+    while (i < lines.length && !lines[i].trim()) i++;
+    i--;
+    while (text.length && !text[text.length - 1].trim()) text.pop();
+    flush();
+    const [head, ...body] = rows;
+    out.push('<div class="md-table-wrap"><table class="md-table"><thead><tr>' + head.map(c => '<th>' + c + '</th>').join('') +
+      '</tr></thead><tbody>' + body.map(r => '<tr>' + r.map(c => '<td>' + c + '</td>').join('') + '</tr>').join('') + '</tbody></table></div>');
+  }
+  flush();
+  return out.join('');
+}
+
+// ─── 진도 계산 ───
+const total = () => CURRICULUM.reduce((n, f) => n + f.refs.length, 0);
+const doneCount = () => CURRICULUM.reduce((n, f) => n + f.refs.filter(r => st.done[r]).length, 0);
+const floorPassed = f => !!st.floors[f];
+const floorOpen = f => f === 1 || floorPassed(f - 1) || floorPassed(f);
+const roomNo = (f, i) => `${f}${String(i + 1).padStart(2, '0')}호`;
+function nextLesson() {
+  for (const fl of CURRICULUM) {
+    if (!floorOpen(fl.f)) return null;
+    const i = fl.refs.findIndex(r => !st.done[r]);
+    if (i >= 0 && !floorPassed(fl.f)) return { fl, i };
+    if (!floorPassed(fl.f)) return { fl, i: -1 };   // 강의는 끝, 준공검사 차례
+  }
+  return null;
+}
+const lessonOpen = (fl, i) => floorOpen(fl.f) && (i === 0 || !!st.done[fl.refs[i - 1]] || floorPassed(fl.f));
+const progressPct = () => {
+  // 공정률: 강의 1개 = 1, 준공검사 1개 = 1
+  const units = total() + CURRICULUM.length;
+  const got = doneCount() + CURRICULUM.filter(f => floorPassed(f.f)).length;
+  return Math.round(got / units * 100);
+};
+
+// ─── 화면 ───
+let openFloor = null;
+function render() {
+  const pct = progressPct(), passed = CURRICULUM.filter(f => floorPassed(f.f)).length;
+  document.getElementById('stats').innerHTML = `
+    <div class="stat lit"><div class="stat-v">${pct}%</div><div class="stat-l">공정률</div></div>
+    <div class="stat"><div class="stat-v">${doneCount()}/${total()}</div><div class="stat-l">완료한 호실</div></div>
+    <div class="stat"><div class="stat-v">${st.area.toLocaleString()}㎡</div><div class="stat-l">쌓은 연면적</div></div>
+    <div class="stat"><div class="stat-v">${liveStreak()}일</div><div class="stat-l">연속 학습</div></div>`;
+  document.getElementById('roof').textContent = passed === CURRICULUM.length ? '🎉 준공 완료 — 10층 빌딩 완성' : `공정률 ${pct}% · ${passed}개 층 준공`;
+
+  const nx = nextLesson();
+  const rs = document.getElementById('resume');
+  if (!nx) {
+    rs.innerHTML = `<div class="resume-ic">🏙️</div><div class="resume-t"><div class="resume-l">모든 층 준공</div><div class="resume-n">빌딩이 완성됐습니다. 복습하고 싶은 호실을 골라 보세요.</div></div>`;
+  } else if (nx.i < 0) {
+    rs.innerHTML = `<div class="resume-ic">📋</div><div class="resume-t"><div class="resume-l">${nx.fl.f}층 · ${nx.fl.name}</div><div class="resume-n">준공검사를 볼 차례입니다</div></div><button class="btn btn-lit" onclick="startExam(${nx.fl.f})">준공검사 시작</button>`;
+  } else {
+    const l = lessonOf(nx.fl.refs[nx.i]);
+    rs.innerHTML = `<div class="resume-ic">${doneCount() ? '🔑' : '🏗️'}</div><div class="resume-t"><div class="resume-l">${doneCount() ? '이어서 학습' : '첫 강의부터 시작'} · ${roomNo(nx.fl.f, nx.i)}</div><div class="resume-n">${l.title.split(' — ')[0]}</div></div><button class="btn btn-main" onclick="startLesson(${nx.fl.f},${nx.i})">${doneCount() ? '계속하기' : '시작하기'}</button>`;
+  }
+
+  const cur = nx ? nx.fl.f : null;
+  document.getElementById('floors').innerHTML = [...CURRICULUM].reverse().map(fl => {
+    const open = floorOpen(fl.f), passedF = floorPassed(fl.f);
+    const n = fl.refs.filter(r => st.done[r]).length;
+    const badge = passedF ? '<span class="f-badge fb-done">✓ 준공</span>' : fl.f === cur ? '<span class="f-badge fb-now">공사 중</span>' : !open ? '<span class="f-badge fb-lock">🚧 공사 예정</span>' : '';
+    if (!open) {
+      return `<div class="floor locked" id="fl${fl.f}"><div class="f-row"><div class="f-no"><b>${fl.f}F</b><span>${fl.refs.length}호실</span></div><div class="f-body">
+        <div class="f-top"><span class="f-name">${fl.name}</span>${badge}</div>
+        <div class="f-desc">${fl.desc}</div>
+        <div class="lock-note">${fl.f - 1}층 준공 후 열립니다.${floorOpen(fl.f - 1) ? ` <button onclick="startExam(${fl.f})">이미 알아요 — 준공검사로 건너뛰기</button>` : ''}</div>
+      </div></div></div>`;
+    }
+    const isNext = (i) => nx && nx.fl.f === fl.f && nx.i === i;
+    const wins = fl.refs.map((r, i) => {
+      const ok = lessonOpen(fl, i), d = !!st.done[r];
+      const l = lessonOf(r);
+      return `<button class="win ${d ? 'done' : ''} ${isNext(i) ? 'next' : ''}" ${ok ? '' : 'disabled'} onclick="startLesson(${fl.f},${i})" title="${roomNo(fl.f, i)} ${l.title.replace(/"/g, '&quot;')}">${fl.f}${String(i + 1).padStart(2, '0')}</button>`;
+    }).join('');
+    const allDone = fl.refs.every(r => st.done[r]);
+    const exam = `<button class="win exam ${passedF ? 'passed' : ''} ${nx && nx.fl.f === fl.f && nx.i < 0 ? 'next' : ''}" onclick="startExam(${fl.f})" title="${fl.f}층 준공검사">${passedF ? '✓ 준공' : '📋 검사'}</button>`;
+    const rooms = fl.refs.map((r, i) => {
+      const ok = lessonOpen(fl, i), d = !!st.done[r], l = lessonOf(r);
+      return `<button class="room" ${ok ? '' : 'disabled'} onclick="startLesson(${fl.f},${i})"><span class="room-no">${roomNo(fl.f, i)}</span><span class="room-t">${l.title}</span><span class="room-st">${d ? '💡' : ok ? '▶' : '🔒'}</span></button>`;
+    }).join('') + `<button class="room" onclick="startExam(${fl.f})"><span class="room-no">검사</span><span class="room-t">${fl.f}층 준공검사 — ${EXAM_N}문제 중 ${EXAM_PASS}문제 이상${allDone || passedF ? '' : ' (강의를 건너뛰고 바로 볼 수도 있습니다)'}</span><span class="room-st">${passedF ? '✅' : '📋'}</span></button>`;
+    return `<div class="floor ${openFloor === fl.f ? 'open' : ''}" id="fl${fl.f}"><div class="f-row"><div class="f-no"><b>${fl.f}F</b><span>${n}/${fl.refs.length}</span></div><div class="f-body">
+      <div class="f-top"><span class="f-name">${fl.name}</span>${badge}<button class="f-toggle" onclick="toggleFloor(${fl.f})">${openFloor === fl.f ? '목록 접기 ▲' : '강의 목록 ▼'}</button></div>
+      <div class="f-desc">${fl.desc}</div>
+      <div class="windows">${wins}${exam}</div>
+      <div class="f-prog"><i style="width:${Math.round(n / fl.refs.length * 100)}%"></i></div>
+      <div class="rooms">${rooms}</div>
+    </div></div></div>`;
+  }).join('');
+}
+function toggleFloor(f) { openFloor = openFloor === f ? null : f; render(); }
+
+// ─── 학습 화면 ───
+let S = null;   // 현재 세션
+const $ = id => document.getElementById(id);
+function openModal() { $('modal').classList.add('on'); document.body.style.overflow = 'hidden'; }
+function closeModal() { $('modal').classList.remove('on'); document.body.style.overflow = ''; S = null; render(); }
+addEventListener('keydown', e => { if (e.key === 'Escape' && S) closeModal(); });
+
+function startLesson(f, i) {
+  const fl = CURRICULUM[f - 1];
+  if (!lessonOpen(fl, i)) return;
+  S = { type: 'lesson', fl, i, ref: fl.refs[i], l: lessonOf(fl.refs[i]), step: 0, tries: 0, picked: null, solved: false };
+  openModal(); drawLesson();
+}
+
+function stepHTML(l, k) {
+  if (k === 0) {
+    const body = l.text ? mdRender(l.text) : (l.concept || '');
+    const lead = l.text && l.concept ? `<div class="lead">${l.concept}</div>` : '';
+    return `<div class="m-card">${lead}${body}</div>`;
+  }
+  if (k === 1) {
+    const f = l.formula;
+    const h = (f && typeof f === 'object' && f.lines) ? `<div class="f-title">${f.title || ''}</div>${f.lines.map(x => `<div>${x}</div>`).join('')}` : `<div style="white-space:pre-wrap">${f || ''}</div>`;
+    return `<div class="m-card formula">${h}</div>`;
+  }
+  if (k === 2) {
+    const e = l.example;
+    const h = (e && typeof e === 'object' && e.steps)
+      ? `<div class="example-title">${e.title || ''}</div>${e.steps.map((s, n) => `<div class="step"><div class="step-num">${n + 1}</div><div>${s}</div></div>`).join('')}<div class="result-box">📌 ${e.result || ''}</div>`
+      : `<div style="white-space:pre-wrap">${mdRender(e || '', true)}</div>`;
+    return `<div class="m-card">${h}</div>`;
+  }
+  if (k === 3) {
+    const tip = typeof l.tip === 'string' ? mdRender(l.tip) : '';
+    const chk = l.checklist ? `<div class="chk"><div style="font-weight:800;color:var(--ink)">실전 체크리스트</div>${l.checklist.trim().split('\n').filter(x => x.trim()).map(x => `<div>☐ ${x.replace(/^□\s*/, '')}</div>`).join('')}</div>` : '';
+    return `<div class="m-card tip">💡 ${tip}${chk}</div>`;
+  }
+  return '';
+}
+
+function drawLesson() {
+  const { fl, i, l, step } = S;
+  const pct = Math.round((step + (S.solved ? 1 : 0)) / STEP_NAMES.length * 100);
+  $('mBar').style.width = pct + '%';
+  $('mPct').textContent = `공정률 ${pct}%`;
+  $('fb').className = 'feedback';
+  const head = `<div class="m-room">${roomNo(fl.f, i)} · ${fl.f}층 ${fl.name}</div><div class="m-title" id="mTitle">${l.title}</div>${l.sub ? `<div class="m-sub">${l.sub}</div>` : '<div style="height:14px"></div>'}`;
+  if (step < 4) {
+    $('mBody').innerHTML = `<div class="m-in">${head}<div class="m-step">${step + 1}/5 · ${STEP_NAMES[step]}</div>${stepHTML(l, step)}</div>`;
+    $('mFoot').innerHTML = `${step > 0 ? '<button class="btn btn-ghost" onclick="S.step--;drawLesson()">이전</button>' : ''}<span class="grow"></span><button class="btn btn-main" onclick="S.step++;drawLesson()">${step === 3 ? '퀴즈 풀기' : '다음'}</button>`;
+    $('mBody').scrollTop = 0;
+    return;
+  }
+  // 퀴즈
+  const q = l.quiz;
+  $('mBody').innerHTML = `<div class="m-in">${head}<div class="m-step">5/5 · 퀴즈 — 맞히면 불이 켜집니다</div><div class="quiz-q">${q.q}</div>
+    <div class="opts">${q.opts.map((o, n) => `<button class="opt" id="op${n}" onclick="pick(${n})">${String.fromCharCode(9312 + n)} ${o}</button>`).join('')}</div></div>`;
+  $('mFoot').innerHTML = `<button class="btn btn-ghost" onclick="S.step--;drawLesson()">이전</button><span class="grow"></span><button class="btn btn-main" id="chkBtn" disabled onclick="checkAnswer()">확인</button>`;
+  $('mBody').scrollTop = 0;
+}
+
+function pick(n) {
+  if (S.solved || S.checked) return;
+  S.picked = n;
+  document.querySelectorAll('.opt').forEach((b, k) => b.classList.toggle('sel', k === n));
+  $('chkBtn').disabled = false;
+}
+
+function checkAnswer() {
+  const q = S.l.quiz, ok = S.picked === q.ans;
+  S.tries++; S.checked = true;
+  document.querySelectorAll('.opt').forEach((b, k) => { b.disabled = true; b.classList.remove('sel'); if (k === q.ans && ok) b.classList.add('right'); if (k === S.picked && !ok) b.classList.add('wrong'); });
+  const fb = $('fb');
+  if (ok) {
+    S.solved = true;
+    const first = !st.done[S.ref];
+    const pts = first ? (S.tries === 1 ? 10 : 5) : 0;
+    if (first) { st.done[S.ref] = { at: today(), tries: S.tries }; st.area += pts; }
+    touchStreak(); save();
+    $('mBar').style.width = '100%'; $('mPct').textContent = '공정률 100%';
+    fb.className = 'feedback ok on';
+    fb.innerHTML = `<b>정답! ${first ? `창문에 불이 켜졌습니다 +${pts}㎡` : '복습 완료'}</b>${q.explain}`;
+    const fl = S.fl, nextI = S.i + 1 < fl.refs.length ? S.i + 1 : -1;
+    $('mFoot').innerHTML = `<button class="btn btn-ghost" onclick="closeModal()">빌딩으로</button><span class="grow"></span>` +
+      (nextI >= 0 ? `<button class="btn btn-main" onclick="startLesson(${fl.f},${nextI})">다음 호실 ${roomNo(fl.f, nextI)} →</button>` :
+        floorPassed(fl.f) ? '' : `<button class="btn btn-lit" onclick="startExam(${fl.f})">📋 ${fl.f}층 준공검사</button>`);
+  } else {
+    fb.className = 'feedback no on';
+    fb.innerHTML = `<b>아쉬워요, 다시 생각해 보세요</b>힌트: 개념·예시 단계로 돌아가 다시 읽어 봐도 됩니다.`;
+    $('mFoot').innerHTML = `<button class="btn btn-ghost" onclick="S.step=0;S.checked=false;drawLesson()">개념 다시 보기</button><span class="grow"></span><button class="btn btn-main" onclick="S.checked=false;S.picked=null;drawLesson()">다시 풀기</button>`;
+  }
+}
+
+// ─── 준공검사 ───
+function shuffle(a) { a = a.slice(); for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; }
+function startExam(f) {
+  const fl = CURRICULUM[f - 1];
+  if (!floorOpen(f) && !(f > 1 && floorOpen(f - 1)) && f !== 1) {
+    // 두 층 이상 위는 건너뛸 수 없음 — 바로 아래층이 열려 있어야 함
+    alert(`${f - 1}층부터 열어 주세요.`); return;
+  }
+  const qs = shuffle(fl.refs).slice(0, EXAM_N).map(r => lessonOf(r));
+  S = { type: 'exam', fl, qs, k: 0, score: 0, picked: null, checked: false, skip: !floorOpen(f) };
+  openModal(); drawExam();
+}
+function drawExam() {
+  const { fl, qs, k } = S;
+  $('fb').className = 'feedback';
+  const pct = Math.round(k / qs.length * 100);
+  $('mBar').style.width = pct + '%'; $('mPct').textContent = `${k}/${qs.length}`;
+  if (k >= qs.length) return examResult();
+  const q = qs[k].quiz;
+  $('mBody').innerHTML = `<div class="m-in"><div class="m-room">📋 ${fl.f}층 준공검사${S.skip ? ' · 건너뛰기' : ''}</div><div class="m-title" id="mTitle">${fl.name}</div><div class="m-sub">${qs.length}문제 중 ${EXAM_PASS}문제 이상 맞히면 준공입니다. 지금 ${S.score}문제 정답.</div>
+    <div class="m-step">문제 ${k + 1} · ${qs[k].title.split(' — ')[0]}</div><div class="quiz-q">${q.q}</div>
+    <div class="opts">${q.opts.map((o, n) => `<button class="opt" onclick="examPick(${n})">${String.fromCharCode(9312 + n)} ${o}</button>`).join('')}</div></div>`;
+  $('mFoot').innerHTML = `<span class="grow"></span><button class="btn btn-main" id="chkBtn" disabled onclick="examCheck()">확인</button>`;
+  $('mBody').scrollTop = 0;
+}
+function examPick(n) {
+  if (S.checked) return;
+  S.picked = n;
+  document.querySelectorAll('.opt').forEach((b, k) => b.classList.toggle('sel', k === n));
+  $('chkBtn').disabled = false;
+}
+function examCheck() {
+  const q = S.qs[S.k].quiz, ok = S.picked === q.ans;
+  S.checked = true; if (ok) S.score++;
+  document.querySelectorAll('.opt').forEach((b, k) => { b.disabled = true; b.classList.remove('sel'); if (k === q.ans) b.classList.add('right'); if (k === S.picked && !ok) b.classList.add('wrong'); });
+  const fb = $('fb');
+  fb.className = 'feedback on ' + (ok ? 'ok' : 'no');
+  fb.innerHTML = `<b>${ok ? '정답!' : '오답 — 정답은 초록색 보기입니다'}</b>${q.explain}`;
+  $('mFoot').innerHTML = `<span class="grow"></span><button class="btn btn-main" onclick="S.k++;S.checked=false;S.picked=null;drawExam()">${S.k + 1 < S.qs.length ? '다음 문제' : '결과 보기'}</button>`;
+}
+function examResult() {
+  const { fl, score, qs } = S, pass = score >= EXAM_PASS;
+  if (pass && !floorPassed(fl.f)) { st.floors[fl.f] = today(); st.area += 30; touchStreak(); save(); }
+  $('mBar').style.width = '100%'; $('mPct').textContent = `${score}/${qs.length}`;
+  const nextF = fl.f < CURRICULUM.length ? fl.f + 1 : null;
+  $('mBody').innerHTML = `<div class="m-in"><div class="done-screen">
+    <div class="done-key">${pass ? '🏢' : '🔧'}</div>
+    <h2>${pass ? `${fl.f}층 준공 완료!` : '보수 공사가 필요해요'}</h2>
+    <p>${qs.length}문제 중 <b>${score}문제</b> 정답${pass ? (nextF ? ` — ${nextF}층 공사가 시작됩니다.` : ' — 10층 빌딩이 완성됐습니다!') : `. ${EXAM_PASS}문제 이상 맞혀야 준공입니다. 틀린 문제의 강의를 다시 보고 재검사해 보세요.`}</p>
+    ${pass ? `<div class="done-pts"><span>+30㎡ 준공 보너스</span><span>공정률 ${progressPct()}%</span></div>` : ''}
+  </div></div>`;
+  $('mFoot').innerHTML = `<button class="btn btn-ghost" onclick="closeModal()">빌딩으로</button><span class="grow"></span>` +
+    (pass ? (nextF ? `<button class="btn btn-main" onclick="startLesson(${nextF},0)">${nextF}층 첫 강의 →</button>` : '') : `<button class="btn btn-lit" onclick="startExam(${fl.f})">재검사</button>`);
+}
+
+// ─── 시작 ───
+loadLessons().then(() => {
+  render();
+  const nx = nextLesson();
+  if (nx && doneCount() > 0) document.getElementById('fl' + nx.fl.f)?.scrollIntoView({ block: 'center' });
+}).catch(() => {
+  document.getElementById('floors').innerHTML = '<div class="floor"><div class="loading">강의를 불러오지 못했습니다. 잠시 후 새로고침해 주세요.</div></div>';
+  document.getElementById('resume').innerHTML = '';
+});
+</script>
+</body>
+</html>
