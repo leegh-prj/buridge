@@ -204,7 +204,7 @@ a{color:inherit;}
   <a class="hd-back" href="./index.html">🌉 부릿지</a>
   <span class="hd-sep">/</span>
   <span class="hd-title">정책 모음</span>
-  <div class="hd-right"><span class="hd-badge">2026.11.12 기준</span></div>
+  <div class="hd-right"><span class="hd-badge">2026.11.13 기준</span></div>
 </div>
 
 <div class="hero">
@@ -215,7 +215,7 @@ a{color:inherit;}
     <div class="kpis">
       <div class="kpi"><div class="kpi-l">수도권·규제지역 주담대 한도</div><div class="kpi-v">6억 · 4억 · 2억</div><div class="kpi-s">집값 15억 이하 · 25억 이하 · 25억 초과</div></div>
       <div class="kpi"><div class="kpi-l">규제지역 (투기과열·조정)</div><div class="kpi-v">서울 25개 구 + 경기 15곳</div><div class="kpi-s">10·15 대책 37곳 + 2026.7 동탄·기흥·구리</div></div>
-      <div class="kpi"><div class="kpi-l">서울 전역·경기 12곳 토허구역</div><div class="kpi-v">12.31 만료</div><div class="kpi-s">연장 여부 논의 중 (11.12 현재 미발표)</div></div>
+      <div class="kpi"><div class="kpi-l">서울 전역·경기 12곳 토허구역</div><div class="kpi-v">12.31 만료</div><div class="kpi-s">연장 여부 논의 중 (11.13 현재 미발표)</div></div>
       <div class="kpi"><div class="kpi-l">2026 세제개편안 (양도세·종부세)</div><div class="kpi-v">국회 심의 중</div><div class="kpi-s">통과되면 2027년부터 단계 적용</div></div>
     </div>
   </div>
@@ -277,7 +277,7 @@ a{color:inherit;}
   <div class="disc">
     · 이 페이지는 공개된 기사·정부 발표를 초보자용으로 요약한 학습 자료입니다. 실제 대출·세금·청약은 개인 조건에 따라 달라지므로 계약 전 은행, 세무사, 청약홈·관할 관청에서 꼭 다시 확인하세요.<br>
     · 출처 링크는 각 카드 아래에 있습니다. 보도마다 수치가 다른 경우 카드 안에 따로 적었습니다.<br>
-    · 마지막 확인: 2026.11.12
+    · 마지막 확인: 2026.11.13
   </div>
 </div>
 
@@ -492,7 +492,7 @@ const FLOW = [
   ['2026.11.6', '국토부 "추가 대책설 사실 아냐"', '허위 글 수사 의뢰'],
 ];
 
-const TODAY = '2026-11-12';
+const TODAY = '2026-11-13';
 const fmt = d => { const [y, m, dd] = d.split('-'); return `${y}.${+m}.${+dd}`; };
 const dDay = d => Math.round((new Date(d + 'T00:00:00') - new Date(TODAY + 'T00:00:00')) / 864e5);
 
@@ -547,6 +547,7 @@ const WEEKLY = [
   ['2026-10-19', 0.13, S.in1105],
   ['2026-10-26', 0.09, S.in1105],
   ['2026-11-02', 0.07, S.in1105, '91주 연속 상승, 3주 연속 둔화'],
+  ['2026-11-09', 0.07, ['부릿지 최신동향 11.13 (부동산원 11.12 발표)', './부동산_최신동향_2026.html#sec-1113'], '92주 연속 상승, 25개 구 중 5곳 하락·성동·강동 하락 전환'],
 ];
 
 // 서울 아파트 월간 매매 거래량 (월, 건, 출처, 메모)
@@ -607,9 +608,9 @@ const EVENTS = [
     src: [S.bw0814, S.sbs0820] },
   { d: '2026.9 ~ 11', t: '지금 — 매물은 쌓이고 거래는 바닥, 상승폭은 축소',
     before: '8.3 매물 6만409건 · 5월 거래 8,994건',
-    after: '11.4 매물 <b>8만430건</b>(+33.1%, 25개 구 모두 증가) · 9월 거래 <b>3,431건</b>(9개월 만에 최저) · 11월 1주 <b>+0.07%</b>, 91주 연속 상승이지만 3주 연속 둔화 · 강남 -0.39%, 서초 -0.37%',
+    after: '11.4 매물 <b>8만430건</b>(+33.1%, 25개 구 모두 증가) · 9월 거래 <b>3,431건</b>(9개월 만에 최저) · 11월 1주 <b>+0.07%</b>(91주 연속 상승, 3주 연속 둔화) → 11월 2주 +0.07%, 92주 연속 상승이지만 25개 구 중 5곳 하락, 성동·강동 하락 전환',
     why: '전문가들은 세제 개편안과 금리 인상 우려로 거래 소강이 연말까지 갈 것으로 봅니다. 강남 하락만 보고 시장 전체가 안정됐다고 보기는 이르다는 시각도 있습니다.',
-    src: [S.sl1104, S.in1103, S.in1105] },
+    src: [S.sl1104, S.in1103, S.in1105, ['부릿지 최신동향 11.13', './부동산_최신동향_2026.html#sec-1113']] },
 ];
 
 const HISTORY = [
