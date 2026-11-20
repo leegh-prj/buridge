@@ -11,16 +11,15 @@ const fails = [];
 const ok = (cond, msg) => { if (!cond) fails.push(msg); };
 const read = f => fs.readFileSync(f, 'utf8');
 
-// 1) 일일학습: 스크립트 문법, 강의 배열, 날짜별 지정
+// 1) 일일학습: 페이지 스크립트 문법, 강의 데이터(lessons.js)
 const daily = read('부동산_일일학습_2026.html');
 for (const m of daily.matchAll(/<script>([\s\S]*?)<\/script>/g)) {
   try { new Function(m[1]); } catch (e) { fails.push('일일학습 스크립트 문법 오류: ' + e.message); }
 }
-const a = daily.indexOf('const LESSONS');
-const b = daily.indexOf('\n];', a);
+ok(daily.includes('<script src="lessons.js"></script>'), '일일학습 페이지가 lessons.js를 불러오지 않음');
 let L = [];
-try { L = eval(daily.slice(a + 'const LESSONS ='.length, b + 2).replace(/^\s*=/, '')); }
-catch (e) { fails.push('LESSONS 배열 파싱 실패: ' + e.message); }
+try { L = new Function(read('lessons.js') + '\nreturn LESSONS;')(); }
+catch (e) { fails.push('lessons.js 문법 오류: ' + e.message); }
 const today = L.filter(l => l.date === day);
 ok(today.length === 2, `오늘(${day}) 강의가 2개가 아님: ${today.length}개`);
 for (const l of today) {
@@ -30,14 +29,8 @@ for (const l of today) {
 }
 const nums = L.filter(l => l.num).map(l => l.num);
 ok(new Set(nums).size === nums.length, '강의 번호 중복');
-const ov = daily.slice(daily.indexOf('const DATE_LESSON_OVERRIDES'), daily.indexOf('};', daily.indexOf('const DATE_LESSON_OVERRIDES')));
-for (const m of ov.matchAll(/'([\d-]+)': LESSONS.length - (\d+),\s*\/\/ (\d+)강/g)) {
-  const x = L[L.length - Number(m[2])];
-  if (!x) fails.push(`날짜 지정 ${m[1]}: 범위를 벗어남`);
-  else if (x.num && x.num !== Number(m[3])) fails.push(`날짜 지정 ${m[1]}: ${m[3]}강이어야 하는데 ${x.num}강을 가리킴`);
-}
-ok(new RegExp(`'${day}': LESSONS.length - 2,`).test(ov), `오늘(${day}) 날짜 지정 없음`);
 const maxNum = Math.max(...nums);
+ok(L.length && L[L.length - 1].num === maxNum && L[L.length - 1].date === day, '오늘 강의가 lessons.js 맨 끝에 있지 않음 (새 강의는 끝에만 추가)');
 
 // 2) 팝업 뉴스
 const pop = read('news-popup.js');

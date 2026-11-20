@@ -7,7 +7,7 @@
 ## 0. 오늘 날짜 확인
 
 ```bash
-TZ=Asia/Seoul date '+%Y-%m-%d %a'
+TZ=Asia/Seoul date '+%Y-%m-%d %a'   # Windows Git Bash에서는 TZ가 무시되므로 date -u -d '+9 hours' 사용
 ```
 
 - 이하 `DAY`=YYYY-MM-DD, `MMDD` 섹션 id는 `sec-{월}{일2자리}` (예: 11월 2일 → `sec-1102`, 9월 29일 → `sec-929`)
@@ -59,14 +59,15 @@ TZ=Asia/Seoul date '+%Y-%m-%d %a'
 6. **목요일 발표가 나온 다음 날(보통 금요일)**: `<div class="sh" id="sec-index">`부터 `<!-- 시장 동향 섹션 -->` 직전까지의 주간 지수(요약 4칸 + 지역 표 + 출처 문단)를 새 주차 수치로 교체. 괄호 안에 전주 수치 병기.
 7. 지난 섹션은 손대지 않습니다(페이지 스크립트가 최근 3개만 펼치고 나머지는 자동으로 접음).
 
-### 2-3. `부동산_일일학습_2026.html` — 강의 2개 추가
-1. 강의 2개를 임시 파일(예: `/tmp/lessons.js`)에 작성. 형식은 파일 맨 끝의 기존 강의(예: 156·157강)를 그대로 따릅니다.
+### 2-3. `lessons.js` — 강의 2개 추가
+강의 데이터는 `lessons.js`(`const LESSONS = [...]`)에 있고, 일일학습 페이지와 학습 로드맵 페이지가 함께 불러옵니다. **강의는 배열 끝에만 추가하고 기존 강의 순서는 바꾸지 않습니다**(로드맵이 순서 번호로 강의를 연결함). 날짜별 기본 강의는 `date` 필드로 자동으로 정해집니다(그날 첫 강의).
+1. 강의 2개를 임시 파일(예: `/tmp/new_lessons.js`)에 작성. 형식은 `lessons.js` 맨 끝의 기존 강의를 그대로 따릅니다.
    - 필드: `num`(직전 최대+1, +2), `date: 'DAY'`, `cat`(market·finance·tax·rebuild·invest·law·policy·strategy), `catLabel`, `sub`, `title`(`주제 — 부제` 형식), `concept`, `text`(백틱 문자열, `**굵게**`, `■` 소제목, 표는 `| a | b |`), `formula`, `example`, `tip`, `checklist`(`□ `로 시작하는 6줄), `quiz{q, opts[4], ans(0~3), explain}`
    - 주제: **그날 뉴스와 연결된 초보자용 개념 강의**. 숫자는 확인된 수치만. 계산 예시는 직접 계산해 검산. 관련 과거 강의 번호를 `(148강)`처럼 연결.
    - 백틱 문자열 안에 백틱, `${` 사용 금지.
 2. 삽입:
    ```bash
-   python .claude/scripts/add_lessons.py /tmp/lessons.js DAY "첫 강의 짧은 제목"
+   python .claude/scripts/add_lessons.py /tmp/new_lessons.js DAY "첫 강의 짧은 제목"
    ```
 
 ### 2-4. `index.html` — 홈
@@ -83,12 +84,12 @@ TZ=Asia/Seoul date '+%Y-%m-%d %a'
 ```bash
 node .claude/scripts/verify.mjs DAY
 ```
-실패 항목을 고친 뒤 다시 실행합니다. 추가로 `git diff --stat`으로 위 5개 파일만 바뀌었는지 확인합니다.
+실패 항목을 고친 뒤 다시 실행합니다. 추가로 `git diff --stat`으로 위 5개 파일(`lessons.js`, `news-popup.js`, `부동산_최신동향_2026.html`, `index.html`, `og-image.svg`)만 바뀌었는지 확인합니다. `부동산_일일학습_2026.html`은 매일 고칠 필요가 없습니다.
 
 ## 4. 커밋·배포
 
 ```bash
-git add index.html news-popup.js og-image.svg 부동산_최신동향_2026.html 부동산_일일학습_2026.html
+git add index.html news-popup.js og-image.svg 부동산_최신동향_2026.html lessons.js
 git commit -m "YYYY.MM.DD 업데이트 — N강·N+1강 · 핵심 이슈 요약 · M.DD 이슈 섹션 · 데일리 TOP 7
 
 - N강: ...

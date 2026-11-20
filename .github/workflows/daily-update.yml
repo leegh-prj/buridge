@@ -95,13 +95,13 @@ jobs:
           DAY: ${{ steps.day.outputs.day }}
         run: |
           node .claude/scripts/verify.mjs "$DAY"
-          FILES="index.html news-popup.js og-image.svg 부동산_최신동향_2026.html 부동산_일일학습_2026.html"
+          FILES="index.html news-popup.js og-image.svg 부동산_최신동향_2026.html lessons.js"
           OTHER=$(git status --porcelain -- . $(for f in $FILES; do printf ":(exclude)%s " "$f"; done))
           if [ -n "$OTHER" ]; then echo "5개 파일 외 변경이 있어 push하지 않습니다:"; echo "$OTHER"; exit 1; fi
           git config user.name "leegh911-1848"
           git config user.email "leegh911@gmail.com"
           git add $FILES
-          N=$(grep -o "^\s*num: [0-9]*" 부동산_일일학습_2026.html | tail -1 | grep -o "[0-9]*")
+          N=$(grep -o "^\s*num: [0-9]*" lessons.js | tail -1 | grep -o "[0-9]*")
           git commit -m "${DAY//-/.} 업데이트 — $((N-1))강·${N}강 · 데일리 자동 업데이트" -m "Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>"
           git pull --rebase origin master
           node .claude/scripts/verify.mjs "$DAY"
