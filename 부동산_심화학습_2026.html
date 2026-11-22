@@ -22,11 +22,15 @@
 <title>부동산 심화 학습 2026</title>
 <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
-<style>button,input,select,textarea{font-family:inherit}</style>
+<style>button,input,select,textarea{font-family:inherit}/* 모바일 터치 영역 — 손가락으로 누르기 쉽게 버튼·링크 높이 확보 */
+@media (max-width: 640px) {
+  .hd-back { display: inline-flex; align-items: center; min-height: 32px; }
+}
+</style>
 <style>
 :root{
   --navy:#0C2040;--blue:#1A4A9A;--blue-lt:#EBF1FF;
-  --ink:#1A2E44;--ink2:#374F6B;--ink3:#68839C;
+  --ink:#1A2E44;--ink2:#374F6B;--ink3:#576E83;
   --paper:#F3F6FB;--sf:#FFFFFF;--rule:#D0D8E8;
   --ok:#0A6E42;--ok-lt:#E4F3EC;
   --warn:#935200;--warn-lt:#FEF4E4;
@@ -41,11 +45,11 @@ html,body{font-family:var(--font);background:var(--paper);color:var(--ink);}
 .hd-back{color:#7AA0C8;font-size:.75rem;text-decoration:none;}.hd-back:hover{color:#C0D8F0;}
 .hd-sep{color:#2A4870;}
 .hd-title{font-size:.9rem;font-weight:700;color:#D0E0F0;}
-.hd-badge{margin-left:auto;font-size:.6rem;font-weight:700;padding:3px 9px;border-radius:3px;background:#081628;border:1px solid #1A3460;color:#4A80B0;}
+.hd-badge{margin-left:auto;font-size:.75rem;font-weight:700;padding:3px 9px;border-radius:3px;background:#081628;border:1px solid #1A3460;color:#5E8EB9;}
 
 /* ─ 탭 바 ─ */
 .tab-bar{background:var(--navy);border-top:1px solid #1A3050;display:flex;padding:0 20px;gap:0;overflow-x:auto;}
-.tab{padding:9px 16px;font-size:.74rem;font-weight:700;color:#4A6A90;cursor:pointer;border-bottom:2px solid transparent;white-space:nowrap;transition:color .15s,border-color .15s;}
+.tab{padding:9px 16px;font-size:.75rem;font-weight:700;color:#728BA8;cursor:pointer;border-bottom:2px solid transparent;white-space:nowrap;transition:color .15s,border-color .15s;}
 .tab.active{color:#90C0E0;border-bottom-color:#90C0E0;}
 
 /* ─ 레이아웃 ─ */
@@ -54,11 +58,11 @@ html,body{font-family:var(--font);background:var(--paper);color:var(--ink);}
 
 /* ─ 섹션 타이틀 ─ */
 .sec-hero{background:var(--navy);padding:22px 24px 18px;border-radius:6px;margin-bottom:24px;}
-.sec-label{font-size:.6rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#3A6490;margin-bottom:6px;}
+.sec-label{font-size:.75rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#6D8CAD;margin-bottom:6px;}
 .sec-h{font-size:1.25rem;font-weight:900;color:#D0E4F8;letter-spacing:-.02em;margin-bottom:6px;}
-.sec-sub{font-size:.74rem;color:#4A6888;line-height:1.65;}
+.sec-sub{font-size:.75rem;color:#748BA3;line-height:1.65;}
 .cert-chips{display:flex;gap:6px;margin-top:10px;flex-wrap:wrap;}
-.cert-chip{font-size:.6rem;font-weight:700;padding:2px 8px;border-radius:10px;border:1px solid;}
+.cert-chip{font-size:.75rem;font-weight:700;padding:2px 8px;border-radius:10px;border:1px solid;}
 .cc-ga{background:#1A2A10;border-color:#2A5A20;color:#60C040;}
 .cc-gi{background:#0A1A30;border-color:#1A3A60;color:#4A90D0;}
 .cc-in{background:#200A30;border-color:#4A1A70;color:#A060D0;}
@@ -72,7 +76,7 @@ html,body{font-family:var(--font);background:var(--paper);color:var(--ink);}
 .concept-card{background:var(--sf);border:1px solid var(--rule);border-radius:6px;overflow:hidden;}
 .cc-head{padding:14px 16px 10px;border-bottom:1px solid var(--rule);cursor:pointer;display:flex;justify-content:space-between;align-items:flex-start;}
 .cc-head:hover{background:#FAFBFD;}
-.cc-num{font-size:.6rem;font-weight:700;color:var(--ink3);margin-bottom:3px;}
+.cc-num{font-size:.75rem;font-weight:700;color:var(--ink3);margin-bottom:3px;}
 .cc-ttl{font-size:.9rem;font-weight:800;color:var(--ink);letter-spacing:-.02em;}
 .cc-toggle{font-size:.85rem;color:var(--ink3);transition:transform .2s;flex-shrink:0;margin-left:8px;margin-top:2px;}
 .cc-body{padding:0 16px;max-height:0;overflow:hidden;transition:max-height .3s ease,padding .3s;}
@@ -85,14 +89,14 @@ html,body{font-family:var(--font);background:var(--paper);color:var(--ink);}
 .formula-box .formula{font-size:.9rem;font-weight:700;font-family:monospace;display:block;margin:6px 0;background:#D8E8FF;padding:5px 10px;border-radius:3px;letter-spacing:.01em;}
 
 /* ─ 예제 박스 ─ */
-.example-box{background:#F0F6F0;border:1px solid #C0D8C0;border-left:3px solid var(--ok);border-radius:4px;padding:12px 14px;margin-bottom:12px;font-size:.74rem;color:#0A3020;line-height:1.85;}
-.example-box .ex-ttl{font-size:.65rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--ok);margin-bottom:6px;}
+.example-box{background:#F0F6F0;border:1px solid #C0D8C0;border-left:3px solid var(--ok);border-radius:4px;padding:12px 14px;margin-bottom:12px;font-size:.75rem;color:#0A3020;line-height:1.85;}
+.example-box .ex-ttl{font-size:.75rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--ok);margin-bottom:6px;}
 .example-box .ex-step{border-top:1px solid #B0D0B0;margin-top:8px;padding-top:8px;}
 .example-box b{font-weight:700;}
 .ex-ans{background:#D0EDD0;border-radius:3px;padding:4px 10px;font-weight:700;display:inline-block;margin-top:6px;}
 
 /* ─ 주의 박스 ─ */
-.warn-box{background:var(--warn-lt);border:1px solid #F0C860;border-left:3px solid var(--warn);border-radius:4px;padding:10px 14px;font-size:.72rem;color:#4A2800;line-height:1.75;margin-bottom:12px;}
+.warn-box{background:var(--warn-lt);border:1px solid #F0C860;border-left:3px solid var(--warn);border-radius:4px;padding:10px 14px;font-size:.75rem;color:#4A2800;line-height:1.75;margin-bottom:12px;}
 .warn-box b{font-weight:700;}
 
 /* ─ 계산기 ─ */
@@ -101,7 +105,7 @@ html,body{font-family:var(--font);background:var(--paper);color:var(--ink);}
 .calc-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
 @media(max-width:600px){.calc-grid{grid-template-columns:1fr;}}
 .calc-field{display:flex;flex-direction:column;gap:4px;}
-.calc-field label{font-size:.63rem;font-weight:700;color:var(--ink3);}
+.calc-field label{font-size:.75rem;font-weight:700;color:var(--ink3);}
 .calc-field input,.calc-field select{border:1px solid var(--rule);border-radius:4px;padding:7px 10px;font-size:.8rem;font-family:var(--font);background:var(--paper);color:var(--ink);width:100%;}
 .calc-field input:focus,.calc-field select:focus{outline:none;border-color:var(--blue);}
 .calc-btn{margin-top:14px;width:100%;padding:10px;background:var(--blue);color:#fff;border:none;border-radius:4px;font-size:.8rem;font-weight:700;cursor:pointer;font-family:var(--font);}
@@ -115,7 +119,7 @@ html,body{font-family:var(--font);background:var(--paper);color:var(--ink);}
 .cr-dn{color:var(--dn);font-weight:800;}
 
 /* ─ 비교표 ─ */
-.compare-table{width:100%;border-collapse:collapse;font-size:.73rem;margin-bottom:20px;}
+.compare-table{width:100%;border-collapse:collapse;font-size:.75rem;margin-bottom:20px;}
 .compare-table th{background:var(--navy);color:#B0C8E0;font-weight:700;padding:10px 12px;text-align:left;border-bottom:2px solid #1A3254;}
 .compare-table td{padding:9px 12px;border-bottom:1px solid var(--rule);color:var(--ink2);vertical-align:top;}
 .compare-table tr:hover td{background:#F5F8FF;}
@@ -126,16 +130,16 @@ html,body{font-family:var(--font);background:var(--paper);color:var(--ink);}
 .steps{display:flex;gap:0;flex-wrap:wrap;margin-bottom:20px;}
 .step{flex:1;min-width:120px;background:var(--sf);border:1px solid var(--rule);padding:12px 14px;position:relative;}
 .step:not(:last-child)::after{content:'→';position:absolute;right:-12px;top:50%;transform:translateY(-50%);color:var(--ink3);font-size:.9rem;z-index:1;}
-.step-n{font-size:.58rem;font-weight:700;color:var(--blue);margin-bottom:3px;}
-.step-ttl{font-size:.72rem;font-weight:700;color:var(--ink);}
-.step-sub{font-size:.63rem;color:var(--ink3);margin-top:2px;}
+.step-n{font-size:.75rem;font-weight:700;color:var(--blue);margin-bottom:3px;}
+.step-ttl{font-size:.75rem;font-weight:700;color:var(--ink);}
+.step-sub{font-size:.75rem;color:var(--ink3);margin-top:2px;}
 @media(max-width:600px){.steps{flex-direction:column;}.step::after{content:'↓';right:auto;left:50%;transform:translateX(-50%);top:auto;bottom:-14px;}}
 
 /* ─ 세율표 ─ */
 .tax-row-up{background:#E4F3EC;}
 .tax-row-dn{background:#FFEBEE;}
 .tax-key{font-weight:700;color:var(--ink);}
-.badge-sm{font-size:.6rem;font-weight:700;padding:1px 6px;border-radius:3px;}
+.badge-sm{font-size:.75rem;font-weight:700;padding:1px 6px;border-radius:3px;}
 .bg-ok{background:var(--ok-lt);color:var(--ok);}
 .bg-dn{background:var(--dn-lt);color:var(--dn);}
 .bg-warn{background:var(--warn-lt);color:var(--warn);}
@@ -149,17 +153,17 @@ html,body{font-family:var(--font);background:var(--paper);color:var(--ink);}
 .qb-opt:hover{border-color:var(--blue);background:var(--blue-lt);}
 .qb-opt.correct{border-color:var(--ok);background:var(--ok-lt);color:#0A3020;}
 .qb-opt.wrong{border-color:var(--dn);background:var(--dn-lt);color:#4A0000;}
-.qb-letter{font-size:.68rem;font-weight:700;width:18px;flex-shrink:0;margin-top:1px;}
-.qb-explain{font-size:.71rem;color:var(--ok);background:var(--ok-lt);border:1px solid #90D0A0;border-radius:4px;padding:10px 12px;margin-top:10px;line-height:1.7;display:none;}
+.qb-letter{font-size:.75rem;font-weight:700;width:18px;flex-shrink:0;margin-top:1px;}
+.qb-explain{font-size:.75rem;color:var(--ok);background:var(--ok-lt);border:1px solid #90D0A0;border-radius:4px;padding:10px 12px;margin-top:10px;line-height:1.7;display:none;}
 .qb-explain.show{display:block;}
 
 /* ─ 공식 카드 모음 ─ */
 .formula-cards{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-bottom:24px;}
 @media(max-width:600px){.formula-cards{grid-template-columns:1fr;}}
 .fc{background:var(--sf);border:1px solid var(--rule);border-radius:5px;padding:14px 15px;}
-.fc-name{font-size:.6rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--ink3);margin-bottom:5px;}
+.fc-name{font-size:.75rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--ink3);margin-bottom:5px;}
 .fc-formula{font-size:.82rem;font-weight:700;color:var(--blue);font-family:monospace;display:block;background:var(--blue-lt);padding:5px 8px;border-radius:3px;margin-bottom:6px;}
-.fc-note{font-size:.67rem;color:var(--ink3);line-height:1.6;}
+.fc-note{font-size:.75rem;color:var(--ink3);line-height:1.6;}
 </style>
 </head>
 <body>
@@ -391,7 +395,7 @@ html,body{font-family:var(--font);background:var(--paper);color:var(--ink);}
   </div>
 
   <!-- 절차 흐름도 -->
-  <p style="font-size:.7rem;font-weight:700;color:var(--ink3);margin-bottom:8px;letter-spacing:.08em;">재건축 추진 7단계</p>
+  <p style="font-size:.75rem;font-weight:700;color:var(--ink3);margin-bottom:8px;letter-spacing:.08em;">재건축 추진 7단계</p>
   <div class="steps" style="margin-bottom:24px;">
     <div class="step"><div class="step-n">STEP 1</div><div class="step-ttl">안전진단</div><div class="step-sub">D~E등급 시 추진</div></div>
     <div class="step"><div class="step-n">STEP 2</div><div class="step-ttl">정비구역 지정</div><div class="step-sub">시·도지사 고시</div></div>

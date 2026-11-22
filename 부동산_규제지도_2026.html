@@ -23,49 +23,54 @@
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
 <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
-<style>button,input,select,textarea{font-family:inherit}</style>
+<style>button,input,select,textarea{font-family:inherit}/* 모바일 터치 영역 — 손가락으로 누르기 쉽게 버튼·링크 높이 확보 */
+@media (max-width: 640px) {
+  .zb, .rb { min-height: 36px; }
+  .hd-back { display: inline-flex; align-items: center; min-height: 32px; }
+}
+</style>
 <style>
-:root{--navy:#0C2040;--blue:#1A4A9A;--ink:#1A2E44;--ink2:#374F6B;--ink3:#68839C;--sf:#fff;--rule:#D0D8E8;--paper:#F3F6FB;--font:Pretendard Variable, Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Apple SD Gothic Neo, Malgun Gothic, sans-serif;}
+:root{--navy:#0C2040;--blue:#1A4A9A;--ink:#1A2E44;--ink2:#374F6B;--ink3:#576E83;--sf:#fff;--rule:#D0D8E8;--paper:#F3F6FB;--font:Pretendard Variable, Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Apple SD Gothic Neo, Malgun Gothic, sans-serif;}
 *{box-sizing:border-box;margin:0;padding:0;}
 html,body{height:100%;font-family:var(--font);}
 .hd{background:var(--navy);height:50px;display:flex;align-items:center;padding:0 18px;gap:10px;z-index:1000;position:relative;}
 .hd-back{color:#7AA0C8;font-size:.75rem;text-decoration:none;}.hd-back:hover{color:#C0D8F0;}
 .hd-sep{color:#2A4870;}.hd-title{font-size:.9rem;font-weight:700;color:#D0E0F0;}
-.hd-tag{margin-left:auto;font-size:.6rem;font-weight:700;padding:3px 9px;border-radius:3px;background:#081628;border:1px solid #1A3460;color:#3A6090;}
+.hd-tag{margin-left:auto;font-size:.75rem;font-weight:700;padding:3px 9px;border-radius:3px;background:#081628;border:1px solid #1A3460;color:#6F8BAE;}
 .wrap{display:flex;height:calc(100vh - 50px);}
 .side{width:252px;flex-shrink:0;background:var(--sf);border-right:1px solid var(--rule);display:flex;flex-direction:column;z-index:500;overflow-y:auto;}
 .s-sec{padding:12px 13px 10px;border-bottom:1px solid var(--rule);}
-.s-lbl{font-size:.58rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--ink3);margin-bottom:8px;}
-.rb{display:flex;align-items:center;gap:7px;padding:7px 10px;border:1px solid var(--rule);border-radius:4px;font-size:.73rem;font-weight:600;color:var(--ink3);background:var(--sf);cursor:pointer;width:100%;text-align:left;margin-bottom:5px;transition:border-color .15s;}
+.s-lbl{font-size:.75rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--ink3);margin-bottom:8px;}
+.rb{display:flex;align-items:center;gap:7px;padding:7px 10px;border:1px solid var(--rule);border-radius:4px;font-size:.75rem;font-weight:600;color:var(--ink3);background:var(--sf);cursor:pointer;width:100%;text-align:left;margin-bottom:5px;transition:border-color .15s;}
 .rb:hover{border-color:var(--blue);}.rb.on{border-color:transparent;color:#fff;}
 .rb-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0;}
-.rb-n{margin-left:auto;font-size:.6rem;font-weight:700;opacity:.65;background:rgba(0,0,0,.1);padding:1px 5px;border-radius:3px;white-space:nowrap;}
+.rb-n{margin-left:auto;font-size:.75rem;font-weight:700;opacity:.65;background:rgba(0,0,0,.1);padding:1px 5px;border-radius:3px;white-space:nowrap;}
 .zr{display:flex;gap:4px;flex-wrap:wrap;}
-.zb{flex:1;min-width:40px;padding:5px 3px;border:1px solid var(--rule);border-radius:4px;font-size:.66rem;font-weight:700;color:var(--ink2);background:var(--sf);cursor:pointer;}
+.zb{flex:1;min-width:40px;padding:5px 3px;border:1px solid var(--rule);border-radius:4px;font-size:.75rem;font-weight:700;color:var(--ink2);background:var(--sf);cursor:pointer;}
 .zb:hover{background:var(--paper);border-color:var(--blue);color:var(--blue);}
 .det{padding:12px;flex:1;overflow-y:auto;}
-.det-empty{text-align:center;padding:24px 0;color:var(--ink3);font-size:.72rem;line-height:1.7;}
+.det-empty{text-align:center;padding:24px 0;color:var(--ink3);font-size:.75rem;line-height:1.7;}
 .dn{font-size:.98rem;font-weight:900;color:var(--ink);margin-bottom:1px;}
-.ds{font-size:.66rem;color:var(--ink3);margin-bottom:10px;}
+.ds{font-size:.75rem;color:var(--ink3);margin-bottom:10px;}
 .rc{border:1px solid;border-radius:5px;padding:8px 10px;margin-bottom:6px;}
 .rr{display:flex;align-items:center;gap:5px;margin-bottom:3px;}
 .rd{width:7px;height:7px;border-radius:50%;}
-.rl{font-size:.72rem;font-weight:700;}
-.rp{font-size:.67rem;color:var(--ink3);line-height:1.5;}
-.rg{font-size:.65rem;font-weight:600;margin-top:3px;}
-.eh{font-size:.58rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--ink3);margin:10px 0 6px;display:flex;align-items:center;gap:6px;}
+.rl{font-size:.75rem;font-weight:700;}
+.rp{font-size:.75rem;color:var(--ink3);line-height:1.5;}
+.rg{font-size:.75rem;font-weight:600;margin-top:3px;}
+.eh{font-size:.75rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--ink3);margin:10px 0 6px;display:flex;align-items:center;gap:6px;}
 .eh::after{content:'';flex:1;height:1px;background:var(--rule);}
-.er{display:flex;gap:6px;padding:5px 0;border-bottom:1px solid var(--rule);font-size:.68rem;color:var(--ink2);}
+.er{display:flex;gap:6px;padding:5px 0;border-bottom:1px solid var(--rule);font-size:.75rem;color:var(--ink2);}
 .er:last-child{border-bottom:none;}
 .ek{color:var(--ink3);width:64px;flex-shrink:0;font-weight:600;}
 .mapw{flex:1;position:relative;}
 #map{width:100%;height:100%;}
-.leg{position:absolute;bottom:20px;right:10px;z-index:400;background:rgba(255,255,255,.95);border:1px solid var(--rule);border-radius:5px;padding:10px 12px;font-size:.66rem;color:var(--ink2);box-shadow:0 2px 8px rgba(0,0,0,.1);min-width:155px;}
+.leg{position:absolute;bottom:20px;right:10px;z-index:400;background:rgba(255,255,255,.95);border:1px solid var(--rule);border-radius:5px;padding:10px 12px;font-size:.75rem;color:var(--ink2);box-shadow:0 2px 8px rgba(0,0,0,.1);min-width:155px;}
 .lr{display:flex;align-items:center;gap:6px;margin-bottom:5px;}.lr:last-child{margin-bottom:0;}
 .lb{width:14px;height:10px;border-radius:2px;flex-shrink:0;border:1px solid rgba(0,0,0,.12);}
-.sts{position:absolute;top:8px;left:50%;transform:translateX(-50%);z-index:600;background:rgba(8,20,48,.88);color:#8AAED4;font-size:.7rem;padding:5px 16px;border-radius:20px;white-space:nowrap;display:none;}
+.sts{position:absolute;top:8px;left:50%;transform:translateX(-50%);z-index:600;background:rgba(8,20,48,.88);color:#8AAED4;font-size:.75rem;padding:5px 16px;border-radius:20px;white-space:nowrap;display:none;}
 .sts.on{display:block;}
-.notice{font-size:.6rem;color:var(--ink3);padding:8px 13px;background:var(--paper);border-bottom:1px solid var(--rule);line-height:1.6;}
+.notice{font-size:.75rem;color:var(--ink3);padding:8px 13px;background:var(--paper);border-bottom:1px solid var(--rule);line-height:1.6;}
 .notice b{color:var(--ink2);}
 @media(max-width:680px){.wrap{flex-direction:column-reverse;}.side{width:100%;height:auto;border-right:none;border-top:1px solid var(--rule);}.mapw{min-height:300px;}}
 </style>
@@ -232,7 +237,7 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{
   attribution:'&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',maxZoom:18
 }).addTo(map);
 var _s=document.createElement('style');
-_s.textContent='.map-tip{background:rgba(8,22,48,.92)!important;color:#C8E0FF!important;border:none!important;border-radius:4px!important;font-size:.73rem!important;font-weight:700!important;padding:4px 10px!important;box-shadow:0 2px 8px rgba(0,0,0,.35)!important;white-space:nowrap!important;}';
+_s.textContent='.map-tip{background:rgba(8,22,48,.92)!important;color:#C8E0FF!important;border:none!important;border-radius:4px!important;font-size:.75rem!important;font-weight:700!important;padding:4px 10px!important;box-shadow:0 2px 8px rgba(0,0,0,.35)!important;white-space:nowrap!important;}';
 document.head.appendChild(_s);
 
 var curReg='투기과열',selName=null;
@@ -363,7 +368,7 @@ function renderDetail(name){
       +'<div class="rp">'+R.desc+'</div>'
       +(dong?'<div class="rg" style="color:'+R.color+'">▸ '+dong+'</div>':'')+'</div>';
   });
-  if(!any) html+='<p style="font-size:.72rem;color:#68839C;margin-top:8px">현재 규제 미지정입니다.</p>';
+  if(!any) html+='<p style="font-size:.75rem;color:#576E83;margin-top:8px">현재 규제 미지정입니다.</p>';
   var CR=REG[curReg];
   if(CR&&inReg(name,curReg)&&CR.fx){
     html+='<div class="eh">'+CR.label+'</div>';
@@ -388,14 +393,14 @@ function setReg(key,btn){
 function renderLegend(){
   var el=document.getElementById('leg');
   if(curReg==='all'){
-    el.innerHTML='<b style="font-size:.62rem;color:#374F6B;display:block;margin-bottom:6px">전체 레이어</b>'
+    el.innerHTML='<b style="font-size:.75rem;color:#374F6B;display:block;margin-bottom:6px">전체 레이어</b>'
       +'<div class="lr"><div class="lb" style="background:#FF5252"></div>투기과열·조정·분상제</div>'
       +'<div class="lr"><div class="lb" style="background:#448AFF"></div>토허제 (서울·경기·광주)</div>'
       +'<div class="lr"><div class="lb" style="background:#E8ECF4"></div>미지정</div>';
   } else {
     var R=REG[curReg];
     var cnt={투기과열:'서울25+경기12',조정지역:'서울25+경기12',토허제:'서울25+경기12+광주',분상제:'서울25+과천'};
-    el.innerHTML='<b style="font-size:.62rem;color:#374F6B;display:block;margin-bottom:6px">'+R.label+'</b>'
+    el.innerHTML='<b style="font-size:.75rem;color:#374F6B;display:block;margin-bottom:6px">'+R.label+'</b>'
       +'<div class="lr"><div class="lb" style="background:'+R.fill+'"></div>'+(cnt[curReg]||'')+'</div>'
       +'<div class="lr"><div class="lb" style="background:#E8ECF4"></div>미지정</div>';
   }

@@ -22,12 +22,17 @@
 <title>청약 완전 정복 | 부릿지 BuRIDGE</title>
 <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
-<style>button,input,select,textarea{font-family:inherit}</style>
+<style>button,input,select,textarea{font-family:inherit}/* 모바일 터치 영역 — 손가락으로 누르기 쉽게 버튼·링크 높이 확보 */
+@media (max-width: 640px) {
+  .rtab { min-height: 36px; }
+  nav a { display: inline-flex; align-items: center; min-height: 32px; }
+}
+</style>
 <style>
 :root {
   --bg:#F0F4FB;--surface:#FFFFFF;--surface2:#F5F8FD;--surface3:#E8EFF8;
   --border:#D8E2F0;--border2:#B8CADF;
-  --t1:#0C1A2E;--t2:#435567;--t3:#8498AB;
+  --t1:#0C1A2E;--t2:#435567;--t3:#606E7C;
   --accent:#1A4FA8;--accent-lt:#E8F0FF;--accent-dk:#143D85;
   --green:#0B6E3A;--green-lt:#E8FAF0;--green-bd:#88D9AB;
   --orange:#B35000;--orange-lt:#FFF4E8;--orange-bd:#F5B97A;
@@ -49,7 +54,7 @@
   --gold:#F6D97A;--gold-lt:#1A1400;--gold-bd:#5C4400;
   --purple:#A78BFA;--purple-lt:#170E30;--purple-bd:#3E2478;
 }}
-:root[data-theme="light"]{--bg:#F0F4FB;--surface:#FFFFFF;--surface2:#F5F8FD;--surface3:#E8EFF8;--border:#D8E2F0;--border2:#B8CADF;--t1:#0C1A2E;--t2:#435567;--t3:#8498AB;--accent:#1A4FA8;--accent-lt:#E8F0FF;--accent-dk:#143D85;--green:#0B6E3A;--green-lt:#E8FAF0;--green-bd:#88D9AB;--orange:#B35000;--orange-lt:#FFF4E8;--orange-bd:#F5B97A;--red:#B91C1C;--red-lt:#FFF0F0;--red-bd:#FCBCBC;--gold:#8B6914;--gold-lt:#FFFBEB;--gold-bd:#F5D97A;--purple:#5B21B6;--purple-lt:#F4EEFF;--purple-bd:#C4ADEE;}
+:root[data-theme="light"]{--bg:#F0F4FB;--surface:#FFFFFF;--surface2:#F5F8FD;--surface3:#E8EFF8;--border:#D8E2F0;--border2:#B8CADF;--t1:#0C1A2E;--t2:#435567;--t3:#606E7C;--accent:#1A4FA8;--accent-lt:#E8F0FF;--accent-dk:#143D85;--green:#0B6E3A;--green-lt:#E8FAF0;--green-bd:#88D9AB;--orange:#B35000;--orange-lt:#FFF4E8;--orange-bd:#F5B97A;--red:#B91C1C;--red-lt:#FFF0F0;--red-bd:#FCBCBC;--gold:#8B6914;--gold-lt:#FFFBEB;--gold-bd:#F5D97A;--purple:#5B21B6;--purple-lt:#F4EEFF;--purple-bd:#C4ADEE;}
 :root[data-theme="dark"]{--bg:#0C1A2E;--surface:#152136;--surface2:#1A2C45;--surface3:#162845;--border:#243655;--border2:#324E70;--t1:#DDE8F8;--t2:#7A9ABF;--t3:#4D6A88;--accent:#5B9EFF;--accent-lt:#112040;--accent-dk:#7DBCFF;--green:#34D87A;--green-lt:#082418;--green-bd:#145030;--orange:#FBBF24;--orange-lt:#1E1000;--orange-bd:#5C3800;--red:#F87171;--red-lt:#1C0808;--red-bd:#5C1414;--gold:#F6D97A;--gold-lt:#1A1400;--gold-bd:#5C4400;--purple:#A78BFA;--purple-lt:#170E30;--purple-bd:#3E2478;}
 
 *{box-sizing:border-box;margin:0;padding:0;}
@@ -65,16 +70,16 @@ nav{background:var(--surface);border-bottom:1px solid var(--border);padding:0 20
 
 /* HEADER */
 .hd{background:linear-gradient(140deg,#0D2D6B 0%,#1A4FA8 50%,#1565C0 100%);color:#fff;padding:36px 20px 28px;text-align:center;}
-.hd .eyebrow{font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;opacity:.7;margin-bottom:8px;}
+.hd .eyebrow{font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;opacity:.7;margin-bottom:8px;}
 .hd h1{font-size:clamp(20px,4vw,30px);font-weight:900;margin-bottom:8px;line-height:1.2;}
 .hd .sub{font-size:13px;opacity:.85;max-width:500px;margin:0 auto 14px;line-height:1.6;}
 .hd .badge-row{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;}
-.badge{background:rgba(255,255,255,.18);border:1px solid rgba(255,255,255,.3);border-radius:20px;font-size:11px;padding:3px 12px;}
+.badge{background:rgba(255,255,255,.18);border:1px solid rgba(255,255,255,.3);border-radius:20px;font-size:12px;padding:3px 12px;}
 
 .wrap{max-width:900px;margin:0 auto;padding:24px 16px 60px;}
 .card{background:var(--surface);border:1px solid var(--border);border-radius:var(--r-lg);padding:22px 20px;box-shadow:var(--shadow);margin-bottom:16px;}
 .sec-title{font-size:16px;font-weight:800;margin-bottom:16px;display:flex;align-items:center;gap:8px;}
-.chip{color:#fff;font-size:11px;font-weight:700;padding:3px 10px;border-radius:12px;}
+.chip{color:#fff;font-size:12px;font-weight:700;padding:3px 10px;border-radius:12px;}
 .dv{height:1px;background:var(--border);margin:20px 0;}
 
 /* CALCULATOR */
@@ -84,7 +89,7 @@ nav{background:var(--surface);border-bottom:1px solid var(--border);padding:0 20
 .field label{font-size:12px;font-weight:700;color:var(--t2);}
 .field input[type=date],.field select{width:100%;background:var(--surface2);border:1.5px solid var(--border2);border-radius:8px;padding:9px 12px;font-size:14px;color:var(--t1);outline:none;cursor:pointer;transition:border-color .15s;}
 .field input[type=date]:focus,.field select:focus{border-color:var(--accent);}
-.field .fhint{font-size:11px;color:var(--t3);line-height:1.4;}
+.field .fhint{font-size:12px;color:var(--t3);line-height:1.4;}
 
 /* STEPPER */
 .stepper{display:flex;align-items:center;gap:0;border:1.5px solid var(--border2);border-radius:8px;overflow:hidden;background:var(--surface2);}
@@ -114,8 +119,8 @@ nav{background:var(--surface);border-bottom:1px solid var(--border);padding:0 20
 .win-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:12px;}
 @media(max-width:500px){.win-grid{grid-template-columns:repeat(2,1fr);}}
 .win-card{border-radius:8px;padding:10px;text-align:center;}
-.win-card .wc-area{font-size:11px;font-weight:700;margin-bottom:4px;}
-.win-card .wc-score{font-size:11px;color:var(--t3);margin-bottom:6px;}
+.win-card .wc-area{font-size:12px;font-weight:700;margin-bottom:4px;}
+.win-card .wc-score{font-size:12px;color:var(--t3);margin-bottom:6px;}
 .win-card .wc-status{font-size:12px;font-weight:800;}
 .win-possible{background:var(--green-lt);border:1px solid var(--green-bd);}
 .win-possible .wc-area,.win-possible .wc-status{color:var(--green);}
@@ -128,9 +133,9 @@ nav{background:var(--surface);border-bottom:1px solid var(--border);padding:0 20
 .future-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:12px;}
 @media(max-width:480px){.future-grid{grid-template-columns:1fr 1fr;}}
 .fc{background:var(--surface2);border:1px solid var(--border);border-radius:8px;padding:12px;text-align:center;}
-.fc .fy{font-size:11px;font-weight:700;color:var(--t3);margin-bottom:4px;}
+.fc .fy{font-size:12px;font-weight:700;color:var(--t3);margin-bottom:4px;}
 .fc .fs{font-size:22px;font-weight:900;color:var(--accent);font-variant-numeric:tabular-nums;}
-.fc .fd{font-size:11px;color:var(--green);margin-top:2px;font-weight:600;}
+.fc .fd{font-size:12px;color:var(--green);margin-top:2px;font-weight:600;}
 
 /* STRATEGY BOX */
 .strategy-box{border-radius:var(--r-lg);padding:16px 18px;margin-top:12px;}
@@ -138,7 +143,7 @@ nav{background:var(--surface);border-bottom:1px solid var(--border);padding:0 20
 .strategy-box.mid{background:var(--gold-lt);border:1.5px solid var(--gold-bd);}
 .strategy-box.low{background:var(--orange-lt);border:1.5px solid var(--orange-bd);}
 .strategy-box.vlow{background:var(--red-lt);border:1.5px solid var(--red-bd);}
-.sb-stag{font-size:11px;font-weight:700;margin-bottom:6px;}
+.sb-stag{font-size:12px;font-weight:700;margin-bottom:6px;}
 .strategy-box.high .sb-stag{color:var(--green);}
 .strategy-box.mid .sb-stag{color:var(--gold);}
 .strategy-box.low .sb-stag{color:var(--orange);}
@@ -149,10 +154,10 @@ nav{background:var(--surface);border-bottom:1px solid var(--border);padding:0 20
 .type-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:12px;}
 @media(max-width:480px){.type-grid{grid-template-columns:1fr;}}
 .type-card{background:var(--surface2);border:1px solid var(--border);border-radius:var(--r);padding:14px 16px;}
-.type-card .tc-badge{display:inline-block;font-size:10px;font-weight:700;padding:2px 8px;border-radius:4px;margin-bottom:8px;}
+.type-card .tc-badge{display:inline-block;font-size:12px;font-weight:700;padding:2px 8px;border-radius:4px;margin-bottom:8px;}
 .type-card .tc-title{font-size:14px;font-weight:800;margin-bottom:5px;}
 .type-card .tc-desc{font-size:12px;color:var(--t2);line-height:1.5;}
-.type-card .tc-key{font-size:11px;font-weight:700;color:var(--accent);margin-top:8px;}
+.type-card .tc-key{font-size:12px;font-weight:700;color:var(--accent);margin-top:8px;}
 
 /* SPECIAL SUPPLY */
 .sp-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-top:12px;}
@@ -161,8 +166,8 @@ nav{background:var(--surface);border-bottom:1px solid var(--border);padding:0 20
 .sp-card{border-radius:var(--r);padding:14px;border:1.5px solid;}
 .sp-card .sp-icon{font-size:22px;margin-bottom:8px;}
 .sp-card .sp-name{font-size:13px;font-weight:800;margin-bottom:6px;}
-.sp-card .sp-cond{font-size:11px;line-height:1.6;}
-.sp-card .sp-pct{font-size:11px;font-weight:700;margin-top:8px;padding:3px 8px;border-radius:4px;display:inline-block;}
+.sp-card .sp-cond{font-size:12px;line-height:1.6;}
+.sp-card .sp-pct{font-size:12px;font-weight:700;margin-top:8px;padding:3px 8px;border-radius:4px;display:inline-block;}
 
 .sp-first{background:var(--green-lt);border-color:var(--green-bd);}
 .sp-first .sp-name,.sp-first .sp-pct{color:var(--green);}
@@ -186,18 +191,18 @@ nav{background:var(--surface);border-bottom:1px solid var(--border);padding:0 20
 /* NOTICE GUIDE */
 .notice-sections{display:flex;flex-direction:column;gap:12px;margin-top:12px;}
 .ns-item{display:flex;gap:12px;padding:14px;background:var(--surface2);border-radius:var(--r);border:1px solid var(--border);}
-.ns-no{background:var(--accent);color:#fff;min-width:28px;height:28px;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:800;flex-shrink:0;margin-top:1px;}
+.ns-no{background:var(--accent);color:#fff;min-width:28px;height:28px;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:800;flex-shrink:0;margin-top:1px;}
 .ns-title{font-size:13px;font-weight:800;margin-bottom:4px;color:var(--t1);}
 .ns-desc{font-size:12px;color:var(--t2);line-height:1.5;}
-.ns-key{display:inline-block;font-size:10px;font-weight:700;padding:2px 7px;border-radius:3px;margin-top:5px;background:var(--red-lt);color:var(--red);}
+.ns-key{display:inline-block;font-size:12px;font-weight:700;padding:2px 7px;border-radius:3px;margin-top:5px;background:var(--red-lt);color:var(--red);}
 
 /* CHECKLIST */
 .ck-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:12px;}
 @media(max-width:480px){.ck-grid{grid-template-columns:1fr;}}
 .ck-item{display:flex;gap:10px;align-items:flex-start;padding:10px 12px;background:var(--surface2);border-radius:8px;border:1px solid var(--border);}
-.ck-no{background:var(--red);color:#fff;min-width:22px;height:22px;border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;flex-shrink:0;margin-top:1px;}
+.ck-no{background:var(--red);color:#fff;min-width:22px;height:22px;border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;flex-shrink:0;margin-top:1px;}
 .ck-body .ck-title{font-size:12px;font-weight:700;margin-bottom:2px;}
-.ck-body .ck-desc{font-size:11px;color:var(--t2);line-height:1.4;}
+.ck-body .ck-desc{font-size:12px;color:var(--t2);line-height:1.4;}
 
 /* TIMELINE */
 .tl-steps{display:flex;flex-direction:column;gap:0;margin-top:12px;}
@@ -210,14 +215,14 @@ nav{background:var(--surface);border-bottom:1px solid var(--border);padding:0 20
 .tl-right{padding-top:4px;padding-bottom:16px;}
 .tl-right .tl-title{font-size:13px;font-weight:800;margin-bottom:3px;}
 .tl-right .tl-sub{font-size:12px;color:var(--t2);line-height:1.5;}
-.tl-right .tl-period{font-size:11px;font-weight:700;color:var(--accent);background:var(--accent-lt);padding:2px 8px;border-radius:4px;display:inline-block;margin-bottom:4px;}
+.tl-right .tl-period{font-size:12px;font-weight:700;color:var(--accent);background:var(--accent-lt);padding:2px 8px;border-radius:4px;display:inline-block;margin-bottom:4px;}
 
 /* STRATEGY CARDS */
 .strat-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:12px;}
 @media(max-width:480px){.strat-grid{grid-template-columns:1fr;}}
 .strat-card{background:var(--surface2);border:1px solid var(--border);border-radius:var(--r);padding:14px;}
 .strat-card .sc-title{font-size:13px;font-weight:800;margin-bottom:6px;display:flex;align-items:center;gap:6px;}
-.strat-card .sc-badge{font-size:10px;font-weight:700;padding:2px 6px;border-radius:4px;}
+.strat-card .sc-badge{font-size:12px;font-weight:700;padding:2px 6px;border-radius:4px;}
 .strat-card .sc-list{font-size:12px;color:var(--t2);line-height:1.7;}
 .strat-card .sc-list li{margin-left:14px;margin-bottom:2px;}
 
@@ -234,9 +239,9 @@ nav{background:var(--surface);border-bottom:1px solid var(--border);padding:0 20
 .info-box b{color:var(--accent);}
 .warn-box{background:var(--orange-lt);border:1px solid var(--orange-bd);border-radius:8px;padding:11px 14px;font-size:12px;line-height:1.6;margin-bottom:14px;}
 .warn-box b{color:var(--orange);}
-.regnote{font-size:11px;color:var(--t3);margin-top:10px;line-height:1.6;}
+.regnote{font-size:12px;color:var(--t3);margin-top:10px;line-height:1.6;}
 
-footer{text-align:center;padding:20px;font-size:11px;color:var(--t3);border-top:1px solid var(--border);}
+footer{text-align:center;padding:20px;font-size:12px;color:var(--t3);border-top:1px solid var(--border);}
 footer a{color:var(--accent);text-decoration:none;}
 
 /* REGION TABS */
@@ -246,23 +251,23 @@ footer a{color:var(--accent);text-decoration:none;}
 
 /* FUND TIMELINE */
 .ft-step{display:flex;gap:12px;padding:10px 14px;background:var(--surface2);border:1px solid var(--border);border-radius:8px;margin-bottom:8px;align-items:flex-start;}
-.ft-step .ft-tag{min-width:80px;font-size:10px;font-weight:700;padding:3px 8px;border-radius:4px;text-align:center;flex-shrink:0;margin-top:1px;}
+.ft-step .ft-tag{min-width:80px;font-size:12px;font-weight:700;padding:3px 8px;border-radius:4px;text-align:center;flex-shrink:0;margin-top:1px;}
 .ft-step .ft-body .ft-title{font-size:13px;font-weight:800;margin-bottom:2px;}
-.ft-step .ft-body .ft-desc{font-size:11px;color:var(--t2);line-height:1.5;}
+.ft-step .ft-body .ft-desc{font-size:12px;color:var(--t2);line-height:1.5;}
 .ft-step .ft-amt{font-size:14px;font-weight:900;text-align:right;flex-shrink:0;font-variant-numeric:tabular-nums;}
 
 /* FUND SUMMARY CARD */
 .fs-card{background:var(--surface);border-radius:8px;padding:10px 12px;text-align:center;border:1px solid var(--border);}
-.fs-card .fsc-label{font-size:10px;font-weight:700;color:var(--t3);margin-bottom:3px;}
+.fs-card .fsc-label{font-size:12px;font-weight:700;color:var(--t3);margin-bottom:3px;}
 .fs-card .fsc-amt{font-size:16px;font-weight:900;font-variant-numeric:tabular-nums;}
 
 /* TERM GRID */
 .term-item{background:var(--surface2);border-radius:8px;padding:10px 12px;border:1px solid var(--border);margin-bottom:8px;}
 .term-item .ti-word{font-size:12px;font-weight:800;color:var(--accent);margin-bottom:3px;}
-.term-item .ti-def{font-size:11px;color:var(--t2);line-height:1.5;}
+.term-item .ti-def{font-size:12px;color:var(--t2);line-height:1.5;}
 
 /* WARNING BOX */
-.warn-score{background:var(--gold-lt);border:1.5px solid var(--gold-bd);border-radius:8px;padding:10px 14px;font-size:11px;line-height:1.6;margin-top:10px;display:flex;gap:8px;align-items:flex-start;}
+.warn-score{background:var(--gold-lt);border:1.5px solid var(--gold-bd);border-radius:8px;padding:10px 14px;font-size:12px;line-height:1.6;margin-top:10px;display:flex;gap:8px;align-items:flex-start;}
 .warn-score b{color:var(--gold);}
 
 /* REC RECOMMENDATION */
@@ -277,10 +282,10 @@ footer a{color:var(--accent);text-decoration:none;}
 .rec-field-input:focus{border-color:var(--accent);}
 .rec-card{border-radius:var(--r);padding:14px;margin-bottom:10px;}
 .rec-card-head{display:flex;align-items:center;gap:8px;margin-bottom:8px;flex-wrap:wrap;}
-.rec-badge{font-size:10px;font-weight:800;padding:2px 8px;border-radius:4px;color:#fff;}
-.rec-badge-type{font-size:9px;font-weight:700;padding:1px 6px;border-radius:3px;color:#fff;margin-left:auto;white-space:nowrap;}
+.rec-badge{font-size:12px;font-weight:800;padding:2px 8px;border-radius:4px;color:#fff;}
+.rec-badge-type{font-size:12px;font-weight:700;padding:1px 6px;border-radius:3px;color:#fff;margin-left:auto;white-space:nowrap;}
 .rec-card-desc{font-size:12px;color:var(--t2);line-height:1.6;margin-bottom:8px;}
-.rec-card-action{font-size:11px;font-weight:700;background:rgba(0,0,0,.04);padding:7px 10px;border-radius:6px;}
+.rec-card-action{font-size:12px;font-weight:700;background:rgba(0,0,0,.04);padding:7px 10px;border-radius:6px;}
 
 </style>
 </head>
@@ -289,7 +294,7 @@ footer a{color:var(--accent);text-decoration:none;}
 <nav>
   <a class="nav-logo" href="index.html" style="display:flex;flex-direction:column;gap:1px;line-height:1.15;text-decoration:none;">
     <span>🌉 부릿지</span>
-    <span style="font-size:9px;font-weight:700;letter-spacing:.12em;color:var(--t3);">Bu<b style="color:var(--accent);">RIDGE</b></span>
+    <span style="font-size:12px;font-weight:700;letter-spacing:.12em;color:var(--t3);">Bu<b style="color:var(--accent);">RIDGE</b></span>
   </a>
   <div class="nav-links">
     <a href="부동산_일일학습_2026.html">일일학습</a>
@@ -823,19 +828,19 @@ footer a{color:var(--accent);text-decoration:none;}
   <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
     <div style="background:var(--surface2);border-radius:8px;padding:12px 14px;border:1px solid var(--border);">
       <div style="font-size:12px;font-weight:800;margin-bottom:5px;color:var(--accent);">경쟁률이 낮은 타입 노리기</div>
-      <div style="font-size:11px;color:var(--t2);line-height:1.5;">같은 단지라도 59㎡ 타입보다 84㎡ 타입이, 저층보다 고층이 경쟁률이 낮을 수 있습니다. 청약 접수 현황을 실시간으로 보고 경쟁률 낮은 타입으로 전환하는 전략이 유효합니다.</div>
+      <div style="font-size:12px;color:var(--t2);line-height:1.5;">같은 단지라도 59㎡ 타입보다 84㎡ 타입이, 저층보다 고층이 경쟁률이 낮을 수 있습니다. 청약 접수 현황을 실시간으로 보고 경쟁률 낮은 타입으로 전환하는 전략이 유효합니다.</div>
     </div>
     <div style="background:var(--surface2);border-radius:8px;padding:12px 14px;border:1px solid var(--border);">
       <div style="font-size:12px;font-weight:800;margin-bottom:5px;color:var(--green);">미계약분·예비입주자 활용</div>
-      <div style="font-size:11px;color:var(--t2);line-height:1.5;">당첨 후 계약을 포기하는 경우 미계약분이 발생합니다. 예비 당첨자 순번을 받거나, 미계약분 추가 분양 공고를 모니터링하면 자격 제한 없이 청약 기회가 생깁니다.</div>
+      <div style="font-size:12px;color:var(--t2);line-height:1.5;">당첨 후 계약을 포기하는 경우 미계약분이 발생합니다. 예비 당첨자 순번을 받거나, 미계약분 추가 분양 공고를 모니터링하면 자격 제한 없이 청약 기회가 생깁니다.</div>
     </div>
     <div style="background:var(--surface2);border-radius:8px;padding:12px 14px;border:1px solid var(--border);">
       <div style="font-size:12px;font-weight:800;margin-bottom:5px;color:var(--purple);">청약 정보 소스 관리</div>
-      <div style="font-size:11px;color:var(--t2);line-height:1.5;">청약홈 앱 알림 설정, 분양정보 사이트(아파트투유 등) 구독, 관심 지역 공인중개사무소 전화 등으로 신규 공고를 빠르게 파악합니다. 첫날 신청하는 것이 중요한 경우가 있습니다.</div>
+      <div style="font-size:12px;color:var(--t2);line-height:1.5;">청약홈 앱 알림 설정, 분양정보 사이트(아파트투유 등) 구독, 관심 지역 공인중개사무소 전화 등으로 신규 공고를 빠르게 파악합니다. 첫날 신청하는 것이 중요한 경우가 있습니다.</div>
     </div>
     <div style="background:var(--surface2);border-radius:8px;padding:12px 14px;border:1px solid var(--border);">
       <div style="font-size:12px;font-weight:800;margin-bottom:5px;color:var(--orange);">청약 통장 관리</div>
-      <div style="font-size:11px;color:var(--t2);line-height:1.5;">주택청약종합저축은 월 납입금이 2만~50만원 사이. 민영주택 청약 시 납입 금액(지역별 예치금)도 중요합니다. 서울 85㎡ 초과는 300만원 이상 예치 필요. 통장 해지는 절대 금물.</div>
+      <div style="font-size:12px;color:var(--t2);line-height:1.5;">주택청약종합저축은 월 납입금이 2만~50만원 사이. 민영주택 청약 시 납입 금액(지역별 예치금)도 중요합니다. 서울 85㎡ 초과는 300만원 이상 예치 필요. 통장 해지는 절대 금물.</div>
     </div>
   </div>
 </div>
@@ -867,7 +872,7 @@ footer a{color:var(--accent);text-decoration:none;}
       </div>
       <div style="background:var(--surface2);border:1px solid var(--border);border-radius:var(--r);padding:14px;">
         <div style="font-size:12px;font-weight:800;color:var(--t2);margin-bottom:8px;">💰 면적별 예치금 기준</div>
-        <div style="font-size:11px;line-height:1.8;">
+        <div style="font-size:12px;line-height:1.8;">
           <span style="color:var(--t3);">85㎡ 이하</span> <b>300만원</b><br>
           <span style="color:var(--t3);">102㎡ 이하</span> <b>600만원</b><br>
           <span style="color:var(--t3);">135㎡ 이하</span> <b>1,000만원</b><br>
@@ -893,7 +898,7 @@ footer a{color:var(--accent);text-decoration:none;}
       </div>
       <div style="background:var(--surface2);border:1px solid var(--border);border-radius:var(--r);padding:14px;">
         <div style="font-size:12px;font-weight:800;color:var(--t2);margin-bottom:8px;">💰 면적별 예치금 (광역시)</div>
-        <div style="font-size:11px;line-height:1.8;">
+        <div style="font-size:12px;line-height:1.8;">
           <span style="color:var(--t3);">85㎡ 이하</span> <b>250만원</b><br>
           <span style="color:var(--t3);">102㎡ 이하</span> <b>400만원</b><br>
           <span style="color:var(--t3);">135㎡ 이하</span> <b>700만원</b><br>
@@ -916,7 +921,7 @@ footer a{color:var(--accent);text-decoration:none;}
       </div>
       <div style="background:var(--surface2);border:1px solid var(--border);border-radius:var(--r);padding:14px;">
         <div style="font-size:12px;font-weight:800;color:var(--t2);margin-bottom:8px;">💰 면적별 예치금 (기타 지방)</div>
-        <div style="font-size:11px;line-height:1.8;">
+        <div style="font-size:12px;line-height:1.8;">
           <span style="color:var(--t3);">85㎡ 이하</span> <b>200만원</b><br>
           <span style="color:var(--t3);">102㎡ 이하</span> <b>300만원</b><br>
           <span style="color:var(--t3);">135㎡ 이하</span> <b>400만원</b><br>
@@ -982,23 +987,23 @@ footer a{color:var(--accent);text-decoration:none;}
   <div class="info-box">두꺼운 공고문(30~100p)에서 <b>이 5가지 카드</b>만 찾아내면 충분합니다. 실제 공고문에서 뽑아낸 예시입니다.</div>
 
   <div style="background:var(--surface2);border:2px dashed var(--border2);border-radius:var(--r-lg);padding:16px;margin-bottom:12px;">
-    <div style="font-size:11px;font-weight:700;color:var(--t3);margin-bottom:10px;letter-spacing:.05em;">[ 예시 단지: OO지구 A블록 84㎡A형 ]</div>
+    <div style="font-size:12px;font-weight:700;color:var(--t3);margin-bottom:10px;letter-spacing:.05em;">[ 예시 단지: OO지구 A블록 84㎡A형 ]</div>
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
       <div style="background:var(--surface);border-radius:8px;padding:12px;border:1px solid var(--border);">
-        <div style="font-size:10px;font-weight:700;color:var(--accent);margin-bottom:5px;">💵 분양가 · 피 분석</div>
+        <div style="font-size:12px;font-weight:700;color:var(--accent);margin-bottom:5px;">💵 분양가 · 피 분석</div>
         <div style="font-size:13px;font-weight:800;margin-bottom:2px;">분양가 6억 2,000만원</div>
-        <div style="font-size:11px;color:var(--t2);">인근 시세 약 7억 5,000만원</div>
-        <div style="font-size:11px;font-weight:700;color:var(--green);margin-top:4px;">예상 피 약 1억 3,000만원</div>
+        <div style="font-size:12px;color:var(--t2);">인근 시세 약 7억 5,000만원</div>
+        <div style="font-size:12px;font-weight:700;color:var(--green);margin-top:4px;">예상 피 약 1억 3,000만원</div>
       </div>
       <div style="background:var(--surface);border-radius:8px;padding:12px;border:1px solid var(--border);">
-        <div style="font-size:10px;font-weight:700;color:var(--red);margin-bottom:5px;">🔒 전매·거주 제한</div>
+        <div style="font-size:12px;font-weight:700;color:var(--red);margin-bottom:5px;">🔒 전매·거주 제한</div>
         <div style="font-size:13px;font-weight:800;margin-bottom:2px;">전매제한 5년</div>
-        <div style="font-size:11px;color:var(--t2);">거주의무기간 3년</div>
-        <div style="font-size:11px;font-weight:700;color:var(--red);margin-top:4px;">입주 후 3년간 실거주 필수</div>
+        <div style="font-size:12px;color:var(--t2);">거주의무기간 3년</div>
+        <div style="font-size:12px;font-weight:700;color:var(--red);margin-top:4px;">입주 후 3년간 실거주 필수</div>
       </div>
       <div style="background:var(--surface);border-radius:8px;padding:12px;border:1px solid var(--border);">
-        <div style="font-size:10px;font-weight:700;color:var(--orange);margin-bottom:5px;">📋 청약 일정</div>
-        <div style="font-size:11px;line-height:1.8;">
+        <div style="font-size:12px;font-weight:700;color:var(--orange);margin-bottom:5px;">📋 청약 일정</div>
+        <div style="font-size:12px;line-height:1.8;">
           1순위 마감: <b>8월 20일 (이날이 D-Day)</b><br>
           당첨 발표: 8월 28일<br>
           계약: 9월 5~7일<br>
@@ -1006,22 +1011,22 @@ footer a{color:var(--accent);text-decoration:none;}
         </div>
       </div>
       <div style="background:var(--surface);border-radius:8px;padding:12px;border:1px solid var(--border);">
-        <div style="font-size:10px;font-weight:700;color:var(--green);margin-bottom:5px;">🏢 커뮤니티 시설</div>
-        <div style="font-size:11px;line-height:1.7;">
+        <div style="font-size:12px;font-weight:700;color:var(--green);margin-bottom:5px;">🏢 커뮤니티 시설</div>
+        <div style="font-size:12px;line-height:1.7;">
           헬스장 ✓ · 독서실 ✓<br>
           스크린골프 ✓ · 수영장 ✗<br>
           주차 1.3대/세대
         </div>
       </div>
       <div style="background:var(--surface);border-radius:8px;padding:12px;border:1px solid var(--border);grid-column:1/-1;">
-        <div style="font-size:10px;font-weight:700;color:var(--purple);margin-bottom:5px;">🔧 주요 옵션 (선택 가능)</div>
-        <div style="display:flex;gap:6px;flex-wrap:wrap;font-size:11px;">
+        <div style="font-size:12px;font-weight:700;color:var(--purple);margin-bottom:5px;">🔧 주요 옵션 (선택 가능)</div>
+        <div style="display:flex;gap:6px;flex-wrap:wrap;font-size:12px;">
           <span style="background:var(--purple-lt);color:var(--purple);padding:2px 8px;border-radius:4px;font-weight:600;">발코니 확장 1,200만원</span>
           <span style="background:var(--purple-lt);color:var(--purple);padding:2px 8px;border-radius:4px;font-weight:600;">시스템에어컨 삼성 800만원</span>
           <span style="background:var(--purple-lt);color:var(--purple);padding:2px 8px;border-radius:4px;font-weight:600;">인덕션 (가스배관 없음)</span>
           <span style="background:var(--surface2);color:var(--t3);padding:2px 8px;border-radius:4px;">시스템가구 별도</span>
         </div>
-        <div style="font-size:11px;color:var(--orange);margin-top:6px;font-weight:600;">⚠ 인덕션만 제공 → 가스 직화 원하면 옵션 포기 후 개인 시공 필요</div>
+        <div style="font-size:12px;color:var(--orange);margin-top:6px;font-weight:600;">⚠ 인덕션만 제공 → 가스 직화 원하면 옵션 포기 후 개인 시공 필요</div>
       </div>
     </div>
   </div>
@@ -1200,9 +1205,9 @@ function calcFund(){
   const finalTotal = finalPay + acqTax + regFee + legalFee;
 
   document.getElementById('fund-summary').innerHTML = `
-    <div class="fs-card"><div class="fsc-label">계약일 현금 (필수)</div><div class="fsc-amt" style="color:var(--red);">${fmtW(dayOne)}</div><div style="font-size:10px;color:var(--t3);margin-top:2px;">대출 불가 — 반드시 현금</div></div>
-    <div class="fs-card"><div class="fsc-label">입주일 총액</div><div class="fsc-amt" style="color:var(--orange);">${fmtW(finalTotal)}</div><div style="font-size:10px;color:var(--t3);margin-top:2px;">잔금+취득세+등기</div></div>
-    <div class="fs-card"><div class="fsc-label">총 필요 자금</div><div class="fsc-amt" style="color:var(--accent);">${fmtW(dayOne+midCash+optMid+finalTotal)}</div><div style="font-size:10px;color:var(--t3);margin-top:2px;">${midLoan?'중도금 대출 이용':'전액 현금'} 기준</div></div>`;
+    <div class="fs-card"><div class="fsc-label">계약일 현금 (필수)</div><div class="fsc-amt" style="color:var(--red);">${fmtW(dayOne)}</div><div style="font-size:12px;color:var(--t3);margin-top:2px;">대출 불가 — 반드시 현금</div></div>
+    <div class="fs-card"><div class="fsc-label">입주일 총액</div><div class="fsc-amt" style="color:var(--orange);">${fmtW(finalTotal)}</div><div style="font-size:12px;color:var(--t3);margin-top:2px;">잔금+취득세+등기</div></div>
+    <div class="fs-card"><div class="fsc-label">총 필요 자금</div><div class="fsc-amt" style="color:var(--accent);">${fmtW(dayOne+midCash+optMid+finalTotal)}</div><div style="font-size:12px;color:var(--t3);margin-top:2px;">${midLoan?'중도금 대출 이용':'전액 현금'} 기준</div></div>`;
 
   let tl = '';
   tl += ftRow('red','계약일','계약금 (분양가 10%)',`<b>${fmtW(earnest)}</b> 현금 납부 · 대출 불가, 당일 지참`,earnest);
@@ -1344,7 +1349,7 @@ function calcRec() {
     return '<div class="win-card '+(s.ok?'win-possible':'win-hard')+'" style="height:auto;padding:12px 10px;text-align:left;">'
       +'<div style="font-size:20px;margin-bottom:5px;">'+s.icon+'</div>'
       +'<div style="font-size:12px;font-weight:800;margin-bottom:4px;color:'+(s.ok?'var(--green)':'var(--red)')+';">'+(s.ok?'✅ ':'✗ ')+s.name+'</div>'
-      +'<div style="font-size:10px;color:var(--t3);line-height:1.4;">'+s.msg+'</div>'
+      +'<div style="font-size:12px;color:var(--t3);line-height:1.4;">'+s.msg+'</div>'
       +'</div>';
   }).join('');
 
@@ -1373,15 +1378,15 @@ function calcRec() {
     +'<div style="font-size:13px;font-weight:700;color:'+gc+';margin-top:4px;">'+winLabel+'</div>'
     +'</div>'
     +'<div class="rec-prob-detail">'
-    +'<div style="display:flex;justify-content:space-between;font-size:11px;margin-bottom:4px;"><span style="color:var(--t3);">내 점수</span><span style="font-weight:800;color:'+gc+';">'+score+'점 / 84점</span></div>'
+    +'<div style="display:flex;justify-content:space-between;font-size:12px;margin-bottom:4px;"><span style="color:var(--t3);">내 점수</span><span style="font-weight:800;color:'+gc+';">'+score+'점 / 84점</span></div>'
     +'<div style="height:10px;background:var(--surface3);border-radius:5px;overflow:hidden;margin-bottom:10px;">'
     +'<div style="height:100%;width:'+gw+'%;background:'+gc+';border-radius:5px;transition:width .4s;"></div></div>'
-    +'<div style="display:flex;gap:10px;flex-wrap:wrap;font-size:11px;">'
+    +'<div style="display:flex;gap:10px;flex-wrap:wrap;font-size:12px;">'
     +'<span style="background:var(--surface);border:1px solid var(--border);border-radius:6px;padding:4px 10px;"><span style="color:var(--t3);">최저</span> <b style="color:var(--t1);">'+cl.min+'점</b></span>'
     +'<span style="background:var(--surface);border:1px solid var(--border);border-radius:6px;padding:4px 10px;"><span style="color:var(--t3);">평균</span> <b style="color:var(--t1);">'+cl.avg+'점</b></span>'
     +'<span style="background:var(--surface);border:1px solid var(--border);border-radius:6px;padding:4px 10px;"><span style="color:var(--t3);">최고</span> <b style="color:var(--t1);">'+cl.max+'점</b></span>'
     +'</div>'
-    +'<div style="font-size:10px;color:var(--t3);margin-top:8px;line-height:1.5;">📌 실제 사례: '+cl.note+'</div>'
+    +'<div style="font-size:12px;color:var(--t3);margin-top:8px;line-height:1.5;">📌 실제 사례: '+cl.note+'</div>'
     +'</div></div></div>'
     +'<div style="font-size:12px;font-weight:700;color:var(--t2);margin-bottom:10px;">🏆 맞춤 청약 전략 — '+recs.length+'가지 추천</div>'
     +recHtml

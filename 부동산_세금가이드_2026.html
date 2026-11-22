@@ -22,12 +22,17 @@
 <title>세금 가이드 | 부릿지 BuRIDGE</title>
 <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
-<style>button,input,select,textarea{font-family:inherit}</style>
+<style>button,input,select,textarea{font-family:inherit}/* 모바일 터치 영역 — 손가락으로 누르기 쉽게 버튼·링크 높이 확보 */
+@media (max-width: 640px) {
+  .radio-btn { min-height: 36px; }
+  .hd-back { display: inline-flex; align-items: center; min-height: 32px; }
+}
+</style>
 <style>
 :root{
   --bg:#F3F6FB;--sf:#FFFFFF;--rule:#D8E0EC;
-  --ink:#1A2E44;--ink2:#374F6B;--ink3:#68839C;
-  --navy:#0C2040;--blue:#1A4A9A;--blue-lt:#EBF1FF;--blue-mid:#3A70C8;
+  --ink:#1A2E44;--ink2:#374F6B;--ink3:#576E83;
+  --navy:#0C2040;--blue:#1A4A9A;--blue-lt:#EBF1FF;--blue-mid:#2F62B5;
   --ok:#0A6E42;--ok-lt:#E4F3EC;
   --dn:#B71C1C;--dn-lt:#FFEBEE;
   --warn:#935200;--warn-lt:#FEF4E4;
@@ -47,8 +52,8 @@
 }
 :root[data-theme="light"]{
   --bg:#F3F6FB;--sf:#FFFFFF;--rule:#D8E0EC;
-  --ink:#1A2E44;--ink2:#374F6B;--ink3:#68839C;
-  --blue-lt:#EBF1FF;--ok-lt:#E4F3EC;--dn-lt:#FFEBEE;--warn-lt:#FEF4E4;--blue-mid:#3A70C8;--purple-lt:#EDE9FF;
+  --ink:#1A2E44;--ink2:#374F6B;--ink3:#576E83;
+  --blue-lt:#EBF1FF;--ok-lt:#E4F3EC;--dn-lt:#FFEBEE;--warn-lt:#FEF4E4;--blue-mid:#2F62B5;--purple-lt:#EDE9FF;
 }
 *{box-sizing:border-box;margin:0;padding:0;}
 body{font-family:var(--font);background:var(--bg);color:var(--ink);min-height:100vh;}
@@ -59,16 +64,16 @@ body{font-family:var(--font);background:var(--bg);color:var(--ink);min-height:10
 .hd-sep{color:#2A4870;}
 .hd-title{font-size:.9rem;font-weight:700;color:#D0E0F0;}
 .hd-right{margin-left:auto;display:flex;align-items:center;gap:8px;}
-.hd-badge{font-size:.62rem;font-weight:700;padding:2px 8px;border-radius:3px;background:#0A1628;border:1px solid #1A3460;color:#70A0D0;}
+.hd-badge{font-size:.75rem;font-weight:700;padding:2px 8px;border-radius:3px;background:#0A1628;border:1px solid #1A3460;color:#70A0D0;}
 
 /* ─ 히어로 ─ */
 .hero{background:var(--navy);border-bottom:1px solid #152A48;padding:28px 20px 24px;}
-.hero-eyebrow{font-size:.6rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#3A6490;margin-bottom:10px;}
+.hero-eyebrow{font-size:.75rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#6D8CAD;margin-bottom:10px;}
 .hero h1{font-size:1.5rem;font-weight:900;color:#D0E4F8;letter-spacing:-.03em;margin-bottom:8px;}
-.hero-sub{font-size:.76rem;color:#4A6888;line-height:1.7;margin-bottom:22px;}
+.hero-sub{font-size:.76rem;color:#748BA3;line-height:1.7;margin-bottom:22px;}
 .tax-flow{display:flex;gap:0;align-items:center;flex-wrap:wrap;gap:6px;}
 .tf-step{background:#081628;border:1px solid #1A3254;border-radius:5px;padding:10px 16px;text-align:center;min-width:100px;}
-.tf-label{font-size:.57rem;color:#3A5A80;margin-bottom:3px;font-weight:600;}
+.tf-label{font-size:.75rem;color:#758CA6;margin-bottom:3px;font-weight:600;}
 .tf-val{font-size:.82rem;font-weight:800;color:#90C0E0;}
 .tf-arrow{color:#2A4870;font-size:1.2rem;}
 
@@ -76,9 +81,9 @@ body{font-family:var(--font);background:var(--bg);color:var(--ink);min-height:10
 .main{max-width:1100px;margin:0 auto;padding:32px 20px 80px;}
 .sh{display:flex;align-items:center;gap:10px;margin-bottom:18px;margin-top:36px;}
 .sh:first-child{margin-top:0;}
-.sh-label{font-size:.62rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--ink3);}
+.sh-label{font-size:.75rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--ink3);}
 .sh::after{content:'';flex:1;height:1px;background:var(--rule);}
-.sh-badge{font-size:.58rem;font-weight:700;padding:1px 7px;border-radius:10px;}
+.sh-badge{font-size:.75rem;font-weight:700;padding:1px 7px;border-radius:10px;}
 .sb-new{background:var(--ok-lt);color:var(--ok);}
 .sb-hot{background:var(--dn-lt);color:var(--dn);}
 
@@ -90,7 +95,7 @@ body{font-family:var(--font);background:var(--bg);color:var(--ink);min-height:10
 .ci-green{background:var(--ok-lt);}
 .ci-purple{background:var(--purple-lt);}
 .calc-ttl{font-size:1rem;font-weight:800;color:var(--ink);letter-spacing:-.02em;}
-.calc-sub{font-size:.68rem;color:var(--ink3);margin-top:2px;}
+.calc-sub{font-size:.75rem;color:var(--ink3);margin-top:2px;}
 .calc-body{padding:20px 22px;display:grid;grid-template-columns:1fr 1fr;gap:20px;}
 @media(max-width:700px){.calc-body{grid-template-columns:1fr;}}
 .calc-inputs{}
@@ -99,7 +104,7 @@ body{font-family:var(--font);background:var(--bg);color:var(--ink);min-height:10
 /* ─ 폼 요소 ─ */
 .field{margin-bottom:14px;}
 .field:last-child{margin-bottom:0;}
-.field label{display:block;font-size:.68rem;font-weight:700;color:var(--ink2);margin-bottom:5px;letter-spacing:.02em;}
+.field label{display:block;font-size:.75rem;font-weight:700;color:var(--ink2);margin-bottom:5px;letter-spacing:.02em;}
 .field input,.field select{
   width:100%;padding:10px 13px;border:1px solid var(--rule);border-radius:5px;
   font-family:var(--font);font-size:.85rem;color:var(--ink);background:var(--sf);
@@ -125,19 +130,19 @@ body{font-family:var(--font);background:var(--bg);color:var(--ink);min-height:10
 .calc-btn:hover{opacity:.88;}
 
 /* ─ 결과 표시 ─ */
-.res-label{font-size:.6rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--ink3);margin-bottom:8px;}
+.res-label{font-size:.75rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--ink3);margin-bottom:8px;}
 .res-row{display:flex;justify-content:space-between;align-items:center;padding:7px 0;border-bottom:1px solid var(--rule);}
 .res-row:last-of-type{border-bottom:none;}
 .res-name{font-size:.75rem;color:var(--ink2);}
 .res-val{font-size:.78rem;font-weight:700;color:var(--ink);font-variant-numeric:tabular-nums;}
 .res-total{display:flex;justify-content:space-between;align-items:center;background:linear-gradient(135deg,rgba(37,99,235,.08),rgba(124,58,237,.08));border:1px solid rgba(37,99,235,.2);border-radius:5px;padding:10px 12px;margin-top:10px;}
-.rt-label{font-size:.72rem;font-weight:700;color:var(--accent);}
+.rt-label{font-size:.75rem;font-weight:700;color:var(--accent);}
 .rt-val{font-size:1.15rem;font-weight:900;color:var(--accent);font-variant-numeric:tabular-nums;}
-.res-note{font-size:.62rem;color:var(--ink3);margin-top:8px;line-height:1.6;}
-.res-warn{background:var(--warn-lt);border:1px solid rgba(147,82,0,.2);border-radius:5px;padding:8px 10px;font-size:.65rem;color:var(--warn);margin-top:8px;line-height:1.6;}
+.res-note{font-size:.75rem;color:var(--ink3);margin-top:8px;line-height:1.6;}
+.res-warn{background:var(--warn-lt);border:1px solid rgba(147,82,0,.2);border-radius:5px;padding:8px 10px;font-size:.75rem;color:var(--warn);margin-top:8px;line-height:1.6;}
 
 /* ─ 세율표 ─ */
-.rate-table{width:100%;border-collapse:collapse;font-size:.73rem;}
+.rate-table{width:100%;border-collapse:collapse;font-size:.75rem;}
 .rate-table th{background:var(--bg);color:var(--ink2);font-weight:700;padding:9px 12px;text-align:left;border-bottom:2px solid var(--rule);}
 .rate-table td{padding:8px 12px;border-bottom:1px solid var(--rule);color:var(--ink2);vertical-align:middle;}
 .rate-table tr:last-child td{border-bottom:none;}
@@ -158,12 +163,12 @@ body{font-family:var(--font);background:var(--bg);color:var(--ink);min-height:10
 .ic-purple::before{background:var(--purple);}
 .ic-warn::before{background:var(--warn);}
 .ic-red::before{background:var(--dn);}
-.ic-cat{font-size:.58rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;margin-bottom:6px;}
+.ic-cat{font-size:.75rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;margin-bottom:6px;}
 .ic-blue .ic-cat{color:var(--blue-mid);} .ic-green .ic-cat{color:var(--ok);} .ic-purple .ic-cat{color:var(--purple);} .ic-warn .ic-cat{color:var(--warn);} .ic-red .ic-cat{color:var(--dn);}
 .ic-ttl{font-size:.88rem;font-weight:800;color:var(--ink);line-height:1.3;margin-bottom:7px;}
-.ic-body{font-size:.71rem;color:var(--ink2);line-height:1.75;}
+.ic-body{font-size:.75rem;color:var(--ink2);line-height:1.75;}
 .ic-body b{font-weight:700;color:var(--ink);}
-.ic-stat{display:inline-block;font-size:.65rem;font-weight:700;padding:2px 8px;border-radius:3px;margin-top:8px;}
+.ic-stat{display:inline-block;font-size:.75rem;font-weight:700;padding:2px 8px;border-radius:3px;margin-top:8px;}
 .is-blue{background:var(--blue-lt);color:var(--blue-mid);}
 .is-green{background:var(--ok-lt);color:var(--ok);}
 .is-warn{background:var(--warn-lt);color:var(--warn);}
@@ -176,23 +181,23 @@ body{font-family:var(--font);background:var(--bg);color:var(--ink);min-height:10
 .tl-item{position:relative;padding-bottom:20px;}
 .tl-item:last-child{padding-bottom:0;}
 .tl-item::before{content:'';position:absolute;left:-23px;top:5px;width:10px;height:10px;border-radius:50%;background:var(--accent);border:2px solid var(--sf);}
-.tl-date{font-size:.6rem;font-weight:700;color:var(--ink3);margin-bottom:3px;}
+.tl-date{font-size:.75rem;font-weight:700;color:var(--ink3);margin-bottom:3px;}
 .tl-ttl{font-size:.84rem;font-weight:800;color:var(--ink);margin-bottom:4px;}
-.tl-body{font-size:.72rem;color:var(--ink2);line-height:1.7;}
+.tl-body{font-size:.75rem;color:var(--ink2);line-height:1.7;}
 .tl-body b{font-weight:700;color:var(--ink);}
 
 /* ─ 절세 전략 ─ */
 .strategy-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
 @media(max-width:640px){.strategy-grid{grid-template-columns:1fr;}}
 .strat-card{background:var(--sf);border:1px solid var(--rule);border-radius:7px;padding:16px 18px;}
-.sc-num{font-size:.65rem;font-weight:900;letter-spacing:.05em;color:var(--accent);margin-bottom:6px;}
+.sc-num{font-size:.75rem;font-weight:900;letter-spacing:.05em;color:var(--accent);margin-bottom:6px;}
 .sc-ttl{font-size:.88rem;font-weight:800;color:var(--ink);margin-bottom:6px;}
-.sc-body{font-size:.72rem;color:var(--ink2);line-height:1.75;}
+.sc-body{font-size:.75rem;color:var(--ink2);line-height:1.75;}
 .sc-body b{font-weight:700;color:var(--ink);}
-.sc-tag{display:inline-block;font-size:.6rem;font-weight:700;padding:2px 7px;border-radius:10px;margin-top:8px;}
+.sc-tag{display:inline-block;font-size:.75rem;font-weight:700;padding:2px 7px;border-radius:10px;margin-top:8px;}
 
 /* ─ 출처 안내 ─ */
-.src-note{font-size:.64rem;color:var(--ink3);border-top:1px solid var(--rule);padding-top:12px;margin-top:32px;line-height:1.7;}
+.src-note{font-size:.75rem;color:var(--ink3);border-top:1px solid var(--rule);padding-top:12px;margin-top:32px;line-height:1.7;}
 .src-note b{font-weight:700;color:var(--ink2);}
 </style>
 </head>
@@ -420,8 +425,8 @@ body{font-family:var(--font);background:var(--bg);color:var(--ink);min-height:10
         </tr>
         <tr style="background:#FEF9E7;">
           <td><b>2027년 이후 (개편안)</b></td>
-          <td class="rate-ok"><b>실거주 단독명의: 공시가 14억↓ 면제</b><br><span style="font-size:.7em;color:#0A6E42;">비거주: 12억 현행 유지 (9억 하향 철회)</span></td>
-          <td class="rate-warn">공정시장가액비율 70%(3주택+80%)<br><span style="font-size:.7em;">세부담 상한 150% 현행 유지</span></td>
+          <td class="rate-ok"><b>실거주 단독명의: 공시가 14억↓ 면제</b><br><span style="font-size:.75rem;color:#0A6E42;">비거주: 12억 현행 유지 (9억 하향 철회)</span></td>
+          <td class="rate-warn">공정시장가액비율 70%(3주택+80%)<br><span style="font-size:.75rem;">세부담 상한 150% 현행 유지</span></td>
           <td>국무회의 9.1 확정 → 9.3 정기국회 제출 예정</td>
         </tr>
       </tbody>

@@ -22,11 +22,16 @@
 <title>거시경제 분석 | 부릿지 BuRIDGE</title>
 <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
-<style>button,input,select,textarea{font-family:inherit}</style>
+<style>button,input,select,textarea{font-family:inherit}/* 모바일 터치 영역 — 손가락으로 누르기 쉽게 버튼·링크 높이 확보 */
+@media (max-width: 640px) {
+  .sc-tab { min-height: 36px; }
+  .hd-back { display: inline-flex; align-items: center; min-height: 32px; }
+}
+</style>
 <style>
 :root{
   --navy:#0C2040;--blue:#1A4A9A;--blue-lt:#EBF1FF;
-  --ink:#1A2E44;--ink2:#374F6B;--ink3:#68839C;
+  --ink:#1A2E44;--ink2:#374F6B;--ink3:#576E83;
   --paper:#F3F6FB;--sf:#FFFFFF;--rule:#D0D8E8;
   --up:#0A6E42;--up-lt:#E4F3EC;--up-bg:#D0EFDF;
   --dn:#B71C1C;--dn-lt:#FFEBEE;--dn-bg:#FFCDD2;
@@ -44,25 +49,25 @@ body{font-family:var(--font);background:var(--paper);color:var(--ink);}
 .hd-sep{color:#2A4870;}
 .hd-title{font-size:.9rem;font-weight:700;color:#D0E0F0;}
 .hd-right{margin-left:auto;display:flex;align-items:center;gap:8px;}
-.date-badge{font-size:.66rem;font-weight:700;padding:3px 9px;border-radius:3px;background:#0A1628;border:1px solid #1A3460;color:#70A0D0;}
+.date-badge{font-size:.75rem;font-weight:700;padding:3px 9px;border-radius:3px;background:#0A1628;border:1px solid #1A3460;color:#70A0D0;}
 .live-dot{width:7px;height:7px;border-radius:50%;background:#2DC76D;animation:blink 2s infinite;}
 @keyframes blink{0%,100%{opacity:1;}50%{opacity:.3;}}
 
 /* ─ 히어로 ─ */
 .hero{background:var(--navy);border-bottom:1px solid #152A48;padding:24px 20px 20px;}
-.hero-ttl{font-size:.62rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#3A6490;margin-bottom:10px;}
+.hero-ttl{font-size:.75rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#6D8CAD;margin-bottom:10px;}
 .hero h1{font-size:1.4rem;font-weight:900;color:#D0E4F8;letter-spacing:-.03em;margin-bottom:6px;}
-.hero-sub{font-size:.75rem;color:#4A6888;line-height:1.6;margin-bottom:20px;}
+.hero-sub{font-size:.75rem;color:#748BA3;line-height:1.6;margin-bottom:20px;}
 .kpi-row{display:flex;gap:0;border:1px solid #1A3254;border-radius:4px;overflow:hidden;background:#081628;flex-wrap:wrap;}
 .kpi{padding:12px 18px;border-right:1px solid #1A3254;min-width:0;}
 .kpi:last-child{border-right:none;}
 .kpi-v{font-size:1.2rem;font-weight:900;font-variant-numeric:tabular-nums;letter-spacing:-.02em;}
-.kpi-l{font-size:.57rem;font-weight:600;color:#3A5A80;margin-top:2px;white-space:nowrap;}
+.kpi-l{font-size:.75rem;font-weight:600;color:#758CA6;margin-top:2px;white-space:nowrap;}
 .kv-up{color:#40D078;} .kv-dn{color:#FF7070;} .kv-wn{color:#F0A020;} .kv-nt{color:#90B0D0;}
 @media(max-width:640px){.kpi-row{flex-direction:column;}.kpi{border-right:none;border-bottom:1px solid #1A3254;}}
 
 /* ─ 알림 배너 ─ */
-.alert-bar{background:#1A3254;border-bottom:2px solid #2A6090;padding:9px 20px;display:flex;align-items:center;gap:8px;font-size:.73rem;color:#90C0E0;}
+.alert-bar{background:#1A3254;border-bottom:2px solid #2A6090;padding:9px 20px;display:flex;align-items:center;gap:8px;font-size:.75rem;color:#90C0E0;}
 .alert-bar b{color:#B0D8FF;}
 
 /* ─ 메인 ─ */
@@ -71,7 +76,7 @@ body{font-family:var(--font);background:var(--paper);color:var(--ink);}
 /* ─ 섹션 헤더 ─ */
 .sh{display:flex;align-items:center;gap:10px;margin-bottom:16px;margin-top:36px;}
 .sh:first-child{margin-top:0;}
-.sh-label{font-size:.62rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--ink3);}
+.sh-label{font-size:.75rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--ink3);}
 .sh::after{content:'';flex:1;height:1px;background:var(--rule);}
 
 /* ─ 카드 그리드 ─ */
@@ -91,17 +96,17 @@ body{font-family:var(--font);background:var(--paper);color:var(--ink);}
 .nc.teal::before{background:var(--teal);}
 .nc.purple::before{background:var(--purple);}
 
-.nc-cat{font-size:.58rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;margin-bottom:6px;}
+.nc-cat{font-size:.75rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;margin-bottom:6px;}
 .nc-cat.up{color:var(--up);} .nc-cat.dn{color:var(--dn);} .nc-cat.warn{color:var(--warn);}
 .nc-cat.info{color:var(--blue);} .nc-cat.neutral{color:var(--ink3);}
 .nc-cat.teal{color:var(--teal);} .nc-cat.purple{color:var(--purple);}
 .nc-ttl{font-size:.92rem;font-weight:800;color:var(--ink);line-height:1.3;margin-bottom:8px;letter-spacing:-.02em;}
-.nc-body{font-size:.73rem;color:var(--ink2);line-height:1.75;}
+.nc-body{font-size:.75rem;color:var(--ink2);line-height:1.75;}
 .nc-body b{font-weight:700;color:var(--ink);}
 .nc-body .up{color:var(--up);font-weight:700;}
 .nc-body .dn{color:var(--dn);font-weight:700;}
 .nc-body .warn{color:var(--warn);font-weight:700;}
-.nc-stat{display:inline-flex;align-items:center;gap:5px;font-size:.68rem;font-weight:700;padding:3px 9px;border-radius:3px;margin-top:10px;}
+.nc-stat{display:inline-flex;align-items:center;gap:5px;font-size:.75rem;font-weight:700;padding:3px 9px;border-radius:3px;margin-top:10px;}
 .ns-up{background:var(--up-lt);color:var(--up);}
 .ns-dn{background:var(--dn-lt);color:var(--dn);}
 .ns-warn{background:var(--warn-lt);color:var(--warn);}
@@ -113,9 +118,9 @@ body{font-family:var(--font);background:var(--paper);color:var(--ink);}
 .flow-box{background:var(--sf);border:1px solid var(--rule);border-radius:6px;padding:16px 18px;margin-top:12px;}
 .flow-row{display:flex;align-items:center;flex-wrap:wrap;gap:6px;margin-bottom:8px;}
 .flow-row:last-child{margin-bottom:0;}
-.flow-lbl{font-size:.62rem;font-weight:700;color:var(--ink3);letter-spacing:.06em;min-width:90px;}
+.flow-lbl{font-size:.75rem;font-weight:700;color:var(--ink3);letter-spacing:.06em;min-width:90px;}
 .flow-steps{display:flex;align-items:center;gap:0;flex-wrap:wrap;}
-.fs{font-size:.68rem;font-weight:600;padding:4px 10px;border-radius:3px;white-space:nowrap;}
+.fs{font-size:.75rem;font-weight:600;padding:4px 10px;border-radius:3px;white-space:nowrap;}
 .fs-up{background:var(--up-lt);color:var(--up);}
 .fs-dn{background:var(--dn-lt);color:var(--dn);}
 .fs-warn{background:var(--warn-lt);color:var(--warn);}
@@ -126,14 +131,14 @@ body{font-family:var(--font);background:var(--paper);color:var(--ink);}
 /* ─ 상관관계 테이블 ─ */
 .corr-table{background:var(--sf);border:1px solid var(--rule);border-radius:6px;overflow:hidden;margin-bottom:12px;}
 .corr-table table{width:100%;border-collapse:collapse;}
-.corr-table th{background:#F0F4FA;font-size:.63rem;font-weight:700;color:var(--ink2);padding:9px 14px;text-align:left;border-bottom:1px solid var(--rule);}
-.corr-table td{font-size:.68rem;color:var(--ink2);padding:9px 14px;border-bottom:1px solid #EEF2F8;vertical-align:top;}
+.corr-table th{background:#F0F4FA;font-size:.75rem;font-weight:700;color:var(--ink2);padding:9px 14px;text-align:left;border-bottom:1px solid var(--rule);}
+.corr-table td{font-size:.75rem;color:var(--ink2);padding:9px 14px;border-bottom:1px solid #EEF2F8;vertical-align:top;}
 .corr-table tr:last-child td{border-bottom:none;}
 .corr-table td:first-child{font-weight:700;color:var(--ink);}
-.tag-up{font-size:.6rem;font-weight:700;padding:2px 6px;border-radius:3px;background:var(--up-lt);color:var(--up);white-space:nowrap;}
-.tag-dn{font-size:.6rem;font-weight:700;padding:2px 6px;border-radius:3px;background:var(--dn-lt);color:var(--dn);white-space:nowrap;}
-.tag-mix{font-size:.6rem;font-weight:700;padding:2px 6px;border-radius:3px;background:var(--warn-lt);color:var(--warn);white-space:nowrap;}
-.tag-nt{font-size:.6rem;font-weight:700;padding:2px 6px;border-radius:3px;background:var(--blue-lt);color:var(--blue);white-space:nowrap;}
+.tag-up{font-size:.75rem;font-weight:700;padding:2px 6px;border-radius:3px;background:var(--up-lt);color:var(--up);white-space:nowrap;}
+.tag-dn{font-size:.75rem;font-weight:700;padding:2px 6px;border-radius:3px;background:var(--dn-lt);color:var(--dn);white-space:nowrap;}
+.tag-mix{font-size:.75rem;font-weight:700;padding:2px 6px;border-radius:3px;background:var(--warn-lt);color:var(--warn);white-space:nowrap;}
+.tag-nt{font-size:.75rem;font-weight:700;padding:2px 6px;border-radius:3px;background:var(--blue-lt);color:var(--blue);white-space:nowrap;}
 .corr-bar{display:flex;align-items:center;gap:8px;margin-top:3px;}
 .cbar{height:6px;border-radius:3px;}
 .cbar-pos{background:var(--up);}
@@ -145,7 +150,7 @@ body{font-family:var(--font);background:var(--paper);color:var(--ink);}
 .scenario-box{background:var(--sf);border:1px solid var(--rule);border-radius:6px;padding:20px;margin-bottom:28px;}
 .sc-ttl{font-size:.82rem;font-weight:800;color:var(--ink);margin-bottom:14px;}
 .sc-tabs{display:flex;gap:6px;margin-bottom:16px;flex-wrap:wrap;}
-.sc-tab{font-size:.7rem;font-weight:700;padding:6px 14px;border-radius:4px;border:1px solid var(--rule);cursor:pointer;background:var(--paper);color:var(--ink2);transition:all .15s;}
+.sc-tab{font-size:.75rem;font-weight:700;padding:6px 14px;border-radius:4px;border:1px solid var(--rule);cursor:pointer;background:var(--paper);color:var(--ink2);transition:all .15s;}
 .sc-tab.active-up{background:var(--up-lt);border-color:var(--up);color:var(--up);}
 .sc-tab.active-dn{background:var(--dn-lt);border-color:var(--dn);color:var(--dn);}
 .sc-tab.active-nt{background:var(--blue-lt);border-color:var(--blue);color:var(--blue);}
@@ -154,9 +159,9 @@ body{font-family:var(--font);background:var(--paper);color:var(--ink);}
 .sc-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;}
 @media(max-width:700px){.sc-grid{grid-template-columns:repeat(2,1fr);}}
 .sc-item{border:1px solid var(--rule);border-radius:5px;padding:11px 12px;background:var(--paper);}
-.sc-item-lbl{font-size:.6rem;color:var(--ink3);margin-bottom:4px;}
+.sc-item-lbl{font-size:.75rem;color:var(--ink3);margin-bottom:4px;}
 .sc-item-val{font-size:.85rem;font-weight:900;font-variant-numeric:tabular-nums;}
-.sc-item-sub{font-size:.6rem;color:var(--ink3);margin-top:2px;line-height:1.5;}
+.sc-item-sub{font-size:.75rem;color:var(--ink3);margin-top:2px;line-height:1.5;}
 .si-up{color:var(--up);}
 .si-dn{color:var(--dn);}
 .si-nt{color:var(--blue);}
@@ -168,22 +173,22 @@ body{font-family:var(--font);background:var(--paper);color:var(--ink);}
 .tl-item{padding:14px 0 14px 20px;border-left:2px solid var(--rule);position:relative;}
 .tl-item::before{content:'';position:absolute;left:-5px;top:18px;width:8px;height:8px;border-radius:50%;background:var(--blue);border:2px solid var(--sf);}
 .tl-item:last-child{border-left:2px solid transparent;}
-.tl-date{font-size:.6rem;font-weight:700;color:var(--ink3);letter-spacing:.06em;margin-bottom:4px;}
+.tl-date{font-size:.75rem;font-weight:700;color:var(--ink3);letter-spacing:.06em;margin-bottom:4px;}
 .tl-ttl{font-size:.82rem;font-weight:800;color:var(--ink);margin-bottom:5px;}
-.tl-body{font-size:.72rem;color:var(--ink2);line-height:1.75;}
+.tl-body{font-size:.75rem;color:var(--ink2);line-height:1.75;}
 .tl-body b{font-weight:700;color:var(--ink);}
 
 /* ─ 인구 차트 ─ */
 .pop-chart{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:12px;}
 @media(max-width:600px){.pop-chart{grid-template-columns:1fr;}}
 .pop-bar-item{display:flex;align-items:center;gap:8px;margin-bottom:6px;}
-.pop-bar-lbl{font-size:.65rem;font-weight:600;color:var(--ink2);width:70px;flex-shrink:0;}
+.pop-bar-lbl{font-size:.75rem;font-weight:600;color:var(--ink2);width:70px;flex-shrink:0;}
 .pop-bar-track{flex:1;height:8px;background:#EEF2F8;border-radius:4px;overflow:hidden;}
 .pop-bar-fill{height:100%;border-radius:4px;}
-.pop-bar-val{font-size:.63rem;font-weight:700;font-variant-numeric:tabular-nums;width:42px;text-align:right;flex-shrink:0;}
+.pop-bar-val{font-size:.75rem;font-weight:700;font-variant-numeric:tabular-nums;width:42px;text-align:right;flex-shrink:0;}
 
 /* ─ 출처 ─ */
-.src-note{font-size:.62rem;color:var(--ink3);line-height:1.8;padding:12px 0;border-top:1px solid var(--rule);margin-top:32px;}
+.src-note{font-size:.75rem;color:var(--ink3);line-height:1.8;padding:12px 0;border-top:1px solid var(--rule);margin-top:32px;}
 </style>
 </head>
 <body>
@@ -430,20 +435,20 @@ body{font-family:var(--font);background:var(--paper);color:var(--ink);}
     <div class="nc-ttl">4분면 투자 매트릭스 — 경기 국면 × 금리 방향</div>
     <div class="nc-body" style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:8px;">
       <div style="padding:12px;background:#F0F4FA;border-radius:5px;border-left:3px solid var(--up);">
-        <div style="font-size:.63rem;font-weight:700;color:var(--up);margin-bottom:4px;">경기↑ + 금리↓ — 최고 환경</div>
-        <div style="font-size:.68rem;color:var(--ink2);line-height:1.6;">경기 회복 + 통화 완화. 부동산 강세장. <b>최적 매수 타이밍.</b> 2021년 상반기, 2024년 하반기 유사.</div>
+        <div style="font-size:.75rem;font-weight:700;color:var(--up);margin-bottom:4px;">경기↑ + 금리↓ — 최고 환경</div>
+        <div style="font-size:.75rem;color:var(--ink2);line-height:1.6;">경기 회복 + 통화 완화. 부동산 강세장. <b>최적 매수 타이밍.</b> 2021년 상반기, 2024년 하반기 유사.</div>
       </div>
       <div style="padding:12px;background:#FEF9F0;border-radius:5px;border-left:3px solid var(--warn);">
-        <div style="font-size:.63rem;font-weight:700;color:var(--warn);margin-bottom:4px;">경기↑ + 금리↑ — 혼조</div>
-        <div style="font-size:.68rem;color:var(--ink2);line-height:1.6;">경기 과열 → 중앙은행 금리 인상. 실물 수요↑이지만 대출 비용↑. <b>입지 선별 투자</b> 필요. 2026년 현재와 유사.</div>
+        <div style="font-size:.75rem;font-weight:700;color:var(--warn);margin-bottom:4px;">경기↑ + 금리↑ — 혼조</div>
+        <div style="font-size:.75rem;color:var(--ink2);line-height:1.6;">경기 과열 → 중앙은행 금리 인상. 실물 수요↑이지만 대출 비용↑. <b>입지 선별 투자</b> 필요. 2026년 현재와 유사.</div>
       </div>
       <div style="padding:12px;background:#FFF0F0;border-radius:5px;border-left:3px solid var(--dn);">
-        <div style="font-size:.63rem;font-weight:700;color:var(--dn);margin-bottom:4px;">경기↓ + 금리↑ — 최악 환경</div>
-        <div style="font-size:.68rem;color:var(--ink2);line-height:1.6;">스태그플레이션. 경기 침체 + 고금리. <b>매도·현금 보유 전략.</b> 2022년 하반기 한국이 이 구간 진입.</div>
+        <div style="font-size:.75rem;font-weight:700;color:var(--dn);margin-bottom:4px;">경기↓ + 금리↑ — 최악 환경</div>
+        <div style="font-size:.75rem;color:var(--ink2);line-height:1.6;">스태그플레이션. 경기 침체 + 고금리. <b>매도·현금 보유 전략.</b> 2022년 하반기 한국이 이 구간 진입.</div>
       </div>
       <div style="padding:12px;background:#F0F8F4;border-radius:5px;border-left:3px solid var(--teal);">
-        <div style="font-size:.63rem;font-weight:700;color:var(--teal);margin-bottom:4px;">경기↓ + 금리↓ — 침체 바닥</div>
-        <div style="font-size:.68rem;color:var(--ink2);line-height:1.6;">경기침체 → 금리 인하 대응. 반등 직전 구간. <b>공포 매수 타이밍.</b> 2023년 한국이 이 구간, 2024년 상승으로 전환.</div>
+        <div style="font-size:.75rem;font-weight:700;color:var(--teal);margin-bottom:4px;">경기↓ + 금리↓ — 침체 바닥</div>
+        <div style="font-size:.75rem;color:var(--ink2);line-height:1.6;">경기침체 → 금리 인하 대응. 반등 직전 구간. <b>공포 매수 타이밍.</b> 2023년 한국이 이 구간, 2024년 상승으로 전환.</div>
       </div>
     </div>
   </div>
@@ -515,7 +520,7 @@ body{font-family:var(--font);background:var(--paper);color:var(--ink);}
     <div class="nc-body" style="margin-top:8px;">
       <div class="pop-chart">
         <div>
-          <div style="font-size:.63rem;font-weight:700;color:var(--ink2);margin-bottom:8px;">주택 수요 연령 비중 변화 (추정)</div>
+          <div style="font-size:.75rem;font-weight:700;color:var(--ink2);margin-bottom:8px;">주택 수요 연령 비중 변화 (추정)</div>
           <div class="pop-bar-item">
             <span class="pop-bar-lbl">2030세대</span>
             <div class="pop-bar-track"><div class="pop-bar-fill" style="width:38%;background:#1A4A9A;"></div></div>
@@ -533,8 +538,8 @@ body{font-family:var(--font);background:var(--paper);color:var(--ink);}
           </div>
         </div>
         <div>
-          <div style="font-size:.63rem;font-weight:700;color:var(--ink2);margin-bottom:8px;">세대별 주거 선호 트렌드</div>
-          <div style="font-size:.68rem;color:var(--ink2);line-height:1.75;">
+          <div style="font-size:.75rem;font-weight:700;color:var(--ink2);margin-bottom:8px;">세대별 주거 선호 트렌드</div>
+          <div style="font-size:.75rem;color:var(--ink2);line-height:1.75;">
             <b>MZ(2030세대):</b> 소형·역세권·직주근접. 아파트보다 접근성 중시. 청약 포기 → 전세·월세 선호. 단, 청약 가점 낮아 로또 청약 도전.<br><br>
             <b>4050 세대:</b> 자녀 교육 위한 학군 입지 선호. 중형(84~102㎡) 수요 핵심층. 갈아타기 수요로 거래량 주도.<br><br>
             <b>베이비부머(6070):</b> 자산 현금화 수요 증가. 은퇴 후 지방 귀촌·다운사이징. 상속·증여 수요 발생.
@@ -555,7 +560,7 @@ body{font-family:var(--font);background:var(--paper);color:var(--ink);}
       <button class="sc-tab" onclick="showScenario('recession')">경기침체 시나리오</button>
     </div>
     <div id="sc-base" class="sc-panel active">
-      <div style="font-size:.7rem;color:var(--ink2);margin-bottom:10px;">📍 현재 상황: 기준금리 2.75%, CPI +2.8%, GDP +2.1%, 서울 주간 +0.27%</div>
+      <div style="font-size:.75rem;color:var(--ink2);margin-bottom:10px;">📍 현재 상황: 기준금리 2.75%, CPI +2.8%, GDP +2.1%, 서울 주간 +0.27%</div>
       <div class="sc-grid">
         <div class="sc-item"><div class="sc-item-lbl">서울 매매 방향</div><div class="sc-item-val si-up">상승 유지</div><div class="sc-item-sub">실수요 견고, 공급 부족. 주간 +0.2~0.3% 지속 예상</div></div>
         <div class="sc-item"><div class="sc-item-lbl">거래량</div><div class="sc-item-val si-nt">보통</div><div class="sc-item-sub">금리 부담으로 거래 활성화는 제한. 선택적 실수요 거래</div></div>
@@ -564,7 +569,7 @@ body{font-family:var(--font);background:var(--paper);color:var(--ink);}
       </div>
     </div>
     <div id="sc-cut" class="sc-panel">
-      <div style="font-size:.7rem;color:var(--ink2);margin-bottom:10px;">📉 가정: 한은 기준금리 2.75% → 2.25%로 0.5%p 인하 (2026년 하반기)</div>
+      <div style="font-size:.75rem;color:var(--ink2);margin-bottom:10px;">📉 가정: 한은 기준금리 2.75% → 2.25%로 0.5%p 인하 (2026년 하반기)</div>
       <div class="sc-grid">
         <div class="sc-item"><div class="sc-item-lbl">서울 매매</div><div class="sc-item-val si-up">강세 전환</div><div class="sc-item-sub">대출 한도↑ + 구매력↑ → 잠재 수요 폭발. 강남·마용성 먼저 반응</div></div>
         <div class="sc-item"><div class="sc-item-lbl">거래량</div><div class="sc-item-val si-up">급증</div><div class="sc-item-sub">대기 수요 해소. 특히 갈아타기·첫 매수층 움직임</div></div>
@@ -573,7 +578,7 @@ body{font-family:var(--font);background:var(--paper);color:var(--ink);}
       </div>
     </div>
     <div id="sc-hike" class="sc-panel">
-      <div style="font-size:.7rem;color:var(--ink2);margin-bottom:10px;">📈 가정: 한은 기준금리 2.75% → 3.25%로 0.5%p 추가 인상 (2026년 4Q)</div>
+      <div style="font-size:.75rem;color:var(--ink2);margin-bottom:10px;">📈 가정: 한은 기준금리 2.75% → 3.25%로 0.5%p 추가 인상 (2026년 4Q)</div>
       <div class="sc-grid">
         <div class="sc-item"><div class="sc-item-lbl">서울 매매</div><div class="sc-item-val si-dn">상승 둔화</div><div class="sc-item-sub">금리 부담↑ 대출 한도↓. 외곽·중저가부터 조정. 강남은 상대적 방어</div></div>
         <div class="sc-item"><div class="sc-item-lbl">거래량</div><div class="sc-item-val si-dn">감소</div><div class="sc-item-sub">월 상환액 추가 증가 → 매수 포기. 거래절벽 재현 가능성</div></div>
@@ -582,7 +587,7 @@ body{font-family:var(--font);background:var(--paper);color:var(--ink);}
       </div>
     </div>
     <div id="sc-recession" class="sc-panel">
-      <div style="font-size:.7rem;color:var(--ink2);margin-bottom:10px;">⚠️ 가정: GDP 성장률 마이너스 전환, 실업률 4%↑, 금리 인하 대응</div>
+      <div style="font-size:.75rem;color:var(--ink2);margin-bottom:10px;">⚠️ 가정: GDP 성장률 마이너스 전환, 실업률 4%↑, 금리 인하 대응</div>
       <div class="sc-grid">
         <div class="sc-item"><div class="sc-item-lbl">서울 매매</div><div class="sc-item-val si-dn">하락 전환</div><div class="sc-item-sub">실업↑ + 소득↓ → 매수 심리 냉각. 고점 대비 10~20% 조정 가능</div></div>
         <div class="sc-item"><div class="sc-item-lbl">거래량</div><div class="sc-item-val si-dn">급감</div><div class="sc-item-sub">거래절벽. 공포 심리로 관망. 역설적으로 바닥권 접근</div></div>
@@ -611,56 +616,56 @@ body{font-family:var(--font);background:var(--paper);color:var(--ink);}
           <td>2.75%</td>
           <td><span class="tag-dn">역(-)상관</span></td>
           <td>금리↑ → 대출비용↑ → 구매력↓ → 수요↓. 단, 한국은 공급·전세 구조로 완충</td>
-          <td><div class="corr-bar"><div class="cbar cbar-neg" style="width:80%;"></div><span style="font-size:.6rem;color:var(--dn);">강함</span></div></td>
+          <td><div class="corr-bar"><div class="cbar cbar-neg" style="width:80%;"></div><span style="font-size:.75rem;color:var(--dn);">강함</span></div></td>
         </tr>
         <tr>
           <td>소비자물가(CPI)</td>
           <td>+2.8%</td>
           <td><span class="tag-mix">복합</span></td>
           <td>단기: 실물자산 헷지로 가격↑. 장기: 금리 인상 압력 → 역효과</td>
-          <td><div class="corr-bar"><div class="cbar cbar-mix" style="width:55%;"></div><span style="font-size:.6rem;color:var(--warn);">중간</span></div></td>
+          <td><div class="corr-bar"><div class="cbar cbar-mix" style="width:55%;"></div><span style="font-size:.75rem;color:var(--warn);">중간</span></div></td>
         </tr>
         <tr>
           <td>GDP 성장률</td>
           <td>+2.1%</td>
           <td><span class="tag-up">정(+)상관</span></td>
           <td>성장↑ → 고용·소득↑ → 주거 수요↑ → 가격 지지. 침체 시 가격 하락</td>
-          <td><div class="corr-bar"><div class="cbar cbar-pos" style="width:65%;"></div><span style="font-size:.6rem;color:var(--up);">중강</span></div></td>
+          <td><div class="corr-bar"><div class="cbar cbar-pos" style="width:65%;"></div><span style="font-size:.75rem;color:var(--up);">중강</span></div></td>
         </tr>
         <tr>
           <td>M2 통화량 증가</td>
           <td>+5.4%</td>
           <td><span class="tag-up">정(+)상관</span></td>
           <td>유동성↑ → 자산 매수 수요↑ → 가격↑. M2 급증 시 버블 신호</td>
-          <td><div class="corr-bar"><div class="cbar cbar-pos" style="width:75%;"></div><span style="font-size:.6rem;color:var(--up);">강함</span></div></td>
+          <td><div class="corr-bar"><div class="cbar cbar-pos" style="width:75%;"></div><span style="font-size:.75rem;color:var(--up);">강함</span></div></td>
         </tr>
         <tr>
           <td>원/달러 환율</td>
           <td>~1,390원</td>
           <td><span class="tag-mix">복합</span></td>
           <td>환율↑ → 건설원가↑(분양가↑) 동시에 PF비용↑. 외국인 투자 유입 효과는 제한적</td>
-          <td><div class="corr-bar"><div class="cbar cbar-mix" style="width:40%;"></div><span style="font-size:.6rem;color:var(--warn);">약중간</span></div></td>
+          <td><div class="corr-bar"><div class="cbar cbar-mix" style="width:40%;"></div><span style="font-size:.75rem;color:var(--warn);">약중간</span></div></td>
         </tr>
         <tr>
           <td>가계부채/GDP</td>
           <td>102%</td>
           <td><span class="tag-dn">리스크 지표</span></td>
           <td>높을수록 금리 충격에 취약. 시스템 리스크 증가. 가격 상방보다 하방 압력 누적</td>
-          <td><div class="corr-bar"><div class="cbar cbar-neg" style="width:70%;"></div><span style="font-size:.6rem;color:var(--dn);">위험 수준</span></div></td>
+          <td><div class="corr-bar"><div class="cbar cbar-neg" style="width:70%;"></div><span style="font-size:.75rem;color:var(--dn);">위험 수준</span></div></td>
         </tr>
         <tr>
           <td>실업률</td>
           <td>약 3.1%</td>
           <td><span class="tag-dn">역(-)상관</span></td>
           <td>실업↑ → 소득 불안 → 매수 포기 → 수요↓. 고용 안정이 부동산의 기반</td>
-          <td><div class="corr-bar"><div class="cbar cbar-neg" style="width:60%;"></div><span style="font-size:.6rem;color:var(--dn);">중강</span></div></td>
+          <td><div class="corr-bar"><div class="cbar cbar-neg" style="width:60%;"></div><span style="font-size:.75rem;color:var(--dn);">중강</span></div></td>
         </tr>
         <tr>
           <td>합계출산율</td>
           <td>0.75명</td>
           <td><span class="tag-nt">장기 하락</span></td>
           <td>10~30년 후 수요 감소. 단기 효과 없음. 지방부터 → 수도권 외곽 → 서울 순서로 영향</td>
-          <td><div class="corr-bar"><div class="cbar cbar-nt" style="width:35%;"></div><span style="font-size:.6rem;color:var(--blue);">장기적</span></div></td>
+          <td><div class="corr-bar"><div class="cbar cbar-nt" style="width:35%;"></div><span style="font-size:.75rem;color:var(--blue);">장기적</span></div></td>
         </tr>
       </tbody>
     </table>

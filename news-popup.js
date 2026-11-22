@@ -76,7 +76,7 @@
   --bnp-down:#ff8a80;--bnp-down-bg:#3a1f22;--bnp-warn:#ffb74d;--bnp-warn-bg:#3a2c16;--bnp-info:#8ab4ff;--bnp-info-bg:#1c2b47;}}
 .bnp-hd{padding:18px 20px 12px;border-bottom:1px solid var(--bnp-rule);display:flex;align-items:flex-start;gap:12px;}
 .bnp-hd-txt{flex:1;min-width:0;}
-.bnp-eyebrow{font-size:11px;font-weight:700;letter-spacing:.06em;color:var(--bnp-accent);}
+.bnp-eyebrow{font-size:12px;font-weight:700;letter-spacing:.06em;color:var(--bnp-accent);}
 .bnp-ttl{font-size:19px;font-weight:800;margin:3px 0 0;letter-spacing:-.3px;}
 .bnp-date{font-size:12px;color:var(--bnp-ink2);margin-top:2px;}
 .bnp-x{flex-shrink:0;width:32px;height:32px;border-radius:50%;border:none;background:var(--bnp-soft);color:var(--bnp-ink2);font-size:18px;line-height:1;cursor:pointer;}
@@ -87,15 +87,15 @@
 .bnp-rank{flex-shrink:0;width:26px;height:26px;border-radius:8px;background:var(--bnp-accent);color:#fff;font-weight:800;font-size:14px;display:flex;align-items:center;justify-content:center;margin-top:1px;}
 .bnp-item:nth-child(n+4) .bnp-rank{background:var(--bnp-soft);color:var(--bnp-ink2);}
 .bnp-body{min-width:0;}
-.bnp-tag{display:inline-block;font-size:10.5px;font-weight:700;padding:1px 7px;border-radius:999px;margin-bottom:4px;}
+.bnp-tag{display:inline-block;font-size:12px;font-weight:700;padding:1px 7px;border-radius:999px;margin-bottom:4px;}
 .bnp-tag.down{color:var(--bnp-down);background:var(--bnp-down-bg);}
 .bnp-tag.warn{color:var(--bnp-warn);background:var(--bnp-warn-bg);}
 .bnp-tag.info{color:var(--bnp-info);background:var(--bnp-info-bg);}
 .bnp-item-ttl{font-size:14.5px;font-weight:700;line-height:1.45;}
 .bnp-item-body{font-size:12.5px;color:var(--bnp-ink2);line-height:1.6;margin-top:3px;}
-.bnp-link{display:inline-block;margin-top:5px;font-size:12px;font-weight:700;color:var(--bnp-accent);text-decoration:none;}
+.bnp-link{display:inline-flex;align-items:center;min-height:32px;margin-top:2px;font-size:12px;font-weight:700;color:var(--bnp-accent);text-decoration:none;}
 .bnp-link:hover{text-decoration:underline;}
-.bnp-note{font-size:11px;color:var(--bnp-ink2);padding:8px 20px 0;}
+.bnp-note{font-size:12px;color:var(--bnp-ink2);padding:8px 20px 0;}
 .bnp-ft{display:flex;gap:8px;padding:12px 16px 16px;}
 .bnp-btn{flex:1;min-height:44px;border-radius:10px;font-size:14px;font-weight:700;cursor:pointer;font-family:inherit;}
 .bnp-btn-today{background:var(--bnp-soft);color:var(--bnp-ink2);border:1px solid var(--bnp-rule);}
