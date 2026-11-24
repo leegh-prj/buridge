@@ -651,7 +651,7 @@ footer a{color:var(--accent);text-decoration:none;}
       <div class="ns-no">⑤</div>
       <div>
         <div class="ns-title">가점제·추첨제 비율 — 내 전략 선택</div>
-        <div class="ns-desc">85㎡ 이하 물량 중 가점제와 추첨제 비율을 확인합니다. 서울은 보통 가점제 40~75%, 추첨제 25~60%. 가점이 낮다면 <b>추첨제 물량이 많은 단지</b>를 노리거나, 특별공급을 우선 신청하세요. 가점제 당첨선(커트라인)도 확인합니다.</div>
+        <div class="ns-desc">85㎡ 이하 물량 중 가점제와 추첨제 비율을 확인합니다. 서울은 보통 가점제 40~75%, 추첨제 25~60%이고, 규제지역 단지는 가점제 비율이 더 높습니다. 가점이 낮다면 <b>추첨제 물량이 많은 단지</b>를 노리거나, 특별공급을 우선 신청하세요. 가점제 당첨선(커트라인)도 확인합니다.</div>
         <span class="ns-key">🔑 내 가점으로 가점제 vs 추첨제 중 어디를 노릴지 결정</span>
       </div>
     </div>
@@ -881,7 +881,7 @@ footer a{color:var(--accent);text-decoration:none;}
       </div>
     </div>
     <div style="background:var(--red-lt);border:1px solid var(--red-bd);border-radius:8px;padding:10px 14px;margin-top:10px;font-size:12px;line-height:1.6;">
-      <b style="color:var(--red);">주의:</b> 투기과열지구(강남·서초·송파 등)는 1순위도 세대주만 신청 가능 + 5년 내 당첨 이력 있으면 1순위 제한
+      <b style="color:var(--red);">규제지역은 더 엄격:</b> 서울 25개 구 전체와 경기 15곳(과천·광명·분당·수지·하남·동탄구·기흥구·구리 등)은 규제지역입니다(2025.10.16 지정, 2026.7.1 추가). 이곳 단지는 <b>통장 가입 2년</b>이 지나야 1순위이고, <b>세대주만</b> 1순위·일부 특별공급을 신청할 수 있습니다. 가점제 비율이 높고, 당첨되면 <b>재당첨 제한이 최대 10년</b>입니다. 5년 안에 다른 단지에 당첨된 적이 있으면 1순위가 될 수 없습니다.
     </div>
   </div>
 
@@ -1046,7 +1046,7 @@ footer a{color:var(--accent);text-decoration:none;}
 
 </div>
 <footer>
-  <p>2026.10.14 기준 · 청약 제도는 수시로 변경됩니다. 청약 신청 전 반드시 청약홈(applyhome.co.kr) 공고문을 확인하세요.</p>
+  <p>2026.11.23 기준 · 청약 제도는 수시로 변경됩니다. 청약 신청 전 반드시 청약홈(applyhome.co.kr) 공고문을 확인하세요.</p>
   <p style="margin-top:4px;"><a href="index.html">← 홈으로</a> &nbsp;|&nbsp; <a href="부동산_내집마련플래너_2026.html">내 집 마련 플래너 →</a></p>
 </footer>
 
@@ -1142,8 +1142,6 @@ function calcScore(){
     </div>`;
   calcRec();
 }
-
-calcScore();
 
 // ── 지역 탭 전환
 function showRegion(r){
@@ -1420,6 +1418,9 @@ const TERMS=[
       .map(t=>`<div class="term-item"><div class="ti-word">${t.w}</div><div class="ti-def">${t.d}</div></div>`).join('');
   });
 })();
+
+// 첫 계산은 모든 함수·데이터(CUTLINES_DB 등)가 준비된 뒤에 실행
+calcScore();
 </script>
 </body>
 </html>

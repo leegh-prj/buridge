@@ -273,8 +273,8 @@ footer a{color:var(--accent);text-decoration:none;}
   <h1>내 집 마련 플래너 2026</h1>
   <p class="sub">소득·저축 입력 → 대출한도·구매가능 가격·달성 플랜 즉시 계산<br>2026년 LTV/DSR/스트레스DSR·취득세·정부 대출 완전 반영</p>
   <div class="badges">
-    <span class="badge">스트레스 DSR +3% 적용</span>
-    <span class="badge">생애최초 취득세 50% 감면</span>
+    <span class="badge">10·15 대책 대출 한도 반영</span>
+    <span class="badge">생애최초 취득세 최대 200만원 감면</span>
     <span class="badge">디딤돌·보금자리론 자격 진단</span>
     <span class="badge">집값 상승 리스크 시뮬레이션</span>
   </div>
@@ -320,10 +320,9 @@ footer a{color:var(--accent);text-decoration:none;}
     <div class="field">
       <label>희망 매수 지역</label>
       <select id="region" onchange="calc()">
-        <option value="hotzone">서울 투기과열구역 (강남·서초·마포·성동 등)</option>
-        <option value="adjust" selected>서울 조정대상지역 (노원·강서·은평 등)</option>
-        <option value="metro">수도권 비규제 (수원·용인·인천·하남 등)</option>
-        <option value="local">지방 비규제 (부산·대구·대전 등)</option>
+        <option value="reg" selected>규제지역 — 서울 전역·경기 15곳 (과천·분당·수지·동탄 등)</option>
+        <option value="metro">수도권 비규제 (인천·고양·부천 등)</option>
+        <option value="local">지방 (부산·대구·대전 등)</option>
       </select>
     </div>
   </div>
@@ -340,17 +339,17 @@ footer a{color:var(--accent);text-decoration:none;}
     <div class="field">
       <label>대출 유형</label>
       <select id="loan-rate" onchange="calc()">
-        <option value="0.038">3.8% — 디딤돌(요건 충족 시 자동 적용)</option>
-        <option value="0.043" selected>4.3% — 시중은행 고정형 평균</option>
-        <option value="0.047">4.7% — 시중은행 변동형 평균</option>
-        <option value="0.055">5.5% — 보수적 시나리오</option>
+        <option value="0.044">4.4% — 시중은행 하단 (5대 은행, 11.17 기준)</option>
+        <option value="0.054" selected>5.4% — 시중은행 중간값</option>
+        <option value="0.065">6.5% — 시중은행 상단 (변동형 6.51%)</option>
+        <option value="0.0515">5.15% — 보금자리론 (11.9부터 연 5.00~5.30%)</option>
       </select>
     </div>
   </div>
 
   <label class="cb-row" onclick="">
     <input type="checkbox" id="first-home" onchange="calc()">
-    <span>🎁 생애최초 주택구입자입니다 (취득세 50% 감면 적용)</span>
+    <span>🎁 생애최초 주택구입자입니다 (취득세 최대 200만원 감면 · LTV 70%)</span>
     <small>본인·배우자·세대원 전원 무주택 + 주택가 12억 이하</small>
   </label>
 </div>
@@ -421,13 +420,13 @@ footer a{color:var(--accent);text-decoration:none;}
     <div id="r-area-guide" style="font-size:13px;color:var(--t1);line-height:1.7;">—</div>
   </div>
 
-  <div class="regnote">* DSR 40% 한도(은행권), 스트레스 DSR +3.0% 가산. 25억 초과 주담대 불가(2024.9~). 실제 한도는 금융기관·신용도·물건지에 따라 다를 수 있습니다.</div>
+  <div class="regnote">* 2026.11 기준 대출 규칙: DSR 40%(은행권). 한도 계산 때 가산하는 스트레스 금리는 수도권·규제지역 3.0%p, 지방 0.75%p(변동금리 기준, 고정형은 덜 반영). 수도권·규제지역 주담대는 집값 15억 이하 최대 6억, 25억 이하 4억, 25억 초과 2억(10·15 대책). 규제지역 LTV 40%(생애최초 70%). 수도권·규제지역은 2주택 이상 구입 주담대 금지, 1주택자는 기존 집 처분 약정, 대출 후 6개월 안에 전입해야 합니다. 실제 한도는 금융기관·신용도·물건지에 따라 다를 수 있습니다.</div>
 </div>
 
 <!-- ══ STEP 3: 정부 대출 자격 진단 ══ -->
 <div class="card">
   <div class="sec-title"><span class="step-chip" style="background:var(--green);">STEP 3</span> 정부 대출 자격 진단</div>
-  <div class="info-box"><b>정부 정책 대출</b>은 시중은행보다 1~2%p 낮은 금리로, 요건을 충족한다면 반드시 우선 검토해야 합니다. 아래는 목표 주택가 기준으로 자동 진단됩니다.</div>
+  <div class="info-box"><b>정부 정책 대출</b> — 디딤돌은 시중은행보다 금리가 낮고, 보금자리론은 만기까지 금리가 고정됩니다(11월 인상으로 지금은 은행 하단보다 높을 수 있음). 요건을 충족하면 먼저 비교해 보세요. 아래는 목표 주택가 기준으로 자동 진단됩니다.</div>
   <div id="gov-result">
     <div style="text-align:center;padding:20px;color:var(--t3);font-size:13px;">STEP 4에서 목표 주택 가격을 입력하면 자격 여부를 자동 진단합니다</div>
   </div>
@@ -446,10 +445,9 @@ footer a{color:var(--accent);text-decoration:none;}
     <div class="field">
       <label>목표 주택 위치</label>
       <select id="target-region" onchange="calc()">
-        <option value="hotzone">서울 투기과열구역 (LTV 40%)</option>
-        <option value="adjust" selected>서울 조정대상지역 (LTV 50%)</option>
-        <option value="metro">수도권 비규제 (LTV 60%)</option>
-        <option value="local">지방 비규제 (LTV 70%)</option>
+        <option value="reg" selected>규제지역 (LTV 40% · 최대 6억)</option>
+        <option value="metro">수도권 비규제 (LTV 70% · 최대 6억)</option>
+        <option value="local">지방 (LTV 70%)</option>
       </select>
     </div>
   </div>
@@ -525,7 +523,7 @@ footer a{color:var(--accent);text-decoration:none;}
   <div class="check-steps">
     <div class="cs"><div class="cs-no">1</div><div><div class="cs-title">재무 현황 정리 & 신용점수 관리</div><div class="cs-desc">연소득·보유자산·부채를 정리하고 신용점수(NICE/KCB)를 확인합니다. 신용점수 900점 이상이면 주담대 우대금리 적용 가능. 불필요한 카드론·신용대출은 상환해 DSR 여유를 확보하세요.</div><span class="cs-tag tag-now">지금 바로</span></div></div>
     <div class="cs"><div class="cs-no">2</div><div><div class="cs-title">청약통장 납입 & 청약 가점 계산</div><div class="cs-desc">주택청약종합저축의 가입 기간, 납입 횟수·금액을 확인합니다. 무주택 기간(만점 32점), 부양가족 수(만점 35점), 청약통장 가입기간(만점 17점) 합산 가점을 계산해 두세요. 가점이 낮으면 추첨제 물량을 노리거나 SH·LH 공공분양을 검토합니다.</div><span class="cs-tag tag-now">지금 바로</span></div></div>
-    <div class="cs"><div class="cs-no">3</div><div><div class="cs-title">정부 대출 자격 사전 확인</div><div class="cs-desc">디딤돌 대출(연소득 6천만원 이하, 주택가 5억 이하, LTV 70%, 금리 2.35~3.95%), 보금자리론(연소득 7천만원 이하, 주택가 6억 이하) 해당 여부를 주택도시기금 포털에서 확인합니다. 시중 금리보다 1~2%p 낮습니다.</div><span class="cs-tag tag-now">지금 바로</span></div></div>
+    <div class="cs"><div class="cs-no">3</div><div><div class="cs-title">정부 대출 자격 사전 확인</div><div class="cs-desc">디딤돌 대출(연소득 6천만원 이하·생애최초 7천만원, 주택가 5억 이하, 최대 2억·생애최초 2.4억, 금리 연 2.85~4.15%)과 보금자리론(연소득 7천만원 이하, 주택가 6억 이하, 11.9부터 연 5.00~5.30% 고정) 해당 여부를 주택도시기금·주택금융공사에서 확인합니다.</div><span class="cs-tag tag-now">지금 바로</span></div></div>
     <div class="cs"><div class="cs-no">4</div><div><div class="cs-title">대출 사전 심사 (Pre-Approval)</div><div class="cs-desc">원하는 은행 2~3곳에 주담대 사전 심사를 신청합니다. DSR·LTV 기준 실제 한도와 적용 금리를 파악합니다. 사전 심사는 신용점수에 영향을 최소화하는 "조회용"으로 진행하세요.</div><span class="cs-tag tag-now">목표 3개월 전</span></div></div>
     <div class="cs"><div class="cs-no">5</div><div><div class="cs-title">매물 탐색 & 임장 (현장 방문)</div><div class="cs-desc">네이버부동산·호갱노노·국토부 실거래가 시스템으로 시세를 파악합니다. 최소 10~20개 매물을 직접 방문(임장)하고 입지(교통·학군·상권), 단지 상태, 주변 개발 호재를 확인합니다. 토지거래허가구역(토허제) 해당 여부도 사전 확인 필수.</div><span class="cs-tag tag-now">목표 1~2개월 전</span></div></div>
     <div class="cs"><div class="cs-no">6</div><div><div class="cs-title">등기부등본 & 권리관계 확인</div><div class="cs-desc">계약 전 반드시 인터넷등기소에서 말소사항 포함 전부 등기부등본을 발급·확인합니다. 근저당·가압류·가등기·위반건축물 여부를 체크하세요. 실거래가 신고 내역도 교차 검토합니다.</div><span class="cs-tag tag-key">계약 전 필수</span></div></div>
@@ -538,16 +536,26 @@ footer a{color:var(--accent);text-decoration:none;}
 </div><!-- /wrap -->
 
 <footer>
-  <p>2026.10.14 기준 · LTV·DSR·취득세 계산은 참고용이며 실제 한도는 금융기관·관할 세무서 기준을 따릅니다.</p>
+  <p>2026.11.23 기준 · LTV·DSR·취득세 계산은 참고용이며 실제 한도는 금융기관·관할 세무서 기준을 따릅니다.</p>
   <p style="margin-top:4px;"><a href="index.html">← 홈으로</a></p>
 </footer>
 
 <script>
 // ═══ 상수 ═══
-const DSR_CAP = 0.40, STRESS = 0.03, TERM = 30;
-const LTV_MAP = { hotzone:0.40, adjust:0.50, metro:0.60, local:0.70 };
-const LTV_LBL = { hotzone:'투기과열 40%', adjust:'조정 50%', metro:'수도권 60%', local:'지방 70%' };
-const REG_LBL = { hotzone:'서울 투기과열', adjust:'서울 조정지역', metro:'수도권 비규제', local:'지방 비규제' };
+const DSR_CAP = 0.40, TERM = 30;
+// 2026.11 기준 대출 규칙 — 6·27 대책(2025.6.28~), 10·15 대책(2025.10.16~), 스트레스 DSR 3단계
+// capped: 수도권·규제지역 주담대 금액 한도 / heavyTax: 조정대상지역 다주택 취득세 중과
+const REGIONS = {
+  reg:   { lbl:'규제지역',     ltv:0.40, ltvFirst:0.70, stress:0.03,   capped:true,  heavyTax:true  },
+  metro: { lbl:'수도권 비규제', ltv:0.70, ltvFirst:0.70, stress:0.03,   capped:true,  heavyTax:false },
+  local: { lbl:'지방',         ltv:0.70, ltvFirst:0.70, stress:0.0075, capped:false, heavyTax:false },
+};
+const regionOf = k => REGIONS[k] || REGIONS.reg;
+// 수도권·규제지역: 집값 15억 이하 6억, 25억 이하 4억, 25억 초과 2억
+function priceCap(price, R){ if(!R.capped) return Infinity; return price<=1.5e9 ? 6e8 : price<=2.5e9 ? 4e8 : 2e8; }
+// 수도권·규제지역 2주택 이상은 집 사는 주담대 금지
+function ltvOf(R, owned, firstHome){ if(owned>=2 && R.capped) return 0; return firstHome && owned===0 ? R.ltvFirst : R.ltv; }
+function loanFor(price, R, owned, firstHome, dsrL){ return Math.min(price*ltvOf(R,owned,firstHome), dsrL, priceCap(price,R)); }
 
 // ═══ 유틸 ═══
 function gn(id){ return parseFloat(document.getElementById(id).value)||0; }
@@ -580,24 +588,31 @@ function show(id,v=true){ const e=document.getElementById(id); if(e)e.style.disp
 // ═══ 금융 계산 ═══
 function pmtF(r,n){ if(r<=0)return 1/n; return r*Math.pow(1+r,n)/(Math.pow(1+r,n)-1); }
 
-function dsrLoan(income, existRepay, rate){
-  const stress=rate+STRESS;
+function dsrLoan(income, existRepay, rate, addStress){
+  const stress=rate+addStress;
   const maxMo=income*DSR_CAP/12-existRepay;
   if(maxMo<=0)return 0;
   return Math.max(0, maxMo/pmtF(stress/12,TERM*12));
 }
 
-// 취득세 (지방교육세 포함)
-function acqTax(price, owned, firstHome){
-  if(owned>=2)return price*0.132;
-  if(owned===1)return price*0.088;
+// 취득세 (지방교육세 포함, 85㎡ 초과 농특세 제외)
+// 다주택 중과: 조정대상지역 2주택 8%·3주택+ 12%, 비조정 3주택+ 8% (지방교육세 0.4%)
+function acqTax(price, owned, firstHome, R){
+  const heavy = R.heavyTax ? (owned>=2?0.12:owned===1?0.08:0) : (owned>=2?0.08:0);
+  if(heavy)return price*(heavy+0.004);
   let rate;
   if(price<=600000000)rate=0.01;
   else if(price<=900000000)rate=(price*2/300000000-3)/100;
   else rate=0.03;
-  let tax=price*rate*1.1;
-  if(firstHome&&price<=1200000000)tax*=0.5;
+  const base=price*rate;
+  let tax=base*1.1;
+  if(firstHome&&owned===0&&price<=1200000000)tax-=Math.min(base,2000000); // 생애최초: 12억 이하 취득세 최대 200만원 감면
   return tax;
+}
+function taxLabelOf(owned, firstHome, R){
+  if(owned===0)return firstHome?'생애최초 최대 200만원 감면':'1주택 취득';
+  if(owned===1)return R.heavyTax?'2주택 중과 8% (일시적 2주택은 일반세율)':'2주택 일반세율';
+  return R.heavyTax?'3주택+ 중과 12%':'3주택+ 중과 8%';
 }
 
 // 중개수수료 (2021.10 개정)
@@ -614,17 +629,17 @@ function agentFee(price){
 function regCost(price){ return Math.max(1500000, price*0.0012); }
 
 // 총 부대비용
-function sideCosts(price,owned,firstHome){
-  return acqTax(price,owned,firstHome)+agentFee(price)+regCost(price);
+function sideCosts(price,owned,firstHome,R){
+  return acqTax(price,owned,firstHome,R)+agentFee(price)+regCost(price);
 }
 
 // 현재 최대 구매가 (이진 탐색)
-function maxAffordable(avail, dsrL, ltv, owned, firstHome){
+function maxAffordable(avail, dsrL, R, owned, firstHome){
   let lo=0, hi=5000000000;
   for(let i=0;i<60;i++){
     const mid=(lo+hi)/2;
-    const loan=Math.min(mid*ltv,dsrL,2500000000);
-    const self=(mid-loan)+sideCosts(mid,owned,firstHome);
+    const loan=loanFor(mid,R,owned,firstHome,dsrL);
+    const self=(mid-loan)+sideCosts(mid,owned,firstHome,R);
     if(self<=avail)lo=mid; else hi=mid;
   }
   return lo;
@@ -643,27 +658,28 @@ function areaGuide(p){
 }
 
 // 정부 대출 자격 진단
-function govLoans(income, targetPrice, owned, rate){
+function govLoans(income, targetPrice, owned, rate, firstHome){
   const out = [];
   if(targetPrice<=0)return out;
 
   // 디딤돌
   if(owned===0 && targetPrice<=500000000){
-    const eligible = income<=60000000;
-    const eligibleCo = income<=85000000; // 부부합산
+    const eligible = income<=(firstHome?70000000:60000000);
+    const eligibleCo = income<=85000000; // 신혼부부 합산
     if(eligible||eligibleCo){
-      const dRate = 0.035; // 중간 금리
-      const dLoan = Math.min(250000000, targetPrice*0.70);
-      const marketLoan = Math.min(250000000, targetPrice*0.70);
+      const dRate = 0.035; // 연 2.85~4.15%의 중간
+      const dMax = firstHome ? 240000000 : 200000000; // 6·27 대책 이후 일반 2억·생애최초 2.4억
+      const dLoan = Math.min(dMax, targetPrice*0.70);
+      const marketLoan = dLoan;
       const monthlyDi = dLoan*pmtF(dRate/12,TERM*12);
       const monthlyMk = marketLoan*pmtF(rate/12,TERM*12);
       const totalSave = (monthlyMk-monthlyDi)*12*TERM;
       out.push({
         name:'디딤돌 대출'+(eligibleCo&&!eligible?' (부부합산)':''),
-        eligible:true, rate:'2.35~3.95%', maxLoan:dLoan, ltv:0.70,
+        eligible:true, rate:'2.85~4.15%', maxLoan:dLoan, ltv:0.70,
         totalSave, monthlyDiff: monthlyMk-monthlyDi,
-        cond: eligible?'연소득 6천만원 이하':'부부합산 8.5천만원 이하',
-        detail:`무주택 세대원 전원 · 주택가 5억 이하 · LTV 70% · 최대 2.5억 · 30년`,
+        cond: eligible?(firstHome?'생애최초 연소득 7천만원 이하':'연소득 6천만원 이하'):'신혼부부 합산 8.5천만원 이하',
+        detail:`무주택 세대원 전원 · 주택가 5억 이하 · LTV 70% · 최대 ${firstHome?'2.4억':'2억'}(신혼·2자녀 3.2억) · 30년`,
         action:'주택도시기금(nhuf.go.kr)에서 상품 조회 → 은행 방문 신청'
       });
     }
@@ -674,17 +690,17 @@ function govLoans(income, targetPrice, owned, rate){
     const eligible = income<=70000000;
     const eligibleCo = income<=80000000;
     if(eligible||eligibleCo){
-      const bRate = 0.0365;
+      const bRate = 0.0515; // 아낌e 연 5.00~5.30% (2026.11.9~)
       const bLoan = Math.min(360000000, targetPrice*0.70);
       const monthlyBo = bLoan*pmtF(bRate/12,TERM*12);
       const monthlyMk = bLoan*pmtF(rate/12,TERM*12);
       const totalSave = (monthlyMk-monthlyBo)*12*TERM;
       out.push({
         name:'보금자리론'+(eligibleCo&&!eligible?' (1자녀 기준)':''),
-        eligible:true, rate:'3.35~3.75%', maxLoan:bLoan, ltv:0.70,
+        eligible:true, rate:'5.00~5.30%', maxLoan:bLoan, ltv:0.70,
         totalSave, monthlyDiff: monthlyMk-monthlyBo,
         cond: eligible?'연소득 7천만원 이하':'부부합산 8천만원 이하(1자녀)',
-        detail:`무주택 또는 처분조건 1주택 · 주택가 6억 이하 · LTV 70% · 최대 3.6억`,
+        detail:`무주택 또는 처분조건 1주택 · 주택가 6억 이하 · LTV 70% · 최대 3.6억 · 만기까지 고정금리`,
         action:'한국주택금융공사(hf.go.kr)에서 신청'
       });
     }
@@ -707,7 +723,7 @@ function altStrategies(gap, maxPrice, targetPrice, monthsToGoal, income, owned){
       alts.push({
         icon:'🪜',
         title:'주거 사다리 전략',
-        desc:`지금 살 수 있는 ${fmt(maxPrice)} 이하 소형 아파트를 먼저 매수하고, 자산을 키워 목표 집으로 갈아타세요. 전세 끼고 사면 실거주 없이 자산을 불릴 수 있습니다 (갭투자 위험성 숙지 필요).`,
+        desc:`지금 살 수 있는 ${fmt(maxPrice)} 이하 소형 아파트를 먼저 매수하고, 자산을 키워 목표 집으로 갈아타세요. 서울 전역·경기 12곳은 토지거래허가구역이라 전세를 끼고 사는 갭투자가 막혀 있습니다(2026.12.31 만료, 연장 여부 12월 발표).`,
         cta:'일일학습: 갭투자 리스크 확인'
       });
     }
@@ -723,7 +739,7 @@ function altStrategies(gap, maxPrice, targetPrice, monthsToGoal, income, owned){
       alts.push({
         icon:'🏛️',
         title:'생애최초 & 정부 지원 총정리',
-        desc:'생애최초 취득세 50% 감면 + 디딤돌/보금자리론 우대금리 + 청년 주택드림 대출(청년 대상) 중복 혜택이 가능합니다. 요건을 꼼꼼히 확인하면 수천만원을 절약할 수 있습니다.',
+        desc:'생애최초 취득세 최대 200만원 감면, 규제지역에서도 생애최초는 LTV 70%가 적용됩니다. 디딤돌·보금자리론 요건도 함께 확인하세요. (40세 미만 감면 한도 300만원 확대는 지방세 개편안으로 입법 진행 중)',
         cta:'주택도시기금 포털 확인'
       });
     }
@@ -746,17 +762,20 @@ function calc(){
   const targetReg  = gs('target-region');
 
   const avail = savings+jeonse; // 총 가용 자금
-  const ltv   = LTV_MAP[region]||0.50;
-  const tgtLtv= LTV_MAP[targetReg]||0.50;
+  const R     = regionOf(region);
+  const TR    = regionOf(targetReg);
+  const ltv   = ltvOf(R,owned,firstHome);
+  const tgtLtv= ltvOf(TR,owned,firstHome);
 
-  const dsrL  = dsrLoan(income,existRepay,rate);
-  const maxP  = maxAffordable(avail,dsrL,ltv,owned,firstHome);
-  const actL  = Math.min(maxP*ltv,dsrL,2.5e9);
+  const dsrL  = dsrLoan(income,existRepay,rate,R.stress);
+  const tgtDsrL = dsrLoan(income,existRepay,rate,TR.stress);
+  const maxP  = maxAffordable(avail,dsrL,R,owned,firstHome);
+  const actL  = loanFor(maxP,R,owned,firstHome,dsrL);
   const selfP = maxP-actL;
-  const sideC = sideCosts(maxP,owned,firstHome);
+  const sideC = sideCosts(maxP,owned,firstHome,R);
   const totalSelf = selfP+sideC;
   const monthlyPay = actL*pmtF(rate/12,TERM*12);
-  const stressPay  = actL*pmtF((rate+STRESS)/12,TERM*12);
+  const stressPay  = actL*pmtF((rate+R.stress)/12,TERM*12);
   const dsrUsed    = income>0?(monthlyPay*12+existRepay*12)/income:0;
 
   // ── STEP 2 렌더
@@ -765,17 +784,18 @@ function calc(){
   set('r-max-note', `자기자금 ${fmt(selfP)} + 대출 ${fmt(actL)}${addNote}`);
   set('r-contract', fmt(maxP*0.10));
   set('r-loan', fmt(actL));
-  set('r-loan-when', `LTV ${LTV_LBL[region]} · DSR ${(dsrUsed*100).toFixed(1)}%`);
+  set('r-loan-when', `LTV ${Math.round(ltv*100)}% · DSR ${(dsrUsed*100).toFixed(1)}%`);
   set('r-self', fmt(selfP-maxP*0.10>0?selfP-maxP*0.10:0));
   set('r-dsr', fmt(dsrL));
-  set('r-dsr-note', `스트레스 ${((rate+STRESS)*100).toFixed(1)}% 기준 · 월 ${fmt(actL*pmtF((rate+STRESS)/12,TERM*12))}/월`);
+  set('r-dsr-note', `금리 ${(rate*100).toFixed(2)}% + 스트레스 ${(R.stress*100).toFixed(2)}%p로 계산`);
   set('r-ltv-loan', `주택가의 ${(ltv*100).toFixed(0)}%`);
-  set('r-ltv-note', REG_LBL[region]+' 기준 · 주택가 × '+Math.round(ltv*100)+'%');
+  set('r-ltv-note', ltv===0 ? '수도권·규제지역 2주택 이상은 구입 주담대 금지'
+    : R.lbl+' 기준'+(R.capped?' · 금액 한도 '+fmt(priceCap(maxP,R)):'')+(owned===1&&R.capped?' · 기존 집 처분 약정 필요':''));
   set('r-monthly', fmt(monthlyPay)+'/월');
   set('r-monthly-note', `(스트레스 금리 기준 ${fmt(stressPay)}/월)`);
-  const tax=acqTax(maxP,owned,firstHome);
+  const tax=acqTax(maxP,owned,firstHome,R);
   set('r-tax', fmt(tax));
-  const taxLabel = owned===0 ? (firstHome?'생애최초 50% 감면 적용':'1주택 취득') : owned===1?'2주택(조정)':'3주택+';
+  const taxLabel = taxLabelOf(owned,firstHome,R);
   set('r-tax-note', taxLabel+' 취득세 + 지방교육세');
   const af=agentFee(maxP), rc=regCost(maxP);
   set('r-side', fmt(af+rc));
@@ -783,19 +803,21 @@ function calc(){
   set('r-area-guide', areaGuide(maxP));
 
   // ── STEP 3: 정부 대출 진단
-  const govL = govLoans(income, targetP||maxP*0.9, owned, rate);
+  const govL = govLoans(income, targetP||maxP*0.9, owned, rate, firstHome);
   if(govL.length>0){
     let html='';
     govL.forEach(g=>{
       const savedMo = Math.round(g.monthlyDiff/1e4);
       const savedTot = Math.round(g.totalSave/1e6);
+      const cheaper = savedMo>0;
       html+=`<div class="gov-eligible">
         <span class="ge-badge">✅ 자격 해당</span>
         <div class="ge-name">${g.name}</div>
         <div style="display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;">
           <div><div style="font-size:12px;color:var(--green);font-weight:700;">적용 금리</div><div class="ge-rate">${g.rate}</div></div>
-          <div><div style="font-size:12px;color:var(--green);font-weight:700;">월 절약 (시중 대비)</div><div class="ge-rate">월 ${savedMo}만원</div></div>
-          <div><div style="font-size:12px;color:var(--green);font-weight:700;">30년 총 절약</div><div class="ge-rate">약 ${savedTot}백만원</div></div>
+          ${cheaper?`<div><div style="font-size:12px;color:var(--green);font-weight:700;">월 절약 (선택한 금리 대비)</div><div class="ge-rate">월 ${savedMo}만원</div></div>
+          <div><div style="font-size:12px;color:var(--green);font-weight:700;">30년 총 절약</div><div class="ge-rate">약 ${savedTot}백만원</div></div>`
+          :`<div><div style="font-size:12px;color:var(--green);font-weight:700;">선택한 금리와 비교</div><div class="ge-rate" style="font-size:14px;">더 높거나 같음 — 고정금리 안정성이 장점</div></div>`}
         </div>
         <div class="ge-cond">
           <b>조건:</b> ${g.cond} · ${g.detail}<br>
@@ -806,14 +828,14 @@ function calc(){
     set('gov-result',html);
   } else if(targetP>0||maxP>0){
     let reasons=[];
-    if(income>85000000)reasons.push('연소득이 8.5천만원 초과 (디딤돌 한도 초과)');
-    if((targetP||maxP)>600000000)reasons.push('목표 주택가가 6억 초과 (보금자리론 한도 초과)');
+    if(income>85000000)reasons.push('연소득이 8.5천만원 초과 (디딤돌 소득 기준 초과)');
+    if((targetP||maxP)>600000000)reasons.push('목표 주택가가 6억 초과 (보금자리론 주택가 기준 초과)');
     if(owned>=1)reasons.push('현재 주택 보유 (무주택 조건 미충족)');
     if(reasons.length===0)reasons.push('현재 입력 조건에서 해당 정부 대출 없음');
     set('gov-result',`<div class="gov-not">
       <div class="gn-title">⚪ 정부 우대 대출 자격 미해당</div>
       <div class="gn-why">${reasons.map(r=>'• '+r).join('<br>')}<br><br>
-      시중 금리 대출로 진행 시 DSR 40% 한도 내에서 최대 ${fmt(dsrL)} 대출 가능합니다.</div>
+      시중 금리 대출로 진행 시 DSR 40% 한도로는 최대 ${fmt(dsrL)}까지 가능합니다(LTV·금액 한도는 별도).</div>
     </div>`);
   }
 
@@ -821,8 +843,8 @@ function calc(){
   show('appr-section',false); show('tl-section',false); show('cost-card',false); show('alt-section',false);
 
   if(targetP>0){
-    const tgtL    = Math.min(targetP*tgtLtv,dsrL,2.5e9);
-    const tgtTax  = acqTax(targetP,owned,firstHome);
+    const tgtL    = loanFor(targetP,TR,owned,firstHome,tgtDsrL);
+    const tgtTax  = acqTax(targetP,owned,firstHome,TR);
     const tgtAf   = agentFee(targetP);
     const tgtRc   = regCost(targetP);
     const tgtSide = tgtTax+tgtAf+tgtRc;
@@ -845,9 +867,9 @@ function calc(){
         <div class="gb-sub">목표가 ${fmt(targetP)} · 필요 자기자금 <b>${fmt(tgtSelf)}</b> (대출 ${fmt(tgtL)} + 잔금자기자금 + 취득비용 ${fmt(tgtSide)})<br>현재 보유 가용자금 ${fmt(avail)} → 부족분 <b>${fmt(gap)}</b></div>
       </div>
       <div class="rg3">
-        <div class="ri"><div class="rl">목표 대출</div><div class="rv c-acc">${fmt(tgtL)}</div><div class="rs">${REG_LBL[targetReg]} LTV ${Math.round(tgtLtv*100)}% 기준</div></div>
+        <div class="ri"><div class="rl">목표 대출</div><div class="rv c-acc">${fmt(tgtL)}</div><div class="rs">${TR.lbl} ${tgtLtv===0?'2주택 이상 구입 주담대 금지':'LTV '+Math.round(tgtLtv*100)+'%'+(TR.capped?' · 한도 '+fmt(priceCap(targetP,TR)):'')}</div></div>
         <div class="ri"><div class="rl">목표 월 상환액</div><div class="rv">${fmt(tgtMPay)}/월</div><div class="rs">DSR ${(tgtDSR*100).toFixed(1)}% 사용</div></div>
-        <div class="ri"><div class="rl">목표 취득세</div><div class="rv c-org">${fmt(tgtTax)}</div><div class="rs">${firstHome?'생애최초 50% 감면':'지방교육세 포함'}</div></div>
+        <div class="ri"><div class="rl">목표 취득세</div><div class="rv c-org">${fmt(tgtTax)}</div><div class="rs">${taxLabelOf(owned,firstHome,TR)}</div></div>
       </div>`;
     set('target-result',html);
 
@@ -865,8 +887,8 @@ function calc(){
       let hasRace=false;
       scenarios.forEach(s=>{
         const newPrice = targetP*Math.pow(1+s.rate,months/12);
-        const newTgtL  = Math.min(newPrice*tgtLtv,dsrL,2.5e9);
-        const newSide  = sideCosts(newPrice,owned,firstHome);
+        const newTgtL  = loanFor(newPrice,TR,owned,firstHome,tgtDsrL);
+        const newSide  = sideCosts(newPrice,owned,firstHome,TR);
         const newSelf  = (newPrice-newTgtL)+newSide;
         const newGap   = Math.max(0,newSelf-avail);
         const newMonths= monthlyAdd>0?Math.ceil(newGap/monthlyAdd):Infinity;
@@ -914,7 +936,7 @@ function calc(){
       <div class="cost-row"><span class="cr-l">목표 주택 매매가</span><span class="cr-v">${fmt(targetP)}</span></div>
       <div class="cost-row"><span class="cr-l">대출금</span><span class="cr-v">- ${fmt(tgtL)}</span></div>
       <div class="cost-row"><span class="cr-l">잔금 자기자금 (계약금 포함)</span><span class="cr-v">${fmt(targetP-tgtL)}</span></div>
-      <div class="cost-row"><span class="cr-l">취득세 (지방교육세 포함${firstHome?' · 생애최초 50% 감면':''})</span><span class="cr-v">${fmt(tgtTax)}</span></div>
+      <div class="cost-row"><span class="cr-l">취득세 (지방교육세 포함 · ${taxLabelOf(owned,firstHome,TR)})</span><span class="cr-v">${fmt(tgtTax)}</span></div>
       <div class="cost-row"><span class="cr-l">중개수수료</span><span class="cr-v">${fmt(tgtAf)}</span></div>
       <div class="cost-row"><span class="cr-l">등기비용 (법무사 + 등록면허세 등)</span><span class="cr-v">${fmt(tgtRc)}</span></div>
       <div class="cost-row total"><span class="cr-l">총 자기자금 필요액</span><span class="cr-v">${fmt(tgtSelf)}</span></div>
