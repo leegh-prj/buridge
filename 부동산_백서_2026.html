@@ -1192,8 +1192,8 @@ input,select,textarea{font-family:inherit}
     <div class="dash-stat-row">
       <div class="dash-stat">
         <div class="dash-stat-lbl">기준금리</div>
-        <div class="dash-stat-val">3.<em>00</em>%</div>
-        <div class="dash-stat-sub">한국은행 · 2026.7·8월 인상, 10월 동결 (11.23 기준)</div>
+        <div class="dash-stat-val">3.<em>25</em>%</div>
+        <div class="dash-stat-sub">한국은행 · 2026.11.26 인상 (하반기 세 번째)</div>
       </div>
       <div class="dash-stat">
         <div class="dash-stat-lbl">서울 아파트 중위가</div>
@@ -2332,7 +2332,7 @@ input,select,textarea{font-family:inherit}
         </div>
         <div class="struct-body">
           <p class="struct-body-text">
-            기준금리 3.5% → 2.5%(2025.5) 인하로 주담대 금리가 연 1%p 하락했습니다. 다만 2026년 7·8월 다시 3.00%로 올라 이 효과는 줄었습니다. 4억 30년 대출 기준 월 약 22만원 감소. <b>이 여유 자금이 매수 수요로 전환되어 가격을 끌어올렸습니다.</b> 단, 2025.7 DSR 3단계(스트레스 1.5%p 가산)는 이 효과를 상당 부분 상쇄합니다. 장기적으로 저금리 의존 상승은 금리 재상승 시 취약합니다. <b>핵심 입지는 금리가 올라도 방어되지만, 외곽은 금리 상승 시 가장 먼저 무너집니다.</b>
+            기준금리 3.5% → 2.5%(2025.5) 인하로 주담대 금리가 연 1%p 하락했습니다. 다만 2026년 7·8·11월 다시 3.25%까지 올라 이 효과는 줄었습니다. 4억 30년 대출 기준 월 약 22만원 감소. <b>이 여유 자금이 매수 수요로 전환되어 가격을 끌어올렸습니다.</b> 단, 2025.7 DSR 3단계(스트레스 1.5%p 가산)는 이 효과를 상당 부분 상쇄합니다. 장기적으로 저금리 의존 상승은 금리 재상승 시 취약합니다. <b>핵심 입지는 금리가 올라도 방어되지만, 외곽은 금리 상승 시 가장 먼저 무너집니다.</b>
           </p>
           <div class="struct-data-row">
             <div class="sdr-item"><div class="sdr-val">-1%p</div><div class="sdr-lbl">기준금리 인하 폭(2023→2025)</div></div>
@@ -3016,8 +3016,8 @@ input,select,textarea{font-family:inherit}
         <div class="ptl-date">2026.07</div>
         <div class="ptl-dot ptl-dot-amber"></div>
         <div class="ptl-content">
-          <div class="ptl-title">기준금리 인상 — 2.50% → 2.75% → 3.00%</div>
-          <div class="ptl-desc">한국은행이 7월·8월(8.27) 두 달 연속 인상하고 10월 동결. 11.26 금통위에서 추가 인상(3.25%) 전망.</div>
+          <div class="ptl-title">기준금리 인상 — 2.50% → 3.25%</div>
+          <div class="ptl-desc">한국은행이 7월 2.75%, 8.27 3.00%, 11.26 3.25%로 하반기 세 차례 인상. 내년 추가 인상 시사.</div>
         </div>
       </div>
       <div class="ptl-item">
@@ -4208,8 +4208,8 @@ var QZ_DATA = [
     opts:['약 5억원','약 7억원','약 11억원','약 15억원'], ans:2,
     exp:'서울 전체 아파트(강남~강북 포함) 중위값. 강남권이 50배 PIR이지만, 노원·도봉이 14배이므로 평균은 약 11억원 수준.' },
   { cat:'시장', q:'2026년 현재 한국은행 기준금리는?',
-    opts:['2.5%','2.75%','3.0%','3.5%'], ans:2,
-    exp:'2025.5 2.5%까지 내린 뒤 2026년 7월 2.75%, 8.27 3.00%로 두 달 연속 인상, 10월 동결(11.23 기준). 5대 은행 주담대 금리는 연 4.4~6.5% 수준.' },
+    opts:['2.5%','2.75%','3.25%','3.5%'], ans:2,
+    exp:'2025.5 2.5%까지 내린 뒤 2026년 7월 2.75%, 8월 3.00%, 11월 3.25%로 하반기 세 차례 인상(11.26 기준). 5대 은행 주담대 금리는 연 4.4~6.5% 수준(11.17).' },
   { cat:'시장', q:'2024년 서울 아파트 착공 물량(역대 최저)은?',
     opts:['약 1.2만호','약 2.5만호','약 3.5만호','약 5.0만호'], ans:0,
     exp:'1.2만호로 역대 최저. 착공에서 입주까지 3~4년이므로 2027~2028년 서울 입주 물량이 수학적으로 확정된 상태.' },
@@ -5839,10 +5839,10 @@ function testShowResult(tid, answers) {
         <div class="tl-card" onclick="tlToggle(this)">
           <div class="tl-card-top"><div class="tl-card-left">
             <div class="tl-card-date">2026.07~08</div>
-            <div class="tl-card-name">기준금리 2.50% → 3.00% 인상</div>
+            <div class="tl-card-name">기준금리 2.50% → 3.25% 인상</div>
             <div class="tl-card-tags"><span class="tl-tag tl-tag-rate">금리</span></div>
           </div><div class="tl-toggle-ico">▾</div></div>
-          <div class="tl-detail">한국은행이 7월(2.75%)과 8.27(3.00%) 두 달 연속 인상하고 10월 동결. 11.26 금통위에서 3.25% 인상 전망.
+          <div class="tl-detail">한국은행이 7월(2.75%), 8.27(3.00%), 11.26(3.25%) 하반기 세 차례 인상. 11.26에는 위원 5명 찬성·2명 동결 의견, 내년 추가 인상 시사.
             <div class="tl-impact"><b>의미</b>: 보금자리론은 올해 여섯 차례 올라 11.9부터 연 5.00~5.30%.</div>
           </div>
         </div>
